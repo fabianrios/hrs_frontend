@@ -1,0 +1,11 @@
+<div ui-view="navbar"></div>
+<div class="main-container" id="main-container">
+  <div class="main-container-inner">
+    <div ui-view="sidebar"></div>
+    <div class="main-content" ng-class="{'main-content-bigger': ui.sidebar.mainCollapsed}">
+      <div class="row">
+        <div class="small-12 large-12" ui-view="content"></div>
+      </div>
+    </div>
+  </div>
+</div>
