@@ -56,5 +56,12 @@
       Cache.removeUserCaches();
     };
     **/
-  });
+  })
+  
+  .factory('Company', ['$resource', function($resource) {
+    return $resource('/api/companies/:id.json', null, {
+      'update': { method:'PUT' }
+    });
+  }]);
+  
 }());

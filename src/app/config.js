@@ -17,7 +17,7 @@
   var hrapi = {};
   hrapi.hostname = function(){
     if(runEnv.isDevelopment === true){
-      return 'http://localhost:8080';
+      return 'http://localhost:3000';
     }
     return 'https://backend.hrsolutions.com';
   }();

@@ -23,7 +23,8 @@
         })
     })
 
-    .controller('dashboard.MainController', function($scope, widgets){
+    .controller('dashboard.MainController', function($scope, widgets, Company){
+      $scope.companies = Company.query();
       $scope.common = {
         widgets: widgets.items
       };

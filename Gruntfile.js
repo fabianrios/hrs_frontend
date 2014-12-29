@@ -165,9 +165,9 @@ module.exports = function(grunt){
       proxies: [
         // Proxy servicios REST Rails
         {
-          context: ['/rest'], //reemplazar por prefijo servicios Rails
+          context: ['/api'], //reemplazar por prefijo servicios Rails
           host: 'localhost',
-          port: 8080,
+          port: 3000,
           https: false,
           changeOrigin: true,
           xforward: false,

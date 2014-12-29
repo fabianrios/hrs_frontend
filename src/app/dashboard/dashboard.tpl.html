@@ -1,3 +1,10 @@
 <div class="row" ng-repeat="widget in common.widgets">
-  <div class="widget"  class="small-12columns">{{ widget.name }}</div>
+  <div class="widget"  class="small-12 columns">{{ widget.name }}</div>
 </div>
+
+  <h1 class="subheader">Companies</h1>
+  <ul>
+    <li ng-repeat="company in companies">
+  	<span>{{company.company.name}}</span>
+    </li>
+  </ul>
