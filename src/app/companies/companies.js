@@ -35,7 +35,6 @@
       };
     })
     .controller('company.MainController', function($scope, Company){
-      $scope.company = {name: "1"};
-	  console.log(Company.show(1));
+      $scope.company = Company.show(1);
     });
 }());
