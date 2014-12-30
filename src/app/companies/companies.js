@@ -39,9 +39,9 @@
 	  };
 	  
     })
-    .controller('companies.DetailController', function($scope, Company){
+    .controller('companies.DetailController', function($scope, Company, $stateParams){
 		// $scope.company = company;
-		$scope.company = Company.show(1);
+		$scope.company = Company.show({id:$stateParams.id});
 		
     });
 }());
