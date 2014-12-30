@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   
-  angular.module('companies', [])
+  angular.module('companies', ['sap.service'])
 
     .config(function($stateProvider){
       $stateProvider
