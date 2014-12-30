@@ -16,6 +16,7 @@
     // Modules
     'navbar',
     'sidebar',
+	'companies',
     'dashboard'
   ])
 
@@ -32,11 +33,11 @@
         views: {
           navbar: {
             templateUrl: 'app/navbar/navbar.tpl.html',
-            controller: 'navbar.NavbarController'
+            controller: 'Navbar.NavbarController'
           },
           sidebar: {
             templateUrl: 'app/sidebar/sidebar.tpl.html',
-            controller: 'sidebar.SidebarController'
+            controller: 'Sidebar.SidebarController'
           },
           content: {
             template: '<div ui-view=""></div>'
@@ -59,8 +60,12 @@
   })
   
   .factory('Company', ['$resource', function($resource) {
-    return $resource('/api/companies/:id.json', null, {
-      'update': { method:'PUT' }
+    return $resource('/api/companies/:id', {id: "@id"}, {
+		'create': { method:'POST' },
+		'index': { method:'GET', isArray: true },
+		'show': { method:'GET', isArray: false },
+		'update': { method:'PUT' },
+		'destroy': { method:'DELETE' }
     });
   }]);
   

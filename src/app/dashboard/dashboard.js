@@ -8,7 +8,7 @@
         .state('main.views.dashboard', {
           url: '/home',
           templateUrl: 'app/dashboard/dashboard.tpl.html',
-          controller: 'dashboard.MainController',
+          controller: 'Dashboard.MainController',
           resolve: {
             widgets: function(){
               return {
@@ -23,8 +23,8 @@
         })
     })
 
-    .controller('dashboard.MainController', function($scope, widgets, Company){
-      $scope.companies = Company.query();
+    .controller('Dashboard.MainController', function($scope, widgets, Company){
+      $scope.companies = Company.index();
       $scope.common = {
         widgets: widgets.items
       };

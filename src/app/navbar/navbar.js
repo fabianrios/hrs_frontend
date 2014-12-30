@@ -3,7 +3,7 @@
 
   angular.module('navbar', [])
 
-    .controller('navbar.NavbarController', function($scope){
+    .controller('Navbar.NavbarController', function($scope){
     });
 }());
 

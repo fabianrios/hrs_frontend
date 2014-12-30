@@ -1,0 +1,14 @@
+<ul class="small-block-grid-1 medium-block-grid-3 large-block-grid-3">
+	<li class="widget" ng-repeat="widget in common.widgets">
+		<h4>{{ widget.name }}</h4>
+		{{ widget.config.param_a }}
+	</li>
+</ul>
+
+
+  <h1 class="subheader">Companies</h1>
+  <ul>
+    <li ng-repeat="company in companies">
+  	<span>{{company.name}}</span>
+    </li>
+  </ul>
