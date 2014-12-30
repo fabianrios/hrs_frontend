@@ -28,13 +28,23 @@
         })
     })
 
-    .controller('companies.MainController', function($scope, widgets, Company){
+    .controller('companies.MainController', function($scope, widgets, Company, $location){
       $scope.companies = Company.index();
       $scope.common = {
         widgets: widgets.items
       };
+	  
+	  $scope.viewCompany = function(id) {
+	    return $location.url("/companies/" + id);
+	  };
+	  
     })
-    .controller('company.MainController', function($scope, Company){
-      $scope.company = Company.show(1);
+    .controller('company.MainController', function($scope, Company, $http){
+      $scope.company = {name: "id"}
+	  
+      $scope.addEntry = function(entry) {
+        Company.create(entry);
+      };
+	  
     });
 }());

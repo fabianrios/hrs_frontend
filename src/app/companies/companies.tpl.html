@@ -9,6 +9,6 @@
   <h1 class="subheader">Companies</h1>
   <ul>
     <li ng-repeat="company in companies">
-  	<span>{{company.name}}</span>
+  	<a ng-click="viewCompany(company.id)"><span>{{company.name}}</span></a>
     </li>
   </ul>
