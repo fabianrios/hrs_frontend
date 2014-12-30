@@ -8,7 +8,7 @@
         .state('main.views.companies', {
           url: '/companies',
           templateUrl: 'app/companies/companies.tpl.html',
-          controller: 'companies.MainController',
+          controller: 'companies.ListController',
           resolve: {
             widgets: function(){
               return {
@@ -22,29 +22,26 @@
           }
         })
         .state('main.views.company', {
-          url: '/companies/:id',
+          url: '/company/:id',
           templateUrl: 'app/companies/company.tpl.html',
-          controller: 'company.MainController'
+          controller: 'companies.DetailController'
         })
     })
 
-    .controller('companies.MainController', function($scope, widgets, Company, $location){
+    .controller('companies.ListController', function($scope, widgets, Company, $location){
       $scope.companies = Company.index();
       $scope.common = {
         widgets: widgets.items
       };
 	  
 	  $scope.viewCompany = function(id) {
-	    return $location.url("/companies/" + id);
+	    return $location.url("/company/" + id);
 	  };
 	  
     })
-    .controller('company.MainController', function($scope, Company, $http){
-      $scope.company = {name: "id"}
-	  
-      $scope.addEntry = function(entry) {
-        Company.create(entry);
-      };
-	  
+    .controller('companies.DetailController', function($scope, Company){
+		// $scope.company = company;
+		$scope.company = Company.show(1);
+		
     });
 }());
