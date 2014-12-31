@@ -60,7 +60,7 @@
       Cache.removeUserCaches();
     };
     **/
-  })
+  });
   
   
 }());
