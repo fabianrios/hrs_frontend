@@ -16,7 +16,7 @@
           }
         })
         .state('main.views.companydetail', {
-          url: '/company/:id',
+          url: '/companies/:id',
           templateUrl: 'app/companies/company.tpl.html',
           controller: 'companies.DetailController',
           resolve: {
