@@ -38,6 +38,16 @@
 	    return $location.url("/company/" + id);
 	  };
 	  
+		// 	  $scope.newCompany = new Company();  //create new company instance. Properties will be set via ng-model on UI
+		//
+		// 	  $scope.addCompany = function() {
+		// console.log($scope.newCompany);
+		//       $scope.newCompany.$save(function() {
+		//         $state.go('companies.ListController'); // on success go back to home i.e. movies state.
+		//       });
+		//
+		//       };
+	  
     })
     .controller('companies.DetailController', function($scope, Company, $stateParams){
 		// $scope.company = company;
