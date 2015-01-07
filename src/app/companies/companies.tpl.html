@@ -9,11 +9,11 @@
   <h1 class="subheader">Companies</h1>
   <ul>
     <li ng-repeat="company in companies">
-  	<a ng-click="viewCompany(company.id)"><span>{{company.name}}</span></a>
+		<a ng-click="viewCompany(company.id)"><span>{{company.name}}</span></a>
+		<a class="button tiny" ui-sref="main.views.companyedit({id:company.id})">Edit</a>
     </li>
   </ul>
   
-  <!-- <form ng-submit="addCompany()">
-     <input type="text" ng-model="newCompany.name">
-     <input type="submit" value="Add" class="button success">
-   </form> -->
+  <a ui-sref="main.views.companynew" class="button tiny success">Add New Company</a>
+  
+

@@ -1,0 +1,49 @@
+<div class="off-canvas-wrap" data-offcanvas>
+  <div class="inner-wrap">
+	<nav class="tab-bar">
+		<section class="left-small">
+			<a href="#" class="left-off-canvas-toggle menu-icon">
+				<span></span>
+			</a>
+		</section>
+		<section class="middle tab-bar-section">
+			<div class="left">
+				<h1 class="title left show-for-medium-up">Harinera del valle</h1>
+			</div>
+			<div class="right">
+				<div class="user_nav show-for-medium-up">
+					<div class="text text-right">
+						<h5 class="subheader no-margin nombre capitalize">Carlos Rios</h5>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="right-small"><a href="#" class="right-off-canvas-toggle menu-icon"></a></section>
+	</nav>
+	<aside class="left-off-canvas-menu" ui-view="navbar">
+		
+	</aside>
+	<aside class="right-off-canvas-menu"></aside>
+	<section class="main-section">
+		<div class="row">
+			<div class="large-12 columns">
+				
+			</div>
+		</div>
+	</section>
+  </div>
+</div>
+
+
+<div class="main-container" id="main-container">
+	
+  <div class="main-container-inner">
+    <div ui-view="sidebar"></div>
+    <div class="main-content" ng-class="{'main-content-bigger': ui.sidebar.mainCollapsed}">
+      <div class="row">
+        <div class="small-12 large-12 columns" ui-view="content"></div>
+      </div>
+    </div>
+  </div>
+  
+</div>
