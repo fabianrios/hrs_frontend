@@ -1,3 +1,14 @@
+//--------------------INDEX
+
+//1 .dashboard-profile
+	// 1.1 .bottomize
+	// 1.2 .big-profile
+// 2. sidebar
+	// 2.1 .finder
+
+
+
+@import "compass";
 
 body {
   background-color: #aaa;
@@ -12,4 +23,180 @@ body {
 .widget {
   background-color: #fff;
   border: 1px solid #666;
+}
+
+
+
+// 1 .dashboard-profile
+.dashboard-profile{
+	position: relative;
+	background-color:#f8f8f8;
+	background-image: url("http://www.harineradelvalle.com/images/harinera-valle/slider/slider-home/slide-1.png");
+	background-position: 0 -100px;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	width: 100%;
+	margin-bottom: 30px;
+	min-height: 425px;
+	padding: 10px 0 30px 0;
+	z-index: 0; //para que quede debajo del nav
+	@include box-shadow(0px -5px 10px rgba(50,50,50, 0.2) inset);
+	a{
+		color: #1C6087;
+	}
+}
+
+// 1.1 .bottomize
+.bottomize{
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	padding-bottom: 20px;
+	@include background-image(linear-gradient(rgba(#ffffff,0) 0%, #1a1a1a 90%));
+	&.whitening{
+		@include background-image(linear-gradient(rgba(#ffffff,0) 0%, rgba(#ffffff,0.5) 90%));
+		.subheader{
+			color: #4A4A4A;
+		}
+		.text-format{
+			.subheader{
+				color: #666;
+			}
+		}
+		.bluelighttxt{
+			color: #666;
+		}
+		ul.breadcrumbs{
+			background-color: transparent;
+			border-color: transparent;	
+			padding: 0;
+			li{
+				&:before{
+					color: #333;
+				}
+				a{
+					color: #74DFFF;
+				}
+				&.unavailable {
+					a{
+						color: #DDDDDD;
+					}
+				}
+				&.current {
+					a{
+						color: #6F6F6F;
+					}
+				}
+			}
+		}
+	}
+}
+
+// 1.2 .big-profile
+.big-profile{
+	float: left;
+	width: 120px;
+	height: 120px;
+	@include border-radius(100%);
+	margin-right: 5px;
+	overflow: hidden;
+	border: 2px solid white;
+	@include box-shadow(rgba(100,100,100,0.2) 0 3px 7px inset);
+	&:after{
+		display: block;
+		height: 200px;
+		content:" ";
+	}
+}
+
+.dash-text-format{
+	position: relative;
+	left: 20px;
+	.subheader{
+		color: #A0D8F5;
+	}
+}
+
+// 2. sidebar
+
+// 2.1 .finder
+.finder{
+	margin: 0;
+	list-style-type: none;
+	li{
+		h6.cargo{
+			text-transform: capitalize;
+			position: relative;
+			top: -3px;
+			max-width: 150px;
+			float: left;
+			font-size: 12px;
+			line-height: 1.1em;
+		}
+		&.results{
+			min-height: 70px;
+			display: block;
+			position: relative;
+			padding: 10px 0;
+		}
+		&.search{
+			
+			span.prefix, label.prefix{
+				background:#014b68;
+				color: #bec4c5;
+				@include border-left-radius(10px);
+				border: 0;
+			}
+			
+			background: $header;
+			padding: 23px 10px 20px 10px;
+			input[type="search"]{
+				background: #014b68;
+				color: #fff;
+				margin: 0;
+				border: 0;
+				outline: none;
+				&:focus{
+					outline: none;
+					@include box-shadow(white 0 0 0);
+				}
+				@include border-right-radius(10px);
+				&::-webkit-input-placeholder { /* WebKit browsers */
+				    color:    #bec4c5;
+				}
+				&:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+				   color:    #bec4c5;
+				   opacity:  1;
+				}
+				&::-moz-placeholder { /* Mozilla Firefox 19+ */
+				   color:    #bec4c5;
+				   opacity:  1;
+				}
+				&:-ms-input-placeholder { /* Internet Explorer 10+ */
+				   color:    #bec4c5;
+				}
+			}
+		}
+		.pic{
+			float: left;
+			margin-left: 5px;
+			position: relative;
+			top: -1px;
+			width: 50px;
+			height: 50px;
+			@include border-radius(100%);
+			margin-right: 5px;
+			overflow: hidden;
+			border: 2px solid #7c7c7c;
+			@include box-shadow(rgba(50,50,50,0.2) 0 3px 7px inset);
+			&:hover{
+				border: 2px solid #1C6087;
+			}
+		}
+		.action-buttons{
+			position: absolute;
+			top: 9px;
+			right: 10px;
+		}
+	}
 }

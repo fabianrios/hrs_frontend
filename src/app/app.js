@@ -7,6 +7,8 @@
     'ngResource',
     'ngSanitize',
     'ui.router',
+	'ngPopup',
+    'mm.foundation',
 
     // Config
     'app.config',
@@ -27,7 +29,7 @@
     $stateProvider
       .state('main', {
         abstract: true,
-        templateUrl: 'app/layouts/main.tpl.html',
+        templateUrl: 'app/layouts/remain.tpl.html',
         controller: ['$scope', function($scope){
           $scope.ui = {};
         }]

@@ -1,0 +1,237 @@
+@import "compass";
+@import "variables";
+@import 'mixins';
+
+// esto es ridiculo cada vez que cambio una fuenta
+
+.adelle{
+	font-family: "futura-pt","sans-serif";
+}
+
+.futura{
+	font-family: "futura-pt","sans-serif";
+}
+
+.museo{
+	font-family: "Lato", "Helvetica";
+}
+
+.proxima{
+	font-family: "Lato", "Helvetica";
+}
+
+// esto es ridiculo cada vez que cambio una fuenta
+
+.blacktxt{
+	color: #222;
+}
+
+.whitetxt{
+	color: #f4f4f4;
+}
+
+.whitebg{
+	background: white;
+}
+
+.darkbluetxt{
+	color: #006687;
+}
+
+.lightbluetxt{
+	color: #A0D8F5;
+}
+
+.graytxt{
+	color: #9fb4b9;
+}
+
+.redtxt{
+	color: #ff2211;
+}
+
+.fa-redtxt{
+	color: #ff2211;
+}
+
+.greentxt{
+	color: #2ED63B;
+}
+
+.yellowtxt{
+	color: #f6aa00;
+}
+
+.orangetxt{
+	color: #ff7e00;
+}
+
+.bluetxt{
+	color: #1F82E9;
+}
+
+.purpletxt{
+	color: #5038b8;
+}
+
+.bluelighttxt{
+	color: #A0D8F5;
+}
+
+.smalltxt{
+	font-size: 13px;
+	line-height: 1.3;
+}
+
+.capitalize{
+	text-transform: capitalize;
+	a,span,p{
+		text-transform: capitalize;
+	}
+}
+
+.fixing{
+	position: relative;
+	top: -5px;
+	left: 4px;
+}
+
+.logo{
+	//background: white;
+	max-width: 250px;
+	@include border-radius(5px);
+	padding: 10px;
+	margin-right: 10px;
+	float: left;
+	max-height: 80px;
+}
+
+.no-margin{
+	margin: 0 !important;
+}
+
+
+.p-20{
+	padding: 20px 0;
+}
+
+.phfix{
+	padding: 0 11px;
+}
+
+.mw-200{
+	max-width: 200px;
+}
+
+.center{
+	margin: 0 auto;
+	display: inline-block;
+	text-align: center;
+}
+
+
+.t-15{
+	position: relative;
+	top: 15px;
+}
+
+.t-20{
+	position: relative;
+	top: 20px;
+}
+
+.pt-10{
+	padding-top: 10px;
+}
+
+.mb20{
+	margin-bottom: 20px !important;
+}
+
+.db{
+	display: block;
+}
+
+.dib{
+	display: inline-block;
+}
+
+.uppercase{
+	text-transform: uppercase;
+}
+
+.lowercase{
+	text-transform: lowercase;
+}
+
+
+.quote{
+	font-size: 15px;
+	line-height: 1.6rem;
+	color: rgb(126, 126, 126);
+	font-style: italic;
+	padding: 0 20px;
+}
+
+.full{
+	width: 100%;
+	margin: 10px 0;
+}
+
+.styleimg{
+	padding: 5px;
+	border: 3px solid white;
+	@include box-shadow(1px 1px 5px rgba(50,50,50,.2))
+}
+
+.vertical-align{
+	@include lineup;
+}
+
+.adjust{
+	margin-left: 30px;
+}
+
+
+.remember{
+	position: relative;
+	top: 10px;
+}
+
+.fader{
+	background: #fff url(../assets/fader.gif) repeat-x bottom left;
+}
+
+.maincontent{
+	padding: 20px;
+	margin-bottom: 20px;
+}
+
+
+.save{
+	font-size: 63px;
+	float: left;
+	position: relative;
+	top: -4px;
+	color: #4f5860;
+}
+
+.un-save{
+	font-size: 57px;
+	float: left;
+	position: relative;
+	top: -4px;
+	color: #c8c8c8;
+}
+
+.for-table{
+	.un-save{
+		font-size: 33px;
+		top: -2px;
+	}
+	.button.tiny{
+		padding: 5px 10px;
+		border-bottom: 3px solid #1d5b2e;
+	}
+}
+ 

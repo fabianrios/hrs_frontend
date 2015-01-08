@@ -1,0 +1,12 @@
+// mixins
+@mixin fader($bg1: rgba(#fff,.5), $bg2: #4f5860){
+	// needs latest Compass, add '@import "compass"' to your scss
+	@include filter-gradient($bg1, $bg2, vertical); // IE6-9
+	@include background-image(linear-gradient(#fff ,$bg1 90%, $bg2));
+	
+}
+
+@mixin lineup($pv: 150px, $ph:0){
+	padding: $pv $ph;
+}
+

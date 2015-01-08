@@ -1,0 +1,426 @@
+
+
+// foundation overrides by Fabian Rios hola@fabianrios.co
+
+
+//-------------------------INDEX-------------------------
+
+//a. body
+
+//1. input
+	//1.1 input.button
+	//1.2 textarea
+//2. panel
+//3. pagination
+//4.button
+//5. label (just the label font)
+	//5.1 .label
+//6.table (just full width)
+//7.placeholder
+//8.alert-box
+//9.select
+//10.reveal-modal
+//11.button-group
+//12.offcanvas
+//13.has-tip
+//14.accordion
+//15.block-grid
+//16.hr
+//17.form
+	//17.1.form prefix.date
+	//17.2.switch
+
+@import "compass";
+@import "variables";
+
+
+
+//a. body
+
+html, body {
+	height: auto;
+}
+
+body{
+	background: #fff;
+	&.pattrn{
+		background: url('../assets/bg.png');
+	}
+}
+
+//1. input
+input[type="text"], input[type="password"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="week"], input[type="email"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], textarea{
+	@include box-shadow(white 0px 0px 0px);
+	font-family: "Lato", "Helvetica", sans-serif;
+	background: rgba(180,180,180,.1);
+	padding: 0.5rem 0.3rem;
+	border: 0;
+	&.whitening{
+		background: rgba(255, 255, 255, 0.5);
+	}
+	 &.disabled, &:disabled{
+		border:0;
+		background: rgba(#fff,0);
+		color: #000;
+		&:hover,&:focus{
+				padding: 0.5rem 0.3rem;
+				border:0;
+				background: rgba(#fff,0);
+				color: #000;
+			}
+	}
+	&:focus,&:hover{
+		padding: 0.5rem;
+		border:0;
+		background: rgba(180,180,180,.3);
+		color: #000;
+	}
+}
+
+//1.1 input.button
+input.button{
+	outline:none;
+	&:focus{
+		outline:none;
+	}
+}
+
+//1.2 textarea
+textarea[rows]{
+	height: 200px;
+	&.fixheight{
+		height: 94px;
+	}
+
+}
+
+//2. panel
+.panel {
+	input[type="checkbox"]:last-of-type, input[type="text"]:last-of-type, input[type="password"]:last-of-type{
+		margin-bottom: 0;
+	}
+	&.blur{
+		background: #9CAAB8;
+		@media only screen and (min-width: 40.063em) { 
+			background: rgba(227, 231, 236, 0.3);
+		}
+		width: 100%;
+		margin: 0;
+		border: 0;
+		@include border-radius(10px);
+		margin-bottom: 10px;
+		.row.collapse{
+			margin-bottom: 5px;
+		}
+		span.prefix, label.prefix{
+			background: #fff;
+		}
+	    .button.small {
+		   padding-top: 0.675rem;
+		   padding-bottom: 0.7375rem;
+		}
+	}
+}
+
+//3. pagination
+ul{
+	&.pagination{
+		li{
+			float: none;
+			display: inline-block;
+		}
+	}
+}
+
+//4.button
+.button{
+	&.success{
+		// needs latest Compass, add '@import "compass"' to your scss
+		background-color: #00a651; // Old browsers
+		@include filter-gradient(#3BCF83, #00a651, vertical); // IE6-9
+		@include background-image(linear-gradient(top,  #3BCF83,#00a651 98%));
+		@include box-shadow(0 1px 2px rgba(darken(#00a651,30%),.8));
+		border-top: 1px solid lighten(#00a651,30%);
+		text-shadow:0 -1px 1px rgba(darken(#00a651,30%),.5);
+		&:hover{
+			background-color: #00a651; // Old browsers
+			@include filter-gradient(#3BCF83, #00a651, horizontal); // IE6-9 fallback on horizontal gradient
+			@include background-image(linear-gradient(left bottom,  #3BCF83 0%,#00a651 100%));
+			@include box-shadow(0 1px 7px rgba(darken(#00a651,40%),.7));
+			@include transition-property(box-shadow);
+			@include transition-duration(400ms);
+			@include transition-timing-function(ease-out);
+		}
+	}
+	&.secondary{
+		border:1px solid #cbcbcb;
+		background: transparent;
+		color: #cbcbcb;
+		&:hover{
+			color: #fff;
+		}
+	}
+	&.goahead{
+		@include border-bottom-radius(10px);
+		border-top: 1px solid rgba(#fff, .4);
+		border-bottom: 2px solid darken(#008cba,10%);
+//		@include box-shadow(rgba(50,50,50,.6) 0 -3px 7px);
+	}
+	&.goahead2{
+		@include border-radius(10px);
+		border-top: 1px solid rgba(#fff, .4);
+		border-bottom: 2px solid darken(#008cba,10%);
+//		@include box-shadow(rgba(50,50,50,.6) 0 -3px 7px);
+	}
+	&.disabled{
+		background: none !important;
+		border: 1px solid #dddddd !important;
+		color: #dddddd !important;
+		display: none;
+	}
+}
+
+//5. label
+label{
+	font-family: "Lato", "Helvetica";
+}
+
+//5.1 .label
+.label{
+	top: -2px;
+	&.success{
+		background:rgb(58,206,104);
+	}
+	&.espera{
+		color: #F6AA00;
+		background: white;
+		border: 1px solid #F6AA00;
+		top: -3px;
+		position: relative;
+	}
+	&.aprobado{
+		color: white;
+		background: #329D50;
+	}	
+	&.negado{
+		color: #4F5860;
+		background: white;
+		border: 1px solid #4F5860;
+	}	
+}
+
+//6.table
+table{
+	width: 100%;
+}
+
+table thead {
+	tr th{
+		font-family: "futura-pt","sans-serif";
+	}
+}
+
+//7.placeholder
+::-webkit-input-placeholder { /* WebKit browsers */
+    color:    #4f5860;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:    #4f5860;
+    opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:    #4f5860;
+    opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color:    #4f5860;
+}
+
+
+//8.alert-box
+.alert-box{
+	margin-top: 10px;
+	@include border-radius(5px);
+}
+
+//9.select
+select{
+	min-width: 45px;
+}
+
+//10.reveal-modal
+.close-reveal-modal, .reveal-modal .close-reveal-modal{
+	background: #5e5e5e;
+	width: 40px;
+	text-align: center;
+	top: 0;
+	right: 0;
+	padding:0px 0px 4px 2px;
+}
+
+//11.button-group
+ul.button-group{
+	margin-left: 0 !important;
+}
+
+.button-group{
+	li{
+		a{
+			&.active{
+				background: rgb(53, 176, 216);
+			}		
+		}
+	}
+}
+
+
+//12.offcanvas
+
+.tab-bar{
+	background: rgba(255,255,255,.1);
+	position: absolute;
+	width: 100%;
+	border-bottom: 1px solid rgba(#ffffff,.2);
+	z-index: 10;
+	section.left-small{
+		border-right: 1px solid rgba(#ffffff,.4);
+		.menu-icon{
+			&:hover{
+				background: $header;
+				span{
+					&:after{
+						box-shadow: 0 0px 0 1px #fff, 0 7px 0 1px #fff, 0 14px 0 1px #fff;
+					}
+				}
+			}
+		}
+	}
+	section.right-small{
+		border-left: 1px solid rgba(#ffffff,.4);
+		.menu-icon{
+			&:hover{
+				background: $header;
+				color: #fff;
+			}
+		}
+	}
+
+}
+
+ul.off-canvas-list {
+	li.disabled{
+		a{
+			opacity: .4;
+			cursor: not-allowed;
+		}
+	}
+	li a{
+		&:hover{
+			color: #e8e8e8;
+			background: #1C6087;
+			}
+	}
+	.fa{
+		margin-right: 10px;
+		&.fa-right{
+			float: right;
+			margin-top: 5px;
+		}
+	}
+}
+
+.left-off-canvas-menu,.right-off-canvas-menu {
+	// needs latest Compass, add '@import "compass"' to your scss
+	background-color: #f9f9f9; // Old browsers
+	@include filter-gradient(#f9f9f9, #efefef, horizontal); // IE6-9
+	@include background-image(linear-gradient(left,  #f9f9f9 0%,#efefef 100%));
+}
+
+.left-submenu .back{
+	a{
+		color: lighten($header,15%);
+		text-transform: lowercase;
+		font-weight: normal;
+	}
+}
+
+
+.left-off-canvas-menu ul.off-canvas-list li a{
+	position: relative;
+}
+
+.left-off-canvas-menu ul.off-canvas-list li.has-submenu > a:after{
+	content: "";
+}
+
+.move-right .exit-off-canvas, .move-left .exit-off-canvas{
+	box-shadow:-4px 0 6px rgba(0, 0, 0, 0.2), 4px 0 6px rgba(0, 0, 0, 0.2);
+}
+
+.move-right .exit-off-canvas:hover{
+	background: rgba(255, 255, 255, .5);
+}
+
+//13.has-tip
+.has-tip:hover, .has-tip:focus{
+	border: 0;
+}
+
+//14.accordion
+.accordion .accordion-navigation > a, .accordion dd > a{
+	border-bottom: 1px solid #007DC0;
+	padding: 8px 15px;
+	h4{
+		font-size: 1.2375rem;
+		color: #fff;
+	}
+}
+
+.accordion .accordion-navigation.active{
+	border: 1px solid #e8e8e8;
+}
+
+.accordion .accordion-navigation.active > a, .accordion dd.active > a{
+	color: #313f43;
+	background: #efefef;
+	border-bottom: 0 solid #007DC0;
+	&:hover{
+		background: #E4E4E4;
+		h4{
+			color: #313f43;
+		}
+	}
+	h4{
+		color: #313f43;
+	}
+}
+
+//15.block-grid
+[class*="block-grid-"] > li{
+	padding-bottom: 0;
+}
+
+//16.hr
+hr{
+	margin: 0 0 .5rem;
+}
+
+//17.form
+form .row .prefix-radius.row.collapse input{
+	border-bottom: 1px solid #cccccc;
+	border-right: 1px solid #cccccc;
+	border-top: 1px solid #cccccc;
+}
+
+//17.1.form prefix.date
+span.prefix.date{
+	background: #E8E8E8;
+	border-right: none;
+	color: rgba(0, 0, 0, 0.75);
+	border-color: #cccccc;
+}
+
+//17.2.switch
+.switch input + label {
+	text-indent: -9999px;
+}

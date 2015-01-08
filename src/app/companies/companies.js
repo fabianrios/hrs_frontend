@@ -37,22 +37,24 @@
 	    });
     })
 
-    .controller('companies.ListController', function($scope, $state, companies){
-      console.log(companies);
+    .controller('companies.ListController', function($scope, Popup, $state, companies){
       $scope.companies = companies; 
       $scope.viewCompany = function(id) {
         $state.go("main.views.companydetail", { id: id });
       };
 	  
-		// 	  $scope.newCompany = new Company();  //create new company instance. Properties will be set via ng-model on UI
-		//
-		// 	  $scope.addCompany = function() {
-		// console.log($scope.newCompany);
-		//       $scope.newCompany.$save(function() {
-		//         $state.go('companies.ListController'); // on success go back to home i.e. movies state.
-		//       });
-		//
-		//       };
+	  // DELETE
+	  $scope.deleteCompany = function(company) { // Delete a movie. Issues a DELETE to /api/movies/:id
+		Popup.confirm('Seguro quieres borrar esto?').then(function () {
+			company.$delete(function() {
+				var index = $scope.companies.indexOf(company)
+				$scope.companies.splice(index, 1);
+				$state.go('main.views.companylisting'); // on success go back to company_listing
+			});
+		}, function () {
+			console.error('Rechazado!');
+		});
+	  };
 	  
     })
 
@@ -62,16 +64,16 @@
     .controller('companies.NewController', function($scope, $state, Company){
 	    $scope.company = new Company();  
  
-	     $scope.addCompany = function() { //create a new movie. Issues a POST to /api/companies
+	     $scope.addCompany = function() { //create a new company. Issues a POST to /api/companies
 	       $scope.company.$save(function() {
-			   console.log($scope.company);
+			   $state.go('main.views.companylisting'); // on success go back to company_listing
 	       });
 	     };
     })
     .controller('companies.EditController', function($scope, $state, $stateParams, Company){
 	    $scope.updateCompany = function() { //Update the edited movie. Issues a PUT to /api/movies/:id
 	       $scope.company.$update(function() {
-	         $state.go('main.views.companylisting'); // on success go back to home i.e. movies state.
+	         $state.go('main.views.companylisting'); // on success go back to company_listing
 	       });
 	     };
 

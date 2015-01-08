@@ -10,10 +10,15 @@
   <ul>
     <li ng-repeat="company in companies">
 		<a ng-click="viewCompany(company.id)"><span>{{company.name}}</span></a>
-		<a class="button tiny" ui-sref="main.views.companyedit({id:company.id})">Edit</a>
+		<ul class="button-group">
+		  <li><a class="button tiny" ui-sref="main.views.companyedit({id:company.id})"><i class="fa fa-pencil"></i></a></li>
+		  <li><a class="button tiny alert"  ng-click="deleteCompany(company)"> <i class="fa fa-trash-o"></i> </a></li>
+		</ul>
     </li>
   </ul>
   
   <a ui-sref="main.views.companynew" class="button tiny success">Add New Company</a>
   
+  <!-- Include popup template -->
+  <div ng-include="'angular-popup-service/partials/popup.html'"></div>
 
