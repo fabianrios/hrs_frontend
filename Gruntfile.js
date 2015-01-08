@@ -31,6 +31,7 @@ module.exports = function(grunt){
       server: [
         'compass:server',
         'copy:styles',
+        'sass'
         //'copy:module.templates'
       ],
       test: [
@@ -149,6 +150,21 @@ module.exports = function(grunt){
       server: {
         options: {
           debugInfo: true
+        }
+      }
+    },
+
+    // Saas build para foundation
+    sass: {
+      options: {
+        loadPath: ['vendor/foundation/scss'],
+        scss: true,
+        sourcemap: 'none',
+        style: 'expanded'
+      },
+      dist: {
+        files: {
+          '.tmp/styles/foundation.css': 'src/assets/foundation/settings.scss'
         }
       }
     },
