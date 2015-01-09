@@ -1,2 +1,16 @@
-<h1 class="subheader">{{company.name}}</h1> 
-<h2 class="subheader">{{company.created_at}}</h2> 
+<div class="row">
+	<div class="large-6 columns">
+		<h1 class="subheader">{{company.name}}</h1> 
+		<h2 class="subheader">{{company.created_at}}</h2> 
+	</div>
+	<div class="large-6 columns">
+		<div ng-include="'app/companies/partials/_crudbuttons.tpl.html'"></div>
+	</div>
+</div>
+
+
+<ul>
+	<li ng-repeat="(key, value) in company">
+	  <strong> {{key}}: </strong> <i> {{ value }} </i>
+	</li>
+</ul>

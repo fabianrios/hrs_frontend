@@ -45,6 +45,9 @@
 	  
 	  // DELETE
 	  $scope.deleteCompany = function(company) { // Delete a movie. Issues a DELETE to /api/movies/:id
+		  
+		  
+		  
 		Popup.confirm('Seguro quieres borrar esto?').then(function () {
 			company.$delete(function() {
 				var index = $scope.companies.indexOf(company)
@@ -71,7 +74,7 @@
 	     };
     })
     .controller('companies.EditController', function($scope, $state, $stateParams, Company){
-	    $scope.updateCompany = function() { //Update the edited movie. Issues a PUT to /api/movies/:id
+	    $scope.updateCompany = function() { //Update the edited company. Issues a PUT to /api/companies/:id
 	       $scope.company.$update(function() {
 	         $state.go('main.views.companylisting'); // on success go back to company_listing
 	       });
