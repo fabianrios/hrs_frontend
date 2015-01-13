@@ -48,7 +48,7 @@
 
 	     var modalInstance = $modal.open({
 	       templateUrl: 'myModalContent.html',
-		   controller: 'companies.ListController'
+		   controller: 'ModalInstanceCtrl'
 	     });
 		 
 		 modalInstance.result.then(function () {
@@ -58,13 +58,6 @@
 		  };
 	  
 	  	
-		  $scope.ok = function () {
-		     $modalInstance.close();
-		   };
-
-		   $scope.cancel = function () {
-		     $modalInstance.dismiss('cancel');
-		   };
 	  
 	  // DELETE
 	  $scope.deleteCompany = function(company) { // Delete a movie. Issues a DELETE to /api/movies/:id
@@ -83,6 +76,17 @@
 	  };
 	  
     })
+	
+	.controller('ModalInstanceCtrl', function ($scope, $modalInstance) {
+
+	  $scope.ok = function () {
+	    $modalInstance.close();
+	  };
+
+	  $scope.cancel = function () {
+	    $modalInstance.dismiss('cancel');
+	  };
+	})
 
     .controller('companies.DetailController', function($scope, company){
        $scope.company = company;

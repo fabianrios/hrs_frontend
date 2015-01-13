@@ -17,7 +17,7 @@
   var hrapi = {};
   hrapi.hostname = function(){
     if(runEnv.isDevelopment === true){
-      return 'http://localhost:3000';
+      return 'http://127.0.0.1:3000';
     }
     return 'http://backend.hrinteractive.co';
   }();

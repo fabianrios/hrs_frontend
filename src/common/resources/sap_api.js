@@ -4,7 +4,7 @@
   angular.module('sap.service', [])
 
   .factory('Company', function($resource, HRAPI_CONF) {
-    var url = HRAPI_CONF.apiBaseUrl('/companies/:id');
+    var url = HRAPI_CONF.apiBaseUrl('/companies/:id.json');
     return $resource(url, { id: '@id' }, {
       'create': { method: 'POST' },
       'index': { method: 'GET', isArray: true },
@@ -15,3 +15,5 @@
 
   });
 }());
+
+
