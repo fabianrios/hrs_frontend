@@ -41,6 +41,7 @@ module.exports = function(grunt){
       dist: [
         'compass:dist',
         'copy:dist',
+        'sass',
         'imagemin'
       ]
     },
@@ -84,9 +85,10 @@ module.exports = function(grunt){
             expand: true,
             flatten: true,
             filter: 'isFile',
-            dest: '<%= yeoman.dist %>/font',
+            dest: '<%= yeoman.dist %>/fonts/',
             src: [
-              'assets/fonts/*.{woff,otf,ttf,svg,eot}'
+              'src/assets/fonts/*.{woff,otf,ttf,svg,eot}',
+              'vendor/font-awesome/fonts/*.{woff,otf,ttf,svg,eot}'
             ]
           },
           // Imagenes vendor
@@ -96,18 +98,6 @@ module.exports = function(grunt){
             dest: '<%= yeoman.dist %>/styles/',
             src: [
               'vendor/select2/*.{gif,png,jpg}'
-            ]
-          },
-          // Estilos font-awesome y otros especificos a IE
-          {
-            expand: true,
-            flatten: true,
-            filter: 'isFile',
-            dest: '<%= yeoman.dist %>/styles/',
-            src: [
-              // Ace IE specific styles (not buildable with usemin because of IE if)
-              'themes/ace/assets/css/uncompressed/font-awesome.css',
-              'themes/ace/assets/css/uncompressed/font-awesome-ie7.css'
             ]
           }
         ]
@@ -138,7 +128,7 @@ module.exports = function(grunt){
         //importPath: 'vendor',
         httpImagesPath: '/assets/images',
         httpGeneratedImagesPath: '/images/generated',
-        httpFontsPath: '/styles/fonts',
+        httpFontsPath: '/assets/fonts',
         relativeAssets: false,
         assetCacheBuster: false
       },
@@ -424,7 +414,7 @@ module.exports = function(grunt){
     }
 
     // Se agrega dinamicamente una regla de reescritura para devel
-    //connectTask.rules.push({from: '^/templates/app.js$', to: '/app/templates.js'});
+    connectTask.rules.push({from: '^/fonts/(.*)$', to: '/assets/fonts/$1'});
     //connectTask.rules.push({from: '^/templates/common.js$', to: '/common/templates.js'});
     grunt.config.set('connect', connectTask);
 
