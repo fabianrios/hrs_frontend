@@ -19,12 +19,13 @@
     if(runEnv.isDevelopment === true){
       return 'http://localhost:3000';
     }
-    return 'https://backend.hrsolutions.com';
+    return 'http://backend.hrinteractive.co';
   }();
   hrapi.apiName = 'humanresources';
   hrapi.apiVersion = 'v1';
   hrapi.apiBaseUrl = function(path){
-    return hrapi.hostname + '/api/' + hrapi.apiName + '/' + hrapi.apiVersion + '/' + path;
+    //return hrapi.hostname + '/api/' + hrapi.apiName + '/' + hrapi.apiVersion + '/' + path;
+    return hrapi.hostname + '/api' + path;
   };
 
   angular.module('app.config', [])
