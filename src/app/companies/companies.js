@@ -47,7 +47,8 @@
 	  $scope.open = function () {
 
 	     var modalInstance = $modal.open({
-	       templateUrl: 'myModalContent.html'
+	       templateUrl: 'myModalContent.html',
+		   controller: 'companies.ListController'
 	     });
 		 
 		 modalInstance.result.then(function () {
