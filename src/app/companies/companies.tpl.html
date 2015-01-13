@@ -18,4 +18,15 @@
   
   <!-- Include popup template -->
   <div ng-include="'angular-popup-service/partials/popup.html'"></div>
+  <!-- modal example -->
+   <script type="text/ng-template" id="myModalContent.html">
+     <h3>I'm a modal!</h3>
+     <p>Selected: <b>item</b></p>
+     <button class="button" ng-click="ok()">OK</button>
+     <a class="close-reveal-modal" ng-click="cancel()">&#215;</a>
+   </script>
+
+   <button class="button" ng-click="open()">Open me!</button>
+   
+  
 
