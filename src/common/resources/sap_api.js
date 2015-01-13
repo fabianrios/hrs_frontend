@@ -3,8 +3,8 @@
 
   angular.module('sap.service', ['app.config'])
 
-  .factory('Company', ['$resource', function($resource, HRAPI_CONF) {
-    var url = HRPAPI_CONF.apiBaseUrl('/companies/:id');
+  .factory('Company', function($resource, HRAPI_CONF) {
+    var url = HRAPI_CONF.apiBaseUrl('/companies/:id');
     return $resource(url, { id: '@id' }, {
     'create': { method: 'POST' },
     'index': { method: 'GET', isArray: true },
@@ -13,5 +13,5 @@
     'destroy': { method: 'DELETE' }
     });
 
-  }]);
+  });
 }());
