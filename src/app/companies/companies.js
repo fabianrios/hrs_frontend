@@ -37,11 +37,33 @@
 	    });
     })
 
-    .controller('companies.ListController', function($scope, Popup, $state, companies){
+    .controller('companies.ListController', function($scope, $modal, $state,Popup, companies){
       $scope.companies = companies; 
       $scope.viewCompany = function(id) {
         $state.go("main.views.companydetail", { id: id });
       };
+	  
+	  // Abrir el modal
+	  $scope.open = function () {
+
+	     var modalInstance = $modal.open({
+	       templateUrl: 'myModalContent.html'
+	     });
+		 
+		 modalInstance.result.then(function () {
+		    }, function () {
+		      console.log('Modal dismissed at: ' + new Date());
+		    });
+		  };
+	  
+	  	
+		  $scope.ok = function () {
+		     $modalInstance.close();
+		   };
+
+		   $scope.cancel = function () {
+		     $modalInstance.dismiss('cancel');
+		   };
 	  
 	  // DELETE
 	  $scope.deleteCompany = function(company) { // Delete a movie. Issues a DELETE to /api/movies/:id
