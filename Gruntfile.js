@@ -99,17 +99,6 @@ module.exports = function(grunt){
             src: [
               'vendor/select2/*.{gif,png,jpg}'
             ]
-          },
-
-          // Angular Popup Service
-          {
-            expand: true,
-            flatten: false,
-            cwd: 'vendor/angular-popup-service',
-            dest: '<%= yeoman.dist %>/angular-popup-service/',
-            src: [
-              'partials/*'
-            ]
           }
         ]
       },

@@ -8,6 +8,7 @@
     'ngSanitize',
     'ui.router',
     'ui.sortable',
+	'Devise',
     'mm.foundation',
 
     // Config
@@ -25,7 +26,8 @@
     'dashboard'
   ])
 
-  .config(function($stateProvider){
+  .config(function($stateProvider, AuthProvider, $httpProvider){
+	// $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
     $stateProvider
       .state('main', {
         abstract: true,
@@ -51,7 +53,27 @@
       });
   })
 
-  .controller('RootController', function($scope){
+  .controller('RootController', function($scope, Auth){
+	
+	  var credentials = {
+	             email: 'hola@fabianrios.co',
+	             password: 'f6e02785c'
+	         };
+
+	         Auth.login(credentials).then(function(user) {
+	             console.log(user); // => {id: 1, ect: '...'}
+	         }, function(error) {
+	             // Authentication failed...
+	         });
+
+	         $scope.$on('devise:login', function(event, currentUser) {
+	             // after a login, a hard refresh, a new tab
+	         });
+
+	         $scope.$on('devise:new-session', function(event, currentUser) {
+	             // user logged in by Auth.login({...})
+	         });
+	  
     $scope.common = {};
     /**
     $scope.logout = function(){
