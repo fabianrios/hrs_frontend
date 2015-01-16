@@ -424,3 +424,16 @@ span.prefix.date{
 .switch input + label {
 	text-indent: -9999px;
 }
+
+
+//18 jquery-ui
+.placeholder{
+	background: lightgray;
+	border: 1px dashed gray;
+	min-height: 270px;
+	height: 100%;
+	width: 90%;
+	float: left;
+	text-align: center;
+	opacity:0.3;
+}

@@ -1,6 +1,143 @@
-<div class="row" ng-repeat="widget in common.widgets">
-  <div class="widget"  class="small-12 columns">{{ widget.name }}</div>
-</div>
+<ul ui-sortable="sortableOptions" ng-model="common.widgets" class="small-block-grid-1 medium-block-grid-3 large-block-grid-3">
+	<li ng-repeat="widget in common.widgets">
+		<div class="widgets">
+			<h5 class="encabezado">
+				<a href="#">{{ widget.name }} <i class="fa fa-angle-right"></i> </a>
+				<div class="right actions">
+					<a class="text-right" href="">
+						<span aria-haspopup="true" data-tooltip class="has-tip" tooltip="{{widget.config.param_b}}" tooltip-placement"bottom">
+							<i class="fa fa-info-circle"></i>
+						</span>
+					</a>
+					<a class="text-right closing" href="">
+						<i class="fa fa-chevron-circle-up"></i>
+					</a>
+				</div>
+			</h5>
+			<div class="contenido">
+				<small>{{widget.config.param_a}}</small>
+			</div>
+		</div>
+	</li>
+</ul>
+
+<ul class="small-block-grid-1 medium-block-grid-1 large-block-grid-1">
+	<li ng-repeat="ingreso in common.ingresos">
+		<div class="widgets">
+			<h5 class="encabezado">
+				<a href="#">{{ ingreso.name }} <i class="fa fa-angle-right"></i> </a>
+				<div class="right actions">
+					<a class="text-right" href="">
+						<span aria-haspopup="true" data-tooltip class="has-tip" tooltip="{{ingreso.config.param_b}}" tooltip-placement"bottom">
+							<i class="fa fa-info-circle"></i>
+						</span>
+					</a>
+					<a class="text-right closing" href="">
+						<i class="fa fa-chevron-circle-up"></i>
+					</a>
+				</div>
+			</h5>
+			<div class="contenido">
+				<small>{{ingreso.config.param_a}}</small>
+			</div>
+		</div>
+	</li>
+</ul>
+
+<ul ui-sortable="sortableOptions" ng-model="common.workers" class="small-block-grid-1 medium-block-grid-3 large-block-grid-3">
+	<li ng-repeat="workers in common.workers">
+		<div class="widgets">
+			<h5 class="encabezado">
+				<a href="#">{{ workers.name }} <i class="fa fa-angle-right"></i> </a>
+				<div class="right actions">
+					<a class="text-right" href="">
+						<span aria-haspopup="true" data-tooltip class="has-tip" tooltip="{{workers.config.param_b}}" tooltip-placement"bottom">
+							<i class="fa fa-info-circle"></i>
+						</span>
+					</a>
+					<a class="text-right closing" href="">
+						<i class="fa fa-chevron-circle-up"></i>
+					</a>
+				</div>
+			</h5>
+			<div class="contenido">
+				<ul class="employees">
+					<li>
+						<div class="foto">
+							<a href="#">
+								<img alt="profile" src="http://www.placehold.it/150x150">
+							</a>
+						</div>
+						<h6 class="no-margin capitalize">
+							<a href="employees/00000017">abril alonso roberto alfonso</a>
+						</h6>
+						<h6 class="subheader no-margin capitalize">analista de control interno v</h6>
+						<div class="text-right">
+							<span class="graytxt">
+								<i class="fa fa-calendar-o"></i>
+								<span class="small">01 de ene</span>
+							</span>
+						</div>
+					</li>
+					<li>
+						<div class="foto">
+							<a href="#">
+								<img alt="profile" src="http://www.placehold.it/150x150">
+							</a>
+						</div>
+						<h6 class="no-margin capitalize">
+							<a href="#">lopez cano gustavo adolfo</a>
+						</h6>
+						<h6 class="subheader no-margin capitalize">jefe oficina de control interno</h6>
+						<div class="text-right">
+							<span class="graytxt">
+								<span class="label radius success">2 años</span>
+								<i class="fa fa-calendar-o"></i>
+								<span class="small">07 de ene</span>
+							</span>
+						</div>
+					</li>
+				</ul>
+			</div><!-- /contenido -->
+		</div>
+	</li>
+	<li ng-repeat="publicacion in common.publicaciones">
+		<div class="widgets">
+			<h5 class="encabezado">
+				<a href="#">{{ publicacion.name }} <i class="fa fa-angle-right"></i> </a>
+				<div class="right actions">
+					<a class="text-right" href="">
+						<span aria-haspopup="true" data-tooltip class="has-tip" tooltip="{{publicacion.config.param_b}}" tooltip-placement"bottom">
+							<i class="fa fa-info-circle"></i>
+						</span>
+					</a>
+					<a class="text-right closing" href="">
+						<i class="fa fa-chevron-circle-up"></i>
+					</a>
+				</div>
+			</h5>
+			<div class="contenido">
+				<ul class="employees">
+					<div class="cuantos">
+						<h3><span class="icon-comment"></span>{{publicacion.config.cuantos}}</h3>
+					</div>
+					<li>
+						<a href="#">Contenido de prueba laboral</a>
+						<p class="smalltxt no-margin">
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, magni, provident, eveniet
+						</p>
+						<div class="text-right">
+							<span class="graytxt">
+								<i class="fa fa-calendar-o"></i>
+								<span class="small">21 de nov</span>
+							</span>
+						</div>
+					</li>
+				</ul>
+			</div><!-- /contenido -->
+		</div>
+	</li>
+</ul>
 
   <h1 class="subheader">Companies</h1>
   <ul>

@@ -8,7 +8,7 @@
 
 
 @import "variables";
-@import "compass";
+@import "compass/css3";
 
 
 .sidebar {
@@ -17,17 +17,11 @@
   height: 100%;
 }
 
-.widget {
-  background-color: #fff;
-  border: 1px solid #666;
-}
-
-
 
 // 1 .dashboard-profile
 .dashboard-profile{
 	position: relative;
-	background-color:#f8f8f8;
+	background-color:#9ab3d3;
 	background-image: url("/assets/images/backtest.jpg"); 
 	background-position: 0 -200px;
 	background-repeat: no-repeat;
@@ -201,6 +195,18 @@
 
 //3 .navbar
 
+.fa{
+	&.workers-icon{
+		margin: 0 auto;
+		display: block;
+		text-align: left;
+		line-height: 80px;
+		font-size: 20px;
+		position: relative;
+		right: 6px;
+	}
+}
+
 .workers-icon{
 	margin: 0 auto;
 	display: block;
@@ -235,7 +241,7 @@
 			top: 0px;
 		}
 		top: -15px;
-		color: #008cb5;
+		color: $header;
 		font-size: 15px;
 		display: inline-block;
 		margin: 0 2px !important;
@@ -244,7 +250,7 @@
 			top: 2px;	
 			color: $header;
 			&:hover, &:focus {
-				color: #009bee;
+				color: $hover;
 			}
 			span{
 				font-size: 18px;
@@ -264,10 +270,15 @@
 	margin-right: 25px;
 	margin-top: 0;
 	font-size: 25px;
+	&:hover{
+		span{
+			color: ligthen($header,20%);
+		}
+	}
 }
 
 .number{
-	background: #1AB828;
+	background: $number;
 	@include border-radius(100%);
 	width: 19px;
 	height: 19px;
@@ -278,7 +289,7 @@
 	position: absolute;
 	right: 20px;
 	top: 20px;
-	color: #fff;
+	color: white;
 	font-size: 12px;
 	text-indent: 0;
 	z-index: 9;
@@ -290,16 +301,106 @@
 		line-height: 21px;
 	}
 	&.comment{
-		background: #ff7e00;
+		background: $comments;
 		right: -4px;
 	}
 	&.mobile-comment{
-		background: #ff7e00;
+		background: $comments;
 		width: 14px;
 		height: 14px;
 		font-size: 11px;
 		line-height: 14px;
 		top: -4px;
 		right: -1px;
+	}
+}
+
+
+//3. dashboard
+
+.widgets{
+	width: 100%;
+	background: $widget-background;
+	display: inline-block;
+	padding: 0 !important;
+	border: 1px solid $widget-background;
+	margin-bottom: 9px;
+	margin-right: 7px;
+	h5{
+		&.encabezado{
+			width: 100%;
+			background: $header;
+			color: $header-title;
+			margin: 0;
+			font-weight: normal;
+			padding: 10px;
+			border-bottom: 1px solid $header;
+			a{
+				color: $header-title;
+			}
+		}
+	}
+	.actions i{
+		color: rgba(255,255,255,.3);
+	}
+	&:hover{
+		background: rgba(255,255,255,.7);
+		border: 1px solid $header-title;
+		h5.encabezado{
+			border-bottom: 1px solid $header-title;
+			background: $header-hover;
+			color: lighten($header-hover,80%);
+			a{
+				color: lighten($header-hover,80%);
+			}
+		}
+	}
+}
+
+.contenido{
+	min-height: 225px;
+	padding: 10px;
+	overflow: hidden;
+}
+
+.employees{
+	list-style-type: none;
+	margin: 0 !important;
+	max-height: 360px;
+	overflow: auto;
+	li{
+		padding: 5px 0;
+		margin: 5px 0;
+		min-height: 80px;
+		h6{
+			a{
+				color:$header;
+			}
+		}
+		.foto{
+			float: left;
+			width: 70px;
+			height: 70px;
+			@include border-radius(100%);
+			margin-right: 5px;
+			overflow: hidden;
+			border: 2px solid $header;
+			&:hover{
+				border: 2px solid $header;					
+			}
+		}
+		.small{
+			font-size: 80%;
+		}
+	}
+}
+
+.cuantos{
+	h3{
+		span{
+			font-size: 30px;
+			position: relative;
+			top: 6px;
+		}
 	}
 }

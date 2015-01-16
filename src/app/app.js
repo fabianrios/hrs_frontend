@@ -7,7 +7,7 @@
     'ngResource',
     'ngSanitize',
     'ui.router',
-	'ngPopup',
+    'ui.sortable',
     'mm.foundation',
 
     // Config
