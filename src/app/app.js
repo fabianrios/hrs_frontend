@@ -23,11 +23,20 @@
     'navbar',
     'sidebar',
     'companies',
+	'sessions',
     'dashboard'
   ])
 
-  .config(function($stateProvider, AuthProvider, $httpProvider){
-	// $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
+  .config(function($stateProvider, AuthProvider, $httpProvider, AuthInterceptProvider){
+	// $httpProvider.defaults.headers.common['X-CSRF-Token'] = angular.element('meta[name=csrf-token]').attr('content');
+	// Intercept 401 Unauthorized everywhere
+    AuthInterceptProvider.interceptAuth(true);
+	
+	// Tenemos que sobreescribir todas las posibles funciones con el prefijo api/
+	AuthProvider.loginPath('api/users/sign_in.json');
+	AuthProvider.logoutPath('api/users/sign_out.json');
+	AuthProvider.registerPath('api/users.json');
+	
     $stateProvider
       .state('main', {
         abstract: true,
@@ -53,37 +62,69 @@
       });
   })
 
-  .controller('RootController', function($scope, Auth){
-	
-	  var credentials = {
-	             email: 'hola@fabianrios.co',
-	             password: 'f6e02785c'
-	         };
+  .factory('UserService', function(Auth) {
 
-	         Auth.login(credentials).then(function(user) {
-	             console.log(user); // => {id: 1, ect: '...'}
-	         }, function(error) {
-	             // Authentication failed...
-	         });
+	  return {
+		  autenticado : Auth.isAuthenticated(),
+		  current_user: Auth.currentUser()
+	    };
+  })
 
-	         $scope.$on('devise:login', function(event, currentUser) {
-	             // after a login, a hard refresh, a new tab
-	         });
-
-	         $scope.$on('devise:new-session', function(event, currentUser) {
-	             // user logged in by Auth.login({...})
-	         });
+  .controller('RootController', function($http, $scope, UserService, Auth, $location, $window, Company){
+	  
+	  $scope.autenticado;
+	  
+	  
+  	   UserService.current_user.then(function(user) {
+          // User was logged in, or Devise returned
+          // previously authenticated session.
+          // console.log(user); // => {id: 1, ect: '...'}
+		  $scope.user = user;
+		  $scope.company = Company.show({id: $scope.user.company_id});
+		  Auth.isAuthenticated(user);
+		  // para comprobar que si esta autenticado
+		  $scope.autenticado = Auth.isAuthenticated(user)
+		  // console.log($scope.company);
+      }, function(error) {
+          // unauthenticated error
+		  console.log("error al optener el usuario autenticado");
+		  // TO-DO: hay que cambiar esto por un $state
+		  $location.path('/login');
+      });
+		  
+			 
+ 		// Catch unauthorized requests and recover.
+         $scope.$on('devise:unauthorized', function(event, xhr, deferred) {
+             // Ask user for login credentials
+			 $location.path('/login');
+         });
+			 
 	  
     $scope.common = {};
-    /**
+	
+	$scope.edit_profile = function(){
+		$location.path('/edit');
+	}
+
     $scope.logout = function(){
-      security.logout('login.main');
+		Auth.logout().then(function(oldUser) {
+            console.log(oldUser.email + "you're signed out now.");
+        }, function(error) {
+            // An error occurred logging out.
+        });
+
+        $scope.$on('devise:logout', function(event, oldCurrentUser) {
+            $location.path('/home');
+			$window.location.reload();
+        });
 
       // Borra los caches (de session storage) necesarios para que sea
       // consistente si otro usuario se loguea en el mismo navegador
-      Cache.removeUserCaches();
+      // Cache.removeUserCaches();
+	  
+	  
     };
-    **/
+
   });
   
   

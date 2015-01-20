@@ -1,3 +1,15 @@
+<div ng-switch on="autenticado">
+    <div ng-switch-when="true">
+        <!-- code to render a large video block-->
+		true
+    </div>
+    <div ng-switch-default>
+        <!-- code to render the regular video block -->
+		falso
+    </div>
+</div>
+
+
 <div class="off-canvas-wrap" data-offcanvas>
   <div class="inner-wrap">
 	<nav class="tab-bar">
@@ -8,19 +20,20 @@
 		</section>
 		<section class="middle tab-bar-section">
 			<div class="left">
-				<a href="/"><img alt="Otrologo" class="logo" src="/assets/images/otrologo.png"></a>
+				<a href="/"><img alt="Otrologo" class="logo" ng-src="assets/images/{{company.logo}}"></a>
 				<h1 class="title left show-for-medium-up"></h1>
 			</div>
 			<div class="right">
 				<div class="user_nav show-for-medium-up">
 					<div class="text-right">
 						<a href="" class="comments"><span class="icon-comment"></span><i class="number comment">10</i></a>
-						<h5 class="subheader no-margin capitalize"><a href=""><span class="icon-user"></span>Gustavo Adolfo López</a></h5>
+						<h5 class="subheader no-margin capitalize"><a href=""><span class="icon-user"></span>{{user.name}}</a></h5>
 						<div class="worker">
-							<img src="http://www.placehold.it/150x150">
+							<img ng-src="{{user.image}}">
 						</div>
-						<h5 class="subheader no-margin"><a href=""><span class="icon-cog2"></span></a></h5>
-						<h5 class="subheader no-margin"><a href="" data-method="delete" rel="nofollow"><span class="icon-logout"></span></a></h5>
+						<!-- TO-DO: edit -->
+						<!-- <h5 class="subheader no-margin"><a href="" ng-click="edit_profile()"><span class="icon-cog2"></span></a></h5> -->
+						<h5 class="subheader no-margin"><a href="" ng-click="logout()" data-method="delete" rel="nofollow"><span class="icon-logout"></span></a></h5>
 					</div>
 				</div>
 			</div>
