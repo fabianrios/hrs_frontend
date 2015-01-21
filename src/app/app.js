@@ -16,6 +16,7 @@
 
     // Services
     'sap.service',
+	'organigram.service',
 
     // Directives
 
@@ -24,7 +25,8 @@
     'sidebar',
     'companies',
 	'sessions',
-    'dashboard'
+    'dashboard',
+	'organigram'
   ])
 
   .config(function($stateProvider, AuthProvider, $httpProvider, AuthInterceptProvider){

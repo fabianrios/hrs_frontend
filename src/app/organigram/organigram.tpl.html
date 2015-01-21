@@ -1,0 +1,23 @@
+<div ng-model="employees">
+    <ul>
+      <li ng-repeat="employee in jefes">
+		  <img ng-src="{{employee.photo}}" alt="" />
+		<h3 class="subheader">{{employee.name1}}</h3>
+  		<h4>{{employee.cargo}}</h4><sup>{{employee.pernr}}</sup><sub>{{employee.fther}}</sub>
+	    <ul>
+	      <li ng-repeat="employee in elempleado">
+			  <img ng-src="{{employee.photo}}" alt="" />
+			<h4 class="subheader">{{employee.name1}}</h4>
+	  		<h6>{{employee.cargo}}</h6><sup>{{employee.pernr}}</sup><sub>{{employee.fther}}</sub>
+		    <ul class="inline-list">
+		      <li ng-repeat="subordinado in subordinados">
+				  <img ng-src="{{subordinado.photo}}" alt="" />
+				<h4 class="subheader">{{subordinado.name1}}</h4>
+		  		<h6>{{subordinado.cargo}}</h6><sup>{{subordinado.pernr}}</sup><sub>{{subordinado.fther}}</sub>
+		      </li>
+		    </ul>
+	      </li>
+	    </ul>
+      </li>
+    </ul>
+</div>
