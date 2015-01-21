@@ -51,7 +51,8 @@
 			'placeholder': 'placeholder'
 		  };
 		
-      $scope.companies = Company.index();
+      // $scope.companies = Company.index();
+	  
       $scope.common = {
         widgets: widgets.items,
 		workers: workers.items,

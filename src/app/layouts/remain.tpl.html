@@ -1,93 +1,103 @@
 <div ng-switch on="autenticado">
     <div ng-switch-when="true">
-        <!-- code to render a large video block-->
-		true
-    </div>
-    <div ng-switch-default>
-        <!-- code to render the regular video block -->
-		falso
-    </div>
-</div>
-
-
-<div class="off-canvas-wrap" data-offcanvas>
-  <div class="inner-wrap">
-	<nav class="tab-bar">
-		<section class="left-small">
-			<a href="#" class="left-off-canvas-toggle menu-icon">
-				<span></span>
-			</a>
-		</section>
-		<section class="middle tab-bar-section">
-			<div class="left">
-				<a href="/"><img alt="Otrologo" class="logo" ng-src="assets/images/{{company.logo}}"></a>
-				<h1 class="title left show-for-medium-up"></h1>
-			</div>
-			<div class="right">
-				<div class="user_nav show-for-medium-up">
-					<div class="text-right">
-						<a href="" class="comments"><span class="icon-comment"></span><i class="number comment">10</i></a>
-						<h5 class="subheader no-margin capitalize"><a href=""><span class="icon-user"></span>{{user.name}}</a></h5>
-						<div class="worker">
-							<img ng-src="{{user.image}}">
-						</div>
-						<!-- TO-DO: edit -->
-						<!-- <h5 class="subheader no-margin"><a href="" ng-click="edit_profile()"><span class="icon-cog2"></span></a></h5> -->
-						<h5 class="subheader no-margin"><a href="" ng-click="logout()" data-method="delete" rel="nofollow"><span class="icon-logout"></span></a></h5>
+        <!-- code to render if login succesful -->
+		<div class="off-canvas-wrap" data-offcanvas>
+		  <div class="inner-wrap">
+			<nav class="tab-bar">
+				<section class="left-small">
+					<a href="#" class="left-off-canvas-toggle menu-icon">
+						<span></span>
+					</a>
+				</section>
+				<section class="middle tab-bar-section">
+					<div class="left">
+						<a href="/"><img alt="Otrologo" class="logo" ng-src="assets/images/{{company.logo}}"></a>
+						<h1 class="title left show-for-medium-up"></h1>
 					</div>
-				</div>
-			</div>
-		</section>
-		<section class="right-small"><a href="#" class="right-off-canvas-toggle menu-icon"><i class="fa fa-sort-amount-asc workers-icon"></i></a></section>
-	</nav>
-	<aside class="left-off-canvas-menu" ui-view="navbar"></aside>
-	<aside class="right-off-canvas-menu" ui-view="sidebar"></aside>
-	<section class="main-section">
-		
-		<div class="dashboard-profile">
-			<div class="bottomize whitening">
-				<div class="row">
-					<div class="large-7 medium-7 columns">
-						<div class="big-profile">
-							<img alt="" src="http://placehold.it/200x200">
+					<div class="right">
+						<div class="user_nav show-for-medium-up">
+							<div class="text-right">
+								<a href="" class="comments"><span class="icon-comment"></span><i class="number comment">10</i></a>
+								<h5 class="subheader no-margin capitalize"><a href=""><span class="icon-user"></span>{{user.name}}</a></h5>
+								<div class="worker">
+									<img ng-src="{{user.image}}">
+								</div>
+								<!-- TO-DO: edit -->
+								<!-- <h5 class="subheader no-margin"><a href="" ng-click="edit_profile()"><span class="icon-cog2"></span></a></h5> -->
+								<h5 class="subheader no-margin"><a href="" ng-click="logout()" data-method="delete" rel="nofollow"><span class="icon-logout"></span></a></h5>
+							</div>
 						</div>
-						<div class="dash-text-format p-20">
-							<h4 class="no-margin whitetxt">
-								<a href="#">
-									Lopez Cano Gustavo Adolfo
+					</div>
+				</section>
+				<section class="right-small"><a href="#" class="right-off-canvas-toggle menu-icon"><i class="fa fa-sort-amount-asc workers-icon"></i></a></section>
+			</nav>
+			<aside class="left-off-canvas-menu" ui-view="navbar"></aside>
+			<aside class="right-off-canvas-menu" ui-view="sidebar"></aside>
+			<section class="main-section">
+		
+				<div class="dashboard-profile">
+					<div class="bottomize whitening">
+						<div class="row">
+							<div class="large-7 medium-7 columns">
+								<div class="big-profile">
+									<img alt="" src="http://placehold.it/200x200">
+								</div>
+								<div class="dash-text-format p-20">
+									<h4 class="no-margin whitetxt">
+										<a href="#">
+											Lopez Cano Gustavo Adolfo
+										</a>
+									</h4>
+									<h5 class="subheader no-margin">
+										Jefe Oficina De Control Interno
+									</h5>
+									<h5 class="subheader no-margin capitalize">
+										oficina de control interno demo
+									</h5>
+									<h5 class="subheader no-margin capitalize">
+
+									</h5>
+								</div>
+							</div>
+							<div class="large-5 medium-5 columns">
+								<br>
+								<h4 class="no-margin subheader">
+									Regional Suroccidente, DEMO
+								</h4>
+								<h5 class="subheader no-margin">
+									Armenia, DEMO
+								</h5>
+								<a href="tel://+573123201230">
+									<i class="fa fa-phone fa-lg"></i>
 								</a>
-							</h4>
-							<h5 class="subheader no-margin">
-								Jefe Oficina De Control Interno
-							</h5>
-							<h5 class="subheader no-margin capitalize">
-								oficina de control interno demo
-							</h5>
-							<h5 class="subheader no-margin capitalize">
-
-							</h5>
+								&nbsp;
+								<a class="lowercase" href="mailto:GA.LOPEZ@HRSOLUTIONS-CO.COM">
+									<i class="fa fa-envelope-o fa-lg"></i>
+								</a>
+							</div>
 						</div>
 					</div>
-					<div class="large-5 medium-5 columns">
-						<br>
-						<h4 class="no-margin subheader">
-							Regional Suroccidente, DEMO
-						</h4>
-						<h5 class="subheader no-margin">
-							Armenia, DEMO
-						</h5>
-						<a href="tel://+573123201230">
-							<i class="fa fa-phone fa-lg"></i>
-						</a>
-						&nbsp;
-						<a class="lowercase" href="mailto:GA.LOPEZ@HRSOLUTIONS-CO.COM">
-							<i class="fa fa-envelope-o fa-lg"></i>
-						</a>
-					</div>
 				</div>
-			</div>
-		</div>
 		
+				<div class="main-container" id="main-container">
+	
+				  <div class="main-container-inner">
+				    <div class="main-content" ng-class="{'main-content-bigger': ui.sidebar.mainCollapsed}">
+				      <div class="row">
+				        <div class="small-12 large-12 columns" ui-view="content"></div>
+				      </div>
+				    </div>
+				  </div> <!-- /main-container-inner -->
+  
+				</div> <!-- /main-container -->
+		
+			</section> <!-- main-section -->
+			<a class="exit-off-canvas" href=""></a>
+		  </div> <!-- /inner-wrap -->
+		</div> <!-- /off-canvas-wrap -->
+    </div> <!-- log in succesful -->
+    <div ng-switch-default>
+        <!-- code to render if no user sessión -->
 		<div class="main-container" id="main-container">
 	
 		  <div class="main-container-inner">
@@ -100,10 +110,5 @@
   
 		</div> <!-- /main-container -->
 		
-	</section> <!-- main-section -->
-	<a class="exit-off-canvas" href=""></a>
-  </div> <!-- /inner-wrap -->
-</div> <!-- /off-canvas-wrap -->
-
-
-
+    </div> <!-- /default not loggin -->
+</div>

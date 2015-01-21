@@ -276,6 +276,15 @@ ul.button-group{
 
 //12.offcanvas
 
+//Really important to make the fixed background work
+.off-canvas-wrap{
+	-webkit-backface-visibility:inherit;
+}
+
+.inner-wrap{
+	-webkit-backface-visibility:inherit;
+}
+
 .tab-bar{
 	background: rgba(255,255,255,.1);
 	position: absolute;
