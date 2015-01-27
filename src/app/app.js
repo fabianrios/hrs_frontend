@@ -83,7 +83,6 @@
           // console.log(user); // => {id: 1, ect: '...'}
 		  $scope.user = user;
 		  $scope.company = Company.show({id: $scope.user.company_id});
-		  Auth.isAuthenticated(user);
 		  // para comprobar que si esta autenticado
 		  $scope.autenticado = Auth.isAuthenticated(user)
 		  // console.log($scope.company);

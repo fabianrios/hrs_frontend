@@ -7,7 +7,7 @@
     var url = HRAPI_CONF.apiBaseUrl('/organigram/index/:id.json');
     return $resource(url, { id: '@id' }, {
       'index': { method: 'GET', isArray: false },
-	'show': { method: 'GET', isArray: false }
+	  'show': { method: 'GET', isArray: false }
     });
 
   });
