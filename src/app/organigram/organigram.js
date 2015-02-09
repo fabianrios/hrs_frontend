@@ -22,6 +22,15 @@
     .controller('Organigram.MainController', function($scope, $http, employees, UserService, Auth){
 		
 		
+	   // función de jairo para iterar
+		// for (var j=0; j < a.length; j++){
+		// 	for(var i=0; i < b.length; i++){
+		// 		if(a[j] == b[i]){
+		// 			a[j].push(b[i]);
+		// 		}
+		// 	}
+		// }
+		
    	   UserService.current_user.then(function(user) {
  		  $scope.user = user;
  		  $scope.autenticado = Auth.isAuthenticated(user)

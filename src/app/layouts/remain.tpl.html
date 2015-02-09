@@ -5,13 +5,13 @@
 		  <div class="inner-wrap">
 			<nav class="tab-bar">
 				<section class="left-small">
-					<a href="#" class="left-off-canvas-toggle menu-icon">
+					<a href="" class="left-off-canvas-toggle menu-icon">
 						<span></span>
 					</a>
 				</section>
 				<section class="middle tab-bar-section" >
 					<div class="left">
-						<a href="/"><img alt="Otrologo" class="logo" ng-src="assets/images/{{company.logo}}"></a>
+						<a href="/#/home"><img alt="Otrologo" class="logo" ng-src="assets/images/{{company.logo}}"></a>
 						<h1 class="title left show-for-medium-up"></h1>
 					</div>
 					<div class="right">
@@ -20,10 +20,9 @@
 								<a href="" class="comments"><span class="icon-comment"></span><i class="number comment">10</i></a>
 								<h5 class="subheader no-margin capitalize"><a href=""><span class="icon-user"></span>{{user.name}}</a></h5>
 								<div class="worker">
-									<img ng-src="{{user.image}}">
+									<img ng-src="{{user.pic}}">
 								</div>
-								<!-- TO-DO: edit -->
-								<!-- <h5 class="subheader no-margin"><a href="" ng-click="edit_profile()"><span class="icon-cog2"></span></a></h5> -->
+								<h5 class="subheader no-margin"><a ui-sref="main.views.edit()"><span class="icon-cog2"></span></a></h5>
 								<h5 class="subheader no-margin"><a href="" ng-click="logout()" data-method="delete" rel="nofollow"><span class="icon-logout"></span></a></h5>
 							</div>
 						</div>
@@ -40,19 +39,19 @@
 						<div class="row">
 							<div class="large-7 medium-7 columns">
 								<div class="big-profile">
-									<img alt="" src="http://placehold.it/200x200">
+									<img ng-src="{{user.pic}}">
 								</div>
 								<div class="dash-text-format p-20">
 									<h4 class="no-margin whitetxt">
 										<a href="#">
-											Lopez Cano Gustavo Adolfo
+											{{employee.employee.short_name}}
 										</a>
 									</h4>
 									<h5 class="subheader no-margin">
-										Jefe Oficina De Control Interno
+										{{employee.employee.posicion}}
 									</h5>
 									<h5 class="subheader no-margin capitalize">
-										oficina de control interno demo
+										{{employee.employee.unidad_org}}
 									</h5>
 									<h5 class="subheader no-margin capitalize">
 
@@ -61,17 +60,20 @@
 							</div>
 							<div class="large-5 medium-5 columns">
 								<br>
-								<h4 class="no-margin subheader">
-									Regional Suroccidente, DEMO
+								<h4 class="subheader no-margin">
+									{{employee.employee.area}}
 								</h4>
 								<h5 class="subheader no-margin">
-									Armenia, DEMO
+									{{employee.employee.division_per}}
 								</h5>
-								<a href="tel://+573123201230">
+								<h5 class="subheader no-margin">
+									{{employee.employee.subdivision_per}}
+								</h5>
+								<a href="tel://{{employee.employee.phone}}">
 									<i class="fa fa-phone fa-lg"></i>
 								</a>
 								&nbsp;
-								<a class="lowercase" href="mailto:GA.LOPEZ@HRSOLUTIONS-CO.COM">
+								<a class="lowercase" href="mailto:{{employee.employee.email}}">
 									<i class="fa fa-envelope-o fa-lg"></i>
 								</a>
 							</div>
@@ -83,6 +85,15 @@
 	
 				  <div class="main-container-inner">
 				    <div class="main-content" ng-class="{'main-content-bigger': ui.sidebar.mainCollapsed}">
+						
+					  <div class="row">
+					  	<div class="large-12 columns">
+							<div>
+							  <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
+							</div>
+					  	</div>
+					  </div> <!-- /row -->
+					  
 				      <div class="row">
 				        <div class="small-12 large-12 columns" ui-view="content"></div>
 				      </div>

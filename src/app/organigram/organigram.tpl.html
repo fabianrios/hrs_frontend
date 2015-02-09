@@ -26,10 +26,7 @@
 	<div class="large-12 columns">
 		<div id="chart"></div>
 		<script type="text/javascript"> 
-		var width = 1024; 
-		var height = 600; 
-		
-		var m = [20, 120, 20, 120],
+		var m = [40, 160, 40, 160],
 		    w = 1280 - m[1] - m[3],
 		    h = 800 - m[0] - m[2],
 		    i = 0,
@@ -42,11 +39,11 @@
 		var diagonal = d3.svg.diagonal()    
 		   .projection (function(d) { return [d.y, d.x];}); 
 		var svg = d3.select("#chart").append("svg")    
-		   .attr("width",width)    
-		   .attr("height",height)    
+		   .attr("width",w)    
+		   .attr("height",h)    
 		   .append("g")    
 		   .attr("transform","translate(150,0)"); 
-		d3.json("/api/organigram/show/2133.json", function(error, json){    
+		d3.json("/api/organigram/index/2133.json", function(error, json){    
 		   root = json.organigram
 		   root.x0 = h / 2;
 		   root.y0 = 0;
@@ -60,7 +57,7 @@
 		  
 		 // Initialize the display to show a few nodes.
 		  root.children.forEach(toggleAll);
-		  toggle(root.children[1]);
+		  toggle(root.children[0]);
 		  
 	 	  update(root);
 		}); 
@@ -72,9 +69,9 @@
 	  // Compute the new tree layout.
 	  var nodes = tree.nodes(root).reverse();
 
-	  console.log(nodes);
+	  // console.log(nodes);
 	  // Normalize for fixed-depth.
-	  nodes.forEach(function(d) { d.y = d.depth * 180; });
+	  nodes.forEach(function(d) { d.y = d.depth * 250; });
 
 	  // Update the nodes…
 	  var node = svg.selectAll("g.node")
@@ -88,8 +85,8 @@
 
 
 	  nodeEnter.append("svg:image")
-          .attr("x", function(d) { return d.children || d._children ? -50 : 10; })
-          .attr('y',-50)
+          .attr("x", function(d) { return d.children || d._children ? -55 : 15; })
+          .attr('y',-70)
 		  .attr('width', 40)
           .attr('height', 40)
 		  .attr("xlink:href",	function(d) { return d.photo; })
@@ -101,8 +98,8 @@
 	      .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
 
 	  nodeEnter.append("svg:text")
-	      .attr("x", function(d) { return d.children || d._children ? -10 : 10; })
-	      .attr("dy", ".35em")
+	      .attr("x", function(d) { return d.children || d._children ? -15 : 15; })
+	      .attr("dy", "-1em")
 	      .attr("text-anchor", function(d) { return d.children || d._children ? "end" : "start"; })
 	      .text(function(d) { return d.name1; })
 		  .style("font-size","16px")
@@ -110,8 +107,8 @@
 	  
 	  nodeEnter.append("svg:text")
 		  .attr("class", "cargo")
-	      .attr("x", function(d) { return d.children || d._children ? -5 : 5; })
-	      .attr("dy", "1.5em")
+	      .attr("x", function(d) { return d.children || d._children ? -15 : 15; })
+	      .attr("dy", "-.28em")
 	      .attr("text-anchor", function(d) { return d.children || d._children ? "end" : "start"; })
 	      .text(function(d) { return d.cargo; })
 		  .style("font-size","12px")

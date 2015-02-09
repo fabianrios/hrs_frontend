@@ -16,9 +16,12 @@
 
     // Services
     'sap.service',
+	'user.service',
 	'organigram.service',
+	'employee.service',
 
     // Directives
+	'ngS3upload',
 
     // Modules
     'navbar',
@@ -29,10 +32,12 @@
 	'organigram'
   ])
 
-  .config(function($stateProvider, AuthProvider, $httpProvider, AuthInterceptProvider){
-	// $httpProvider.defaults.headers.common['X-CSRF-Token'] = angular.element('meta[name=csrf-token]').attr('content');
+  .config(function($stateProvider, AuthProvider, $httpProvider){
+	$httpProvider.defaults.headers.common['X-CSRF-Token'] = angular.element('meta[name=csrf-token]').attr('content');
 	// Intercept 401 Unauthorized everywhere
-    AuthInterceptProvider.interceptAuth(true);
+	// $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
+    // AuthInterceptProvider.interceptAuth(true);
+	
 	
 	// Tenemos que sobreescribir todas las posibles funciones con el prefijo api/
 	AuthProvider.loginPath('api/users/sign_in.json');
@@ -72,19 +77,26 @@
 	    };
   })
 
-  .controller('RootController', function($http, $scope, UserService, Auth, $location, $window, Company){
+  .controller('RootController', function($http, $scope, UserService, Auth, $location, $window, Company, Employee){
 	  
 	  $scope.autenticado;
 	  
+	  //alertas
+	  $scope.alerts = [];
+	  $scope.closeAlert = function(index) {
+	    $scope.alerts.splice(index, 1);
+	  };
+	   ///alertas
 	  
   	   UserService.current_user.then(function(user) {
           // User was logged in, or Devise returned
           // previously authenticated session.
           // console.log(user); // => {id: 1, ect: '...'}
 		  $scope.user = user;
+		  $scope.employee = Employee.show({id: $scope.user.id});
 		  $scope.company = Company.show({id: $scope.user.company_id});
 		  // para comprobar que si esta autenticado
-		  $scope.autenticado = Auth.isAuthenticated(user)
+		  $scope.autenticado = Auth.isAuthenticated(user);
 		  // console.log($scope.company);
       }, function(error) {
           // unauthenticated error
@@ -105,7 +117,7 @@
 	
 	$scope.edit_profile = function(){
 		$location.path('/edit');
-	}
+	};
 
     $scope.logout = function(){
 		Auth.logout().then(function(oldUser) {
