@@ -51,6 +51,9 @@
 			'placeholder': 'placeholder'
 		  };
 		
+		
+		  $scope.labels = ["Días usados", "Días restantes"];
+		
       // $scope.companies = Company.index();
 	  
       $scope.common = {

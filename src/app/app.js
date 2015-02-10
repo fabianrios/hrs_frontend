@@ -9,6 +9,7 @@
     'ui.router',
     'ui.sortable',
 	'Devise',
+	'chart.js',
     'mm.foundation',
 
     // Config
@@ -77,7 +78,7 @@
 	    };
   })
 
-  .controller('RootController', function($http, $scope, UserService, Auth, $location, $window, Company, Employee){
+  .controller('RootController', function($http, $scope, UserService, Auth, $location, $window, Company, User, Employee){
 	  
 	  $scope.autenticado;
 	  
@@ -88,12 +89,24 @@
 	  };
 	   ///alertas
 	  
+	  $scope.employee = {};
+	  $scope.user = {};
+	  $scope.vacation = {};
+	  
   	   UserService.current_user.then(function(user) {
           // User was logged in, or Devise returned
           // previously authenticated session.
-          // console.log(user); // => {id: 1, ect: '...'}
 		  $scope.user = user;
-		  $scope.employee = Employee.show({id: $scope.user.id});
+		  $scope.elusuario = User.get({ id: $scope.user.id });
+		  
+		  $scope.elusuario.$promise.then(function(items){
+	  			  $scope.employee = items.employee;
+	  			  $scope.vacation = items.vacation;
+	  			  $scope.vacationdays = [items.vacation.taken,items.vacation.available];
+				  $scope.company = items.company
+		  });
+		  
+		  
 		  $scope.company = Company.show({id: $scope.user.company_id});
 		  // para comprobar que si esta autenticado
 		  $scope.autenticado = Auth.isAuthenticated(user);

@@ -122,7 +122,7 @@
 
 	     $scope.loadCompany = function() { //Issues a GET request to /api/movies/:id to get a movie to update
 	       $scope.company = Company.get({ id: $stateParams.id });
-		   console.log($scope.company);
+		   // console.log($scope.company);
 	     };
 
 	     $scope.loadCompany(); // Load a movie which can be edited on UI

@@ -36,6 +36,7 @@
                 // after a login, a hard refresh, a new tab
 				// console.log(currentUser);
 				$scope.user = currentUser;
+				$scope.current = currentUser;
 				$location.path('/home'); // on success go back to home
 				 $window.location.reload();
             });
@@ -52,14 +53,14 @@
 		 
     })
     .controller('sessions.EditController', function($scope, $state, $stateParams, $http, $location, Auth, User){
-
+		
+		
 		$scope.$on('s3upload:success', function (evt, xhr, fileUrl) {
-			console.log(fileUrl.path);
+						
 			$http({method: 'PUT', 
-		           url: '/api/users.json',
+		           url: '/api/users/'+$scope.user.id,
 		           data: {user: {
-					   			 pic: fileUrl.path,
-					   			 current_password: "f6e02785c"}}})
+					   			 pic: fileUrl.path}}})
 		      .success( function( data, status ) {
 		        // errorService.success( data, status, 'Your password has been changed', $scope);
 				console.log("imagen colocada", data);
@@ -77,6 +78,8 @@
  	        // $scope.user.$update(function() {
 //  	        $location.path('/home'); // on success go back to home
 // 			});
+			console.log($scope.user);
+			
 			$http({method: 'PUT', 
 		           url: '/api/users.json',
 		           data: {user: {
@@ -97,22 +100,22 @@
 			
 	     };
 		 
-		 
- 		Auth.currentUser().then(function(user) {
- 				$scope.user_id = user.id;
-				$scope.pass = user.current_password;
- 	            // console.log($scope.user_id); // => {id: 1, ect: '...'}
-				
-	   	     $scope.loadUser = function() { //Issues a GET request to /api/movies/:id to get a movie to update
-	   	       $scope.user = User.get({ id: $scope.user_id });
-	   		   // console.log($scope.user);
-	   	     };
-
-	   	     $scope.loadUser($scope.usuario); // Load a movie which can be edited on UI
-				
- 	        }, function(error) {
- 	            // unauthenticated error
- 	     });
+ 		//
+ 		// Auth.currentUser().then(function(user) {
+ 		// 		$scope.user_id = user.id;
+ 		// 				$scope.pass = user.current_password;
+ 		//  	            // console.log($scope.user_id); // => {id: 1, ect: '...'}
+ 		//
+ 		// 	   	     $scope.loadUser = function() { //Issues a GET request to /api/movies/:id to get a movie to update
+ 		// 	   		  $scope.user = User.get({ id: $scope.user.id });
+ 		// 	   		   // console.log($scope.user);
+ 		// 	   	     };
+ 		//
+ 		// 	   	     $scope.loadUser($scope.usuario); // Load a movie which can be edited on UI
+ 		//
+ 		//  	        }, function(error) {
+ 		//  	            // unauthenticated error
+ 		//  	     });
 		 
 		 
 		 
