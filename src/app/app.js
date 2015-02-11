@@ -61,7 +61,12 @@
           },
           sidebar: {
             templateUrl: 'app/sidebar/sidebar.tpl.html',
-            controller: 'Sidebar.SidebarController'
+            controller: 'Sidebar.SidebarController',
+				resolve: {
+					employees: function(Employee){
+					  return Employee.index().$promise;
+					}
+				}
           },
           content: {
             template: '<div ui-view=""></div>'
@@ -93,16 +98,24 @@
 	  $scope.user = {};
 	  $scope.vacation = {};
 	  
+	  $scope.dateHanldler = function(date){
+	    var dt = new Date(date);
+		// dt.getTime()
+		return dt;
+	  };
+	  
   	   UserService.current_user.then(function(user) {
           // User was logged in, or Devise returned
           // previously authenticated session.
 		  $scope.user = user;
 		  $scope.elusuario = User.get({ id: $scope.user.id });
-		  
 		  $scope.elusuario.$promise.then(function(items){
 	  			  $scope.employee = items.employee;
 	  			  $scope.vacation = items.vacation;
-	  			  $scope.vacationdays = [items.vacation.taken,items.vacation.available];
+				  // Estos hay que parsearlos como numeros porque llegan como un string
+	  			  $scope.vacationdays = [parseInt(items.vacation.resumen[1]),parseInt(items.vacation.resumen[2])];
+				  $scope.vacationdates = items.vacation.detalle
+				  console.log($scope.vacationdates);
 				  $scope.company = items.company
 		  });
 		  

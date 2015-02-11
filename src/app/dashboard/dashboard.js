@@ -49,10 +49,9 @@
 		
 		$scope.sortableOptions = {
 			'placeholder': 'placeholder'
-		  };
+		};
 		
-		
-		  $scope.labels = ["Días usados", "Días restantes"];
+		$scope.labels = ["Días usados", "Días restantes"];
 		
       // $scope.companies = Company.index();
 	  

@@ -39,7 +39,6 @@
 
     .controller('companies.ListController', function($scope, $modal, $state, companies){
       $scope.companies = companies; 
-	  
       $scope.viewCompany = function(id) {
         $state.go("main.views.companydetail", { id: id });
       };

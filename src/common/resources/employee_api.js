@@ -4,7 +4,7 @@
   angular.module('employee.service', [])
 
   .factory('Employee', function($resource, HRAPI_CONF) {
-    var url = HRAPI_CONF.apiBaseUrl('/users/:id.json');
+    var url = HRAPI_CONF.apiBaseUrl('/employees/:id.json');
     return $resource(url, { id: '@id' }, {
       'create': { method: 'POST' },
       'index': { method: 'GET', isArray: true },
@@ -15,5 +15,4 @@
 	
   });
 }());
-
 

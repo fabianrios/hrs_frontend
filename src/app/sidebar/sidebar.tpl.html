@@ -7,45 +7,25 @@
 				</span>
 			</div>
 			<div class="small-10 columns">
-				<input id="buscador" name="search" placeholder="Buscar empleados" type="search">
+				<input id="buscador" name="search" placeholder="Buscar empleados" type="search" ng-model="searchText">
 			</div>
 		</div>
 	</li>
-	<li class="results">
+	<li class="results" ng-repeat="employee in employees | filter:searchText">
 		<div class="pic">
 			<a href="#">
 				<img alt="150x150" src="http://placehold.it/150x150">
 			</a>
 		</div>
-		<h6 class="name no-margin capitalize"><a data="" href="" class="ng-binding">roberto abril</a></h6>
-		<h6 class="no-margin subheader cargo ng-binding">analista de control interno v</h6>
+		<h6 class="name no-margin capitalize"><a data="" href="" class="capitalize">{{employee.name | lowercase}} {{employee.lastname | lowercase}}</a></h6>
+		<h6 class="no-margin subheader cargo capitalize">{{employee.posicion | lowercase}}</h6>
 
 		<div class="action-buttons">
-			<a href="tel://">
+			<a ng-if="employee.phone" href="tel://{{employee.phone}}">
 				<i class="fa fa-phone fa-lg"></i>
 			</a>
 			<br>
-			<a class="lowercase" href="mailto:">
-				<i class="fa fa-envelope-o fa-lg"></i>
-			</a>
-		</div>
-	</li>
-	<li class="results">
-		<div class="pic">
-			<a href="#">
-				<img alt="10000137" src="http://placehold.it/150x150">
-			</a>
-		</div>
-		<h6 class="name no-margin capitalize">
-			<a data="10000137" href="/employees/00000018" class="ng-binding">milena amauris</a>
-		</h6><h6 class="no-margin subheader cargo ng-binding">analista de control interno vii</h6>
-
-		<div class="action-buttons">
-			<a href="tel://">
-				<i class="fa fa-phone fa-lg"></i>
-			</a>
-			<br>
-			<a class="lowercase" href="mailto:">
+			<a ng-if="employee.email" class="lowercase" href="mailto:{{employee.email}}">
 				<i class="fa fa-envelope-o fa-lg"></i>
 			</a>
 		</div>
