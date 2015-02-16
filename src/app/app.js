@@ -20,6 +20,8 @@
 	'user.service',
 	'organigram.service',
 	'employee.service',
+	'vacation.service',
+	'vacation_requirement.service',
 
     // Directives
 	'ngS3upload',
@@ -27,7 +29,10 @@
     // Modules
     'navbar',
     'sidebar',
+	'profile',
+	'expandbanner',
     'companies',
+	'vacations',
 	'sessions',
     'dashboard',
 	'organigram'
@@ -59,6 +64,14 @@
             templateUrl: 'app/navbar/navbar.tpl.html',
             controller: 'Navbar.NavbarController'
           },
+          profile: {
+            templateUrl: 'app/profile/profile.tpl.html',
+            controller: 'Profile.ProfileController'
+          },
+          expandbanner: {
+            templateUrl: 'app/expandbanner/expandbanner.tpl.html',
+            controller: 'Expandbanner.ExpandbannerController'
+          },
           sidebar: {
             templateUrl: 'app/sidebar/sidebar.tpl.html',
             controller: 'Sidebar.SidebarController',
@@ -83,7 +96,14 @@
 	    };
   })
 
-  .controller('RootController', function($http, $scope, UserService, Auth, $location, $window, Company, User, Employee){
+  .controller('RootController', function($http, $scope, $animate, $location, $window, UserService, Auth, Company, User, Employee){
+	  
+	  // /watch location
+  	  $scope.$on("$stateChangeSuccess", function (next, current) {
+		  $scope.ubicacion = current.url;
+  		  console.log("ubicacion:",$scope.ubicacion);
+  	  })
+	  
 	  
 	  $scope.autenticado;
 	  
@@ -100,7 +120,7 @@
 	  
 	  $scope.dateHanldler = function(date){
 	    var dt = new Date(date);
-		// dt.getTime()
+		dt.getTime()
 		return dt;
 	  };
 	  
@@ -114,9 +134,9 @@
 	  			  $scope.vacation = items.vacation;
 				  // Estos hay que parsearlos como numeros porque llegan como un string
 	  			  $scope.vacationdays = [parseInt(items.vacation.resumen[1]),parseInt(items.vacation.resumen[2])];
-				  $scope.vacationdates = items.vacation.detalle
-				  console.log($scope.vacationdates);
-				  $scope.company = items.company
+				  $scope.vacationdates = items.vacation.detalle;
+				  // console.log($scope.vacationdates);
+				  $scope.company = items.company;
 		  });
 		  
 		  

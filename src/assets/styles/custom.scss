@@ -5,6 +5,8 @@
 	// 1.2 .big-profile
 // 2. sidebar
 	// 2.1 .finder
+// 3. dashobard
+	// 3.1. pic
 
 
 @import "variables";
@@ -17,6 +19,25 @@
   height: 100%;
 }
 
+.main-container{
+	padding: 40px 0;
+}
+
+
+.animate-if.ng-enter, .animate-if.ng-leave {
+  -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+  transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+}
+
+.animate-if.ng-enter,
+.animate-if.ng-leave.ng-leave-active {
+  opacity:0;
+}
+
+.animate-if.ng-leave,
+.animate-if.ng-enter.ng-enter-active {
+  opacity:1;
+}
 
 // 1 .dashboard-profile
 .dashboard-profile{
@@ -27,7 +48,6 @@
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	width: 100%;
-	margin-bottom: 30px;
 	min-height: 425px;
 	padding: 10px 0 30px 0;
 	z-index: 0; //para que quede debajo del nav
@@ -362,6 +382,302 @@
 	}
 }
 
+// 3.1. pic
+.pic{
+	width: 60px;
+	height: 60px;
+	@include border-radius(100%);
+	overflow:hidden;	
+	margin: 0 auto;
+	text-align: center;
+	border: 3px solid $header;
+	&.rotate{
+		img{
+			height: 55px;
+		}
+		&:hover{
+			@include transition-property(all);
+			@include transition-duration(300ms);
+			@include transition-timing-function(ease-in);
+			@include rotate(360deg);
+		}
+	}
+	&.medium{
+		width: 90px;
+		height:auto;
+		a{
+			img{
+				z-index: -2;
+				width: 90px;
+			}
+		}
+	}
+	&.bigger{
+		width: 120px;
+		height:auto;
+		a{
+			img{
+				z-index: -2;
+				width: 120px;
+			}
+		}
+	}
+	a{	
+		display: block;
+		img{
+			width: 60px;
+			height: auto;
+		}	
+	}
+}
+
+//3.2 expandbanner
+
+.expandbanner{
+	background: #eee;
+	padding: 20px 0;
+}
+
+.vacation-days{
+	.used{
+		padding:5px 20px 28px 20px;
+		background: #2057A3;
+	}
+	.available{
+		background: #464646;
+		padding:5px 20px 28px 20px;
+	}
+	h1,h6{
+		color: #fff;
+		margin: 0;
+		text-align: center;
+	}
+	h1{
+		font-family: "futura-pt","sans-serif";
+		font-size: 70px;
+	}
+}
+
+#vacaciones{
+	border: 1px solid #D6D6D6;
+	padding: 20px 0;
+	height: 306px;
+}
+
+.ui-datepicker-title{
+	text-align: center;
+}
+
+
+.ui-datepicker-prev{
+	float: left;
+}
+
+.ui-datepicker-next{
+	float: right;
+}
+
+.ui-datepicker-group{
+	width: 46%;
+	display: inline-block;
+	&.ui-datepicker-group-first{
+		margin-right: 33px;
+		margin-left: 10px;
+	}
+}
+
+.ui-datepicker-header{
+	height: 20px;
+	line-height: 20px;
+}
+
+.ui-datepicker-prev {
+	background: url('/assets/images/date-prev.png') no-repeat center center;
+	width: 27px;
+	height: 27px;
+	text-indent: -9999px;
+	display: block;
+	position: relative;
+	top: -3px;
+	left: 3px;
+}
+
+.ui-datepicker-next {
+	background: url('/assets/images/date-next.png') no-repeat center center;
+	width: 27px;
+	height: 27px;
+	text-indent: -9999px;
+	display: block;
+	position: relative;
+	top: -3px;
+	right: -10px;
+}
+
+
+table{
+	&.ui-datepicker-calendar{
+		border-spacing: 0;
+		border-collapse: collapse;
+		margin: 0 !important;
+		background: transparent;
+		tr:nth-of-type(even){
+			background: rgba(255,255,255,.1);
+		}
+		thead{
+			background: none;
+			tr{
+				background: none;
+				th{
+					font-weight: 100;
+					color: #C7C7C7;
+				}
+			}
+		}
+		tbody{
+			tr{
+				td{
+					text-align: center;
+					&.ui-datepicker-today{
+						background: aliceblue;
+						@include border-radius(5px);
+						a{
+							color: #6F97CF;
+						}
+					}
+					&.Highlighted{
+						background: rgba(205, 222, 239, .5);
+						&:first-child,&:last-child{
+							background: #3A80C3;
+							@include border-radius(5px);
+							a{
+								color: #fff;
+							}
+						}
+						a{ 
+							color: #3A80C3;
+						}
+					}
+					&.ui-datepicker-current-day{
+						background: #889FBE;
+						@include border-radius(5px);
+						a{
+							color: #fff;
+						}
+					}
+					a{
+						color: #6D6C6C;
+					}
+				}
+			}
+		}
+	}
+	&.vacations{
+		border-spacing: 0;
+		border-collapse: collapse;
+		margin: 0 !important;
+		background: transparent;
+		tr:nth-of-type(even){
+			background: transparent;
+		}
+		thead{
+			background: none;
+			border-top: 1px solid #D6D6D6;
+			tr{
+				height: 76px;
+				background: none;
+				th{
+					border-right: 1px solid #D6D6D6;
+					border-left: 1px solid #d6d6d6;
+					color: #4a4a4a;
+					text-align: center;
+					background: transparent;
+					&.aprobar{
+						color: #3AC177;
+					}
+					&.borrar{
+						color: #E05162;
+					}
+					&.desde{
+						background: #dfdfdf;
+					}
+					&.dias{
+						color: #fff;
+						background: #4a4a4a;	
+					}
+				}
+			}
+		}
+		tbody{
+			tr{
+				border: 1px solid #D6D6D6;
+				background: transparent;
+				td{
+					border-right: 1px solid #D6D6D6;
+					&.dias{
+						color: #fff;
+						background: #4a4a4a;
+						h2{
+							color: #fff;
+						}
+					}
+					&.desde{
+						background: #dfdfdf;
+					}
+					h2,h6{
+						text-align: center;
+						margin: 0;
+						color: #6C6C6C;
+					}
+					h2{
+						font-family: "futura-pt","sans-serif";
+						line-height: 35px;
+					}
+				}
+			}
+		}
+	}
+}
+
+
+.expand-title{
+	border-top: 1px solid #D6D6D6;
+	border-bottom: 1px solid #D6D6D6;
+	padding: 20px 0;
+}
+
+.acciones{
+	background: url('/assets/images/buttons.png') no-repeat scroll -10px 0;
+	display: block;
+	width: 60px;
+	height: 60px;
+	margin: 0 auto;
+	text-align: center;
+	&.negar{
+		background-position: -80px 0;
+	}
+	&.borrar{
+		background-position: -153px 0;
+	}
+}
+
+.aprobador{
+	margin-left: 20px;
+	padding-top: 2px;
+	i{
+		display: inline-block;
+		margin-right: 10px;
+	}
+	.pic{
+		border: 2px solid #6f6f6f;
+	}
+}
+
+.info {
+	position: relative;
+	top: -13px;
+	left: 10px;
+}
+
 .contenido{
 	min-height: 225px;
 	padding: 10px;
@@ -423,3 +739,5 @@
   stroke: #ccc;    
   stroke-width: 1.5px; 
 }
+
+

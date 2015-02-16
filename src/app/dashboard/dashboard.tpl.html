@@ -1,4 +1,4 @@
-<ul ui-sortable="sortableOptions" ng-model="common.widgets" class="small-block-grid-1 medium-block-grid-3 large-block-grid-3">
+<ul ng-model="common.widgets" class="small-block-grid-1 medium-block-grid-3 large-block-grid-3">
 	<li>
 		<div class="widgets">
 			<h5 class="encabezado">
@@ -39,8 +39,8 @@
 				<small>{{common.widgets[1].config.param_a}}</small>
 				<ul>
 					<li ng-repeat="dates in vacationdates">
-						inicio: {{dates[0] }}
-						final: {{dates[1] }}
+						inicio: {{dateHanldler(dates[0]) }}
+						final: {{dateHanldler(dates[1])  }}
 					</li>
 				</ul>
 			</div>

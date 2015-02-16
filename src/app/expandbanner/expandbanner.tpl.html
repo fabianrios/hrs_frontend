@@ -1,0 +1,43 @@
+<div class="row collapse">
+	<div class="large-7 columns">
+		<div class="thecalendar">
+			<div id="vacaciones"></div>
+		</div>
+	</div>
+	<div class="large-2 columns">
+		<div class="vacation-days">
+			<div class="available">
+				<h1>20</h1>
+				<h6>DISPONIBLES</h6>
+			</div>
+			<div class="used">
+				<h1>12</h1>
+				<h6>USADOS</h6>
+			</div>
+		</div>
+	</div>
+	<div class="large-3 columns">
+		<table class="vacations">
+			<thead>
+				<tr>
+					<th class="desde">DESDE</th>
+					<th>HASTA</th>
+					<th class="dias">DIAS</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="dates in vacationdates">
+					<td class="desde">
+						<h2>{{ dateHanldler(dates[0]) | date:'d' }}</h2>
+						<h6>{{ dateHanldler(dates[0]) | date:'MMMM' }}</h6>
+					</td>
+					<td>
+						<h2>{{ dateHanldler(dates[1]) | date:'d' }}</h2>
+						<h6>{{ dateHanldler(dates[1]) | date:'MMMM' }}</h6>
+					</td>
+					<td class="dias"><h2>{{dates[2] | number:0}}</h2></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

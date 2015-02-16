@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="styles/custom.css" />
     <link rel="stylesheet" href="font-awesome/css/font-awesome.css" />
     <link rel="stylesheet" href="styles/font.css" />
+	<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,400italic' rel='stylesheet' type='text/css'>
     <!-- endbuild -->
   </head>
   <body ng-controller="RootController">
@@ -32,7 +33,12 @@
        ga('create', 'UA-59044480-1');
        ga('send', 'pageview');
     </script>
-
+	
+	<!-- Typekit -->
+	<script src="//use.typekit.net/tvm0sgh.js"></script>
+	<script>try{Typekit.load();}catch(e){}</script>
+	
+	
     <!-- build:js(vendor) scripts/oldieshim.js -->
     <!--[if lt IE 9]>
     <script src="es5-shim/es5-shim.js"></script>
@@ -75,12 +81,17 @@
 	<script src="common/resources/user_api.js"></script>
 	<script src="common/resources/organigram_api.js"></script>
 	<script src="common/resources/employee_api.js"></script>
+	<script src="common/resources/vacation_api.js"></script>
+	<script src="common/resources/vacation_requirement_api.js"></script>
     <script src="app/navbar/navbar.js"></script>
     <script src="app/sidebar/sidebar.js"></script>
+    <script src="app/profile/profile.js"></script>
+    <script src="app/expandbanner/expandbanner.js"></script>
     <script src="app/dashboard/dashboard.js"></script>
     <script src="app/companies/companies.js"></script>
 	<script src="app/sessions/sessions.js"></script>
 	<script src="app/organigram/organigram.js"></script>
+	<script src="app/vacations/vacations.js"></script>
     <!-- endbuild -->
 </body>
 </html>
