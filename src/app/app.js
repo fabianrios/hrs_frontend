@@ -22,6 +22,7 @@
 	'employee.service',
 	'vacation.service',
 	'vacation_requirement.service',
+	'employee_info.service',
 
     // Directives
 	'ngS3upload',
@@ -33,6 +34,7 @@
 	'expandbanner',
     'companies',
 	'vacations',
+	'employee_info',
 	'sessions',
     'dashboard',
 	'organigram'
@@ -96,12 +98,13 @@
 	    };
   })
 
+
   .controller('RootController', function($http, $scope, $animate, $location, $window, UserService, Auth, Company, User, Employee){
 	  
 	  // /watch location
   	  $scope.$on("$stateChangeSuccess", function (next, current) {
 		  $scope.ubicacion = current.url;
-  		  console.log("ubicacion:",$scope.ubicacion);
+  		  // console.log("ubicacion:",$scope.ubicacion);
   	  })
 	  
 	  
@@ -117,6 +120,7 @@
 	  $scope.employee = {};
 	  $scope.user = {};
 	  $scope.vacation = {};
+	  $scope.employee_info = {};
 	  
 	  $scope.dateHanldler = function(date){
 	    var dt = new Date(date);
@@ -132,6 +136,8 @@
 		  $scope.elusuario.$promise.then(function(items){
 	  			  $scope.employee = items.employee;
 	  			  $scope.vacation = items.vacation;
+				  $scope.employee_info = items.employee_data;
+				  console.log($scope.employee_info);
 				  // Estos hay que parsearlos como numeros porque llegan como un string
 	  			  $scope.vacationdays = [parseInt(items.vacation.resumen[1]),parseInt(items.vacation.resumen[2])];
 				  $scope.vacationdates = items.vacation.detalle;
@@ -165,6 +171,13 @@
 		$location.path('/edit');
 	};
 
+	//toggle expand vacation box
+	$scope.toggle = function(e){
+		// console.log(e.currentTarget);
+		$(e.currentTarget).toggleClass("active");
+		$(".expandbanner").slideToggle();
+	}
+	
     $scope.logout = function(){
 		Auth.logout().then(function(oldUser) {
             console.log(oldUser.email + "you're signed out now.");

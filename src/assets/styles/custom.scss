@@ -436,6 +436,7 @@
 .expandbanner{
 	background: #eee;
 	padding: 20px 0;
+	position: relative;
 }
 
 .vacation-days{
@@ -510,9 +511,41 @@
 	display: block;
 	position: relative;
 	top: -3px;
-	right: -10px;
+	right: 5px;
 }
 
+#ui-datepicker-div{
+	padding: 10px;
+	border: 1px solid rgb(214, 214, 214);
+	background: #fff;
+}
+
+.ui-datepicker-inline{
+	background: transparent;
+	.ui-datepicker-next {
+		right: -10px;
+	}
+}
+
+
+.close-banner{
+	width: 40px;
+	height: 40px;
+	margin: 0 auto;
+	text-align: center;
+	a{
+		background: #EEEEEE url("/assets/images/arrows.png") -1px 0px no-repeat;
+		height: 40px;
+		display: block;
+		width: 100%;
+		&:hover{
+			background-color: darken(#f1f1f1,10%);
+		}
+		&.active{
+			background-position: -1px -44px;
+		}
+	}
+}
 
 table{
 	&.ui-datepicker-calendar{
@@ -643,6 +676,7 @@ table{
 	border-top: 1px solid #D6D6D6;
 	border-bottom: 1px solid #D6D6D6;
 	padding: 20px 0;
+	margin: 30px 0;
 }
 
 .acciones{
@@ -657,6 +691,15 @@ table{
 	}
 	&.borrar{
 		background-position: -153px 0;
+	}
+}
+
+span{
+	&.Aprobado{
+		color: #3AC177;
+	}
+	&.Negado{
+		color: #E05162;
 	}
 }
 

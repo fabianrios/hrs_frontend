@@ -86,6 +86,11 @@ input.button{
 }
 
 //1.2 textarea
+textarea{
+	min-height: 98px;
+	border: 1px solid #ccc;
+}
+
 textarea[rows]{
 	height: 200px;
 	&.fixheight{
@@ -446,4 +451,8 @@ span.prefix.date{
 	&.bar-success{
 		background: #1AA64D;
 	}
+}
+
+.prefix, .postfix{
+	z-index: 0;
 }

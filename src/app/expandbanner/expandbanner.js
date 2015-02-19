@@ -4,7 +4,6 @@
   angular.module('expandbanner', [])
 
     .controller('Expandbanner.ExpandbannerController', function($scope){
-		
 	
 	  var thedates;
 	  $scope.elusuario.$promise.then(function(items){
@@ -29,6 +28,8 @@
 	 		$.datepicker.setDefaults($.datepicker.regional['es']);
 	 		// console.log(thedates, thedates.length);
 	 		var y = new Date(thedates[thedates.length-1][1]); 
+			$( "#inicio" ).datepicker();
+			$( "#final" ).datepicker();
 	 	    $( "#vacaciones" ).datepicker({
 	 			numberOfMonths: 2,
 	 			defaultDate: y,
