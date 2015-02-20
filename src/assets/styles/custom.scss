@@ -788,6 +788,13 @@ span{
 	}
 }
 
+.information{
+	display: none;
+	&:first-child{
+		display: block;
+	}
+}
+
 .master-data, .datos_empresariales{
 	h4{
 		color: $header;

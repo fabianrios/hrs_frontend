@@ -16,8 +16,8 @@
             templateUrl: 'app/employee_info/employee_info_lookup.tpl.html',
             controller: 'Employee_info.LookupController',
             resolve: {
-              info: function(Emloyee_info, $stateParams){
-                return Emloyee_info.show({id: $stateParams.id}).$promise;
+              info: function(Employee_info, $stateParams){
+                return Employee_info.show({id: $stateParams.id, pernr: $stateParams.id, company_id: 4}).$promise;
               }
             }
         })
@@ -38,12 +38,12 @@
 		$scope.sortableOptions = {
 			'placeholder': 'placeholder'
 		};
+	
 
-	  
     })
 	
-	.controller('Employee_info.LookupController', function ($scope) {
-
-		
+	.controller('Employee_info.LookupController', function ($scope, info) {
+		$scope.employee_info = info;
+		console.log("employee_info",$scope.employee_info);
 	});
 }());

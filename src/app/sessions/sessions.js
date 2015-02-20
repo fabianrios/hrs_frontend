@@ -39,6 +39,7 @@
 				$scope.current = currentUser;
 				$location.path('/home'); // on success go back to home
 				 $window.location.reload();
+				 // $state.go($state.current, {}, {reload: true}); //second parameter is for $stateParams
             });
 
             $scope.$on('devise:new-session', function(event, currentUser) {
@@ -47,6 +48,7 @@
 				$scope.user = currentUser;
 				$location.path('/home'); // on success go back to home
 				$window.location.reload();
+				// $state.go($state.current, {}, {reload: true}); //second parameter is for $stateParams
          });
 		  
 	     };

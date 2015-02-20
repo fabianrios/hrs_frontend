@@ -137,7 +137,7 @@
 	  			  $scope.employee = items.employee;
 	  			  $scope.vacation = items.vacation;
 				  $scope.employee_info = items.employee_info;
-				  console.log($scope.employee_info);
+				  console.log(items);
 				  // Estos hay que parsearlos como numeros porque llegan como un string
 	  			  $scope.vacationdays = [parseInt(items.vacation.resumen[1]),parseInt(items.vacation.resumen[2])];
 				  $scope.vacationdates = items.vacation.detalle;
@@ -177,6 +177,18 @@
 		$(e.currentTarget).toggleClass("active");
 		$(".expandbanner").slideToggle();
 	}
+	
+	//sort stuff icon-bar
+	$scope.sorthings = function(e,data){
+		// console.log(e);
+		$(".icon-bar a.item").removeClass("active");
+		$(e.currentTarget).toggleClass("active");
+		$('.information').hide('fast');
+		$("."+data).show('slow');
+	}
+	
+	//iconos
+	$scope.icons = ["icon-location","fa fa-location-arrow", "fa fa-phone", "fa fa-envelope-o"];
 	
     $scope.logout = function(){
 		Auth.logout().then(function(oldUser) {

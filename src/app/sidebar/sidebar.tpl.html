@@ -13,11 +13,11 @@
 	</li>
 	<li class="results" ng-repeat="employee in employees | filter:searchText">
 		<div class="pic">
-			<a href="#">
+			<a ui-sref="main.views.employee_info_lookup({id:employee.identification})">
 				<img alt="150x150" src="http://placehold.it/150x150">
 			</a>
 		</div>
-		<h6 class="name no-margin capitalize"><a data="" href="" class="capitalize">{{employee.name | lowercase}} {{employee.lastname | lowercase}}</a></h6>
+		<h6 class="name no-margin capitalize"><a ui-sref="main.views.employee_info_lookup({id:employee.identification})" class="capitalize">{{employee.name | lowercase}} {{employee.lastname | lowercase}}</a></h6>
 		<h6 class="no-margin subheader cargo capitalize">{{employee.posicion | lowercase}}</h6>
 
 		<div class="action-buttons">
