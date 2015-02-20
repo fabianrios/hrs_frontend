@@ -35,6 +35,10 @@
        });
 	   // /Check user
 	   
+		$scope.sortableOptions = {
+			'placeholder': 'placeholder'
+		};
+
 	  
     })
 	

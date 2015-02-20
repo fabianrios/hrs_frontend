@@ -18,7 +18,7 @@
 						<div class="user_nav show-for-medium-up">
 							<div class="text-right">
 								<a href="" class="comments"><span class="icon-comment"></span><i class="number comment">10</i></a>
-								<h5 class="subheader no-margin capitalize"><a href=""><span class="icon-user"></span>{{user.name}}</a></h5>
+								<h5 class="subheader no-margin capitalize"><a ui-sref="main.views.employee_info"><span class="icon-user"></span>{{user.name}}</a></h5>
 								<div class="worker">
 									<img ng-src="{{user.pic}}">
 								</div>
@@ -34,8 +34,8 @@
 			<aside class="right-off-canvas-menu" ui-view="sidebar"></aside>
 			<section class="main-section">
 				<div class="dashboard-profile" ui-view="profile"></div>
-				<div class="expandbanner animate-if" ui-view="expandbanner" ng-if="ubicacion == '/vacations'"></div>
-				<div class="close-banner" ng-if="ubicacion == '/vacations'"><a href="" ng-click="toggle($event)"></a></div>
+				<div class="expandbanner animate-if" ui-view="expandbanner" ng-if="ubicacion == '/vacations' || ubicacion == '/employee_info'"></div>
+				<div class="close-banner" ng-if="ubicacion == '/vacations' || ubicacion == '/employee_info'"><a href="" ng-click="toggle($event)"></a></div>
 		
 				<div class="main-container" id="main-container">
 	

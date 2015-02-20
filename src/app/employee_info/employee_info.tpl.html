@@ -1,8 +1,112 @@
-<div ng-model="employee_info">
-	<ul>
-		<li ng-repeat="data in employee_data">
-			{{data}}
-			<p>{{$index}}</p>
-		</li>
-	</ul>
+<div ng-model="employee_info" class="master-data">
+	<div class="datos_contacto">
+		<div class="panel bgwhite">
+			<h4><span class="fa-info-circle fa"></span> Datos de contacto</h4>
+			<hr class="m0" />
+			<ul class="small-block-grid-2 large-block-grid-4">
+				<li>
+					<label for="Direccion">Dirección de Residencia</label>
+					<div class="row collapse">
+						<div class="small-2 columns">
+							<a href="#" class="button postfix"><span class="icon-location"></span></a>
+						</div>
+						<div class="small-10 columns">
+							<input type="text" value="CR 21 N 35-21" />
+						</div>
+					</div>
+				</li>
+				<li>
+					<label for="Direccion">Complemento Direccion</label>
+					<div class="row collapse">
+						<div class="small-2 columns">
+							<a href="#" class="button postfix"><span class="fa fa-location-arrow"></span></a>
+						</div>
+						<div class="small-10 columns">
+							<input type="text" value="TORRE 7 APTO. 401" />
+						</div>
+					</div>
+				</li>
+				<li>
+					<label for="Direccion">Nro. Teléfono</label>
+					<div class="row collapse">
+						<div class="small-2 columns">
+							<a href="#" class="button postfix"><span class="fa fa-phone"></span></a>
+						</div>
+						<div class="small-10 columns">
+							<input type="text" value="+573123201230" />
+						</div>
+					</div>
+				</li>
+				<li>
+					<label for="Direccion">Correo electrónico</label>
+					<div class="row collapse">
+						<div class="small-2 columns">
+							<a href="#" class="button postfix"><span class="fa fa-envelope-o"></span></a>
+						</div>
+						<div class="small-10 columns">
+							<input type="text" value="GA.LOPEZ@HRSOLUTIONS-CO.COM" />
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+	
+	<div class="row collapse">
+		<div class="large-2 small-12 columns">
+			<div class="icon-bar large-vertical six-up">
+			  <a class="item active">
+				 <span class="fa fa-border fa-user fa-2x"></span>
+			    <label>Personales</label>
+			  </a>
+			  <a class="item">
+				 <span class="fa fa-border fa-users fa-2x"></span>
+			    <label>Familiares</label>
+			  </a>
+			  <a class="item">
+				  <span class="fa fa-border fa-child fa-2x"></span>
+			    <label>Beneficiarios</label>
+			  </a>
+			  <a class="item">
+			    <span class="fa fa-border fa-sitemap fa-2x"></span>
+			    <label>Organizativos</label>
+			  </a>
+			  <a class="item">
+			    <span class="fa fa-border fa-credit-card fa-2x"></span>
+			    <label>Financieros</label>
+			  </a>
+			  <a class="item">
+			    <span class="fa fa-border fa-briefcase fa-2x"></span>
+			    <label>Impuestos</label>
+			  </a>
+			</div>
+		</div>
+		
+		<div class="large-10 small-12 columns">
+			
+			<div class="information active datos_personales">
+				<h4><span class="fa fa-user"></span> Datos personales</h4>
+				<hr class="m0" />
+				<ul class="small-block-grid-2 large-block-grid-5" ui-sortable="sortableOptions" ng-model="employee_info.datos_personales">
+					<li ng-repeat="data in employee_info.datos_personales">
+						<label for="{{data.ncamp}}">{{data.dcamp}}</label>
+						<input disabled="{{data.sedit == 'X' ? true : false}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{data.ccamp}}"/>
+					</li>
+				</ul>
+			</div>
+			
+			<div class="information datos_bancarios">
+				<h4><span class="fa fa-credit-card"></span> Datos Financieros</h4>
+				<hr class="m0" />
+				<ul class="small-block-grid-2 large-block-grid-5" ui-sortable="sortableOptions" ng-model="employee_info.datos_bancarios">
+					<li ng-repeat="data in employee_info.datos_bancarios">
+						<label for="{{data.ncamp}}">{{data.dcamp}}</label>
+						<input disabled="{{data.sedit == 'X' ? true : false}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{data.ccamp}}"/>
+					</li>
+				</ul>
+			</div>
+			
+			
+		</div>
+	</div>
 </div>

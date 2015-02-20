@@ -136,7 +136,7 @@
 		  $scope.elusuario.$promise.then(function(items){
 	  			  $scope.employee = items.employee;
 	  			  $scope.vacation = items.vacation;
-				  $scope.employee_info = items.employee_data;
+				  $scope.employee_info = items.employee_info;
 				  console.log($scope.employee_info);
 				  // Estos hay que parsearlos como numeros porque llegan como un string
 	  			  $scope.vacationdays = [parseInt(items.vacation.resumen[1]),parseInt(items.vacation.resumen[2])];

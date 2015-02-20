@@ -1,43 +1,57 @@
-<div class="row collapse">
-	<div class="large-7 columns">
-		<div class="thecalendar">
-			<div id="vacaciones"></div>
-		</div>
-	</div>
-	<div class="large-2 columns">
-		<div class="vacation-days">
-			<div class="available">
-				<h1>20</h1>
-				<h6>DISPONIBLES</h6>
-			</div>
-			<div class="used">
-				<h1>12</h1>
-				<h6>USADOS</h6>
+<div class="iterate" ng-switch="ubicacion">
+	<div class="row collapse" ng-switch-default>
+		<div class="large-7 columns">
+			<div class="thecalendar">
+				<div id="vacaciones"></div>
 			</div>
 		</div>
+		<div class="large-2 columns">
+			<div class="vacation-days">
+				<div class="available">
+					<h1>20</h1>
+					<h6>DISPONIBLES</h6>
+				</div>
+				<div class="used">
+					<h1>12</h1>
+					<h6>USADOS</h6>
+				</div>
+			</div>
+		</div>
+		<div class="large-3 columns">
+			<table class="vacations">
+				<thead>
+					<tr>
+						<th class="desde">DESDE</th>
+						<th>HASTA</th>
+						<th class="dias">DIAS</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="dates in vacationdates">
+						<td class="desde">
+							<h2>{{ dateHanldler(dates[0]) | date:'d' }}</h2>
+							<h6>{{ dateHanldler(dates[0]) | date:'MMMM' }}</h6>
+						</td>
+						<td>
+							<h2>{{ dateHanldler(dates[1]) | date:'d' }}</h2>
+							<h6>{{ dateHanldler(dates[1]) | date:'MMMM' }}</h6>
+						</td>
+						<td class="dias"><h2>{{dates[2] | number:0}}</h2></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 	</div>
-	<div class="large-3 columns">
-		<table class="vacations">
-			<thead>
-				<tr>
-					<th class="desde">DESDE</th>
-					<th>HASTA</th>
-					<th class="dias">DIAS</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr ng-repeat="dates in vacationdates">
-					<td class="desde">
-						<h2>{{ dateHanldler(dates[0]) | date:'d' }}</h2>
-						<h6>{{ dateHanldler(dates[0]) | date:'MMMM' }}</h6>
-					</td>
-					<td>
-						<h2>{{ dateHanldler(dates[1]) | date:'d' }}</h2>
-						<h6>{{ dateHanldler(dates[1]) | date:'MMMM' }}</h6>
-					</td>
-					<td class="dias"><h2>{{dates[2] | number:0}}</h2></td>
-				</tr>
-			</tbody>
-		</table>
+	<div class="row" 	ng-switch-when="/employee_info">
+		<div class="datos_empresariales">
+			<h4><span class="fa-building-o fa"></span> Datos laborales</h4>
+			<hr class="m0" />
+			<ul class="small-block-grid-2 large-block-grid-5" ui-sortable="sortableOptions" ng-model="employee_info.datos_empresariales">
+				<li ng-repeat="data in employee_info.datos_empresariales">
+					<label for="{{data.ncamp}}">{{data.dcamp}}</label>
+					<input disabled="{{data.sedit == 'X' ? true : false}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{data.ccamp}}"/>
+				</li>
+			</ul>
+		</div>
 	</div>
 </div>

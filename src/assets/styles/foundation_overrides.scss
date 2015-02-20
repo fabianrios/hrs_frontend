@@ -104,6 +104,14 @@ textarea[rows]{
 	input[type="checkbox"]:last-of-type, input[type="text"]:last-of-type, input[type="password"]:last-of-type{
 		margin-bottom: 0;
 	}
+	.small-10{
+		input[type="text"],input[type="number"]{
+			border: 1px solid rgb(28, 96, 135);
+		}
+	}
+	&.bgwhite{
+		background: #fff;
+	}
 	&.blur{
 		background: #9CAAB8;
 		@media only screen and (min-width: 40.063em) { 
@@ -221,19 +229,10 @@ table{
 
 
 //7.placeholder
-::-webkit-input-placeholder { /* WebKit browsers */
-    color:    #4f5860;
-}
-:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-    color:    #4f5860;
-    opacity:  1;
-}
-::-moz-placeholder { /* Mozilla Firefox 19+ */
-    color:    #4f5860;
-    opacity:  1;
-}
-:-ms-input-placeholder { /* Internet Explorer 10+ */
-    color:    #4f5860;
+input{
+	@include input-placeholder {
+	  color:#4f5860;	
+	}
 }
 
 
@@ -439,7 +438,7 @@ span.prefix.date{
 .placeholder{
 	background: lightgray;
 	border: 1px dashed gray;
-	min-height: 270px;
+	min-height: 50px;
 	height: 100%;
 	width: 90%;
 	float: left;
