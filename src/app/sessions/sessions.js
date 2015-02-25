@@ -31,6 +31,36 @@
             }, function(error) {
                 console.log("error en la autenticacion")
             });
+			
+	 // Catch unauthorized requests and recover.
+	        $scope.$on('devise:unauthorized', function(event, xhr, deferred) {
+	            // Ask user for login credentials
+
+	            Auth.login(credentials).then(function() {
+	                // Successfully logged in.
+	                // Redo the original request.
+	                return $http(xhr.config);
+	            }).then(function(response) {
+	                // Successfully recovered from unauthorized error.
+	                // Resolve the original request's promise.
+	                deferred.resolve(response);
+	            }, function(error) {
+	                // There was an error logging in.
+	                // Reject the original request's promise.
+	                deferred.reject(error);
+	            });
+	        });
+
+	        // Request requires authorization
+	        // Will cause a `401 Unauthorized` response,
+	        // that will be recovered by our listener above.
+	        $http.delete('/users/1', {
+	            interceptAuth: true
+	        }).then(function(response) {
+	            // Deleted user 1
+	        }, function(error) {
+	            // Something went wrong.
+	        });
 
             $scope.$on('devise:login', function(event, currentUser) {
                 // after a login, a hard refresh, a new tab

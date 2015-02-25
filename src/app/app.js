@@ -41,14 +41,17 @@
 	'organigram'
   ])
 
-  .config(function($stateProvider, AuthProvider, $httpProvider){
+  .config(function($stateProvider, AuthProvider, $httpProvider, HRAPI_CONF, AuthInterceptProvider){
 	$httpProvider.defaults.headers.common['X-CSRF-Token'] = angular.element('meta[name=csrf-token]').attr('content');
+	// console.log($httpProvider.defaults.headers.common['X-CSRF-Token'],angular.element('meta[name=csrf-token]').attr('content'));
 	// Intercept 401 Unauthorized everywhere
-	// $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
-    // AuthInterceptProvider.interceptAuth(true);
+    AuthInterceptProvider.interceptAuth(true);
 	
 	
 	// Tenemos que sobreescribir todas las posibles funciones con el prefijo api/
+	var loginurl = HRAPI_CONF.apiBaseUrl('/users/sign_in.json');
+	var logout = HRAPI_CONF.apiBaseUrl('/users/sign_out.json');
+	var register = HRAPI_CONF.apiBaseUrl('/users.json');
 	AuthProvider.loginPath('api/users/sign_in.json');
 	AuthProvider.logoutPath('api/users/sign_out.json');
 	AuthProvider.registerPath('api/users.json');
@@ -90,7 +93,11 @@
         }
       });
   })
-
+  .run(function($rootScope) {
+	$rootScope.$on('$viewContentLoaded', function () {
+		// $(document).foundation();
+   	})
+   })
   .factory('UserService', function(Auth) {
 
 	  return {
@@ -141,7 +148,12 @@
 			$scope.intfpend = [];
 			$scope.intnewbetrg = [];
 			$scope.elsaldocesantias = "";
-
+			$scope.deduc = [];
+			$scope.devng = [];
+			$scope.fechas_deudas = [];
+			$scope.ingresos = [];
+			$scope.deducciones = [];
+			
 			$scope.user = user;
 			$scope.elusuario = User.get({ id: $scope.user.id });
 			$scope.elusuario.$promise.then(function(items){
@@ -149,7 +161,7 @@
 	  			  $scope.vacation = items.vacation;
 				  $scope.employee_info = items.employee_info;
 				  $scope.saldos = items.saldos;
-				  console.log($scope.saldos);
+				  // console.log($scope.saldos);
 				  // meter las cesantias
 				  angular.forEach($scope.saldos.t_cesantias,function(value,index){
 			          $scope.betrg.push(value.betrg);
@@ -187,270 +199,30 @@
 	  			    $scope.intnewbetrg.push(parseInt(entry));
 	  			});
 				
+				$scope.newbetrg = $scope.newbetrg.reverse();
+				$scope.fpend = $scope.fpend.reverse()
+				$scope.intnewbetrg = $scope.intnewbetrg.reverse();
+				$scope.intfpend = $scope.intfpend.reverse()
 				
 				//Deudas
-				var deduc = [];
-				var devng = [];
-				var fechas_deudas = [];
 	  			angular.forEach($scope.saldos.t_endeudamiento,function(value,index){
-	  				deduc.push(value.deduc);
-	  				devng.push(value.devng);
-					fechas_deudas.push(value.fpend);
+	  				$scope.deduc.push(value.deduc);
+	  				$scope.devng.push(value.devng);
+					$scope.fechas_deudas.push(value.fpend);
 	  			})	
 				
-				$scope.deducciones = [];
-				deduc.forEach(function(deuda) {
+				$scope.deduc.forEach(function(deuda) {
 	  			    $scope.deducciones.push(parseInt(deuda));
 	  			});
 				
-				$scope.ingresos = [];
-				devng.forEach(function(ingresos) {
+
+				$scope.devng.forEach(function(ingresos) {
 	  			    $scope.ingresos.push(parseInt(ingresos));
 	  			});
-			
-	  	        $(function () {
-		  
-	  	            Highcharts.setOptions({
-	  	                global : {
-	  	                    useUTC : true
-	  	                }
-	  	            });
-					
-	  	            var cesantias = new Highcharts.Chart({
-	  	                chart:{
-	  	                    renderTo: 'cesantias',
-	  	                    margin:[15, 0, 0, 0],
-	  	                    backgroundColor:'transparent',
-	  	        			style: {
-	  	        				fontFamily: "futura-pt"
-	  	        			}
-	  	                },
-	  	                title:{
-	  	                    text:''
-	  	                },
-	  	        		colors: [
-	  	        		            "#1F82E9"
-	  	        		            ],
-	  	                credits:{
-	  	                    enabled:false
-	  	                },
-	  	                xAxis:{
-	  	        			categories: $scope.fpend.reverse(),
-	  	                    labels:{
-	  	                        enabled:false
-	  	                    }
-	  	                },
-	  	                yAxis:{
-	  	                    maxPadding:0,
-	  	                    minPadding:0,
-	  	                    gridLineWidth: 0,
-	  	                    endOnTick:false,
-	  	                    labels:{
-	  	                        enabled:false
-	  	                    }
-	  	                },
-	  	                legend:{
-	  	                    enabled:false
-	  	                },
-	  	        	    tooltip:{
-	  	        	        enabled:true,
-	  	        	        borderWidth: 1,
-	  	        	        shadow: false,
-	  	        	        useHTML: true,
-	  	        	        hideDelay: 2,
-	  	        	        shared: true,
-	  	        	        padding: 0,
-	  	        	    },
-	  	                plotOptions:{
-	  	                    series:{
-	  	        				name: 'Saldo',
-	  	                        enableMouseTracking:true,
-	  	                        lineWidth:1,
-	  	                        shadow:false,
-	  	        				pointWidth: 20,
-	  	        				borderWidth: 0,
-	  	                        states:{
-	  	                            hover:{
-	  	                                lineWidth:1
-	  	                            }
-	  	                        },
-	  	                        marker:{
-	  	                            //enabled:false,
-	  	                            radius:0,
-	  	                            states:{
-	  	                                hover:{
-	  	                                    radius:2
-	  	                                }
-	  	                            }
-	  	                        }
-	  	                    }
-	  	                },
-	  	                series: [{type:'column',
-	  	                    data: $scope.newbetrg.reverse()
-	  	                }]
-
-	  	            });
-
-					var intcesantias = new Highcharts.Chart({
-	  	                chart:{
-	  	                    renderTo: 'intsaldos',
-	  	                    margin:[15, 0, 0, 0],
-	  	                    backgroundColor:'transparent',
-	  	        			style: {
-	  	        				fontFamily: "futura-pt"
-	  	        			}
-	  	                },
-	  	                title:{
-	  	                    text:''
-	  	                },
-	  	        		colors: [
-	  	        		            "#2ED63B"
-	  	        		            ],
-	  	                credits:{
-	  	                    enabled:false
-	  	                },
-	  	                xAxis:{
-	  	        			categories: $scope.intfpend.reverse(),
-	  	                    labels:{
-	  	                        enabled:false
-	  	                    }
-	  	                },
-	  	                yAxis:{
-	  	                    maxPadding:0,
-	  	                    minPadding:0,
-	  	                    gridLineWidth: 0,
-	  	                    endOnTick:false,
-	  	                    labels:{
-	  	                        enabled:false
-	  	                    }
-	  	                },
-	  	                legend:{
-	  	                    enabled:false
-	  	                },
-	  	        	    tooltip:{
-	  	        	        enabled:true,
-	  	        	        borderWidth: 1,
-	  	        	        shadow: false,
-	  	        	        useHTML: true,
-	  	        	        hideDelay: 2,
-	  	        	        shared: true,
-	  	        	        padding: 0,
-	  	        	    },
-	  	                plotOptions:{
-	  	                    series:{
-	  	        				name: 'Saldo',
-	  	                        enableMouseTracking:true,
-	  	                        lineWidth:1,
-	  	                        shadow:false,
-	  	        				pointWidth: 20,
-	  	        				borderWidth: 0,
-	  	                        states:{
-	  	                            hover:{
-	  	                                lineWidth:1
-	  	                            }
-	  	                        },
-	  	                        marker:{
-	  	                            //enabled:false,
-	  	                            radius:0,
-	  	                            states:{
-	  	                                hover:{
-	  	                                    radius:2
-	  	                                }
-	  	                            }
-	  	                        }
-	  	                    }
-	  	                },
-	  	                series: [{type:'column',
-	  	                    data: $scope.intnewbetrg.reverse()
-	  	                }]
-
-	  	            });
-					
-					$('#endeudamiento').highcharts({
-					  chart: {
-						backgroundColor:'rgba(255, 255, 255, 0)',
-						height: 250,
-						style: {
-							fontFamily: "futura-pt"
-						}
-					  },
-					  title: {
-					      text: ''
-					  },
-					  xAxis: {
-					      type: 'datetime',
-						categories: fechas_deudas.reverse()
-					  },
-					  yAxis: {
-					      title: {
-					          text: 'Unidades en Millones'
-					      }
-					  },
-					  legend: {
-					      enabled: false
-					  },
-					  tooltip:{
-					      enabled:true,
-					      borderWidth: 1,
-					      shadow: false,
-					      useHTML: true,
-					      hideDelay: 2,
-					      shared: true,
-					      padding: 0,
-					  },
-					  plotOptions: {
-						areaspline: {
-							fillOpacity: 0.5
-						},
-					      area: {
-					          marker: {
-					              radius: 6,
-								lineWidth: 2,
-								lineColor: '#ffffff'
-					          },
-					          lineWidth: 2,
-					          states: {
-					              hover: {
-					                  lineWidth: 1
-					              }
-					          },
-					          threshold: null
-					      }
-					  },
-					  series: [{
-					      type: 'spline',
-					      name: 'Ingresos',
-						data: $scope.ingresos.reverse(),
-						color: '#2ED63B'
-					  },
-					{
-					      type: 'spline',
-					      name: 'Gastos',
-						data: $scope.deducciones.reverse(),
-						color: '#ff2211'
-					}]
-					});//endeudamiento
-					
-					
-					  //porcentaje
-					  var porcentaje = 100/($scope.saldos.totdevengos/$scope.saldos.totdeducciones);
-	  			      var loader = $('.loader').ClassyLoader({
-	  			        percentage: porcentaje,
-	  			      	width: 150, 
-	  			      	height: 150, 
-	  			      	speed: 15, 
-	  			      	fontFamily: "futura-pt",
-	  			      	roundedLine: true,
-	  			      	diameter: 70,
-	  			      	lineColor: "#ff3b30",
-	  			      	remainingLineColor: "#2ED63B",
-	  			      	lineWidth: 10,
-	  			      	fontSize: "35px"		
-	  			      });
 				
-				
-	  	        });// /CHART
-			
+				$scope.ingresos = $scope.ingresos.reverse();
+				$scope.deducciones = $scope.deducciones.reverse();
+				$scope.fechas_deudas = $scope.fechas_deudas.reverse();
 				  
 		  });
 		  
@@ -459,8 +231,6 @@
 		  // para comprobar que si esta autenticado
 		  $scope.autenticado = Auth.isAuthenticated(user);
 		  // console.log($scope.company);
-
-
 		  
 		  
       }, function(error) {
