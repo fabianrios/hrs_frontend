@@ -45,24 +45,60 @@
         })
     })
 
-    .controller('Dashboard.MainController', function($scope, widgets, workers, publicaciones, ingresos, Company){
-
+    .controller('Dashboard.MainController', function($scope, widgets, workers, publicaciones, ingresos, Company, employees){
+		
+		$scope.employees = employees;
+		
+		console.log("empleados", $scope.employees);
+		
+		
+		// $scope.shouldShow = function shouldHide(birthOn){
+		// 	console.log(birthOn);
+		//     var birth = new Date(birthOn);
+		//     var now = new Date();
+		// 	console.log(now.getMonth(),birth.getMonth());
+		//     var show = now.getMonth() == birth.getMonth() ? true : false;
+		//     return show;
+		// }
+		
+		
+		$scope.birthShow = function(empleado) {
+		    var birth = new Date(empleado.fecha_nac);
+		    var now = new Date(); 
+		    var show = now.getMonth() == birth.getMonth() ? true : false;
+		    return show;
+	    }
+		
+		$scope.laborShow = function(empleado) {
+		    var entrada = new Date(empleado.fecha_ingreso);
+		    var now = new Date(); 
+		    var show = now.getMonth() == entrada.getMonth() ? true : false;
+		    return show;
+	    }
+		
+		
+		
 		$scope.sortableOptions = {
 			'placeholder': 'placeholder'
 		};
 		
 		$scope.labels = ["Días usados", "Días restantes"];
-		
 	
+		$scope.common = {
+			widgets: widgets.items,
+			workers: workers.items,
+			publicaciones: publicaciones.items,
+			ingresos: ingresos.items
+		};
 		
-      $scope.common = {
-        widgets: widgets.items,
-		workers: workers.items,
-		publicaciones: publicaciones.items,
-		ingresos: ingresos.items
-      };
-	  
-	  
+		$scope.aniversario = function calculateAnniversary(entrada)
+		{
+		  var todayDate = new Date();
+		  var entrada = new Date(entrada);
+		  var age = todayDate.getYear() - entrada.getYear(); 
+		  return age;
+		}
+		
 
 	  
     });

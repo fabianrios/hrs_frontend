@@ -57,6 +57,11 @@
       .state('main', {
         abstract: true,
         templateUrl: 'app/layouts/remain.tpl.html',
+		resolve: {
+			employees: function(Employee){
+			  return Employee.index().$promise;
+			}
+		},
         controller: ['$scope', function($scope){
           $scope.ui = {};
         }]
@@ -77,12 +82,7 @@
           },
           sidebar: {
             templateUrl: 'app/sidebar/sidebar.tpl.html',
-            controller: 'Sidebar.SidebarController',
-				resolve: {
-					employees: function(Employee){
-					  return Employee.index().$promise;
-					}
-				}
+            controller: 'Sidebar.SidebarController'
           },
           content: {
             template: '<div ui-view=""></div>'
@@ -98,7 +98,6 @@
 		  current_user: Auth.currentUser()
 	    };
   })
-  
 
   .controller('RootController', function($http, $scope, $animate, $location, $window, UserService, Auth, Company, User, Employee){
 	  
