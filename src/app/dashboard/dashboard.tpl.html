@@ -36,13 +36,13 @@
 				</div>
 			</h5>
 			<div class="contenido">
-				<small>{{common.widgets[1].config.param_a}}</small>
-				<ul>
-					<li ng-repeat="dates in vacationdates">
-						inicio: {{dateHanldler(dates[0]) }}
-						final: {{dateHanldler(dates[1])  }}
-					</li>
-				</ul>
+				<div class="left">
+					<div id="cesantias" style="height: 180px; width: 140px; overflow:hidden;"></div>
+				</div>
+				<div class="number-info">
+					<label class="no-margin">Saldo actual:</label>
+					<h3 class="no-margin bluetxt futura">{{elsaldocesantias | currency:"$":0}}</h3>
+				</div>
 			</div>
 		</div>
 	</li>
@@ -62,7 +62,13 @@
 				</div>
 			</h5>
 			<div class="contenido">
-				<small>{{common.widgets[2].config.param_a}}</small>
+				<div class="left">
+					<div id="intsaldos" style="height: 180px; width: 140px; overflow:hidden;"></div>
+				</div>
+				<div class="number-info">
+					<label class="no-margin">Saldo actual:</label>
+					<h3 class="no-margin greentxt futura"> {{intcesantias | currency:"$":0}} </h3>
+				</div>
 			</div>
 		</div>
 	</li>
@@ -85,7 +91,18 @@
 				</div>
 			</h5>
 			<div class="contenido">
-				<small>{{ingreso.config.param_a}}</small>
+				<div class="row">
+					<div class="large-8 medium-8 columns">
+						<div id="endeudamiento"></div>
+					</div>
+					<div class="large-4 medium-4 columns">
+						<canvas class="loader animation-canvas" width="150" height="150"></canvas>
+						<div class="text-left">
+							<h4 class="greentxt futura"><small class="blacktxt">Total ingresos:</small>{{saldos.totdevengos | currency:"$":0}}</h4>
+							<h4 class="redtxt futura"><small class="blacktxt">Total deducciones:</small>{{saldos.totdeducciones | currency:"$":0}}</h4>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</li>

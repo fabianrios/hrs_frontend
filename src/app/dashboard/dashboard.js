@@ -46,20 +46,24 @@
     })
 
     .controller('Dashboard.MainController', function($scope, widgets, workers, publicaciones, ingresos, Company){
-		
+
 		$scope.sortableOptions = {
 			'placeholder': 'placeholder'
 		};
 		
 		$scope.labels = ["Días usados", "Días restantes"];
 		
-      // $scope.companies = Company.index();
-	  
+	
+		
       $scope.common = {
         widgets: widgets.items,
 		workers: workers.items,
 		publicaciones: publicaciones.items,
 		ingresos: ingresos.items
       };
+	  
+	  
+
+	  
     });
 }());

@@ -795,6 +795,23 @@ span{
 	}
 }
 
+
+.number-info{
+	position: relative;
+	top: 10px;
+	left: 10px;
+	width: 50%;
+	display: inline-block;
+}
+
+.animation-canvas {
+	text-align: center;
+	margin: 0 auto;
+	display: block;
+	margin-bottom: 20px;
+	margin-top: 25px;
+}
+
 .master-data, .datos_empresariales{
 	h4{
 		color: $header;
