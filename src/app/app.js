@@ -9,8 +9,8 @@
     'ui.router',
     'ui.sortable',
 	'Devise',
+	'ngPopup',
 	'chart.js',
-    'mm.foundation',
 
     // Config
     'app.config',
@@ -52,6 +52,9 @@
 	var loginurl = HRAPI_CONF.apiBaseUrl('/users/sign_in.json');
 	var logout = HRAPI_CONF.apiBaseUrl('/users/sign_out.json');
 	var register = HRAPI_CONF.apiBaseUrl('/users.json');
+  	// AuthProvider.loginPath(loginurl);
+  	// AuthProvider.logoutPath(logout);
+  	// AuthProvider.registerPath(register);
 	AuthProvider.loginPath('api/users/sign_in.json');
 	AuthProvider.logoutPath('api/users/sign_out.json');
 	AuthProvider.registerPath('api/users.json');
@@ -95,7 +98,7 @@
   })
   .run(function($rootScope) {
 	$rootScope.$on('$viewContentLoaded', function () {
-		// $(document).foundation();
+		$(document).foundation();
    	})
    })
   .factory('UserService', function(Auth) {
@@ -114,6 +117,10 @@
   		  // console.log("ubicacion:",$scope.ubicacion);
   	  })
 	  
+	  // MODAL OPEN
+  	  $scope.openModal = function(modal) {
+  	  	$('#myModal-'+modal).foundation('reveal', 'open');  
+  	  };
 	  
 	  $scope.autenticado;
 	  

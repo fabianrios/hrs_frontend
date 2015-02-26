@@ -23,7 +23,7 @@
         })
     })
 	
-    .controller('Employee_info.ListController', function($scope, $state, $modal, UserService, Auth){
+    .controller('Employee_info.ListController', function($scope, $state, UserService, Auth){
 		
 	   // Check user
    	   UserService.current_user.then(function(user) {

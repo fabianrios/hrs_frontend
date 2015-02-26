@@ -6,27 +6,25 @@
 </ul>
 
 
-  <h1 class="subheader">Companies</h1>
-  <ul>
-    <li ng-repeat="company in companies">
-		<a ng-click="viewCompany(company.id)"><span>{{company.name}}</span></a>
-		<div ng-include="'app/companies/partials/_crudbuttons.tpl.html'"></div>
-    </li>
-  </ul>
+<div class="row">
+	<div class="large-6 columns">
+		<h1 class="subheader">Empresas</h1>
+		<ul>
+		  <li ng-repeat="company in companies">
+				<a ng-click="viewCompany(company.id)"><span>{{company.name}}</span></a>
+				<div ng-include="'app/companies/partials/_crudbuttons.tpl.html'"></div>
+		  </li>
+		</ul>
+	
+		<a ui-sref="main.views.companynew" class="button tiny success">Añadir nueva empresa</a>
+	</div>
+	<div class="large-6 columns">	
+		<br />
+			<!-- Include popup template -->
+		<div ng-include="'angular-popup-service/partials/popup.html'"></div>
+	</div>
+</div>
   
-  <a ui-sref="main.views.companynew" class="button tiny success">Add New Company</a>
-  
-  <!-- modal example -->
-   <script type="text/ng-template" id="myModalContent.html">
-     <h5 class="subheader text-center">¿Quieres borrar <strong>{{empresa.name}}</strong>?</h5>
-	 <br />
-	 <div class="text-center">
-		 <button class="button" ng-click="ok()">OK</button>
-		 <button class="button alert" ng-click="cancel()">Cancelar</button>
-	 </div>
-     <a class="close-reveal-modal" ng-click="cancel()">&#215;</a>
-   </script>
-
 
    
   

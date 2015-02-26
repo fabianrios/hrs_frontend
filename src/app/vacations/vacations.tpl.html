@@ -1,10 +1,4 @@
 <div ng-model="vacations">
-    <!-- <ul>
-      <li ng-repeat="vacation in vacations">
-		  	{{vacation}}
-      </li>
-    </ul> -->
-	
 	<h3 class="expand-title text-center">Crear solicitud de vacaciones</h3>
 	<div class="row">
 		<div class="large-6 columns">
@@ -65,7 +59,17 @@
 						</td>
 						<td class="dias"><h2>{{req_info.dias}}</h2></td>
 						<td><h6 class="bold" ><span class="{{req_info.status}}">{{req_info.status}}</span></h6></td>
-						<td><a href="" class="acciones borrar" ng-click="deleteVacation(req_info)"></a></td>
+						<td>
+							<a href="" class="acciones borrar" ng-click="openModal($index)"></a>
+							<div id="myModal-{{$index}}" class="reveal-modal tiny" data-reveal>
+								<br />
+								<h4 class="text-center">¿Seguro quieres borrar esto?</h4>
+								<div class="text-center">
+								<a href="" ng-click="deleteVacation(req_info,$index)" class="button success">Borrar</a>
+								</div>
+								<a class="close-reveal-modal">&#215;</a>
+							</div>
+						</td>
 					</tr>
 				</tbody>
 			</table>
@@ -90,9 +94,8 @@
 		<tbody>
 			<tr ng-repeat="req_info in only_not_user">
 				<td>
-					<h5>{{req_info.employee.short_name}} </h5>
-					<div id="modal-{{$index}}" class="reveal-modal" data-reveal>
-					  <h2>This is a modal.</h2>
+					<h5>{{req_info.employee.short_name}} <a href="" data-reveal-id="{{$index}}">mas info</a> </h5>
+					<div id="{{$index}}" class="reveal-modal" data-reveal>
 					  <p>{{req_info.more_text}}</p>
 					  <a class="close-reveal-modal">&#215;</a>
 					</div>
@@ -109,7 +112,17 @@
 				<td><h6 class="bold" ><span class="{{req_info.status}}">{{req_info.status}}</span></h6></td>
 				<td><a href="" ng-click="aproveVacation(req_info)" class="acciones"></a></td>
 				<td><a href="" ng-click="deniedVacation(req_info)" class="acciones negar"></a></td>
-				<td><a href="" class="acciones borrar" ng-click="deleteVacation(req_info)"></a></td>
+				<td>
+					<a href="" class="acciones borrar" ng-click="openModal($index)" ></a>
+					<div id="myModal-{{$index}}" class="reveal-modal tiny" data-reveal>
+						<br />
+						<h4 class="text-center">¿Seguro quieres borrar esto?</h4>
+						<div class="text-center">
+						<a href="" ng-click="deleteVacation(req_info,$index)" class="button success">Borrar</a>
+						</div>
+						<a class="close-reveal-modal">&#215;</a>
+					</div>
+				</td>
 			</tr>
 		</tbody>
 	</table>

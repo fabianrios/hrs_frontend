@@ -22,7 +22,7 @@
             ingresos: function(){
               return {
                 items: [
-					{ name: "Mis ingresos y deducciones", config: { param_a: "abc", param_b: "Días que a la liquidación de la última nómina tiene disponibles por este concepto. " }}
+					{ name: "Mis ingresos y deducciones", config: { param_a: "abc", param_b: "Cantidad de deuda e ingresos" }}
                 ]
               }
             },
@@ -46,6 +46,7 @@
     })
 
     .controller('Dashboard.MainController', function($scope, widgets, workers, publicaciones, ingresos, Company, employees, UserInfo){
+		
 		
 		UserInfo.currentUser().then(function(user_info){
 			// depende de UserInfo.currentUser
@@ -336,6 +337,26 @@
 		  return age;
 		}
 		
+		
+		if($(window).width() <= 500) {
+			$(".dashboardlis li .contenido").hide();
+		}
+		
+		$(window).resize(function() {
+			if($(window).width() <= 500) {
+				$(".dashboardlis li .contenido").hide();
+			}else if ($(window).width() >= 720) {
+				$(".dashboardlis li .contenido").show();
+			}
+		}).resize(); 
+		
+		$(".closing").click(function(){
+			console.log($(this));
+			$(this).parent().parent().parent().children(".contenido").slideToggle(70);
+			$(this).children(".fa").toggleClass("fa-chevron-circle-up");
+			$(this).children(".fa").toggleClass("fa-chevron-circle-down");
+		});
+	
 
 	  
     });

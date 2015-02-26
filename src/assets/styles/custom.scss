@@ -602,8 +602,22 @@ table{
 			background: transparent;
 		}
 		thead{
-			background: none;
+			background: rgb(236, 236, 236);
 			border-top: 1px solid #D6D6D6;
+			&.whiteish{
+				background:#fff;
+				tr{
+					th{
+						background: #fff;
+						&.desde{
+							background: #fff;
+						}
+						&.dias{
+							background: #fff;
+						}
+					}
+				}
+			}
 			tr{
 				height: 76px;
 				background: none;
@@ -620,11 +634,10 @@ table{
 						color: #E05162;
 					}
 					&.desde{
-						background: #dfdfdf;
+						background: rgb(236, 236, 236);
 					}
 					&.dias{
-						color: #fff;
-						background: #4a4a4a;	
+						background: rgb(236, 236, 236);	
 					}
 				}
 			}
@@ -812,10 +825,46 @@ span{
 	margin-top: 25px;
 }
 
+#maxfix{
+	max-height: 306px;
+	overflow: auto;
+}
+
 .master-data, .datos_empresariales{
 	h4{
 		color: $header;
 	}
+}
+
+.bglogin{
+	background: url('/assets/images/bgihr.jpg') no-repeat 0 0;
+	-webkit-background-size: cover;
+	background-size: cover;
+	height: 750px;
+	label{
+		color: #fff;
+	}
+	input[type="text"],input[type="password"],input[type="email"]{
+		border: 1px solid white;
+		&:hover{
+			border: 1px solid white;
+		}
+	}
+	input.button{
+		position: relative;
+		top: 10px;
+	}
+}
+
+.enterprise-image{
+	margin: 0 auto;
+	margin-bottom: 20px;
+	padding: 10px;
+	display: block;
+	max-width: 300px;
+	text-align: center;
+	background: transparent;
+	@include border-radius(10px);
 }
 
 .node circle {     

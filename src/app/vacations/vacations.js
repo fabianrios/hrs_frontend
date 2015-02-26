@@ -21,7 +21,7 @@
         })
     })
 	
-    .controller('Vacations.ListController', function($scope, $http, $state, $modal, vacations, UserService, Auth, Vacation_requirement, vac_requirements){
+    .controller('Vacations.ListController', function($scope, $http, $state, vacations, UserService, Auth, Vacation_requirement, vac_requirements){
 		
 		
 		
@@ -46,19 +46,6 @@
 		   }
        });
 	   
-	   
-	   $scope.open_more_info = function (obj) {
-		   $scope.obj = obj;
-		   var modalInstance = $modal.open({
-	         templateUrl: 'more_info.html',
-	         resolve: {
-	           items: function () {
-	             return $scope.obj;
-	           }
-	         }
-	       });
-	   }
-	   
 		// console.log($scope.vacations);
 		
 	    $scope.requerimiento = new Vacation_requirement();  
@@ -76,27 +63,13 @@
 	     };
 		 
 		 //BORRAR
-		 $scope.deleteVacation = function(req_info) { 
- 			
-			$scope.vacacion = req_info;
- 	  		var modalInstance = $modal.open({
- 	  			templateUrl: 'vacationContent.html',
- 	  			controller: 'ModalVacationCtrl',
- 				windowClass: 'small',
- 			    resolve: {
- 		           vacacion: function () {
- 		             return $scope.vacacion;
- 		           },
-				   vacaciones: function () {
-		             return $scope.vac_requirements;
-		           }
- 		         }
- 	  		});
-			
- 			 modalInstance.result.then(function () {
-		    	}, function () {
-					console.log('Modal dismissed at: ' + new Date());
-		    	});
+		  
+		 $scope.deleteVacation = function(vacation,modal) { 
+			vacation.$delete(function() {
+				var index = $scope.vac_requirements.indexOf(vacation);
+				$scope.vac_requirements.splice(index, 1);
+				$('#myModal-'+modal).foundation('reveal', 'close');  
+			});	
 		 } ///BORRAR
 		 
 		 //UPDATE APROBAR
@@ -120,25 +93,6 @@
   	       });
   	     };
 		
-    })
+    });
 	
-	.controller('ModalVacationCtrl', function ($scope, $modalInstance, vacacion, vacaciones) {
-
-		$scope.vacacion = vacacion;
-		$scope.vac_requirements = vacaciones;
-		
-		$scope.ok = function () {
-			vacacion.$delete(function() {
-				var index = $scope.vac_requirements.indexOf(vacacion);
-				// console.log(index);
-				$scope.vac_requirements.splice(index, 1);
-				$modalInstance.close(function(){});
-			});
-		};
-
-		$scope.cancel = function () {
-			$modalInstance.dismiss('cancel');
-		};
-		
-	});
 }());

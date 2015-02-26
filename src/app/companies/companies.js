@@ -37,69 +37,24 @@
 	    });
     })
 
-    .controller('companies.ListController', function($scope, $modal, $state, companies){
+    .controller('companies.ListController', function($scope, $state, companies){
       $scope.companies = companies; 
       $scope.viewCompany = function(id) {
         $state.go("main.views.companydetail", { id: id });
       };
 	  
-
 		// DELETE
-		$scope.deleteCompany = function(company) { // Delete a movie. Issues a DELETE to /api/movies/:id
-			
-			$scope.empresa = company;
-	  		var modalInstance = $modal.open({
-	  			templateUrl: 'myModalContent.html',
-	  			controller: 'ModalInstanceCtrl',
-				windowClass: 'small',
-			    resolve: {
-		           empresa: function () {
-		             return $scope.empresa;
-		           },
-				   companies: function () {
-		             return $scope.companies;
-		           }
-		         }
-	  		});
-			
-			 modalInstance.result.then(function () {
-  		    	}, function () {
-					console.log('Modal dismissed at: ' + new Date());
-  		    	});
-
-			// Popup.confirm('Seguro quieres borrar esto?').then(function () {
-			// 	company.$delete(function() {
-			// 		var index = $scope.companies.indexOf(company)
-			// 		$scope.companies.splice(index, 1);
-			// 		$state.go('main.views.companylisting'); // on success go back to company_listing
-			// 	});
-			// }, function () {
-			// 	console.error('Rechazado!');
-			// });
-			
+		$scope.deleteCompany = function(company,modal) { // Delete a movie. Issues a DELETE to /api/movies/:id
+			company.$delete(function() {
+				var index = $scope.companies.indexOf(company)
+				$scope.companies.splice(index, 1);
+				$('#myModal-'+modal).foundation('reveal', 'close');  
+				$state.go('main.views.companylisting'); // on success go back to company_listing
+			});
 		};
 	  
     })
 	
-	.controller('ModalInstanceCtrl', function ($scope, $modalInstance, $state, empresa, companies) {
-
-	  $scope.companies = companies; 
-	  $scope.empresa = empresa;
-		
-	  $scope.ok = function () {
-		empresa.$delete(function() {
-			var index = $scope.companies.indexOf(empresa);
-			$scope.companies.splice(index, 1);
-			$modalInstance.close(function(){});
-			$state.go('main.views.companylisting'); // on success go back to company_listing
-		});
-	  };
-
-	  $scope.cancel = function () {
-	    $modalInstance.dismiss('cancel');
-	  };
-	})
-
     .controller('companies.DetailController', function($scope, company){
        $scope.company = company;
     })

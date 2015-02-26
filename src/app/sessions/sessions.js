@@ -17,7 +17,7 @@
         });
     })
 
-    .controller('sessions.LoginController', function($scope, $modal, Auth, $location, $window, $http, UserService){
+    .controller('sessions.LoginController', function($scope, Auth, $location, $window, $http, UserService){
 
 		$scope.credentials;
 		

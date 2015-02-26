@@ -1,4 +1,14 @@
 <ul class="button-group">
   <li><a class="button tiny" ui-sref="main.views.companyedit({id:company.id})"><i class="fa fa-pencil"></i></a></li>
-  <li><a class="button tiny alert"  ng-click="deleteCompany(company)"> <i class="fa fa-trash-o"></i> </a></li>
+  <li><a class="button tiny alert" ng-click="openModal($index)"> <i class="fa fa-trash-o"></i> </a></li>
+
+  <div id="myModal-{{$index}}" class="reveal-modal tiny" data-reveal>
+	<br />
+    <h4 class="text-center">¿Seguro quieres borrar esto?</h4>
+	<div class="text-center">
+		<a href="" ng-click="deleteCompany(company, $index)" class="button success">Borrar</a>
+	</div>
+    <a class="close-reveal-modal">&#215;</a>
+  </div>
+  
 </ul>
