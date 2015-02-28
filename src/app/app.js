@@ -97,10 +97,17 @@
       });
   })
   .run(function($rootScope) {
-	$rootScope.$on('$viewContentLoaded', function () {
-		$(document).foundation();
-   	})
-   })
+	  $rootScope.$on('$viewContentLoaded', function () {
+		  $(document).foundation({
+			  offcanvas : {
+				  // Sets method in which offcanvas opens.
+				  // [ move | overlap_single | overlap ]
+				  open_method: 'move', 
+				  close_on_click : true
+			  }
+		  });
+	  })
+  })
   .factory('UserService', function(Auth) {
 
 	  return {
