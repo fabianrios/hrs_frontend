@@ -17,17 +17,18 @@
         });
     })
 
-    .controller('sessions.LoginController', function($scope, Auth, $location, $window, $http, UserService){
+    .controller('sessions.LoginController', function($scope, Auth, $location, $window, $http, $state, UserService){
 
-		$scope.credentials;
+		$scope.credentials = {
+		            email: 'hola@fabianrios.co',
+		            password: 'f6e02785c'
+		        };
 		
 	    $scope.login = function() { //login
             Auth.login($scope.credentials).then(function(user) {
-				UserService.theuser = user;
-				$scope.user = UserService.theuser;
-				console.log($scope.user); // => {id: 1, ect: '...'}
-				console.log("Auth.isAuthenticated:" + UserService.autenticado); 
-				
+				$scope.user = user;
+				// console.log($scope.user); // => {id: 1, ect: '...'}
+				console.log("Auth.isAuthenticated:" + Auth.isAuthenticated());
             }, function(error) {
                 console.log("error en la autenticacion")
             });
@@ -51,25 +52,15 @@
 	            });
 	        });
 
-	        // Request requires authorization
-	        // Will cause a `401 Unauthorized` response,
-	        // that will be recovered by our listener above.
-	        $http.delete('/users/1', {
-	            interceptAuth: true
-	        }).then(function(response) {
-	            // Deleted user 1
-	        }, function(error) {
-	            // Something went wrong.
-	        });
-
             $scope.$on('devise:login', function(event, currentUser) {
                 // after a login, a hard refresh, a new tab
 				// console.log(currentUser);
 				$scope.user = currentUser;
 				$scope.current = currentUser;
 				$location.path('/home'); // on success go back to home
+				console.log('devise:login',$state);
 				 $window.location.reload();
-				 // $state.go($state.current, {}, {reload: true}); //second parameter is for $stateParams
+				 // $state.go("main.views.dashboard", {}, {reload: true}); //second parameter is for $stateParams
             });
 
             $scope.$on('devise:new-session', function(event, currentUser) {
@@ -78,7 +69,8 @@
 				$scope.user = currentUser;
 				$location.path('/home'); // on success go back to home
 				$window.location.reload();
-				// $state.go($state.current, {}, {reload: true}); //second parameter is for $stateParams
+				$scope.autenticado = Auth.isAuthenticated(user);
+				// $state.go("main.views.dashboard", {}, {reload: true}); //second parameter is for $stateParams
          });
 		  
 	     };
@@ -131,24 +123,6 @@
 		      });
 			
 	     };
-		 
- 		//
- 		// Auth.currentUser().then(function(user) {
- 		// 		$scope.user_id = user.id;
- 		// 				$scope.pass = user.current_password;
- 		//  	            // console.log($scope.user_id); // => {id: 1, ect: '...'}
- 		//
- 		// 	   	     $scope.loadUser = function() { //Issues a GET request to /api/movies/:id to get a movie to update
- 		// 	   		  $scope.user = User.get({ id: $scope.user.id });
- 		// 	   		   // console.log($scope.user);
- 		// 	   	     };
- 		//
- 		// 	   	     $scope.loadUser($scope.usuario); // Load a movie which can be edited on UI
- 		//
- 		//  	        }, function(error) {
- 		//  	            // unauthenticated error
- 		//  	     });
-		 
 		 
 		 
     });

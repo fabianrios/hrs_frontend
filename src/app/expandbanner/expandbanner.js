@@ -6,7 +6,9 @@
     .controller('Expandbanner.ExpandbannerController', function($scope){
 	
 	  var thedates;
-	  $scope.elusuario.$promise.then(function(items){
+	  $scope.vacationdates = $scope.user.vacation.detalle;
+	  $scope.user.$promise.then(function(items){
+			console.log(items);
 			thedates = items.vacation.detalle;
 	 		$.datepicker.regional['es'] = {
 	 		  closeText: 'Cerrar',

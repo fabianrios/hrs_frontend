@@ -47,13 +47,102 @@
 
     .controller('Dashboard.MainController', function($scope, widgets, workers, publicaciones, ingresos, Company, employees, UserInfo){
 		
+	  
+		$scope.employee = {};
+		$scope.user = {};
+		$scope.vacation = {};
+		$scope.employee_info = {};
+		$scope.saldos = {};
+		$scope.betrg = [];
+		$scope.fpend = [];
+		
+		// variables para cesantias
+		$scope.newbetrg = [];
+		$scope.intbetrg = [];
+		$scope.intfpend = [];
+		$scope.intnewbetrg = [];
+		$scope.elsaldocesantias = "";
+		$scope.deduc = [];
+		$scope.devng = [];
+		$scope.fechas_deudas = [];
+		$scope.ingresos = [];
+		$scope.deducciones = [];
+		
 		
 		UserInfo.currentUser().then(function(user_info){
+			console.log(user_info);
 			// depende de UserInfo.currentUser
 			$scope.user = user_info;
 			$scope.saldos = user_info.saldos;
-			console.log($scope.saldos);
-				
+			
+			$scope.employee = user_info.employee;
+			$scope.vacation = user_info.vacation;
+			$scope.employee_info = user_info.employee_info;
+			// console.log($scope.saldos);
+			// meter las cesantias
+			angular.forEach($scope.saldos.t_cesantias,function(value,index){
+				$scope.betrg.push(value.betrg);
+				$scope.fpend.push(value.fpend);
+			})
+			// console.log($scope.fpend,$scope.betrg);
+			// console.log(items);
+			// Estos hay que parsearlos como numeros porque llegan como un string
+			$scope.vacationdays = [parseInt(user_info.vacation.resumen[1]),parseInt(user_info.vacation.resumen[2])];
+			$scope.vacationdates = user_info.vacation.detalle;
+			// console.log($scope.vacationdates);
+			$scope.company = user_info.company;
+			 
+			// Variables para cesantias 
+			$scope.saldos = user_info.saldos;
+			$scope.elsaldocesantias = $scope.saldos.saldo;
+			$scope.intcesantias = $scope.saldos.intsaldo;
+			// meter las cesantias
+			angular.forEach($scope.saldos.t_cesantias,function(value,index){
+				$scope.newbetrg.push(value.betrg);
+				$scope.fpend.push(value.fpend);
+			})
+			// meter las int. cesantias			
+			angular.forEach($scope.saldos.t_intcesantias,function(value,index){
+				$scope.intbetrg.push(value.betrg);
+				$scope.intfpend.push(value.fpend);
+			})	
+			// saldo de cesantias a numeros
+			$scope.betrg.forEach(function(entry, index) {
+				$scope.newbetrg[index] = parseInt(entry);
+			});
+			
+			// Intereses de cesantias a numeros
+			$scope.intbetrg.forEach(function(entry) {
+				$scope.intnewbetrg.push(parseInt(entry));
+			});
+			
+			$scope.newbetrg = $scope.newbetrg.reverse();
+			$scope.fpend = $scope.fpend.reverse()
+			$scope.intnewbetrg = $scope.intnewbetrg.reverse();
+			$scope.intfpend = $scope.intfpend.reverse()
+			
+			//Deudas
+			angular.forEach($scope.saldos.t_endeudamiento,function(value,index){
+				$scope.deduc.push(value.deduc);
+				$scope.devng.push(value.devng);
+				$scope.fechas_deudas.push(value.fpend);
+			})	
+			
+			$scope.deduc.forEach(function(deuda) {
+				$scope.deducciones.push(parseInt(deuda));
+			});
+			
+
+			$scope.devng.forEach(function(ingresos) {
+				$scope.ingresos.push(parseInt(ingresos));
+			});
+			
+			$scope.ingresos = $scope.ingresos.reverse();
+			$scope.deducciones = $scope.deducciones.reverse();
+			$scope.fechas_deudas = $scope.fechas_deudas.reverse();
+			  
+			
+			
 				
             Highcharts.setOptions({
                 global : {

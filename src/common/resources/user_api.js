@@ -28,6 +28,7 @@
           
           }, function(error){
             deferred.reject(error);  // error
+			$location.path('/login');
           });
 
           return deferred.promise;
