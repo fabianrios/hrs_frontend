@@ -10,7 +10,7 @@
     'ui.sortable',
     'Devise',
     'chart.js',
-    'mm.foundation',
+    //'mm.foundation',
 
     // Config
     'app.config',
@@ -41,30 +41,23 @@
     'organigram'
   ])
 
-  .config(function($stateProvider, AuthProvider, $httpProvider){
-  $httpProvider.defaults.headers.common['X-CSRF-Token'] = angular.element('meta[name=csrf-token]').attr('content');
-  // Intercept 401 Unauthorized everywhere
-  // $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
-    // AuthInterceptProvider.interceptAuth(true);
+  .config(function($stateProvider, $httpProvider, HRAPI_CONF, AuthProvider, AuthInterceptProvider){
+
+
+    $httpProvider.defaults.headers.common['X-CSRF-Token'] = angular.element('meta[name=csrf-token]').attr('content');
+    // $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
   
+    // Configura angular-devise
+    AuthInterceptProvider.interceptAuth(true);
+    AuthProvider.loginPath(HRAPI_CONF.apiBaseUrl('/users/sign_in.json'));
+    AuthProvider.logoutPath(HRAPI_CONF.apiBaseUrl('/users/sign_out.json'));
+    AuthProvider.registerPath(HRAPI_CONF.apiBaseUrl('/users.json'));
   
-  // Tenemos que sobreescribir todas las posibles funciones con el prefijo api/
-  AuthProvider.loginPath('api/users/sign_in.json');
-  AuthProvider.logoutPath('api/users/sign_out.json');
-  AuthProvider.registerPath('api/users.json');
-  
+    // Configura estados de aplicacion ui-router
     $stateProvider
       .state('main', {
         abstract: true,
-        templateUrl: 'app/layouts/remain.tpl.html',
-    resolve: {
-      employees: function(Employee){
-        return Employee.index().$promise;
-      }
-    },
-        controller: ['$scope', function($scope){
-          $scope.ui = {};
-        }]
+        templateUrl: 'app/layouts/remain.tpl.html'
       })
       .state('main.views', {
         views: {
@@ -92,21 +85,50 @@
   })
 
 
-  .controller('RootController', function($http, $scope, $animate, $location, $window, UserInfo, Auth, Company, User){
+  .run(function($http, $rootScope, $state, UserInfo){
     
-    // /watch location
-      $scope.$on("$stateChangeSuccess", function (next, current) {
-      $scope.ubicacion = current.url;
-        // console.log("ubicacion:",$scope.ubicacion);
-      });
-    
-    UserInfo.currentUser().then(function(user_info){
-      // depende de UserInfo.currentUser
-      $scope.user = user_info;
-    }, function(error){
-      console.log("UserInfo.currentUser() error in app.js", error);
-      //codigo handling error interfaz
+
+    console.log("Current State:", $state.current);
+    UserInfo.currentUser().then(function(current_user){
+      console.log("Current User:", currentUser);
     });
+
+    $rootScope.$on('$stateChangeStart', function(ev, toState, toParams, fromState){
+      console.log("Cambiando estado:", fromState, toState);
+    });
+    
+    // Catch unauthorized requests and recover.
+    $rootScope.$on('devise:unauthorized', function(event, xhr, deferred) {
+      // Ask user for login credentials
+      console.log("devise:unauthorized -> main.views.login");
+      $state.go('main.views.login');
+    });
+
+    $rootScope.$on('devise:login', function(event, currentUser) {
+      // after a login, a hard refresh, a new tab
+      console.log("devise:login -> main.views.dashboard", currentUser);
+      $state.go('main.views.dashboard');
+    });
+
+    $rootScope.$on('devise:new-session', function(event, currentUser) {
+      // user logged in by Auth.login({...})
+      console.log("devise:new-session", "nothing done");
+    });
+
+    $rootScope.$on('devise:logout', function(event, oldCurrentUser) {
+      $state.go('main.views.login', {"logout": true});
+    });
+
+    $rootScope.logout = function(){
+      Auth.logout().then(function(oldUser) {
+          console.log(oldUser.email + "you're signed out now.");
+        }, function(error) {
+          // An error occurred logging out.
+          console.log("An error occurred logging out", error);
+      });
+    };
+       
+    /**
     
     //alertas
     $scope.alerts = [];
@@ -129,7 +151,7 @@
       return dt;
     };
     
-       UserService.current_user.then(function(user) {
+    UserService.current_user.then(function(user) {
           // User was logged in, or Devise returned
           // previously authenticated session.
        
@@ -473,60 +495,32 @@
       });
       
        
-    // Catch unauthorized requests and recover.
-         $scope.$on('devise:unauthorized', function(event, xhr, deferred) {
-             // Ask user for login credentials
-       $location.path('/login');
-         });
-       
     
-    $scope.common = {};
-  
-  $scope.edit_profile = function(){
-    $location.path('/edit');
-  };
-
-  //toggle expand vacation box
-  $scope.toggle = function(e){
-    // console.log(e.currentTarget);
-    $(e.currentTarget).toggleClass("active");
-    $(".expandbanner").slideToggle();
-  };
-  
-  //sort stuff icon-bar
-  $scope.sorthings = function(e,data){
-    // console.log(e);
-    $(".icon-bar a.item").removeClass("active");
-    $(e.currentTarget).toggleClass("active");
-    $('.information').hide('fast');
-    $("."+data).show('slow');
-  };
-  
-  //iconos
-  $scope.icons = ["icon-location","fa fa-location-arrow", "fa fa-phone", "fa fa-envelope-o"];
-  
-    $scope.logout = function(){
-    Auth.logout().then(function(oldUser) {
-            console.log(oldUser.email + "you're signed out now.");
-        }, function(error) {
-            // An error occurred logging out.
-        });
-
-        $scope.$on('devise:logout', function(event, oldCurrentUser) {
-            $location.path('/home');
-      $window.location.reload();
-        });
-
-      // Borra los caches (de session storage) necesarios para que sea
-      // consistente si otro usuario se loguea en el mismo navegador
-      // Cache.removeUserCaches();
+      $scope.common = {};
     
-    
-    };
+      $scope.edit_profile = function(){
+        $location.path('/edit');
+      };
 
+      //toggle expand vacation box
+      $scope.toggle = function(e){
+        // console.log(e.currentTarget);
+        $(e.currentTarget).toggleClass("active");
+        $(".expandbanner").slideToggle();
+      };
+      
+      //sort stuff icon-bar
+      $scope.sorthings = function(e,data){
+        // console.log(e);
+        $(".icon-bar a.item").removeClass("active");
+        $(e.currentTarget).toggleClass("active");
+        $('.information').hide('fast');
+        $("."+data).show('slow');
+      };
+      
+      //iconos
+      $scope.icons = ["icon-location","fa fa-location-arrow", "fa fa-phone", "fa fa-envelope-o"];
+      **/
   });
-  
-  
-  
   
 }());

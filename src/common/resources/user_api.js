@@ -3,7 +3,18 @@
 
   angular.module('user.service', ['Devise'])
 
-  .factory('UserInfo', function(Auth) {
+  .factory('User', function($resource, HRAPI_CONF) {
+    var url = HRAPI_CONF.apiBaseUrl('/users/:id.json');
+    return $resource(url, { id: '@id' }, {
+      'create': { method: 'POST' },
+      'index': { method: 'GET', isArray: true },
+      'show': { method: 'GET', isArray: true },
+      'update': { method: 'PUT', params: {id: '@id'} },
+      'destroy': { method: 'DELETE' }
+    });
+  })
+
+  .factory('UserInfo', function($q, Auth) {
     return {
       currentUser: function(){
         var deferred = $q.defer()
@@ -25,18 +36,6 @@
       },
       autenticado: Auth.isAuthenticated()
     }
-  })
-
-  .factory('User', function($resource, HRAPI_CONF) {
-    var url = HRAPI_CONF.apiBaseUrl('/users/:id.json');
-    return $resource(url, { id: '@id' }, {
-      'create': { method: 'POST' },
-      'index': { method: 'GET', isArray: true },
-      'show': { method: 'GET', isArray: true },
-      'update': { method: 'PUT', params: {id: '@id'} },
-      'destroy': { method: 'DELETE' }
-    });
-
   });
 }());
 
