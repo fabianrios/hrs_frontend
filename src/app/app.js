@@ -52,12 +52,12 @@
 	var loginurl = HRAPI_CONF.apiBaseUrl('/users/sign_in.json');
 	var logout = HRAPI_CONF.apiBaseUrl('/users/sign_out.json');
 	var register = HRAPI_CONF.apiBaseUrl('/users.json');
-  	// AuthProvider.loginPath(loginurl);
-  	// AuthProvider.logoutPath(logout);
-  	// AuthProvider.registerPath(register);
-	AuthProvider.loginPath('api/users/sign_in.json');
-	AuthProvider.logoutPath('api/users/sign_out.json');
-	AuthProvider.registerPath('api/users.json');
+  	AuthProvider.loginPath(loginurl);
+  	AuthProvider.logoutPath(logout);
+  	AuthProvider.registerPath(register);
+	// AuthProvider.loginPath('api/users/sign_in.json');
+	// AuthProvider.logoutPath('api/users/sign_out.json');
+	// AuthProvider.registerPath('api/users.json');
 	
     $stateProvider
       .state('main', {
@@ -116,7 +116,7 @@
 	    };
   })
 
-  .controller('RootController', function($http, $scope, $animate, $location, $window, UserService, Auth, Company, User, Employee){
+  .controller('RootController', function($http, $scope, $state, $animate, $location, $window, UserService, Auth, Company, User, Employee){
 	  
 	  // /watch location
   	  $scope.$on("$stateChangeSuccess", function (next, current) {
@@ -251,14 +251,16 @@
           // unauthenticated error
 		  console.log("error al optener el usuario autenticado");
 		  // TO-DO: hay que cambiar esto por un $state
-		  $location.path('/login');
+		  // $location.path('/login');
+
       });
 		  
 			 
  		// Catch unauthorized requests and recover.
          $scope.$on('devise:unauthorized', function(event, xhr, deferred) {
              // Ask user for login credentials
-			 $location.path('/login');
+			 // $location.path('/login');
+			console.log("devise:unauthorized");
          });
 			 
 	  
@@ -295,8 +297,10 @@
         });
 
         $scope.$on('devise:logout', function(event, oldCurrentUser) {
-            $location.path('/home');
-			$window.location.reload();
+            // $location.path('/home');
+			// $window.location.reload();
+			console.log(oldCurrentUser);
+			$state.go("main.views.login", {}, {reload: true}); //second parameter is for $stateParams
         });
 
       // Borra los caches (de session storage) necesarios para que sea
