@@ -8,8 +8,9 @@
       currentUser: function(){
         var deferred = $q.defer()
         Auth.currentUser().then(function(user){
-          User.get({ id: user.id }).then(function(user_info){
-            deferred.resolve(user);
+          User.get({ id: user.id }, function(user_info){
+            deferred.resolve(user_info);
+            console.log("Deferred resolving user", user_info);
           }, function(error){
             // user info failed
             deferred.reject(error);  // error

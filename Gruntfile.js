@@ -172,7 +172,7 @@ module.exports = function(grunt){
         // Proxy servicios REST Rails
         {
           context: ['/api'], //reemplazar por prefijo servicios Rails
-          host: 'localhost',
+          host: 'backend.hrinteractive.co',
           port: 3000,
           https: false,
           changeOrigin: true,

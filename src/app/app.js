@@ -92,22 +92,21 @@
   })
 
 
-  .controller('RootController', function($http, $scope, $animate, $location, $window, UserInfo, Auth, Company, User, Employee){
+  .controller('RootController', function($http, $scope, $animate, $location, $window, UserInfo, Auth, Company, User){
     
     // /watch location
       $scope.$on("$stateChangeSuccess", function (next, current) {
       $scope.ubicacion = current.url;
         // console.log("ubicacion:",$scope.ubicacion);
-      })
+      });
     
     UserInfo.currentUser().then(function(user_info){
       // depende de UserInfo.currentUser
       $scope.user = user_info;
     }, function(error){
+      console.log("UserInfo.currentUser() error in app.js", error);
       //codigo handling error interfaz
     });
-    
-    $scope.autenticado;
     
     //alertas
     $scope.alerts = [];
@@ -126,8 +125,8 @@
     
     $scope.dateHanldler = function(date){
       var dt = new Date(date);
-    dt.getTime()
-    return dt;
+      dt.getTime();
+      return dt;
     };
     
        UserService.current_user.then(function(user) {
@@ -144,16 +143,18 @@
       $scope.user = user;
       $scope.elusuario = User.get({ id: $scope.user.id });
       $scope.elusuario.$promise.then(function(items){
-            $scope.employee = items.employee;
-            $scope.vacation = items.vacation;
+          $scope.employee = items.employee;
+          $scope.vacation = items.vacation;
           $scope.employee_info = items.employee_info;
           $scope.saldos = items.saldos;
           console.log($scope.saldos);
+
           // meter las cesantias
-          angular.forEach($scope.saldos.t_cesantias,function(value,index){
-                $scope.betrg.push(value.betrg);
+          angular.forEach($scope.saldos.t_cesantias,function(value){
+            $scope.betrg.push(value.betrg);
             $scope.fpend.push(value.fpend);
-            })
+          });
+
           // console.log($scope.fpend,$scope.betrg);
           // console.log(items);
           // Estos hay que parsearlos como numeros porque llegan como un string
@@ -167,15 +168,17 @@
           $scope.elsaldocesantias = $scope.saldos.saldo;
           $scope.intcesantias = $scope.saldos.intsaldo;
           // meter las cesantias
-          angular.forEach($scope.saldos.t_cesantias,function(value,index){
+          angular.forEach($scope.saldos.t_cesantias,function(value){
             $scope.newbetrg.push(value.betrg);
             $scope.fpend.push(value.fpend);
-          })
+          });
+
           // meter las int. cesantias     
-          angular.forEach($scope.saldos.t_intcesantias,function(value,index){
+          angular.forEach($scope.saldos.t_intcesantias,function(value){
             $scope.intbetrg.push(value.betrg);
             $scope.intfpend.push(value.fpend);
-          })  
+          });  
+
           // saldo de cesantias a numeros
           $scope.betrg.forEach(function(entry, index) {
               $scope.newbetrg[index] = parseInt(entry);
@@ -191,21 +194,21 @@
         var deduc = [];
         var devng = [];
         var fechas_deudas = [];
-          angular.forEach($scope.saldos.t_endeudamiento,function(value,index){
-            deduc.push(value.deduc);
-            devng.push(value.devng);
+        angular.forEach($scope.saldos.t_endeudamiento,function(value){
+          deduc.push(value.deduc);
+          devng.push(value.devng);
           fechas_deudas.push(value.fpend);
-          })  
+        });  
         
         $scope.deducciones = [];
         deduc.forEach(function(deuda) {
-              $scope.deducciones.push(parseInt(deuda));
-          });
+            $scope.deducciones.push(parseInt(deuda));
+        });
         
         $scope.ingresos = [];
         devng.forEach(function(ingresos) {
-              $scope.ingresos.push(parseInt(ingresos));
-          });
+            $scope.ingresos.push(parseInt(ingresos));
+        });
       
               $(function () {
       
@@ -488,7 +491,7 @@
     // console.log(e.currentTarget);
     $(e.currentTarget).toggleClass("active");
     $(".expandbanner").slideToggle();
-  }
+  };
   
   //sort stuff icon-bar
   $scope.sorthings = function(e,data){
@@ -497,7 +500,7 @@
     $(e.currentTarget).toggleClass("active");
     $('.information').hide('fast');
     $("."+data).show('slow');
-  }
+  };
   
   //iconos
   $scope.icons = ["icon-location","fa fa-location-arrow", "fa fa-phone", "fa fa-envelope-o"];
