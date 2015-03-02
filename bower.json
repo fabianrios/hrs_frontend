@@ -24,7 +24,11 @@
     "angular-devise": "~1.0.2",
     "d3": "~3.5.3",
     "angular-chart.js": "~0.5.1",
-    "highcharts-ng": "~0.0.7"
+    "highcharts-ng": "~0.0.7",
+    "angular-popup-service": "~0.1.2",
+    "angular-ui-sortable": "https://github.com/angular-ui/ui-sortable.git#master",
+    "ng-s3upload": "https://github.com/asafdav/ng-s3upload.git#master",
+    "org.webjars-jquery.classyLoader": "https://github.com/etherj/org.webjars-jquery.classyLoader.git#master"
   },
   "devDependencies": {
     "angular-mocks": "~1.3.7"
