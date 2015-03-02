@@ -14,14 +14,14 @@
     });
   })
 
-  .factory('UserInfo', function($q, Auth) {
+  .factory('UserInfo', function($q, Auth, User) {
     return {
+      autenticado: Auth.isAuthenticated(),
       currentUser: function(){
         var deferred = $q.defer()
         Auth.currentUser().then(function(user){
           User.get({ id: user.id }, function(user_info){
             deferred.resolve(user_info);
-            console.log("Deferred resolving user", user_info);
           }, function(error){
             // user info failed
             deferred.reject(error);  // error
@@ -33,8 +33,7 @@
         });
 
         return deferred.promise;
-      },
-      autenticado: Auth.isAuthenticated()
+      }
     }
   });
 }());

@@ -42,18 +42,19 @@
               }
             },
             employees: function(Employee){
-              return Employee.index().$promise;
+              return Employee.index();
             },
             currentUser: function(UserInfo){
-              return UserInfo.currentUser().$promise;
+              return UserInfo.currentUser();
             }
           }
         })
     })
-
-    .controller('Dashboard.MainController', function($scope, widgets, workers, publicaciones, ingresos, Company, employees, currentUser){
+    
+    .controller('Dashboard.MainController', function($scope, widgets, ingresos, workers, publicaciones, employees, currentUser){
     
     $scope.employees = employees;
+    console.log("UserInfo for current user", currentUser);
     
     
     // $scope.shouldShow = function shouldHide(birthOn){
