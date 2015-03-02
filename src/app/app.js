@@ -100,8 +100,8 @@
     // Catch unauthorized requests and recover.
     $rootScope.$on('devise:unauthorized', function(event, xhr, deferred) {
       // Ask user for login credentials
-      console.log("devise:unauthorized -> main.views.login");
-      $state.go('main.views.login');
+      console.log("devise:unauthorized -> login.auth");
+      $state.go('login.auth');
     });
 
     $rootScope.$on('devise:login', function(event, currentUser) {
@@ -116,7 +116,7 @@
     });
 
     $rootScope.$on('devise:logout', function(event, oldCurrentUser) {
-      $state.go('main.views.login', {"logout": true});
+      $state.go('login.auth', {"logout": true});
     });
 
     $rootScope.logout = function(){

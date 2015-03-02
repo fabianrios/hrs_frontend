@@ -5,7 +5,11 @@
 
     .config(function($stateProvider){
       $stateProvider
-        .state('main.views.login', {
+        .state('login', {
+          abstract: true,
+          templateUrl: 'app/layouts/login.tpl.html'
+        })
+        .state('login.auth', {
           url: '/login',
           templateUrl: 'app/sessions/login.tpl.html',
           controller: 'sessions.LoginController'
