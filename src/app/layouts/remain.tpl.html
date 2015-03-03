@@ -13,8 +13,8 @@
 			<aside class="right-off-canvas-menu" ui-view="sidebar"></aside>
 			<section class="main-section">
 				<div class="dashboard-profile" ui-view="profile"></div>
-				<div class="expandbanner animate-if" ui-view="expandbanner" ng-if="ubicacion == '/vacations' || ubicacion == '/employee_info'"></div>
-				<div class="close-banner" ng-if="ubicacion == '/vacations' || ubicacion == '/employee_info'"><a href="" ng-click="toggle($event)"></a></div>
+				<div class="expandbanner animate-if" ui-view="expandbanner" ng-if="ubicacion == 'main.views.vacations' || ubicacion == 'main.views.employee_info' || ubicacion == 'main.views.employee_info_lookup'"></div>
+				<div class="close-banner" ng-if="ubicacion == 'main.views.vacations' || ubicacion == 'main.views.employee_info' || ubicacion == 'main.views.employee_info_lookup'"><a href="" ng-click="toggle($event)"></a></div>
 		
 				<div class="main-container" id="main-container">
 	

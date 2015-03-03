@@ -602,8 +602,22 @@ table{
 			background: transparent;
 		}
 		thead{
-			background: none;
+			background: rgb(236, 236, 236);
 			border-top: 1px solid #D6D6D6;
+			&.whiteish{
+				background:#fff;
+				tr{
+					th{
+						background: #fff;
+						&.desde{
+							background: #fff;
+						}
+						&.dias{
+							background: #fff;
+						}
+					}
+				}
+			}
 			tr{
 				height: 76px;
 				background: none;
@@ -620,11 +634,10 @@ table{
 						color: #E05162;
 					}
 					&.desde{
-						background: #dfdfdf;
+						background: rgb(236, 236, 236);
 					}
 					&.dias{
-						color: #fff;
-						background: #4a4a4a;	
+						background: rgb(236, 236, 236);	
 					}
 				}
 			}
@@ -812,6 +825,11 @@ span{
 	margin-top: 25px;
 }
 
+#maxfix{
+	max-height: 306px;
+	overflow: auto;
+}
+
 .master-data, .datos_empresariales{
 	h4{
 		color: $header;
@@ -862,5 +880,4 @@ span{
   stroke: #ccc;    
   stroke-width: 1.5px; 
 }
-
 

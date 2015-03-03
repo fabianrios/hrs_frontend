@@ -23,18 +23,13 @@
         })
     })
 	
-    .controller('Employee_info.ListController', function($scope, $state, $modal, UserService, Auth){
+    .controller('Employee_info.ListController', function($scope, $state, currentUser){
 		
-	   // Check user
-   	   UserService.current_user.then(function(user) {
- 		  $scope.user = user;
- 		  $scope.autenticado = Auth.isAuthenticated(user)
-       }, function(error) {
- 		  console.log("error al optener el usuario autenticado");
- 		  $location.path('/login');
-       });
-	   // /Check user
-	   
+		$scope.user = currentUser;
+		$scope.vacation = $scope.user.vacation;
+		$scope.employee_info = $scope.user.employee_info;
+		
+		
 		$scope.sortableOptions = {
 			'placeholder': 'placeholder'
 		};
@@ -43,7 +38,9 @@
     })
 	
 	.controller('Employee_info.LookupController', function ($scope, info) {
+		
 		$scope.employee_info = info;
 		console.log("employee_info",$scope.employee_info);
+		
 	});
 }());

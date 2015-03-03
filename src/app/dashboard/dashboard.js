@@ -82,7 +82,7 @@
 				scope.fechasdeudas = JSON.parse(attrs["fechasdeudas"]);
 				scope.ingresos = JSON.parse(attrs["ingresos"]);
 				scope.deducciones = JSON.parse(attrs["deducciones"]);
-				console.log(scope.fechasdeudas,scope.ingresos,scope.deducciones);
+				// console.log(scope.fechasdeudas,scope.ingresos,scope.deducciones);
 				$(element).highcharts({
 					chart: {
 						backgroundColor:'rgba(255, 255, 255, 0)',
@@ -236,8 +236,93 @@
 		}
 	})
 	
+	.directive('intcesantias', function() {
+		return {
+			restrict: 'A',
+			link: function(scope, element, attrs) {
+				//porcentaje
+				// var porcentaje = 100/(scope.saldos.totdevengos/scope.saldos.totdeducciones);
+				scope.intfpend = JSON.parse(attrs["intfpend"]);
+				scope.intnewbetrg = JSON.parse(attrs["intnewbetrg"]);
+				$(element).highcharts({
+                    chart:{
+                        renderTo: 'intcesantias',
+                        margin:[15, 0, 0, 0],
+                        backgroundColor:'transparent',
+                  style: {
+                    fontFamily: "futura-pt"
+                  }
+                    },
+                    title:{
+                        text:''
+                    },
+                colors: [
+                            "#2ED63B"
+                            ],
+                    credits:{
+                        enabled:false
+                    },
+                    xAxis:{
+                  categories: scope.intfpend.reverse(),
+                        labels:{
+                            enabled:false
+                        }
+                    },
+                    yAxis:{
+                        maxPadding:0,
+                        minPadding:0,
+                        gridLineWidth: 0,
+                        endOnTick:false,
+                        labels:{
+                            enabled:false
+                        }
+                    },
+                    legend:{
+                        enabled:false
+                    },
+                  tooltip:{
+                      enabled:true,
+                      borderWidth: 1,
+                      shadow: false,
+                      useHTML: true,
+                      hideDelay: 2,
+                      shared: true,
+                      padding: 0,
+                  },
+                    plotOptions:{
+                        series:{
+                    name: 'Saldo',
+                            enableMouseTracking:true,
+                            lineWidth:1,
+                            shadow:false,
+                    pointWidth: 20,
+                    borderWidth: 0,
+                            states:{
+                                hover:{
+                                    lineWidth:1
+                                }
+                            },
+                            marker:{
+                                //enabled:false,
+                                radius:0,
+                                states:{
+                                    hover:{
+                                        radius:2
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    series: [{type:'column',
+                        data: scope.intnewbetrg.reverse()
+                    }]
+				})//intcesantias
+			}
+		}
+	})
+	
 	.controller('Dashboard.MainController', function($scope, widgets, ingresos, workers, publicaciones, employees, currentUser){
-    
+    		
 		$scope.employees = employees;
 		$scope.user = currentUser;
 	
@@ -245,6 +330,10 @@
 		$scope.vacation = currentUser.vacation;
 		$scope.employee_info = currentUser.employee_info;
 		$scope.saldos = currentUser.saldos;
+		
+		// Estos hay que parsearlos como numeros porque llegan como un string para la primera grafica
+		$scope.vacationdays = [parseInt($scope.vacation.resumen[1]),parseInt($scope.vacation.resumen[2])];
+		// console.log($scope.vacationdays);
 		
 		//porcentaje para classy
 		$scope.porcentaje = 100/($scope.saldos.totdevengos/$scope.saldos.totdeducciones);
@@ -284,6 +373,20 @@
         // saldo de cesantias a numeros
         $scope.betrg.forEach(function(entry, index) {
             $scope.newbetrg[index] = parseInt(entry);
+        });
+		
+        // meter las int. cesantias     
+        $scope.intbetrg = [];
+        $scope.intfpend = [];
+		$scope.intnewbetrg = [];
+        angular.forEach($scope.saldos.t_intcesantias,function(value){
+          $scope.intbetrg.push(value.betrg);
+          $scope.intfpend.push(value.fpend);
+        });
+      
+        // Intereses de cesantias a numeros
+        $scope.intbetrg.forEach(function(entry) {
+            $scope.intnewbetrg.push(parseInt(entry));
         });
 	
 		// $scope.shouldShow = function shouldHide(birthOn){

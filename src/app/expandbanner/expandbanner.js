@@ -3,8 +3,17 @@
 
   angular.module('expandbanner', [])
 
-    .controller('Expandbanner.ExpandbannerController', function($scope){
-	
+    .controller('Expandbanner.ExpandbannerController', function($scope, $state, currentUser){
+	  	  
+	$scope.elusuario = currentUser;
+	$scope.user = currentUser;
+	$scope.vacation = $scope.user.vacation;
+	$scope.employee_info = $scope.user.employee_info;
+	$scope.vacationdates = $scope.vacation.detalle;
+	console.log($scope.vacationdates);
+	$scope.disponibles = parseInt($scope.vacation.resumen[1]);
+	$scope.usados = parseInt($scope.vacation.resumen[2]);
+	  
 	  var thedates;
 	  $scope.elusuario.$promise.then(function(items){
 			thedates = items.vacation.detalle;
