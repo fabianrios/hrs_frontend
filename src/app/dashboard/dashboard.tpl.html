@@ -37,7 +37,7 @@
 			</h5>
 			<div class="contenido">
 				<div class="left">
-					<div id="cesantias" style="height: 180px; width: 140px; overflow:hidden;"></div>
+					<div cesantias fpend='{{fpend}}' newbetrg="{{newbetrg}}" style="height: 180px; width: 140px; overflow:hidden;"></div>
 				</div>
 				<div class="number-info">
 					<label class="no-margin">Saldo actual:</label>
@@ -93,10 +93,10 @@
 			<div class="contenido">
 				<div class="row">
 					<div class="large-8 medium-8 columns">
-						<div id="endeudamiento"></div>
+						<div endeudamiento fechasdeudas='{{fechasdeudas}}' ingresos="{{ingresos}}" deducciones="{{deducciones}}"></div>
 					</div>
 					<div class="large-4 medium-4 columns">
-						<canvas class="loader animation-canvas" width="150" height="150"></canvas>
+						<canvas classy="{{porcentaje}}" class="loader animation-canvas" width="150" height="150"></canvas>
 						<div class="text-left">
 							<h4 class="greentxt futura"><small class="blacktxt">Total ingresos:</small>{{saldos.totdevengos | currency:"$":0}}</h4>
 							<h4 class="redtxt futura"><small class="blacktxt">Total deducciones:</small>{{saldos.totdeducciones | currency:"$":0}}</h4>

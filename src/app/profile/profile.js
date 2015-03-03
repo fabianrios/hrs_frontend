@@ -3,8 +3,9 @@
 
   angular.module('profile', [])
 
-    .controller('Profile.ProfileController', function($scope){
+    .controller('Profile.ProfileController', function($scope, currentUser){
 
+		$scope.user = currentUser;
 		 
     });
 }());

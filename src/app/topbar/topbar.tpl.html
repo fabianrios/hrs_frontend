@@ -1,0 +1,17 @@
+<div class="left">
+	<a href="/#/home"><img alt="Otrologo" class="logo" ng-src="assets/images/{{user.company.logo}}"></a>
+	<h1 class="title left show-for-medium-up"></h1>
+</div>
+<div class="right">
+	<div class="user_nav show-for-medium-up">
+		<div class="text-right">
+			<a href="" class="comments"><span class="icon-comment"></span><i class="number comment">10</i></a>
+			<h5 class="subheader no-margin capitalize"><a ui-sref="main.views.employee_info"><span class="icon-user"></span>{{user.name}}</a></h5>
+			<div class="worker">
+				<img ng-src="{{user.pic}}">
+			</div>
+			<h5 class="subheader no-margin"><a ui-sref="main.views.edit()"><span class="icon-cog2"></span></a></h5>
+			<h5 class="subheader no-margin"><a href="" ng-click="logout()" data-method="delete" rel="nofollow"><span class="icon-logout"></span></a></h5>
+		</div>
+	</div>
+</div>

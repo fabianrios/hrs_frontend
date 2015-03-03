@@ -818,6 +818,37 @@ span{
 	}
 }
 
+.bglogin{
+	background: url('/assets/images/bgihr.jpg') no-repeat 0 0;
+	-webkit-background-size: cover;
+	background-size: cover;
+	height: 750px;
+	label{
+		color: #fff;
+	}
+	input[type="text"],input[type="password"],input[type="email"]{
+		border: 1px solid white;
+		&:hover{
+			border: 1px solid white;
+		}
+	}
+	input.button{
+		position: relative;
+		top: 10px;
+	}
+}
+
+.enterprise-image{
+	margin: 0 auto;
+	margin-bottom: 20px;
+	padding: 10px;
+	display: block;
+	max-width: 300px;
+	text-align: center;
+	background: transparent;
+	@include border-radius(10px);
+}
+
 .node circle {     
   fill: #fff;    
   stroke: steelblue;    

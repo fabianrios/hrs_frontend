@@ -30,6 +30,7 @@
 
     // Modules
     'navbar',
+	'topbar',
     'sidebar',
     'profile',
     'expandbanner',
@@ -60,7 +61,16 @@
         templateUrl: 'app/layouts/remain.tpl.html'
       })
       .state('main.views', {
+		resolve: {
+	        currentUser: function(UserInfo){
+	          return UserInfo.currentUser();
+	        }
+		},
         views: {
+          topbar: {
+            templateUrl: 'app/topbar/topbar.tpl.html',
+            controller: 'Topbar.TopbarController'
+          },
           navbar: {
             templateUrl: 'app/navbar/navbar.tpl.html',
             controller: 'Navbar.NavbarController'
@@ -75,7 +85,12 @@
           },
           sidebar: {
             templateUrl: 'app/sidebar/sidebar.tpl.html',
-            controller: 'Sidebar.SidebarController'
+            controller: 'Sidebar.SidebarController',
+		      resolve: {
+		          employees: function(Employee){
+		              return Employee.index();
+		            }
+		      }
           },
           content: {
             template: '<div ui-view=""></div>'
@@ -86,33 +101,35 @@
 
 
   .run(function($http, $rootScope, $state, UserInfo){
-    
-
-    console.log("Current State:", $state.current);
+	
+	// #aca no estamos en ningun lado porque es el defaul
+    // console.log("Current State:", $state.current);
     UserInfo.currentUser().then(function(current_user){
-      console.log("Current User:", currentUser);
+	 // no hay usuario no devuelve nada hasta que este logueado
+     // console.log("Current User:", currentUser);
     });
 
     $rootScope.$on('$stateChangeStart', function(ev, toState, toParams, fromState){
-      console.log("Cambiando estado:", fromState, toState);
+	  //se logue hay que cambiar de estado 
+      // console.log("Cambiando estado:", fromState, toState);
     });
     
     // Catch unauthorized requests and recover.
     $rootScope.$on('devise:unauthorized', function(event, xhr, deferred) {
       // Ask user for login credentials
-      console.log("devise:unauthorized -> login.auth");
+      // console.log("devise:unauthorized -> login.auth");
       $state.go('login.auth');
     });
 
     $rootScope.$on('devise:login', function(event, currentUser) {
       // after a login, a hard refresh, a new tab
-      console.log("devise:login -> main.views.dashboard", currentUser);
+      // console.log("devise:login -> main.views.dashboard", currentUser);
       $state.go('main.views.dashboard');
     });
 
     $rootScope.$on('devise:new-session', function(event, currentUser) {
       // user logged in by Auth.login({...})
-      console.log("devise:new-session", "nothing done");
+      // console.log("devise:new-session", "nothing done");
     });
 
     $rootScope.$on('devise:logout', function(event, oldCurrentUser) {
@@ -127,6 +144,17 @@
           console.log("An error occurred logging out", error);
       });
     };
+	
+    $rootScope.$on('$viewContentLoaded', function () {
+   		  $(document).foundation({
+   			  offcanvas : {
+   				  // Sets method in which offcanvas opens.
+   				  // [ move | overlap_single | overlap ]
+   				  open_method: 'move', 
+   				  close_on_click : true
+   			  }
+   		  });
+   	  })
        
     /**
     
@@ -455,24 +483,6 @@
           }]
           });//endeudamiento
           
-          
-            //porcentaje
-            var porcentaje = 100/($scope.saldos.totdevengos/$scope.saldos.totdeducciones);
-                var loader = $('.loader').ClassyLoader({
-                  percentage: porcentaje,
-                  width: 150, 
-                  height: 150, 
-                  speed: 15, 
-                  fontFamily: "futura-pt",
-                  roundedLine: true,
-                  diameter: 70,
-                  lineColor: "#ff3b30",
-                  remainingLineColor: "#2ED63B",
-                  lineWidth: 10,
-                  fontSize: "35px"    
-                });
-        
-        
               });// /CHART
       
           

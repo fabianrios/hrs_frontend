@@ -4,6 +4,8 @@
   angular.module('navbar', [])
 
     .controller('Navbar.NavbarController', function($scope){
+		
+		
     });
 }());
 
