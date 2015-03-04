@@ -100,7 +100,7 @@
   })
 
 
-  .run(function($http, $rootScope, $state, UserInfo){
+  .run(function($http, $rootScope, $state, UserInfo, Auth){
 	
 	// #aca no estamos en ningun lado porque es el defaul
     // console.log("Current State:", $state.current);
@@ -162,7 +162,7 @@
 	  
       //toggle expand vacation box
       $rootScope.toggle = function(e){
-        console.log(e.currentTarget);
+        // console.log(e.currentTarget);
         $(e.currentTarget).toggleClass("active");
         $(".expandbanner").slideToggle();
       };

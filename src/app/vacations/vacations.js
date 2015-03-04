@@ -25,7 +25,7 @@
 		
 		$scope.user = currentUser;
 		
-		// console.log($scope.user);
+		console.log($scope.user.employee.user_id,$scope.user);
 		$scope.vacations = vacations;
 		$scope.vac_requirements = vac_requirements;
 		$scope.only_not_user = [];
@@ -36,29 +36,45 @@
 			}
 		});
 		
-		// console.log($scope.vacations);
+		$scope.openModal = function(modal) {
+			$('#myModal-'+modal).foundation('reveal', 'open');
+		};
+		
+		// iniciar los inputs
+		$( "#inicio" ).datepicker();
+		$( "#final" ).datepicker();
+		
+		console.log("$scope.vacations",$scope.vacations,"$scope.vac_requirements", $scope.vac_requirements,"$scope.only_not_user",$scope.only_not_user);
 		
 		$scope.requerimiento = new Vacation_requirement();  
-		
 		$scope.requerimiento.status = "Espera";
-		$scope.requerimiento.employee_id = $scope.user.id;
+		$scope.requerimiento.employee_id = $scope.user.employee.user_id;
  	   
 		//CREAR
-		$scope.putRequest = function() { //create a new company. Issues a POST to /api/companies
+		$scope.putRequest = function() { //create a new vacation. Issues a POST to /api/vacations
 			$scope.requerimiento.$save(function(newData) {
 				$scope.vac_requirements.push(newData);
-				$scope.requerimiento = {};
+				$scope.requerimiento = new Vacation_requirement();
 				$state.go('main.views.vacations');
 			});
 		};
-		 
+		
 		//BORRAR
-
 		$scope.deleteVacation = function(vacacion,modal) { 
 			
 			vacacion.$delete(function() {
 				var index = $scope.vac_requirements.indexOf(vacacion)
 				$scope.vac_requirements.splice(index, 1);
+				$('#myModal-'+modal).foundation('reveal', 'close');  
+			});
+			
+		} ///BORRAR
+		
+		$scope.deleteVacationReq = function(vacacion,modal) { 
+			
+			vacacion.$delete(function() {
+				var index = $scope.only_not_user.indexOf(vacacion)
+				$scope.only_not_user.splice(index, 1);
 				$('#myModal-'+modal).foundation('reveal', 'close');  
 			});
 			

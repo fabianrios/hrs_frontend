@@ -10,7 +10,6 @@
 	$scope.vacation = $scope.user.vacation;
 	$scope.employee_info = $scope.user.employee_info;
 	$scope.vacationdates = $scope.vacation.detalle;
-	console.log($scope.vacationdates);
 	$scope.disponibles = parseInt($scope.vacation.resumen[1]);
 	$scope.usados = parseInt($scope.vacation.resumen[2]);
 	  
@@ -37,8 +36,6 @@
 	 		$.datepicker.setDefaults($.datepicker.regional['es']);
 	 		// console.log(thedates, thedates.length);
 	 		var y = new Date(thedates[thedates.length-1][1]); 
-			$( "#inicio" ).datepicker();
-			$( "#final" ).datepicker();
 	 	    $( "#vacaciones" ).datepicker({
 	 			numberOfMonths: 2,
 	 			defaultDate: y,

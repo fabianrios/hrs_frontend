@@ -43,7 +43,7 @@
 .dashboard-profile{
 	position: relative;
 	background-color:#9ab3d3;
-	background-image: url("/assets/images/backtest.jpg"); 
+	background-image: url("/images/backtest.jpg"); 
 	background-position: 0 -200px;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
@@ -482,7 +482,7 @@
 }
 
 .ui-datepicker-prev {
-	background: url('/assets/images/date-prev.png') no-repeat center center;
+	background: url('/images/date-prev.png') no-repeat center center;
 	width: 27px;
 	height: 27px;
 	text-indent: -9999px;
@@ -493,7 +493,7 @@
 }
 
 .ui-datepicker-next {
-	background: url('/assets/images/date-next.png') no-repeat center center;
+	background: url('/images/date-next.png') no-repeat center center;
 	width: 27px;
 	height: 27px;
 	text-indent: -9999px;
@@ -523,7 +523,7 @@
 	margin: 0 auto;
 	text-align: center;
 	a{
-		background: #EEEEEE url("/assets/images/arrows.png") -1px 0px no-repeat;
+		background: #EEEEEE url("/images/arrows.png") -1px 0px no-repeat;
 		height: 40px;
 		display: block;
 		width: 100%;
@@ -682,7 +682,7 @@ table{
 }
 
 .acciones{
-	background: url('/assets/images/buttons.png') no-repeat scroll -10px 0;
+	background: url('/images/buttons.png') no-repeat scroll -10px 0;
 	display: block;
 	width: 60px;
 	height: 60px;
@@ -837,7 +837,7 @@ span{
 }
 
 .bglogin{
-	background: url('/assets/images/bgihr.jpg') no-repeat 0 0;
+	background: url('/images/bgihr.jpg') no-repeat 0 0; 
 	-webkit-background-size: cover;
 	background-size: cover;
 	height: 750px;
