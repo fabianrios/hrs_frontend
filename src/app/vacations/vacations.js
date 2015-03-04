@@ -55,6 +55,8 @@
 			$scope.requerimiento.$save(function(newData) {
 				$scope.vac_requirements.push(newData);
 				$scope.requerimiento = new Vacation_requirement();
+				$scope.requerimiento.status = "Espera";
+				$scope.requerimiento.employee_id = $scope.user.employee.user_id;
 				$state.go('main.views.vacations');
 			});
 		};
