@@ -401,7 +401,7 @@ module.exports = function(grunt){
     var connectTask = grunt.config.get('connect');
 
     if(target === 'dist'){
-      connectTask.rules.push({from: '^/assets/images/(.*)$', to: '/images/$1'});
+      //connectTask.rules.push({from: '^/assets/images/(.*)$', to: '/images/$1'});
       //connectTask.rules.push({from: '^/templates/(.*)$', to: '/angular-ui-bootstrap/templates/$1'});
       grunt.config.set('connect', connectTask);
 
@@ -415,6 +415,7 @@ module.exports = function(grunt){
 
     // Se agrega dinamicamente una regla de reescritura para devel
     connectTask.rules.push({from: '^/fonts/(.*)$', to: '/assets/fonts/$1'});
+    connectTask.rules.push({from: '^/images/(.*)$', to: '/assets/images/$1'});
     //connectTask.rules.push({from: '^/templates/common.js$', to: '/common/templates.js'});
     grunt.config.set('connect', connectTask);
 
