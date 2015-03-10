@@ -117,6 +117,8 @@
      // console.log("Current User:", currentUser);
     // });
 	
+	$rootScope.employee = {}
+	
 	// esta vaina me dice donde estamos y de donde venimos ademas define el rootscope de ubicacion para userlo como variable
     $rootScope.$on('$stateChangeStart', function(ev, toState, toParams, fromState){
 	  //se logue hay que cambiar de estado 

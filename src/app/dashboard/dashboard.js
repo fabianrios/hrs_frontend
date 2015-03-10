@@ -435,6 +435,26 @@
 				var age = todayDate.getYear() - entrada.getYear(); 
 				return age;
 			}
+			
+			if($(window).width() <= 500) {
+				$(".dashboardlis li .contenido").hide();
+			}
+		
+			$(window).resize(function() {
+				if($(window).width() <= 500) {
+					$(".dashboardlis li .contenido").slideUp();
+					$(".contenido#vacations-chart").slideDown();
+				}else if ($(window).width() >= 720) {
+					$(".dashboardlis li .contenido").show();
+				}
+			}).resize(); 
+		
+			$(".closing").click(function(){
+				// console.log($(this));
+				$(this).parent().parent().parent().children(".contenido").slideToggle(70);
+				$(this).children(".fa").toggleClass("fa-chevron-circle-up");
+				$(this).children(".fa").toggleClass("fa-chevron-circle-down");
+			});
     
 
     

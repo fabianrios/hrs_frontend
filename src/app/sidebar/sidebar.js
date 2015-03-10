@@ -5,5 +5,6 @@
 	.controller('Sidebar.SidebarController', function($scope, $state, employees){
 		$scope.common = {};
 		$scope.employees = employees;
+
 	});
 }());

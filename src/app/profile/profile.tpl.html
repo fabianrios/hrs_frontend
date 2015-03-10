@@ -5,19 +5,16 @@
 				<img ng-src="{{user.pic}}">
 			</div>
 			<div class="dash-text-format p-20">
-				<h4 class="no-margin whitetxt">
+				<h4 class="no-margin whitetxt capitalize">
 					<a ui-sref="main.views.employee_info">
 						{{user.employee.short_name}}
 					</a>
 				</h4>
-				<h5 class="subheader no-margin">
+				<h5 class="subheader no-margin capitalize">
 					{{user.employee.posicion}}
 				</h5>
 				<h5 class="subheader no-margin capitalize">
 					{{user.employee.unidad_org}}
-				</h5>
-				<h5 class="subheader no-margin capitalize">
-
 				</h5>
 			</div>
 		</div>
@@ -44,41 +41,36 @@
 	<div class="row"  ng-switch-when="main.views.employee_info_lookup">
 		<div class="large-7 medium-7 columns">
 			<div class="big-profile">
-				<img ng-src="{{user.pic}}">
+				<img ng-src="{{employee.image}}">
 			</div>
 			<div class="dash-text-format p-20">
-				<h4 class="no-margin whitetxt">
-					<a ui-sref="main.views.employee_info">
-						{{user.employee.short_name}}
-					</a>
+				<h4 class="no-margin capitalize">
+					{{employee.short_name | lowercase }}
 				</h4>
-				<h5 class="subheader no-margin">
-					{{user.employee.posicion}}
+				<h5 class="subheader no-margin capitalize">
+					{{employee.posicion | lowercase}}
 				</h5>
 				<h5 class="subheader no-margin capitalize">
-					{{user.employee.unidad_org}}
-				</h5>
-				<h5 class="subheader no-margin capitalize">
-
+					{{employee.unidad_org | lowercase}}
 				</h5>
 			</div>
 		</div>
 		<div class="large-5 medium-5 columns">
 			<br>
-			<h4 class="subheader no-margin">
-				{{user.employee.area}}
+			<h4 class="subheader no-margin capitalize">
+				{{employee.area | lowercase}}
 			</h4>
-			<h5 class="subheader no-margin">
-				{{user.employee.division_per}}
+			<h5 class="subheader no-margin capitalize">
+				{{employee.division_per | lowercase}}
 			</h5>
-			<h5 class="subheader no-margin">
-				{{user.employee.subdivision_per}}
+			<h5 class="subheader no-margin capitalize">
+				{{employee.subdivision_per | lowercase}}
 			</h5>
-			<a href="tel://{{user.employee.phone}}">
+			<a href="tel://{{employee.phone}}">
 				<i class="fa fa-phone fa-lg"></i>
 			</a>
 			&nbsp;
-			<a class="lowercase" href="mailto:{{user.employee.email}}">
+			<a class="lowercase" href="mailto:{{employee.email}}">
 				<i class="fa fa-envelope-o fa-lg"></i>
 			</a>
 		</div>
