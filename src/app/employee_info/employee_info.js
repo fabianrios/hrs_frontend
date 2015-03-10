@@ -26,11 +26,11 @@
 		})
 	})
 	
-	.controller('Employee_info.ListController', function($scope, $state, currentUser){
+	.controller('Employee_info.ListController', function($scope, $state, $rootScope,currentUser){
 		
 		$scope.user = currentUser;
 		$scope.vacation = $scope.user.vacation;
-		$scope.employee_info = $scope.user.employee_info;
+		$rootScope.employee_info = $scope.user.employee_info;
 		
 		
 		$scope.sortableOptions = {
@@ -40,10 +40,10 @@
 
 	})
 	
-	.controller('Employee_info.LookupController', function ($scope, info, employee, $rootScope) {
+	.controller('Employee_info.LookupController', function ($scope, info, $rootScope, employee) {
 		
 		$rootScope.employee = employee;
-		$scope.employee_info = info;
+		$rootScope.employee_info = info;
 		console.log("employee",$scope.employee);
 		
 	});

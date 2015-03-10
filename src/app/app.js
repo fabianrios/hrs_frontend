@@ -118,6 +118,7 @@
     // });
 	
 	$rootScope.employee = {}
+	$rootScope.employee_info = {}
 	
 	// esta vaina me dice donde estamos y de donde venimos ademas define el rootscope de ubicacion para userlo como variable
     $rootScope.$on('$stateChangeStart', function(ev, toState, toParams, fromState){

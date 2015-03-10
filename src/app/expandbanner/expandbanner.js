@@ -8,7 +8,8 @@
 	$scope.elusuario = currentUser;
 	$scope.user = currentUser;
 	$scope.vacation = $scope.user.vacation;
-	$scope.employee_info = $scope.user.employee_info;
+	// esto esta por el rootscope de employee_info
+	// $scope.employee_info = $scope.user.employee_info;
 	$scope.vacationdates = $scope.vacation.detalle;
 	$scope.disponibles = parseInt($scope.vacation.resumen[1]);
 	$scope.usados = parseInt($scope.vacation.resumen[2]);
