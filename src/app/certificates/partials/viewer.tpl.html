@@ -4,11 +4,11 @@
   <button class="button small secondary" ng-click="zoomIn()"><span class="fa fa-search-plus fa-lg"></span></button>
   <button class="button small secondary" ng-click="zoomOut()"><span class="fa fa-search-minus fa-lg"></span></button>
   <a href="{{pdfUrl}}" class="button small secondary" target="_blank"><span class="fa fa-print fa-lg"></span></a>
-  <!-- <div class="paginas" ng-if="pageCount <= 1" class="dib"> -->
+  <div class="paginas" ng-if="pageCount > 1" data="{{pageCount}}" class="dib">
   	  <span>Página: </span>
   	  <input type="text" min=1 ng-model="pageNum" id="smallinput">
   	  <span> / {{pageCount}}</span>
-  	<!-- </div> -->
+  	</div>
 </nav>
 
 

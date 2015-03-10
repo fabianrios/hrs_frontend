@@ -446,7 +446,10 @@ span.prefix.date{
 	opacity:0.3;
 }
 
-.progress .meter {
+.progress .meter, .progress .bar {
+	background: #1C6087;
+	height: 100%;
+	display: block;
 	&.bar-success{
 		background: #1AA64D;
 	}

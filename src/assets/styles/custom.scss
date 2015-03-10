@@ -13,6 +13,10 @@
 @import "compass/css3";
 
 
+.dib{
+	display: inline-block;
+}
+
 .sidebar {
   background-color: #666;
   float:left;
@@ -331,6 +335,10 @@
 		top: -4px;
 		right: -1px;
 	}
+}
+
+.movil-comments{
+	position: relative;
 }
 
 
@@ -889,13 +897,13 @@ span{
 	background: #fafafa;
 //	@include box-shadow(rgba(0,0,0,.2) 0px 5px 10px inset);
 	padding: 0;
+	border-top: 1px solid #E0E0E0;
 }
 
 .wrapper{
 	padding: 25px 0 100px 0;
 	canvas{
-		border: 1px solid #ccc;
-		box-shadow: 0 0px 10px rgba(50,50,50, 0.2);
+		border: 1px solid #F4F4F4;
 		position: relative;
 		top: 6px;
 		z-index: 3;
@@ -910,15 +918,16 @@ span{
 		-moz-box-shadow: 0 0 40px rgba(0, 0, 0, 0.35);
 		box-shadow: 0 0 40px rgba(0, 0, 0, 0.35);
 		bottom: 100px;
-		width: 90%;
+		width: 80%;
 		height: 100px;
 		-webkit-border-radius: 100%;
 		-moz-border-radius: 100%;
 		-ms-border-radius: 100%;
 		-o-border-radius: 100%;
 		border-radius: 100%;
-		left: 5%;
-		right: 5%;
+		left: 10%;
+		right: 10%;
+		max-width: 900px;
 	}
 }
 
