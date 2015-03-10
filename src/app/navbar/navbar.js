@@ -3,8 +3,9 @@
 
   angular.module('navbar', [])
 
-    .controller('Navbar.NavbarController', function($scope){
+    .controller('Navbar.NavbarController', function($scope,currentUser){
 		
+		$scope.user = currentUser;
 		
     });
 }());

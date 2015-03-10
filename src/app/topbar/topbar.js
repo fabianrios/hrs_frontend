@@ -7,6 +7,7 @@
 		
 		$scope.user = currentUser;
 		
+		
     });
 }());
 

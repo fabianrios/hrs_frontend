@@ -1,6 +1,28 @@
+<div class="user-info show-for-small-only">
+	<div class="pic">
+		<img ng-src="{{user.pic}}">
+	</div>
+	<div class="user-buttons">
+		<a href="" class="movil-comments">
+			<span class="icon-comment"></span>
+			<i class="number mobile-comment">10</i>
+		</a>
+		<a href="">
+			<span class="icon-cog2"></span>
+		</a>
+		<a href="">
+			<span class="icon-logout"></span>
+		</a>
+	</div>
+	<h6 class="text-center no-margin">
+		<span class="icon-user"></span>
+		Gustavo Adolfo López
+	</h6>
+</div>
+
 <ul class="off-canvas-list">
 	<li><a href="#/home"><i class="fa fa-home fa-lg"></i> Inicio</a></li>
-	<li><a ng-href="#/organigram/{{employee.identification}}"><i class="fa fa-sitemap fa-lg"></i> Organigrama</a></li>
+	<li><a ng-href="#/organigram/{{user.employee_id}}"><i class="fa fa-sitemap fa-lg"></i> Organigrama</a></li>
 	<li class="has-submenu">
 		<a href="">
 			<i class="fa fa-file fa-lg"></i> Autoservicios
@@ -11,22 +33,22 @@
 				<a href="">Volver</a>
 			</li>
 			<li>
-				<a href="#">
+				<a ui-sref="main.views.certificates_labor({id:user.employee_id, c:user.company_id})">
 					<i class="fa fa-file-text-o fa-lg"></i> Recibos de nomina
 				</a>
 			</li>
 			<li>
-				<a href="#">
+				<a ui-sref="main.views.certificates_vacations({id:user.employee_id, c:user.company_id})">
 					<i class="fa fa-plane fa-lg"></i> Carta de vacaciones
 				</a>
 			</li>
 			<li>
-				<a href="#">
+				<a ui-sref="main.views.certificates_payroll({id:user.employee_id, c:user.company_id})">
 					<i class="fa fa-briefcase fa-lg"></i> Carta laboral
 				</a>
 			</li>
 			<li>
-				<a href="#">
+				<a ui-sref="main.views.certificates_income({id:user.employee_id, c:user.company_id})">
 					<i class="fa fa-institution fa-lg"></i> Certificado de ing. y ret.
 				</a>
 			</li>

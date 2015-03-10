@@ -27,6 +27,7 @@
     // Directives
     'ngS3upload',
     'highcharts-ng',
+	'pdf',
 
     // Modules
     'navbar',
@@ -39,11 +40,13 @@
     'employee_info',
     'sessions',
     'dashboard',
-    'organigram'
+    'organigram',
+    'certificates'
   ])
 
-  .config(function($stateProvider, $httpProvider, HRAPI_CONF, AuthProvider, AuthInterceptProvider){
-
+  .config(function($stateProvider, $httpProvider, HRAPI_CONF, AuthProvider, AuthInterceptProvider, ngS3Config){
+	
+	ngS3Config.theme = 'bootstrap2';
 
     $httpProvider.defaults.headers.common['X-CSRF-Token'] = angular.element('meta[name=csrf-token]').attr('content');
     // $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
@@ -77,7 +80,12 @@
           },
           profile: {
             templateUrl: 'app/profile/profile.tpl.html',
-            controller: 'Profile.ProfileController'
+            controller: 'Profile.ProfileController',
+		      resolve: {
+		          employees: function(Employee){
+		              return Employee.index();
+		            }
+		      }
           },
           expandbanner: {
             templateUrl: 'app/expandbanner/expandbanner.tpl.html',
@@ -100,21 +108,22 @@
   })
 
 
-  .run(function($http, $rootScope, $state, UserInfo, Auth){
+  .run(function($http, $rootScope, $state, UserInfo, Auth, $window){
 	
 	// #aca no estamos en ningun lado porque es el defaul
     // console.log("Current State:", $state.current);
-    UserInfo.currentUser().then(function(current_user){
+    // UserInfo.currentUser().then(function(current_user){
 	 // no hay usuario no devuelve nada hasta que este logueado
      // console.log("Current User:", currentUser);
-    });
+    // });
 	
 	// esta vaina me dice donde estamos y de donde venimos ademas define el rootscope de ubicacion para userlo como variable
     $rootScope.$on('$stateChangeStart', function(ev, toState, toParams, fromState){
 	  //se logue hay que cambiar de estado 
       // console.log("Cambiando estado:", fromState, toState);
 	  $rootScope.ubicacion = toState.name;
-	  console.log($rootScope.ubicacion);
+	  $rootScope.locationData = toState.data;
+	  console.log($rootScope.ubicacion, $rootScope.locationData);
     });
     
     // Catch unauthorized requests and recover.
@@ -166,6 +175,13 @@
         $(e.currentTarget).toggleClass("active");
         $(".expandbanner").slideToggle();
       };
+	  
+      //buscar empleado
+		//       $rootScope.buscarEmpleado = function(e,id){
+		//         console.log(e.currentTarget,id);
+		// console.log(Employee.index({id: $id}).$promise);
+		//       };
+    
       
       //sort stuff icon-bar
       $rootScope.sorthings = function(e,data){
@@ -186,16 +202,16 @@
         dt.getTime();
         return dt;
       };
-    
+   	 	
+      //alertas
+      $rootScope.alerts = [];
+      $rootScope.closeAlert = function(index) {
+        $rootScope.alerts.splice(index, 1);
+      };
+       ///alertas
 	   
     /**
-    
-    //alertas
-    $scope.alerts = [];
-    $scope.closeAlert = function(index) {
-      $scope.alerts.splice(index, 1);
-    };
-     ///alertas
+   
     
     $scope.employee = {};
     $scope.user = {};
@@ -210,69 +226,12 @@
           // User was logged in, or Devise returned
           // previously authenticated session.
        
-      // variables para cesantias
-      $scope.newbetrg = [];
-      $scope.intbetrg = [];
-      $scope.intfpend = [];
-      $scope.intnewbetrg = [];
-      $scope.elsaldocesantias = "";
 
-      $scope.user = user;
-      $scope.elusuario = User.get({ id: $scope.user.id });
+
+     
       $scope.elusuario.$promise.then(function(items){
-          $scope.employee = items.employee;
-          $scope.vacation = items.vacation;
-          $scope.employee_info = items.employee_info;
-          $scope.saldos = items.saldos;
-          console.log($scope.saldos);
 
-         
-        // Variables para cesantias 
-          $scope.saldos = items.saldos;
-          $scope.elsaldocesantias = $scope.saldos.saldo;
-          $scope.intcesantias = $scope.saldos.intsaldo;
-          // meter las cesantias
-          angular.forEach($scope.saldos.t_cesantias,function(value){
-            $scope.newbetrg.push(value.betrg);
-            $scope.fpend.push(value.fpend);
-          });
-
-          // meter las int. cesantias     
-          angular.forEach($scope.saldos.t_intcesantias,function(value){
-            $scope.intbetrg.push(value.betrg);
-            $scope.intfpend.push(value.fpend);
-          });  
-
-          // saldo de cesantias a numeros
-          $scope.betrg.forEach(function(entry, index) {
-              $scope.newbetrg[index] = parseInt(entry);
-          });
         
-          // Intereses de cesantias a numeros
-          $scope.intbetrg.forEach(function(entry) {
-              $scope.intnewbetrg.push(parseInt(entry));
-          });
-        
-        
-        //Deudas
-        var deduc = [];
-        var devng = [];
-        var fechas_deudas = [];
-        angular.forEach($scope.saldos.t_endeudamiento,function(value){
-          deduc.push(value.deduc);
-          devng.push(value.devng);
-          fechas_deudas.push(value.fpend);
-        });  
-        
-        $scope.deducciones = [];
-        deduc.forEach(function(deuda) {
-            $scope.deducciones.push(parseInt(deuda));
-        });
-        
-        $scope.ingresos = [];
-        devng.forEach(function(ingresos) {
-            $scope.ingresos.push(parseInt(ingresos));
-        });
       
               $(function () {
       
@@ -281,37 +240,24 @@
                           useUTC : true
                       }
                   });
-         
-   
-          
+
               });// /CHART
       
           
       });
       
       
-      $scope.company = Company.show({id: $scope.user.company_id});
-      // para comprobar que si esta autenticado
-      $scope.autenticado = Auth.isAuthenticated(user);
-      // console.log($scope.company);
-
-
       
+
       
       }, function(error) {
-          // unauthenticated error
-      console.log("error al optener el usuario autenticado");
-      // TO-DO: hay que cambiar esto por un $state
-      $location.path('/login');
       });
       
        
     
       $scope.common = {};
     
-      $scope.edit_profile = function(){
-        $location.path('/edit');
-      };
+      
 
 
       **/

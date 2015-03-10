@@ -19,7 +19,7 @@
     })
 	
 	
-    .controller('Organigram.MainController', function($scope, $http, employees, UserService, Auth){
+    .controller('Organigram.MainController', function($scope, $http, employees, currentUser, Auth){
 		
 		
 	   // función de jairo para iterar
@@ -31,13 +31,7 @@
 		// 	}
 		// }
 		
-   	   UserService.current_user.then(function(user) {
- 		  $scope.user = user;
- 		  $scope.autenticado = Auth.isAuthenticated(user)
-       }, function(error) {
- 		  console.log("error al optener el usuario autenticado");
- 		  $location.path('/login');
-       });
+		$scope.user = currentUser;
 		
 		$scope.employees = employees.organigram;
 		

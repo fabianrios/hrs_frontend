@@ -41,7 +41,49 @@
 			</a>
 		</div>
 	</div>
-	<div class="row" ng-switch-when="/vacations">
+	<div class="row"  ng-switch-when="main.views.employee_info_lookup">
+		<div class="large-7 medium-7 columns">
+			<div class="big-profile">
+				<img ng-src="{{user.pic}}">
+			</div>
+			<div class="dash-text-format p-20">
+				<h4 class="no-margin whitetxt">
+					<a ui-sref="main.views.employee_info">
+						{{user.employee.short_name}}
+					</a>
+				</h4>
+				<h5 class="subheader no-margin">
+					{{user.employee.posicion}}
+				</h5>
+				<h5 class="subheader no-margin capitalize">
+					{{user.employee.unidad_org}}
+				</h5>
+				<h5 class="subheader no-margin capitalize">
+
+				</h5>
+			</div>
+		</div>
+		<div class="large-5 medium-5 columns">
+			<br>
+			<h4 class="subheader no-margin">
+				{{user.employee.area}}
+			</h4>
+			<h5 class="subheader no-margin">
+				{{user.employee.division_per}}
+			</h5>
+			<h5 class="subheader no-margin">
+				{{user.employee.subdivision_per}}
+			</h5>
+			<a href="tel://{{user.employee.phone}}">
+				<i class="fa fa-phone fa-lg"></i>
+			</a>
+			&nbsp;
+			<a class="lowercase" href="mailto:{{user.employee.email}}">
+				<i class="fa fa-envelope-o fa-lg"></i>
+			</a>
+		</div>
+	</div>
+	<div class="row" ng-switch-when="main.views.vacations">
 		<div class="large-6 columns">
 			<h4>Solicitudes de vacaciones</h4>
 			<ul class="breadcrumbs">
@@ -75,4 +117,165 @@
 			</div>
 		</div>
 	</div>
+	<div class="row" ng-switch-when="main.views.certificates_labor">
+		<div class="large-7 columns">
+			<h4>{{locationData.breadcrumb}}</h4>
+			<ul class="breadcrumbs">
+				<li>
+					<a href="/">Inicio</a>
+				</li>
+				<li class="unavailable">
+					<a href="#">Autoservicios</a>
+				</li>
+				<li class="current">
+					<a href="#">{{locationData.breadcrumb}}</a>
+				</li>
+			</ul>
+		</div>
+		<div class="large-5 columns">
+			<ul class="inline-list linemenu">
+				<li>
+					<a  ui-sref="main.views.certificates_payroll({id:user.employee_id, c:user.company_id})">
+						<i class="fa fa-file-text-o fa-lg"></i>
+					</a>
+				</li>
+				<li>
+					<a ui-sref="main.views.certificates_vacations({id:user.employee_id, c:user.company_id})">
+						<i class="fa fa-plane fa-lg"></i>
+					</a>
+				</li>
+				<li>
+					<a ui-sref="main.views.certificates_labor({id:user.employee_id, c:user.company_id})">
+						<i class="fa fa-briefcase fa-lg"></i>
+					</a>
+				</li>
+				<li>
+					<a  ui-shref="main.views.certificates_income({id:user.employee_id, c:user.company_id})">
+						<i class="fa fa-institution fa-lg"></i>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="row" ng-switch-when="main.views.certificates_vacations">
+		<div class="large-7 columns">
+			<h4>{{locationData.breadcrumb}}</h4>
+			<ul class="breadcrumbs">
+				<li>
+					<a href="/">Inicio</a>
+				</li>
+				<li class="unavailable">
+					<a href="#">Autoservicios</a>
+				</li>
+				<li class="current">
+					<a href="#">{{locationData.breadcrumb}}</a>
+				</li>
+			</ul>
+		</div>
+		<div class="large-5 columns">
+			<ul class="inline-list linemenu">
+				<li>
+					<a  ui-sref="main.views.certificates_payroll({id:user.employee_id, c:user.company_id})">
+						<i class="fa fa-file-text-o fa-lg"></i>
+					</a>
+				</li>
+				<li>
+					<a ui-sref="main.views.certificates_vacations({id:user.employee_id, c:user.company_id})">
+						<i class="fa fa-plane fa-lg"></i>
+					</a>
+				</li>
+				<li>
+					<a ui-sref="main.views.certificates_labor({id:user.employee_id, c:user.company_id})">
+						<i class="fa fa-briefcase fa-lg"></i>
+					</a>
+				</li>
+				<li>
+					<a  ui-shref="main.views.certificates_income({id:user.employee_id, c:user.company_id})">
+						<i class="fa fa-institution fa-lg"></i>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="row" ng-switch-when="main.views.certificates_payroll">
+		<div class="large-7 columns">
+			<h4>{{locationData.breadcrumb}}</h4>
+			<ul class="breadcrumbs">
+				<li>
+					<a href="/">Inicio</a>
+				</li>
+				<li class="unavailable">
+					<a href="#">Autoservicios</a>
+				</li>
+				<li class="current">
+					<a href="#">{{locationData.breadcrumb}}</a>
+				</li>
+			</ul>
+		</div>
+		<div class="large-5 columns">
+			<ul class="inline-list linemenu">
+				<li>
+					<a  ui-sref="main.views.certificates_payroll({id:user.employee_id, c:user.company_id})">
+						<i class="fa fa-file-text-o fa-lg"></i>
+					</a>
+				</li>
+				<li>
+					<a ui-sref="main.views.certificates_vacations({id:user.employee_id, c:user.company_id})">
+						<i class="fa fa-plane fa-lg"></i>
+					</a>
+				</li>
+				<li>
+					<a ui-sref="main.views.certificates_labor({id:user.employee_id, c:user.company_id})">
+						<i class="fa fa-briefcase fa-lg"></i>
+					</a>
+				</li>
+				<li>
+					<a  ui-shref="main.views.certificates_income({id:user.employee_id, c:user.company_id})">
+						<i class="fa fa-institution fa-lg"></i>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="row" ng-switch-when="main.views.certificates_income">
+		<div class="large-7 columns">
+			<h4>{{locationData.breadcrumb}}</h4>
+			<ul class="breadcrumbs">
+				<li>
+					<a href="/">Inicio</a>
+				</li>
+				<li class="unavailable">
+					<a href="#">Autoservicios</a>
+				</li>
+				<li class="current">
+					<a href="#">{{locationData.breadcrumb}}</a>
+				</li>
+			</ul>
+		</div>
+		<div class="large-5 columns">
+			<ul class="inline-list linemenu">
+				<li>
+					<a  ui-sref="main.views.certificates_payroll({id:user.employee_id, c:user.company_id})">
+						<i class="fa fa-file-text-o fa-lg"></i>
+					</a>
+				</li>
+				<li>
+					<a ui-sref="main.views.certificates_vacations({id:user.employee_id, c:user.company_id})">
+						<i class="fa fa-plane fa-lg"></i>
+					</a>
+				</li>
+				<li>
+					<a ui-sref="main.views.certificates_labor({id:user.employee_id, c:user.company_id})">
+						<i class="fa fa-briefcase fa-lg"></i>
+					</a>
+				</li>
+				<li>
+					<a  ui-shref="main.views.certificates_income({id:user.employee_id, c:user.company_id})">
+						<i class="fa fa-institution fa-lg"></i>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
 </div>
+

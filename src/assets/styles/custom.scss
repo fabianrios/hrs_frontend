@@ -20,6 +20,10 @@
 }
 
 .main-container{
+	padding: 0;
+}
+
+.padding-container{
 	padding: 40px 0;
 }
 
@@ -67,7 +71,7 @@
 	@include background-image(linear-gradient(rgba(#ffffff,0) 0%, #1a1a1a 90%));
 	&.whitening{
 		@include filter-gradient(#ffffff, #1a1a1a, vertical); // IE6-9
-		@include background-image(linear-gradient(rgba(#ffffff,0) 0%, rgba(#ffffff,0.5) 90%));
+		@include background-image(linear-gradient(rgba(#ffffff,0) 0%, rgba(#ffffff,0.8) 90%));
 		.subheader{
 			color: #4A4A4A;
 		}
@@ -92,7 +96,7 @@
 				}
 				&.unavailable {
 					a{
-						color: #DDDDDD;
+						color: #3C3C3C;
 					}
 				}
 				&.current {
@@ -881,3 +885,101 @@ span{
   stroke-width: 1.5px; 
 }
 
+.container{
+	background: #fafafa;
+//	@include box-shadow(rgba(0,0,0,.2) 0px 5px 10px inset);
+	padding: 0;
+}
+
+.wrapper{
+	padding: 25px 0 100px 0;
+	canvas{
+		border: 1px solid #ccc;
+		box-shadow: 0 0px 10px rgba(50,50,50, 0.2);
+		position: relative;
+		top: 6px;
+		z-index: 3;
+		min-height: 500px;
+		background: white;
+	}
+	.finalpdf{
+		content: "";
+		position: absolute;
+		z-index: 0;
+		-webkit-box-shadow: 0 0 40px rgba(0, 0, 0, 0.35);
+		-moz-box-shadow: 0 0 40px rgba(0, 0, 0, 0.35);
+		box-shadow: 0 0 40px rgba(0, 0, 0, 0.35);
+		bottom: 100px;
+		width: 90%;
+		height: 100px;
+		-webkit-border-radius: 100%;
+		-moz-border-radius: 100%;
+		-ms-border-radius: 100%;
+		-o-border-radius: 100%;
+		border-radius: 100%;
+		left: 5%;
+		right: 5%;
+	}
+}
+
+nav.fixed{
+	.secondary.button{
+		background: #f6f6f6;
+	}
+}
+
+#smallinput{
+	width: auto;
+	display: inline-block;
+	max-width: 35px;
+}
+
+.inline-list.linemenu{	
+	position: relative;
+	top: -10px;
+	float: none;
+	text-align: center;
+	margin: 0 auto;
+	@media only screen and (min-width: 40.063em) and (max-width: 64em) {
+		position: relative;
+		top: 10px;
+		float: right;
+	}
+	li{
+		background: rgba(40,40,40,.5);
+		border: 2px solid white;
+		width: 50px;
+		height: 50px;
+		text-align: center;
+		@include border-radius(100%);
+		&:hover{
+			border: 2px solid rgba(50,50,50,1);
+			background: rgba(255,255,255,.8);
+			.fa{
+				color: rgba(50,50,50,1);
+			}
+		}
+		.fa{
+			text-align: center;
+			color: #fff;
+			line-height: 50px;
+		}
+	}
+}
+
+.user-info{
+	padding: 10px 0;
+	@include background-image(radial-gradient(top, 120px 120px, #ffffff 30px, #d7d7d7 120px));
+//	@include background-image(linear-gradient(white, #d7d7d7));
+}
+
+.user-buttons{
+	position: relative;
+	margin: 5px auto;
+	display: block;
+	text-align: center;
+	a{
+		font-size: 1.2rem;
+		margin:0 5px;
+	}
+}

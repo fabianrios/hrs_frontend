@@ -25,7 +25,7 @@
 		
 		$scope.user = currentUser;
 		
-		console.log($scope.user.employee.user_id,$scope.user);
+		console.log("$scope.user",$scope.user);
 		$scope.vacations = vacations;
 		$scope.vac_requirements = vac_requirements;
 		$scope.only_not_user = [];
@@ -36,15 +36,15 @@
 			}
 		});
 		
-		$scope.openModal = function(modal) {
-			$('#myModal-'+modal).foundation('reveal', 'open');
+		$scope.openModal = function(modal, which) {
+			$('#'+which+'-'+modal).foundation('reveal', 'open');
 		};
 		
 		// iniciar los inputs
 		$( "#inicio" ).datepicker();
 		$( "#final" ).datepicker();
 		
-		console.log("$scope.vacations",$scope.vacations,"$scope.vac_requirements", $scope.vac_requirements,"$scope.only_not_user",$scope.only_not_user);
+		//console.log("$scope.vacations",$scope.vacations,"$scope.vac_requirements", $scope.vac_requirements,"$scope.only_not_user",$scope.only_not_user);
 		
 		$scope.requerimiento = new Vacation_requirement();  
 		$scope.requerimiento.status = "Espera";
@@ -58,6 +58,7 @@
 				$scope.requerimiento.status = "Espera";
 				$scope.requerimiento.employee_id = $scope.user.employee.user_id;
 				$state.go('main.views.vacations');
+				$scope.alerts.push({type: 'success', msg: "La vacación a sido guardada"});
 			});
 		};
 		
@@ -68,16 +69,18 @@
 				var index = $scope.vac_requirements.indexOf(vacacion)
 				$scope.vac_requirements.splice(index, 1);
 				$('#myModal-'+modal).foundation('reveal', 'close');  
+				$scope.alerts.push({type: 'alert', msg: "La vacación del "+ vacacion.start_date  + " al "+ req_info.end_date +" a sido borrada"});
 			});
 			
 		} ///BORRAR
 		
 		$scope.deleteVacationReq = function(vacacion,modal) { 
-			
 			vacacion.$delete(function() {
 				var index = $scope.only_not_user.indexOf(vacacion)
 				$scope.only_not_user.splice(index, 1);
+				// console.log($scope.only_not_user);
 				$('#myModal-'+modal).foundation('reveal', 'close');  
+				$scope.alerts.push({type: 'alert', msg: "La vacación del "+ vacacion.start_date  + " al "+ req_info.end_date +" a sido borrada"});
 			});
 			
 		} ///BORRAR
@@ -88,8 +91,13 @@
 			$scope.vacacion_update.status = "Aprobado"
 			$scope.vacacion_update.$update(function(newData) {
 				var index = $scope.vac_requirements.indexOf(req_info);
-				// console.log(index);
 				$scope.vac_requirements[index] = newData;
+				$scope.alerts.push({type: 'success', msg: "La vacación del "+ req_info.start_date + " al "+ req_info.end_date +" a sido aprobada"});
+			  	  window.setTimeout(function() {
+			  	      $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
+			  	          $(this).remove(); 
+			  	      });
+			  	  }, 5000);
 			});
 		};
 		//UPDATE DENIED
@@ -98,8 +106,8 @@
 			$scope.vacacion_update.status = "Negado"
 			$scope.vacacion_update.$update(function(newData) {
 				var index = $scope.vac_requirements.indexOf(req_info);
-				// console.log(index);
 				$scope.vac_requirements[index] = newData;
+				$scope.alerts.push({type: 'alert', msg: "La vacación del "+ req_info.end_date  + " al "+ req_info.end_date +" a sido negada"});
 			});
 		};
 		
