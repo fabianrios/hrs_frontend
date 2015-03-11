@@ -1,42 +1,45 @@
 <div class="off-canvas-wrap" data-offcanvas>
-		  <div class="inner-wrap">
-			<nav class="tab-bar">
-				<section class="left-small">
-					<a href="" class="left-off-canvas-toggle menu-icon">
-						<span></span>
-					</a>
-				</section>
-				<section class="middle tab-bar-section" ui-view="topbar"></section>
-				<section class="right-small"><a class="right-off-canvas-toggle menu-icon"><i class="fa fa-sort-amount-asc workers-icon"></i></a></section>
-			</nav>
-			<aside class="left-off-canvas-menu" ui-view="navbar"></aside>
-			<aside class="right-off-canvas-menu" ui-view="sidebar"></aside>
-			<section class="main-section">
-				<div class="dashboard-profile" ui-view="profile"></div>
-				<div class="expandbanner animate-if" ui-view="expandbanner" ng-if="ubicacion == 'main.views.vacations' || ubicacion == 'main.views.employee_info' || ubicacion == 'main.views.employee_info_lookup'"></div>
-				<div class="close-banner" ng-if="ubicacion == 'main.views.vacations' || ubicacion == 'main.views.employee_info' || ubicacion == 'main.views.employee_info_lookup'"><a href="" ng-click="toggle($event)"></a></div>
+	<div class="inner-wrap">
+		<nav class="tab-bar">
+			<section class="left-small">
+				<a href="" class="left-off-canvas-toggle menu-icon">
+					<span></span>
+				</a>
+			</section>
+			<section class="middle tab-bar-section" ui-view="topbar"></section>
+			<section class="right-small"><a class="right-off-canvas-toggle menu-icon"><i class="fa fa-sort-amount-asc workers-icon"></i></a></section>
+		</nav>
+		<aside class="left-off-canvas-menu" ui-view="navbar"></aside>
+		<aside class="right-off-canvas-menu" ui-view="sidebar"></aside>
+		<section class="main-section">
+			<div class="dashboard-profile" ui-view="profile"></div>
+			<div class="expandbanner animate-if" ui-view="expandbanner" ng-if="ubicacion == 'main.views.vacations' || ubicacion == 'main.views.employee_info' || ubicacion == 'main.views.employee_info_lookup'"></div>
+			<div class="close-banner" ng-if="ubicacion == 'main.views.vacations' || ubicacion == 'main.views.employee_info' || ubicacion == 'main.views.employee_info_lookup'"><a href="" ng-click="toggle($event)"></a></div>
 		
-				<div class="main-container" id="main-container">
+			<div class="main-container" id="main-container">
 	
-				  <div class="main-container-inner">
-				    <div class="main-content" ng-class="{'main-content-bigger': ui.sidebar.mainCollapsed}">
+				<div class="main-container-inner">
+					<div class="main-content" ng-class="{'main-content-bigger': ui.sidebar.mainCollapsed}">
 						
-					  <div class="row">
-					  	<div class="large-12 columns">
-							<div data-alert class="alert-box {{alert.type}}" ng-repeat="alert in alerts">
-								{{alert.msg}}
-								<a href="" class="close" ng-click="closeAlert($index)">&times;</a>
+						<div class="row">
+							<div class="large-12 columns">
+								<div data-alert class="alert-box {{alert.type}}" ng-repeat="alert in alerts">
+									{{alert.msg}}
+									<a href="" class="close" ng-click="closeAlert($index)">&times;</a>
+								</div>
 							</div>
-					  	</div>
-					  </div> <!-- /row -->
+						</div> <!-- /row -->
 					  
-					  <div class="overall" ui-view="content"></div>
-				    </div>
-				  </div> <!-- /main-container-inner -->
+						<div class="overall" ui-view="content"></div>
+					</div>
+				</div> <!-- /main-container-inner -->
   
-				</div> <!-- /main-container -->
+			</div> <!-- /main-container -->
 		
-			</section> <!-- main-section -->
-			<a class="exit-off-canvas" href=""></a>
-		  </div> <!-- /inner-wrap -->
-		</div> <!-- /off-canvas-wrap -->
+		</section> <!-- main-section -->
+		<a class="exit-off-canvas" href=""></a>
+	</div> <!-- /inner-wrap -->
+</div> <!-- /off-canvas-wrap -->
+<footer>
+	<img ng-src="/images/logo-footer.png" alt="" />
+</footer>

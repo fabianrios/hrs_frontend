@@ -692,6 +692,8 @@ table{
 	border-bottom: 1px solid #D6D6D6;
 	padding: 20px 0;
 	margin: 30px 0;
+	background: #EEEEEE;
+	color: rgb(108, 108, 124);
 }
 
 .acciones{
@@ -740,6 +742,7 @@ span{
 	min-height: 225px;
 	padding: 10px;
 	overflow: hidden;
+	position: relative;
 }
 
 .employees{
@@ -814,6 +817,47 @@ span{
 	}
 }
 
+@media only screen and (max-width: 40.063em){
+	.icon-bar{
+		a{
+			position: relative;
+			padding: 10px 2px;
+			&.active{
+				span.fa.fa-border{
+					border-color: $header;
+				}
+				&:after{
+					content:" ";
+					border-top: 10px solid #dedede;
+					border-right: 10px solid transparent;
+					border-left: 10px solid transparent;
+					position: absolute;
+					bottom: -20px;
+					right: 50%;
+					top: initial;
+					margin-right: -10px;
+				}
+			}
+			span.fa.fa-border{
+					padding: 0;
+					border: solid 0.08em #DEDEDE;
+					border-radius: 100%;
+					background: white;
+					height: 40px;
+					width: 40px;
+					line-height: 39px;
+					font-size: 23px;
+					position: relative;
+					top: 10px;
+				}
+		}
+		label{
+			text-indent: -9999px;
+		}
+	}
+}
+
+
 .information{
 	display: none;
 	&:first-child{
@@ -823,10 +867,9 @@ span{
 
 
 .number-info{
-	position: relative;
-	top: 10px;
-	left: 10px;
-	width: 50%;
+	position: absolute;
+	top: 20px;
+	right: 15px; 
 	display: inline-block;
 }
 
@@ -989,7 +1032,15 @@ nav.fixed{
 	display: block;
 	text-align: center;
 	a{
-		font-size: 1.2rem;
-		margin:0 5px;
+		font-size: 1.4rem;
+		margin: 0 8px;
 	}
+}
+
+
+footer{
+	background: #F8F8F8;
+	text-align: center;
+	padding: 40px 0;
+	border-top: 1px solid rgb(240, 240, 240);
 }

@@ -15,7 +15,7 @@
 						items: [
 							{ name: "Mis días de vacaciones", config: { param_a: "abc", param_b: "Días que a la liquidación de la última nómina tiene disponibles por este concepto. " }},
 							{ name: "Mis cesantías", config: { param_a: "def", param_b: "El Valor de los intereses a las cesantias que a la liquidación de la última nómina tiene causados dentro de la compañía" }},
-							{ name: "Mis intereses de cesantías", config: { param_a: "ghi", param_b: "El valor que a la liquidación de la última nómina tiene causado dentro de la compañía y el cual  se transferirá al fondo de Cesantias con que se  cuente al  finalizar el periodo." }},
+							{ name: "Mis int. de cesantías", config: { param_a: "ghi", param_b: "El valor que a la liquidación de la última nómina tiene causado dentro de la compañía y el cual  se transferirá al fondo de Cesantias con que se  cuente al  finalizar el periodo." }},
 						]
 					}
 				},
@@ -83,6 +83,11 @@
 				scope.ingresos = JSON.parse(attrs["ingresos"]);
 				scope.deducciones = JSON.parse(attrs["deducciones"]);
 				// console.log(scope.fechasdeudas,scope.ingresos,scope.deducciones);
+                Highcharts.setOptions({
+                    global : {
+                        useUTC : true
+                    }
+                });
 				$(element).highcharts({
 					chart: {
 						backgroundColor:'rgba(255, 255, 255, 0)',

@@ -211,58 +211,7 @@
         $rootScope.alerts.splice(index, 1);
       };
        ///alertas
-	   
-    /**
-   
-    
-    $scope.employee = {};
-    $scope.user = {};
-    $scope.vacation = {};
-    $scope.employee_info = {};
-    $scope.saldos = {};
-    $scope.betrg = [];
-    $scope.fpend = [];
-    
 
-    UserService.current_user.then(function(user) {
-          // User was logged in, or Devise returned
-          // previously authenticated session.
-       
-
-
-     
-      $scope.elusuario.$promise.then(function(items){
-
-        
-      
-              $(function () {
-      
-                  Highcharts.setOptions({
-                      global : {
-                          useUTC : true
-                      }
-                  });
-
-              });// /CHART
-      
-          
-      });
-      
-      
-      
-
-      
-      }, function(error) {
-      });
-      
-       
-    
-      $scope.common = {};
-    
-      
-
-
-      **/
   });
   
 }());
