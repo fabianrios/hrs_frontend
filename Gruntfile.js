@@ -32,7 +32,6 @@ module.exports = function(grunt){
         'compass:server',
         'copy:styles',
         'sass'
-        //'copy:module.templates'
       ],
       test: [
         'compass',
@@ -421,8 +420,10 @@ module.exports = function(grunt){
 
     grunt.task.run([
       'clean:server',
-      'concurrent:server',
-      //'autoprefixer',
+      // 'concurrent:server',
+        'compass:server',
+        'copy:styles',
+        'sass',
       'configureRewriteRules',
       'configureProxies:livereload',
       'connect:livereload',
@@ -442,7 +443,11 @@ module.exports = function(grunt){
   // Modo de creación de distribución
   grunt.registerTask('build', [
     'clean:dist',
-    'concurrent:dist',
+    // 'concurrent:dist',
+        'compass:dist',
+        'copy:dist',
+        'sass',
+        'imagemin',
     'useminPrepare',
     //'autoprefixer',
     'copy:dist',

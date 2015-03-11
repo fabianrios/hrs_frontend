@@ -27,7 +27,6 @@
     // Directives
     'ngS3upload',
     'highcharts-ng',
-	'pdf',
 
     // Modules
     'navbar',

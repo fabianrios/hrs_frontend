@@ -1,7 +1,7 @@
 (function(){
 	'use strict';
   
-	angular.module('certificates', ['employee.service'])
+	angular.module('certificates', ['employee.service', 'pdf'])
 
 	// Add http interceptors that allows us to handle http request before it sends and http response parsing
 	.config(function($stateProvider){
