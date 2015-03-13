@@ -326,7 +326,7 @@
 		}
 	})
 	
-	.controller('Dashboard.MainController', function($scope, widgets, ingresos, workers, publicaciones, employees, currentUser){
+	.controller('Dashboard.MainController', function($scope, widgets, ingresos, workers, publicaciones, employees, currentUser, articles){
     		
 		$scope.employees = employees;
 		$scope.user = currentUser;

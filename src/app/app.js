@@ -20,6 +20,7 @@
     'user.service',
     'organigram.service',
     'employee.service',
+    'article.service',
     'vacation.service',
     'vacation_requirement.service',
     'employee_info.service',
@@ -66,6 +67,9 @@
 		resolve: {
 	        currentUser: function(UserInfo){
 	          return UserInfo.currentUser();
+	        },
+			articles:  function(Articles){
+	          return Article.index();
 	        }
 		},
         views: {
