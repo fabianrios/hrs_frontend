@@ -4,7 +4,8 @@
     <meta charset="utf-8">
     <title></title>
     <meta name="description" content="">
-    <meta name="viewport" content="width=1024; initial-scale=0.75; minimum-scale=1.0; maximum-scale=1.0">
+    <meta name="viewport" content="width=1024, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<!-- <meta name="viewport" content="width=1024; initial-scale=0.75; minimum-scale=1.0; maximum-scale=1.0"> -->
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css({.tmp,vendor}) styles/main.css -->
     <link rel="stylesheet" href="styles/foundation.css" />
@@ -109,9 +110,8 @@
 		var isiPhone = navigator.userAgent.toLowerCase().indexOf("iphone");
 		
 		if(isiPhone > -1){
-			$('meta[name=viewport]').attr('content','width=device-width');
-			$("#viewport").attr("content", "width=device-width");
-			$("#intid").html("Mis int. de cesantías");
+			$('meta[name=viewport]').attr('content','width=device-width, user-scalable=no');
+			$("#viewport").attr("content", "width=device-width, user-scalable=no");
 		}		
 
 	</script>

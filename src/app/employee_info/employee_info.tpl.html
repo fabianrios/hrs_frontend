@@ -26,31 +26,35 @@
 		
 		<div class="row collapse">
 			<div class="large-2 small-12 columns">
-				<div class="icon-bar large-vertical six-up">
-				  <a class="item active" ng-click="sorthings($event, 'datos_personales')">
-					 <span class="fa fa-border fa-user fa-2x" ></span>
-				    <label>Personales</label>
-				  </a>
-				  <a class="item" ng-click="sorthings($event, 'datos_familiares')">
-					 <span class="fa fa-border fa-users fa-2x"></span>
-				    <label>Familiares</label>
-				  </a>
-				  <a class="item" ng-click="sorthings($event, 'datos_beneficiarios')">
-					  <span class="fa fa-border fa-child fa-2x"></span>
-				    <label>Beneficiarios</label>
-				  </a>
-				  <a class="item" ng-click="sorthings($event, 'datos_bancarios')">
-				    <span class="fa fa-border fa-credit-card fa-2x"></span>
-				    <label>Financieros</label>
-				  </a>
-				  <a class="item" ng-click="sorthings($event, 'datos_estudios')">
-				    <span class="fa fa-border fa-book fa-2x"></span>
-				    <label>Estudios</label>
-				  </a>
-				  <a class="item" ng-click="sorthings($event, 'datos_impuestos')">
-				    <span class="fa fa-border fa-briefcase fa-2x"></span>
-				    <label>Impuestos</label>
-				  </a>
+				<div class="icon-bar large-vertical {{countUp()}}">
+					<a ng-if="employee_info.datos_personales.length" class="item active" ng-click="sorthings($event, 'datos_personales')">
+						<span class="fa fa-border fa-user fa-2x" ></span>
+						<label>Personales</label>
+					</a>
+					<a ng-if="employee_info.datos_familiares.length" class="item" ng-click="sorthings($event, 'datos_familiares')">
+						<span class="fa fa-border fa-users fa-2x"></span>
+						<label>Familiares</label>
+					</a>
+					<a ng-if="employee_info.datos_beneficiarios.length" class="item" ng-click="sorthings($event, 'datos_beneficiarios')">
+						<span class="fa fa-border fa-child fa-2x"></span>
+						<label>Beneficiarios</label>
+					</a>
+					<a ng-if="employee_info.datos_bancarios.length" class="item" ng-click="sorthings($event, 'datos_bancarios')">
+						<span class="fa fa-border fa-credit-card fa-2x"></span>
+						<label>Financieros</label>
+					</a>
+					<a ng-if="employee_info.datos_estudios.length" class="item" ng-click="sorthings($event, 'datos_estudios')">
+						<span class="fa fa-border fa-book fa-2x"></span>
+						<label>Estudios</label>
+					</a>
+					<a ng-if="employee_info.datos_impuestos.length" class="item" ng-click="sorthings($event, 'datos_impuestos')">
+						<span class="fa fa-border fa-briefcase fa-2x"></span>
+						<label>Impuestos</label>
+					</a>
+					<a ng-if="employee_info.datos_seguridadsocial.length" class="item" ng-click="sorthings($event, 'datos_seguridadsocial')">
+						<span class="fa fa-border fa-briefcase fa-2x"></span>
+						<label>Seguridad social</label>
+					</a>
 				</div>
 			</div>
 			
@@ -217,6 +221,17 @@
 					<hr class="m0" />
 					<ul class="small-block-grid-2 large-block-grid-5" ui-sortable="sortableOptions" ng-model="employee_info.datos_impuestos">
 						<li ng-repeat="data in employee_info.datos_impuestos">
+							<label for="{{data.ncamp}}">{{data.dcamp}}</label>
+							<input disabled="{{data.sedit == 'X' ? true : false}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{data.ccamp}}"/>
+						</li>
+					</ul>
+				</div>
+				
+				<div class="information datos_seguridadsocial">
+					<h4><span class="fa fa-child"></span> Mis datos de impuestos</h4>
+					<hr class="m0" />
+					<ul class="small-block-grid-2 large-block-grid-5" ui-sortable="sortableOptions" ng-model="employee_info.datos_seguridadsocial">
+						<li ng-repeat="data in employee_info.datos_seguridadsocial">
 							<label for="{{data.ncamp}}">{{data.dcamp}}</label>
 							<input disabled="{{data.sedit == 'X' ? true : false}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{data.ccamp}}"/>
 						</li>

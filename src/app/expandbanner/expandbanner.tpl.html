@@ -48,8 +48,16 @@
 			<hr class="m0" />
 			<ul class="small-block-grid-2 large-block-grid-5" ui-sortable="sortableOptions" ng-model="employee_info.datos_empresariales">
 				<li ng-repeat="data in employee_info.datos_empresariales">
-					<label for="{{data.ncamp}}">{{data.dcamp}}</label>
-					<input disabled="{{data.sedit == 'X' ? true : false}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{data.ccamp}}"/>
+					<div ng-switch="data.ncamp">
+						<div ng-switch-default>
+							<label for="{{data.ncamp}}">{{data.dcamp}}</label>
+							<input disabled="{{data.sedit == 'X' ? true : false}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{data.ccamp}}"/>
+						</div>
+						<div ng-switch-when="P0001-ANSVH">
+							<label for="{{data.ncamp}}">{{data.dcamp}}</label>
+							<input disabled="{{data.sedit == 'X' ? true : false}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{find_job_relation(re_laborales,data.ccamp)}}"/>
+						</div>
+					</div>
 				</li>
 			</ul>
 		</div>
@@ -60,8 +68,16 @@
 			<hr class="m0" />
 			<ul class="small-block-grid-2 large-block-grid-5" ui-sortable="sortableOptions" ng-model="employee_info.datos_empresariales">
 				<li ng-repeat="data in employee_info.datos_empresariales">
-					<label for="{{data.ncamp}}">{{data.dcamp}}</label>
-					<input disabled="{{data.sedit == 'X' ? true : false}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{data.ccamp}}"/>
+					<div ng-switch="data.ncamp">
+						<div ng-switch-default>
+							<label for="{{data.ncamp}}">{{data.dcamp}}</label>
+							<input disabled="{{data.sedit == 'X' ? true : false}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{find_job_relation(re_laborales,data.ccamp)}}"/>
+						</div>
+						<div ng-switch-when="P0001-ANSVH">
+							<label for="{{data.ncamp}}">{{data.dcamp}}</label>
+							<input disabled="{{data.sedit == 'X' ? true : false}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{find_job_relation(re_laborales,data.ccamp)}}"/>
+						</div>
+					</div>
 				</li>
 			</ul>
 		</div>

@@ -125,7 +125,7 @@
       // console.log("Cambiando estado:", fromState, toState);
 	  $rootScope.ubicacion = toState.name;
 	  $rootScope.locationData = toState.data;
-	  console.log($rootScope.ubicacion, $rootScope.locationData);
+	  console.log($rootScope.ubicacion);
     });
     
     // Catch unauthorized requests and recover.
@@ -205,6 +205,27 @@
         return dt;
       };
    	 	
+		//contar para datos maestros cuantos hijos tiene realmente
+	  $rootScope.numbers = ["null", "one-up", "two-up", "tree-up", "four-up", "five-up", "six-up", "seven-up", "eight-up"];
+	  $rootScope.countUp = function(){
+		  var size = 0;
+		  size = $(".icon-bar a.item").length;
+		  return $rootScope.numbers[size];
+	  };
+	  
+	  // Find translation
+		$rootScope.re_laborales = [{"spras": "S", "molga": "38", "ansvh": "01", "atx": "Ley 50."}, {"spras": "S", "molga": "38", "ansvh": "02", "atx": "Régim. Anterior"}, {"spras": "S", "molga": "38", "ansvh": "03", "atx": "Integral."}, {"spras": "S", "molga": "38", "ansvh": "04", "atx": "Aprendizaje."}, {"spras": "S", "molga": "38", "ansvh": "05", "atx": "Pensionado."}];
+		$rootScope.find_job_relation = function (obj, compare){
+			var len = obj.length;
+				for (var i=0; i<len; i++) {
+					// console.log(obj[i].bland);
+					if (obj[i].ansvh == compare) {
+						return obj[i].atx;
+					}
+				}
+				return compare;
+		}
+		
       //alertas
       $rootScope.alerts = [];
       $rootScope.closeAlert = function(index) {
