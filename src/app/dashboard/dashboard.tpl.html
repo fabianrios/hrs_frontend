@@ -208,12 +208,12 @@
 						<div class="contenido">
 							<ul class="employees">
 								<div class="cuantos">
-									<h3><span class="icon-comment"></span>1</h3>
+									<h3><span class="icon-comment"></span>{{articles_not_mine.length}}</h3>
 								</div>
-								<li>
-									<a href="#">Contenido de prueba laboral</a>
+								<li ng-repeat="articulos in articles_not_mine">
+									<a href="#">{{articulos.titulo}}</a>
 									<p class="smalltxt no-margin">
-										Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, magni, provident, eveniet
+										{{articulos.ini}}
 									</p>
 									<div class="text-right">
 										<span class="graytxt">

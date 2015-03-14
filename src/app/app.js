@@ -68,7 +68,7 @@
 	        currentUser: function(UserInfo){
 	          return UserInfo.currentUser();
 	        },
-			articles:  function(Articles){
+			articles:  function(Article){
 	          return Article.index();
 	        }
 		},

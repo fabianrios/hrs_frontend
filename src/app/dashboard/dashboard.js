@@ -328,6 +328,19 @@
 	
 	.controller('Dashboard.MainController', function($scope, widgets, ingresos, workers, publicaciones, employees, currentUser, articles){
     		
+		
+		var mine = articles.articles;
+		$scope.articles_not_mine = [];
+		
+		// Articulos publicados que no son mios	
+		angular.forEach(mine, function(value, key) {
+			var i = mine.indexOf(value);
+			if (value.employee_id != 1){
+				$scope.articles_not_mine.push(value);
+			}
+		});
+		
+		
 		$scope.employees = employees;
 		$scope.user = currentUser;
 	
