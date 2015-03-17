@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title></title>
     <meta name="description" content="">
-    <meta name="viewport" content="width=1024, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=1024, user-scalable=no">
 	<!-- <meta name="viewport" content="width=1024; initial-scale=0.75; minimum-scale=1.0; maximum-scale=1.0"> -->
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css({.tmp,vendor}) styles/main.css -->
@@ -105,12 +105,14 @@
 	<script src="app/vacations/vacations.js"></script>
 	<script src="app/certificates/certificates.js"></script>
 	<script src="app/employee_info/employee_info.js"></script>
+	<script src="app/articles/articles.js"></script>
     <!-- endbuild -->
 	
 	<script>
 		var isiPhone = navigator.userAgent.toLowerCase().indexOf("iphone");
+		var isAndroid = navigator.userAgent.toLowerCase().indexOf("android");
 		
-		if(isiPhone > -1){
+		if(isiPhone > -1 || isAndroid > -1){
 			$('meta[name=viewport]').attr('content','width=device-width, user-scalable=no');
 			$("#viewport").attr("content", "width=device-width, user-scalable=no");
 		}		

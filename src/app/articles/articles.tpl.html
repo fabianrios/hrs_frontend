@@ -1,0 +1,51 @@
+<div class="padding-container">
+	<div class="row">
+		<div class="large-9 columns">
+			<div ng-model="articles" class="articles">
+				<ul class="large-block-grid-3 medium-block-grid-3 small-block-grid-2">
+					<li ng_repeat="article in articles" class="{{article.category}}">
+						<div class="article_img">
+							<a ui-sref="main.views.articleDetail({id:article.id})">
+								<img ng-src="{{article.imagen}}" alt="" />
+								<h5>{{article.titulo}}</h5>
+							</a>
+						</div>
+						<div class="ini">
+							<p>{{article.ini | limitTo:100}}</p>
+							<div class="fechas">
+								<span class="graytxt">
+									<i class="fa fa-calendar-o"></i>
+									<span class="small ng-binding">{{article.created_at | date:"d 'de' MMMM" }}</span>
+								</span>
+							</div>
+							<div class="author">
+								<div class="foto">
+									<a href="">
+										<img ng-src="{{article.employee.image}}" alt="" />
+									</a>
+								</div>
+								<h6 class="no-margin capitalize">
+									<a href="">{{article.employee.short_name}}</a>
+								</h6>
+							</div>
+						</div>
+						<div class="category {{article.category}}">{{article.category}}</div>
+						<div class="actions" ng-if="article.employee.id == user.employee.id">
+							<a ui-sref="main.views.articleedit({id:article.id})"><span class="fa fa-edit fa-lg"></a>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="large-3 columns">
+			<h4 class="no-margin">Categorias</h4>
+			<ul class="no-bullet categories">
+				<li class="Nomina"><a href="">Nomina</a></li>
+				<li class="Bienestar"><a href="">Noticias y eventos de bienestar</a></li>
+				<li class="Salud"><a href="">Salud ocupacional</a></li>
+				<li class="Talento"><a href="">Talento humano</a></li>
+			</ul>
+			<a ui-sref="main.views.articleNew" class="button success small">Articulo nuevo</a>
+		</div>
+	</div>
+</div>

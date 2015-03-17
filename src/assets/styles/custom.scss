@@ -964,11 +964,7 @@ span{
 		bottom: 100px;
 		width: 80%;
 		height: 100px;
-		-webkit-border-radius: 100%;
-		-moz-border-radius: 100%;
-		-ms-border-radius: 100%;
-		-o-border-radius: 100%;
-		border-radius: 100%;
+		@include border-radius(100%);
 		left: 10%;
 		right: 10%;
 		max-width: 900px;
@@ -1037,6 +1033,167 @@ nav.fixed{
 	}
 }
 
+.articles{
+	ul{
+		li{
+			margin-bottom: 10px;
+		}
+	}
+	.article_img{
+		max-height: 145px;
+		position: relative;
+		overflow: hidden;
+		img{
+			width: 100%;
+			min-height: 145px;
+		}
+		h5{
+			position: absolute;
+			bottom: 0;
+			width: 100%;
+			background: rgba(0,0,0,.5);
+			color: #E8E8E8;
+			margin: 0;
+			padding: 5px;
+			line-height: 20px; 
+		}
+	}
+	.category{
+		background: gray;
+		text-indent: -9999px;
+		width: 100%;
+		height: 2px;
+		&.Salud{
+			background: #516BF0;
+		}
+		&.Bienestar{
+			background: #51F0AE;
+		}
+		&.Talento{
+			background: #F0B251;
+		}
+		&.Nomina{
+			background: rgb(208, 79, 182);
+		}
+	}
+	.ini{
+		p{
+			font-size: 14px;
+			color: #666;
+			min-height: 90px;
+			overflow: hidden;	
+			margin: 0;
+		}
+		padding: 10px 5px;
+		.fechas{
+			margin-top: 5px;
+			text-align: right;
+		}
+	}
+	.author{
+		.foto{
+			float: left;
+			width: 20px;
+			height: 20px;
+			@include border-radius(100%);
+			margin-right: 5px;
+			overflow: hidden;
+			border: 1px solid $header;
+			a{
+				img{
+					position: relative;
+					top: -5px;
+				}
+			}
+		}
+		h6{
+			a{
+				font-size: 12px;
+				position: relative;
+				top: -3px;	
+			}
+		}
+	}
+}
+
+.profilepic{
+	float: left;
+	width: 40px;
+	height: 40px;
+	@include border-radius(100%);
+	margin-right: 5px;
+	overflow: hidden;
+	border: 2px solid #1C6087;
+}
+
+.categories{
+	li{
+		margin: 5px 0;
+		a{
+			font-size: 14px;
+			margin-left: 10px;
+		}
+		&.Salud{
+			border-left: 4px solid #516BF0;
+		}
+		&.Bienestar{
+			border-left: 4px solid #51F0AE;
+		}
+		&.Talento{
+			border-left: 4px solid #F0B251;
+		}
+		&.Nomina{
+			border-left: 4px solid rgb(208, 79, 182);
+		}
+	}
+}
+
+.imgborder{
+	width: 100%;
+	padding: 5px;
+	@include box-shadow(1px 1px 5px rgba(50,50,50,0.2));
+	border: 1px solid #ccc;
+	border-top: 1px solid white;
+	border-left: 1px solid white;
+}
+
+.article{
+	h2{
+		&.Salud{
+			border-bottom: 2px solid #516BF0;
+		}
+		&.Bienestar{
+			border-bottom: 2px solid #51F0AE;
+		}
+		&.Talento{
+			border-bottom: 2px solid #F0B251;
+		}
+		&.Nomina{
+			border-bottom: 2px solid rgb(208, 79, 182);
+		}
+	}
+}
+
+.label{
+	&.Salud{
+		background: #516BF0;
+	}
+	&.Bienestar{
+		background: #51F0AE;
+	}
+	&.Talento{
+		background: #F0B251;
+	}
+	&.Nomina{
+		background: rgb(208, 79, 182);
+	}
+}
+
+
+.parrafo{
+	margin-top: 40px;
+	text-align: justify;
+}
 
 footer{
 	background: #F8F8F8;

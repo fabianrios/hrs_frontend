@@ -213,12 +213,12 @@
 								<li ng-repeat="articulos in articles_not_mine">
 									<a href="#">{{articulos.titulo}}</a>
 									<p class="smalltxt no-margin">
-										{{articulos.ini}}
+										{{articulos.ini | limitTo:100}}
 									</p>
 									<div class="text-right">
 										<span class="graytxt">
 											<i class="fa fa-calendar-o"></i>
-											<span class="small">6 de marzo</span>
+											<span class="small">{{articulos.created_at | date:"d 'de' MMMM" }}</span>
 										</span>
 									</div>
 								</li>

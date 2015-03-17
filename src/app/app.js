@@ -37,6 +37,7 @@
     'expandbanner',
     'companies',
     'vacations',
+    'articles',
     'employee_info',
     'sessions',
     'dashboard',
@@ -129,7 +130,7 @@
       // console.log("Cambiando estado:", fromState, toState);
 	  $rootScope.ubicacion = toState.name;
 	  $rootScope.locationData = toState.data;
-	  console.log($rootScope.ubicacion);
+	  //console.log($rootScope.ubicacion);
     });
     
     // Catch unauthorized requests and recover.
