@@ -277,11 +277,11 @@ ul.button-group{
 
 //Really important to make the fixed background work
 .off-canvas-wrap{
-	-webkit-backface-visibility:none;
+	-webkit-backface-visibility:inherit;
 }
 
 .inner-wrap{
-	-webkit-backface-visibility:none;
+	-webkit-backface-visibility:inherit;
 }
 
 .tab-bar{

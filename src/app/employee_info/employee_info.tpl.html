@@ -65,32 +65,39 @@
 					<hr class="m0" />
 					<ul class="small-block-grid-2 large-block-grid-5" ui-sortable="sortableOptions" ng-model="employee_info.datos_personales">
 						<li ng-repeat="data in employee_info.datos_personales">
-							<div ng-switch="data.pvisu">
+							<div ng-switch="data.pvisu" class="relative">
 								<div ng-switch-default>
 									<label data="{{data.pvisu}}" for="{{data.ncamp}}">{{data.dcamp}}</label>
-									<input disabled="{{data.sedit == 'X' ? true : false}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{data.ccamp}}"/>
+									<input ng-disabled="{{data.sedit == 'X' ? false : true}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" ng-model="data.ccamp" value="{{data.ccamp}}"/>
+									<a ng-if="data.sedit == 'X'"  ng-click="cambiarInfo(data.subty, data.ncamp, data.ccamp, data.objid)" class="button tiny changes"><span class="fa fa-pencil fa-lg"></span></a>
 								</div>
 								<div ng-switch-when="05">
 									<label data="{{data.pvisu}}" for="{{data.ncamp}}">{{data.dcamp}}</label>
-									<input disabled="{{data.sedit == 'X' ? true : false}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{find_country(paises,data.ccamp)}}"/>
+									<input ng-disabled="{{data.sedit == 'X' ? false : true}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{find_country(paises,data.ccamp)}}"/>
+									<a ng-if="data.sedit == 'X'"  ng-click="cambiarInfo(data.subty, data.ncamp, data.ccamp, data.objid)" class="button tiny changes"><span class="fa fa-pencil fa-lg"></span></a>
 								</div>
 								<div ng-switch-when="06">
 									<label data="{{data.pvisu}}" for="{{data.ncamp}}">{{data.dcamp}}</label>
-									<input disabled="{{data.sedit == 'X' ? true : false}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{find_states(estados,data.ccamp)}}"/>
+									<input ng-disabled="{{data.sedit == 'X' ? false : true}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{find_states(estados,data.ccamp)}}"/>
+									<a ng-if="data.sedit == 'X'"  ng-click="cambiarInfo(data.subty, data.ncamp, data.ccamp, data.objid)" class="button tiny changes"><span class="fa fa-pencil fa-lg"></span></a>
 								</div>
 								<div ng-switch-when="08">
 									<label data="{{data.pvisu}}" for="{{data.ncamp}}">{{data.dcamp}}</label>
-									<input disabled="{{data.sedit == 'X' ? true : false}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{find_natio(paises,data.ccamp)}}"/>
+									<input ng-disabled="{{data.sedit == 'X' ? false : true}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{find_natio(paises,data.ccamp)}}"/>
+									<a ng-if="data.sedit == 'X'"  ng-click="cambiarInfo(data.subty, data.ncamp, data.ccamp, data.objid)" class="button tiny changes"><span class="fa fa-pencil fa-lg"></span></a>
 								</div>
 								<div ng-switch-when="09">
 									<label data="{{data.pvisu}}" for="{{data.ncamp}}">{{data.dcamp}}</label>
-									<input disabled="{{data.sedit == 'X' ? true : false}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{genero[data.ccamp]}}"/>
+									<input ng-disabled="{{data.sedit == 'X' ? false : true}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{genero[data.ccamp]}}"/>
+									<a ng-if="data.sedit == 'X'"  ng-click="cambiarInfo(data.subty, data.ncamp, data.ccamp, data.objid)" class="button tiny changes"><span class="fa fa-pencil fa-lg"></span></a>
 								</div>
 								<div ng-switch-when="10">
 									<label data="{{data.pvisu}}" for="{{data.ncamp}}">{{data.dcamp}}</label>
-									<input disabled="{{data.sedit == 'X' ? true : false}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{estado_civil[data.ccamp]}}"/>
+									<input ng-disabled="{{data.sedit == 'X' ? false : true}}"  type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{estado_civil[data.ccamp]}}"/>
+									<a ng-if="data.sedit == 'X'"  ng-click="cambiarInfo(data.subty, data.ncamp, data.ccamp, data.objid)" class="button tiny changes"><span class="fa fa-pencil fa-lg"></span></a>
 								</div>
 							</div>
+						<li>
 					</ul>
 				</div>
 				
@@ -104,29 +111,29 @@
 									<div ng-switch="data.ncamp">
 										<div ng-switch-default> 
 											<label for="{{data.ncamp}}">{{data.dcamp}}</label>
-											<input data-sedit="{{data.sedit}}" disabled="{{data.sedit == 'X' ? true : false}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{data.ccamp}}"/>
+											<input ng-disabled="{{data.sedit == 'X' ? false : true}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{data.ccamp}}"/>
 										</div>
 										<div ng-switch-when="P0021-FAMSA">
 											<label for="{{data.ncamp}}">{{data.dcamp}}</label>
-											<input data-sedit="{{data.sedit}}" disabled="{{data.sedit == 'X' ? true : false}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{find_related(familiares, data.ccamp)}}"/>
+											<input ng-disabled="{{data.sedit == 'X' ? false : true}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{find_related(familiares, data.ccamp)}}"/>
 										</div>
 										<div ng-switch-when="P0021-FGBLD">
 											<label for="{{data.ncamp}}">{{data.dcamp}}</label>
-											<input data-sedit="{{data.sedit}}" disabled="{{data.sedit == 'X' ? true : false}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{find_country(paises,data.ccamp)}}"/>
+											<input ng-disabled="{{data.sedit == 'X' ? false : true}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{find_country(paises,data.ccamp)}}"/>
 										</div>
 										<div ng-switch-when="P0021-FANAT">
 											<label for="{{data.ncamp}}">{{data.dcamp}}</label>
-											<input data-sedit="{{data.sedit}}" disabled="{{data.sedit == 'X' ? true : false}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{find_natio(paises,data.ccamp)}}"/>
+											<input ng-disabled="{{data.sedit == 'X' ? false : true}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{find_natio(paises,data.ccamp)}}"/>
 										</div>
 										<div ng-switch-when="P0021-FASEX">
 											<label for="{{data.ncamp}}">{{data.dcamp}}</label>
-											<input data-sedit="{{data.sedit}}" disabled="{{data.sedit == 'X' ? true : false}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{genero[data.ccamp]}}"/>
+											<input ng-disabled="{{data.sedit == 'X' ? false : true}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{genero[data.ccamp]}}"/>
 										</div>
 									</div>
 								</div>
 								<div ng-switch-when="HIDE">
 									<label for="{{data.ncamp}}" class="hide">{{data.dcamp}}</label>
-									<input disabled="{{data.sedit == 'X' ? true : false}}" type="hidden" name="{{data.ncamp}}" value="{{data.ccamp}}"/>
+									<input "{{data.sedit == 'X' ? '' : disabled}}" type="hidden" name="{{data.ncamp}}" value="{{data.ccamp}}"/>
 								</div>
 							</div><!-- / switch para hidden -->
 						</li>
@@ -141,15 +148,15 @@
 							<div ng-switch="data.ncamp">
 								<div ng-switch-default>
 									<label for="{{data.ncamp}}">{{data.dcamp}}</label>
-									<input disabled="{{data.sedit == 'X' ? true : false}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{data.ccamp}}"/>
+									<input ng-disabled="{{data.sedit == 'X' ? false : true}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{data.ccamp}}"/>
 								</div>
 								<div ng-switch-when="P0831-FAM02">
 									<label for="{{data.ncamp}}">{{data.dcamp}}</label>
-									<input disabled="{{data.sedit == 'X' ? true : false}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{find_related(familiares, data.ccamp)}}"/>
+									<input ng-disabled="{{data.sedit == 'X' ? false : true}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{find_related(familiares, data.ccamp)}}"/>
 								</div>
 								<div ng-switch-when="P0831-FAM01">
 									<label for="{{data.ncamp}}">{{data.dcamp}}</label>
-									<input disabled="{{data.sedit == 'X' ? true : false}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{find_related(familiares, data.ccamp)}}"/>
+									<input ng-disabled="{{data.sedit == 'X' ? false : true}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{find_related(familiares, data.ccamp)}}"/>
 								</div>
 							</div>
 						</li>
@@ -165,27 +172,27 @@
 							<div ng-switch="data.ncamp">
 								<div ng-switch-default>
 									<label for="{{data.ncamp}}">{{data.dcamp}}</label>
-									<input disabled="{{data.sedit == 'X' ? true : false}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{data.ccamp}}"/>
+									<input ng-disabled="{{data.sedit == 'X' ? false : true}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{data.ccamp}}"/>
 								</div>
 								<div ng-switch-when="P0022-AUSBI">
 									<label for="{{data.ncamp}}">{{data.dcamp}}</label>
-									<input disabled="{{data.sedit == 'X' ? true : false}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{find_formacion(formacion,data.ccamp)}}"/>
+									<input ng-disabled="{{data.sedit == 'X' ? false : true}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{find_formacion(formacion,data.ccamp)}}"/>
 								</div>
 								<div ng-switch-when="P0022-SLAND">
 									<label for="{{data.ncamp}}">{{data.dcamp}}</label>
-									<input disabled="{{data.sedit == 'X' ? true : false}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{find_country(paises,data.ccamp)}}"/>
+									<input ng-disabled="{{data.sedit == 'X' ? false : true}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{find_country(paises,data.ccamp)}}"/>
 								</div>
 								<div ng-switch-when="P0022-SLABS">
 									<label for="{{data.ncamp}}">{{data.dcamp}}</label>
-									<input disabled="{{data.sedit == 'X' ? true : false}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{find_titulos(titulos,data.ccamp)}}"/>
+									<input ng-disabled="{{data.sedit == 'X' ? false : true}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{find_titulos(titulos,data.ccamp)}}"/>
 								</div>
 								<div ng-switch-when="P0022-SLTP1">
 									<label for="{{data.ncamp}}">{{data.dcamp}}</label>
-									<input disabled="{{data.sedit == 'X' ? true : false}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{find_especialidad(especialidad,data.ccamp)}}"/>
+									<input ng-disabled="{{data.sedit == 'X' ? false : true}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{find_especialidad(especialidad,data.ccamp)}}"/>
 								</div>
 								<div ng-switch-when="P0022-SLART">
 									<label for="{{data.ncamp}}">{{data.dcamp}}</label>
-									<input disabled="{{data.sedit == 'X' ? true : false}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{find_institutos(institutos,data.ccamp)}}"/>
+									<input ng-disabled="{{data.sedit == 'X' ? false : true}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{find_institutos(institutos,data.ccamp)}}"/>
 								</div>
 							</div>
 						</li>
@@ -201,15 +208,15 @@
 							<div ng-switch="data.ncamp">
 								<div ng-switch-default>
 									<label for="{{data.ncamp}}">{{data.dcamp}}</label>
-									<input disabled="{{data.sedit == 'X' ? true : false}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{data.ccamp}}"/>
+									<input ng-disabled="{{data.sedit == 'X' ? false : true}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{data.ccamp}}"/>
 								</div>
 								<div ng-switch-when="P0009-BANKS">
 									<label for="{{data.ncamp}}">{{data.dcamp}}</label>
-									<input disabled="{{data.sedit == 'X' ? true : false}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{find_country(paises,data.ccamp)}}"/>
+									<input ng-disabled="{{data.sedit == 'X' ? false : true}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{find_country(paises,data.ccamp)}}"/>
 								</div>
 								<div ng-switch-when="P0009-BANKL">
 									<label for="{{data.ncamp}}">{{data.dcamp}}</label>
-									<input disabled="{{data.sedit == 'X' ? true : false}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{find_banks(bancos,data.ccamp)}}"/>
+									<input ng-disabled="{{data.sedit == 'X' ? false : true}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{find_banks(bancos,data.ccamp)}}"/>
 								</div>
 							</div>
 						</li>
@@ -222,7 +229,7 @@
 					<ul class="small-block-grid-2 large-block-grid-5" ui-sortable="sortableOptions" ng-model="employee_info.datos_impuestos">
 						<li ng-repeat="data in employee_info.datos_impuestos">
 							<label for="{{data.ncamp}}">{{data.dcamp}}</label>
-							<input disabled="{{data.sedit == 'X' ? true : false}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{data.ccamp}}"/>
+							<input ng-disabled="{{data.sedit == 'X' ? false : true}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{data.ccamp}}"/>
 						</li>
 					</ul>
 				</div>
@@ -233,7 +240,7 @@
 					<ul class="small-block-grid-2 large-block-grid-5" ui-sortable="sortableOptions" ng-model="employee_info.datos_seguridadsocial">
 						<li ng-repeat="data in employee_info.datos_seguridadsocial">
 							<label for="{{data.ncamp}}">{{data.dcamp}}</label>
-							<input disabled="{{data.sedit == 'X' ? true : false}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{data.ccamp}}"/>
+							<input ng-disabled="{{data.sedit == 'X' ? false : true}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{data.ccamp}}"/>
 						</li>
 					</ul>
 				</div>

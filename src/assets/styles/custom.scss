@@ -13,6 +13,20 @@
 @import "compass/css3";
 
 
+.relative{
+	position: relative;
+	div{
+		position: relative;
+	}
+}
+
+.changes{
+    position: absolute;
+    top: 22px;
+    right: 0;
+	margin: 0;
+}
+
 .dib{
 	display: inline-block;
 }
@@ -1117,7 +1131,6 @@ nav.fixed{
 }
 
 .profilepic{
-	float: left;
 	width: 50px;
 	height: 50px;
 	@include border-radius(100%);
@@ -1193,6 +1206,7 @@ input[type="text"]#titulo{
 		color: rgb(208, 79, 182);
 	}
 }
+
 
 .article-actions{
     text-align: center;
