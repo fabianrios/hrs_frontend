@@ -92,7 +92,7 @@ textarea{
 }
 
 textarea[rows]{
-	height: 200px;
+//	height: 200px;
 	&.fixheight{
 		height: 94px;
 	}
@@ -277,11 +277,11 @@ ul.button-group{
 
 //Really important to make the fixed background work
 .off-canvas-wrap{
-	-webkit-backface-visibility:inherit;
+	-webkit-backface-visibility:none;
 }
 
 .inner-wrap{
-	-webkit-backface-visibility:inherit;
+	-webkit-backface-visibility:none;
 }
 
 .tab-bar{

@@ -1,19 +1,23 @@
-	 <label for="titulo">Titulo:</label>
-     <input type="text" ng-model="article.titulo" id="titulo">
-	 <label for="imagen">Imagen:</label>
-     <input type="text" ng-model="article.imagen" id="imagen">
-	 <label for="cuerpo">Cuerpo:</label>
-     <textarea ng-model="article.cuerpo" cols="30" rows="10"></textarea>
-	 <label for="ini">Texto inicial:</label>
-     <textarea ng-model="article.ini" id="ini" cols="20" rows="4"></textarea>
-	 <label for="publicado">¿Publicar?:</label>
-	 <div class="switch round small">
-	   <input id="activo" type="checkbox" ng-model="article.publicado" >
-	   <label for="activo"></label>
-	 </div>
-	 <label for="category">Categoria:</label>
-	 <select ng-model="correctlySelected" ng-options="option as option.label for option in options"  ng-change="update(correctlySelected)"></select>
-	 <input type="text" ng-model="article.category" id="category">
-	 <input type="hidden" id="employee" ng-model="article.employee_id">
-	 
-
+<div class="row">
+	<div class="large-9 columns">
+		<label for="titulo">Titulo:</label>
+		<input type="text" ng-model="article.titulo" id="titulo" class="{{article.category}}" >
+		<label for="imagen">Imagen:</label>
+		<input type="text" ng-model="article.imagen" id="imagen">
+		<label for="ini">Texto inicial:</label>
+		<textarea ng-model="article.ini" id="ini" cols="20" rows="4"></textarea>
+		<label for="cuerpo">Cuerpo:</label>
+		<text-angular ng-model="article.cuerpo"></text-angular>
+	</div>
+	<div class="large-3 columns">
+		<label for="category">Categoria:</label>
+		<select ng-model="correctlySelected" ng-options="option as option.label for option in options"  ng-change="update(correctlySelected)"></select>
+		<label for="publicado">¿Publicar?:</label>
+		<div class="switch round small">
+			<input id="activo" type="checkbox" ng-model="article.publicado">
+			<label for="activo"></label>
+		</div>
+		<input type="hidden" ng-model="article.category" id="category">
+		<input type="hidden" id="employee" ng-model="article.employee_id">
+	</div>
+</div>

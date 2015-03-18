@@ -1,7 +1,7 @@
 (function(){
 	'use strict';
   
-	angular.module('articles', ['article.service'])
+	angular.module('articles', ['article.service','textAngular'])
 
 	// Add http interceptors that allows us to handle http request before it sends and http response parsing
 	.config(function($stateProvider){
@@ -65,6 +65,18 @@
 			Salud : 'Salud ocupacional',
 			Talento : 'Talento humano'
 		};
+		
+		$scope.articleDelete = function(article,modal) { 
+			console.log(article);
+			// article.$delete(function() {
+				var index = $scope.articles.indexOf(article);
+				console.log(index);
+				$scope.articles.splice(index, 1);
+				$('#myModal-'+modal).foundation('reveal', 'close');  
+				$scope.alerts.push({type: 'alert', msg: "El articulo '"+ article.titulo + "' a sido borrado"});
+			// });
+			
+		} ///BORRAR
 		
 
 	})	

@@ -9,6 +9,18 @@
 								<img ng-src="{{article.imagen}}" alt="" />
 								<h5>{{article.titulo}}</h5>
 							</a>
+							<div class="article-actions" ng-if="article.employee.id == user.employee.id">
+								<a ui-sref="main.views.articleedit({id:article.id})" class="editar"><span class="fa fa-pencil fa-lg"></a>
+								<a href="" class="borrar" ng-click="openModal($index,'myModal')"><span class="fa fa-close fa-lg"></a>
+								<div id="myModal-{{$index}}" class="reveal-modal tiny" data-reveal>
+									<br />
+									<h5 class="text-center">¿Seguro quieres borrar el articulo?</h5>
+									<div class="text-center">
+									<a ng-click="articleDelete(article,$index)" class="button alert small">Borrar</a>
+									</div>
+									<a class="close-reveal-modal">&#215;</a>
+								</div>
+							</div>
 						</div>
 						<div class="ini">
 							<p>{{article.ini | limitTo:100}}</p>
@@ -30,9 +42,6 @@
 							</div>
 						</div>
 						<div class="category {{article.category}}">{{article.category}}</div>
-						<div class="actions" ng-if="article.employee.id == user.employee.id">
-							<a ui-sref="main.views.articleedit({id:article.id})"><span class="fa fa-edit fa-lg"></a>
-						</div>
 					</li>
 				</ul>
 			</div>

@@ -237,6 +237,11 @@
         $rootScope.alerts.splice(index, 1);
       };
        ///alertas
+	  
+	  //modal
+		$rootScope.openModal = function(modal, which) {
+			$('#'+which+'-'+modal).foundation('reveal', 'open');
+		};
 
   });
   

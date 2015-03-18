@@ -36,9 +36,6 @@
 			}
 		});
 		
-		$scope.openModal = function(modal, which) {
-			$('#'+which+'-'+modal).foundation('reveal', 'open');
-		};
 		
 		// iniciar los inputs
 		$( "#inicio" ).datepicker();
@@ -64,12 +61,12 @@
 		
 		//BORRAR
 		$scope.deleteVacation = function(vacacion,modal) { 
-			
+			console.log(vacacion);
 			vacacion.$delete(function() {
 				var index = $scope.vac_requirements.indexOf(vacacion)
 				$scope.vac_requirements.splice(index, 1);
 				$('#myModal-'+modal).foundation('reveal', 'close');  
-				$scope.alerts.push({type: 'alert', msg: "La vacación del "+ vacacion.start_date  + " al "+ req_info.end_date +" a sido borrada"});
+				$scope.alerts.push({type: 'alert', msg: "La vacación del "+ vacacion.start_date  + " al "+ vacacion.end_date +" a sido borrada"});
 			});
 			
 		} ///BORRAR

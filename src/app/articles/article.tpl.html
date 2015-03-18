@@ -10,16 +10,15 @@
 				</div>
 				<br /><br /><br />
 				<img ng-src="{{article.imagen}}" alt="" class="imgborder" />
-				<div class="parrafo">
-					{{article.cuerpo}}
-				</div>
+				<div class="parrafo" ng-bind-html="article.cuerpo"></div>
 			</div>
 		</div>
 		<div class="large-3 columns">
 			<h4>Autor</h4>
 			<div class="profilepic">
-				<a href="#"><img alt="profile" ng-src="{{article.employee.imagen}}"></a>
+				<a href="#"><img alt="profile" ng-src="{{article.employee.image}}"></a>
 			</div>
+			<br />
 			<h6 class="no-margin capitalize">
 				<a href="" class="ng-binding">{{article.employee.short_name}}</a>
 			</h6>

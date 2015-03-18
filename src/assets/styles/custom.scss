@@ -1118,8 +1118,8 @@ nav.fixed{
 
 .profilepic{
 	float: left;
-	width: 40px;
-	height: 40px;
+	width: 50px;
+	height: 50px;
 	@include border-radius(100%);
 	margin-right: 5px;
 	overflow: hidden;
@@ -1155,6 +1155,81 @@ nav.fixed{
 	border: 1px solid #ccc;
 	border-top: 1px solid white;
 	border-left: 1px solid white;
+}
+
+.parrafo{
+	img{
+		padding: 5px;
+		@include box-shadow(1px 1px 5px rgba(50,50,50,0.2));
+		border: 1px solid #ccc;
+		border-top: 1px solid white;
+		border-left: 1px solid white;
+	}
+}
+
+form.false{
+	.row{
+		.large-9{
+			opacity: .5;
+		}
+	}
+}
+
+input[type="text"]#titulo{
+	&.Salud{
+		border-bottom: 2px solid #516BF0;
+		color: #516BF0;
+	}
+	&.Bienestar{
+		border-bottom: 2px solid #51F0AE;
+		color: #51F0AE;
+	}
+	&.Talento{
+		border-bottom: 2px solid #F0B251;
+		color: #F0B251;
+	}
+	&.Nomina{
+		border-bottom: 2px solid rgb(208, 79, 182);
+		color: rgb(208, 79, 182);
+	}
+}
+
+.article-actions{
+    text-align: center;
+    margin: 10px 5px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 70px;
+	a{
+	   padding: 5px;
+	   @include border-radius(100%);
+	   border: 1px solid orange;
+	   background: rgba(255,255,255,.6);
+	   &.editar{
+	   	color: orange;
+		border-color: orange;
+		&:hover{
+			color: white;
+			border-color: orange;
+			background: orange;
+		}
+	   }
+	   &.borrar{
+		padding: 5px 6px;
+	  	color: #E05162;
+		border-color: #E05162;
+		&:hover{
+			color: white;
+			border-color: #E05162;
+			background: #E05162;
+		}
+		span{
+			position: relative;
+			top: -1px;
+		}
+	  }
+	}
 }
 
 .article{

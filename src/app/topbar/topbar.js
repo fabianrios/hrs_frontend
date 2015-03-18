@@ -40,7 +40,7 @@
 			}
 		});
 		
-		console.log($scope.articles, $scope.articles_not_mine, $scope.not_published_mine, $scope.articles_mine);
+		// console.log($scope.articles, $scope.articles_not_mine, $scope.not_published_mine, $scope.articles_mine);
 		
     });
 }());
