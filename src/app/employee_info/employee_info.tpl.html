@@ -6,7 +6,7 @@
 					<div class="panel bgwhite">
 						<h4><span class="fa-info-circle fa"></span> Mis datos de contacto</h4>
 						<hr class="m0" />
-						<ul class="small-block-grid-2 large-block-grid-4">
+						<ul class="small-block-grid-2 medium-block-grid-4 large-block-grid-4">
 							<li ng-repeat="data in employee_info.datos_contacto">
 								<label for="{{data.ncamp}}">{{data.dcamp}}</label>
 								<div class="row collapse">
@@ -63,38 +63,38 @@
 				<div class="information datos_personales">
 					<h4><span class="fa fa-user"></span> Mis datos personales</h4>
 					<hr class="m0" />
-					<ul class="small-block-grid-2 large-block-grid-5" ui-sortable="sortableOptions" ng-model="employee_info.datos_personales">
+					<ul class="small-block-grid-2 medium-block-grid-4 large-block-grid-4" ui-sortable="sortableOptions" ng-model="employee_info.datos_personales">
 						<li ng-repeat="data in employee_info.datos_personales">
-							<div ng-switch="data.pvisu" class="relative">
+							<div ng-switch="data.lstbx" class="relative">
 								<div ng-switch-default>
 									<label data="{{data.pvisu}}" for="{{data.ncamp}}">{{data.dcamp}}</label>
 									<input ng-disabled="{{data.sedit == 'X' ? false : true}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" ng-model="data.ccamp" value="{{data.ccamp}}"/>
-									<a ng-if="data.sedit == 'X'"  ng-click="cambiarInfo(data.subty, data.ncamp, data.ccamp, data.objid)" class="button tiny changes"><span class="fa fa-pencil fa-lg"></span></a>
+									<a ng-if="data.sedit == 'X'"  ng-click="cambiarInfo(data.subty, data.ncamp, data.dcamp, data.ccamp, data.objid, data.lstbx)" class="button tiny changes"><span class="fa fa-pencil fa-lg"></span></a>
 								</div>
-								<div ng-switch-when="05">
+								<div ng-switch-when="IH_TB_T005L">
 									<label data="{{data.pvisu}}" for="{{data.ncamp}}">{{data.dcamp}}</label>
-									<input ng-disabled="{{data.sedit == 'X' ? false : true}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{find_country(paises,data.ccamp)}}"/>
-									<a ng-if="data.sedit == 'X'"  ng-click="cambiarInfo(data.subty, data.ncamp, data.ccamp, data.objid)" class="button tiny changes"><span class="fa fa-pencil fa-lg"></span></a>
+									<select ng-model="country" ng-class="search_country(data.ccamp)" style="max-width: 158px; height: 30px;" ng-options="pais.land1 as pais.landx for pais in paises"  ng-change="cambiar(country)"></select>
+									<a ng-if="data.sedit == 'X'"  ng-click="cambiarInfo(data.subty, data.ncamp, data.dcamp, country, data.objid, data.lstbx)" class="button tiny changes"><span class="fa fa-pencil fa-lg"></span></a>
 								</div>
-								<div ng-switch-when="06">
+								<div ng-switch-when="IH_TB_T005S">
 									<label data="{{data.pvisu}}" for="{{data.ncamp}}">{{data.dcamp}}</label>
-									<input ng-disabled="{{data.sedit == 'X' ? false : true}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{find_states(estados,data.ccamp)}}"/>
-									<a ng-if="data.sedit == 'X'"  ng-click="cambiarInfo(data.subty, data.ncamp, data.ccamp, data.objid)" class="button tiny changes"><span class="fa fa-pencil fa-lg"></span></a>
+									<select ng-model="states" ng-class="search_estado(data.ccamp)" style="max-width: 158px; height: 30px;" ng-options="estado.bland as estado.bezei for estado in estados"  ng-change="cambiar_estados(states)"></select>
+									<a ng-if="data.sedit == 'X'"  ng-click="cambiarInfo(data.subty, data.ncamp, data.dcamp, data.ccamp, data.objid, data.lstbx)" class="button tiny changes"><span class="fa fa-pencil fa-lg"></span></a>
 								</div>
-								<div ng-switch-when="08">
+								<div ng-switch-when="IH_TB_T005">
 									<label data="{{data.pvisu}}" for="{{data.ncamp}}">{{data.dcamp}}</label>
-									<input ng-disabled="{{data.sedit == 'X' ? false : true}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{find_natio(paises,data.ccamp)}}"/>
-									<a ng-if="data.sedit == 'X'"  ng-click="cambiarInfo(data.subty, data.ncamp, data.ccamp, data.objid)" class="button tiny changes"><span class="fa fa-pencil fa-lg"></span></a>
+									<select ng-model="natio" ng-class="search_natio(data.ccamp)" style="max-width: 158px; height: 30px;" ng-options="pais.land1 as pais.natio for pais in paises"  ng-change="cambiar(natio)"></select>
+									<a ng-if="data.sedit == 'X'"  ng-click="cambiarInfo(data.subty, data.ncamp, data.dcamp, data.ccamp, data.objid, data.lstbx)" class="button tiny changes"><span class="fa fa-pencil fa-lg"></span></a>
 								</div>
-								<div ng-switch-when="09">
+								<div ng-switch-when="IH_TB_GESC">
 									<label data="{{data.pvisu}}" for="{{data.ncamp}}">{{data.dcamp}}</label>
 									<input ng-disabled="{{data.sedit == 'X' ? false : true}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{genero[data.ccamp]}}"/>
-									<a ng-if="data.sedit == 'X'"  ng-click="cambiarInfo(data.subty, data.ncamp, data.ccamp, data.objid)" class="button tiny changes"><span class="fa fa-pencil fa-lg"></span></a>
+									<a ng-if="data.sedit == 'X'"  ng-click="cambiarInfo(data.subty, data.ncamp, data.dcamp, data.ccamp, data.objid, data.lstbx)" class="button tiny changes"><span class="fa fa-pencil fa-lg"></span></a>
 								</div>
-								<div ng-switch-when="10">
+								<div ng-switch-when="IH_TB_T502T">
 									<label data="{{data.pvisu}}" for="{{data.ncamp}}">{{data.dcamp}}</label>
 									<input ng-disabled="{{data.sedit == 'X' ? false : true}}"  type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{estado_civil[data.ccamp]}}"/>
-									<a ng-if="data.sedit == 'X'"  ng-click="cambiarInfo(data.subty, data.ncamp, data.ccamp, data.objid)" class="button tiny changes"><span class="fa fa-pencil fa-lg"></span></a>
+									<a ng-if="data.sedit == 'X'"  ng-click="cambiarInfo(data.subty, data.ncamp, data.dcamp, data.ccamp, data.objid, data.lstbx)" class="button tiny changes"><span class="fa fa-pencil fa-lg"></span></a>
 								</div>
 							</div>
 						<li>
@@ -102,9 +102,9 @@
 				</div>
 				
 				<div class="information datos_familiares">
-					<h4><span class="fa fa-users"></span> Mis datos familiares</h4>
+					<h4><span class="fa fa-users"></span> Mis datos familiares </h4>
 					<hr class="m0" />
-					<ul class="small-block-grid-2 large-block-grid-5" ui-sortable="sortableOptions" ng-model="employee_info.datos_familiares">
+					<ul class="small-block-grid-2 medium-block-grid-4 large-block-grid-5" ui-sortable="sortableOptions" ng-model="employee_info.datos_familiares">
 						<li ng-repeat="data in employee_info.datos_familiares">
 							<div ng-switch="data.tcamp">
 								<div ng-switch-default>
@@ -133,9 +133,9 @@
 								</div>
 								<div ng-switch-when="HIDE">
 									<label for="{{data.ncamp}}" class="hide">{{data.dcamp}}</label>
-									<input "{{data.sedit == 'X' ? '' : disabled}}" type="hidden" name="{{data.ncamp}}" value="{{data.ccamp}}"/>
+									<input type="hidden" name="{{data.ncamp}}" value="{{data.ccamp}}"/>
 								</div>
-							</div><!-- / switch para hidden -->
+							</div>
 						</li>
 					</ul>
 				</div>
@@ -143,7 +143,7 @@
 				<div class="information datos_beneficiarios">
 					<h4><span class="fa fa-child"></span> Mis datos beneficiarios</h4>
 					<hr class="m0" />
-					<ul class="small-block-grid-2 large-block-grid-3" ui-sortable="sortableOptions" ng-model="employee_info.datos_beneficiarios">
+					<ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-3" ui-sortable="sortableOptions" ng-model="employee_info.datos_beneficiarios">
 						<li ng-repeat="data in employee_info.datos_beneficiarios">
 							<div ng-switch="data.ncamp">
 								<div ng-switch-default>
@@ -167,7 +167,7 @@
 				<div class="information datos_estudios">
 					<h4><span class="fa fa-bank"></span> Mis datos estudios</h4>
 					<hr class="m0" />
-					<ul class="small-block-grid-2 large-block-grid-5" ui-sortable="sortableOptions" ng-model="employee_info.datos_estudios">
+					<ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-5" ui-sortable="sortableOptions" ng-model="employee_info.datos_estudios">
 						<li ng-repeat="data in employee_info.datos_estudios">
 							<div ng-switch="data.ncamp">
 								<div ng-switch-default>
@@ -203,7 +203,7 @@
 				<div class="information datos_bancarios">
 					<h4><span class="fa fa-bank"></span> Mis datos bancarios</h4>
 					<hr class="m0" />
-					<ul class="small-block-grid-2 large-block-grid-5" ui-sortable="sortableOptions" ng-model="employee_info.datos_bancarios">
+					<ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-5" ui-sortable="sortableOptions" ng-model="employee_info.datos_bancarios">
 						<li ng-repeat="data in employee_info.datos_bancarios">
 							<div ng-switch="data.ncamp">
 								<div ng-switch-default>
@@ -226,7 +226,7 @@
 				<div class="information datos_impuestos">
 					<h4><span class="fa fa-child"></span> Mis datos de impuestos</h4>
 					<hr class="m0" />
-					<ul class="small-block-grid-2 large-block-grid-5" ui-sortable="sortableOptions" ng-model="employee_info.datos_impuestos">
+					<ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-5" ui-sortable="sortableOptions" ng-model="employee_info.datos_impuestos">
 						<li ng-repeat="data in employee_info.datos_impuestos">
 							<label for="{{data.ncamp}}">{{data.dcamp}}</label>
 							<input ng-disabled="{{data.sedit == 'X' ? false : true}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{data.ccamp}}"/>
@@ -237,16 +237,122 @@
 				<div class="information datos_seguridadsocial">
 					<h4><span class="fa fa-child"></span> Mis datos de impuestos</h4>
 					<hr class="m0" />
-					<ul class="small-block-grid-2 large-block-grid-5" ui-sortable="sortableOptions" ng-model="employee_info.datos_seguridadsocial">
+					<ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-5" ui-sortable="sortableOptions" ng-model="employee_info.datos_seguridadsocial">
 						<li ng-repeat="data in employee_info.datos_seguridadsocial">
 							<label for="{{data.ncamp}}">{{data.dcamp}}</label>
 							<input ng-disabled="{{data.sedit == 'X' ? false : true}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{data.ccamp}}"/>
 						</li>
 					</ul>
 				</div>
-				
-				
 			</div>
+		</div>
+	</div>
+</div>
+<br />
+<div class="missolicitudes" ng-if="missolicitudes.length > 0">
+	<h3 class="expand-title text-center">Mis solicitudes de datos maestros</h3>
+	<br />
+	<div class="row">
+		<div class="large-12 columns">
+			<table class="vacations">
+				<thead>
+					<tr>
+						<th>Campo</th>
+						<th>Cambio</th>
+						<th>Estado</th>
+						<th>Fecha de petición</th>
+						<th class="borrar">BORRAR</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="solicitud in missolicitudes">
+						<td>
+							<h6>{{ solicitud.dcamp }}</h6>
+						</td>
+						<td>
+							<h5 class="text-center">{{solicitud.comparador ? solicitud.comparador : solicitud.ccamp}}</h5>
+						</td>
+						<td>
+							<h5 class="text-center"><span class="{{solicitud.approved}}">{{ solicitud.approved ? "Aprobado" : "En espera" }}</h5>
+						</td>
+						<td>	
+							<h6><span class="fa fa-calendar fa-lg"></span> {{ solicitud.created_at | date:'short' }}</h6>
+						</td>
+						<td>
+							<a href="" class="acciones borrar" ng-click="openModal($index,'elmodal')"></a>
+							<div id="elmodal-{{$index}}" class="reveal-modal tiny" data-reveal>
+								<br />
+								<h4 class="text-center">¿Seguro quieres borrar esto?</h4>
+								<div class="text-center">
+								<a href="" ng-click="deleteSolicitud(solicitud,$index)" class="button success">Borrar</a>
+								</div>
+								<a class="close-reveal-modal">&#215;</a>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<br /><br />
+		</div>
+	</div>
+</div>
+<div class="solicitudes" ng-if="toapproved.length > 0">
+	<br />
+	<h3 class="expand-title text-center">Aprobar solicitudes de datos maestros</h3>
+	<br />
+	<div class="row">
+		<div class="large-12 columns">
+			<table class="vacations">
+				<thead>
+					<tr>
+						<th>Empleado</th>
+						<th>Campo</th>
+						<th>Cambio</th>
+						<th>Estado</th>
+						<th>Fecha de petición</th>
+						<th class="aprobar">APROBAR</th>
+						<th class="negar">NEGAR</th>
+						<th class="borrar">BORRAR</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="solicitud in toapproved">
+						<td>
+							<div class="profilepic">
+								<img ng-src="{{solicitud.employee.image}}" alt="" />
+							</div>
+							<h5>{{solicitud.employee.short_name}} </h5>
+							<h5 class="subheader">{{solicitud.employee.cargo}} </h5>
+						</td>
+						<td>
+							<h6>{{ solicitud.dcamp }}</h6>
+						</td>
+						<td>
+							<h5 class="text-center">{{solicitud.comparador ? solicitud.comparador : solicitud.ccamp}}</h5>
+						</td>
+						<td>
+							<h5><span class="{{solicitud.approved}}">{{ solicitud.approved }}</h5>
+						</td>
+						<td>	
+							<h6><span class="fa fa-calendar fa-lg"></span> {{ solicitud.created_at | date:'short' }}</h6>
+						</td>
+						<td><a href="" ng-click="approvedSolicitud(solicitud)" class="acciones"></a></td>
+						<td><a href="" ng-click="deniedSolicitud(solicitud)" class="acciones negar"></a></td>
+						<td>
+							<a href="" class="acciones borrar" ng-click="openModal($index,'elmodal')"></a>
+							<div id="elmodal-{{$index}}" class="reveal-modal tiny" data-reveal>
+								<br />
+								<h4 class="text-center">¿Seguro quieres borrar esto?</h4>
+								<div class="text-center">
+								<a href="" ng-click="deleteSolicitud(solicitud,$index)" class="button success">Borrar</a>
+								</div>
+								<a class="close-reveal-modal">&#215;</a>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<br /><br />
 		</div>
 	</div>
 </div>

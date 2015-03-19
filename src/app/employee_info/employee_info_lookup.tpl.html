@@ -6,7 +6,7 @@
 					<div class="panel bgwhite">
 						<h4><span class="fa-info-circle fa"></span> Datos de contacto</h4>
 						<hr class="m0" />
-						<ul class="small-block-grid-2 large-block-grid-4">
+						<ul class="small-block-grid-2 medium-block-grid-4 large-block-grid-4">
 							<li ng-repeat="data in employee_info.datos_contacto">
 								<label for="{{data.ncamp}}">{{data.dcamp}}</label>
 								<div class="row collapse">
@@ -63,7 +63,7 @@
 				<div class="information datos_personales">
 					<h4><span class="fa fa-user"></span> Datos personales</h4>
 					<hr class="m0" />
-					<ul class="small-block-grid-2 large-block-grid-5" ui-sortable="sortableOptions" ng-model="employee_info.datos_personales">
+					<ul class="small-block-grid-2 medium-block-grid-4 large-block-grid-5" ui-sortable="sortableOptions" ng-model="employee_info.datos_personales">
 						<li ng-repeat="data in employee_info.datos_personales">
 							<div ng-switch="data.pvisu">
 								<div ng-switch-default>
@@ -98,7 +98,7 @@
 				<div class="information datos_familiares">
 					<h4><span class="fa fa-users"></span> Datos familiares</h4>
 					<hr class="m0" />
-					<ul class="small-block-grid-2 large-block-grid-5" ui-sortable="sortableOptions" ng-model="employee_info.datos_familiares">
+					<ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-5" ui-sortable="sortableOptions" ng-model="employee_info.datos_familiares">
 						<li ng-repeat="data in employee_info.datos_familiares">
 							<div ng-switch="data.tcamp">
 								<div ng-switch-default>
@@ -137,7 +137,7 @@
 				<div class="information datos_beneficiarios">
 					<h4><span class="fa fa-child"></span> Datos beneficiarios</h4>
 					<hr class="m0" />
-					<ul class="small-block-grid-3 large-block-grid-3" ui-sortable="sortableOptions" ng-model="employee_info.datos_beneficiarios">
+					<ul class="small-block-grid-3 medium-block-grid-3 large-block-grid-3" ui-sortable="sortableOptions" ng-model="employee_info.datos_beneficiarios">
 						<li ng-repeat="data in employee_info.datos_beneficiarios">
 							<div ng-switch="data.ncamp">
 								<div ng-switch-default>
@@ -161,7 +161,7 @@
 				<div class="information datos_estudios">
 					<h4><span class="fa fa-bank"></span> Datos estudios</h4>
 					<hr class="m0" />
-					<ul class="small-block-grid-2 large-block-grid-5" ui-sortable="sortableOptions" ng-model="employee_info.datos_estudios">
+					<ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-5" ui-sortable="sortableOptions" ng-model="employee_info.datos_estudios">
 						<li ng-repeat="data in employee_info.datos_estudios">
 							<div ng-switch="data.ncamp">
 								<div ng-switch-default>
@@ -197,7 +197,7 @@
 				<div class="information datos_bancarios">
 					<h4><span class="fa fa-bank"></span> Datos bancarios</h4>
 					<hr class="m0" />
-					<ul class="small-block-grid-2 large-block-grid-5" ui-sortable="sortableOptions" ng-model="employee_info.datos_bancarios">
+					<ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-5" ui-sortable="sortableOptions" ng-model="employee_info.datos_bancarios">
 						<li ng-repeat="data in employee_info.datos_bancarios">
 							<div ng-switch="data.ncamp">
 								<div ng-switch-default>

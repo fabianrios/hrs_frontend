@@ -22,7 +22,7 @@
 
 .changes{
     position: absolute;
-    top: 22px;
+    top: 21px;
     right: 0;
 	margin: 0;
 }
@@ -110,7 +110,7 @@
 					color: #333;
 				}
 				a{
-					color: #74DFFF;
+					color: #2057A3;
 				}
 				&.unavailable {
 					a{
@@ -702,12 +702,13 @@ table{
 
 
 .expand-title{
-	border-top: 1px solid #D6D6D6;
-	border-bottom: 1px solid #D6D6D6;
+	border-top: 1px solid #4A84A5;
+	border-bottom: 1px solid #4A84A5;
 	padding: 20px 0;
 	margin: 30px 0;
-	background: #EEEEEE;
-	color: rgb(108, 108, 124);
+	margin-top: 0;
+	background: #fff;
+	color: #4A84A5;
 }
 
 .acciones{
@@ -874,6 +875,7 @@ span{
 
 .information{
 	display: none;
+	padding: 0 10px;
 	&:first-child{
 		display: block;
 	}
@@ -903,6 +905,7 @@ span{
 .master-data, .datos_empresariales{
 	h4{
 		color: $header;
+		margin: 20px 0;
 	}
 }
 
@@ -1282,6 +1285,10 @@ input[type="text"]#titulo{
 .parrafo{
 	margin-top: 40px;
 	text-align: justify;
+}
+
+.missolicitudes{
+	background: #fff;
 }
 
 footer{

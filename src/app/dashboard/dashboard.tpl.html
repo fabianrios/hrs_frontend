@@ -211,7 +211,7 @@
 									<h3><span class="icon-comment"></span>{{articles_not_mine.length}}</h3>
 								</div>
 								<li ng-repeat="articulos in articles_not_mine">
-									<a href="#">{{articulos.titulo}}</a>
+									<a ui-sref="main.views.articleDetail({id:articulos.id})">{{articulos.titulo}}</a>
 									<p class="smalltxt no-margin">
 										{{articulos.ini | limitTo:100}}
 									</p>

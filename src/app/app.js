@@ -24,6 +24,7 @@
     'vacation.service',
     'vacation_requirement.service',
     'employee_info.service',
+	'info.service',
 
     // Directives
     'ngS3upload',

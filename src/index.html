@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <title></title>
     <meta name="description" content="">
-    <meta name="viewport" content="width=1024, user-scalable=no">
-	<!-- <meta name="viewport" content="width=1024; initial-scale=0.75; minimum-scale=1.0; maximum-scale=1.0"> -->
+    <!-- <meta name="viewport" content="width=1024, user-scalable=no"> -->
+	<meta name="viewport" content="width=1024; initial-scale=0.75; minimum-scale=1.0; maximum-scale=1.0">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css({.tmp,vendor}) styles/main.css -->
     <link rel="stylesheet" href="styles/foundation.css" />
@@ -78,9 +78,11 @@
 	<script src="org.webjars-jquery.classyLoader/jquery.classyloader.js"></script>
 	<script src="pdfjs-dist/build/pdf.combined.js"></script>
 	<script src="angular-pdf/dist/angular-pdf.js"></script>
-	
-
-	
+	<script src="rangy/rangy-core.js"></script>
+	<script src="rangy/rangy-selectionsaverestore.js"></script>
+	<script src="textAngular/src/textAngular-sanitize.js"></script>
+	<script src="textAngular/src/textAngularSetup.js"></script>
+	<script src="textAngular/src/textAngular.js"></script>
     <!-- endbuild -->
 
     <!-- build:js({src,.tmp}) scripts/scripts.js -->
@@ -94,6 +96,7 @@
 	<script src="common/resources/vacation_requirement_api.js"></script>
 	<script src="common/resources/employee_info_api.js"></script>
 	<script src="common/resources/article_api.js"></script>
+	<script src="common/resources/info_api.js"></script>
     <script src="app/navbar/navbar.js"></script>
 	<script src="app/topbar/topbar.js"></script>
     <script src="app/sidebar/sidebar.js"></script>
@@ -107,9 +110,6 @@
 	<script src="app/certificates/certificates.js"></script>
 	<script src="app/employee_info/employee_info.js"></script>
 	<script src="app/articles/articles.js"></script>
-	<script src="textAngular/dist/textAngular-rangy.min.js"></script>
-	<script src="textAngular/dist/textAngular-sanitize.min.js"></script>
-	<script src="textAngular/dist/textAngular.min.js"></script>
     <!-- endbuild -->
 	
 	<script>
