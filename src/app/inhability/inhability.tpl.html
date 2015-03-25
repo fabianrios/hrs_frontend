@@ -1,41 +1,41 @@
 <div class="padding-container">
-	<div ng-model="licenses">
-		<h3 class="expand-title text-center first-one">Solicitar registro de horas extras</h3>
+	<div ng-model="Inhabilities">
+		<h3 class="expand-title text-center first-one">Crear registro de incapacidades</h3>
 		<br /><br />
 		<div class="row">
 			<div class="large-5 medium-5 columns">
 				<form ng-submit="putRequest()">
 					<div class="row">
-						<div class="large-7 medium-7 columns">
-							<label for="inicio">Fecha de registro: </label>
+						<div class="large-6 medium-6 columns">
+							<label for="inicio">Desde: </label>
 							<div class="row collapse prefix-radius">
 								<div class="small-3 columns">
 									<span class="prefix date"><i class="fa fa-calendar"></i></span>
 								</div>
 								<div class="small-9 columns">
-									<input type="date" id="inicio" ng-model="extras.start_date">
+									<input type="date" id="inicio" ng-model="inhability.start_date">
 								</div>
 							</div>
 						</div>
-						<div class="large-5 medium-5 columns">
-							<label for="inicio"># de horas: </label>
+						<div class="large-6 medium-6 columns">
+							<label for="inicio">Hasta: </label>
 							<div class="row collapse prefix-radius">
 								<div class="small-3 columns">
-									<span class="prefix date"><i class="fa fa-clock-o"></i></span>
+									<span class="prefix date"><i class="fa fa-calendar"></i></span>
 								</div>
 								<div class="small-9 columns">
-									<input type="number" id="final" ng-model="extras.end_date" placeholder="ej: 8">
+									<input type="date" id="final" ng-model="inhability.end_date">
 								</div>
 							</div>
 						</div>
 					</div>
 					<label for="">Motivo: </label>
 					<select name="monto" id="monto">
-						<option value="1">Hora extra nocturna</option>
-						<option value="2">Hora extra diurna festiva</option>
+						<option value="1">Enfermedad general hospitalaria</option>
+						<option value="2">Accidente de trabajo</option>
 					</select>
-					<input type="hidden" ng-model="permiso.status">
-					<input type="hidden" ng-model="permiso.employee_id">
+					<input type="hidden" ng-model="inhability.status">
+					<input type="hidden" ng-model="inhability.employee_id">
 					<br />
 					<div class="text-right">
 						<input type="submit" value="Solicitar" class="button success small" />
@@ -84,7 +84,7 @@
 			</div>
 		</div>
 		<br /><br />
-		<h3 class="expand-title text-center">Autorizar solicitud de horas extras</h3>
+		<h3 class="expand-title text-center">Aprobar registros de incapacidades</h3>
 		<br /><br />
 		<div class="row">
 			<div class="large-12 columns">

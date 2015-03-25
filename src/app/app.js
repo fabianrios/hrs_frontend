@@ -47,6 +47,7 @@
 	'severance',
 	'loans',
 	'extras',
+	'inhability',
 	'licenses'
   ])
 
