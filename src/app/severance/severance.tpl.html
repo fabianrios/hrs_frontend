@@ -1,0 +1,131 @@
+<div class="padding-container">
+	<div ng-model="severance">
+		<h3 class="expand-title text-center">Crear solicitud de anticipo de cesantias</h3>
+		<br /><br />
+		<div class="row">
+			<div class="large-5 medium-5 columns">
+				<form ng-submit="putRequest()">
+					<div class="row">
+						<div class="large-5 medium-5 columns">
+							<label for="inicio"># de autorización:</label>
+							<div class="row collapse prefix-radius">
+								<div class="small-3 columns">
+									<span class="prefix date"><i class="fa fa-check"></i></span>
+								</div>
+								<div class="small-9 columns">
+									<input type="text" id="autorizacion" ng-model="requerimiento.autorizacion">
+								</div>
+							</div>
+						</div>
+						<div class="large-7 medium-7 columns">
+							<label for="inicio">Motivo: </label>
+							<select name="motivo" id="">
+								<option value="1">Compra de vivienda</option>
+								<option value="2">Pago de semestre</option>
+								<option value="3">Remodelación de vivienda</option>
+							</select>
+						</div>
+					</div>
+					<label for="">Monto solicitado: </label>
+					<div class="row collapse prefix-radius">
+						<div class="small-2 columns">
+							<span class="prefix money"><i class="fa fa-usd"></i></span>
+						</div>
+						<div class="small-10 columns">
+							<input type="number" id="monto" ng-model="solicitud.monto" class="money" >
+						</div>
+					</div>
+					<input type="hidden" ng-model="requerimiento.status">
+					<input type="hidden" ng-model="requerimiento.employee_id">
+					<br />
+					<div class="text-right">
+						<input type="submit" value="Solicitar" class="button success small" />
+					</div>
+				</form>
+			</div> <!-- /large-6 -->
+			<div class="large-7 medium-7 columns">
+				<table class="vacations">
+					<thead>
+						<tr>
+							<th># AUTORIZACIÓN</th>
+							<th>MOTIVO</th>
+							<th>MONTO</th>
+							<th>ESTADO</th>
+							<th class="borrar">BORRAR</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>
+								<h5>2312321321</h5>
+							</td>
+							<td>
+								<span>Compra de vivienda</span>
+							</td>
+							<td class="desde"><h5>$ 10`000.000</h5></td>
+							<td><h6 class="bold" ><span>en espera</span></h6></td>
+							<td>
+								<a href="" class="acciones borrar" ng-click="openModal(1,'myModal')"></a>
+								<div id="myModal-1" class="reveal-modal tiny" data-reveal>
+									<br />
+									<h4 class="text-center">¿Seguro quieres borrar esto?</h4>
+									<div class="text-center">
+										<a href="" ng-click="deleteSeverance(req_info,$index)" class="button success">Borrar</a>
+									</div>
+									<a class="close-reveal-modal">&#215;</a>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<br /><br />
+		<h3 class="expand-title text-center">Aprobar solicitudes de anticipo de cesantias</h3>
+		<br /><br />
+		<div class="row">
+			<div class="large-12 columns">
+				<table class="vacations">
+					<thead>
+						<tr>
+							<th>NOMBRE</th>
+							<th>MOTIVO</th>
+							<th>MONTO</th>
+							<th>STATUS</th>
+							<th class="aprobar">APROBAR</th>
+							<th class="negar">NEGAR</th>
+							<th class="borrar">BORRAR</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>
+								<h5>Gabriel Rodriguez</h5>
+							</td>
+							<td>
+								<span>Motivo # 4</span>
+							</td>
+							<td>
+								<h5 class="greentxt">$ 2`000.000</h5>
+							</td>
+							<td><h6 class="bold" ><span>en espera</span></h6></td>
+							<td><a href="" ng-click="aproveVacation(req_info)" class="acciones"></a></td>
+							<td><a href="" ng-click="deniedVacation(req_info)" class="acciones negar"></a></td>
+							<td>
+								<a href="" class="acciones borrar" ng-click="openModal($index,'elmodal')"></a>
+								<div id="elmodal-{{$index}}" class="reveal-modal tiny" data-reveal>
+									<br />
+									<h4 class="text-center">¿Seguro quieres borrar esto?</h4>
+									<div class="text-center">
+									<a href="" ng-click="deleteVacationReq(req_info,$index)" class="button success">Borrar</a>
+									</div>
+									<a class="close-reveal-modal">&#215;</a>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>	
+</div>

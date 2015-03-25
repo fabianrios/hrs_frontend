@@ -43,43 +43,65 @@
 		</div>
 	</div>
 	<div class="row" ng-switch-when="main.views.employee_info">
-		<div class="datos_empresariales">
-			<h4><span class="fa-building-o fa"></span> Mis Datos laborales</h4>
-			<hr class="m0" />
-			<ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-5" ui-sortable="sortableOptions" ng-model="employee_info.datos_empresariales">
-				<li ng-repeat="data in employee_info.datos_empresariales">
-					<div ng-switch="data.ncamp">
-						<div ng-switch-default>
-							<label for="{{data.ncamp}}">{{data.dcamp}}</label>
-							<input disabled="{{data.sedit == 'X' ? true : false}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{data.ccamp}}"/>
+		<div class="large-12 columns">
+			<div class="datos_empresariales">
+				<h4><span class="fa-building-o fa"></span> Mis Datos laborales</h4>
+				<hr class="m0" />
+				<ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-5" ui-sortable="sortableOptions" ng-model="employee_info.datos_empresariales">
+					<li ng-repeat="data in employee_info.datos_empresariales">
+						<div ng-switch="data.ncamp">
+							<div ng-switch-default>
+								<label for="{{data.ncamp}}">{{data.dcamp}}</label>
+								<input disabled="{{data.sedit == 'X' ? true : false}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{data.ccamp}}"/>
+							</div>
+							<div ng-switch-when="P0001-ANSVH">
+								<label for="{{data.ncamp}}">{{data.dcamp}}</label>
+								<input disabled="{{data.sedit == 'X' ? true : false}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{find_job_relation(re_laborales,data.ccamp)}}"/>
+							</div>
 						</div>
-						<div ng-switch-when="P0001-ANSVH">
-							<label for="{{data.ncamp}}">{{data.dcamp}}</label>
-							<input disabled="{{data.sedit == 'X' ? true : false}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{find_job_relation(re_laborales,data.ccamp)}}"/>
-						</div>
-					</div>
-				</li>
-			</ul>
+					</li>
+				</ul>
+			</div>
 		</div>
 	</div>
 	<div class="row" ng-switch-when="main.views.employee_info_lookup">
-		<div class="datos_empresariales">
-			<h4><span class="fa-building-o fa"></span> Datos laborales</h4>
-			<hr class="m0" />
-			<ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-5" ui-sortable="sortableOptions" ng-model="employee_info.datos_empresariales">
-				<li ng-repeat="data in employee_info.datos_empresariales">
-					<div ng-switch="data.ncamp">
-						<div ng-switch-default>
-							<label for="{{data.ncamp}}">{{data.dcamp}}</label>
-							<input disabled="{{data.sedit == 'X' ? true : false}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{find_job_relation(re_laborales,data.ccamp)}}"/>
+		<div class="large-12 columns">
+			<div class="datos_empresariales">
+				<h4><span class="fa-building-o fa"></span> Datos laborales</h4>
+				<hr class="m0" />
+				<ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-5" ui-sortable="sortableOptions" ng-model="employee_info.datos_empresariales">
+					<li ng-repeat="data in employee_info.datos_empresariales">
+						<div ng-switch="data.ncamp">
+							<div ng-switch-default>
+								<label for="{{data.ncamp}}">{{data.dcamp}}</label>
+								<input disabled="{{data.sedit == 'X' ? true : false}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{find_job_relation(re_laborales,data.ccamp)}}"/>
+							</div>
+							<div ng-switch-when="P0001-ANSVH">
+								<label for="{{data.ncamp}}">{{data.dcamp}}</label>
+								<input disabled="{{data.sedit == 'X' ? true : false}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{find_job_relation(re_laborales,data.ccamp)}}"/>
+							</div>
 						</div>
-						<div ng-switch-when="P0001-ANSVH">
-							<label for="{{data.ncamp}}">{{data.dcamp}}</label>
-							<input disabled="{{data.sedit == 'X' ? true : false}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{find_job_relation(re_laborales,data.ccamp)}}"/>
-						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="row" ng-switch-when="main.views.severance">
+		<div class="large-8 medium-12 columns large-centered">
+			<div class="datos_cesantias">
+				<div class="row">
+					<div class="large-6 columns">
+						<h4><span class="fa-bar-chart fa bluetxt"></span> Mis cesantias</h4>
+						<hr class="m0" />
+						<div cesantias fpend='{{fpend}}' newbetrg="{{newbetrg}}" style="height: 180px; width: 140px; overflow:hidden;"></div>
 					</div>
-				</li>
-			</ul>
+					<div class="large-6 columns">
+						<h4><span class="fa-bar-chart fa greentxt" ></span> Mis Int. de cesantias</h4>
+						<hr class="m0" />
+						<div intcesantias intfpend='{{intfpend}}' intnewbetrg="{{intnewbetrg}}" style="height: 180px; width: 140px; overflow:hidden;"></div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

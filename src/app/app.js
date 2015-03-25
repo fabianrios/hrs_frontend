@@ -43,7 +43,11 @@
     'sessions',
     'dashboard',
     'organigram',
-    'certificates'
+    'certificates',
+	'severance',
+	'loans',
+	'extras',
+	'licenses'
   ])
 
   .config(function($stateProvider, $httpProvider, HRAPI_CONF, AuthProvider, AuthInterceptProvider, ngS3Config){
@@ -131,9 +135,11 @@
       // console.log("Cambiando estado:", fromState, toState);
 	  $rootScope.ubicacion = toState.name;
 	  $rootScope.locationData = toState.data;
-	  //console.log($rootScope.ubicacion);
+	  $rootScope.where = $rootScope.ubicacion.split('.');
+	  $rootScope.where = $rootScope.where[$rootScope.where.length-1];
+	  
+	  console.log($rootScope.ubicacion, $rootScope.where);
     });
-    
     // Catch unauthorized requests and recover.
     $rootScope.$on('devise:unauthorized', function(event, xhr, deferred) {
       // Ask user for login credentials

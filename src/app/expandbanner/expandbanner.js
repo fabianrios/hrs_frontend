@@ -2,12 +2,47 @@
   'use strict';
 
   angular.module('expandbanner', [])
-
+	
+  
     .controller('Expandbanner.ExpandbannerController', function($scope, $state, currentUser){
 	  	  
 	$scope.elusuario = currentUser;
 	$scope.user = currentUser;
 	$scope.vacation = $scope.user.vacation;
+	
+	//CESANTIAS
+	$scope.saldos = currentUser.saldos;
+    // meter las cesantias
+	$scope.betrg = [];
+	$scope.fpend = [];
+	$scope.newbetrg = [];
+    $scope.elsaldocesantias = $scope.saldos.saldo;
+    $scope.intcesantias = $scope.saldos.intsaldo;
+    // meter las cesantias
+    angular.forEach($scope.saldos.t_cesantias,function(value){
+      $scope.betrg.push(value.betrg);
+      $scope.fpend.push(value.fpend);
+    });
+    // saldo de cesantias a numeros
+    $scope.betrg.forEach(function(entry, index) {
+        $scope.newbetrg[index] = parseInt(entry);
+    });
+	
+    // meter las int. cesantias     
+    $scope.intbetrg = [];
+    $scope.intfpend = [];
+	$scope.intnewbetrg = [];
+    angular.forEach($scope.saldos.t_intcesantias,function(value){
+      $scope.intbetrg.push(value.betrg);
+      $scope.intfpend.push(value.fpend);
+    });
+  
+    // Intereses de cesantias a numeros
+    $scope.intbetrg.forEach(function(entry) {
+        $scope.intnewbetrg.push(parseInt(entry));
+    });
+	// /CESANTIAS
+	
 	// esto esta por el rootscope de employee_info
 	// $scope.employee_info = $scope.user.employee_info;
 	$scope.vacationdates = $scope.vacation.detalle;
@@ -37,6 +72,13 @@
 	 		$.datepicker.setDefaults($.datepicker.regional['es']);
 	 		// console.log(thedates, thedates.length);
 	 		var y = new Date(thedates[thedates.length-1][1]); 
+			console.log(screen.width);
+			var number = 2;
+			if (screen.width < 700){
+				number = 1;
+			}else{
+				number = 2;
+			}
 	 	    $( "#vacaciones" ).datepicker({
 	 			numberOfMonths: 2,
 	 			defaultDate: y,

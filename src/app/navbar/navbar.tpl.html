@@ -66,21 +66,21 @@
 			<li class="back">
 				<a href="">Volver</a>
 			</li>
-			<li class="disabled">
-				<a href="">Anticipo de cesantías</a>
-			</li>
-			<li class="disabled">
-				<a href="">Permisos</a>
-			</li>
-			<li class="disabled">
-				<a href="">Prestamos</a>
+			<li>
+				<a ui-sref="main.views.severance">Anticipo de cesantías</a>
 			</li>
 			<li>
-				<a href="#/vacations">Vacaciones</a>
+				<a ui-sref="main.views.licenses">Permisos</a>
+			</li>
+			<li>
+				<a ui-sref="main.views.loans">Prestamos</a>
+			</li>
+			<li>
+				<a ui-sref="main.views.vacations">Vacaciones</a>
 			</li>
 		</ul>
 	</li>
-	<li class="has-submenu disabled">
+	<li class="has-submenu">
 		<a href="">
 			<i class="fa fa-paste fa-lg"></i> Registros
 			<i class="fa fa-angle-right fa-right fa-lg"></i>
@@ -90,9 +90,9 @@
 				<a href="">Volver</a>
 			</li>
 			<li>
-				<a href="">Horas extras</a>
+				<a ui-sref="main.views.extras">Horas extras</a>
 			</li>
-			<li>
+			<li class="disabled">
 				<a href="">Incapacidades</a>
 			</li>
 		</ul>

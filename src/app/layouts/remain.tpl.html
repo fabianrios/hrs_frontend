@@ -12,9 +12,9 @@
 		<aside class="left-off-canvas-menu" ui-view="navbar"></aside>
 		<aside class="right-off-canvas-menu" ui-view="sidebar"></aside>
 		<section class="main-section">
-			<div class="dashboard-profile" ui-view="profile"></div>
-			<div class="expandbanner animate-if" ui-view="expandbanner" ng-if="ubicacion == 'main.views.vacations' || ubicacion == 'main.views.employee_info' || ubicacion == 'main.views.employee_info_lookup'"></div>
-			<div class="close-banner" ng-if="ubicacion == 'main.views.vacations' || ubicacion == 'main.views.employee_info' || ubicacion == 'main.views.employee_info_lookup'"><a href="" ng-click="toggle($event)"></a></div>
+			<div class="dashboard-profile {{where}}" ui-view="profile"></div>
+			<div class="expandbanner animate-if" ui-view="expandbanner" ng-if="ubicacion == 'main.views.vacations' || ubicacion == 'main.views.employee_info' || ubicacion == 'main.views.employee_info_lookup' || ubicacion == 'main.views.severance'"></div>
+			<div class="close-banner" ng-if="ubicacion == 'main.views.vacations' || ubicacion == 'main.views.employee_info' || ubicacion == 'main.views.employee_info_lookup' || ubicacion == 'main.views.severance'"><a href="" ng-click="toggle($event)"></a></div>
 		
 			<div class="main-container" id="main-container">
 	

@@ -61,6 +61,13 @@
   opacity:1;
 }
 
+.download{
+	span{
+	    display: block;
+	    margin-top: 50px;
+	}
+}
+
 // 1 .dashboard-profile
 .dashboard-profile{
 	position: relative;
@@ -74,6 +81,13 @@
 	padding: 10px 0 30px 0;
 	z-index: 0; //para que quede debajo del nav
 	@include box-shadow(0px -5px 10px rgba(50,50,50, 0.2) inset);
+	&.loans, &.licenses, &.severance{
+		background-image: url("/images/downtown-morning.jpg");
+		background-position: 0 -5-450px;
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+		width: 100%;
+	}
 	a{
 		color: #1C6087;
 	}
@@ -701,6 +715,12 @@ table{
 }
 
 
+.small-9{
+	input[type="date"]{
+		font-size: 12px;
+	}
+}
+
 .expand-title{
 	border-top: 1px solid #4A84A5;
 	border-bottom: 1px solid #4A84A5;
@@ -709,6 +729,11 @@ table{
 	margin-top: 0;
 	background: #fff;
 	color: #4A84A5;
+	&.first-one{
+		position: relative;
+		top: -40px;
+		margin-bottom: -30px;
+	}
 }
 
 .acciones{
@@ -880,6 +905,8 @@ span{
 		display: block;
 	}
 }
+
+
 
 
 .number-info{
@@ -1289,6 +1316,29 @@ input[type="text"]#titulo{
 
 .missolicitudes{
 	background: #fff;
+}
+
+.prefix.money{
+    background: none;
+    border: 0;
+    font-size: 30px;
+    color: rgb(40, 194, 115);
+    margin: 20px 0;
+}
+
+.datos_cesantias{
+	h4{
+		color: #B3B3B3;
+	}
+}
+
+input.money{
+    font-size: 30px;
+    height: 50px;
+    color: rgb(40, 194, 115);
+    margin: 10px 0;
+    background: rgb(237, 255, 246);
+    border: 1px solid rgb(196, 244, 228);
 }
 
 footer{
