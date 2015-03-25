@@ -6,14 +6,27 @@
 			<div class="large-5 medium-5 columns">
 				<form ng-submit="putRequest()">
 					<div class="row">
-						<div class="large-5 medium-5 columns">
+						<div class="large-12 columns">
 							<label for="inicio"># de autorización:</label>
 							<div class="row collapse prefix-radius">
-								<div class="small-3 columns">
+								<div class="small-2 columns">
 									<span class="prefix date"><i class="fa fa-check"></i></span>
 								</div>
+								<div class="small-10 columns">
+									<input type="number" id="autorizacion" ng-model="severance.approval">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="large-5 medium-5 columns">
+							<label for="inicio">Fecha de corte:</label>
+							<div class="row collapse prefix-radius">
+								<div class="small-3 columns">
+									<span class="prefix calendar"><i class="fa fa-calendar"></i></span>
+								</div>
 								<div class="small-9 columns">
-									<input type="text" id="autorizacion" ng-model="requerimiento.autorizacion">
+									<input type="date" id="autorizacion" ng-model="severance.cut">
 								</div>
 							</div>
 						</div>
