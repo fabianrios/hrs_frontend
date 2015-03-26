@@ -29,6 +29,7 @@
     // Directives
     'ngS3upload',
     'highcharts-ng',
+	'gantt',
 
     // Modules
     'navbar',
@@ -46,6 +47,7 @@
     'certificates',
 	'severance',
 	'loans',
+	'managment',
 	'extras',
 	'inhability',
 	'licenses'

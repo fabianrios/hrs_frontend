@@ -1354,3 +1354,25 @@ footer{
 	padding: 40px 0;
 	border-top: 1px solid rgb(240, 240, 240);
 }
+
+.row-x{
+	width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0;
+    margin-bottom: 0;
+    max-width: 82.5rem;
+}
+
+.form-inline{
+	.form-group{
+		display: inline-block;
+		width: 25%;
+	}
+	.last-group{
+	    width: 30%;
+	    display: inline-block;
+		position: relative;
+		top: -4px;
+	}
+}

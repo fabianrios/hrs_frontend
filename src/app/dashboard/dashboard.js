@@ -82,7 +82,7 @@
 				scope.fechasdeudas = JSON.parse(attrs["fechasdeudas"]);
 				scope.ingresos = JSON.parse(attrs["ingresos"]);
 				scope.deducciones = JSON.parse(attrs["deducciones"]);
-				console.log(scope.fechasdeudas,scope.ingresos,scope.deducciones);
+				// console.log(scope.fechasdeudas,scope.ingresos,scope.deducciones);
                 Highcharts.setOptions({
                     global : {
                         useUTC : true
