@@ -3,14 +3,9 @@
   
 	angular.module('managment', [
 		'gantt',
-		'gantt.sortable',
-	    'gantt.movable',
-	    'gantt.drawtask',
 	    'gantt.tooltips',
 	    'gantt.bounds',
-	    'gantt.progress',
 	    'gantt.table',
-	    'gantt.groups',
 	    'gantt.resizeSensor'
 	])
 
@@ -44,8 +39,8 @@
 		        ]
 		    },
 		    {name: 'Velazquez Velazquez Julian David', tasks: [
-		        {name: 'Vacaciones (4) Días', color: 'rgb(108, 196, 235)', from: new Date("2015-01-05"), to: new Date("2015-01-16")},
-		        {name: 'Vacaciones (10) Días', color: 'rgb(108, 196, 235)', from: new Date("2015-01-19"), to: new Date("2015-01-23")}
+		        {name: 'Vacaciones (10) Días', color: 'rgb(108, 196, 235)', from: new Date("2015-01-05"), to: new Date("2015-01-16")},
+		        {name: 'Vacaciones (4) Días', color: 'rgb(108, 196, 235)', from: new Date("2015-01-19"), to: new Date("2015-01-23")}
 		      ]
 		    },
 			{name: 'Rodas Ruben', tasks: [
