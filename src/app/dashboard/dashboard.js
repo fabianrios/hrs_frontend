@@ -327,8 +327,8 @@
 	})
 	
 	.controller('Dashboard.MainController', function($scope, widgets, ingresos, workers, publicaciones, employees, currentUser, articles){
-    		
-		
+    	
+
 		var mine = articles.articles;
 		$scope.articles_not_mine = [];
 		

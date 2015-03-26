@@ -86,22 +86,19 @@
 	padding: 10px 0 30px 0;
 	z-index: 0; //para que quede debajo del nav
 	@include box-shadow(0px -5px 10px rgba(50,50,50, 0.2) inset);
+	&.dashboard{
+		background: url("/images/video_background.jpg") no-repeat 0 center;
+	}
 	&.loans, &.licenses, &.severance{
 		background-image: url("/images/downtown-morning.jpg");
-		background-position: 0 -5-450px;
+		background-position: 0 -450px;
 		background-repeat: no-repeat;
 		background-attachment: fixed;
 		width: 100%;
 	}
-	a{
-		color: #1C6087;
-		text-shadow: 0 1px 1px rgba(255, 255, 255, 0.3);
-	}
-	
 	#video{
 		position:relative;
 		height: 425px;
-		background: #2E475F url("/images/video_background.jpg") no-repeat fixed bottom center;
 		width: 100%;
 		position: fixed;
 		top: 0;
@@ -122,6 +119,23 @@
 	
 }
 
+#audio_btn{
+	position: absolute;
+	top: 100px;
+	right: 10px;
+	.switch label{
+		background: rgba(255,255,255,.5);
+	}
+}
+
+#audio-icon{
+	position: relative;
+	top: -5px;
+	right: 5px;
+	color: #DDDDDD;
+}
+
+
 // 1.1 .bottomize
 .bottomize{
 	position: absolute;
@@ -129,12 +143,22 @@
 	width: 100%;
 	padding-bottom: 20px;
 	@include filter-gradient(#ffffff, #1a1a1a, vertical); // IE6-9
-	@include background-image(linear-gradient(rgba(#ffffff,0) 0%, #1a1a1a 90%));
+	@include background-image(linear-gradient(rgba(#1a1a1a,0) 0%, #1a1a1a 90%));
 	.subheader{
 		color: #ccc;
 	}
+	a{
+		color: #1C6087;
+		text-shadow: 0 1px 1px rgba(255, 255, 255, 0.3);
+	}
+	@media only screen and (min-width: 40.063em) and (max-width: 64em) {
+		a{
+			color: #CCC;
+			text-shadow: 0 0 0 rgba(255,255,255,0);
+		}
+	}	
 	&.whitening{
-		@include filter-gradient(#ffffff, #1a1a1a, vertical); // IE6-9
+		@include filter-gradient(#ffffff, #ffffff, vertical); // IE6-9
 		@include background-image(linear-gradient(rgba(#ffffff,0) 0%, rgba(#ffffff,0.8) 90%));
 		a{
 			text-shadow: 0 -1px 1px rgba(255,255,255,.6);
