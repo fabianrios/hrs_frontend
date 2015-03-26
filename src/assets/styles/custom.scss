@@ -101,7 +101,7 @@
 	#video{
 		position:relative;
 		height: 425px;
-		background-color: #2E475F;
+		background: #2E475F url("/images/video_background.jpg") no-repeat fixed bottom center;
 		width: 100%;
 		position: fixed;
 		top: 0;
@@ -130,6 +130,9 @@
 	padding-bottom: 20px;
 	@include filter-gradient(#ffffff, #1a1a1a, vertical); // IE6-9
 	@include background-image(linear-gradient(rgba(#ffffff,0) 0%, #1a1a1a 90%));
+	.subheader{
+		color: #ccc;
+	}
 	&.whitening{
 		@include filter-gradient(#ffffff, #1a1a1a, vertical); // IE6-9
 		@include background-image(linear-gradient(rgba(#ffffff,0) 0%, rgba(#ffffff,0.8) 90%));
@@ -336,7 +339,8 @@
 			color: $header;
 			text-shadow: 0 1px 1px rgba(255, 255, 255, 0.6);
 			&:hover, &:focus {
-				color: $hover;
+			    color: $hover;
+			    text-shadow: 0 0 0 rgba(255,255,255,0);
 			}
 			span{
 				text-shadow: 0 1px 1px rgba(255, 255, 255, 0.6);
