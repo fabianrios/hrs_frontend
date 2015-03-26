@@ -1,4 +1,11 @@
-<div class="bottomize whitening" ng-switch="ubicacion">
+<div id="video" ng-if="ubicacion == 'main.views.dashboard'">
+	<video autoplay loop muted>
+		<source src="http://vjs.zencdn.net/v/oceans..mp4" type="video/mp4">
+		<source src="http://vjs.zencdn.net/v/oceans.webm" type="video/webm">
+	</video>
+</div>
+<div id="video-spacer" style="display: block;width: 100%;height: 100%;"></div>
+<div class="bottomize" ng-class="ubicacion != 'main.views.dashboard' ? 'whitening' : ''" ng-switch="ubicacion">
 	<div class="row"  ng-switch-default>
 		<div class="large-7 medium-7 columns">
 			<div class="big-profile">
