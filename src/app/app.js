@@ -83,6 +83,9 @@
 	        },
 			vac_requirements: function(Vacation_requirement){
 				return Vacation_requirement.index().$promise;
+			},
+			extras_requirements: function(Extra_requirement){
+				return Extra_requirement.index().$promise;
 			}
 		},
         views: {

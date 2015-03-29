@@ -94,22 +94,22 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
+						<tr ng-repeat="req_info in only_not_user">
 							<td>
-								<h5>Gabriel Rodriguez</h5>
+								<h5>{{req_info.employee.short_name}} </h5>
 							</td>
 							<td class="desde">
-								<h2>18</h2>
-								<h6>Diciembre</h6>
+								<h2>{{ req_info.fecha | date:'d' }}</h2>
+								<h6>{{ req_info.fecha | date:'MMMM' }}</h6>
 							</td>
-							<td class="dias"><h2>2</h2></td>
-							<td><h6>Licencia remunerada</h6></td>
-							<td><h6 class="bold" ><span>en espera</span></h6></td>
-							<td><a href="" ng-click="aproveLicenses(license)" class="acciones"></a></td>
-							<td><a href="" ng-click="deniedLicenses(license)" class="acciones negar"></a></td>
+							<td class="dias"><h2>{{req_info.hours}}</h2></td>
+							<td><h6>{{mot(req_info.motivo)}}</h6></td>
+							<td><h6 class="bold" ><span class="{{req_info.status}}">{{req_info.status}}</span></h6></td>
+							<td><a href="" ng-click="aproveLicenses(req_info)" class="acciones"></a></td>
+							<td><a href="" ng-click="deniedLicenses(req_info)" class="acciones negar"></a></td>
 							<td>
-								<a href="" class="acciones borrar" ng-click="openModal(1,'elmodal')"></a>
-								<div id="elmodal-1" class="reveal-modal tiny" data-reveal>
+								<a href="" class="acciones borrar" ng-click="openModal($index,'elmodal')"></a>
+								<div id="elmodal-{{$index}}" class="reveal-modal tiny" data-reveal>
 									<br />
 									<h4 class="text-center">¿Seguro quieres borrar esto?</h4>
 									<div class="text-center">
