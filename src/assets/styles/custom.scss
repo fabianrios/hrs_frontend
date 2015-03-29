@@ -420,6 +420,9 @@
 		background: $comments;
 		right: -4px;
 	}
+	&.menu-comment{
+		top: 14px;
+	}
 	&.mobile-comment{
 		background: $comments;
 		width: 14px;
@@ -428,6 +431,10 @@
 		line-height: 14px;
 		top: -4px;
 		right: -1px;
+	}
+	&.main-menu-comment{
+		top: 14px;
+		right: 32px;
 	}
 }
 

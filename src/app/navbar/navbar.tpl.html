@@ -5,7 +5,7 @@
 	<div class="user-buttons">
 		<a ui-sref="main.views.articles()" class="movil-comments">
 			<span class="icon-comment"></span>
-			<i class="number mobile-comment">4</i>
+			<i class="number mobile-comment">{{articles_not_mine.length}}</i>
 		</a>
 		<a ui-sref="main.views.edit()">
 			<span class="icon-cog2"></span>
@@ -60,6 +60,7 @@
 	<li class="has-submenu">
 		<a href="">
 			<i class="fa fa-check fa-lg"></i> Solicitudes
+			<i class="number main-menu-comment">{{only_not_user.length}}</i>
 			<i class="fa fa-angle-right fa-right fa-lg"></i>
 		</a>
 		<ul class="left-submenu">
@@ -76,7 +77,10 @@
 				<a ui-sref="main.views.loans">Prestamos</a>
 			</li>
 			<li>
-				<a ui-sref="main.views.vacations">Vacaciones</a>
+				<a ui-sref="main.views.vacations">
+					Vacaciones
+					<i class="number menu-comment">{{only_not_user.length}}</i>
+				</a>
 			</li>
 		</ul>
 	</li>

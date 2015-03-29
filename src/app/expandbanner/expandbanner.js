@@ -4,8 +4,8 @@
   angular.module('expandbanner', [])
 	
   
-    .controller('Expandbanner.ExpandbannerController', function($scope, $state, currentUser){
-	  	  
+  .controller('Expandbanner.ExpandbannerController', function($scope, $state, currentUser){
+
 	$scope.elusuario = currentUser;
 	$scope.user = currentUser;
 	$scope.vacation = $scope.user.vacation;
@@ -72,7 +72,7 @@
 	 		$.datepicker.setDefaults($.datepicker.regional['es']);
 	 		// console.log(thedates, thedates.length);
 	 		var y = new Date(thedates[thedates.length-1][1]); 
-			console.log(screen.width);
+			// console.log(screen.width);
 			var number = 2;
 			if (screen.width < 700){
 				number = 1;
@@ -80,7 +80,7 @@
 				number = 2;
 			}
 	 	    $( "#vacaciones" ).datepicker({
-	 			numberOfMonths: 2,
+	 			numberOfMonths: number,
 	 			defaultDate: y,
 	 			beforeShowDay: highlightDays
 	 	    });

@@ -13,7 +13,7 @@
 									<span class="prefix date"><i class="fa fa-calendar"></i></span>
 								</div>
 								<div class="small-9 columns">
-									<input type="date" id="inicio" ng-model="extras.start_date">
+									<input type="date" id="inicio" ng-model="requerimiento.fecha">
 								</div>
 							</div>
 						</div>
@@ -24,18 +24,15 @@
 									<span class="prefix date"><i class="fa fa-clock-o"></i></span>
 								</div>
 								<div class="small-9 columns">
-									<input type="number" id="final" ng-model="extras.end_date" placeholder="ej: 8">
+									<input type="number" id="final" ng-model="requerimiento.hours" placeholder="ej: 8">
 								</div>
 							</div>
 						</div>
 					</div>
 					<label for="">Motivo: </label>
-					<select name="monto" id="monto">
-						<option value="1">Hora extra nocturna</option>
-						<option value="2">Hora extra diurna festiva</option>
-					</select>
-					<input type="hidden" ng-model="permiso.status">
-					<input type="hidden" ng-model="permiso.employee_id">
+					<select name="motivo" id="motivo" ng-options="opt.subty as opt.descr for opt in options" ng-model="requerimiento.motivo"></select>
+					<input type="hidden" ng-model="requerimiento.status">
+					<input type="hidden" ng-model="requerimiento.employee_id">
 					<br />
 					<div class="text-right">
 						<input type="submit" value="Solicitar" class="button success small" />
@@ -46,34 +43,29 @@
 				<table class="vacations">
 					<thead>
 						<tr>
-							<th class="desde">DESDE</th>
-							<th>HASTA</th>
-							<th class="dias">DIAS</th>
+							<th class="desde">FECHA</th>
+							<th class="dias">HORAS</th>
 							<th>MOTIVO</th>
 							<th>ESTADO</th>
 							<th class="borrar">BORRAR</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
+						<tr ng-repeat="req_info in extras | filter:{employee_id: user.employee.user_id}:true">
 							<td class="desde">
-								<h2>18</h2>
-								<h6>Diciembre</h6>
+								<h2>{{ req_info.fecha | date:'d' }}</h2>
+								<h6>{{ req_info.fecha | date:'MMMM' }}</h6>
 							</td>
+							<td class="dias"><h2>{{req_info.hours}}</h2></td>
+							<td><h6>{{mot(req_info.motivo)}}</h6></td>
+							<td><h6 class="bold"><span>{{req_info.status}}</span></h6></td>
 							<td>
-								<h2>20</h2>
-								<h6>Diciembre</h6>
-							</td>
-							<td class="dias"><h2>2</h2></td>
-							<td><h6>Licencia remunerada</h6></td>
-							<td><h6 class="bold"><span>en espera</span></h6></td>
-							<td>
-								<a href="" class="acciones borrar" ng-click="openModal(1,'myModal')"></a>
-								<div id="myModal-1" class="reveal-modal tiny" data-reveal>
+								<a href="" class="acciones borrar" ng-click="openModal($index,'myModal')"></a>
+								<div id="myModal-{{$index}}" class="reveal-modal tiny" data-reveal>
 									<br />
 									<h4 class="text-center">¿Seguro quieres borrar esto?</h4>
 									<div class="text-center">
-										<a href="" ng-click="deleteLicense(license,$index)" class="button success">Borrar</a>
+										<a href="" ng-click="deleteExtra(req_info,$index)" class="button success">Borrar</a>
 									</div>
 									<a class="close-reveal-modal">&#215;</a>
 								</div>
@@ -92,9 +84,8 @@
 					<thead>
 						<tr>
 							<th>NOMBRE</th>
-							<th class="desde">DESDE</th>
-							<th>HASTA</th>
-							<th class="dias">DIAS</th>
+							<th class="desde">FECHA</th>
+							<th class="dias">HORAS</th>
 							<th>MOTIVO</th>
 							<th>ESTADO</th>
 							<th class="aprobar">APROBAR</th>
@@ -109,10 +100,6 @@
 							</td>
 							<td class="desde">
 								<h2>18</h2>
-								<h6>Diciembre</h6>
-							</td>
-							<td>
-								<h2>20</h2>
 								<h6>Diciembre</h6>
 							</td>
 							<td class="dias"><h2>2</h2></td>

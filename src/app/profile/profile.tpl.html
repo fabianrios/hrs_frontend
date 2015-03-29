@@ -109,11 +109,11 @@
 					<div class="large-9 columns">
 						<div class="aprobador">
 							<div class="pic dib">
-								<img alt="Generic_user_image" src="https://s3.amazonaws.com/hrsolutions/nancy.jpeg">
+								<img  ng-src="{{aprobador.image}}">
 							</div>
 							<div class="info dib">
-								<a href="mail_to:nancy.paiba@hrsolutions-co.com" class=""><i class="fa fa-envelope fa-lg"></i>Nancy paiba</a><br>
-								<a href="tel://+577955973" class=""><i class="fa fa-phone fa-lg"></i>+57 1 795 59 73</a>
+								<a href="mail_to:{{aprobador.email}}" class=""><i class="fa fa-envelope fa-lg"></i>{{aprobador.short_name}}</a><br>
+								<a href="tel://{{aprobador.phone}}" class=""><i class="fa fa-phone fa-lg"></i>{{aprobador.phone}}</a>
 							</div>
 						</div>
 					</div>
@@ -143,11 +143,11 @@
 					<div class="large-9 columns">
 						<div class="aprobador">
 							<div class="pic dib">
-								<img alt="Generic_user_image" src="https://s3.amazonaws.com/hrsolutions/nancy.jpeg">
+								<img  ng-src="{{aprobador[0].image}}">
 							</div>
 							<div class="info dib">
-								<a href="mail_to:nancy.paiba@hrsolutions-co.com" class=""><i class="fa fa-envelope fa-lg"></i>Nancy paiba</a><br>
-								<a href="tel://+577955973" class=""><i class="fa fa-phone fa-lg"></i>+57 1 795 59 73</a>
+								<a href="mail_to:{{aprobador.email}}" class=""><i class="fa fa-envelope fa-lg"></i>{{aprobador.short_name}}</a><br>
+								<a href="tel://{{aprobador.phone}}" class=""><i class="fa fa-phone fa-lg"></i>{{aprobador.phone}}</a>
 							</div>
 						</div>
 					</div>
@@ -177,11 +177,11 @@
 					<div class="large-9 columns">
 						<div class="aprobador">
 							<div class="pic dib">
-								<img alt="Generic_user_image" src="https://s3.amazonaws.com/hrsolutions/nancy.jpeg">
+								<img  ng-src="{{aprobador.image}}">
 							</div>
 							<div class="info dib">
-								<a href="mail_to:nancy.paiba@hrsolutions-co.com" class=""><i class="fa fa-envelope fa-lg"></i>Nancy paiba</a><br>
-								<a href="tel://+577955973" class=""><i class="fa fa-phone fa-lg"></i>+57 1 795 59 73</a>
+								<a href="mail_to:{{aprobador.email}}" class=""><i class="fa fa-envelope fa-lg"></i>{{aprobador.short_name}}</a><br>
+								<a href="tel://{{aprobador.phone}}" class=""><i class="fa fa-phone fa-lg"></i>{{aprobador.phone}}</a>
 							</div>
 						</div>
 					</div>
@@ -211,11 +211,11 @@
 					<div class="large-9 columns">
 						<div class="aprobador">
 							<div class="pic dib">
-								<img alt="Generic_user_image" src="https://s3.amazonaws.com/hrsolutions/nancy.jpeg">
+								<img  ng-src="{{aprobador.image}}">
 							</div>
 							<div class="info dib">
-								<a href="mail_to:nancy.paiba@hrsolutions-co.com" class=""><i class="fa fa-envelope fa-lg"></i>Nancy paiba</a><br>
-								<a href="tel://+577955973" class=""><i class="fa fa-phone fa-lg"></i>+57 1 795 59 73</a>
+								<a href="mail_to:{{aprobador.email}}" class=""><i class="fa fa-envelope fa-lg"></i>{{aprobador.short_name}}</a><br>
+								<a href="tel://{{aprobador.phone}}" class=""><i class="fa fa-phone fa-lg"></i>{{aprobador.phone}}</a>
 							</div>
 						</div>
 					</div>
@@ -245,11 +245,11 @@
 					<div class="large-9 columns">
 						<div class="aprobador">
 							<div class="pic dib">
-								<img alt="Generic_user_image" src="https://s3.amazonaws.com/hrsolutions/nancy.jpeg">
+								<img ng-src="{{aprobador.image}}">
 							</div>
 							<div class="info dib">
-								<a href="mail_to:nancy.paiba@hrsolutions-co.com" class=""><i class="fa fa-envelope fa-lg"></i>Nancy paiba</a><br>
-								<a href="tel://+577955973" class=""><i class="fa fa-phone fa-lg"></i>+57 1 795 59 73</a>
+								<a href="mail_to:{{aprobador.email}}" class=""><i class="fa fa-envelope fa-lg"></i>{{aprobador.short_name}}</a><br>
+								<a href="tel://{{aprobador.phone}}" class=""><i class="fa fa-phone fa-lg"></i>{{aprobador.phone}}</a>
 							</div>
 						</div>
 					</div>
@@ -279,11 +279,11 @@
 					<div class="large-9 columns">
 						<div class="aprobador">
 							<div class="pic dib">
-								<img alt="Generic_user_image" src="https://s3.amazonaws.com/hrsolutions/nancy.jpeg">
+								<img  ng-src="{{aprobador.image}}">
 							</div>
 							<div class="info dib">
-								<a href="mail_to:nancy.paiba@hrsolutions-co.com" class=""><i class="fa fa-envelope fa-lg"></i>Nancy paiba</a><br>
-								<a href="tel://+577955973" class=""><i class="fa fa-phone fa-lg"></i>+57 1 795 59 73</a>
+								<a href="mail_to:{{aprobador.email}}" class=""><i class="fa fa-envelope fa-lg"></i>{{aprobador.short_name}}</a><br>
+								<a href="tel://{{aprobador.phone}}" class=""><i class="fa fa-phone fa-lg"></i>{{aprobador.phone}}</a>
 							</div>
 						</div>
 					</div>
@@ -292,7 +292,7 @@
 		</div>
 	</div>
 	<div class="row" ng-switch-when="main.views.certificates_labor">
-		<div class="large-7 columns">
+		<div class="large-7 medium-7 columns">
 			<h4>{{locationData.breadcrumb}}</h4>
 			<ul class="breadcrumbs">
 				<li>
@@ -306,7 +306,7 @@
 				</li>
 			</ul>
 		</div>
-		<div class="large-5 columns">
+		<div class="large-5 medium-5 columns">
 			<ul class="inline-list linemenu">
 				<li>
 					<a  ui-sref="main.views.certificates_payroll({id:user.employee_id, c:user.company_id})">
@@ -332,7 +332,7 @@
 		</div>
 	</div>
 	<div class="row" ng-switch-when="main.views.certificates_vacations">
-		<div class="large-7 columns">
+		<div class="large-7 medium-7 columns">
 			<h4>{{locationData.breadcrumb}}</h4>
 			<ul class="breadcrumbs">
 				<li>
@@ -346,7 +346,7 @@
 				</li>
 			</ul>
 		</div>
-		<div class="large-5 columns">
+		<div class="large-5 medium-5 columns">
 			<ul class="inline-list linemenu">
 				<li>
 					<a  ui-sref="main.views.certificates_payroll({id:user.employee_id, c:user.company_id})">
@@ -372,7 +372,7 @@
 		</div>
 	</div>
 	<div class="row" ng-switch-when="main.views.certificates_payroll">
-		<div class="large-7 columns">
+		<div class="large-7 medium-7 columns">
 			<h4>{{locationData.breadcrumb}}</h4>
 			<ul class="breadcrumbs">
 				<li>
@@ -386,7 +386,7 @@
 				</li>
 			</ul>
 		</div>
-		<div class="large-5 columns">
+		<div class="large-5 medium-5 columns">
 			<ul class="inline-list linemenu">
 				<li>
 					<a  ui-sref="main.views.certificates_payroll({id:user.employee_id, c:user.company_id})">
@@ -412,7 +412,7 @@
 		</div>
 	</div>
 	<div class="row" ng-switch-when="main.views.certificates_income">
-		<div class="large-7 columns">
+		<div class="large-7 medium-7 columns">
 			<h4>{{locationData.breadcrumb}}</h4>
 			<ul class="breadcrumbs">
 				<li>
@@ -426,7 +426,7 @@
 				</li>
 			</ul>
 		</div>
-		<div class="large-5 columns">
+		<div class="large-5 medium-5 columns">
 			<ul class="inline-list linemenu">
 				<li>
 					<a  ui-sref="main.views.certificates_payroll({id:user.employee_id, c:user.company_id})">

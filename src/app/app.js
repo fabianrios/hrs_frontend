@@ -23,6 +23,7 @@
     'article.service',
     'vacation.service',
     'vacation_requirement.service',
+    'extra_requirement.service',
     'employee_info.service',
 	'info.service',
 
@@ -79,7 +80,10 @@
 	        },
 			articles:  function(Article){
 	          return Article.index();
-	        }
+	        },
+			vac_requirements: function(Vacation_requirement){
+				return Vacation_requirement.index().$promise;
+			}
 		},
         views: {
           topbar: {
@@ -101,7 +105,12 @@
           },
           expandbanner: {
             templateUrl: 'app/expandbanner/expandbanner.tpl.html',
-            controller: 'Expandbanner.ExpandbannerController'
+            controller: 'Expandbanner.ExpandbannerController',
+			resolve: {
+			  employees: function(Employee){
+			      return Employee.index();
+			    }
+			}
           },
           sidebar: {
             templateUrl: 'app/sidebar/sidebar.tpl.html',

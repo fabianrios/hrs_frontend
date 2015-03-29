@@ -7,8 +7,18 @@
 
 		$scope.user = currentUser;
 		$scope.employees = employees;
-		//console.log($scope.employees);
+		$scope.aprobador = [];
+		//aprobador
+	    angular.forEach($scope.employees,function(value){
+			// console.log(value.identification,$scope.user.employee.boss);
+			if (value.identification == $scope.user.employee.boss){
+				$scope.aprobador.push(value);
+			}
+	    });
 		
+		$scope.aprobador = $scope.aprobador[0];
+		
+		console.log($scope.aprobador);
 		
 		$scope.audiobutton = false;	
 		
