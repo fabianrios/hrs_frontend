@@ -24,6 +24,8 @@
     'vacation.service',
     'vacation_requirement.service',
     'extra_requirement.service',
+    'inhability_requirement.service',
+    'license_requirement.service',
     'employee_info.service',
 	'info.service',
 
@@ -86,6 +88,12 @@
 			},
 			extras_requirements: function(Extra_requirement){
 				return Extra_requirement.index().$promise;
+			},
+			inhabilities_requirements: function(Inhability_requirement){
+				return Inhability_requirement.index().$promise;
+			},
+			licenses_requirements: function(License_requirement){
+				return License_requirement.index().$promise;
 			}
 		},
         views: {

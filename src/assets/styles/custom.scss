@@ -119,11 +119,11 @@
 	
 }
 
-#audio_btn{
+#audio_btn.switch{
 	position: absolute;
 	top: 100px;
 	right: 10px;
-	.switch label{
+	label{
 		background: rgba(255,255,255,.5);
 	}
 }
@@ -422,6 +422,9 @@
 	}
 	&.menu-comment{
 		top: 14px;
+		&.registers{
+			background: $registers;
+		}
 	}
 	&.mobile-comment{
 		background: $comments;
@@ -435,6 +438,9 @@
 	&.main-menu-comment{
 		top: 14px;
 		right: 32px;
+		&.registers{
+			background: $registers;
+		}
 	}
 }
 

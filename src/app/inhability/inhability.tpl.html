@@ -13,7 +13,7 @@
 									<span class="prefix date"><i class="fa fa-calendar"></i></span>
 								</div>
 								<div class="small-9 columns">
-									<input type="date" id="inicio" ng-model="inhability.start_date">
+									<input type="date" id="inicio" ng-model="requerimiento.start_date">
 								</div>
 							</div>
 						</div>
@@ -24,18 +24,15 @@
 									<span class="prefix date"><i class="fa fa-calendar"></i></span>
 								</div>
 								<div class="small-9 columns">
-									<input type="date" id="final" ng-model="inhability.end_date">
+									<input type="date" id="final" ng-model="requerimiento.end_date">
 								</div>
 							</div>
 						</div>
 					</div>
 					<label for="">Motivo: </label>
-					<select name="monto" id="monto">
-						<option value="1">Enfermedad general hospitalaria</option>
-						<option value="2">Accidente de trabajo</option>
-					</select>
-					<input type="hidden" ng-model="inhability.status">
-					<input type="hidden" ng-model="inhability.employee_id">
+					<select name="motivo" id="motivo" ng-options="opt.subty as opt.descr for opt in options" ng-model="requerimiento.motivo"></select>
+					<input type="hidden" ng-model="requerimiento.status">
+					<input type="hidden" ng-model="requerimiento.employee_id">
 					<br />
 					<div class="text-right">
 						<input type="submit" value="Solicitar" class="button success small" />
@@ -48,32 +45,30 @@
 						<tr>
 							<th class="desde">DESDE</th>
 							<th>HASTA</th>
-							<th class="dias">DIAS</th>
 							<th>MOTIVO</th>
 							<th>ESTADO</th>
 							<th class="borrar">BORRAR</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
+						<tr ng-repeat="req_info in inhabilities | filter:{employee_id: user.employee.user_id}:true">
 							<td class="desde">
-								<h2>18</h2>
-								<h6>Diciembre</h6>
+								<h2>{{ req_info.start_date | date:'d' }}</h2>
+								<h6>{{ req_info.start_date | date:'MMMM' }}</h6>
 							</td>
 							<td>
-								<h2>20</h2>
-								<h6>Diciembre</h6>
+								<h2>{{ req_info.end_date | date:'d' }}</h2>
+								<h6>{{ req_info.end_date | date:'MMMM' }}</h6>
 							</td>
-							<td class="dias"><h2>2</h2></td>
-							<td><h6>Licencia remunerada</h6></td>
-							<td><h6 class="bold"><span>en espera</span></h6></td>
+							<td><h6>{{mot(req_info.motivo)}}</h6></td>
+							<td><h6 class="bold"><span>{{req_info.status}}</span></h6></td>
 							<td>
-								<a href="" class="acciones borrar" ng-click="openModal(1,'myModal')"></a>
-								<div id="myModal-1" class="reveal-modal tiny" data-reveal>
+								<a href="" class="acciones borrar" ng-click="openModal($index,'myModal')"></a>
+								<div id="myModal-{{$index}}" class="reveal-modal tiny" data-reveal>
 									<br />
 									<h4 class="text-center">¿Seguro quieres borrar esto?</h4>
 									<div class="text-center">
-										<a href="" ng-click="deleteLicense(license,$index)" class="button success">Borrar</a>
+										<a href="" ng-click="deleteInhability(req_info,$index)" class="button success">Borrar</a>
 									</div>
 									<a class="close-reveal-modal">&#215;</a>
 								</div>
@@ -94,41 +89,35 @@
 							<th>NOMBRE</th>
 							<th class="desde">DESDE</th>
 							<th>HASTA</th>
-							<th class="dias">DIAS</th>
 							<th>MOTIVO</th>
 							<th>ESTADO</th>
 							<th class="aprobar">APROBAR</th>
 							<th class="negar">NEGAR</th>
-							<th class="borrar">BORRAR</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
+						<tr ng-repeat="req_info in only_not_user">
 							<td>
-								<h5>Gabriel Rodriguez</h5>
+								<h5>{{req_info.employee.short_name}} </h5>
 							</td>
 							<td class="desde">
-								<h2>18</h2>
-								<h6>Diciembre</h6>
+								<h2>{{ req_info.start_date | date:'d' }}</h2>
+								<h6>{{ req_info.start_date | date:'MMMM' }}</h6>
 							</td>
 							<td>
-								<h2>20</h2>
-								<h6>Diciembre</h6>
+								<h2>{{ req_info.end_date | date:'d' }}</h2>
+								<h6>{{ req_info.end_date | date:'MMMM' }}</h6>
 							</td>
-							<td class="dias"><h2>2</h2></td>
-							<td><h6>Licencia remunerada</h6></td>
-							<td><h6 class="bold" ><span>en espera</span></h6></td>
-							<td><a href="" ng-click="aproveLicenses(license)" class="acciones"></a></td>
-							<td><a href="" ng-click="deniedLicenses(license)" class="acciones negar"></a></td>
+							<td><h6>{{mot(req_info.motivo)}}</h6></td>
+							<td><h6 class="bold" ><span class="{{req_info.status}}">{{req_info.status}}</span></h6></td>
 							<td>
-								<a href="" class="acciones borrar" ng-click="openModal(1,'elmodal')"></a>
-								<div id="elmodal-1" class="reveal-modal tiny" data-reveal>
-									<br />
-									<h4 class="text-center">¿Seguro quieres borrar esto?</h4>
-									<div class="text-center">
-									<a href="" ng-click="deleteLicenses(license,$index)" class="button success">Borrar</a>
-									</div>
-									<a class="close-reveal-modal">&#215;</a>
+								<div ng-if="req_info.status != 'Aprobado'">
+									<a href="" ng-click="aproveInhabilities(req_info)" class="acciones"></a>
+								</div>
+							</td>
+							<td>
+								<div ng-if="req_info.status != 'Aprobado'">
+									<a href="" ng-click="deniedInhabilities(req_info)" class="acciones negar"></a>
 								</div>
 							</td>
 						</tr>

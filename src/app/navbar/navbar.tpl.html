@@ -60,7 +60,7 @@
 	<li class="has-submenu">
 		<a href="">
 			<i class="fa fa-check fa-lg"></i> Solicitudes
-			<i class="number main-menu-comment" ng-if="only_not_user.length > 0">{{only_not_user.length}}</i>
+			<i class="number main-menu-comment" ng-if="only_not_user.length > 0">{{only_not_user.length+licenses_not_user.length}}</i>
 			<i class="fa fa-angle-right fa-right fa-lg"></i>
 		</a>
 		<ul class="left-submenu">
@@ -71,7 +71,10 @@
 				<a ui-sref="main.views.severance">Anticipo de cesantías</a>
 			</li>
 			<li>
-				<a ui-sref="main.views.licenses">Permisos</a>
+				<a ui-sref="main.views.licenses">
+					Permisos
+					<i ng-if="licenses_not_user.length > 0" class="number menu-comment">{{licenses_not_user.length}}</i>
+				</a>
 			</li>
 			<li class="disabled">
 				<a ui-sref="main.views.loans">Prestamos</a>
@@ -87,7 +90,7 @@
 	<li class="has-submenu">
 		<a href="">
 			<i class="fa fa-paste fa-lg"></i> Registros
-			<i class="number main-menu-comment" ng-if="extras_not_user.length > 0">{{extras_not_user.length}}</i>
+			<i class="number main-menu-comment registers" ng-if="extras_not_user.length > 0">{{extras_not_user.length+inhabilities_not_user.length}}</i>
 			<i class="fa fa-angle-right fa-right fa-lg"></i>
 		</a>
 		<ul class="left-submenu">
@@ -97,11 +100,14 @@
 			<li>
 				<a ui-sref="main.views.extras">
 					Horas extras
-					<span class="number menu-comment" ng-if="extras_not_user.length > 0">{{extras_not_user.length}}</span>
+					<span class="number menu-comment registers" ng-if="extras_not_user.length > 0">{{extras_not_user.length}}</span>
 				</a>
 			</li>
 			<li>
-				<a ui-sref="main.views.inhabilities">Incapacidades</a>
+				<a ui-sref="main.views.inhabilities">
+					Incapacidades
+					<span class="number menu-comment registers" ng-if="inhabilities_not_user.length > 0">{{inhabilities_not_user.length}}</span>
+				</a>
 			</li>
 		</ul>
 	</li>

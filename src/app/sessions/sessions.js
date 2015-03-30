@@ -23,10 +23,10 @@
 
 	.controller('sessions.LoginController', function($scope, Auth){
 
-		$scope.credentials = {
-			email: 'hola@fabianrios.co',
-			password: 'f6e02785c'
-		};
+		// $scope.credentials = {
+		// 	email: 'hola@fabianrios.co',
+		// 	password: 'f6e02785c'
+		// };
       
 	  
 		$scope.login = function() { //login

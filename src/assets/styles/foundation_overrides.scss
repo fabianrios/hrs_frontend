@@ -231,7 +231,7 @@ table{
 //7.placeholder
 input{
 	@include input-placeholder {
-	  color:#4f5860;	
+	  color:rgba(#4f5860,.5);	
 	}
 }
 
