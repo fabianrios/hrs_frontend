@@ -213,6 +213,12 @@
         $(".expandbanner").slideToggle();
       };
 	  
+      //toggle expand vacation box
+      $rootScope.xtoggle = function(e){
+        $(e.currentTarget).toggleClass("active");
+		$(".dashboard-profile").toggleClass("smallish");
+      };
+	  
       //buscar empleado
 		//       $rootScope.buscarEmpleado = function(e,id){
 		//         console.log(e.currentTarget,id);

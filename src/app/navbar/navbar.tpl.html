@@ -1,6 +1,6 @@
 <div class="user-info show-for-small-only">
 	<div class="pic">
-		<img ng-src="{{user.pic}}">
+		<img ng-src="{{user.pic ? user.pic : user.employee.image}}">
 	</div>
 	<div class="user-buttons">
 		<a ui-sref="main.views.articles()" class="movil-comments">

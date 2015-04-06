@@ -22,15 +22,15 @@
 		
 		$scope.user = currentUser;
 		$scope.inhabilities = inhabilities_req;
-		console.log("$scope.user",$scope.user, "inhabilities: ", $scope.inhabilities);
+		//console.log("$scope.user",$scope.user, "inhabilities: ", $scope.inhabilities);
 		
 		$scope.tipos = $scope.user.type.tipos;
 		$scope.only_not_user = [];
 		$scope.options = [];
 		
 		angular.forEach($scope.inhabilities,function(value,index){
-			// console.log(value.employee.boss,$scope.user.employee_id);
-			if (value.employee.boss == $scope.user.employee_id){
+			// console.log(value.employee.apply_reviewer,$scope.user.employee_id);
+			if (value.employee.apply_reviewer == $scope.user.employee_id){
 				$scope.only_not_user.push(value);
 			}
 		});
@@ -55,7 +55,7 @@
 		$scope.requerimiento = new Inhability_requirement();  
 		$scope.requerimiento.status = "Espera";
 		$scope.requerimiento.motivo = $scope.options[0].subty;
-		$scope.requerimiento.employee_id = $scope.user.employee.user_id;
+		$scope.requerimiento.employee_id = $scope.user.employee.id;
 
 		$scope.putRequest = function() { //create a new vacation. Issues a POST to /api/vacations
 			$scope.requerimiento.$save(function(newData) {

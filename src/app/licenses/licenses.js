@@ -29,8 +29,8 @@
 		$scope.options = [];
 		
 		angular.forEach($scope.licenses,function(value,index){
-			// console.log(value.employee.boss,$scope.user.employee_id);
-			if (value.employee.boss == $scope.user.employee_id){
+			// console.log(value.employee.apply_reviewer,$scope.user.employee_id);
+			if (value.employee.apply_reviewer == $scope.user.employee_id){
 				$scope.only_not_user.push(value);
 			}
 		});

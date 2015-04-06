@@ -27,31 +27,33 @@
 		
 		//vacaciones pendientes
 		angular.forEach($scope.vac_requirements,function(value,index){
-			if (value.employee.boss == $scope.user.employee_id && value.status == "Espera"){
+			if (value.employee.apply_reviewer == $scope.user.employee_id && value.status == "Espera"){
 				$scope.only_not_user.push(value);
 			}
 		});
 		
 		//extras pendientes
 		angular.forEach($scope.extras_requirements,function(value,index){
-			if (value.employee.boss == $scope.user.employee_id && value.status == "Espera"){
+			if (value.employee.apply_reviewer == $scope.user.employee_id && value.status == "Espera"){
 				$scope.extras_not_user.push(value);
 			}
 		});
 		
 		//inhabilidades pendientes
 		angular.forEach($scope.inhabilities_requirements,function(value,index){
-			if (value.employee.boss == $scope.user.employee_id && value.status == "Espera"){
+			if (value.employee.apply_reviewer == $scope.user.employee_id && value.status == "Espera"){
 				$scope.inhabilities_not_user.push(value);
 			}
 		});
 		
 		//licencias pendientes
-		angular.forEach($scope.inhabilities_requirements,function(value,index){
-			if (value.employee.boss == $scope.user.employee_id && value.status == "Espera"){
+		angular.forEach($scope.licenses_requirements,function(value,index){
+			if (value.employee.apply_reviewer == $scope.user.employee_id && value.status == "Espera"){
 				$scope.licenses_not_user.push(value);
 			}
 		});
+		
+		// console.log($scope.licenses_not_user);
 		
     });
 }());

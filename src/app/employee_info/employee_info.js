@@ -50,7 +50,7 @@
 		//  solicitudes a aprobar
 		angular.forEach(infos, function(value, key) {
 			// console.log(value,key);
-			if (value.boss == $scope.user.employee_id){
+			if (value.apply_reviewer == $scope.user.employee_id){
 				$scope.toapproved.push(value);
 			}
 		});
