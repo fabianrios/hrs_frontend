@@ -124,6 +124,14 @@
 	
 }
 
+.favorite{
+	position: relative;
+    font-size: 18px;
+	&.active{
+		color: orange;
+	}
+}
+
 #audio_btn.switch{
 	position: absolute;
 	top: 100px;

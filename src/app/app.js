@@ -219,12 +219,6 @@
 		$(".dashboard-profile").toggleClass("smallish");
       };
 	  
-      //buscar empleado
-		//       $rootScope.buscarEmpleado = function(e,id){
-		//         console.log(e.currentTarget,id);
-		// console.log(Employee.index({id: $id}).$promise);
-		//       };
-    
       
       //sort stuff icon-bar
       $rootScope.sorthings = function(e,data){

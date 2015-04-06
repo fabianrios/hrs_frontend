@@ -17,9 +17,8 @@
 				<img ng-src="{{employee.image}}">
 			</a>
 		</div>
-		<h6 class="name no-margin capitalize"><a ui-sref="main.views.employee_info_lookup({id:employee.identification, c:employee.company.id})" class="capitalize">{{employee.name | lowercase}} {{employee.lastname | lowercase}}</a></h6>
+		<h6 class="name no-margin capitalize">	<a ng-click="favorites($event, employee); $event.stopPropagation(); activado = !activado" class="favorite"><span ng-class="activado ? 'fa fa-star' : 'fa fa-star-o'"></span></a> <a ui-sref="main.views.employee_info_lookup({id:employee.identification, c:employee.company.id})" class="capitalize">{{employee.name | lowercase}} {{employee.lastname | lowercase}}</a></h6>
 		<h6 class="no-margin subheader cargo capitalize">{{employee.posicion | lowercase}}</h6>
-
 		<div class="action-buttons">
 			<a ng-if="employee.phone" href="tel://{{employee.phone}}">
 				<i class="fa fa-phone fa-lg"></i>
