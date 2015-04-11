@@ -1,8 +1,13 @@
 <div class="row">
-	<div class="large-6 columns large-centered">
+	<div class="large-12 columns">
 		<h1 class="subheader">Empresas</h1>
-		<ul>
+	</div>
+</div>
+<div class="row">
+	<div class="large-6 columns large-centered">
+		<ul class="no-bullet">
 		  <li ng-repeat="company in companies">
+				<img ng-src="images/{{company.logo}}" alt="" />
 				<a ng-click="viewCompany(company.id)"><span>{{company.name}}</span></a>
 				<div ng-include="'app/companies/partials/_crudbuttons.tpl.html'"></div>
 		  </li>
