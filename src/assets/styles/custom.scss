@@ -1426,11 +1426,63 @@ input[type="text"]#titulo{
     font-size: 30px;
     color: rgb(40, 194, 115);
     margin: 20px 0;
+	&.chilling{
+		margin: 0;
+		font-size: 22px;
+	}
 }
 
 .datos_cesantias{
 	h4{
 		color: #B3B3B3;
+	}
+}
+
+.thefieldset{
+    margin: 0;
+    padding: 50px 0;
+	.list-number{
+		background: #3DA7EC;
+		display: inline-block;
+		position: relative;
+		top: -2px;
+		@include border-radius(100%);
+		width: 30px;
+		height: 30px;
+		line-height: 30px;
+		font-style: normal;
+		font-family: "futura-pt","sans-serif";
+		text-align: center;
+		font-size: 25px;
+		color: #fff;
+		&.uno{
+			border: 2px solid white;
+			line-height: 27px;
+		}
+	}
+	&.datos, &.contratacion{
+		padding: 30px 0;
+	}
+}
+
+.nombres{
+	background: #3DA7EC;
+	position: relative;
+	top: -10px;
+	h3{
+		color: white;
+	}
+	label{
+		color: #fff;
+	}
+	input[type="text"]{
+		background: rgba(247, 247, 247, .3);
+	}
+	@include input-placeholder {
+	  color:rgba(#4f5860,1);	
+	}
+	.error label, .error label.error{
+		color: #C83219;
 	}
 }
 
@@ -1441,6 +1493,11 @@ input.money{
     margin: 10px 0;
     background: rgb(237, 255, 246);
     border: 1px solid rgb(196, 244, 228);
+	&.chilling{
+		margin: 0;
+		height: 1.9375rem;
+		font-size: 16px;
+	}
 }
 
 footer{

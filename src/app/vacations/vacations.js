@@ -59,7 +59,7 @@
 		$scope.requerimiento = new Vacation_requirement();  
 		$scope.requerimiento.status = "Espera";
 		$scope.requerimiento.tipo = $scope.seleccion;
-		$scope.requerimiento.employee_id = $scope.user.employee.user_id;
+		$scope.requerimiento.employee_id = $scope.user.employee.id;
  	   
 		//CREAR
 		$scope.putRequest = function() { //create a new vacation. Issues a POST to /api/vacations
@@ -67,7 +67,7 @@
 				$scope.vac_requirements.push(newData);
 				$scope.requerimiento = new Vacation_requirement();
 				$scope.requerimiento.status = "Espera";
-				$scope.requerimiento.employee_id = $scope.user.employee.user_id;
+				$scope.requerimiento.employee_id = $scope.user.employee.id;
 				$state.go('main.views.vacations');
 				$scope.alerts.push({type: 'success', msg: "La vacación a sido guardada"});
 			}, function(data) {

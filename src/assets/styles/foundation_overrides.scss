@@ -414,7 +414,7 @@ hr{
 }
 
 //17.form
-form .row .prefix-radius.row.collapse input{
+form .row .prefix-radius.row.collapse input[type="date"]{
 	border-bottom: 1px solid #cccccc;
 	border-right: 1px solid #cccccc;
 	border-top: 1px solid #cccccc;
@@ -457,4 +457,9 @@ span.prefix.date{
 
 .prefix, .postfix{
 	z-index: 0;
+}
+
+[data-abide] .error small.error, [data-abide] .error span.error, [data-abide] span.error, [data-abide] small.error{
+	padding: 0.375rem 0.5625rem 0.3625rem;
+//	background: rgb(239, 26, 26);
 }

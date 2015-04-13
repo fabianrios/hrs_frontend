@@ -56,14 +56,14 @@
 		$scope.requerimiento = new Extra_requirement();  
 		$scope.requerimiento.status = "Espera";
 		$scope.requerimiento.motivo = $scope.options[0].subty;
-		$scope.requerimiento.employee_id = $scope.user.employee.user_id;
+		$scope.requerimiento.employee_id = $scope.user.employee.id;
 
 		$scope.putRequest = function() { //create a new vacation. Issues a POST to /api/vacations
 			$scope.requerimiento.$save(function(newData) {
 				$scope.extras.push(newData);
 				$scope.requerimiento = new Extra_requirement();
 				$scope.requerimiento.status = "Espera";
-				$scope.requerimiento.employee_id = $scope.user.employee.user_id;
+				$scope.requerimiento.employee_id = $scope.user.employee.id;
 				$state.go('main.views.extras');
 				$scope.alerts.push({type: 'success', msg: "La hora extra a sido guardada"});
 			}, function(data) {

@@ -50,7 +50,7 @@
 		// Hmm esto no tiene cara de ir aca ...
 		$scope.$on('s3upload:success', function (evt, xhr, fileUrl) {
 			$http({method: 'PUT', 
-			url: 'http://backend.hrinteractive.co/api/users/'+$scope.user.employee.user_id,
+			url: 'http://backend.hrinteractive.co/api/users/'+$scope.user.employee.id,
 			data: { user: { pic: fileUrl.path}}
 		})
 		.success( function( data, status ) {

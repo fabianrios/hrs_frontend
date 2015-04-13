@@ -55,14 +55,14 @@
 		$scope.requerimiento = new License_requirement();  
 		$scope.requerimiento.status = "Espera";
 		$scope.requerimiento.motivo = $scope.options[0].subty;
-		$scope.requerimiento.employee_id = $scope.user.employee.user_id;
+		$scope.requerimiento.employee_id = $scope.user.employee.id;
 
 		$scope.putRequest = function() { //create a new vacation. Issues a POST to /api/vacations
 			$scope.requerimiento.$save(function(newData) {
 				$scope.licenses.push(newData);
 				$scope.requerimiento = new License_requirement();
 				$scope.requerimiento.status = "Espera";
-				$scope.requerimiento.employee_id = $scope.user.employee.user_id;
+				$scope.requerimiento.employee_id = $scope.user.employee.id;
 				$state.go('main.views.licenses');
 				$scope.alerts.push({type: 'success', msg: "El permiso a sido guardado"});
 			}, function(data) {

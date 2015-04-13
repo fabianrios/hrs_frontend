@@ -53,6 +53,7 @@
 	'managment',
 	'extras',
 	'inhability',
+	'employees',
 	'licenses'
   ])
 

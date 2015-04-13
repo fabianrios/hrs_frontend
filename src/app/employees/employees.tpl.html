@@ -1,0 +1,121 @@
+<div class="padding-container">
+	<div ng-model="employees">
+		<h3 class="expand-title text-center first-one">Contratar un empleado</h3>
+		<form ng-submit="putRequest()" data-abide>
+			<div class="nombres thefieldset">
+				<div class="row">
+					<div class="large-12 columns">
+						<h3> <span class="list-number uno">1</span> Nombres</h3>
+					</div>
+				</div>
+				<div class="row">
+					<div class="large-3 medium-3 columns">
+						<label for="nachn">* Primer apellido:</label>
+						<input type="text" ng-model="employee.nachn" name="nachn" placeholder="Saavedra" required pattern="[a-zA-Z]+" />
+						<small class="error">El primer apellido es requerido.</small>
+					</div>
+					<div class="large-3 medium-3 columns">
+						<label for="nach2">Segundo apellido: </label>
+						<input type="text" ng-model="employee.nach2" name="nach2" placeholder="Medina"/>
+					</div>
+					<div class="large-3 medium-3 columns">
+						<label for="vorna">Primer nombre: </label>
+						<input type="text" ng-model="employee.vorna" name="vorna" placeholder="Carlos" required pattern="[a-zA-Z]+" />
+						<small class="error">El nombre es requerido.</small>
+					</div>
+					<div class="large-3 medium-3 columns">
+						<label for="name2">* Segundo nombre: </label>
+						<input type="text" ng-model="employee.name2" name="name2" placeholder="Andres" />
+					</div>
+				</div>
+			</div>
+			<div class="thefieldset datos">
+				<div class="row">
+					<div class="large-12 columns">
+						<h3> <span class="list-number">2</span> Datos de contacto</h3>
+					</div>
+				</div>
+				<div class="row">
+					<div class="large-3 medium-3 columns">
+						<label for="stras">Dirección: </label>
+						<input type="text" ng-model="employee.stras" name="stras" placeholder="Calle 116 # 13 - 24" />
+					</div>
+					<div class="large-3 medium-3 columns">
+						<label for="telnr">Télefono: </label>
+						<input type="text" ng-model="employee.telnr" name="telnr" placeholder="+57 1 795 59 73" />
+					</div>
+					<div class="large-3 medium-3 columns">
+						<label for="usrid">* Email: </label>
+						<input type="email" placeholder="carlos.rios@hrsolutions-co.com" ng-model="employee.usrid" required />
+						<small class="error">Un correo electronico es requerido.</small>
+					</div>
+					<div class="large-3 medium-3 columns">
+						<label for="gbdat">* Fecha de nacimiento: </label>
+						<div class="row collapse prefix-radius">
+							<div class="small-2 columns">
+								<span class="prefix date"><i class="fa fa-calendar"></i></span>
+							</div>
+							<div class="small-10 columns">
+								<input type="date" id="gbdat" ng-model="employee.gbdat" required>
+								<small class="error">La fecha es requerida.</small>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="contratacion thefieldset">
+				<div class="row">
+					<div class="large-12 columns">
+						<h3> <span class="list-number">3</span> Contratación</h3>
+					</div>
+				</div>
+				<div class="row">
+					<div class="large-3 medium-3 columns">
+						<label for="gesch">Genero: </label>
+						<input type="radio" name="gesch" ng-model="employee.gesch" value="1" id="1"><label for="1"> <i class="fa fa-male fa-2x"></i></label>
+						<input type="radio" name="gesch" ng-model="employee.gesch" value="0" id="0"><label for="0"><i class="fa fa-female fa-2x"></i></label>
+					</div>
+					<div class="large-3 medium-3 columns">
+						<label for="brtrg">Sueldo: </label>
+						<div class="row collapse prefix-radius">
+							<div class="small-2 columns">
+								<span class="prefix money chilling"><i class="fa fa-usd"></i></span>
+							</div>
+							<div class="small-10 columns">
+								<input type="number" id="brtrg" ng-model="employee.brtrg" class="money chilling" required>
+								<small class="error">El sueldo es un numero entero.</small>
+							</div>
+						</div>
+					</div>
+					<div class="large-3 medium-3 columns">
+						<label for="tipo">Cedula: </label>
+						<input type="text" placeholder="1'022.331.338" ng-model="employee.icnum" />
+					</div>
+					<div class="large-3 medium-3 columns">
+						<label for="begda">* Fecha de contratación: </label>
+						<div class="row collapse prefix-radius">
+							<div class="small-2 columns">
+								<span class="prefix date"><i class="fa fa-calendar"></i></span>
+							</div>
+							<div class="small-10 columns">
+								<input type="date" id="begda" ng-model="employee.begda" required>
+								<small class="error">La fecha es requerida.</small>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="large-12 columns">
+					<div class="text-right">
+						<input type="submit" value="Crear" class="button success small" />
+					</div>
+				</div>
+			</div>
+		</form>
+		<br /><br />
+		<h3 class="expand-title text-center">Lista de empleados</h3>
+		<br /><br />
+
+	</div>	
+</div>

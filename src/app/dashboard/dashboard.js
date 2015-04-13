@@ -421,7 +421,7 @@
 				var birth = new Date(empleado.fecha_nac);
 				var now = new Date(); 
 				var show = now.getMonth() == birth.getMonth() ? true : false;
-				console.log(now.getMonth(), birth.getMonth())
+				// console.log(now.getMonth(), birth.getMonth())
 				return show;
 			}
     
@@ -429,7 +429,7 @@
 				var entrada = new Date(empleado.fecha_ingreso);
 				var now = new Date(); 
 				var show = now.getMonth() == entrada.getMonth() ? true : false;
-				console.log(now.getMonth(), entrada.getMonth())
+				// console.log(now.getMonth(), entrada.getMonth())
 				return show;
 			}
     

@@ -51,7 +51,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat="req_info in extras | filter:{employee_id: user.employee.user_id}:true">
+						<tr ng-repeat="req_info in extras | filter:{employee_id: user.employee.id}:true">
 							<td class="desde">
 								<h2>{{ req_info.fecha | date:'d' }}</h2>
 								<h6>{{ req_info.fecha | date:'MMMM' }}</h6>

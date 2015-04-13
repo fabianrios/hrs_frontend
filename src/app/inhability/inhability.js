@@ -62,7 +62,7 @@
 				$scope.inhabilities.push(newData);
 				$scope.requerimiento = new Inhability_requirement();
 				$scope.requerimiento.status = "Espera";
-				$scope.requerimiento.employee_id = $scope.user.employee.user_id;
+				$scope.requerimiento.employee_id = $scope.user.employee.id;
 				$state.go('main.views.inhabilities');
 				$scope.alerts.push({type: 'success', msg: "La incapacidad a sido guardada"});
 			}, function(data) {
