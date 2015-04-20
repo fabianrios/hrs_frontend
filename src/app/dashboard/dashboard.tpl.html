@@ -1,5 +1,5 @@
 <div class="padding-container">
-	<div class="row collpase">
+	<div class="row collpase" style="max-width:61.9rem;">
 		<div class="large-12 columns">
 			<ul ng-model="common.widgets" class="small-block-grid-1 medium-block-grid-3 large-block-grid-3 dashboardlis">
 				<li>
@@ -114,7 +114,7 @@
 			
 			<ul class="small-block-grid-1 medium-block-grid-3 large-block-grid-3 dashboardlis">
 				<li>
-					<div class="widgets">
+					<div class="widgets minh-430">
 						<h5 class="encabezado">
 							<a href="#">{{ common.workers[0].name }} <i class="fa fa-angle-right"></i> </a>
 							<div class="right actions">
@@ -132,14 +132,14 @@
 							<ul class="employees">
 								<li ng-repeat="empleado in employees | filter:birthShow">
 									<div class="foto">
-										<a href="#">
+										<a ui-sref="main.views.employee_info_lookup({id:empleado.identification, c:empleado.company.id})">
 											<img alt="profile" ng-src="{{empleado.image}}">
 										</a>
 									</div>
 									<h6 class="no-margin capitalize">
-										<a href="employees/00000017">{{empleado.short_name}}</a>
+										<a ui-sref="main.views.employee_info_lookup({id:empleado.identification, c:empleado.company.id})">{{empleado.short_name | lowercase}}</a>
 									</h6>
-									<h6 class="subheader no-margin capitalize">{{empleado.posicion}}</h6>
+									<h6 class="subheader no-margin capitalize">{{empleado.posicion | lowercase}}</h6>
 									<div class="text-right">
 										<span class="graytxt">
 											<i class="fa fa-calendar-o"></i>
@@ -152,7 +152,7 @@
 					</div>
 				</li>
 				<li>
-					<div class="widgets">
+					<div class="widgets minh-430">
 						<h5 class="encabezado">
 							<a href="#">{{ common.workers[1].name }} <i class="fa fa-angle-right"></i> </a>
 							<div class="right actions">
@@ -170,12 +170,12 @@
 							<ul class="employees">
 								<li ng-repeat="empleado in employees  | filter:laborShow">
 									<div class="foto">
-										<a href="#">
+										<a ui-sref="main.views.employee_info_lookup({id:empleado.identification, c:empleado.company.id})">
 											<img alt="profile" ng-src="{{empleado.image}}">
 										</a>
 									</div>
 									<h6 class="no-margin capitalize">
-										<a href="employees/00000017">{{empleado.short_name}}</a>
+										<a ui-sref="main.views.employee_info_lookup({id:empleado.identification, c:empleado.company.id})">{{empleado.short_name}}</a>
 									</h6>
 									<h6 class="subheader no-margin capitalize">{{empleado.posicion}}</h6>
 									<div class="text-right">
@@ -191,7 +191,7 @@
 					</div>
 				</li>
 				<li>
-					<div class="widgets">
+					<div class="widgets minh-430">
 						<h5 class="encabezado">
 							<a href="#">Publicaciones recientes <i class="fa fa-angle-right"></i> </a>
 							<div class="right actions">
