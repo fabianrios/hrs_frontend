@@ -46,7 +46,7 @@
 		$scope.deleteCompany = function (empresa) {
 			empresa.$delete(function() {
 				var index = $scope.companies.indexOf(empresa);
-				$scope.companies.splice(index, 1);
+				// $scope.companies.splice(index, 1);
 				$state.go('main.views.companylisting'); // on success go back to company_listing
 			});
 		};
@@ -60,17 +60,43 @@
 	.controller('companies.NewController', function($scope, $state, Company){
 		$scope.company = new Company();  
  
-		$scope.addCompany = function() { //create a new company. Issues a POST to /api/companies
-			$scope.company.$save(function() {
-				$state.go('main.views.companylisting'); // on success go back to company_listing
+		$scope.addCompany = function(e) { //create a new company. Issues a POST to /api/companies
+			// $scope.company.$save(function() {
+// 				$state.go('main.views.companylisting'); // on success go back to company_listing
+// 			});
+			
+			var aprobado = false;
+			$(e.currentTarget).children("div.row").each(function () {
+				// tiene errores
+				// console.log($(this).children("div.large-12.error").length());
+				// if ($(this).children("div.large-12").hasClass("error").length() > 0){
+// 					// console.log($(this).children("div.large-12"));
+// 				// no tiene mas errores
+// 					console.log("tiene errores");
+// 					aprobado = false;
+// 				}else if ($(this).children("div.large-12").hasClass("error").length() == 0){
+// 					aprobado = true;
+// 				}
 			});
+			
+			console.log($scope.company.empresa, $scope.company.usuario, $scope.company.confirmar, $scope.company.password, aprobado);
+			if (typeof $scope.company.empresa != "undefined" && typeof $scope.company.usuario != "undefined" && typeof $scope.company.confirmar != "undefined" && typeof $scope.company.password != "undefined" && typeof $scope.company.nombre != "undefined" && typeof $scope.company.apellido != "undefined" && typeof $scope.company.documento != "undefined" && typeof $scope.company.email != "undefined"){
+				$scope.alerts.push({type: 'success', msg: "la empresa " + $scope.company.empresa + " con el usuario " + $scope.company.usuario + " ha sido creada"});
+			}else{
+				$scope.alerts.push({type: 'alert', msg: "la empresa no ha podido crearse revisa los campos "});
+				window.setTimeout(function() {
+					$(".alert-box").fadeTo(500, 0).slideUp(500, function(){
+						$(this).remove(); 
+					});
+				}, 5000);
+			}
 		};
 	})
 	.controller('companies.EditController', function($scope, $state, $stateParams, Company){
 		$scope.updateCompany = function() { //Update the edited company. Issues a PUT to /api/companies/:id
-			$scope.company.$update(function() {
-				$state.go('main.views.companylisting'); // on success go back to company_listing
-			});
+			// $scope.company.$update(function() {
+// 				$state.go('main.views.companylisting'); // on success go back to company_listing
+// 			});
 		};
 
 		$scope.loadCompany = function() { //Issues a GET request to /api/movies/:id to get a movie to update

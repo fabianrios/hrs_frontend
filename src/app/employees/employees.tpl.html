@@ -142,9 +142,13 @@
 						</div>
 					</div>
 				</div> -->
+				<div class="text-right">
+					<a href="#" class="button small success">Nomina masiva</a>
+				</div>
 				<table class="vacations">
 					<thead>
 						<tr>
+							<th></th>
 							<th width="370px">Empleado</th>
 							<th class="desde">Fecha de entrada</th>
 							<th class="dias">ID</th>
@@ -155,6 +159,12 @@
 					</thead>
 					<tbody>
 						<tr ng-repeat="employee in employees  | filter:searching ">
+							<td>
+								<div class="switch small round">
+								  <input id="nombre-{{$index}}" type="checkbox" name="nombre-{{$index}}">
+								  <label for="nombre-{{$index}}"></label>
+								</div> 
+							</td>
 							<td>
 								<div class="foto">
 									<a ui-sref="main.views.employee_info_lookup({id:employee.identification, c:employee.company.id})">

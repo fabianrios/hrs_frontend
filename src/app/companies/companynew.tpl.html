@@ -1,13 +1,104 @@
 <div class="row">
 	<div class="large-12 columns">
+		<br /><br />
 		<h1 class="subheader">Crear empresa</h1>
 	</div>
 </div>
 <div class="row">
 	<div class="large-5 columns large-centered">
-		<form role="form" ng-submit="addCompany()">
-			  <div ng-include="'app/companies/partials/_form.tpl.html'"></div>
-			  <input type="submit" value="Crear" class="button success">
-		 </form>
+		<form role="form" ng-submit="addCompany($event)" data-abide>
+			<!-- <div ng-include="'app/companies/partials/_form.tpl.html'"></div> -->
+			<div class="row">
+				<div class="large-12 columns">
+					<label for="empresa">Empresa:</label>
+					<input type="text" ng-model="company.empresa" id="empresa" placeholder="Ej: Hrsolutions SAS." required>
+					<small class="error">La empresa es requerida.</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="large-12 columns">
+					<label for="usuario">Usuario:</label>
+					<input type="text" ng-model="company.usuario" id="usuario" placeholder="Ej: hrsolutions" required pattern="[a-zA-Z]+">
+					<small class="error">El usuario es requerido.</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="large-12 columns">
+					<label for="password">Contraseña:</label>
+					<input type="password" ng-model="company.password" id="password" required>
+					<small class="error">La contraseña es requerida.</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="large-12 columns">
+					<label for="confirmar">Confirmar contraseña:</label>
+					<input type="password" ng-model="company.confirmar" id="confirmar" required data-equalto="password">
+					<small class="error">La confirmación de contraseña no es igual.</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="large-12 columns">
+					<label for="nombre">Nombre:</label>
+					<input type="text" ng-model="company.nombre" id="nombre" placeholder="Ej: Alvaro" required>
+					<small class="error">El nombre es requerido.</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="large-12 columns">
+					<label for="apellido">Apellido paterno:</label>
+					<input type="text" ng-model="company.apellido" id="apellido" placeholder="Ej: Restrepo" required>
+					<small class="error">El Apellido es requerido.</small>
+				</div>
+			</div>
+			<br /><br />
+			<div class="row">
+				<div class="large-12 columns">
+					<label for="documento">Numero de documento:</label>
+					<input type="text" ng-model="company.documento" id="documento" placeholder="Ej: 80'774.027" required>
+					<small class="error">El documento es requerido.</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="large-12 columns">
+					<label for="email">Dirección de correo:</label>
+					<input type="email" ng-model="company.email" id="email" placeholder="Ej: ana@miempresa.com" required>
+					<small class="error">El correo es requerido.</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="large-12 columns">
+					<label for="confirmar_correo">Confirmar dirección de correo:</label>
+					<input type="email" ng-model="company.confirmar_correo" id="confirmar_correo" required data-equalto="email">
+					<small class="error">La confirmación no es igual al correo.</small>
+				</div>
+			</div>
+			<div class="row">
+				<div class="large-12 columns">
+					<label for="direccion">Dirección:</label>
+					<input type="text" ng-model="company.direccion" id="direccion" placeholder="Ej: Calle 127 # 14 - 59">
+				</div>
+			</div>
+			<div class="row">
+				<div class="large-12 columns">
+					<label for="barrio">Barrio:</label>
+					<input type="text" ng-model="company.barrio" id="barrio" placeholder="Ej: Santa ana">
+				</div>
+			</div>
+			<div class="row">
+				<div class="large-12 columns">
+					<label for="ciudad">Ciudad:</label>
+					<input type="text" ng-model="company.ciudad" id="ciudad" placeholder="Ej: Bogotá">
+				</div>
+			</div>
+			<div class="row">
+				<div class="large-12 columns">
+					<br />
+					<div class="text-right">
+						<input type="submit" value="Crear" class="button success">
+					</div>
+					<br />
+				</div>
+			</div>
+		</form>
 	</div>
 </div>
