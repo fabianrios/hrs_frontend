@@ -167,13 +167,21 @@
     // Catch unauthorized requests and recover.
     $rootScope.$on('devise:unauthorized', function(event, xhr, deferred) {
       // Ask user for login credentials
-      // console.log("devise:unauthorized -> login.auth");
+      // console.log("devise:unauthorized -> login.auth", event, xhr, deferred);
+	  $rootScope.alerts.push({type: 'alert', msg: xhr.data.error});
+		window.setTimeout(function() {
+			$(".alert-box").fadeTo(500, 0).slideUp(500, function(){
+				$(this).remove();
+				$rootScope.alerts = [];
+			});
+		}, 5000);
       $state.go('login.auth');
     });
 
     $rootScope.$on('devise:login', function(event, currentUser) {
       // after a login, a hard refresh, a new tab
-      // console.log("devise:login -> main.views.dashboard", currentUser);
+      // console.log("devise:login -> main.views.dashboard", currentUser, event);
+	  // $rootScope.alerts.push({type: 'success', msg: event});
       $state.go('main.views.dashboard');
     });
 
@@ -188,7 +196,14 @@
 
     $rootScope.logout = function(){
       Auth.logout().then(function(oldUser) {
-          console.log(oldUser.email + "you're signed out now.");
+		  $rootScope.alerts.push({type: 'warning', msg: oldUser.name + " has cerrado sesión."});
+			window.setTimeout(function() {
+				$(".alert-box").fadeTo(500, 0).slideUp(500, function(){
+					$(this).remove(); 
+					$rootScope.alerts = [];
+				});
+			}, 5000);
+          // console.log(oldUser.email + " has cerrado sesión.");
         }, function(error) {
           // An error occurred logging out.
           console.log("An error occurred logging out", error);

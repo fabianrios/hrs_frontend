@@ -37,6 +37,24 @@
 			// 	gesch: 1
 			// }
 			
+			$scope.nomina_masiva = function(e){
+				console.log($(e.currentTarget));
+				var aleatorio = Math.floor((Math.random() * 5) + 1);
+				console.log(aleatorio);
+				
+				if (aleatorio != 4){
+					$scope.alerts.push({type: 'success', msg: "Se corrio satisfactoriamente la nomina para los empleados seleccionados"});
+				} else{
+					$scope.alerts.push({type: 'warning', msg: "Se corrio satisfactoriamente la nomina para los empleados seleccionados, excepto el 2435"});
+					window.setTimeout(function() {
+						$(".alert-box").fadeTo(500, 0).slideUp(500, function(){
+							$(this).remove(); 
+						});
+					}, 5000);
+				}
+
+			}
+			
 			$scope.disabled = false;
 			
 			$scope.nomina = function(id){

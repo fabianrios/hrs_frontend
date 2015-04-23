@@ -11,21 +11,21 @@
 				<div class="row">
 					<div class="large-3 medium-3 columns">
 						<label for="nachn">* Primer apellido:</label>
-						<input type="text" ng-model="employee.nachn" name="nachn" placeholder="Saavedra" required pattern="[a-zA-Z]+" />
+						<input type="text" ng-model="employee.nachn" name="nachn" placeholder="ej: Saavedra" required pattern="[a-zA-Z]+" />
 						<small class="error">El primer apellido es requerido.</small>
 					</div>
 					<div class="large-3 medium-3 columns">
 						<label for="nach2">Segundo apellido: </label>
-						<input type="text" ng-model="employee.nach2" name="nach2" placeholder="Medina"/>
+						<input type="text" ng-model="employee.nach2" name="nach2" placeholder="ej: Medina"/>
 					</div>
 					<div class="large-3 medium-3 columns">
 						<label for="vorna">Primer nombre: </label>
-						<input type="text" ng-model="employee.vorna" name="vorna" placeholder="Carlos" required pattern="[a-zA-Z]+" />
+						<input type="text" ng-model="employee.vorna" name="vorna" placeholder="ej: Carlos" required pattern="[a-zA-Z]+" />
 						<small class="error">El nombre es requerido.</small>
 					</div>
 					<div class="large-3 medium-3 columns">
 						<label for="name2">* Segundo nombre: </label>
-						<input type="text" ng-model="employee.name2" name="name2" placeholder="Andres" />
+						<input type="text" ng-model="employee.name2" name="name2" placeholder="ej: Andres" />
 					</div>
 				</div>
 				<div class="row">
@@ -36,7 +36,7 @@
 					</div>
 					<div class="large-3 medium-3 columns end">
 						<label for="tipo">Cedula: </label>
-						<input type="text" placeholder="1'022.331.338" ng-model="employee.icnum" />
+						<input type="text" placeholder="ej: 1'022.331.338" ng-model="employee.icnum" />
 					</div>
 				</div>
 			</div>
@@ -49,11 +49,11 @@
 				<div class="row">
 					<div class="large-3 medium-3 columns">
 						<label for="stras">Dirección: </label>
-						<input type="text" ng-model="employee.stras" name="stras" placeholder="Calle 116 # 13 - 24" />
+						<input type="text" ng-model="employee.stras" name="stras" placeholder="ej: Calle 116 # 13 - 24" />
 					</div>
 					<div class="large-3 medium-3 columns">
 						<label for="telnr">Télefono: </label>
-						<input type="text" ng-model="employee.telnr" name="telnr" placeholder="+57 1 795 59 73" />
+						<input type="text" ng-model="employee.telnr" name="telnr" placeholder="ej: +57 1 795 59 73" />
 					</div>
 					<div class="large-3 medium-3 columns">
 						<label for="usrid">* Email: </label>
@@ -143,7 +143,7 @@
 					</div>
 				</div> -->
 				<div class="text-right">
-					<a href="#" class="button small success">Nomina masiva</a>
+					<a ng-click="nomina_masiva($event)" class="button small success">Nomina masiva</a>
 				</div>
 				<table class="vacations">
 					<thead>

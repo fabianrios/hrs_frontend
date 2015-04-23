@@ -46,9 +46,13 @@
 	// esto esta por el rootscope de employee_info
 	// $scope.employee_info = $scope.user.employee_info;
 	$scope.vacationdates = $scope.vacation.detalle;
-	$scope.disponibles = parseInt($scope.vacation.resumen[1]);
-	$scope.usados = parseInt($scope.vacation.resumen[2]);
-	  
+	if 	($scope.user.vacation != null){
+		$scope.disponibles = parseInt($scope.vacation.resumen[1]);
+		$scope.usados = parseInt($scope.vacation.resumen[2]);
+	}else{
+		$scope.disponibles = [];
+		$scope.usados = [];
+	}
 	  var thedates;
 	  $scope.elusuario.$promise.then(function(items){
 			thedates = items.vacation.detalle;

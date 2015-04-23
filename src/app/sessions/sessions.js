@@ -37,7 +37,7 @@
 			});
 		};
 	  
-		$scope.login();
+		//$scope.login();
      
 	})
 
