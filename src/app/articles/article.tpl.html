@@ -1,0 +1,27 @@
+<div class="padding-container">
+	<div class="row">
+		<div class="large-9 columns">
+			<div ng-model="article" class="article">
+				<h2 class="{{article.category}}">{{article.titulo}}</h2>
+				<span class="label {{article.category}}">{{article.category}}</span>
+				<div class="right">
+					<span class="label secondary">Creado: {{article.created_at | date:"d 'de' MMMM" }}</span> <br />
+					<i>Ultima actualización: {{article.updated_at | date:"medium" }}</i>
+				</div>
+				<br /><br /><br />
+				<img ng-src="{{article.imagen}}" alt="" class="imgborder" />
+				<div class="parrafo" ng-bind-html="article.cuerpo"></div>
+			</div>
+		</div>
+		<div class="large-3 columns">
+			<h4>Autor</h4>
+			<div class="profilepic">
+				<a href="#"><img alt="profile" ng-src="{{article.employee.image}}"></a>
+			</div>
+			<h6 class="no-margin capitalize">
+				<a href="" class="ng-binding">{{article.employee.short_name}}</a>
+			</h6>
+			<h6 class="subheader no-margin capitalize ng-binding">{{article.employee.posicion}}</h6>
+		</div><!-- large-3 -->
+	</div>
+</div>

@@ -1,0 +1,112 @@
+<div class="padding-container">
+	<div ng-model="loans">
+		<h3 class="expand-title text-center first-one">Crear solicitud de prestamo</h3>
+		<br /><br />
+		<div class="row">
+			<div class="large-5 medium-5 columns">
+				<form ng-submit="putRequest()">
+					<label for="">Motivo: </label>
+					<select name="monto" id="monto">
+						<option value="1">Carencia</option>
+						<option value="2">Calamidad domestica</option>
+						<option value="3">Permiso matrimonio</option>
+						<option value="4">Enfermedad profesional 100%</option>
+						<option value="5">Licencia de paternidad</option>
+					</select>
+					<label for="">Monto solicitado: </label>
+					<div class="row collapse prefix-radius">
+						<div class="small-2 columns">
+							<span class="prefix money"><i class="fa fa-usd"></i></span>
+						</div>
+						<div class="small-10 columns">
+							<input type="number" id="monto" ng-model="prestamo.monto" class="money" pattern="^\d+(\.|\,)\d{2}$">
+						</div>
+					</div>
+					<input type="hidden" ng-model="prestamo.status">
+					<input type="hidden" ng-model="prestamo.employee_id">
+					<br />
+					<div class="text-right">
+						<input type="submit" value="Solicitar" class="button success small" />
+					</div>
+				</form>
+			</div> <!-- /large-6 -->
+			<div class="large-7 medium-7 columns">
+				<table class="vacations">
+					<thead>
+						<tr>
+							<th>MONTO</th>
+							<th>MOTIVO</th>
+							<th>ESTADO</th>
+							<th class="borrar">BORRAR</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="desde">
+								<h6>$ 4`000.000</h6>
+							</td>
+							<td><h6>Calamidad domestica</h6></td>
+							<td><h6 class="bold"><span>en espera</span></h6></td>
+							<td>
+								<a href="" class="acciones borrar" ng-click="openModal(1,'myModal')"></a>
+								<div id="myModal-1" class="reveal-modal tiny" data-reveal>
+									<br />
+									<h4 class="text-center">¿Seguro quieres borrar esto?</h4>
+									<div class="text-center">
+										<a href="" ng-click="deleteLicense(license,$index)" class="button success">Borrar</a>
+									</div>
+									<a class="close-reveal-modal">&#215;</a>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<br /><br />
+		<h3 class="expand-title text-center">Aprobar solicitudes de prestamo</h3>
+		<br /><br />
+		<div class="row">
+			<div class="large-12 columns">
+				<table class="vacations responsive">
+					<thead>
+						<tr>
+							<th>NOMBRE</th>
+							<th class="desde">MONTO</th>
+							<th>MOTIVO</th>
+							<th>ESTADO</th>
+							<th class="aprobar">APROBAR</th>
+							<th class="negar">NEGAR</th>
+							<th class="borrar">BORRAR</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>
+								<h5>Gabriel Rodriguez</h5>
+							</td>
+							<td class="desde">
+								<h6>$6`000.000</h6>
+							</td>
+							<td><h6>Permiso matrimonio</h6></td>
+							<td><h6 class="bold" ><span>en espera</span></h6></td>
+							<td><a href="" ng-click="aproveLicenses(license)" class="acciones"></a></td>
+							<td><a href="" ng-click="deniedLicenses(license)" class="acciones negar"></a></td>
+							<td>
+								<a href="" class="acciones borrar" ng-click="openModal(1,'elmodal')"></a>
+								<div id="elmodal-1" class="reveal-modal tiny" data-reveal>
+									<br />
+									<h4 class="text-center">¿Seguro quieres borrar esto?</h4>
+									<div class="text-center">
+									<a href="" ng-click="deleteLicenses(license,$index)" class="button success">Borrar</a>
+									</div>
+									<a class="close-reveal-modal">&#215;</a>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>	
+</div>

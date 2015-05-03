@@ -1,29 +1,32 @@
-<div class="row">
-	<div class="large-6 columns large-centered">
-		<h3>Editar información del usuario</h3>
-		<br />
-		<div s3-upload bucket="'hrsolutions'" ng-model="user.pic" s3-upload-options="{getOptionsUri: '/api/users/1/s3_access_token', folder: 'users/'}">
-	</div>
-</div>
-<br />
-<div class="row">
-	<div class="large-6 columns large-centered">
-		<form role="form" ng-submit="updateUser()" >
-		 <label for="name">Nombre:</label>
-		 <input type="text" ng-model="user.name" id="name">
-		 <label for="email">Correo:</label>
-		 <input type="email" ng-model="user.email" id="email">
-		<fieldset>
-			<label for="password">Contraseña:	<span class="redtxt">Solo si quieres cambiar la contraseña</span></label>
-			<input type="password" ng-model="user.password" id="password">
-			<label for="password_confirmation">Confirmación de contraseña:</label>
-			<input type="password" ng-model="user.password_confirmation" id="password_confirmation">
-		</fieldset>
-		 <label for="current_password">Contraseña actual: <span class="redtxt">Obligatoria para confirmar identidad</span></label>
-		 <input type="password" ng-model="user.current_password" id="current_password">
-		<div class="text-right">
-			<input type="submit" value="Actualizar" class="button success">
+<div class="padding-container">
+	<div class="row">
+		<div class="large-6 columns large-centered">
+			<h4 class="subheader">Editar información del usuario</h4>
+			<br />
+			<div s3-upload bucket="'hrsolutions'" ng-model="user.pic" s3-upload-options="{getOptionsUri: 'http://backend.hrinteractive.co/api/users/1/s3_access_token', folder: 'users/'}">
 		</div>
-		</form>
+	</div>
+	<br />
+	<div class="row">
+		<div class="large-6 columns small-12 large-centered">
+			<form role="form" ng-submit="updateUser()" >
+			 <label for="name">Nombre:</label>
+			 <input type="text" ng-model="user.name" id="name">
+			 <label for="email">Correo:</label>
+			 <input type="email" ng-model="user.email" id="email">
+			<fieldset>
+				<label for="password">Contraseña:	<span class="redtxt">Solo si quieres cambiar la contraseña</span></label>
+				<input type="password" ng-model="user.password" id="password">
+				<label for="password_confirmation">Confirmación de contraseña:</label>
+				<input type="password" ng-model="user.password_confirmation" id="password_confirmation">
+			</fieldset>
+			<!-- TODO: esto solo sirve con el usuario logueado en el backend  -->
+			 <label for="current_password">Contraseña actual: <span class="redtxt">Obligatoria para confirmar identidad</span></label>
+			 <input type="password" ng-model="user.current_password" id="current_password">
+			<div class="text-right">
+				<input type="submit" value="Actualizar" class="button success">
+			</div>
+			</form>
+		</div>
 	</div>
 </div>

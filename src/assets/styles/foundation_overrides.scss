@@ -44,7 +44,7 @@ html, body {
 body{
 	background: #fff;
 	&.pattrn{
-		background: url('../assets/bg.png');
+		background: url('/images/bg.png');
 	}
 }
 
@@ -53,7 +53,7 @@ input[type="text"], input[type="password"], input[type="date"], input[type="date
 	@include box-shadow(white 0px 0px 0px);
 	font-family: "Lato", "Helvetica", sans-serif;
 	background: rgba(180,180,180,.1);
-	padding: 0.5rem 0.3rem;
+//	padding: 0.5rem 0.3rem;
 	border: 0;
 	&.whitening{
 		background: rgba(255, 255, 255, 0.5);
@@ -63,7 +63,7 @@ input[type="text"], input[type="password"], input[type="date"], input[type="date
 		background: rgba(#fff,0);
 		color: #000;
 		&:hover,&:focus{
-				padding: 0.5rem 0.3rem;
+				//padding: 0.5rem 0.3rem;
 				border:0;
 				background: rgba(#fff,0);
 				color: #000;
@@ -92,7 +92,7 @@ textarea{
 }
 
 textarea[rows]{
-	height: 200px;
+//	height: 200px;
 	&.fixheight{
 		height: 94px;
 	}
@@ -231,7 +231,7 @@ table{
 //7.placeholder
 input{
 	@include input-placeholder {
-	  color:#4f5860;	
+	  color:rgba(#4f5860,.5);	
 	}
 }
 
@@ -285,7 +285,7 @@ ul.button-group{
 }
 
 .tab-bar{
-	background: rgba(255,255,255,.1);
+	background: rgba(170, 198, 220, .6);
 	position: absolute;
 	width: 100%;
 	border-bottom: 1px solid rgba(#ffffff,.2);
@@ -414,7 +414,7 @@ hr{
 }
 
 //17.form
-form .row .prefix-radius.row.collapse input{
+form .row .prefix-radius.row.collapse input[type="date"]{
 	border-bottom: 1px solid #cccccc;
 	border-right: 1px solid #cccccc;
 	border-top: 1px solid #cccccc;
@@ -446,7 +446,10 @@ span.prefix.date{
 	opacity:0.3;
 }
 
-.progress .meter {
+.progress .meter, .progress .bar {
+	background: #1C6087;
+	height: 100%;
+	display: block;
 	&.bar-success{
 		background: #1AA64D;
 	}
@@ -454,4 +457,22 @@ span.prefix.date{
 
 .prefix, .postfix{
 	z-index: 0;
+}
+
+[data-abide] .error small.error, [data-abide] .error span.error, [data-abide] span.error, [data-abide] small.error{
+	padding: 0.375rem 0.5625rem 0.3625rem;
+//	background: rgb(239, 26, 26);
+}
+
+.postfix-radius.row.collapse input[type="search"]{
+	border-bottom: 1px solid #cccccc;
+	border-left: 1px solid #cccccc;
+	border-top: 1px solid #cccccc;
+}
+
+h6.subheader{
+	font-size: 0,9em !important;
+	@media only screen and (min-width: 40.063em){
+		font-size: 0,9em !important;
+	}
 }

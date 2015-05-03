@@ -1,0 +1,80 @@
+<div class="padding-container">
+	<div ng-model="absentismos">
+		<h3 class="expand-title text-center first-one">Total de absentismos</h3>
+		<br /><br />
+		<div class="row-x">
+			<div class="large-12 columns">
+				
+				<div class="form-inline">
+					<div class="form-group">
+						<div class="row">
+							<div class="small-4 columns">
+								<label for="right-label" class="right inline"><i class="fa fa-search"></i> Escala:</label>
+							</div>
+							<div class="small-8 columns">
+								<select ng-model="options.scale" ng-options="s for s in options.thescale" bs-select></select>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="row">
+							<div class="small-4 columns">
+								<label for="right-label" class="right inline"><i class="fa fa-filter"></i> Filtrar:</label>
+							</div>
+							<div class="small-8 columns">
+								<input type="search" ng-model="options.filterRow" />
+							</div>
+						</div>
+					</div>
+					<div class="last-group">
+						<div class="row">
+							<div class="small-12 columns">
+								<label for="desde-hasta"><i class="fa fa-calendar"></i> Desde  <i class="fa fa-arrows-h"></i> Hasta <i class="fa fa-calendar"></i> </label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="small-6 columns">
+								<input type="date" ng-model="options.fromDate" max-date="{{options.toDate}}" start-date="{{options.currentDateValue.toString()}}" start-week="1" placeholder="Desde">
+							</div>
+							<div class="small-6 columns">
+								<input type="date" ng-model="options.toDate" min-date="{{options.fromDate}}" start-date="{{options.currentDateValue.toString()}}" start-week="1" placeholder="Hasta">
+							</div>
+						</div>
+					</div>
+				</div>
+			
+				<div gantt
+					data="data"
+					show-side="options.labelsEnabled"
+					daily="options.daily"
+					filter-row="{'name': options.filterRow}"
+					sort-mode="options.sortMode"
+					view-scale="options.scale"
+					column-width="getColumnWidth(options.width, options.scale, options.zoom)"
+					auto-expand="options.autoExpand"
+					task-out-of-range="options.taskOutOfRange"
+					from-date = "options.fromDate"
+					to-date = "options.toDate"
+					allow-side-resizing = "options.allowSideResizing"
+					current-date="options.currentDate"
+					current-date-value="options.currentDateValue"
+					max-height="options.maxHeight && 300 || 0">
+					<gantt-tree enabled="'Tree'"
+						header-content="options.treeHeaderContent"
+						keep-ancestor-on-filter-row="true">
+					</gantt-tree>
+					<gantt-table headers="options.columnsHeaders"
+						classes="options.columnsClasses"
+						formatters="options.columnsFormatters"
+						contents="options.columnsContents"
+						header-contents="options.columnsHeaderContents">
+					</gantt-table>
+					<gantt-tooltips></gantt-tooltips>
+					<gantt-bounds></gantt-bounds>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<br /><br /><br />
+		

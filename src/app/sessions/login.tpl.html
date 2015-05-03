@@ -3,7 +3,11 @@
 	<div class="large-4 medium-4 small-12 columns">
 		<br /><br /><br /><br />
 		<div class="enterprise-image">
-			<img alt="Hrlogo" src="/assets/images/hrs_logo.png">
+			<img alt="Hrlogo" src="images/hrs_logo.png">
+		</div>
+		<div data-alert class="alert-box {{alert.type}}" ng-repeat="alert in alerts">
+			<span ng-bind-html="alert.msg"></span>
+			<a href="" class="close" ng-click="closeAlert($index)">&times;</a>
 		</div>
 		<form role="form" ng-submit="login()" >
 		 <label for="email">Correo:</label>

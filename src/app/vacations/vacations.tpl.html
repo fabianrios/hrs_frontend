@@ -1,140 +1,146 @@
-<div ng-model="vacations">
-	<h3 class="expand-title text-center">Crear solicitud de vacaciones</h3>
-	<div class="row">
-		<div class="large-6 columns">
-			<form ng-submit="putRequest()">
-				<div class="row">
-					<div class="large-6 columns">
-						<label for="inicio">Desde: </label>
-						<div class="row collapse prefix-radius">
-							<div class="small-2 columns">
-								<span class="prefix date"><i class="fa fa-calendar"></i></span>
-							</div>
-							<div class="small-10 columns">
-								<input type="text" id="inicio" ng-model="requerimiento.start_date">
-							</div>
-						</div>
-					</div>
-					<div class="large-6 columns">
-						<label for="inicio">Hasta: </label>
-						<div class="row collapse prefix-radius">
-							<div class="small-2 columns">
-								<span class="prefix date"><i class="fa fa-calendar"></i></span>
-							</div>
-							<div class="small-10 columns">
-								<input type="text" id="final" ng-model="requerimiento.end_date">
-							</div>
-						</div>
-					</div>
-				</div>
-				<label for="">Motivo: </label>
-				<textarea name="motivo" id="" cols="10" ng-model="requerimiento.more_text"></textarea>
-				<input type="hidden" ng-model="requerimiento.status">
-				<input type="hidden" ng-model="requerimiento.employee_id">
-				<div class="text-right">
-					<input type="submit" value="Solicitar" class="button success small" />
-				</div>
-			</form>
-		</div> <!-- /large-6 -->
-		<div class="large-6 columns">
-			<table class="vacations">
-				<thead>
-					<tr>
-						<th class="desde">DESDE</th>
-						<th>HASTA</th>
-						<th class="dias">DIAS</th>
-						<th>ESTADO</th>
-						<th class="borrar">BORRAR</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr ng-repeat="req_info in vac_requirements  | filter:{employee_id: user.id}:true">
-						<td class="desde">
-							<h2>{{ req_info.start_date | date:'d' }}</h2>
-							<h6>{{ req_info.start_date | date:'MMMM' }}</h6>
-						</td>
-						<td>
-							<h2>{{ req_info.end_date | date:'d' }}</h2>
-							<h6>{{ req_info.end_date | date:'MMMM' }}</h6>
-						</td>
-						<td class="dias"><h2>{{req_info.dias}}</h2></td>
-						<td><h6 class="bold" ><span class="{{req_info.status}}">{{req_info.status}}</span></h6></td>
-						<td>
-							<a href="" class="acciones borrar" ng-click="openModal($index)"></a>
-							<div id="myModal-{{$index}}" class="reveal-modal tiny" data-reveal>
-								<br />
-								<h4 class="text-center">¿Seguro quieres borrar esto?</h4>
-								<div class="text-center">
-								<a href="" ng-click="deleteVacation(req_info,$index)" class="button success">Borrar</a>
+<div class="padding-container">
+	<div ng-model="vacations">
+		<h3 class="expand-title text-center">Crear solicitud de vacaciones</h3>
+		<br /><br />
+		<div class="row">
+			<div class="large-6 medium-6 columns">
+				<form ng-submit="putRequest()">
+					<div class="row">
+						<div class="large-6 medium-6 columns">
+							<label for="inicio">Desde: </label>
+							<div class="row collapse prefix-radius">
+								<div class="small-2 columns">
+									<span class="prefix date"><i class="fa fa-calendar"></i></span>
 								</div>
-								<a class="close-reveal-modal">&#215;</a>
+								<div class="small-10 columns">
+									<input type="date" id="inicio" ng-model="requerimiento.start_date">
+								</div>
 							</div>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-	</div>
-	<br />
-	<h3 class="expand-title text-center">Aprobar solicitudes de vacaciones</h3>
-	<br />
-	<table class="vacations">
-		<thead>
-			<tr>
-				<th>NOMBRE</th>
-				<th class="desde">DESDE</th>
-				<th>HASTA</th>
-				<th class="dias">DIAS</th>
-				<th>STATUS</th>
-				<th class="aprobar">APROBAR</th>
-				<th class="negar">NEGAR</th>
-				<th class="borrar">BORRAR</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr ng-repeat="req_info in only_not_user">
-				<td>
-					<h5>{{req_info.employee.short_name}} <a href="" data-reveal-id="{{$index}}">mas info</a> </h5>
-					<div id="{{$index}}" class="reveal-modal" data-reveal>
-					  <p>{{req_info.more_text}}</p>
-					  <a class="close-reveal-modal">&#215;</a>
-					</div>
-				</td>
-				<td class="desde">
-					<h2>{{ req_info.start_date | date:'d' }}</h2>
-					<h6>{{ req_info.start_date | date:'MMMM' }}</h6>
-				</td>
-				<td>
-					<h2>{{ req_info.end_date | date:'d' }}</h2>
-					<h6>{{ req_info.end_date | date:'MMMM' }}</h6>
-				</td>
-				<td class="dias"><h2>{{req_info.dias}}</h2></td>
-				<td><h6 class="bold" ><span class="{{req_info.status}}">{{req_info.status}}</span></h6></td>
-				<td><a href="" ng-click="aproveVacation(req_info)" class="acciones"></a></td>
-				<td><a href="" ng-click="deniedVacation(req_info)" class="acciones negar"></a></td>
-				<td>
-					<a href="" class="acciones borrar" ng-click="openModal($index)" ></a>
-					<div id="myModal-{{$index}}" class="reveal-modal tiny" data-reveal>
-						<br />
-						<h4 class="text-center">¿Seguro quieres borrar esto?</h4>
-						<div class="text-center">
-						<a href="" ng-click="deleteVacation(req_info,$index)" class="button success">Borrar</a>
 						</div>
-						<a class="close-reveal-modal">&#215;</a>
+						<div class="large-6 medium-6 columns">
+							<label for="inicio">Hasta: </label>
+							<div class="row collapse prefix-radius">
+								<div class="small-2 columns">
+									<span class="prefix date"><i class="fa fa-calendar"></i></span>
+								</div>
+								<div class="small-10 columns">
+									<input type="date" id="final" ng-model="requerimiento.end_date">
+								</div>
+							</div>
+						</div>
 					</div>
-				</td>
-			</tr>
-		</tbody>
-	</table>
+					<label for="tipo">Tipo: </label>
+					<select name="tipo" id="tipo" ng-options="opt.subty as opt.descr for opt in vac_options" ng-model="seleccion"></select>
+					<label for="">Motivo: </label>
+					<textarea name="motivo" id="" cols="10" ng-model="requerimiento.more_text"></textarea>
+					<input type="hidden" ng-model="requerimiento.status">
+					<input type="hidden" ng-model="requerimiento.employee_id">
+					<div class="text-right">
+						<input type="submit" value="Solicitar" class="button success small" />
+					</div>
+				</form>
+			</div> <!-- /large-6 -->
+			<div class="large-6 medium-6 columns">
+				<table class="vacations">
+					<thead>
+						<tr>
+							<th class="desde">DESDE</th>
+							<th>HASTA</th>
+							<th class="dias">DIAS</th>
+							<th>ESTADO</th>
+							<th class="borrar">BORRAR</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="req_info in vac_requirements  | filter:{employee_id: user.employee.id}:true">
+							<td class="desde">
+								<h2>{{ req_info.start_date | date:'d' }}</h2>
+								<h6>{{ req_info.start_date | date:'MMMM' }}</h6>
+							</td>
+							<td>
+								<h2>{{ req_info.end_date | date:'d' }}</h2>
+								<h6>{{ req_info.end_date | date:'MMMM' }}</h6>
+							</td>
+							<td class="dias"><h2>{{req_info.dias}}</h2></td>
+							<td><h6 class="bold" ><span class="{{req_info.status}}">{{req_info.status}}</span></h6></td>
+							<td>
+								<a href="" class="acciones borrar" ng-click="openModal($index,'myModal')"></a>
+								<div id="myModal-{{$index}}" class="reveal-modal tiny" data-reveal>
+									<br />
+									<h4 class="text-center">¿Seguro quieres borrar esto?</h4>
+									<div class="text-center">
+									<a href="" ng-click="deleteVacation(req_info,$index)" class="button success">Borrar</a>
+									</div>
+									<a class="close-reveal-modal">&#215;</a>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<br /><br />
+		<h3 class="expand-title text-center">Aprobar solicitudes de vacaciones</h3>
+		<br /><br />
+		<div class="row">
+			<div class="large-12 columns">
+				<table class="vacations">
+					<thead>
+						<tr>
+							<th>NOMBRE</th>
+							<th class="desde">DESDE</th>
+							<th>HASTA</th>
+							<th class="dias">DIAS</th>
+							<th>STATUS</th>
+							<th class="aprobar">APROBAR</th>
+							<th class="negar">NEGAR</th>
+							<th class="borrar">BORRAR</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="req_info in only_not_user">
+							<td>
+								<h5>{{req_info.employee.short_name}} </h5>
+								<div id="modal-{{$index}}" class="reveal-modal" data-reveal>
+								  <p>{{req_info.more_text}}</p>
+								  <a class="close-reveal-modal">&#215;</a>
+								</div>
+							</td>
+							<td class="desde">
+								<h2>{{ req_info.start_date | date:'d' }}</h2>
+								<h6>{{ req_info.start_date | date:'MMMM' }}</h6>
+							</td>
+							<td>
+								<h2>{{ req_info.end_date | date:'d' }}</h2>
+								<h6>{{ req_info.end_date | date:'MMMM' }}</h6>
+							</td>
+							<td class="dias"><h2>{{req_info.dias}}</h2></td>
+							<td><h6 class="bold" ><span class="{{req_info.status}}">{{req_info.status}}</span></h6></td>
+							<td>
+								<div ng-if="req_info.status != 'Aprobado'">
+									<a href="" ng-click="aproveVacation(req_info)" class="acciones"></a>
+								</div>
+							</td>
+							<td>
+								<div ng-if="req_info.status != 'Aprobado'">
+									<a href="" ng-click="deniedVacation(req_info)" class="acciones negar"></a>
+								</div>
+							</td>
+							<td>
+								<a href="" class="acciones borrar" ng-click="openModal($index,'elmodal')"></a>
+								<div id="elmodal-{{$index}}" class="reveal-modal tiny" data-reveal>
+									<br />
+									<h4 class="text-center">¿Seguro quieres borrar esto?</h4>
+									<div class="text-center">
+									<a href="" ng-click="deleteVacationReq(req_info,$index)" class="button success">Borrar</a>
+									</div>
+									<a class="close-reveal-modal">&#215;</a>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>	
 </div>
-
-   <script type="text/ng-template" id="vacationContent.html">
-     <h5 class="subheader text-center">¿Quieres borrar la vacacion del <strong>{{vacacion.start_date | date: 'mediumDate' }}</strong>?</h5>
-	 <br />
-	 <div class="text-center">
-		 <button class="button" ng-click="ok()">OK</button>
-		 <button class="button alert" ng-click="cancel()">Cancelar</button>
-	 </div>
-     <a class="close-reveal-modal" ng-click="cancel()">&#215;</a>
-   </script>
-

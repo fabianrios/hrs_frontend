@@ -1,30 +1,22 @@
-<ul class="small-block-grid-1 medium-block-grid-3 large-block-grid-3">
-	<li class="widget" ng-repeat="widget in common.widgets">
-		<h4>{{ widget.name }}</h4>
-		{{ widget.config.param_a }}
-	</li>
-</ul>
-
-
 <div class="row">
-	<div class="large-6 columns">
+	<div class="large-12 columns">
 		<h1 class="subheader">Empresas</h1>
-		<ul>
+	</div>
+</div>
+<div class="row">
+	<div class="large-6 columns large-centered">
+		<ul class="no-bullet">
 		  <li ng-repeat="company in companies">
+				<img ng-src="images/{{company.logo}}" alt="" />
 				<a ng-click="viewCompany(company.id)"><span>{{company.name}}</span></a>
 				<div ng-include="'app/companies/partials/_crudbuttons.tpl.html'"></div>
 		  </li>
-		</ul>
-	
+		</ul>		
 		<a ui-sref="main.views.companynew" class="button tiny success">Añadir nueva empresa</a>
-	</div>
-	<div class="large-6 columns">	
-		<br />
-			<!-- Include popup template -->
-		<div ng-include="'angular-popup-service/partials/popup.html'"></div>
 	</div>
 </div>
   
+
 
    
   

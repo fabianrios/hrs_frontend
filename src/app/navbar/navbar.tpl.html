@@ -1,6 +1,29 @@
+<div class="user-info show-for-small-only">
+	<div class="pic">
+		<img ng-src="{{user.pic ? user.pic : user.employee.image}}">
+	</div>
+	<div class="user-buttons">
+		<a ui-sref="main.views.articles()" class="movil-comments">
+			<span class="icon-comment"></span>
+			<i class="number mobile-comment">{{articles_not_mine.length}}</i>
+		</a>
+		<a ui-sref="main.views.edit()">
+			<span class="icon-cog2"></span>
+		</a>
+		<a ng-click="logout()">
+			<span class="icon-logout"></span>
+		</a>
+	</div>
+	<h6 class="text-center no-margin">
+		<span class="icon-user"></span>
+		{{user.name}}
+	</h6>
+</div>
+
 <ul class="off-canvas-list">
 	<li><a href="#/home"><i class="fa fa-home fa-lg"></i> Inicio</a></li>
-	<li><a ng-href="#/organigram/{{employee.identification}}"><i class="fa fa-sitemap fa-lg"></i> Organigrama</a></li>
+	<li><a ng-href="#/organigram/{{user.employee_id}}"><i class="fa fa-sitemap fa-lg"></i> Organigrama</a></li>
+	<li><a ui-sref="main.views.employees"><i class="fa fa-users fa-lg"></i> Empleados</a></li>
 	<li class="has-submenu">
 		<a href="">
 			<i class="fa fa-file fa-lg"></i> Autoservicios
@@ -11,22 +34,22 @@
 				<a href="">Volver</a>
 			</li>
 			<li>
-				<a href="#">
-					<i class="fa fa-file-text-o fa-lg"></i> Recibos de nomina
+				<a ui-sref="main.views.certificates_labor({id:user.employee_id, c:user.company_id})">
+					<i class="fa fa-file-text-o fa-lg"></i> Certificado laboral
 				</a>
 			</li>
 			<li>
-				<a href="#">
+				<a ui-sref="main.views.certificates_vacations({id:user.employee_id, c:user.company_id})">
 					<i class="fa fa-plane fa-lg"></i> Carta de vacaciones
 				</a>
 			</li>
 			<li>
-				<a href="#">
-					<i class="fa fa-briefcase fa-lg"></i> Carta laboral
+				<a ui-sref="main.views.certificates_payroll({id:user.employee_id, c:user.company_id})">
+					<i class="fa fa-briefcase fa-lg"></i> Recibos de nomina
 				</a>
 			</li>
 			<li>
-				<a href="#">
+				<a ui-sref="main.views.certificates_income({id:user.employee_id, c:user.company_id})">
 					<i class="fa fa-institution fa-lg"></i> Certificado de ing. y ret.
 				</a>
 			</li>
@@ -38,6 +61,7 @@
 	<li class="has-submenu">
 		<a href="">
 			<i class="fa fa-check fa-lg"></i> Solicitudes
+			<i class="number main-menu-comment" ng-if="only_not_user.length > 0">{{only_not_user.length+licenses_not_user.length}}</i>
 			<i class="fa fa-angle-right fa-right fa-lg"></i>
 		</a>
 		<ul class="left-submenu">
@@ -45,22 +69,29 @@
 				<a href="">Volver</a>
 			</li>
 			<li class="disabled">
-				<a href="">Anticipo de cesantías</a>
-			</li>
-			<li class="disabled">
-				<a href="">Permisos</a>
-			</li>
-			<li class="disabled">
-				<a href="">Prestamos</a>
+				<a ui-sref="main.views.severance">Anticipo de cesantías</a>
 			</li>
 			<li>
-				<a href="#/vacations">Vacaciones</a>
+				<a ui-sref="main.views.licenses">
+					Permisos
+					<i ng-if="licenses_not_user.length > 0" class="number menu-comment">{{licenses_not_user.length}}</i>
+				</a>
+			</li>
+			<li class="disabled">
+				<a ui-sref="main.views.loans">Prestamos</a>
+			</li>
+			<li>
+				<a ui-sref="main.views.vacations">
+					Vacaciones
+					<i ng-if="only_not_user.length > 0" class="number menu-comment">{{only_not_user.length}}</i>
+				</a>
 			</li>
 		</ul>
 	</li>
-	<li class="has-submenu disabled">
+	<li class="has-submenu">
 		<a href="">
 			<i class="fa fa-paste fa-lg"></i> Registros
+			<i class="number main-menu-comment registers" ng-if="extras_not_user.length > 0">{{extras_not_user.length+inhabilities_not_user.length}}</i>
 			<i class="fa fa-angle-right fa-right fa-lg"></i>
 		</a>
 		<ul class="left-submenu">
@@ -68,15 +99,21 @@
 				<a href="">Volver</a>
 			</li>
 			<li>
-				<a href="">Horas extras</a>
+				<a ui-sref="main.views.extras">
+					Horas extras
+					<span class="number menu-comment registers" ng-if="extras_not_user.length > 0">{{extras_not_user.length}}</span>
+				</a>
 			</li>
 			<li>
-				<a href="">Incapacidades</a>
+				<a ui-sref="main.views.inhabilities">
+					Incapacidades
+					<span class="number menu-comment registers" ng-if="inhabilities_not_user.length > 0">{{inhabilities_not_user.length}}</span>
+				</a>
 			</li>
 		</ul>
 	</li>
 	<li class="has-submenu disabled">
-		<a href="">
+		<a href="" >
 			<i class="fa fa-line-chart fa-lg"></i> Servicios gerenciales
 			<i class="fa fa-angle-right fa-right fa-lg"></i>
 		</a>
@@ -93,8 +130,8 @@
 			<li class="disabled">
 				<a href="">Vencimiento de contratos</a>
 			</li>
-			<li class="disabled">
-				<a href="">Total de absentismos</a>
+			<li>
+				<a ui-sref="main.views.managment">Total de absentismos</a>
 			</li>
 			<li class="disabled">
 				<a href="">Total  hora extras</a>
@@ -105,8 +142,13 @@
 		</ul>
 	</li>
 	<li>
-		<a href="">
+		<a ui-sref="main.views.articles()">
 			<i class="fa fa-bullhorn fa-lg"></i> Gestor de contenidos
+		</a>
+	</li>
+	<li>
+		<a ui-sref="main.views.companynew">
+			<i class="fa fa-building fa-lg"></i> Añadir empresa
 		</a>
 	</li>
 </ul>

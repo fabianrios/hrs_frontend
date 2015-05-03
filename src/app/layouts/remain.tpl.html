@@ -1,81 +1,52 @@
-<div ng-switch on="autenticado">
-    <div ng-switch-when="true">
-        <!-- code to render if login succesful -->
-		<div class="off-canvas-wrap" data-offcanvas>
-		  <div class="inner-wrap">
-			<nav class="tab-bar">
-				<section class="left-small">
-					<a href="" class="left-off-canvas-toggle menu-icon">
-						<span></span>
-					</a>
-				</section>
-				<section class="middle tab-bar-section" >
-					<div class="left">
-						<a href="/#/home"><img alt="Otrologo" class="logo" ng-src="assets/images/{{company.logo}}"></a>
-						<h1 class="title left show-for-medium-up"></h1>
-					</div>
-					<div class="right">
-						<div class="user_nav show-for-medium-up">
-							<div class="text-right">
-								<a href="" class="comments"><span class="icon-comment"></span><i class="number comment">10</i></a>
-								<h5 class="subheader no-margin capitalize"><a ui-sref="main.views.employee_info"><span class="icon-user"></span>{{user.name}}</a></h5>
-								<div class="worker">
-									<img ng-src="{{user.pic}}">
-								</div>
-								<h5 class="subheader no-margin"><a ui-sref="main.views.edit()"><span class="icon-cog2"></span></a></h5>
-								<h5 class="subheader no-margin"><a href="" ng-click="logout()" data-method="delete" rel="nofollow"><span class="icon-logout"></span></a></h5>
-							</div>
+<div class="off-canvas-wrap" data-offcanvas>
+	<div class="inner-wrap">
+		<nav class="tab-bar">
+			<section class="left-small">
+				<a href="" class="left-off-canvas-toggle menu-icon">
+					<span></span>
+				</a>
+			</section>
+			<section class="middle tab-bar-section" ui-view="topbar"></section>
+			<section class="right-small"><a class="right-off-canvas-toggle menu-icon"><i class="fa fa-sort-amount-asc workers-icon"></i></a></section>
+		</nav>
+		<aside class="left-off-canvas-menu" ui-view="navbar"></aside>
+		<aside class="right-off-canvas-menu" ui-view="sidebar"></aside>
+		<section class="main-section">		
+			<div class="dashboard-profile {{where}}" ui-view="profile"></div>
+			<div class="expandbanner animate-if" ui-view="expandbanner" ng-if="ubicacion == 'main.views.vacations' || ubicacion == 'main.views.employee_info' || ubicacion == 'main.views.employee_info_lookup' || ubicacion == 'main.views.severance'"></div>
+			<div class="close-banner" ng-if="ubicacion == 'main.views.vacations' || ubicacion == 'main.views.employee_info' || ubicacion == 'main.views.employee_info_lookup' || ubicacion == 'main.views.severance'"><a href="" ng-click="toggle($event)"></a></div>
+			
+			<div class="main-container" id="main-container">			
+					
+				<div class="row" ng-if="ubicacion == 'main.views.articles'">
+					<div class="large-12 columns">
+						<br />
+						<div style="margin:0 auto; text-align:center;">
+							<object style="width=100%" type="application/x-shockwave-flash" data="//search-creatives.s3.amazonaws.com/a1/ec/ba/a1ecbab064e690c142a983c1b83d6bf7.swf?clickTag=/pages/clicktag" width="655.2" height="81" id="eac9d2b503ac6f01490b06b9a2f39757" style="visibility: visible;"></object>
 						</div>
 					</div>
-				</section>
-				<section class="right-small"><a class="right-off-canvas-toggle menu-icon"><i class="fa fa-sort-amount-asc workers-icon"></i></a></section>
-			</nav>
-			<aside class="left-off-canvas-menu" ui-view="navbar"></aside>
-			<aside class="right-off-canvas-menu" ui-view="sidebar"></aside>
-			<section class="main-section">
-				<div class="dashboard-profile" ui-view="profile"></div>
-				<div class="expandbanner animate-if" ui-view="expandbanner" ng-if="ubicacion == '/vacations' || ubicacion == '/employee_info'"></div>
-				<div class="close-banner" ng-if="ubicacion == '/vacations' || ubicacion == '/employee_info'"><a href="" ng-click="toggle($event)"></a></div>
-		
-				<div class="main-container" id="main-container">
-	
-				  <div class="main-container-inner">
-				    <div class="main-content" ng-class="{'main-content-bigger': ui.sidebar.mainCollapsed}">
+				</div>
+				
+				<div class="main-container-inner">
+					<div class="main-content" ng-class="{'main-content-bigger': ui.sidebar.mainCollapsed}">
 						
-					  <div class="row">
-					  	<div class="large-12 columns">
-							<div>
-							  <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
+						<div class="row">
+							<div class="large-12 columns">
+								<div data-alert class="alert-box {{alert.type}}" ng-repeat="alert in alerts">
+									<span ng-bind-html="alert.msg"></span>
+									<a href="" class="close" ng-click="closeAlert($index)">&times;</a>
+								</div>
 							</div>
-					  	</div>
-					  </div> <!-- /row -->
-					  
-				      <div class="row">
-				        <div class="small-12 large-12 columns" ui-view="content"></div>
-				      </div>
-				    </div>
-				  </div> <!-- /main-container-inner -->
-  
-				</div> <!-- /main-container -->
+						</div> <!-- /row -->
+						<div class="overall" ui-view="content"></div>
+					</div>
+				</div> <!-- /main-container-inner -->
+			</div> <!-- /main-container -->
 		
-			</section> <!-- main-section -->
-			<a class="exit-off-canvas" href=""></a>
-		  </div> <!-- /inner-wrap -->
-		</div> <!-- /off-canvas-wrap -->
-    </div> <!-- log in succesful -->
-    <div ng-switch-default>
-        <!-- code to render if no user sessión -->
-		<div class="main-container bglogin" id="main-container">
-	
-		  <div class="main-container-inner">
-		    <div class="main-content" ng-class="{'main-content-bigger': ui.sidebar.mainCollapsed}">
-		      <div class="row">
-		        <div class="small-12 large-12 columns" ui-view="content"></div>
-		      </div>
-		    </div>
-		  </div> <!-- /main-container-inner -->
-  
-		</div> <!-- /main-container -->
-		
-    </div> <!-- /default not loggin -->
-</div>
+		</section> <!-- main-section -->
+		<a class="exit-off-canvas" href=""></a>
+	</div> <!-- /inner-wrap -->
+</div> <!-- /off-canvas-wrap -->
+<footer>
+	<img ng-src="/images/logo-footer.png" alt="" />
+</footer>

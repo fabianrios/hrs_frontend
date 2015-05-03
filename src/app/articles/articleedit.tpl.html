@@ -1,0 +1,17 @@
+<br /><br />
+<div class="row">
+	<div class="large-12 columns">
+		<h1 class="subheader">Editar articulo</h1>
+	</div>
+</div>
+<form role="form" ng-submit="updateArticle()" class="{{article.publicado}}">
+	<div ng-include="'app/articles/partials/_form.tpl.html'"></div>
+	<div class="row">
+		<div class="large-9 columns">
+			<div class="text-right">
+				<br />
+				<input type="submit" value="Guardar cambios" class="button success small">
+			</div>
+		</div>
+	</div>
+</form>

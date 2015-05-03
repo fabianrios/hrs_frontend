@@ -1,0 +1,200 @@
+<div class="padding-container">
+	<div ng-model="employees">
+		<h3 class="expand-title text-center first-one">Contratar un empleado</h3>
+		<form ng-submit="putRequest()" data-abide>
+			<div class="nombres thefieldset">
+				<div class="row">
+					<div class="large-12 columns">
+						<h3> <span class="list-number uno">1</span> Datos personales</h3>
+					</div>
+				</div>
+				<div class="row">
+					<div class="large-3 medium-3 columns">
+						<label for="nachn">* Primer apellido:</label>
+						<input type="text" ng-model="employee.nachn" name="nachn" placeholder="ej: Saavedra" required pattern="[a-zA-Z]+" />
+						<small class="error">El primer apellido es requerido.</small>
+					</div>
+					<div class="large-3 medium-3 columns">
+						<label for="nach2">Segundo apellido: </label>
+						<input type="text" ng-model="employee.nach2" name="nach2" placeholder="ej: Medina"/>
+					</div>
+					<div class="large-3 medium-3 columns">
+						<label for="vorna">Primer nombre: </label>
+						<input type="text" ng-model="employee.vorna" name="vorna" placeholder="ej: Carlos" required pattern="[a-zA-Z]+" />
+						<small class="error">El nombre es requerido.</small>
+					</div>
+					<div class="large-3 medium-3 columns">
+						<label for="name2">* Segundo nombre: </label>
+						<input type="text" ng-model="employee.name2" name="name2" placeholder="ej: Andres" />
+					</div>
+				</div>
+				<div class="row">
+					<div class="large-3 medium-3 columns">
+						<label for="gesch">Genero: </label>
+						<input type="radio" name="gesch" ng-model="employee.gesch" value="1" id="1"><label for="1"> <i class="fa fa-male fa-2x"></i></label>
+						<input type="radio" name="gesch" ng-model="employee.gesch" value="2" id="2"><label for="2"><i class="fa fa-female fa-2x"></i></label>
+					</div>
+					<div class="large-3 medium-3 columns end">
+						<label for="tipo">Cedula: </label>
+						<input type="text" placeholder="ej: 1'022.331.338" ng-model="employee.icnum" />
+					</div>
+				</div>
+			</div>
+			<div class="thefieldset datos">
+				<div class="row">
+					<div class="large-12 columns">
+						<h3> <span class="list-number">2</span> Datos de contacto</h3>
+					</div>
+				</div>
+				<div class="row">
+					<div class="large-3 medium-3 columns">
+						<label for="stras">Dirección: </label>
+						<input type="text" ng-model="employee.stras" name="stras" placeholder="ej: Calle 116 # 13 - 24" />
+					</div>
+					<div class="large-3 medium-3 columns">
+						<label for="telnr">Télefono: </label>
+						<input type="text" ng-model="employee.telnr" name="telnr" placeholder="ej: +57 1 795 59 73" />
+					</div>
+					<div class="large-3 medium-3 columns">
+						<label for="usrid">* Email: </label>
+						<input type="email" placeholder="carlos.rios@hrsolutions-co.com" ng-model="employee.usrid" required />
+						<small class="error">Un correo electronico es requerido.</small>
+					</div>
+					<div class="large-3 medium-3 columns">
+						<label for="gbdat">* Fecha de nacimiento: </label>
+						<div class="row collapse prefix-radius">
+							<div class="small-2 columns">
+								<span class="prefix date"><i class="fa fa-calendar"></i></span>
+							</div>
+							<div class="small-10 columns">
+								<input type="date" id="gbdat" ng-model="employee.gbdat" required>
+								<small class="error">La fecha es requerida.</small>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="contratacion thefieldset">
+				<div class="row">
+					<div class="large-12 columns">
+						<h3> <span class="list-number">3</span> Datos del contratación</h3>
+					</div>
+				</div>
+				<div class="row">
+					<div class="large-3 medium-3 columns">
+						<label for="brtrg">Sueldo: </label>
+						<div class="row collapse prefix-radius">
+							<div class="small-2 columns">
+								<span class="prefix money chilling"><i class="fa fa-usd"></i></span>
+							</div>
+							<div class="small-10 columns">
+								<input type="number" id="betrg" ng-model="employee.betrg" class="money chilling" required>
+								<small class="error">El sueldo es un numero entero.</small>
+							</div>
+						</div>
+					</div>
+					<div class="large-3 medium-3 columns end">
+						<label for="begda">* Fecha de contratación: </label>
+						<div class="row collapse prefix-radius">
+							<div class="small-2 columns">
+								<span class="prefix date"><i class="fa fa-calendar"></i></span>
+							</div>
+							<div class="small-10 columns">
+								<input type="date" id="begda" ng-model="employee.begda" required>
+								<small class="error">La fecha es requerida.</small>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="large-12 columns">
+					<div class="text-right">
+						<input type="submit" value="Crear" class="button success small" />
+					</div>
+				</div>
+			</div>
+		</form>
+		<br /><br />
+		<h3 class="expand-title text-center">Lista de empleados</h3>
+		<br /><br />
+		<div class="row">
+			<div class="large-12 columns">
+				<div class="left">
+					<div class="row collapse postfix-radius">
+						<label>Buscador:</label>
+						<div class="small-9 columns">
+						  <input type="search" placeholder="Buscar" ng-model="searching" />
+						</div>
+						<div class="small-3 columns">
+						  <span class="postfix"><span class="fa fa-search fa-lg"></span></span>
+						</div>
+					</div>
+				</div>
+				<!-- <div class="right">
+					<div class="row collapse prefix-radius">
+						<label>Filtrar por fecha:</label>
+						<div class="small-2 columns">
+							<span class="prefix"><span class="fa fa-calendar fa-lg"></span></span>
+						</div>
+						<div class="small-10 columns">
+							<input type="date" ng-model="fechas" value="{{ date | date: 'yyyy-MM-dd' }}" />
+						</div>
+					</div>
+				</div> -->
+				<div class="text-right">
+					<a ng-click="nomina_masiva($event)" class="button small success">Nomina masiva</a>
+				</div>
+				<table class="vacations">
+					<thead>
+						<tr>
+							<th></th>
+							<th width="370px">Empleado</th>
+							<th class="desde">Fecha de entrada</th>
+							<th class="dias">ID</th>
+							<th class="desde">Fecha de nacimiento</th>
+							<th>Nomina</th>
+							<th width="155px">Seguridad social</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="employee in employees  | filter:searching ">
+							<td>
+								<div class="switch small round">
+								  <input id="nombre-{{$index}}" type="checkbox" name="nombre-{{$index}}">
+								  <label for="nombre-{{$index}}"></label>
+								</div> 
+							</td>
+							<td>
+								<div class="foto">
+									<a ui-sref="main.views.employee_info_lookup({id:employee.identification, c:employee.company.id})">
+										<img alt="profile" ng-src="{{employee.image}}" >
+									</a>
+								</div>
+								<h5 class="capitalize no-margin">{{ employee.short_name | lowercase }}</h5>
+								<h6 class="capitalize text-left subheader no-margin">{{ employee.unidad_org | lowercase }}</h6>
+								<a href="mailto:{{ employee.email | lowercase }}"><span class="fa fa-envelope-o fa-lg"></span></a>
+								<a href="tel://{{ employee.phone }}"><span class="fa fa-phone fa-lg"></span></a>
+							</td>
+							<td class="desde">
+								<h6>{{ employee.fecha_ingreso }}</h6>
+							</td>
+							<td>
+								<h6>{{ employee.identification }}</h6>
+							</td>
+							<td>
+								<h6>{{ employee.fecha_nac }}</h6>
+							</td>
+							<td>
+								<a ng-click="nomina(employee.identification)" class="button success small no-margin">Nomina</a>
+							</td>
+							<td>
+								<a ng-click="seguridad(employee.identification)" class="button success small no-margin" id="{{employee.identification}}" style="display:none;">Seguridad social</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>	
+</div>

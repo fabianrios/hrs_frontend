@@ -1,5 +1,8 @@
 <div class="row">
 	<div class="large-6 columns">
+		<div class="logo">
+			<img ng-src="images/{{company.logo}}" alt="" />
+		</div>
 		<h1 class="subheader">{{company.name}}</h1> 
 		<h2 class="subheader">{{company.created_at}}</h2> 
 	</div>
@@ -9,15 +12,19 @@
 </div>
 
 
-<ul>
-	<li ng-repeat="(key, value) in company">
-	  <strong> {{key}}: </strong> <i> {{ value }} </i>
-	</li>
-</ul>
+<div class="row">
+	<div class="large-12 columns">
+		<ul>
+			<li ng-repeat="(key, value) in company">
+			  <strong> {{key}}: </strong> <i> {{ value }} </i>
+			</li>
+		</ul>
+	</div>
+</div>
 
-<ul>
+<!-- <ul>
 	<li ng-repeat="(key, value) in company.cesantias">
 		<strong> {{key}}: </strong> <i> {{ value }} </i>
 	</li>
-</ul>
+</ul> -->
 

@@ -1,0 +1,65 @@
+<div class="padding-container">
+	<div class="row">
+		<div class="large-9 medium-9 columns">
+			<div ng-model="articles" class="articles">
+				<ul class="large-block-grid-3 medium-block-grid-3 small-block-grid-2">
+					<li ng_repeat="article in articles" class="{{article.category}}">
+						<div class="article_img">
+							<a ui-sref="main.views.articleDetail({id:article.id})">
+								<img ng-src="{{article.imagen}}" alt="" />
+								<h5>{{article.titulo}}</h5>
+							</a>
+							<div class="article-actions" ng-if="article.employee.id == user.employee.id">
+								<a ui-sref="main.views.articleedit({id:article.id})" class="editar"><span class="fa fa-pencil fa-lg"></a>
+								<a href="" class="borrar" ng-click="openModal($index,'myModal')"><span class="fa fa-close fa-lg"></a>
+								<div id="myModal-{{$index}}" class="reveal-modal tiny" data-reveal>
+									<br />
+									<h5 class="text-center">¿Seguro quieres borrar el articulo?</h5>
+									<div class="text-center">
+									<a ng-click="articleDelete(article,$index)" class="button alert small">Borrar</a>
+									</div>
+									<a class="close-reveal-modal">&#215;</a>
+								</div>
+							</div>
+						</div>
+						<div class="ini">
+							<p>{{article.ini | limitTo:100}}</p>
+							<div class="fechas">
+								<span class="graytxt">
+									<i class="fa fa-calendar-o"></i>
+									<span class="small ng-binding">{{article.created_at | date:"d 'de' MMMM" }}</span>
+								</span>
+							</div>
+							<div class="author">
+								<div class="foto">
+									<a href="">
+										<img ng-src="{{article.employee.image}}" alt="" />
+									</a>
+								</div>
+								<h6 class="no-margin capitalize">
+									<a href="">{{article.employee.short_name}}</a>
+								</h6>
+							</div>
+						</div>
+						<div class="category {{article.category}}">{{article.category}}</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="large-3 medium-3 columns">
+			<h4 class="no-margin">Categorias</h4>
+			<ul class="no-bullet categories">
+				<li class="Nomina"><a href="">Nomina</a></li>
+				<li class="Bienestar"><a href="">Noticias y eventos de bienestar</a></li>
+				<li class="Salud"><a href="">Salud ocupacional</a></li>
+				<li class="Talento"><a href="">Talento humano</a></li>
+			</ul>
+			<a ui-sref="main.views.articleNew" class="button success small">Articulo nuevo</a>
+			
+			<div id="ad">
+				<object type="application/x-shockwave-flash" data="//search-creatives.s3.amazonaws.com/a0/c7/9a/a0c79a56878df008c98c3e2c04b17b65.swf?clickTag=/pages/clicktag" width="270" height="540" id="547aad2c09e99d903857bea134afbf54" style="visibility: visible;"></object>
+			</div>
+			
+		</div>
+	</div>
+</div>

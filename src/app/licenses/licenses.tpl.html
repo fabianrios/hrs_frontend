@@ -1,0 +1,129 @@
+<div class="padding-container">
+	<div ng-model="licenses">
+		<h3 class="expand-title text-center first-one">Crear solicitud de permisos</h3>
+		<br /><br />
+		<div class="row">
+			<div class="large-5 medium-5 columns">
+				<form ng-submit="putRequest()">
+					<div class="row">
+						<div class="large-6 medium-6 columns">
+							<label for="inicio">Desde: </label>
+							<div class="row collapse prefix-radius">
+								<div class="small-3 columns">
+									<span class="prefix date"><i class="fa fa-calendar"></i></span>
+								</div>
+								<div class="small-9 columns">
+									<input type="date" id="inicio" ng-model="requerimiento.start_date">
+								</div>
+							</div>
+						</div>
+						<div class="large-6 medium-6 columns">
+							<label for="inicio">Hasta: </label>
+							<div class="row collapse prefix-radius">
+								<div class="small-3 columns">
+									<span class="prefix date"><i class="fa fa-calendar"></i></span>
+								</div>
+								<div class="small-9 columns">
+									<input type="date" id="final" ng-model="requerimiento.end_date">
+								</div>
+							</div>
+						</div>
+					</div>
+					<label for="">Motivo: </label>
+					<select name="motivo" id="motivo" ng-options="opt.subty as opt.descr for opt in options" ng-model="requerimiento.motivo"></select>
+					<input type="hidden" ng-model="requerimiento.status">
+					<input type="hidden" ng-model="requerimiento.employee_id">
+					<br />
+					<div class="text-right">
+						<input type="submit" value="Solicitar" class="button success small" />
+					</div>
+				</form>
+			</div> <!-- /large-6 -->
+			<div class="large-7 medium-7 columns">
+				<table class="vacations">
+					<thead>
+						<tr>
+							<th class="desde">DESDE</th>
+							<th>HASTA</th>
+							<th>MOTIVO</th>
+							<th>ESTADO</th>
+							<th class="borrar">BORRAR</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="req_info in licenses | filter:{employee_id: user.employee.id}:true">
+							<td class="desde">
+								<h2>{{ req_info.start_date | date:'d' }}</h2>
+								<h6>{{ req_info.start_date | date:'MMMM' }}</h6>
+							</td>
+							<td>
+								<h2>{{ req_info.end_date | date:'d' }}</h2>
+								<h6>{{ req_info.end_date | date:'MMMM' }}</h6>
+							</td>
+							<td><h6>{{mot(req_info.motivo)}}</h6></td>
+							<td><h6 class="bold"><span>{{req_info.status}}</span></h6></td>
+							<td>
+								<a href="" class="acciones borrar" ng-click="openModal($index,'myModal')"></a>
+								<div id="myModal-{{$index}}" class="reveal-modal tiny" data-reveal>
+									<br />
+									<h4 class="text-center">¿Seguro quieres borrar esto?</h4>
+									<div class="text-center">
+										<a href="" ng-click="deleteLicense(req_info,$index)" class="button success">Borrar</a>
+									</div>
+									<a class="close-reveal-modal">&#215;</a>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<br /><br />
+		<h3 class="expand-title text-center">Aprobar solicitudes de permisos</h3>
+		<br /><br />
+		<div class="row" ng-if="only_not_user.length > 0">
+			<div class="large-12 columns">
+				<table class="vacations responsive">
+					<thead>
+						<tr>
+							<th>NOMBRE</th>
+							<th class="desde">DESDE</th>
+							<th>HASTA</th>
+							<th>MOTIVO</th>
+							<th>ESTADO</th>
+							<th class="aprobar">APROBAR</th>
+							<th class="negar">NEGAR</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="req_info in only_not_user">
+							<td>
+								<h5>{{req_info.employee.short_name}} </h5>
+							</td>
+							<td class="desde">
+								<h2>{{ req_info.start_date | date:'d' }}</h2>
+								<h6>{{ req_info.start_date | date:'MMMM' }}</h6>
+							</td>
+							<td>
+								<h2>{{ req_info.end_date | date:'d' }}</h2>
+								<h6>{{ req_info.end_date | date:'MMMM' }}</h6>
+							</td>
+							<td><h6>{{mot(req_info.motivo)}}</h6></td>
+							<td><h6 class="bold" ><span class="{{req_info.status}}">{{req_info.status}}</span></h6></td>
+							<td>
+								<div ng-if="req_info.status != 'Aprobado'">
+									<a href="" ng-click="aproveLicense(req_info)" class="acciones"></a>
+								</div>
+							</td>
+							<td>
+								<div ng-if="req_info.status != 'Aprobado'">
+									<a href="" ng-click="deleteLicense(req_info)" class="acciones negar"></a>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>	
+</div>
