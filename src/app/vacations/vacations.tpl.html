@@ -84,7 +84,29 @@
 		<br /><br />
 		<div class="row">
 			<div class="large-12 columns">
-				<table class="vacations">
+                <div class="show-for-small-only">
+                	<div class="vacaciones table-response" ng-repeat="req_info in only_not_user">
+						<h3>{{req_info.employee.short_name}} </h3>
+						<div class="dias {{req_info.status}}">
+							<h2>{{req_info.dias}}</h2>
+							<h6>DIAS</h6>
+						</div>
+						<div class="desde">
+							<h2>{{ req_info.start_date | date:'d' }}</h2>
+							<h6>{{ req_info.start_date | date:'MMMM' }}</h6>
+						</div>
+						<div class="hasta">
+							<h2>{{ req_info.end_date | date:'d' }}</h2>
+							<h6>{{ req_info.end_date | date:'MMMM' }}</h6>
+						</div>
+						<div class="posibilidades">
+							<a ng-if="req_info.status != 'Aprobado'" href="" ng-click="aproveVacation(req_info)" class="acciones"></a>
+							<a ng-if="req_info.status != 'Aprobado'" href="" ng-click="deniedVacation(req_info)" class="acciones negar"></a>
+							<a ng-if="req_info.status == 'Espera'" href="" class="acciones borrar" ng-click="openModal($index,'elmodal')"></a>
+						</div>
+                	</div>
+                </div>
+				<table class="vacations show-for-medium-up">
 					<thead>
 						<tr>
 							<th>NOMBRE</th>
@@ -127,7 +149,7 @@
 								</div>
 							</td>
 							<td>
-								<a href="" class="acciones borrar" ng-click="openModal($index,'elmodal')"></a>
+								<a ng-if="req_info.status == 'Espera'" href="" class="acciones borrar" ng-click="openModal($index,'elmodal')"></a>
 								<div id="elmodal-{{$index}}" class="reveal-modal tiny" data-reveal>
 									<br />
 									<h4 class="text-center">¿Seguro quieres borrar esto?</h4>

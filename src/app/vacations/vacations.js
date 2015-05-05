@@ -60,6 +60,7 @@
 		$scope.requerimiento.status = "Espera";
 		$scope.requerimiento.tipo = $scope.seleccion;
 		$scope.requerimiento.employee_id = $scope.user.employee.id;
+		
  	   
 		//CREAR
 		$scope.putRequest = function() { //create a new vacation. Issues a POST to /api/vacations

@@ -358,6 +358,21 @@
 	}
 }
 
+.closing{
+    display: inline-block;
+    height: 45px;
+    width: 45px;
+    background: rgba(0,0,0,.1);
+    position: relative;
+    top: -10px;
+    right: -10px;
+	i{
+	    position: relative;
+	    right: 12px;
+	    top: 10px;
+	}
+}
+
 .user_nav{
 	float: right;
 	h5{
@@ -473,10 +488,11 @@
 	border: 1px solid $widget-background;
 	margin-bottom: 9px;
 	margin-right: 7px;
-	&.minh-430{
-		min-height: 430px;
+	@media only screen and (min-width: 40.063em) { 
+		&.minh-430{
+			min-height: 430px;
+		}
 	}
-
 	h5{
 		&.encabezado{
 			width: 100%;
@@ -485,7 +501,7 @@
 			margin: 0;
 			font-weight: normal;
 			padding: 10px;
-			border-bottom: 1px solid $header;
+//			border-bottom: 1px solid $header;
 			a{
 				color: $header-title;
 			}
@@ -844,7 +860,7 @@ table{
 }
 
 .acciones{
-	background: url('/images/buttons.png') no-repeat scroll -10px 0;
+	background: #ffffff url('/images/buttons.png') no-repeat scroll -10px 0;
 	display: block;
 	width: 60px;
 	height: 60px;
@@ -887,8 +903,9 @@ span{
 
 .contenido{
 	min-height: 225px;
+	width: 100%;
 	padding: 10px;
-	overflow: hidden;
+//	overflow: hidden;
 	position: relative;
 }
 

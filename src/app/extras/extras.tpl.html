@@ -80,7 +80,27 @@
 		<br /><br />
 		<div class="row">
 			<div class="large-12 columns">
-				<table class="vacations responsive">
+                <div class="show-for-small-only">
+                	<div class="table-response" ng-repeat="req_info in only_not_user">
+						<h3>{{req_info.employee.short_name}} </h3>
+						<div class="dias {{req_info.status}}">
+							<h2>{{req_info.hours}}</h2>
+							<h6>HORAS</h6>
+						</div>
+						<div class="desde">
+							<h2>{{ req_info.fecha | date:'d' }}</h2>
+							<h6>{{ req_info.fecha | date:'MMMM' }}</h6>
+						</div>
+						<div class="hasta">
+							<h6 class="extras">{{mot(req_info.motivo)}}</h6>
+						</div>
+						<div class="posibilidades">
+							<a ng-if="req_info.status != 'Aprobado'" href="" ng-click="aproveLicenses(req_info)" class="acciones"></a>
+							<a ng-if="req_info.status != 'Aprobado'" href="" ng-click="deniedLicenses(req_info)" class="acciones negar"></a>
+						</div>
+                	</div>
+                </div>
+				<table class="vacations show-for-medium-up">
 					<thead>
 						<tr>
 							<th>NOMBRE</th>
