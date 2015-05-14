@@ -62,7 +62,7 @@
 	.controller('Certificates.MainController', function($scope, $http, employee, currentUser, $state){
 		
 
-		$scope.pdfUrl = 'http://backend.hrinteractive.co/carta_laboral-4/carta_laboral_2133_4.pdf';
+		$scope.pdfUrl = "http://hdvbackend.hrinteractive.co/carta_laboral-"+currentUser.company_id+"/carta_laboral_"+currentUser.employee_id+"_"+currentUser.company_id+".pdf";
 		$scope.scroll = 0;
 		$scope.loading = true;
 		$scope.progress = {};
@@ -93,8 +93,16 @@
 	})
 	.controller('Certificates.Vacaciones.MainController', function($scope, $http, employee, currentUser, $state){
 		
-
-		$scope.pdfUrl = 'http://backend.hrinteractive.co/vacaciones-4/vacaciones-2133/vacaciones_2133_1.pdf';
+		$scope.user = currentUser;
+		$scope.employee = employee;
+		
+		$scope.cambiarPdf = function(vacacion) {
+			$scope.selectedVac = vacacion;
+			$scope.pdfUrl = "http://hdvbackend.hrinteractive.co/vacations-"+currentUser.company_id+"/"+currentUser.employee_id+"/Vac_"+$scope.selectedVac.begda+"_"+$scope.selectedVac.endda+"_"+currentUser.employee_id+"_"+currentUser.company_id+".pdf";
+			console.log($scope.pdfUrl);
+		}
+		
+		$scope.pdfUrl = "http://hdvbackend.hrinteractive.co/vacations-"+currentUser.company_id+"/"+currentUser.employee_id+"/Vac_"+employee.vacations[0].begda+"_"+employee.vacations[0].endda+"_"+currentUser.employee_id+"_"+currentUser.company_id+".pdf";
 		$scope.scroll = 0;
 		$scope.loading = true;
 		$scope.progress = {};
@@ -119,8 +127,6 @@
 			$scope.progreso = (100 / progress.total) * progress.loaded;
 		}
 		
-		$scope.user = currentUser;
-		$scope.employee = employee;
 		
 
 	})
@@ -157,7 +163,7 @@
 	})
 	.controller('Certificates.Income.MainController', function($scope, $http, employee, currentUser, $state){
 		
-		$scope.pdfUrl = 'http://backend.hrinteractive.co/vacaciones-4/vacaciones-2133/vacaciones_2133_1.pdf';
+		$scope.pdfUrl = "http://hdvbackend.hrinteractive.co/ingyret-"+currentUser.company_id+"/ingyret_"+currentUser.employee_id+"_"+currentUser.company_id+".pdf";
 		$scope.scroll = 0;
 		$scope.loading = true;
 		$scope.progress = {};

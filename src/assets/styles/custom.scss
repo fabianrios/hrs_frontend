@@ -93,14 +93,56 @@
 		min-height: 250px;
 	}
 	&.dashboard{
-		background: url("/images/video_background.jpg") no-repeat 0 center;
+		background: url("/images/Perfil.jpg") no-repeat;
+		background-repeat: no-repeat;
+		background-position: center center;
+		background-attachment: fixed;
+		-webkit-background-size: cover;
+		background-size: cover;
+		width: 100%;
 	}
-	&.loans, &.licenses, &.severance{
-		background-image: url("/images/downtown-morning.jpg");
-		background-position: 0 -450px;
+	&.organigram{
+		background: url("/images/Organigrama.jpg") no-repeat center center;
 		background-repeat: no-repeat;
 		background-attachment: fixed;
 		width: 100%;
+		-webkit-background-size: cover;
+		background-size: cover;
+	}
+	&.certificates_vacations, &.certificates_labor, &.certificates_payroll, &.certificates_income{
+		background-image: url("/images/Autoservicios.jpg");
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+		-webkit-background-size: cover;
+		background-size: cover;
+		width: 100%;
+		background-position: center center;
+	}
+	&.loans, &.licenses, &.severance{
+		background-image: url("/images/Solicitudes.jpg");
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+		-webkit-background-size: cover;
+		background-size: cover;
+		width: 100%;
+		background-position: center center;
+	}
+	&.inhabilities, &.extras{
+		background-image: url("/images/Registros.jpg");
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+		-webkit-background-size: cover;
+		background-size: cover;
+		width: 100%;
+		background-position: center center;
+	}
+	&.employee_info_lookup, &.employee_info{
+		background: url("/images/Perfil.jpg") no-repeat center center;
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+		width: 100%;
+		-webkit-background-size: cover;
+		background-size: cover;
 	}
 	#video{
 		position:relative;

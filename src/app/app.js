@@ -62,6 +62,7 @@
 	ngS3Config.theme = 'bootstrap2';
 
     $httpProvider.defaults.headers.common['X-CSRF-Token'] = angular.element('meta[name=csrf-token]').attr('content');
+	$httpProvider.defaults.withCredentials = true;
     // $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
   
     // Configura angular-devise
@@ -152,6 +153,11 @@
 	
 	$rootScope.employee = {}
 	$rootScope.employee_info = {}
+	
+	// Auth.currentUser().then(function(user){
+	// 	console.log("user",user);
+	// 	console.log(Auth._currentUser);
+	// });
 	
 	// esta vaina me dice donde estamos y de donde venimos ademas define el rootscope de ubicacion para userlo como variable
     $rootScope.$on('$stateChangeStart', function(ev, toState, toParams, fromState){

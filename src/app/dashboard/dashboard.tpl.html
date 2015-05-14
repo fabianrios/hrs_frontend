@@ -19,7 +19,9 @@
 						</h5>
 						<div class="contenido" id="vacations-chart">
 							<br />
+							<h4 class="restantes">{{vacationdays[0]}}<span>Restantes</span></h4>
 							<canvas id="doughnut" class="chart chart-doughnut" data="vacationdays" labels="labels"></canvas>
+							<h4 class="usados">{{vacationdays[1]}}<span>Usados</span></h4>
 						</div>
 					</div>
 				</li>
@@ -175,7 +177,7 @@
 										</a>
 									</div>
 									<h6 class="no-margin capitalize">
-										<a ui-sref="main.views.employee_info_lookup({id:empleado.identification, c:empleado.company.id})">{{empleado.short_name}}</a>
+										<a ui-sref="main.views.employee_info_lookup({id:empleado.identification, c:empleado.company.id})">{{empleado.short_name | lowercase}}</a>
 									</h6>
 									<h6 class="subheader no-margin capitalize">{{empleado.posicion | lowercase}}</h6>
 									<div class="text-right">

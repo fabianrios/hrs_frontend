@@ -1,15 +1,3 @@
-<div id="video" ng-if="ubicacion == 'main.views.dashboard'" class="show-for-large-up">
-	<video autoplay loop muted>
-		<source src="http://vjs.zencdn.net/v/oceans.mp4" type="video/mp4">
-		<source src="http://vjs.zencdn.net/v/oceans.webm" type="video/webm">
-	</video>
-	<div class="switch round tiny" id="audio_btn">
-	  <span class="fa fa-volume-off fa-lg" id="audio-icon"></span>
-	  <input id="sound" type="checkbox" ng-model="audiobutton" ng-checked="audiobutton" ng-click="toggleSelection(audiobutton)">
-	  <label for="sound"></label>
-	</div>
-</div>
-<div id="video-spacer" style="display: block;width: 100%;height: 100%;" class="show-for-large-up"></div>
 <div class="bottomize" ng-class="ubicacion != 'main.views.dashboard' ? 'whitening' : ''" ng-switch="ubicacion">
 	<div class="row"  ng-switch-default>
 		<div class="large-7 medium-7 columns">

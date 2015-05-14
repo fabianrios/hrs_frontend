@@ -108,3 +108,43 @@
 		}
 	}
 }
+
+
+.restantes{
+	position: absolute;
+	top: 0;
+	text-align: center;
+	color: darken(#88ACC4,20%);
+	font-size: 32px;
+	span{
+		font-size: 14px;
+		display: block;
+		color: #88ACC4;
+	    position: relative;
+	    top: -6px;
+	}
+}
+
+.usados{
+	position: absolute;
+    bottom: 0;
+    right: 10px;
+	color: darken(#c4c4c4,20%);
+	text-align: center;
+	font-size: 32px;
+	span{
+		font-size: 14px;
+		display: block;
+		color: #c4c4c4;
+	    position: relative;
+	    top: -6px;
+	}
+}
+
+.vacations-opt{
+	display: inline-block;
+	select{
+		height: 40px;
+		min-width: 200px;
+	}
+}
