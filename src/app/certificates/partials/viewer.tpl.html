@@ -4,8 +4,11 @@
   <button class="button small secondary" ng-click="zoomIn()"><span class="fa fa-search-plus fa-lg"></span></button>
   <button class="button small secondary" ng-click="zoomOut()"><span class="fa fa-search-minus fa-lg"></span></button>
   <a href="{{pdfUrl}}" class="button small secondary" target="_blank"><span class="fa fa-print fa-lg"></span></a>
-  <div ng-if="ubicacion == 'main.views.certificates_vacations'" class="vacations-opt">
-    <select ng-options="vacation as vacation.endda for vacation in employee.vacations"  ng-model="vacacion" ng-change="cambiarPdf(vacacion)"></select>	
+  <div ng-if="ubicacion == 'main.views.certificates_vacations' && employee.vacations.length > 1" class="vacations-opt">
+    <select ng-init="vacacion = employee.vacations[0]" ng-options="vacation as vacation.endda for vacation in employee.vacations" ng-model="vacacion" ng-change="cambiarPdf(vacacion)"></select>	
+  </div>
+  <div ng-if="ubicacion == 'main.views.certificates_payroll' && employee.volpago.length > 1" class="vacations-opt">
+    <select ng-init="volante = employee.volpago[0]" ng-options="volante as volante.endda for volante in employee.volpago"  ng-model="volante" ng-change="cambiarPdf(volante)"></select>	
   </div>
   
   <div class="paginas" ng-if="pageCount > 1" data="{{pageCount}}" class="dib">
