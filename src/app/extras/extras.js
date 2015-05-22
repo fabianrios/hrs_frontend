@@ -18,7 +18,7 @@
 		})
 	})
 	
-	.controller('Extras.ListController', function($scope, $http, $state, extras_req, currentUser, Extra_requirement){
+	.controller('Extras.ListController', function($scope, $http, $state, extras_req, currentUser, Extra_requirement, HRAPI_CONF){
 		
 		$scope.user = currentUser;
 		$scope.extras = extras_req;
@@ -113,6 +113,22 @@
 			});
 		};
 		
+		
+		$scope.$on('s3upload:success', function (evt, xhr, fileUrl) {
+			var id = evt.targetScope.$parent.req_info.id
+			console.log(evt.targetScope.$parent.req_info);
+			$http({method: 'PUT', 
+				url: HRAPI_CONF.apiBaseUrl('/extra_requirements/')+id,
+				data: { extra_requirement: { attachment: fileUrl.path}}
+			})
+			.success( function( data, status ) {
+				console.log("imagen colocada", data);
+			})
+			.error( function( data, status ) {
+				// errorService.failure( data, status, $scope);
+				console.log("error", status, data.errors, $scope);
+			});
+		});
 		
 	})
 	
