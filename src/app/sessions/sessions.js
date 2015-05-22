@@ -28,7 +28,7 @@
 			Auth.login($scope.credentials).then(function(user) {
 				// inicializacion de algun tipo 
 				// vamos a poner las credenciales en localstorage
-			   console.log(user, $scope.credentials)
+			   // console.log(user, $scope.credentials)
 			   localStorage.setItem('user',user.email);
    			   localStorage.setItem('psx',$scope.credentials.password);
 			}, function(error) {
@@ -45,7 +45,7 @@
 				email: user_loc,
 				password: user_psx
 			};
-			console.log("existe el user y la contraseña",$scope.credentials);
+			// console.log("existe el user y la contraseña",$scope.credentials);
 			$scope.login();
 		}
      

@@ -68,7 +68,7 @@
 							<div ng-switch="data.lstbx" class="relative">
 								<div ng-switch-default>
 									<label data="{{data.pvisu}}" for="{{data.ncamp}}">{{data.dcamp}}</label>
-									<input ng-disabled="{{data.sedit == 'X' ? false : true}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" ng-model="data.ccamp" value="{{data.ccamp}}"/>
+									<input ng-disabled="{{data.sedit == 'X' ? false : true}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" ng-model="data.ccamp" value="{{data.ncamp == 'P0002-GBDAT' ? trade_date(data.ccamp) : data.ccamp}}"/>
 									<a ng-if="data.sedit == 'X'"  ng-click="cambiarInfo(data.subty, data.ncamp, data.dcamp, data.ccamp, data.objid, data.lstbx)" class="button tiny changes"><span class="fa fa-pencil fa-lg"></span></a>
 								</div>
 								<div ng-switch-when="IH_TB_T005L">
@@ -251,9 +251,17 @@
 									<label for="{{data.ncamp}}">{{data.dcamp}}</label>
 									<input ng-disabled="{{data.sedit == 'X' ? false : true}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{find_country(paises,data.ccamp)}}"/>
 								</div>
+								<div ng-switch-when="P0008-BET01">
+									<label for="{{data.ncamp}}">{{data.dcamp}}</label>
+									<input ng-disabled="{{data.sedit == 'X' ? false : true}}" type="{{data.tcamp == 'TEX2' ? 'text' : data.tcamp}}" name="{{data.ncamp}}" value="{{find_country(paises,data.ccamp)}}"/>
+								</div>
 								<div ng-switch-when="P0009-BANKL">
 									<label for="{{data.ncamp}}">{{data.dcamp}}</label>
 									<input ng-disabled="{{data.sedit == 'X' ? false : true}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{find_banks(bancos,data.ccamp)}}"/>
+								</div>
+								<div ng-switch-when="P0009-BKONT">
+									<label for="{{data.ncamp}}">{{data.dcamp}}</label>
+									<input ng-disabled="{{data.sedit == 'X' ? false : true}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{data.ccamp == '01' ? 'Cuenta corriente' : 'Cuenta de ahorros'}}"/>
 								</div>
 							</div>
 						</li>

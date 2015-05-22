@@ -5,6 +5,7 @@
 	.controller('Sidebar.SidebarController', function($scope, $state, employees){
 		$scope.common = {};
 		$scope.employees = employees;
+		console.log($scope.employees);
 		
   	  //toggle expand vacation box
         $scope.favorites = function(e, empleado){
