@@ -145,7 +145,7 @@
 									<div class="text-right">
 										<span class="graytxt">
 											<i class="fa fa-calendar-o"></i>
-											<span class="small">{{empleado.fecha_nac}}</span>
+											<span class="small">{{birthShow(empleado)}}</span>
 										</span>
 									</div>
 								</li>
@@ -182,9 +182,9 @@
 									<h6 class="subheader no-margin capitalize">{{empleado.posicion | lowercase}}</h6>
 									<div class="text-right">
 										<span class="graytxt">
-											<span class="label radius success">{{aniversario(empleado.fecha_ingreso)}} Años</span>
+											<span class="label radius success">{{aniversario(laborShow(empleado))}} Años</span>
 											<i class="fa fa-calendar-o"></i>
-											<span class="small">{{empleado.fecha_nac}}</span>
+											<span class="small">{{birthShow(empleado)}}</span>
 										</span>
 									</div>
 								</li>

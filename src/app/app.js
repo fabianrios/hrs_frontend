@@ -295,6 +295,16 @@
 			$('#'+which+'-'+modal).foundation('reveal', 'open');
 		};
 
+    //format date
+    $rootScope.formatDate = function( fecha ){
+      if( fecha != null && typeof fecha == "strict" ){
+        parts = fecha.split('-');
+        return new Date(parts[0],parts[1]-1, parts[2])
+      }else{
+        return fecha
+      }
+    }
+
   });
   
 }());

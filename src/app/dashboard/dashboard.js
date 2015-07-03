@@ -428,19 +428,21 @@
     
     
 			$scope.birthShow = function(empleado) {
-				var birth = new Date(empleado.fecha_nac);
-				var now = new Date(); 
-				var show = now.getMonth() == birth.getMonth() ? true : false;
+				//var birth = new Date(empleado.fecha_nac);
+				//var now = new Date(); 
+				//var show = now.getMonth() == birth.getMonth() ? true : false;
 				// console.log(now.getMonth(), birth.getMonth())
-				return show;
+				//return show;
+				return $scope.formatDate(empleado.fecha_nac);
 			}
     
 			$scope.laborShow = function(empleado) {
-				var entrada = new Date(empleado.fecha_ingreso);
-				var now = new Date(); 
-				var show = now.getMonth() == entrada.getMonth() ? true : false;
+				//var entrada = new Date(empleado.fecha_ingreso);
+				//var now = new Date(); 
+				//var show = now.getMonth() == entrada.getMonth() ? true : false;
 				// console.log(now.getMonth(), entrada.getMonth())
-				return show;
+				//return show;
+				return $scope.formatDate(empleado.fecha_ingreso);
 			}
     
     
