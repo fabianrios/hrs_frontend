@@ -373,7 +373,7 @@
 		angular.forEach($scope.saldos.t_endeudamiento,function(value){
 			deduc.push(value.deduc);
 			devng.push(value.devng);
-			$scope.fechasdeudas.push(value.fpend);
+			$scope.fechasdeudas.push( $scope.formatDate(value.fpend) );
 		});
 		
 		$scope.deducciones = [];
@@ -396,7 +396,7 @@
         // meter las cesantias
         angular.forEach($scope.saldos.t_cesantias,function(value){
           $scope.betrg.push(value.betrg);
-          $scope.fpend.push(value.fpend);
+          $scope.fpend.push($scope.formatDate(value.fpend));
         });
         // saldo de cesantias a numeros
         $scope.betrg.forEach(function(entry, index) {
@@ -409,7 +409,7 @@
 		$scope.intnewbetrg = [];
         angular.forEach($scope.saldos.t_intcesantias,function(value){
           $scope.intbetrg.push(value.betrg);
-          $scope.intfpend.push(value.fpend);
+          $scope.intfpend.push($scope.formatDate(value.fpend));
         });
       
         // Intereses de cesantias a numeros
