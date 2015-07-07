@@ -373,7 +373,7 @@
 		angular.forEach($scope.saldos.t_endeudamiento,function(value){
 			deduc.push(value.deduc);
 			devng.push(value.devng);
-			$scope.fechasdeudas.push(value.fpend);
+			$scope.fechasdeudas.push( $scope.formatDate(value.fpend) );
 		});
 		
 		$scope.deducciones = [];
@@ -396,7 +396,7 @@
         // meter las cesantias
         angular.forEach($scope.saldos.t_cesantias,function(value){
           $scope.betrg.push(value.betrg);
-          $scope.fpend.push(value.fpend);
+          $scope.fpend.push($scope.formatDate(value.fpend));
         });
         // saldo de cesantias a numeros
         $scope.betrg.forEach(function(entry, index) {
@@ -409,7 +409,7 @@
 		$scope.intnewbetrg = [];
         angular.forEach($scope.saldos.t_intcesantias,function(value){
           $scope.intbetrg.push(value.betrg);
-          $scope.intfpend.push(value.fpend);
+          $scope.intfpend.push($scope.formatDate(value.fpend));
         });
       
         // Intereses de cesantias a numeros
@@ -428,19 +428,21 @@
     
     
 			$scope.birthShow = function(empleado) {
-				var birth = new Date(empleado.fecha_nac);
-				var now = new Date(); 
-				var show = now.getMonth() == birth.getMonth() ? true : false;
+				//var birth = new Date(empleado.fecha_nac);
+				//var now = new Date(); 
+				//var show = now.getMonth() == birth.getMonth() ? true : false;
 				// console.log(now.getMonth(), birth.getMonth())
-				return show;
+				//return show;
+				return $scope.formatDate(empleado.fecha_nac);
 			}
     
 			$scope.laborShow = function(empleado) {
-				var entrada = new Date(empleado.fecha_ingreso);
-				var now = new Date(); 
-				var show = now.getMonth() == entrada.getMonth() ? true : false;
+				//var entrada = new Date(empleado.fecha_ingreso);
+				//var now = new Date(); 
+				//var show = now.getMonth() == entrada.getMonth() ? true : false;
 				// console.log(now.getMonth(), entrada.getMonth())
-				return show;
+				//return show;
+				return $scope.formatDate(empleado.fecha_ingreso);
 			}
     
     

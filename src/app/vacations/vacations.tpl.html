@@ -54,12 +54,12 @@
 					<tbody>
 						<tr ng-repeat="req_info in vac_requirements  | filter:{employee_id: user.employee.id}:true">
 							<td class="desde">
-								<h2>{{ req_info.start_date | date:'d' }}</h2>
-								<h6>{{ req_info.start_date | date:'MMMM' }}</h6>
+								<h2>{{ formatDate(req_info.start_date) | date:'d' }}</h2>
+								<h6>{{ formatDate(req_info.start_date) | date:'MMMM' }}</h6>
 							</td>
 							<td>
-								<h2>{{ req_info.end_date | date:'d' }}</h2>
-								<h6>{{ req_info.end_date | date:'MMMM' }}</h6>
+								<h2>{{ formatDate(req_info.end_date) | date:'d' }}</h2>
+								<h6>{{ formatDate(req_info.end_date) | date:'MMMM' }}</h6>
 							</td>
 							<td class="dias"><h2>{{req_info.dias}}</h2></td>
 							<td><h6 class="bold" ><span class="{{req_info.status}}">{{req_info.status}}</span></h6></td>

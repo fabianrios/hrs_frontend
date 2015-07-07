@@ -5,6 +5,7 @@
 <div class="right">
 	<div class="user_nav show-for-medium-up">
 		<div class="text-right">
+			{{topbar}}
 			<a ui-sref="main.views.articles()" class="comments"><span class="icon-comment"></span><i class="number comment">{{articles_not_mine.length}}</i></a>
 			<h5 class="subheader no-margin capitalize"><a ui-sref="main.views.employee_info"><span class="icon-user"></span> {{user.name | lowercase}}</a></h5>
 			<div class="worker">
