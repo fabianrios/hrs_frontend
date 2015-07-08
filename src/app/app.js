@@ -70,6 +70,9 @@
     AuthProvider.loginPath(HRAPI_CONF.apiBaseUrl('/users/sign_in.json'));
     AuthProvider.logoutPath(HRAPI_CONF.apiBaseUrl('/users/sign_out.json'));
     AuthProvider.registerPath(HRAPI_CONF.apiBaseUrl('/users.json'));
+
+    // Enruta a la home
+    $urlRouterProvider.otherwise('/home');
   
     // Configura estados de aplicacion ui-router
     $stateProvider
