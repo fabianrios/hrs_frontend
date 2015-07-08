@@ -66,7 +66,8 @@
 					<ul class="small-block-grid-2 medium-block-grid-4 large-block-grid-5" ui-sortable="sortableOptions" ng-model="employee_info.datos_personales">
 						<li ng-repeat="data in employee_info.datos_personales">
 							<div ng-switch="data.pvisu">
-								<div ng-switch-default>
+								{{data.tcamp}}
+								<div ng-switch-default>									
 									<label data="{{data.pvisu}}" for="{{data.ncamp}}">{{data.dcamp}}</label>
 									<input disabled="{{data.sedit == 'X' ? true : false}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{data.ccamp}}"/>
 								</div>

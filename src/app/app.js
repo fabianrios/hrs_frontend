@@ -57,7 +57,7 @@
     'licenses'
   ])
 
-  .config(function($stateProvider, $httpProvider, HRAPI_CONF, AuthProvider, AuthInterceptProvider, ngS3Config){
+  .config(function($stateProvider, $httpProvider, $urlRouterProvider, HRAPI_CONF, AuthProvider, AuthInterceptProvider, ngS3Config){
 	
     ngS3Config.theme = 'bootstrap2';
 
