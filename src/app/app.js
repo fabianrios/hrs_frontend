@@ -307,6 +307,24 @@
           }
         }
 
+        $rootScope.stringTo = function( _type, _value ){
+          if( _value != null && typeof _value == "string" ){
+            switch(_type) {
+                case 'NUM':
+                    return parseFloat(_value, 10);
+                    break;normal
+                case 'DATE':
+                    var parts = _value.split('-');
+                    return new Date(parts[0],parts[1]-1, parts[2]);
+                    break;
+                default:
+                    return _value;
+            } 
+          }else{
+            return _value;
+          }
+        }
+
       });
   
     }());
