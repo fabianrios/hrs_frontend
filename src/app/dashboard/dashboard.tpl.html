@@ -19,9 +19,9 @@
 						</h5>
 						<div class="contenido" id="vacations-chart">
 							<br />
-							<h4 class="restantes">{{vacationdays[0]}}<span>Restantes</span></h4>
+							<h4 class="restantes">{{vacationdays[1]}}<span>Restantes</span></h4>
 							<canvas id="doughnut" class="chart chart-doughnut" data="vacationdays" labels="labels"></canvas>
-							<h4 class="usados">{{vacationdays[1]}}<span>Usados</span></h4>
+							<h4 class="usados">{{vacationdays[0]}}<span>Usados</span></h4>
 						</div>
 					</div>
 				</li>
@@ -145,7 +145,7 @@
 									<div class="text-right">
 										<span class="graytxt">
 											<i class="fa fa-calendar-o"></i>
-											<span class="small">{{birthShow(empleado)}}</span>
+											<span class="small">{{empleado.fecha_nac}}</span>
 										</span>
 									</div>
 								</li>
@@ -182,9 +182,9 @@
 									<h6 class="subheader no-margin capitalize">{{empleado.posicion | lowercase}}</h6>
 									<div class="text-right">
 										<span class="graytxt">
-											<span class="label radius success">{{aniversario(laborShow(empleado))}} Años</span>
+											<span class="label radius success">{{aniversario(empleado.fecha_ingreso)}} Años</span>
 											<i class="fa fa-calendar-o"></i>
-											<span class="small">{{laborShow(empleado)}}</span>
+											<span class="small">{{empleado.fecha_ingreso}}</span>
 										</span>
 									</div>									
 								</li>

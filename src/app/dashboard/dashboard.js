@@ -428,21 +428,31 @@
     
     
 			$scope.birthShow = function(empleado) {
-				//var birth = new Date(empleado.fecha_nac);
-				//var now = new Date(); 
-				//var show = now.getMonth() == birth.getMonth() ? true : false;
-				// console.log(now.getMonth(), birth.getMonth())
-				//return show;
-				return $scope.formatDate(empleado.fecha_nac);
+        var birth = $scope.formatDate(empleado.fecha_nac);
+        var nacimiento = new Date(birth)
+        nacimiento.setHours(0,0,0,0)
+        var now = new Date();
+        if (Object.prototype.toString.call(birth) === '[object Date]'){
+          var show = now.getMonth() == birth.getMonth() ? true : false;
+          // console.log(nacimiento.getDay(), birth.getDay());
+          return show;
+        }else{
+          console.log(birth, nacimiento);
+          return false
+        }
+        // return $scope.formatDate(empleado.fecha_nac);
 			}
     
 			$scope.laborShow = function(empleado) {
-				//var entrada = new Date(empleado.fecha_ingreso);
-				//var now = new Date(); 
-				//var show = now.getMonth() == entrada.getMonth() ? true : false;
-				// console.log(now.getMonth(), entrada.getMonth())
-				//return show;
-				return $scope.formatDate(empleado.fecha_ingreso);
+				var entrada = $scope.formatDate(empleado.fecha_ingreso);
+        var now = new Date();
+        if (Object.prototype.toString.call(entrada) === '[object Date]'){
+          var show = now.getMonth() == entrada.getMonth() ? true : false;
+          // console.log(now.getMonth(), entrada.getMonth());
+          return show;
+        }else{
+          return false
+        }
 			}
     
     

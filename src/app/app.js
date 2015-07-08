@@ -299,8 +299,8 @@
 
         //format date
         $rootScope.formatDate = function( fecha ){
-          if( fecha != null && typeof fecha == "strict" ){
-            parts = fecha.split('-');
+          if( fecha != null && typeof fecha == "string" ){
+            var parts = fecha.split('-');
             return new Date(parts[0],parts[1]-1, parts[2])
           }else{
             return fecha
