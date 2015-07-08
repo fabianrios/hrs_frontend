@@ -57,7 +57,7 @@
     'licenses'
   ])
 
-  .config(function($stateProvider, $httpProvider, HRAPI_CONF, AuthProvider, AuthInterceptProvider, ngS3Config){
+  .config(function($stateProvider, $httpProvider, $urlRouterProvider, HRAPI_CONF, AuthProvider, AuthInterceptProvider, ngS3Config){
 	
     ngS3Config.theme = 'bootstrap2';
 
@@ -70,6 +70,9 @@
     AuthProvider.loginPath(HRAPI_CONF.apiBaseUrl('/users/sign_in.json'));
     AuthProvider.logoutPath(HRAPI_CONF.apiBaseUrl('/users/sign_out.json'));
     AuthProvider.registerPath(HRAPI_CONF.apiBaseUrl('/users.json'));
+
+    // Enruta a la home
+    $urlRouterProvider.otherwise('/home');
   
     // Configura estados de aplicacion ui-router
     $stateProvider
@@ -304,6 +307,24 @@
             return new Date(parts[0],parts[1]-1, parts[2])
           }else{
             return fecha
+          }
+        }
+
+        $rootScope.stringTo = function( _type, _value ){
+          if( _value != null && typeof _value == "string" ){
+            switch(_type) {
+                case 'NUM':
+                    return parseFloat(_value, 10);
+                    break;normal
+                case 'DATE':
+                    var parts = _value.split('-');
+                    return new Date(parts[0],parts[1]-1, parts[2]);
+                    break;
+                default:
+                    return _value;
+            } 
+          }else{
+            return _value;
           }
         }
 
