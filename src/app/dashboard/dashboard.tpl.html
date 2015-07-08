@@ -170,7 +170,7 @@
 						</h5>
 						<div class="contenido">
 							<ul class="employees">
-								<li ng-repeat="empleado in employees  | filter:laborShow">
+								<li ng-repeat="empleado in employees | filter:laborShow">
 									<div class="foto">
 										<a ui-sref="main.views.employee_info_lookup({id:empleado.identification, c:empleado.company.id})">
 											<img alt="profile" ng-src="{{empleado.image}}">
