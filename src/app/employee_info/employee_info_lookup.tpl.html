@@ -100,9 +100,9 @@
 					<hr class="m0" />
 					<ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-5" ui-sortable="sortableOptions" ng-model="employee_info.datos_familiares">
 						<li ng-repeat="data in employee_info.datos_familiares">
-							<div ng-switch="data.tcamp">
+							<div ng-switch="data.tcamp">								
 								<div ng-switch-default>
-									<div ng-switch="data.ncamp">
+									<div ng-switch="data.ncamp">										
 										<div ng-switch-default> 
 											<label for="{{data.ncamp}}">{{data.dcamp}}</label>
 											<input data-sedit="{{data.sedit}}" disabled="{{data.sedit == 'X' ? true : false}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{data.ccamp}}"/>
