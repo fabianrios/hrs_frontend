@@ -13,7 +13,7 @@
 									<span class="prefix date"><i class="fa fa-check"></i></span>
 								</div>
 								<div class="small-10 columns">
-									<input type="number" id="autorizacion" ng-model="severance.approval">
+									<input type="number" id="autorizacion" ng-model="severance.approval" required>
 								</div>
 							</div>
 						</div>
@@ -26,13 +26,13 @@
 									<span class="prefix calendar"><i class="fa fa-calendar"></i></span>
 								</div>
 								<div class="small-9 columns">
-									<input type="date" id="autorizacion" ng-model="severance.cut">
+									<input type="date" id="autorizacion" ng-model="severance.cut" required>
 								</div>
 							</div>
 						</div>
 						<div class="large-7 medium-7 columns">
 							<label for="inicio">Motivo: </label>
-							<select name="motivo" id="">
+							<select name="motivo" id="" required>
 								<option value="1">Compra de vivienda</option>
 								<option value="2">Pago de semestre</option>
 								<option value="3">Remodelación de vivienda</option>
@@ -45,7 +45,7 @@
 							<span class="prefix money"><i class="fa fa-usd"></i></span>
 						</div>
 						<div class="small-10 columns">
-							<input type="number" id="monto" ng-model="solicitud.monto" class="money" >
+							<input type="number" id="monto" ng-model="solicitud.monto" class="money" required>
 						</div>
 					</div>
 					<input type="hidden" ng-model="requerimiento.status">

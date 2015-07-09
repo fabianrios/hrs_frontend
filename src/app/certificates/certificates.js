@@ -62,7 +62,7 @@
 	.controller('Certificates.MainController', function($scope, $http, employee, currentUser, $state){
 		
 
-		$scope.pdfUrl = "http://hdvbackend.hrinteractive.co/carta_laboral-"+currentUser.company_id+"/carta_laboral_"+currentUser.employee_id+"_"+currentUser.company_id+".pdf";
+		$scope.pdfUrl = "http://hdvbackend.hrinteractive.co/carta_laboral-"+currentUser.company_id+"/cartas_lab_"+currentUser.employee_id+"_"+currentUser.company_id+".pdf";
 		$scope.scroll = 0;
 		$scope.loading = true;
 		$scope.progress = {};
