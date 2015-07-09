@@ -87,6 +87,12 @@
 					<i ng-if="only_not_user.length > 0" class="number menu-comment">{{only_not_user.length}}</i>
 				</a>
 			</li>
+			<li>
+				<a href="#">
+					Vacaciones compensadas
+					<i ng-if="only_not_user.length > 0" class="number menu-comment">{{only_not_user.length}}</i>
+				</a>
+			</li>
 		</ul>
 	</li>
 	<li class="has-submenu">
@@ -145,6 +151,11 @@
 	<li>
 		<a ui-sref="main.views.articles()">
 			<i class="fa fa-bullhorn fa-lg"></i> Gestor de contenidos
+		</a>
+	</li>
+	<li>
+		<a ui-sref="main.views.reports()">
+			<i class="fa fa-flag fa-lg"></i> Reportes
 		</a>
 	</li>
 	<!-- <li>

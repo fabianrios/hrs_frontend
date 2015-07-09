@@ -54,7 +54,8 @@
     'extras',
     'inhability',
     'employees',
-    'licenses'
+    'licenses',
+    'reports'
   ])
 
   .config(function($stateProvider, $httpProvider, $urlRouterProvider, HRAPI_CONF, AuthProvider, AuthInterceptProvider, ngS3Config){
