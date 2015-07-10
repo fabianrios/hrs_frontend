@@ -4,8 +4,9 @@
 	angular.module('sidebar', ['employee.service'])
 	.controller('Sidebar.SidebarController', function($scope, $state, $http, employees, currentUser){
 		$scope.common = {};
-		$scope.employees = employees;
-		console.log($scope.employees);
+    $scope.employees = employees;
+
+		// console.log($scope.employees);
 		
   	  //toggle expand vacation box
         $scope.favorites = function(e, empleado){
@@ -13,7 +14,7 @@
                 $(e.currentTarget).children("span").addClass("fa-start");
                 $(e.currentTarget).toggleClass("active");
                 var index = $scope.employees.indexOf(empleado);
-                console.log(index,empleado.favorite);
+                // console.log(index,empleado.favorite);
                 $scope.employees.splice(index, 1);
                 if (!empleado.favorite){
                     empleado.favorite = true;
@@ -39,7 +40,10 @@
             _return = false;
             currentUser.favorite_employees.some( function( favorite ){                
                 if(favorite.employee_identification == employee.identification){
-                    _return = true;                     
+                    var index = $scope.employees.indexOf(employee);                    
+                    $scope.employees.splice(index, 1);
+                    $scope.employees.unshift(employee);
+                    _return = true;                      
                 }
             });
             return _return;
