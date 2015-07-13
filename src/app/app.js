@@ -10,6 +10,7 @@
     'ui.sortable',
     'Devise',
     'chart.js',
+    'ngFileUpload',
     //'mm.foundation',
 
     // Config
