@@ -91,45 +91,7 @@
 			
 		} ///BORRAR
 		
-		$scope.deleteVacationReq = function(vacacion,modal) { 
-			vacacion.$delete(function() {
-				var index = $scope.only_not_user.indexOf(vacacion)
-				$scope.only_not_user.splice(index, 1);
-				// console.log($scope.only_not_user);
-				$('#myModal-'+modal).foundation('reveal', 'close');  
-				$scope.alerts.push({type: 'alert', msg: "La vacación del "+ vacacion.start_date  + " al "+ req_info.end_date +" a sido borrada"});
-			});
-			
-		} ///BORRAR
-		 
-		//UPDATE APROBAR
-		$scope.aproveVacation = function(req_info) {
-			$scope.vacacion_update = req_info;
-			$scope.vacacion_update.status = "Aprobado"
-			$scope.vacacion_update.$update(function(newData) {
-				var index = $scope.vac_requirements.indexOf(req_info);
-				$scope.vac_requirements[index] = newData;
-				$scope.alerts.push({type: 'success', msg: "La vacación del "+ req_info.start_date + " al "+ req_info.end_date +" a sido aprobada"});
-			  	  window.setTimeout(function() {
-			  	      $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
-			  	          $(this).remove(); 
-			  	      });
-			  	  }, 5000);
-			  },
-			function(data) {
-				$scope.alerts.push({type: 'alert', msg: data.data.errors.status[0]});
-			});
-		};
-		//UPDATE DENIED
-		$scope.deniedVacation = function(req_info) {
-			$scope.vacacion_update = req_info;
-			$scope.vacacion_update.status = "Negado"
-			$scope.vacacion_update.$update(function(newData) {
-				var index = $scope.vac_requirements.indexOf(req_info);
-				$scope.vac_requirements[index] = newData;
-				$scope.alerts.push({type: 'alert', msg: "La vacación del "+ req_info.end_date  + " al "+ req_info.end_date +" a sido negada"});
-			});
-		};
+	
 		
 	})
 	
