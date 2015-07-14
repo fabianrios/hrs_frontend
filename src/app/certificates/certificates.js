@@ -62,7 +62,7 @@
 	.controller('Certificates.MainController', function($scope, $http, employee, currentUser, $state){
 		
 
-		$scope.pdfUrl = 'http://backend.hrinteractive.co/carta_laboral-4/carta_laboral_2133_4.pdf';
+		$scope.pdfUrl = "http://hdvbackend.hrinteractive.co/carta_laboral-"+currentUser.company_id+"/cartas_lab_"+currentUser.employee_id+"_"+currentUser.company_id+".pdf";
 		$scope.scroll = 0;
 		$scope.loading = true;
 		$scope.progress = {};
@@ -82,7 +82,7 @@
 		}
 
 		$scope.onProgress = function(progress) {
-			console.log(progress);
+			// console.log(progress);
 			$scope.progress = progress;
 			$scope.progreso = (100 / $scope.progress.total) * $scope.progress.loaded;
 		}
@@ -93,8 +93,16 @@
 	})
 	.controller('Certificates.Vacaciones.MainController', function($scope, $http, employee, currentUser, $state){
 		
-
-		$scope.pdfUrl = 'http://backend.hrinteractive.co/vacaciones-4/vacaciones-2133/vacaciones_2133_1.pdf';
+		$scope.user = currentUser;
+		$scope.employee = employee;
+		
+		$scope.cambiarPdf = function(vacacion) {
+			$scope.selectedVac = vacacion;
+			$scope.pdfUrl = "http://hdvbackend.hrinteractive.co/vacations-"+currentUser.company_id+"/"+currentUser.employee_id+"/Vac_"+$scope.selectedVac.begda+"_"+$scope.selectedVac.endda+"_"+currentUser.employee_id+"_"+currentUser.company_id+".pdf";
+			$('#pdf-modal').foundation('reveal','open');
+		}
+		
+		$scope.pdfUrl = "http://hdvbackend.hrinteractive.co/vacations-"+currentUser.company_id+"/"+currentUser.employee_id+"/Vac_"+employee.vacations[0].begda+"_"+employee.vacations[0].endda+"_"+currentUser.employee_id+"_"+currentUser.company_id+".pdf";
 		$scope.scroll = 0;
 		$scope.loading = true;
 		$scope.progress = {};
@@ -114,23 +122,32 @@
 		}
 
 		$scope.onProgress = function(progress) {
-			console.log(progress);
+			// console.log(progress);
 			$scope.progress = progress;
 			$scope.progreso = (100 / progress.total) * progress.loaded;
 		}
 		
-		$scope.user = currentUser;
-		$scope.employee = employee;
 		
 
 	})
 	.controller('Certificates.Nomina.MainController', function($scope, $http, employee, currentUser, $state){
 		
-		$scope.pdfUrl = 'http://backend.hrinteractive.co/nomina-4/nomina-2133/nomina_2133_0.pdf';
+		
+		$scope.user = currentUser;
+		$scope.employee = employee;
+		
+		$scope.pdfUrl = "http://hdvbackend.hrinteractive.co/volantes_p-"+currentUser.company_id+"/"+currentUser.employee_id+"/Nomina_"+employee.volpago[0].begda+"_"+employee.volpago[0].endda+"_"+currentUser.employee_id+"_"+currentUser.company_id+".pdf";
 		$scope.scroll = 0;
 		$scope.loading = true;
 		$scope.progress = {};
 		$scope.progreso = 0;
+		
+		$scope.cambiarPdf = function(volante) {
+			$scope.selectedVol = volante;
+			$scope.pdfUrl = "http://hdvbackend.hrinteractive.co/volantes_p-"+currentUser.company_id+"/"+currentUser.employee_id+"/Nomina_"+$scope.selectedVol.begda+"_"+$scope.selectedVol.endda+"_"+currentUser.employee_id+"_"+currentUser.company_id+".pdf";
+			$('#pdf-modal').foundation('reveal','open');
+			console.log($scope.pdfUrl);
+		}
 
 		$scope.getNavStyle = function(scroll) {
 			if(scroll > 400) return 'pdf-controls fixed';
@@ -146,18 +163,16 @@
 		}
 
 		$scope.onProgress = function(progress) {
-			console.log(progress);
+			// console.log(progress);
 			$scope.progress = progress;
 			$scope.progreso = (100 / progress.total) * progress.loaded;
 		}
-		
-		$scope.user = currentUser;
-		$scope.employee = employee;
+	
 
 	})
 	.controller('Certificates.Income.MainController', function($scope, $http, employee, currentUser, $state){
 		
-		$scope.pdfUrl = 'http://backend.hrinteractive.co/vacaciones-4/vacaciones-2133/vacaciones_2133_1.pdf';
+		$scope.pdfUrl = "http://hdvbackend.hrinteractive.co/ingyret-"+currentUser.company_id+"/ingyret_"+currentUser.employee_id+"_"+currentUser.company_id+".pdf";
 		$scope.scroll = 0;
 		$scope.loading = true;
 		$scope.progress = {};
@@ -177,7 +192,7 @@
 		}
 
 		$scope.onProgress = function(progress) {
-			console.log(progress);
+			// console.log(progress);
 			$scope.progress = progress;
 			$scope.progreso = (100 / progress.total) * progress.loaded;
 		}

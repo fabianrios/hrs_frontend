@@ -352,7 +352,6 @@
 		
 		if (currentUser.saldos != null){
 			$scope.saldos = currentUser.saldos;
-			console.log()
 		}else{
 			$scope.saldos = {"saldo":1.0,"vcausado":1.0,"intsaldo":1.0,"intvcausado":1.0,"totdevengos":1.0,"totdeducciones":1.0,"t_cesantias":[{"fpper":"201504","betrg":"958357.00","fpend":"2015-04-30"},{"fpper":"201503","betrg":"695343.00","fpend":"2015-03-31"},{"fpper":"201503","betrg":"683836.00","fpend":"2015-03-31"},{"fpper":"201502","betrg":"444932.00","fpend":"2015-02-28"},{"fpper":"201501","betrg":"230137.00","fpend":"2015-01-31"},{"fpper":"201412","betrg":"2550000.00","fpend":"2014-12-31"}],"t_intcesantias":[{"fpper":"201504","betrg":"37809.00","fpend":"2015-04-30"},{"fpper":"201503","betrg":"20575.00","fpend":"2015-03-31"},{"fpper":"201503","betrg":"20234.00","fpend":"2015-03-31"},{"fpper":"201502","betrg":"8630.00","fpend":"2015-02-28"},{"fpper":"201501","betrg":"2346.00","fpend":"2015-01-31"},{"fpper":"201412","betrg":"306000.00","fpend":"2014-12-31"}],"t_endeudamiento":[{"fpper":"201504","devng":"21336320001.00","deduc":"7465961193.00","fpend":"2015-04-30"},{"fpper":"201503","devng":"2566667.00","deduc":"749878.00","fpend":"2015-03-31"},{"fpper":"201503","devng":"2920000.00","deduc":"749878.00","fpend":"2015-03-31"},{"fpper":"201502","devng":"2613333.00","deduc":"750500.00","fpend":"2015-02-28"},{"fpper":"201501","devng":"3101968.00","deduc":"927977.00","fpend":"2015-01-31"},{"fpper":"201412","devng":"4104204.00","deduc":"500000.00","fpend":"2014-12-31"}]};
 		}
@@ -360,7 +359,7 @@
 		if (currentUser.vacation != null){
 			// Estos hay que parsearlos como numeros porque llegan como un string para la primera grafica
 			$scope.vacationdays = [parseInt($scope.vacation.resumen[1]),parseInt($scope.vacation.resumen[2])];
-			console.log($scope.vacationdays);
+			// console.log($scope.vacationdays);
 		}else{
 			$scope.vacationdays = [];
 		}
@@ -374,7 +373,7 @@
 		angular.forEach($scope.saldos.t_endeudamiento,function(value){
 			deduc.push(value.deduc);
 			devng.push(value.devng);
-			$scope.fechasdeudas.push(value.fpend);
+			$scope.fechasdeudas.push( moment( $scope.formatDate(value.fpend) ).format("YYYY-MM-DD") ) ;
 		});
 		
 		$scope.deducciones = [];
@@ -397,7 +396,7 @@
         // meter las cesantias
         angular.forEach($scope.saldos.t_cesantias,function(value){
           $scope.betrg.push(value.betrg);
-          $scope.fpend.push(value.fpend);
+          $scope.fpend.push( moment( $scope.formatDate(value.fpend)  ).format("YYYY-MM-DD") );
         });
         // saldo de cesantias a numeros
         $scope.betrg.forEach(function(entry, index) {
@@ -410,7 +409,7 @@
 		$scope.intnewbetrg = [];
         angular.forEach($scope.saldos.t_intcesantias,function(value){
           $scope.intbetrg.push(value.betrg);
-          $scope.intfpend.push(value.fpend);
+          $scope.intfpend.push( moment( $scope.formatDate(value.fpend)  ).format("YYYY-MM-DD") );
         });
       
         // Intereses de cesantias a numeros
@@ -429,19 +428,31 @@
     
     
 			$scope.birthShow = function(empleado) {
-				var birth = new Date(empleado.fecha_nac);
-				var now = new Date(); 
-				var show = now.getMonth() == birth.getMonth() ? true : false;
-				// console.log(now.getMonth(), birth.getMonth())
-				return show;
+        var birth = $scope.formatDate(empleado.fecha_nac);
+        var nacimiento = new Date(birth)
+        nacimiento.setHours(0,0,0,0)
+        var now = new Date();
+        if (Object.prototype.toString.call(birth) === '[object Date]'){
+          var show = now.getMonth() == birth.getMonth() ? true : false;
+          // console.log(nacimiento.getDay(), birth.getDay());
+          return show;
+        }else{
+          console.log(birth, nacimiento);
+          return false
+        }
+        // return $scope.formatDate(empleado.fecha_nac);
 			}
     
 			$scope.laborShow = function(empleado) {
-				var entrada = new Date(empleado.fecha_ingreso);
-				var now = new Date(); 
-				var show = now.getMonth() == entrada.getMonth() ? true : false;
-				// console.log(now.getMonth(), entrada.getMonth())
-				return show;
+				var entrada = $scope.formatDate(empleado.fecha_ingreso);
+        var now = new Date();
+        if (Object.prototype.toString.call(entrada) === '[object Date]'){
+          var show = now.getMonth() == entrada.getMonth() ? true : false;
+          // console.log(now.getMonth(), entrada.getMonth());
+          return show;
+        }else{
+          return false
+        }
 			}
     
     

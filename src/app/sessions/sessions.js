@@ -23,20 +23,30 @@
 
 	.controller('sessions.LoginController', function($scope, Auth){
 
-		// $scope.credentials = {
-		// 	email: 'hola@fabianrios.co',
-		// 	password: 'f6e02785c'
-		// };
-
 		$scope.login = function() { //login
 			Auth.login($scope.credentials).then(function(user) {
 				// inicializacion de algun tipo 
+				// vamos a poner las credenciales en localstorage
+			   // console.log(user, $scope.credentials)
+			   localStorage.setItem('user',user.email);
+   			   localStorage.setItem('psx',$scope.credentials.password);
 			}, function(error) {
 				console.log("sessions.LoginController: error en la autenticacion")
 			});
 		};
 	  
 		//$scope.login();
+		var user_loc = localStorage.getItem('user');
+		var user_psx = localStorage.getItem('psx');
+		
+		if (typeof user_loc !== 'undefined' && typeof user_psx !== 'undefined'){
+			$scope.credentials = {
+				email: user_loc,
+				password: user_psx
+			};
+			// console.log("existe el user y la contraseña",$scope.credentials);
+			$scope.login();
+		}
      
 	})
 
@@ -49,7 +59,7 @@
 		// Hmm esto no tiene cara de ir aca ...
 		$scope.$on('s3upload:success', function (evt, xhr, fileUrl) {
 			$http({method: 'PUT', 
-			url: 'http://backend.hrinteractive.co/api/users/'+$scope.user.employee.id,
+			url: 'http://hdvbackend.hrinteractive.co/api/users/'+$scope.user.employee.user_id,
 			data: { user: { pic: fileUrl.path}}
 		})
 		.success( function( data, status ) {
@@ -70,7 +80,7 @@
 			console.log($scope.user);
       
 			$http({method: 'PUT', 
-			url: 'http://backend.hrinteractive.co//api/users.json',
+			url: 'http://hdvbackend.hrinteractive.co/api/users.json',
 			data: {user: {
 				name: $scope.user.name,
 				email: $scope.user.email,

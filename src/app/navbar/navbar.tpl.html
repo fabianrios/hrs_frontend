@@ -22,8 +22,9 @@
 
 <ul class="off-canvas-list">
 	<li><a href="#/home"><i class="fa fa-home fa-lg"></i> Inicio</a></li>
-	<li><a ng-href="#/organigram/{{user.employee_id}}"><i class="fa fa-sitemap fa-lg"></i> Organigrama</a></li>
-	<li><a ui-sref="main.views.employees"><i class="fa fa-users fa-lg"></i> Empleados</a></li>
+	<li ui-sref="main.views.organigram({id:user.employee.id})"><a><i class="fa fa-sitemap fa-lg"></i> Organigrama</a></li>
+	<!-- <li><a ng-href="#/organigram/{{user.employee_id}}" class="disabled"><i class="fa fa-sitemap fa-lg"></i> Organigrama</a></li> -->
+	<!-- <li><a ui-sref="main.views.employees"><i class="fa fa-users fa-lg"></i> Empleados</a></li> -->
 	<li class="has-submenu">
 		<a href="">
 			<i class="fa fa-file fa-lg"></i> Autoservicios
@@ -83,6 +84,12 @@
 			<li>
 				<a ui-sref="main.views.vacations">
 					Vacaciones
+					<i ng-if="only_not_user.length > 0" class="number menu-comment">{{only_not_user.length}}</i>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					Vacaciones compensadas
 					<i ng-if="only_not_user.length > 0" class="number menu-comment">{{only_not_user.length}}</i>
 				</a>
 			</li>
@@ -147,8 +154,13 @@
 		</a>
 	</li>
 	<li>
+		<a ui-sref="main.views.reports()">
+			<i class="fa fa-flag fa-lg"></i> Reportes
+		</a>
+	</li>
+	<!-- <li>
 		<a ui-sref="main.views.companynew">
 			<i class="fa fa-building fa-lg"></i> Añadir empresa
 		</a>
-	</li>
+	</li> -->
 </ul>

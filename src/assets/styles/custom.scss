@@ -93,14 +93,56 @@
 		min-height: 250px;
 	}
 	&.dashboard{
-		background: url("/images/video_background.jpg") no-repeat 0 center;
+		background: url("/images/Perfil.jpg") no-repeat;
+		background-repeat: no-repeat;
+		background-position: center center;
+		background-attachment: fixed;
+		-webkit-background-size: cover;
+		background-size: cover;
+		width: 100%;
 	}
-	&.loans, &.licenses, &.severance{
-		background-image: url("/images/downtown-morning.jpg");
-		background-position: 0 -450px;
+	&.organigram{
+		background: url("/images/Organigrama.jpg") no-repeat center center;
 		background-repeat: no-repeat;
 		background-attachment: fixed;
 		width: 100%;
+		-webkit-background-size: cover;
+		background-size: cover;
+	}
+	&.certificates_vacations, &.certificates_labor, &.certificates_payroll, &.certificates_income{
+		background-image: url("/images/Autoservicios.jpg");
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+		-webkit-background-size: cover;
+		background-size: cover;
+		width: 100%;
+		background-position: center center;
+	}
+	&.loans, &.licenses, &.severance{
+		background-image: url("/images/Solicitudes.jpg");
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+		-webkit-background-size: cover;
+		background-size: cover;
+		width: 100%;
+		background-position: center center;
+	}
+	&.inhabilities, &.extras{
+		background-image: url("/images/Registros.jpg");
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+		-webkit-background-size: cover;
+		background-size: cover;
+		width: 100%;
+		background-position: center center;
+	}
+	&.employee_info_lookup, &.employee_info{
+		background: url("/images/Perfil.jpg") no-repeat center center;
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+		width: 100%;
+		-webkit-background-size: cover;
+		background-size: cover;
 	}
 	#video{
 		position:relative;
@@ -358,6 +400,21 @@
 	}
 }
 
+.closing{
+    display: inline-block;
+    height: 45px;
+    width: 45px;
+    background: rgba(0,0,0,.1);
+    position: relative;
+    top: -10px;
+    right: -10px;
+	i{
+	    position: relative;
+	    right: 12px;
+	    top: 10px;
+	}
+}
+
 .user_nav{
 	float: right;
 	h5{
@@ -473,10 +530,11 @@
 	border: 1px solid $widget-background;
 	margin-bottom: 9px;
 	margin-right: 7px;
-	&.minh-430{
-		min-height: 430px;
+	@media only screen and (min-width: 40.063em) { 
+		&.minh-430{
+			min-height: 430px;
+		}
 	}
-
 	h5{
 		&.encabezado{
 			width: 100%;
@@ -485,7 +543,7 @@
 			margin: 0;
 			font-weight: normal;
 			padding: 10px;
-			border-bottom: 1px solid $header;
+//			border-bottom: 1px solid $header;
 			a{
 				color: $header-title;
 			}
@@ -844,7 +902,7 @@ table{
 }
 
 .acciones{
-	background: url('/images/buttons.png') no-repeat scroll -10px 0;
+	background: #ffffff url('/images/buttons.png') no-repeat scroll -10px 0;
 	display: block;
 	width: 60px;
 	height: 60px;
@@ -887,8 +945,9 @@ span{
 
 .contenido{
 	min-height: 225px;
+	width: 100%;
 	padding: 10px;
-	overflow: hidden;
+//	overflow: hidden;
 	position: relative;
 }
 
@@ -904,6 +963,45 @@ span{
 	&:hover{
 		border: 2px solid $header;					
 	}
+}
+
+.pictuare{
+	display: inline-block;
+	width: 70px;
+	height: 70px;
+	@include border-radius(100%);
+	margin-right: 5px;
+	overflow: hidden;
+	border: 2px solid $header;
+	&:hover{
+		border: 2px solid $header;					
+	}
+}
+
+
+.organigrama{
+	ul{
+		li{
+			.pictuare{
+				width: 60px;
+				height: 60px;
+			}
+			ul{
+				li{
+					.pictuare{
+						width: 50px;
+						height: 50px;
+					}
+				}
+			}
+		}
+	}
+}
+
+.org-info{
+	display: inline-block;
+	position: relative;
+	top: -5px;
 }
 
 .employees{
@@ -1552,3 +1650,6 @@ footer{
 	}
 }
 
+.cargo{
+	text-transform: lowercase;
+}

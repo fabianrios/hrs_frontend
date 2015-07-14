@@ -9,7 +9,7 @@
   // Informacion de entorno
   var runEnv = {
     isDevelopment: window.location.port === '9000',
-    dummyHost: 'hrsolutions.com',
+    dummyHost: 'hrsolutions.co',
     clientHostResourceUrl : 'http://hrsolutions.amazonaws.com/client-resources/'
   };
 
@@ -19,7 +19,7 @@
     if(runEnv.isDevelopment === true){
       return 'http://127.0.0.1:3000';
     }
-    return 'http://backend.hrinteractive.co';
+    return 'http://hdvbackend.hrinteractive.co';
   }();
   hrapi.apiName = 'humanresources';
   hrapi.apiVersion = 'v1';

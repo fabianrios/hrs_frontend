@@ -19,7 +19,9 @@
 						</h5>
 						<div class="contenido" id="vacations-chart">
 							<br />
+							<h4 class="restantes">{{vacationdays[1]}}<span>Restantes</span></h4>
 							<canvas id="doughnut" class="chart chart-doughnut" data="vacationdays" labels="labels"></canvas>
+							<h4 class="usados">{{vacationdays[0]}}<span>Usados</span></h4>
 						</div>
 					</div>
 				</li>
@@ -143,7 +145,7 @@
 									<div class="text-right">
 										<span class="graytxt">
 											<i class="fa fa-calendar-o"></i>
-											<span class="small">{{empleado.fecha_nac}}</span>
+											<span class="small">{{empleado.fecha_nac | date:"d 'de' MMMM"}}</span>
 										</span>
 									</div>
 								</li>
@@ -168,23 +170,23 @@
 						</h5>
 						<div class="contenido">
 							<ul class="employees">
-								<li ng-repeat="empleado in employees  | filter:laborShow">
+								<li ng-repeat="empleado in employees | filter:laborShow">
 									<div class="foto">
 										<a ui-sref="main.views.employee_info_lookup({id:empleado.identification, c:empleado.company.id})">
 											<img alt="profile" ng-src="{{empleado.image}}">
 										</a>
 									</div>
 									<h6 class="no-margin capitalize">
-										<a ui-sref="main.views.employee_info_lookup({id:empleado.identification, c:empleado.company.id})">{{empleado.short_name}}</a>
+										<a ui-sref="main.views.employee_info_lookup({id:empleado.identification, c:empleado.company.id})">{{empleado.short_name | lowercase}}</a>
 									</h6>
 									<h6 class="subheader no-margin capitalize">{{empleado.posicion | lowercase}}</h6>
 									<div class="text-right">
 										<span class="graytxt">
 											<span class="label radius success">{{aniversario(empleado.fecha_ingreso)}} Años</span>
 											<i class="fa fa-calendar-o"></i>
-											<span class="small">{{empleado.fecha_nac}}</span>
+											<span class="small">{{empleado.fecha_ingreso | date:"d 'de' MMMM"}}</span>
 										</span>
-									</div>
+									</div>									
 								</li>
 							</ul>
 						</div><!-- /contenido -->

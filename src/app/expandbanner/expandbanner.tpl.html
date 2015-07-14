@@ -29,12 +29,12 @@
 				<tbody>
 					<tr ng-repeat="dates in vacationdates">
 						<td class="desde">
-							<h2>{{ dateHanldler(dates[0]) | date:'d' }}</h2>
-							<h6>{{ dateHanldler(dates[0]) | date:'MMMM' }}</h6>
+							<h2>{{ dateHanldler(formatDate(dates[0])) | date:'d' }}</h2>
+							<h6>{{ dateHanldler(formatDate(dates[0])) | date:'MMMM' }}</h6>
 						</td>
 						<td>
-							<h2>{{ dateHanldler(dates[1]) | date:'d' }}</h2>
-							<h6>{{ dateHanldler(dates[1]) | date:'MMMM' }}</h6>
+							<h2>{{ dateHanldler(formatDate(dates[1])) | date:'d' }}</h2>
+							<h6>{{ dateHanldler(formatDate(dates[1])) | date:'MMMM' }}</h6>
 						</td>
 						<td class="dias"><h2>{{dates[2] | number:0}}</h2></td>
 					</tr>

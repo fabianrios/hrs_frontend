@@ -13,7 +13,7 @@
 									<span class="prefix date"><i class="fa fa-calendar"></i></span>
 								</div>
 								<div class="small-9 columns">
-									<input type="date" id="inicio" ng-model="requerimiento.start_date">
+									<input type="date" id="inicio" ng-model="requerimiento.start_date" required>
 								</div>
 							</div>
 						</div>
@@ -24,13 +24,13 @@
 									<span class="prefix date"><i class="fa fa-calendar"></i></span>
 								</div>
 								<div class="small-9 columns">
-									<input type="date" id="final" ng-model="requerimiento.end_date">
+									<input type="date" id="final" ng-model="requerimiento.end_date" required>
 								</div>
 							</div>
 						</div>
 					</div>
 					<label for="">Motivo: </label>
-					<select name="motivo" id="motivo" ng-options="opt.subty as opt.descr for opt in options" ng-model="requerimiento.motivo"></select>
+					<select name="motivo" id="motivo" ng-options="opt.subty as opt.descr for opt in options" ng-model="requerimiento.motivo" required></select>
 					<input type="hidden" ng-model="requerimiento.status">
 					<input type="hidden" ng-model="requerimiento.employee_id">
 					<br />

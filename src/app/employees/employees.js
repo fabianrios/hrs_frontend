@@ -64,7 +64,7 @@
 					$scope.disabled = true;
 				}
 				console.log(id,$scope.disabled);
-				$http.post('http://backend.hrinteractive.co/api/employees/nomina', {id:id}).
+				$http.post('http://hdvbackend.hrinteractive.co/api/employees/nomina', {id:id}).
 				success(function(data, status, headers, config) {
 					console.log("success", status, data, headers);
 					if (data.code != null){
@@ -93,7 +93,7 @@
 				$scope.employee.gbdat = $filter('date')($scope.employee.gbdat, "yyyy-MM-dd");
 				console.log($scope.employee);
 				
-				$http.post('http://backend.hrinteractive.co/api/employees/employee_create', {employee:$scope.employee}).
+				$http.post('http://hdvbackend.hrinteractive.co/api/employees/employee_create', {employee:$scope.employee}).
 				success(function(data, status, headers, config) {
 					if (data.data != null){
 						console.log("Empleado creado", data, status, headers, config);

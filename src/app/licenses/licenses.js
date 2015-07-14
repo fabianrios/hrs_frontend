@@ -18,7 +18,7 @@
 		})
 	})
 	
-	.controller('Licenses.ListController', function($scope, $http, $state,  currentUser, licenses_req, License_requirement){
+	.controller('Licenses.ListController', function($scope, $http, $state,  currentUser, licenses_req, License_requirement, Upload, HRAPI_CONF ){
 		
 		$scope.user = currentUser;
 		$scope.licenses = licenses_req;
@@ -58,17 +58,39 @@
 		$scope.requerimiento.employee_id = $scope.user.employee.id;
 
 		$scope.putRequest = function() { //create a new vacation. Issues a POST to /api/vacations
-			$scope.requerimiento.$save(function(newData) {
-				$scope.licenses.push(newData);
-				$scope.requerimiento = new License_requirement();
-				$scope.requerimiento.status = "Espera";
-				$scope.requerimiento.employee_id = $scope.user.employee.id;
-				$state.go('main.views.licenses');
-				$scope.alerts.push({type: 'success', msg: "El permiso a sido guardado"});
-			}, function(data) {
-				// console.log(data.status,data.data);
-				$scope.alerts.push({type: 'alert', msg: data.data.errors.status[0]});
-			});
+			// $scope.requerimiento.$save(function(newData) {
+			// 	$scope.licenses.push(newData);
+			// 	$scope.requerimiento = new License_requirement();
+			// 	$scope.requerimiento.status = "Espera";
+			// 	$scope.requerimiento.employee_id = $scope.user.employee.id;
+			// 	$state.go('main.views.licenses');
+			// 	$scope.alerts.push({type: 'success', msg: "El permiso a sido guardado"});
+			// }, function(data) {
+			// 	// console.log(data.status,data.data);
+			// 	$scope.alerts.push({type: 'alert', msg: data.data.errors.status[0]});
+			// });
+			var file = $scope.files[0];
+
+			Upload.upload({ 
+	            	method: 'POST', 
+	                url: HRAPI_CONF.apiBaseUrl('/license_requirements.json'), 
+	                fields: $scope.requerimiento, 
+	                file: file 
+	            }).progress(function (evt) { 
+	                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total); 
+	                console.log('progress: ' + progressPercentage + '% ' + evt.config.file.name); 
+	            }).success(function (data, status, headers, config) { 
+	            	$scope.licenses.push(data);
+					$scope.requerimiento = new License_requirement();
+					$scope.requerimiento.status = "Espera";
+					$scope.requerimiento.employee_id = $scope.user.employee.id;
+					$state.go('main.views.licenses');
+					$scope.alerts.push({type: 'success', msg: "El permiso a sido guardado"});
+	                console.log('file ' + config.file.name + 'uploaded. Response: ' + data); 
+	            }).error(function (data, status, headers, config) { 
+	            	$scope.alerts.push({type: 'alert', msg: data.errors.status[0]});
+	                // console.log('error status: ' + status); 
+            });
 		};
 		
 		//BORRAR

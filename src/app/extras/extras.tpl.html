@@ -13,7 +13,7 @@
 									<span class="prefix date"><i class="fa fa-calendar"></i></span>
 								</div>
 								<div class="small-9 columns">
-									<input type="date" id="inicio" ng-model="requerimiento.fecha">
+									<input type="date" id="inicio" ng-model="requerimiento.fecha" required>
 								</div>
 							</div>
 						</div>
@@ -24,13 +24,13 @@
 									<span class="prefix date"><i class="fa fa-clock-o"></i></span>
 								</div>
 								<div class="small-9 columns">
-									<input type="number" id="final" ng-model="requerimiento.hours" placeholder="ej: 8">
+									<input type="number" id="final" ng-model="requerimiento.hours" placeholder="ej: 8" required>
 								</div>
 							</div>
 						</div>
 					</div>
 					<label for="">Motivo: </label>
-					<select name="motivo" id="motivo" ng-options="opt.subty as opt.descr for opt in options" ng-model="requerimiento.motivo"></select>
+					<select name="motivo" id="motivo" ng-options="opt.subty as opt.descr for opt in options" ng-model="requerimiento.motivo" required></select>
 					<input type="hidden" ng-model="requerimiento.status">
 					<input type="hidden" ng-model="requerimiento.employee_id">
 					<br />
@@ -45,6 +45,7 @@
 						<tr>
 							<th class="desde">FECHA</th>
 							<th class="dias">HORAS</th>
+							<th>ADJUNTAR</th>
 							<th>MOTIVO</th>
 							<th>ESTADO</th>
 							<th class="borrar">BORRAR</th>
@@ -57,6 +58,9 @@
 								<h6>{{ req_info.fecha | date:'MMMM' }}</h6>
 							</td>
 							<td class="dias"><h2>{{req_info.hours}}</h2></td>
+							<td>
+								<div s3-upload bucket="'hrsolutions'" id="req_info.id" ng-model="req_info.attachment" s3-upload-options="{getOptionsUri: 'http://hdvbackend.hrinteractive.co/api/users/1/s3_access_token', folder: 'users/', id: req_info.id}" ng-class="{{req_info.id}}">
+							</td>
 							<td><h6>{{mot(req_info.motivo)}}</h6></td>
 							<td><h6 class="bold"><span>{{req_info.status}}</span></h6></td>
 							<td>
@@ -80,7 +84,27 @@
 		<br /><br />
 		<div class="row">
 			<div class="large-12 columns">
-				<table class="vacations responsive">
+                <div class="show-for-small-only">
+                	<div class="table-response" ng-repeat="req_info in only_not_user">
+						<h3>{{req_info.employee.short_name}} </h3>
+						<div class="dias {{req_info.status}}">
+							<h2>{{req_info.hours}}</h2>
+							<h6>HORAS</h6>
+						</div>
+						<div class="desde">
+							<h2>{{ req_info.fecha | date:'d' }}</h2>
+							<h6>{{ req_info.fecha | date:'MMMM' }}</h6>
+						</div>
+						<div class="hasta">
+							<h6 class="extras">{{mot(req_info.motivo)}}</h6>
+						</div>
+						<div class="posibilidades">
+							<a ng-if="req_info.status != 'Aprobado'" href="" ng-click="aproveLicenses(req_info)" class="acciones"></a>
+							<a ng-if="req_info.status != 'Aprobado'" href="" ng-click="deniedLicenses(req_info)" class="acciones negar"></a>
+						</div>
+                	</div>
+                </div>
+				<table class="vacations show-for-medium-up">
 					<thead>
 						<tr>
 							<th>NOMBRE</th>
