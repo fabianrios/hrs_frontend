@@ -28,6 +28,7 @@
     'license_requirement.service',
     'employee_info.service',
     'info.service',
+    'notification.service',
 
     // Directives
     'ngS3upload',
@@ -56,7 +57,8 @@
     'employees',
     'licenses',
     'reports',
-    'approvals'
+    'approvals',
+    'notifications'
   ])
 
   .config(function($stateProvider, $httpProvider, $urlRouterProvider, HRAPI_CONF, AuthProvider, AuthInterceptProvider, ngS3Config){
