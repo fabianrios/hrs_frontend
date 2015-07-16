@@ -71,7 +71,7 @@
       <li class="disabled">
         <a ui-sref="main.views.severance">Anticipo de cesantías</a>
       </li>
-      <li>
+      <li ng-if="permAprobador()">
         <a ui-sref="main.views.licenses">
           Permisos
         </a>
@@ -79,12 +79,12 @@
       <li class="disabled">
         <a ui-sref="main.views.loans">Prestamos</a>
       </li>
-      <li>
+      <li ng-if="vacaAprobador()">
         <a ui-sref="main.views.vacations">
           Vacaciones
         </a>
       </li>
-      <li>
+      <li class="disabled">
         <a href="#">
           Vacaciones compensadas
         </a>
@@ -100,12 +100,12 @@
       <li class="back">
         <a href="">Volver</a>
       </li>
-      <li>
+      <li ng-if="hoexAprobador()">
         <a ui-sref="main.views.extras">
           Horas extras
         </a>
       </li>
-      <li>
+      <li ng-if="incaAprobador()">
         <a ui-sref="main.views.inhabilities">
           Incapacidades
         </a>

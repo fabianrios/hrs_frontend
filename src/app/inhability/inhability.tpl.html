@@ -1,10 +1,10 @@
 <div class="padding-container">
-	<div ng-model="Inhabilities">
+	<div ng-model="Inhabilities" ng-if="exiteAprobador()">
 		<h3 class="expand-title text-center first-one">Crear registro de incapacidades</h3>
 		<br /><br />
 		<div class="row">
 			<div class="large-5 medium-5 columns">
-				<form ng-submit="putRequest()" ng-if="exiteAprobador()">
+				<form ng-submit="putRequest()">
 					<div class="row">
 						<div class="large-6 medium-6 columns">
 							<label for="inicio">Desde: </label>

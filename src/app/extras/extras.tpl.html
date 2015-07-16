@@ -1,11 +1,11 @@
 <div class="padding-container">
-	<div ng-model="licenses">
+	<div ng-model="licenses" ng-if="exiteAprobador()">
 		<h3 class="expand-title text-center first-one">Solicitar registro de horas extras</h3>
 		<br /><br />
 		<div class="row">
 			<div class="large-5 medium-5 columns" >
 
-				<form ng-if="exiteAprobador()" ng-submit="putRequest()">
+				<form ng-submit="putRequest()">
 					<div class="row">
 						<div class="large-7 medium-7 columns">
 							<label for="inicio">Fecha de registro: </label>

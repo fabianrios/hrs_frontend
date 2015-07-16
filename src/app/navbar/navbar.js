@@ -16,6 +16,31 @@
 		$scope.extras_not_user = [];
 		$scope.inhabilities_not_user = [];
 		$scope.licenses_not_user = [];
+    
+    
+		$scope.hoexAprobador = function(){
+			return $scope.user.employee.hoex_approver != '00000000' &&  $scope.user.employee.hoex_approver != null 
+		};
+    
+    $scope.incaAprobador = function(){
+      return $scope.user.employee.inca_approver != '00000000' &&  $scope.user.employee.inca_approver != null 
+    };
+    
+    $scope.presAprobador = function(){
+      return $scope.user.employee.pres_approver != '00000000' &&  $scope.user.employee.pres_approver != null 
+    };
+    
+    $scope.vacaAprobador = function(){
+      return $scope.employee.vaca_approver != '00000000' &&  $scope.employee.vaca_approver != null 
+    };
+    
+    $scope.permAprobador = function(){
+      return $scope.employee.perm_approver != '00000000' &&  $scope.employee.perm_approver != null 
+    };
+    
+    $scope.cesaAprobador = function(){
+      return $scope.employee.cesa_approver != '00000000' &&  $scope.employee.cesa_approver != null 
+    };
 		
 		// sacar todos los articulos publicados que NO son mios
 		angular.forEach($scope.articles, function(value, key) {
