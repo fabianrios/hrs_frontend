@@ -22,7 +22,7 @@
 
 <ul class="off-canvas-list">
   <li><a href="#/home"><i class="fa fa-home fa-lg"></i> Inicio</a></li>
-  <li ui-sref="main.views.organigram({id:user.employee.id})"><a><i class="fa fa-sitemap fa-lg"></i> Organigrama</a></li>
+  <li ng-if="user.employee.see_organ" ui-sref="main.views.organigram({id:user.employee.id})"><a><i class="fa fa-sitemap fa-lg"></i> Organigrama</a></li>
   <!-- <li><a ng-href="#/organigram/{{user.employee_id}}" class="disabled"><i class="fa fa-sitemap fa-lg"></i> Organigrama</a></li> -->
   <!-- <li><a ui-sref="main.views.employees"><i class="fa fa-users fa-lg"></i> Empleados</a></li> -->
   <li class="has-submenu">
@@ -112,7 +112,7 @@
       </li>
     </ul>
   </li>
-  <li class="has-submenu disabled">
+  <li class="has-submenu disabled" ng-if="user.employee.see_rpgen">
     <a href="" >
       <i class="fa fa-line-chart fa-lg"></i> Servicios gerenciales
       <i class="fa fa-angle-right fa-right fa-lg"></i>

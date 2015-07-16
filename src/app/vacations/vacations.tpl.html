@@ -4,7 +4,7 @@
 		<br /><br />
 		<div class="row">
 			<div class="large-6 medium-6 columns">
-				<form ng-submit="putRequest()">
+				<form  ng-if="exiteAprobador()" ng-submit="putRequest()">
 					<div class="row">
 						<div class="large-6 medium-6 columns">
 							<label for="inicio">Desde: </label>

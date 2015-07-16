@@ -27,6 +27,10 @@
 		$scope.tipos = $scope.user.type.tipos;
 		$scope.only_not_user = [];
 		$scope.options = [];
+
+		$scope.exiteAprobador = function(){
+			return user.employee.hoex_approver != '00000000' &&  user.employee.hoex_approver != null 
+		};
 		
 		angular.forEach($scope.licenses,function(value,index){
 			// console.log(value.employee.apply_reviewer,$scope.user.employee_id);

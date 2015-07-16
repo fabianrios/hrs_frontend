@@ -10,15 +10,18 @@
 		$scope.aprobador = [];
 		//aprobador
 		
-		for (var i = 0, len = $scope.employees.length; i < len; i++) {
-			// console.log($scope.employees[i].identification, $scope.user.employee.apply_reviewer);
-		  if ($scope.employees[i].identification == $scope.user.employee.apply_reviewer) {
-				// console.log("Found it!")
-			    $scope.aprobador = $scope.employees[i];
-			    break;
-		  	} else {
-				// console.log("Nop!")
-				$scope.aprobador = ["No tiene aprobador"];
+		$scope.cargarAprobador = function(identification){
+			for (var i = 0, len = $scope.employees.length; i < len; i++) {
+				// console.log($scope.employees[i].identification, $scope.user.employee.apply_reviewer);
+		        // if ($scope.employees[i].identification == $scope.user.employee.apply_reviewer) {
+		        if ($scope.employees[i].identification === identification && identification != '00000000') {
+					// console.log("Found it!")
+				    $scope.aprobador = $scope.employees[i];
+				    break;
+			  	} else {
+					console.log("No tiene aprobador")
+					$scope.aprobador = null;
+				}
 			}
 		}
 		
@@ -37,7 +40,7 @@
 		
 		// $scope.aprobador = $scope.aprobador[0];
 		
-		console.log($scope.aprobador);
+		// console.log($scope.aprobador);
 		
 		$scope.audiobutton = false;	
 		
