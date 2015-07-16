@@ -28,6 +28,14 @@
     return hrapi.hostname + '/api' + path;
   };
 
+  hrapi.baseUrl = function(path){
+    //return hrapi.hostname + '/api/' + hrapi.apiName + '/' + hrapi.apiVersion + '/' + path;    
+    if(runEnv.isDevelopment === true){      
+      return hrapi.hostname + path;
+    }
+    return path
+  };
+
   angular.module('app.config', [])
     .constant('RUNENV_CONF', runEnv)
     .constant('UI_CONF', ui)
