@@ -1,25 +1,27 @@
-<div class="padding-container">
+<div class="padding-container firstone">
 	<div>
 		<h3 class="expand-title text-center">Notificaciones</h3>
 		<br /><br />
 		<div class="row">
-			<ul>
-				<li>
-					<a> Tienes <span ng-bind="articles_not_mine.length"></span> solicitudes pendiente por articulos.</a>					
-				</li>
-				<li>
-					<a> Tienes <span ng-bind="only_not_user.length"></span> solicitudes pendiente por vacaciones.</a>					
-				</li>	
-				<li>
-					<a> Tienes <span ng-bind="extras_not_user.length"></span> solicitudes pendiente por horas extras.</a>					
-				</li>	
-				<li>
-					<a> Tienes <span ng-bind="inhabilities_not_user.length"></span> solicitudes pendiente por incapacidad.</a>					
-				</li>	
-				<li>
-					<a> Tienes <span ng-bind="licenses_not_user.length"></span> solicitudes pendiente por permisos.</a>					
-				</li>	
-			</ul>	
+      <div class="large-12 columns">
+        <ul>
+          <li ng-if="articles_not_mine.length > 0">
+            <a ui-sref="main.views.articles()"> Tienes <span ng-bind="articles_not_mine.length"></span> articulos por leer.</a>          
+          </li>
+          <li ng-if="only_not_user.length > 0">
+            <a ui-sref="main.views.approvals_requirements"> Tienes <span ng-bind="only_not_user.length"></span> solicitudes pendiente por vacaciones.</a>          
+          </li>  
+          <li ng-if="extras_not_user.length > 0">
+            <a ui-sref="main.views.approvals_licenses"> Tienes <span ng-bind="extras_not_user.length"></span> solicitudes pendiente por horas extras.</a>          
+          </li>  
+          <li ng-if="inhabilities_not_user.length > 0">
+            <a ui-sref="main.views.approvals_licenses"> Tienes <span ng-bind="inhabilities_not_user.length"></span> solicitudes pendiente por incapacidad.</a>          
+          </li>  
+          <li ng-if="licenses_not_user.length > 0">
+            <a ui-sref="main.views.approvals_requirements"> Tienes <span ng-bind="licenses_not_user.length"></span> solicitudes pendiente por permisos.</a>          
+          </li>  
+        </ul>
+      </div>
 		</div>				
 	</div>
 </div>		
