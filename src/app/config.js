@@ -29,8 +29,11 @@
   };
 
   hrapi.baseUrl = function(path){
-    //return hrapi.hostname + '/api/' + hrapi.apiName + '/' + hrapi.apiVersion + '/' + path;
-    return hrapi.hostname + path;
+    //return hrapi.hostname + '/api/' + hrapi.apiName + '/' + hrapi.apiVersion + '/' + path;    
+    if(runEnv.isDevelopment === true){      
+      return hrapi.hostname + path;
+    }
+    return path
   };
 
   angular.module('app.config', [])
