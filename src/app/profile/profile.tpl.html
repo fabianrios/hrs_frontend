@@ -75,7 +75,7 @@
 			</a>
 		</div>
 	</div>
-	<div class="row" ng-switch-when="main.views.vacations">
+	<div class="row" ng-switch-when="main.views.vacations" ng-init="cargarAprobador(user.employee.vaca_approver)">
 		<div class="large-5 medium-5 columns">
 			<h4>Solicitudes de vacaciones</h4>
 			<ul class="breadcrumbs">
@@ -90,7 +90,7 @@
 		</div>
 		<div class="large-7 medium-7 columns">
 			<div class="pt-10">
-				<div class="row" ng-if="aprobador.email">
+				<div class="row" ng-if="aprobador">
 					<div class="large-3 columns">
 						<h6 class="subheader text-center show-for-large-up"> <span class="fa fa-check-circle fa-2x"></span> Aprobador:</h6>
 					</div>
@@ -109,7 +109,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="row" ng-switch-when="main.views.severance">
+	<div class="row" ng-switch-when="main.views.severance" ng-init="cargarAprobador(user.employee.cesa_approver)">
 		<div class="large-5 medium-5 columns">
 			<h4>Solicitudes de cesantias</h4>
 			<ul class="breadcrumbs">
@@ -124,7 +124,7 @@
 		</div>
 		<div class="large-7 medium-7 columns">
 			<div class="pt-10">
-				<div class="row">
+				<div class="row" ng-if="aprobador">
 					<div class="large-3 columns">
 						<h6 class="subheader text-center show-for-large-up"> <span class="fa fa-check-circle fa-2x"></span> Aprobador:</h6>
 					</div>
@@ -143,7 +143,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="row" ng-switch-when="main.views.inhabilities">
+	<div class="row" ng-switch-when="main.views.inhabilities" ng-init="cargarAprobador(user.employee.inca_approver)">
 		<div class="large-5 medium-5 columns">
 			<h4>Registro de incapacidades</h4>
 			<ul class="breadcrumbs">
@@ -158,7 +158,7 @@
 		</div>
 		<div class="large-7 medium-7 columns">
 			<div class="pt-10">
-				<div class="row">
+				<div class="row" ng-if="aprobador">
 					<div class="large-3 columns">
 						<h6 class="subheader text-center show-for-large-up"> <span class="fa fa-check-circle fa-2x"></span> Aprobador:</h6>
 					</div>
@@ -177,7 +177,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="row" ng-switch-when="main.views.extras">
+	<div class="row" ng-switch-when="main.views.extras" ng-init="cargarAprobador(user.employee.hoex_approver)">
 		<div class="large-5 medium-5 columns">
 			<h4>Registro de horas extras</h4>
 			<ul class="breadcrumbs">
@@ -192,7 +192,7 @@
 		</div>
 		<div class="large-7 medium-7 columns">
 			<div class="pt-10">
-				<div class="row">
+				<div class="row" ng-if="aprobador">
 					<div class="large-3 columns">
 						<h6 class="subheader text-center show-for-large-up"> <span class="fa fa-check-circle fa-2x"></span> Aprobador:</h6>
 					</div>
@@ -211,7 +211,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="row" ng-switch-when="main.views.loans">
+	<div class="row" ng-switch-when="main.views.loans" ng-init="cargarAprobador(user.employee.pers_approver)">
 		<div class="large-5 medium-5 columns">
 			<h4>Solicitudes de prestamos</h4>
 			<ul class="breadcrumbs">
@@ -226,7 +226,7 @@
 		</div>
 		<div class="large-7 medium-7 columns">
 			<div class="pt-10">
-				<div class="row">
+				<div class="row" ng-if="aprobador">
 					<div class="large-3 columns">
 						<h6 class="subheader text-center show-for-large-up"> <span class="fa fa-check-circle fa-2x"></span> Aprobador:</h6>
 					</div>
@@ -245,7 +245,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="row" ng-switch-when="main.views.licenses">
+	<div class="row" ng-switch-when="main.views.licenses" ng-init="cargarAprobador(user.employee.perm_approver)">
 		<div class="large-5 medium-5 columns">
 			<h4>Solicitudes de permisos</h4>
 			<ul class="breadcrumbs">
@@ -260,7 +260,7 @@
 		</div>
 		<div class="large-7 medium-7 columns">
 			<div class="pt-10">
-				<div class="row">
+				<div class="row" ng-if="aprobador">
 					<div class="large-3 columns">
 						<h6 class="subheader text-center show-for-large-up"> <span class="fa fa-check-circle fa-2x"></span> Aprobador:</h6>
 					</div>

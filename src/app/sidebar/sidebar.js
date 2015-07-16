@@ -4,7 +4,8 @@
 	angular.module('sidebar', ['employee.service'])
 	.controller('Sidebar.SidebarController', function($scope, $state, $http, employees, currentUser){
 		$scope.common = {};
-    $scope.employees = employees;
+        $scope.employees = employees;
+        $scope.user = currentUser;
 
 		// console.log($scope.employees);
 		
