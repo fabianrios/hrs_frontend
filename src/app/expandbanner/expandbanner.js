@@ -47,8 +47,8 @@
 	// $scope.employee_info = $scope.user.employee_info;
 	$scope.vacationdates = $scope.vacation.detalle;
 	if 	($scope.user.vacation != null){
-		$scope.disponibles = parseInt($scope.vacation.resumen[1]);
-		$scope.usados = parseInt($scope.vacation.resumen[2]);
+		$scope.disponibles = parseInt($scope.vacation.resumen[2]);
+		$scope.usados = parseInt($scope.vacation.resumen[1]);
 	}else{
 		$scope.disponibles = [];
 		$scope.usados = [];

@@ -3,7 +3,7 @@
 
   angular.module('topbar', [])
 
-    .controller('Topbar.TopbarController', function($scope, currentUser, articles){
+    .controller('Topbar.TopbarController', function($scope, currentUser, articles, Notification){
 		
 		$scope.user = currentUser;
 		$scope.articles = articles.articles;
@@ -12,6 +12,7 @@
 		var mine = articles.articles;
 		$scope.not_published_mine = articles.not_articles;
 		
+		$scope.notifications = Notification.show({id: currentUser.employee.identification});
 		
 		//sacar todos los articulos que son mios y no he publicado
 		angular.forEach($scope.not_published_mine, function(value, key) {

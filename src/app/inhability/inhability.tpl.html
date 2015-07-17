@@ -1,5 +1,5 @@
 <div class="padding-container">
-	<div ng-model="Inhabilities">
+	<div ng-model="Inhabilities" ng-if="exiteAprobador()">
 		<h3 class="expand-title text-center first-one">Crear registro de incapacidades</h3>
 		<br /><br />
 		<div class="row">
@@ -71,53 +71,6 @@
 										<a href="" ng-click="deleteInhability(req_info,$index)" class="button success">Borrar</a>
 									</div>
 									<a class="close-reveal-modal">&#215;</a>
-								</div>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-		</div>
-		<br /><br />
-		<h3 class="expand-title text-center">Aprobar registros de incapacidades</h3>
-		<br /><br />
-		<div class="row">
-			<div class="large-12 columns">
-				<table class="vacations responsive">
-					<thead>
-						<tr>
-							<th>NOMBRE</th>
-							<th class="desde">DESDE</th>
-							<th>HASTA</th>
-							<th>MOTIVO</th>
-							<th>ESTADO</th>
-							<th class="aprobar">APROBAR</th>
-							<th class="negar">NEGAR</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr ng-repeat="req_info in only_not_user">
-							<td>
-								<h5>{{req_info.employee.short_name}} </h5>
-							</td>
-							<td class="desde">
-								<h2>{{ req_info.start_date | date:'d' }}</h2>
-								<h6>{{ req_info.start_date | date:'MMMM' }}</h6>
-							</td>
-							<td>
-								<h2>{{ req_info.end_date | date:'d' }}</h2>
-								<h6>{{ req_info.end_date | date:'MMMM' }}</h6>
-							</td>
-							<td><h6>{{mot(req_info.motivo)}}</h6></td>
-							<td><h6 class="bold" ><span class="{{req_info.status}}">{{req_info.status}}</span></h6></td>
-							<td>
-								<div ng-if="req_info.status != 'Aprobado'">
-									<a href="" ng-click="aproveInhabilities(req_info)" class="acciones"></a>
-								</div>
-							</td>
-							<td>
-								<div ng-if="req_info.status != 'Aprobado'">
-									<a href="" ng-click="deniedInhabilities(req_info)" class="acciones negar"></a>
 								</div>
 							</td>
 						</tr>

@@ -22,18 +22,13 @@
 		
 		$scope.user = currentUser;
 		$scope.licenses = licenses_req;
-		console.log("$scope.user",$scope.user, "$scope.licenses: ", $scope.licenses);
 		
 		$scope.tipos = $scope.user.type.tipos;
-		$scope.only_not_user = [];
 		$scope.options = [];
-		
-		angular.forEach($scope.licenses,function(value,index){
-			// console.log(value.employee.apply_reviewer,$scope.user.employee_id);
-			if (value.employee.apply_reviewer == $scope.user.employee_id){
-				$scope.only_not_user.push(value);
-			}
-		});
+
+		$scope.exiteAprobador = function(){
+			return $scope.user.employee.perm_approver != '00000000' &&  $scope.user.employee.perm_approver != null 
+		};
 		
 		angular.forEach($scope.tipos,function(value,index){
 			if (value.idactv == "PERM"){

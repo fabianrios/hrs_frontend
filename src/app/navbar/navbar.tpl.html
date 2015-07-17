@@ -1,166 +1,192 @@
 <div class="user-info show-for-small-only">
-	<div class="pic">
-		<img ng-src="{{user.pic ? user.pic : user.employee.image}}">
-	</div>
-	<div class="user-buttons">
-		<a ui-sref="main.views.articles()" class="movil-comments">
-			<span class="icon-comment"></span>
-			<i class="number mobile-comment">{{articles_not_mine.length}}</i>
-		</a>
-		<a ui-sref="main.views.edit()">
-			<span class="icon-cog2"></span>
-		</a>
-		<a ng-click="logout()">
-			<span class="icon-logout"></span>
-		</a>
-	</div>
-	<h6 class="text-center no-margin">
-		<span class="icon-user"></span>
-		{{user.name}}
-	</h6>
+  <div class="pic">
+    <img ng-src="{{user.pic ? user.pic : user.employee.image}}">
+  </div>
+  <div class="user-buttons">
+    <a ui-sref="main.views.articles()" class="movil-comments">
+      <span class="icon-comment"></span>
+      <i class="number mobile-comment">{{articles_not_mine.length}}</i>
+    </a>
+    <a ui-sref="main.views.edit()">
+      <span class="icon-cog2"></span>
+    </a>
+    <a ng-click="logout()">
+      <span class="icon-logout"></span>
+    </a>
+  </div>
+  <h6 class="text-center no-margin">
+    <span class="icon-user"></span>
+    {{user.name}}
+  </h6>
 </div>
 
 <ul class="off-canvas-list">
-	<li><a href="#/home"><i class="fa fa-home fa-lg"></i> Inicio</a></li>
-	<li ui-sref="main.views.organigram({id:user.employee.id})"><a><i class="fa fa-sitemap fa-lg"></i> Organigrama</a></li>
-	<!-- <li><a ng-href="#/organigram/{{user.employee_id}}" class="disabled"><i class="fa fa-sitemap fa-lg"></i> Organigrama</a></li> -->
-	<!-- <li><a ui-sref="main.views.employees"><i class="fa fa-users fa-lg"></i> Empleados</a></li> -->
-	<li class="has-submenu">
-		<a href="">
-			<i class="fa fa-file fa-lg"></i> Autoservicios
-			<i class="fa fa-angle-right fa-right fa-lg"></i>
-		</a>
-		<ul class="left-submenu">
-			<li class="back">
-				<a href="">Volver</a>
-			</li>
-			<li>
-				<a ui-sref="main.views.certificates_labor({id:user.employee_id, c:user.company_id})">
-					<i class="fa fa-file-text-o fa-lg"></i> Certificado laboral
-				</a>
-			</li>
-			<li>
-				<a ui-sref="main.views.certificates_vacations({id:user.employee_id, c:user.company_id})">
-					<i class="fa fa-plane fa-lg"></i> Carta de vacaciones
-				</a>
-			</li>
-			<li>
-				<a ui-sref="main.views.certificates_payroll({id:user.employee_id, c:user.company_id})">
-					<i class="fa fa-briefcase fa-lg"></i> Recibos de nomina
-				</a>
-			</li>
-			<li>
-				<a ui-sref="main.views.certificates_income({id:user.employee_id, c:user.company_id})">
-					<i class="fa fa-institution fa-lg"></i> Certificado de ing. y ret.
-				</a>
-			</li>
-			<li class="disabled">
-				<a href="">Saldos</a>
-			</li>
-		</ul>
-	</li>
-	<li class="has-submenu">
-		<a href="">
-			<i class="fa fa-check fa-lg"></i> Solicitudes
-			<i class="number main-menu-comment" ng-if="only_not_user.length > 0">{{only_not_user.length+licenses_not_user.length}}</i>
-			<i class="fa fa-angle-right fa-right fa-lg"></i>
-		</a>
-		<ul class="left-submenu">
-			<li class="back">
-				<a href="">Volver</a>
-			</li>
-			<li class="disabled">
-				<a ui-sref="main.views.severance">Anticipo de cesantías</a>
-			</li>
-			<li>
-				<a ui-sref="main.views.licenses">
-					Permisos
-					<i ng-if="licenses_not_user.length > 0" class="number menu-comment">{{licenses_not_user.length}}</i>
-				</a>
-			</li>
-			<li class="disabled">
-				<a ui-sref="main.views.loans">Prestamos</a>
-			</li>
-			<li>
-				<a ui-sref="main.views.vacations">
-					Vacaciones
-					<i ng-if="only_not_user.length > 0" class="number menu-comment">{{only_not_user.length}}</i>
-				</a>
-			</li>
-			<li>
-				<a href="#">
-					Vacaciones compensadas
-					<i ng-if="only_not_user.length > 0" class="number menu-comment">{{only_not_user.length}}</i>
-				</a>
-			</li>
-		</ul>
-	</li>
-	<li class="has-submenu">
-		<a href="">
-			<i class="fa fa-paste fa-lg"></i> Registros
-			<i class="number main-menu-comment registers" ng-if="extras_not_user.length > 0">{{extras_not_user.length+inhabilities_not_user.length}}</i>
-			<i class="fa fa-angle-right fa-right fa-lg"></i>
-		</a>
-		<ul class="left-submenu">
-			<li class="back">
-				<a href="">Volver</a>
-			</li>
-			<li>
-				<a ui-sref="main.views.extras">
-					Horas extras
-					<span class="number menu-comment registers" ng-if="extras_not_user.length > 0">{{extras_not_user.length}}</span>
-				</a>
-			</li>
-			<li>
-				<a ui-sref="main.views.inhabilities">
-					Incapacidades
-					<span class="number menu-comment registers" ng-if="inhabilities_not_user.length > 0">{{inhabilities_not_user.length}}</span>
-				</a>
-			</li>
-		</ul>
-	</li>
-	<li class="has-submenu disabled">
-		<a href="" >
-			<i class="fa fa-line-chart fa-lg"></i> Servicios gerenciales
-			<i class="fa fa-angle-right fa-right fa-lg"></i>
-		</a>
-		<ul class="left-submenu">
-			<li class="back">
-				<a href="">Volver</a>
-			</li>
-			<li class="disabled">
-				<a href="">Empleados activos</a>
-			</li>
-			<li class="disabled">
-				<a href="">Rotación de personal</a>
-			</li>
-			<li class="disabled">
-				<a href="">Vencimiento de contratos</a>
-			</li>
-			<li>
-				<a ui-sref="main.views.managment">Total de absentismos</a>
-			</li>
-			<li class="disabled">
-				<a href="">Total  hora extras</a>
-			</li>
-			<li class="disabled">
-				<a href="">Resumen de cargos</a>
-			</li>
-		</ul>
-	</li>
-	<li>
-		<a ui-sref="main.views.articles()">
-			<i class="fa fa-bullhorn fa-lg"></i> Gestor de contenidos
-		</a>
-	</li>
-	<li>
-		<a ui-sref="main.views.reports()">
-			<i class="fa fa-flag fa-lg"></i> Reportes
-		</a>
-	</li>
-	<!-- <li>
-		<a ui-sref="main.views.companynew">
-			<i class="fa fa-building fa-lg"></i> Añadir empresa
-		</a>
-	</li> -->
-</ul>
+  <li><a href="#/home"><i class="fa fa-home fa-lg"></i> Inicio</a></li>
+  <li ng-if="user.employee.see_organ" ui-sref="main.views.organigram({id:user.employee.id})"><a><i class="fa fa-sitemap fa-lg"></i> Organigrama</a></li>
+  <!-- <li><a ng-href="#/organigram/{{user.employee_id}}" class="disabled"><i class="fa fa-sitemap fa-lg"></i> Organigrama</a></li> -->
+  <!-- <li><a ui-sref="main.views.employees"><i class="fa fa-users fa-lg"></i> Empleados</a></li> -->
+  <li class="has-submenu">
+    <a href="">
+      <i class="fa fa-file fa-lg"></i> Autoservicios
+      <i class="fa fa-angle-right fa-right fa-lg"></i>
+    </a>
+    <ul class="left-submenu">
+      <li class="back">
+        <a href="">Volver</a>
+      </li>
+      <li>
+        <a ui-sref="main.views.certificates_labor({id:user.employee_id, c:user.company_id})">
+          <i class="fa fa-file-text-o fa-lg"></i> Certificado laboral
+        </a>
+      </li>
+      <li>
+        <a ui-sref="main.views.certificates_vacations({id:user.employee_id, c:user.company_id})">
+          <i class="fa fa-plane fa-lg"></i> Carta de vacaciones
+        </a>
+      </li>
+      <li>
+        <a ui-sref="main.views.certificates_payroll({id:user.employee_id, c:user.company_id})">
+          <i class="fa fa-briefcase fa-lg"></i> Recibos de nomina
+        </a>
+      </li>
+      <li>
+        <a ui-sref="main.views.certificates_income({id:user.employee_id, c:user.company_id})">
+          <i class="fa fa-institution fa-lg"></i> Certificado de ing. y ret.
+        </a>
+      </li>
+      <li class="disabled">
+        <a href="">Saldos</a>
+      </li>
+    </ul>
+  </li>
+  <li class="has-submenu">
+    <a href="">
+      <i class="fa fa-check fa-lg"></i> Solicitudes
+      <i class="fa fa-angle-right fa-right fa-lg"></i>
+    </a>
+    <ul class="left-submenu">
+      <li class="back">
+        <a href="">Volver</a>
+      </li>
+      <li ng-if="user.employee.labor.scesa == 'X'" class="disabled">
+        <a ui-sref="main.views.severance">Anticipo de cesantías</a>
+      </li>
+      <li ng-if="permAprobador() && user.labor.sperm == 'X'">
+        <a ui-sref="main.views.licenses">
+          Permisos
+        </a>
+      </li>
+      <li class="disabled">
+        <a ui-sref="main.views.loans">Prestamos</a>
+      </li>
+      <li ng-if="vacaAprobador() && user.labor.svaca == 'X'">
+        <a ui-sref="main.views.vacations">
+          Vacaciones
+        </a>
+      </li>
+      <li class="disabled">
+        <a href="#">
+          Vacaciones compensadas
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li class="has-submenu">
+    <a href="">
+      <i class="fa fa-paste fa-lg"></i> Registros
+      <i class="fa fa-angle-right fa-right fa-lg"></i>
+    </a>
+    <ul class="left-submenu">
+      <li class="back">
+        <a href="">Volver</a>
+      </li>
+      <li ng-if="hoexAprobador() && user.labor.shoex == 'X'">
+        <a ui-sref="main.views.extras">
+          Horas extras
+        </a>
+      </li>
+      <li ng-if="incaAprobador() && user.labor.sinca == 'X'">
+        <a ui-sref="main.views.inhabilities">
+          Incapacidades
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li class="has-submenu disabled" ng-if="user.employee.see_rpgen">
+    <a href="" >
+      <i class="fa fa-line-chart fa-lg"></i> Servicios gerenciales
+      <i class="fa fa-angle-right fa-right fa-lg"></i>
+    </a>
+    <ul class="left-submenu">
+      <li class="back">
+        <a href="">Volver</a>
+      </li>
+      <li class="disabled">
+        <a href="">Empleados activos</a>
+      </li>
+      <li class="disabled">
+        <a href="">Rotación de personal</a>
+      </li>
+      <li class="disabled">
+        <a href="">Vencimiento de contratos</a>
+      </li>
+      <li>
+        <a ui-sref="main.views.managment">Total de absentismos</a>
+      </li>
+      <li class="disabled">
+        <a href="">Total  hora extras</a>
+      </li>
+      <li class="disabled">
+        <a href="">Resumen de cargos</a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a ui-sref="main.views.articles()">
+      <i class="fa fa-bullhorn fa-lg"></i> Gestor de contenidos
+    </a>
+  </li>
+  <li>
+    <a ui-sref="main.views.reports()">
+      <i class="fa fa-flag fa-lg"></i> Reportes
+    </a>
+  </li>
+  <li class="has-submenu">
+    <a href="" >
+      <i class="fa fa-check-circle-o fa-lg"></i> Aprobaciones
+      <i class="number main-menu-comment aprobaciones" ng-if="extras_not_user.length+inhabilities_not_user.length+only_not_user.length+licenses_not_user.length > 0">{{extras_not_user.length+inhabilities_not_user.length+only_not_user.length+licenses_not_user.length}}</i>
+      <i class="fa fa-angle-right fa-right fa-lg"></i>
+    </a>
+    <ul class="left-submenu">
+      <li class="back">
+        <a href="">Volver</a>
+      </li>
+      <li ng-if="extras_not_user.length > 0">
+        <a ui-sref="main.views.approvals_licenses">
+          <i class="fa fa-paste fa-lg"></i> Registros
+          <i class="number main-menu-comment registers">{{extras_not_user.length+inhabilities_not_user.length}}</i>
+          <i class="fa fa-angle-right fa-right fa-lg"></i>
+        </a>
+      </li>
+      <li ng-if="only_not_user.length+licenses_not_user.length > 0">
+        <a ui-sref="main.views.approvals_requirements">
+          <i class="fa fa-check fa-lg"></i> Solicitudes
+          <i class="number main-menu-comment">{{only_not_user.length+licenses_not_user.length}}</i>
+          <i class="fa fa-angle-right fa-right fa-lg"></i>
+        </a>
+      </li>
+      <li ng-if="toapproved.length > 0">
+        <a ui-sref="main.views.approvals">
+          <i class="fa fa-users fa-lg"></i> Datos maestros
+          <i class="number main-menu-comment datos_maestros">{{toapproved.length}}</i>
+          <i class="fa fa-angle-right fa-right fa-lg"></i>
+        </a>
+      </li>
+    </ul>
+  </li>
+  <!-- <li>
+    <a ui-sref="main.views.companynew">
+    <i class="fa fa-building fa-lg"></i> Añadir empresa
+    </a>
+    </li> -->
+  </ul>

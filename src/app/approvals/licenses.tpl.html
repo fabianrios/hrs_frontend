@@ -1,0 +1,116 @@
+<div class="padding-container">
+	<div ng-model="approvals">
+		<h3 class="expand-title text-center">Aprobar registros de incapacidades</h3>
+		<br /><br />
+		<div class="row">
+			<div class="large-12 columns">
+				<table class="vacations responsive">
+					<thead>
+						<tr>
+							<th>NOMBRE</th>
+							<th class="desde">DESDE</th>
+							<th>HASTA</th>
+							<th>MOTIVO</th>
+							<th>ESTADO</th>
+							<th class="aprobar">APROBAR</th>
+							<th class="negar">NEGAR</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="req_info in no_este_usuario">
+							<td>
+								<h5>{{req_info.employee.short_name}} </h5>
+							</td>
+							<td class="desde">
+								<h2>{{ req_info.start_date | date:'d' }}</h2>
+								<h6>{{ req_info.start_date | date:'MMMM' }}</h6>
+							</td>
+							<td>
+								<h2>{{ req_info.end_date | date:'d' }}</h2>
+								<h6>{{ req_info.end_date | date:'MMMM' }}</h6>
+							</td>
+							<td><h6>{{mot(req_info.motivo)}}</h6></td>
+							<td><h6 class="bold" ><span class="{{req_info.status}}">{{req_info.status}}</span></h6></td>
+							<td>
+								<div ng-if="req_info.status != 'Aprobado'">
+									<a href="" ng-click="aproveInhabilities(req_info)" class="acciones"></a>
+								</div>
+							</td>
+							<td>
+								<div ng-if="req_info.status != 'Aprobado'">
+									<a href="" ng-click="deniedInhabilities(req_info)" class="acciones negar"></a>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div> <!-- /row -->
+    
+		<br /><br />
+		<h3 class="expand-title text-center">Aprobar solicitud de horas extras</h3>
+		<br /><br />
+		<div class="row">
+			<div class="large-12 columns">
+                <div class="show-for-small-only">
+                	<div class="table-response" ng-repeat="req_info in only_not_user">
+						<h3>{{req_info.employee.short_name}} </h3>
+						<div class="dias {{req_info.status}}">
+							<h2>{{req_info.hours}}</h2>
+							<h6>HORAS</h6>
+						</div>
+						<div class="desde">
+							<h2>{{ req_info.fecha | date:'d' }}</h2>
+							<h6>{{ req_info.fecha | date:'MMMM' }}</h6>
+						</div>
+						<div class="hasta">
+							<h6 class="extras">{{mot(req_info.motivo)}}</h6>
+						</div>
+						<div class="posibilidades">
+							<a ng-if="req_info.status != 'Aprobado'" href="" ng-click="aproveLicenses(req_info)" class="acciones"></a>
+							<a ng-if="req_info.status != 'Aprobado'" href="" ng-click="deniedLicenses(req_info)" class="acciones negar"></a>
+						</div>
+                	</div>
+                </div>
+				<table class="vacations show-for-medium-up">
+					<thead>
+						<tr>
+							<th>NOMBRE</th>
+							<th class="desde">FECHA</th>
+							<th class="dias">HORAS</th>
+							<th>MOTIVO</th>
+							<th>ESTADO</th>
+							<th class="aprobar">APROBAR</th>
+							<th class="negar">NEGAR</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="req_info in only_not_user">
+							<td>
+								<h5>{{req_info.employee.short_name}} </h5>
+							</td>
+							<td class="desde">
+								<h2>{{ req_info.fecha | date:'d' }}</h2>
+								<h6>{{ req_info.fecha | date:'MMMM' }}</h6>
+							</td>
+							<td class="dias"><h2>{{req_info.hours}}</h2></td>
+							<td><h6>{{mot(req_info.motivo)}}</h6></td>
+							<td><h6 class="bold" ><span class="{{req_info.status}}">{{req_info.status}}</span></h6></td>
+							<td>
+								<div ng-if="req_info.status != 'Aprobado'">
+									<a href="" ng-click="aproveLicenses(req_info)" class="acciones"></a>
+								</div>
+							</td>
+							<td>
+								<div ng-if="req_info.status != 'Aprobado'">
+									<a href="" ng-click="deniedLicenses(req_info)" class="acciones negar"></a>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+	</div>	
+</div>

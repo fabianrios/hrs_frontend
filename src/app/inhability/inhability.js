@@ -27,6 +27,10 @@
 		$scope.tipos = $scope.user.type.tipos;
 		$scope.only_not_user = [];
 		$scope.options = [];
+
+		$scope.exiteAprobador = function(){
+			return $scope.user.employee.inca_approver != '00000000' &&  $scope.user.employee.inca_approver != null 
+		};
 		
 		angular.forEach($scope.inhabilities,function(value,index){
 			// console.log(value.employee.apply_reviewer,$scope.user.employee_id);

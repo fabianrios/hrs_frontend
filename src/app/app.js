@@ -28,6 +28,7 @@
     'license_requirement.service',
     'employee_info.service',
     'info.service',
+    'notification.service',
 
     // Directives
     'ngS3upload',
@@ -55,7 +56,9 @@
     'inhability',
     'employees',
     'licenses',
-    'reports'
+    'reports',
+    'approvals',
+    'notifications'
   ])
 
   .config(function($stateProvider, $httpProvider, $urlRouterProvider, HRAPI_CONF, AuthProvider, AuthInterceptProvider, ngS3Config){
@@ -101,7 +104,10 @@
         },
         licenses_requirements: function(License_requirement){
           return License_requirement.index().$promise;
-        }
+        },
+				infos:function(Info){
+					return Info.index().$promise;
+				}
       },
       views: {
         topbar: {
