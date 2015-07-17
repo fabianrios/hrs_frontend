@@ -104,7 +104,10 @@
         },
         licenses_requirements: function(License_requirement){
           return License_requirement.index().$promise;
-        }
+        },
+				infos:function(Info){
+					return Info.index().$promise;
+				}
       },
       views: {
         topbar: {
