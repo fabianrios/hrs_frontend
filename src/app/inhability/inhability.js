@@ -29,7 +29,7 @@
 		$scope.options = [];
 
 		$scope.exiteAprobador = function(){
-			return user.employee.inca_approver != '00000000' &&  user.employee.inca_approver != null 
+			return $scope.user.employee.inca_approver != '00000000' &&  $scope.user.employee.inca_approver != null 
 		};
 		
 		angular.forEach($scope.inhabilities,function(value,index){

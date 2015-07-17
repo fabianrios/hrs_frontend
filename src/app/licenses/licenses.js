@@ -29,7 +29,7 @@
 		$scope.options = [];
 
 		$scope.exiteAprobador = function(){
-			return user.employee.perm_approver != '00000000' &&  user.employee.perm_approver != null 
+			return $scope.user.employee.perm_approver != '00000000' &&  $scope.user.employee.perm_approver != null 
 		};
 		
 		angular.forEach($scope.licenses,function(value,index){

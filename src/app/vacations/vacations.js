@@ -34,7 +34,7 @@
 		$scope.vac_options = [];
 
 		$scope.exiteAprobador = function(){
-			return user.employee.vaca_approver != '00000000' &&  user.employee.vaca_approver != null 
+			return $scope.user.employee.vaca_approver != '00000000' && $scope.user.employee.vaca_approver != null 
 		};
 		
 		angular.forEach($scope.tipos,function(value,index){

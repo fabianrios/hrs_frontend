@@ -28,7 +28,7 @@
 		$scope.options = [];
 
 		$scope.exiteAprobador = function(){
-			return user.employee.hoex_approver != '00000000' &&  user.employee.hoex_approver != null 
+			return $scope.user.employee.hoex_approver != '00000000' &&  $scope.user.employee.hoex_approver != null 
 		};
 
 		// currentUser.emplo
