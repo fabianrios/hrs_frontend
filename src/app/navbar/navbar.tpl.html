@@ -161,24 +161,24 @@
       <li class="back">
         <a href="">Volver</a>
       </li>
-      <li>
+      <li ng-if="extras_not_user.length > 0">
         <a ui-sref="main.views.approvals_licenses">
           <i class="fa fa-paste fa-lg"></i> Registros
-          <i class="number main-menu-comment registers" ng-if="extras_not_user.length > 0">{{extras_not_user.length+inhabilities_not_user.length}}</i>
+          <i class="number main-menu-comment registers">{{extras_not_user.length+inhabilities_not_user.length}}</i>
           <i class="fa fa-angle-right fa-right fa-lg"></i>
         </a>
       </li>
-      <li>
+      <li ng-if="only_not_user.length+licenses_not_user.length > 0">
         <a ui-sref="main.views.approvals_requirements">
           <i class="fa fa-check fa-lg"></i> Solicitudes
-          <i class="number main-menu-comment" ng-if="only_not_user.length > 0">{{only_not_user.length+licenses_not_user.length}}</i>
+          <i class="number main-menu-comment">{{only_not_user.length+licenses_not_user.length}}</i>
           <i class="fa fa-angle-right fa-right fa-lg"></i>
         </a>
       </li>
-      <li>
+      <li ng-if="toapproved.length > 0">
         <a ui-sref="main.views.approvals">
           <i class="fa fa-users fa-lg"></i> Datos maestros
-          <i class="number main-menu-comment datos_maestros" ng-if="toapproved.length > 0">{{toapproved.length}}</i>
+          <i class="number main-menu-comment datos_maestros">{{toapproved.length}}</i>
           <i class="fa fa-angle-right fa-right fa-lg"></i>
         </a>
       </li>

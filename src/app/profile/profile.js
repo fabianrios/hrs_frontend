@@ -3,26 +3,15 @@
 
   angular.module('profile', [])
 
-    .controller('Profile.ProfileController', function($scope, $stateParams, currentUser, employees){
+    .controller('Profile.ProfileController', function($scope, $stateParams, currentUser, Employee){
 
 		$scope.user = currentUser;
-		$scope.employees = employees;
 		$scope.aprobador = [];
 		//aprobador
 		
 		$scope.cargarAprobador = function(identification){
-			for (var i = 0, len = $scope.employees.length; i < len; i++) {
-				// console.log($scope.employees[i].identification, $scope.user.employee.apply_reviewer);
-		        // if ($scope.employees[i].identification == $scope.user.employee.apply_reviewer) {
-		        if ($scope.employees[i].identification === identification && identification != '00000000') {
-					// console.log("Found it!")
-				    $scope.aprobador = $scope.employees[i];
-				    break;
-			  	} else {
-					console.log("No tiene aprobador")
-					$scope.aprobador = null;
-				}
-			}
+      $scope.aprobador = Employee.show({id:identification, id_posicion: identification});
+      console.log($scope.aprobador);
 		}
 		
 			// 	    angular.forEach($scope.employees,function(value){
