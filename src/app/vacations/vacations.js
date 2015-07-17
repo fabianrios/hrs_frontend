@@ -25,10 +25,8 @@
 		
 		$scope.user = currentUser;
 		
-		console.log("$scope.user",$scope.user);
 		$scope.vacations = vacations;
 		$scope.vac_requirements = vac_requirements;
-		console.log("vac_requirements",vac_requirements);
 		$scope.only_not_user = [];
 		$scope.tipos = $scope.user.type.tipos;
 		$scope.vac_options = [];

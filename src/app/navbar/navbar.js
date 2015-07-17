@@ -3,7 +3,7 @@
 
   angular.module('navbar', [])
 
-    .controller('Navbar.NavbarController', function($scope,currentUser,articles,vac_requirements, extras_requirements, inhabilities_requirements, licenses_requirements){
+    .controller('Navbar.NavbarController', function($scope,currentUser,articles,vac_requirements, extras_requirements, inhabilities_requirements, licenses_requirements, infos){
 		
 		$scope.user = currentUser;
 		$scope.articles = articles.articles;
@@ -31,15 +31,15 @@
     };
     
     $scope.vacaAprobador = function(){
-      return $scope.employee.vaca_approver != '00000000' &&  $scope.employee.vaca_approver != null 
+      return $scope.user.employee.vaca_approver != '00000000' &&  $scope.user.employee.vaca_approver != null 
     };
     
     $scope.permAprobador = function(){
-      return $scope.employee.perm_approver != '00000000' &&  $scope.employee.perm_approver != null 
+      return $scope.user.employee.perm_approver != '00000000' &&  $scope.user.employee.perm_approver != null 
     };
     
     $scope.cesaAprobador = function(){
-      return $scope.employee.cesa_approver != '00000000' &&  $scope.employee.cesa_approver != null 
+      return $scope.user.employee.cesa_approver != '00000000' &&  $scope.user.employee.cesa_approver != null 
     };
 		
 		// sacar todos los articulos publicados que NO son mios
@@ -61,6 +61,13 @@
 		angular.forEach($scope.extras_requirements,function(value,index){
 			if (value.employee.apply_reviewer == $scope.user.employee_id && value.status == "Espera"){
 				$scope.extras_not_user.push(value);
+			}
+		});
+    
+    // datos maestros
+		angular.forEach(infos, function(value, key) {
+			if (value.dams_approver == $scope.user.employee.id_posicion){
+				$scope.toapproved.push(value);
 			}
 		});
 		

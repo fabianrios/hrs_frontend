@@ -1,7 +1,63 @@
 <div class="padding-container">
 	<div ng-model="reports">
-		<h3 class="expand-title text-center first-one">Aprobaciones</h3>
-		<br /><br />
-
+   <div class="solicitudes" ng-if="toapproved.length > 0">
+   	<h3 class="expand-title text-center first-one">Aprobaciones de datos maestros</h3>
+   	<br />
+   	<div class="row">
+   		<div class="large-12 columns">
+   			<table class="vacations">
+   				<thead>
+   					<tr>
+   						<th>Empleado</th>
+   						<th>Campo</th>
+   						<th>Cambio</th>
+   						<th>Estado</th>
+   						<th>Fecha de petición</th>
+   						<th class="aprobar">APROBAR</th>
+   						<th class="negar">NEGAR</th>
+   						<th class="borrar">BORRAR</th>
+   					</tr>
+   				</thead>
+   				<tbody>
+   					<tr ng-repeat="solicitud in toapproved">
+   						<td>
+   							<div class="profilepic">
+   								<img ng-src="{{solicitud.employee.image}}" alt="" />
+   							</div>
+   							<h5>{{solicitud.employee.short_name}} </h5>
+   							<h5 class="subheader">{{solicitud.employee.cargo}} </h5>
+   						</td>
+   						<td>
+   							<h6>{{ solicitud.dcamp }}</h6>
+   						</td>
+   						<td>
+   							<h5 class="text-center">{{solicitud.comparador ? solicitud.comparador : solicitud.ccamp}}</h5>
+   						</td>
+   						<td>
+   							<h5><span class="{{solicitud.approved}}">{{ solicitud.approved }}</h5>
+   						</td>
+   						<td>	
+   							<h6><span class="fa fa-calendar fa-lg"></span> {{ solicitud.created_at | date:'short' }}</h6>
+   						</td>
+   						<td><a href="" ng-click="approvedSolicitud(solicitud)" class="acciones"></a></td>
+   						<td><a href="" ng-click="deniedSolicitud(solicitud)" class="acciones negar"></a></td>
+   						<td>
+   							<a href="" class="acciones borrar" ng-click="openModal($index,'elmodal')"></a>
+   							<div id="elmodal-{{$index}}" class="reveal-modal tiny" data-reveal>
+   								<br />
+   								<h4 class="text-center">¿Seguro quieres borrar esto?</h4>
+   								<div class="text-center">
+   								<a href="" ng-click="deleteSolicitud(solicitud,$index)" class="button alert">Borrar</a>
+   								</div>
+   								<a class="close-reveal-modal">&#215;</a>
+   							</div>
+   						</td>
+   					</tr>
+   				</tbody>
+   			</table>
+   			<br /><br />
+   		</div>
+   	</div>
+   </div>
 	</div>	
 </div>
