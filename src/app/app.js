@@ -87,7 +87,7 @@
     })
     .state('main.views', {
       resolve: {
-        currentUser: function(UserInfo){
+        currentUser: function(UserInfo){                  
           return UserInfo.currentUser();
         },
         articles:  function(Article){
@@ -153,14 +153,15 @@
   })
 
 
-  .run(function($http, $rootScope, $state, UserInfo, Auth, $window){
-	
+  .run(function($http, $rootScope, $state, UserInfo, Auth, $window ){    
+	 
     // #aca no estamos en ningun lado porque es el defaul
     // console.log("Current State:", $state.current);
     // UserInfo.currentUser().then(function(current_user){
       // no hay usuario no devuelve nada hasta que este logueado
       // console.log("Current User:", currentUser);
       // });
+
 	
       $rootScope.employee = {}
       $rootScope.employee_info = {}

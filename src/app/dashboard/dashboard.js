@@ -340,7 +340,7 @@
 			}
 		});
 		
-		console.log(currentUser);
+		// console.log(currentUser);
 		
 		$scope.employees = employees;
 		$scope.user = currentUser;

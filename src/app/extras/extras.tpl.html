@@ -46,7 +46,7 @@
 						<tr>
 							<th class="desde">FECHA</th>
 							<th class="dias">HORAS</th>
-							<th>ADJUNTAR</th>
+							<!-- <th>ADJUNTAR</th> -->
 							<th>MOTIVO</th>
 							<th>ESTADO</th>
 							<th class="borrar">BORRAR</th>
@@ -59,9 +59,9 @@
 								<h6>{{ req_info.fecha | date:'MMMM' }}</h6>
 							</td>
 							<td class="dias"><h2>{{req_info.hours}}</h2></td>
-							<td>
+							<!-- <td>
 								<div s3-upload bucket="'hrsolutions'" id="req_info.id" ng-model="req_info.attachment" s3-upload-options="{getOptionsUri: 'http://hdvbackend.hrinteractive.co/api/users/1/s3_access_token', folder: 'users/', id: req_info.id}" ng-class="{{req_info.id}}">
-							</td>
+							</td> -->
 							<td><h6>{{mot(req_info.motivo)}}</h6></td>
 							<td><h6 class="bold"><span>{{req_info.status}}</span></h6></td>
 							<td>

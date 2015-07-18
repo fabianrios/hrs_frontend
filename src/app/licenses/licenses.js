@@ -1,7 +1,7 @@
 (function(){
 	'use strict';
   
-	angular.module('licenses', [])
+	angular.module('licenses', ['ngFileUpload'])
 
 	// Add http interceptors that allows us to handle http request before it sends and http response parsing
 	.config(function($stateProvider){
@@ -21,10 +21,27 @@
 	.controller('Licenses.ListController', function($scope, $http, $state,  currentUser, licenses_req, License_requirement, Upload, HRAPI_CONF ){
 		
 		$scope.user = currentUser;
-		$scope.licenses = licenses_req;
-		
+		$scope.licenses = licenses_req;	
 		$scope.tipos = $scope.user.type.tipos;
 		$scope.options = [];
+		$scope.urlImage = '';
+		var archivo = null;
+
+		$scope.modalImage = function( image ){			
+			if(image){					
+				if(image.attachment){
+					image = image.attachment;
+				}			
+				if(image.url){
+					$scope.urlImage = HRAPI_CONF.baseUrl( image.url );
+					console.log($scope.urlImage);					
+				}
+				else{
+					$scope.urlImage = '';
+				}	
+				$('#image-modal').foundation('reveal','open');
+			}
+		}
 
 		$scope.exiteAprobador = function(){
 			return $scope.user.employee.perm_approver != '00000000' &&  $scope.user.employee.perm_approver != null 
@@ -52,7 +69,11 @@
 		$scope.requerimiento.motivo = $scope.options[0].subty;
 		$scope.requerimiento.employee_id = $scope.user.employee.id;
 
-		$scope.putRequest = function() { //create a new vacation. Issues a POST to /api/vacations
+		$scope.loadImage = function( file ){
+			archivo = file;
+		}
+
+		$scope.putRequest = function() { //create a new vacation. Issues a POST to /api/vacations			
 			// $scope.requerimiento.$save(function(newData) {
 			// 	$scope.licenses.push(newData);
 			// 	$scope.requerimiento = new License_requirement();
@@ -63,28 +84,28 @@
 			// }, function(data) {
 			// 	// console.log(data.status,data.data);
 			// 	$scope.alerts.push({type: 'alert', msg: data.data.errors.status[0]});
-			// });
-			var file = $scope.files[0];
-
+			// });			
 			Upload.upload({ 
 	            	method: 'POST', 
 	                url: HRAPI_CONF.apiBaseUrl('/license_requirements.json'), 
 	                fields: $scope.requerimiento, 
-	                file: file 
+	                file: archivo
 	            }).progress(function (evt) { 
-	                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total); 
-	                console.log('progress: ' + progressPercentage + '% ' + evt.config.file.name); 
+	                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total); 		                
 	            }).success(function (data, status, headers, config) { 
 	            	$scope.licenses.push(data);
 					$scope.requerimiento = new License_requirement();
 					$scope.requerimiento.status = "Espera";
 					$scope.requerimiento.employee_id = $scope.user.employee.id;
 					$state.go('main.views.licenses');
-					$scope.alerts.push({type: 'success', msg: "El permiso a sido guardado"});
-	                console.log('file ' + config.file.name + 'uploaded. Response: ' + data); 
+					$scope.alerts.push({type: 'success', msg: "El permiso a sido guardado"});	               
 	            }).error(function (data, status, headers, config) { 
-	            	$scope.alerts.push({type: 'alert', msg: data.errors.status[0]});
-	                // console.log('error status: ' + status); 
+	            	// $scope.alerts.push({type: 'alert', msg: data.errors.status[0]});	               
+	            	angular.forEach( data.errors, function(value, index){
+	            		angular.forEach( value, function( mensaje, id ){
+	            			$scope.alerts.push({type: 'alert', msg: mensaje });	               
+	            		});		
+	            	});
             });
 		};
 		

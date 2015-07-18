@@ -13,11 +13,13 @@
 		})
 	})
 	
-	.controller('Loans.ListController', function($scope, $http, $state,  currentUser){
-		
-		$scope.fondo = "loans";
+	.controller('Loans.ListController', function($scope, $http, $state, currentUser ){
+
+
 		$scope.user = currentUser;
-		console.log("$scope.user",$scope.user);
+		$scope.fondo = "loans";
+		//$scope.user = currentUser;
+		//console.log("$scope.user",$scope.user);
 		
 	})
 	
