@@ -6,7 +6,7 @@
 					<li ng_repeat="article in articles" class="{{article.category}}">
 						<div class="article_img">
 							<a ui-sref="main.views.articleDetail({id:article.id})">
-								<img ng-src="{{article.imagen}}" alt="" />
+								<img ng-src="{{updateUrl( article.imagen.imagen.url )}}" alt="" />
 								<h5>{{article.titulo}}</h5>
 							</a>
 							<div class="article-actions" ng-if="article.employee.id == user.employee.id">

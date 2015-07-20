@@ -115,7 +115,7 @@
 	            	// $scope.alerts.push({type: 'alert', msg: data.errors.status[0]});	               
 	            	angular.forEach( data.errors, function(value, index){
 	            		angular.forEach( value, function( mensaje, id ){
-	            			$scope.alerts.push({type: 'alert', msg: mensaje });	               
+	            			$scope.alerts.push({type: 'alert', msg: index + ' ' + mensaje });               
 	            		});		
 	            	});
             });

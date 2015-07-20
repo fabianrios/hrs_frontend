@@ -153,7 +153,7 @@
   })
 
 
-  .run(function($http, $rootScope, $state, UserInfo, Auth, $window ){    
+  .run(function($http, $rootScope, $state, UserInfo, Auth, $window, HRAPI_CONF ){    
 	 
     // #aca no estamos en ningun lado porque es el defaul
     // console.log("Current State:", $state.current);
@@ -335,6 +335,22 @@
           }else{
             return _value;
           }
+        }
+
+        $rootScope.updateUrl = function( url ){
+          if(url!=null){
+            return HRAPI_CONF.baseUrl( url );
+          }else{
+            return url
+          }
+        }
+
+        $rootScope.showMessageErrorRails = function(data){
+          angular.forEach( data.errors, function(value, index){
+            angular.forEach( value, function( mensaje, id ){
+              $rootScope.alerts.push({type: 'alert', msg: index + ' ' + mensaje });                
+            });   
+          });
         }
 
       });

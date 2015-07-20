@@ -9,8 +9,7 @@
       'create': { method: 'POST' },
       'index': { method: 'GET', isArray: false },
       'show': { method: 'GET', isArray: false },
-      'update': { method: 'PUT', params: {id: '@id'} },
-      'destroy': { method: 'DELETE' }
+      'update': { method: 'PUT', params: {id: '@id'} }
     });
 	
   });

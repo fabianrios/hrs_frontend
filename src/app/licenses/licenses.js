@@ -18,7 +18,7 @@
 		})
 	})
 	
-	.controller('Licenses.ListController', function($scope, $http, $state,  currentUser, licenses_req, License_requirement, Upload, HRAPI_CONF ){
+	.controller('Licenses.ListController', function($scope, $http, $state,  currentUser, licenses_req, License_requirement, Upload ){
 		
 		$scope.user = currentUser;
 		$scope.licenses = licenses_req;	
@@ -103,7 +103,7 @@
 	            	// $scope.alerts.push({type: 'alert', msg: data.errors.status[0]});	               
 	            	angular.forEach( data.errors, function(value, index){
 	            		angular.forEach( value, function( mensaje, id ){
-	            			$scope.alerts.push({type: 'alert', msg: mensaje });	               
+	            			$scope.alerts.push({type: 'alert', msg: index + ' ' + mensaje });	               
 	            		});		
 	            	});
             });

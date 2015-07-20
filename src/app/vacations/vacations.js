@@ -122,7 +122,7 @@
 	            }).error(function (data, status, headers, config) { 
 	            	angular.forEach( data.errors, function(value, index){
 	            		angular.forEach( value, function( mensaje, id ){
-	            			$scope.alerts.push({type: 'alert', msg: mensaje });	               
+	            			$scope.alerts.push({type: 'alert', msg: index + ' ' + mensaje });	               
 	            		});		
 	            	});
 	            	//console.log("error:",data);

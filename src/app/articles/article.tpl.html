@@ -2,14 +2,14 @@
 	<div class="row">
 		<div class="large-9 columns">
 			<div ng-model="article" class="article">
-				<h2 class="{{article.category}}">{{article.titulo}}</h2>
-				<span class="label {{article.category}}">{{article.category}}</span>
+				<h2 ng-class="article.category">{{article.titulo}}</h2>
+				<span class="label" ng-class="article.category">{{article.category}}</span>
 				<div class="right">
 					<span class="label secondary">Creado: {{article.created_at | date:"d 'de' MMMM" }}</span> <br />
 					<i>Ultima actualización: {{article.updated_at | date:"medium" }}</i>
 				</div>
-				<br /><br /><br />
-				<img ng-src="{{article.imagen}}" alt="" class="imgborder" />
+				<br /><br /><br />			
+				<img ng-src="{{updateUrl(article.imagen.imagen.url)}}" alt="" class="imgborder" />
 				<div class="parrafo" ng-bind-html="article.cuerpo"></div>
 			</div>
 		</div>
