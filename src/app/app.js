@@ -87,7 +87,7 @@
     })
     .state('main.views', {
       resolve: {
-        currentUser: function(UserInfo){
+        currentUser: function(UserInfo){                  
           return UserInfo.currentUser();
         },
         articles:  function(Article){
@@ -151,14 +151,15 @@
       }
     });
   })
-  .run(function($http, $rootScope, $state, UserInfo, Auth, $window){
-	
+  .run(function($http, $rootScope, $state, UserInfo, Auth, $window, HRAPI_CONF ){    
+	 
     // #aca no estamos en ningun lado porque es el defaul
     // console.log("Current State:", $state.current);
     // UserInfo.currentUser().then(function(current_user){
       // no hay usuario no devuelve nada hasta que este logueado
       // console.log("Current User:", currentUser);
       // });
+
 	
       $rootScope.employee = {}
       $rootScope.employee_info = {}
@@ -309,8 +310,12 @@
         //format date
         $rootScope.formatDate = function( fecha ){
           if( fecha != null && typeof fecha == "string" ){
-            var parts = fecha.split('-');
-            return new Date(parts[0],parts[1]-1, parts[2])
+            if( _value === '0000-00-00' ){
+              return '';
+            }else{
+              var parts = _value.split('-');                    
+              return new Date(parts[0],parts[1]-1, parts[2]);                      
+            }
           }else{
             return fecha
           }
@@ -323,8 +328,12 @@
                     return parseFloat(_value, 10);
                     break;normal
                 case 'DATE':
-                    var parts = _value.split('-');
-                    return new Date(parts[0],parts[1]-1, parts[2]);
+                    if( _value === '0000-00-00' ){
+                      return '';
+                    }else{
+                      var parts = _value.split('-');                    
+                      return new Date(parts[0],parts[1]-1, parts[2]);                      
+                    }
                     break;
                 default:
                     return _value;
@@ -332,6 +341,22 @@
           }else{
             return _value;
           }
+        }
+
+        $rootScope.updateUrl = function( url ){
+          if(url!=null){
+            return HRAPI_CONF.baseUrl( url );
+          }else{
+            return url
+          }
+        }
+
+        $rootScope.showMessageErrorRails = function(data){
+          angular.forEach( data.errors, function(value, index){
+            angular.forEach( value, function( mensaje, id ){
+              $rootScope.alerts.push({type: 'alert', msg: index + ' ' + mensaje });                
+            });   
+          });
         }
 
       });

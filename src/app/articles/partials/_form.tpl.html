@@ -1,15 +1,16 @@
 <div class="row">
 	<div class="large-9 columns">
 		<label for="titulo">Titulo:</label>
-		<input type="text" ng-model="article.titulo" id="titulo" class="{{article.category}}" required>
+		<input type="text" ng-model="article.titulo" id="titulo" required>
 		<label for="imagen">Imagen:</label>
-		<input type="text" ng-model="article.imagen" id="imagen">
+		<!-- <input type="text" ng-model="article.imagen" id="imagen"> -->
+		<div class="button" ngf-select ngf-change="loadImage($files)">Seleccionar imagen</div>
 		<label for="ini">Texto inicial:</label>
 		<textarea ng-model="article.ini" id="ini" cols="20" rows="4" required></textarea>
 		<label for="cuerpo">Cuerpo:</label>
 		<text-angular ng-model="article.cuerpo" required></text-angular>
 	</div>
-	<div class="large-3 columns">
+	<div class="large-3 columns" >
 		<label for="category">Categoria:</label>
 		<select ng-model="correctlySelected" ng-options="option as option.label for option in options" required ng-change="update(correctlySelected)"></select>
 		<label for="publicado">¿Publicar?:</label>

@@ -30,6 +30,24 @@
 		$scope.only_not_user = [];
 		$scope.tipos = $scope.user.type.tipos;
 		$scope.vac_options = [];
+		$scope.urlImage = '';
+		var archivo = null;
+
+		$scope.modalImage = function( image ){			
+			if(image){					
+				if(image.attachment){
+					image = image.attachment;
+				}			
+				if(image.url){
+					$scope.urlImage = HRAPI_CONF.baseUrl( image.url );
+					console.log($scope.urlImage);					
+				}
+				else{
+					$scope.urlImage = '';
+				}	
+				$('#image-modal').foundation('reveal','open');
+			}
+		}
 
 		$scope.exiteAprobador = function(){
 			return $scope.user.employee.vaca_approver != '00000000' && $scope.user.employee.vaca_approver != null 
@@ -62,7 +80,10 @@
 		$scope.requerimiento.tipo = $scope.seleccion;
 		$scope.requerimiento.employee_id = $scope.user.employee.id;
 		
- 	   
+ 	   	$scope.loadImage = function( file ){
+			archivo = file;
+		}
+
 		//CREAR
 		$scope.putRequest = function() { //create a new vacation. Issues a POST to /api/vacations
 			// $scope.requerimiento.$save(function(newData) {
@@ -77,18 +98,18 @@
 			// 	console.log("error:",data);
 			// 	console.log(data.status,data.data);
 			// 	$scope.alerts.push({type: 'alert', msg: data.data.errors.status[0]});
-			// });
-			var file = $scope.files[0];
-
+			// });		
 			Upload.upload({ 
 	           		method: 'POST', 
 	                url: HRAPI_CONF.apiBaseUrl('/vacation_requirements.json'), 
 	                fields: $scope.requerimiento, 
-	                file: file 
+	                file: archivo 
 	            }).progress(function (evt) { 
-	                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total); 
-	                console.log('progress: ' + progressPercentage + '% ' + evt.config.file.name); 
+	                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total); 	                
 	            }).success(function (data, status, headers, config) { 
+	            	var a = moment(data.end_date);
+	            	var b = moment(data.start_date);
+	            	data.dias = a.diff(b,'days');
 	            	$scope.vac_requirements.push(data);
 					console.log(data,$scope.vac_requirements);
 					$scope.requerimiento = new Vacation_requirement();
@@ -98,9 +119,14 @@
 					$scope.alerts.push({type: 'success', msg: "La vacación a sido guardada"});
 	                // console.log('file ' + config.file.name + 'uploaded. Response: ' + data); 
 	            }).error(function (data, status, headers, config) { 
-	            	console.log("error:",data);
-					console.log(status,data);
-					$scope.alerts.push({type: 'alert', msg: data.errors.status[0]});
+	            	angular.forEach( data.errors, function(value, index){
+	            		angular.forEach( value, function( mensaje, id ){
+	            			$scope.alerts.push({type: 'alert', msg: index + ' ' + mensaje });	               
+	            		});		
+	            	});
+	            	//console.log("error:",data);
+					//console.log(status,data);
+					//$scope.alerts.push({type: 'alert', msg: data.errors.status[0]});
 	                // console.log('error status: ' + status); 
             });
 		};

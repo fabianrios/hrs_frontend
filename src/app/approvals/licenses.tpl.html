@@ -11,6 +11,7 @@
 							<th class="desde">DESDE</th>
 							<th>HASTA</th>
 							<th>MOTIVO</th>
+							<th>IMAGEN</th>
 							<th>ESTADO</th>
 							<th class="aprobar">APROBAR</th>
 							<th class="negar">NEGAR</th>
@@ -29,7 +30,8 @@
 								<h2>{{ req_info.end_date | date:'d' }}</h2>
 								<h6>{{ req_info.end_date | date:'MMMM' }}</h6>
 							</td>
-							<td><h6>{{mot(req_info.motivo)}}</h6></td>
+							<td><h6>{{motInca(req_info.motivo)}}</h6></td>
+							<td><a href="" class="" ng-click="modalImage(req_info.attachment)"  >Ver</a></td>
 							<td><h6 class="bold" ><span class="{{req_info.status}}">{{req_info.status}}</span></h6></td>
 							<td>
 								<div ng-if="req_info.status != 'Aprobado'">
@@ -64,7 +66,7 @@
 							<h6>{{ req_info.fecha | date:'MMMM' }}</h6>
 						</div>
 						<div class="hasta">
-							<h6 class="extras">{{mot(req_info.motivo)}}</h6>
+							<h6 class="extras">{{motExtras(req_info.motivo)}}</h6>
 						</div>
 						<div class="posibilidades">
 							<a ng-if="req_info.status != 'Aprobado'" href="" ng-click="aproveLicenses(req_info)" class="acciones"></a>
@@ -94,7 +96,7 @@
 								<h6>{{ req_info.fecha | date:'MMMM' }}</h6>
 							</td>
 							<td class="dias"><h2>{{req_info.hours}}</h2></td>
-							<td><h6>{{mot(req_info.motivo)}}</h6></td>
+							<td><h6>{{motExtras(req_info.motivo)}}</h6></td>
 							<td><h6 class="bold" ><span class="{{req_info.status}}">{{req_info.status}}</span></h6></td>
 							<td>
 								<div ng-if="req_info.status != 'Aprobado'">
@@ -113,4 +115,9 @@
 		</div>
 
 	</div>	
+	<div id="image-modal" class="reveal-modal" data-reveal aria-labelledby="Imagen" aria-hidden="true" role="dialog">
+      <img ng-if="urlImage" ng-src="{{urlImage}}" width="100%" height="1100px" /> 
+      <p ng-hide="urlImage">No existe imagen</p>       
+      <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+  </div>
 </div>

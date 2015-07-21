@@ -5,7 +5,7 @@
     <div class="row">
       <div class="large-12 columns">
         <div class="show-for-small-only">
-          <div class="vacaciones table-response" ng-repeat="req_info in only_not_user">
+          <div class="vacaciones table-response" ng-repeat="req_info in only_not_user_vac">
             <h3>{{req_info.employee.short_name}} </h3>
             <div class="dias {{req_info.status}}">
               <h2>{{req_info.dias}}</h2>
@@ -103,6 +103,8 @@
 							<h2>{{ req_info.end_date | date:'d' }}</h2>
 							<h6>{{ req_info.end_date | date:'MMMM' }}</h6>
 						</div>
+            <td><h6>{{motPerm(req_info.motivo)}}</h6></td>       
+            <td><a href="" class="" ng-click="modalImage(req_info.attachment)"  >Ver</a></td>
 						<div class="posibilidades">
 							<a ng-if="req_info.status != 'Aprobado'" href="" ng-click="aproveLicense(req_info)" class="acciones"></a>
 							<a ng-if="req_info.status != 'Aprobado'" href="" ng-click="deleteLicense(req_info)" class="acciones negar"></a>
@@ -114,8 +116,9 @@
 						<tr>
 							<th>NOMBRE</th>
 							<th class="desde">DESDE</th>
-							<th>HASTA</th>
+              <th>HASTA</th>
 							<th>MOTIVO</th>
+							<th>IMAGEN</th>
 							<th>ESTADO</th>
 							<th class="aprobar">APROBAR</th>
 							<th class="negar">NEGAR</th>
@@ -133,8 +136,9 @@
 							<td>
 								<h2>{{ req_info.end_date | date:'d' }}</h2>
 								<h6>{{ req_info.end_date | date:'MMMM' }}</h6>
-							</td>
-							<td><h6>{{mot(req_info.motivo)}}</h6></td>
+							</td>     
+              <td><h6>{{motPerm(req_info.motivo)}}</h6></td>       
+							<td><a href="" class="" ng-click="modalImage(req_info.attachment)"  >Ver</a></td>
 							<td><h6 class="bold" ><span class="{{req_info.status}}">{{req_info.status}}</span></h6></td>
 							<td>
 								<div ng-if="req_info.status != 'Aprobado'">
@@ -143,13 +147,18 @@
 							</td>
 							<td>
 								<div ng-if="req_info.status != 'Aprobado'">
-									<a href="" ng-click="deleteLicense(req_info)" class="acciones negar"></a>
+									<a href="" ng-click="deniedLicense(req_info)" class="acciones negar"></a>
 								</div>
 							</td>
 						</tr>
 					</tbody>
-				</table>
+				</table> 
 			</div>
 		</div>
   </div>	
+  <div id="image-modal" class="reveal-modal" data-reveal aria-labelledby="Imagen" aria-hidden="true" role="dialog">
+      <img ng-if="urlImage" ng-src="{{urlImage}}" width="100%" height="1100px" /> 
+      <p ng-hide="urlImage">No existe imagen</p>       
+      <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+  </div>
 </div>

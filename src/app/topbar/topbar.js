@@ -3,9 +3,11 @@
 
   angular.module('topbar', [])
 
-    .controller('Topbar.TopbarController', function($scope, currentUser, articles, Notification){
+    .controller('Topbar.TopbarController', function($scope, currentUser, articles, Notification, $log){
 		
 		$scope.user = currentUser;
+		$log.info($scope.user);
+
 		$scope.articles = articles.articles;
 		$scope.articles_not_mine = [];
 		$scope.articles_mine = [];

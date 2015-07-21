@@ -73,7 +73,7 @@
 				$state.go('main.views.extras');
 				$scope.alerts.push({type: 'success', msg: "La hora extra a sido guardada"});
 			}, function(data) {
-				// console.log(data.status,data.data);
+				console.log(data);
 				$scope.alerts.push({type: 'alert', msg: data.data.errors.status[0]});
 			});
 		};

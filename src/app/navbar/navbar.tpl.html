@@ -71,12 +71,12 @@
       <li ng-if="user.employee.labor.scesa == 'X'" class="disabled">
         <a ui-sref="main.views.severance">Anticipo de cesantías</a>
       </li>
-      <li ng-if="permAprobador() && user.labor.sperm == 'X'">
+      <li ng-if="permAprobador() && user.labor.sperm == 'X'" >
         <a ui-sref="main.views.licenses">
           Permisos
         </a>
       </li>
-      <li class="disabled">
+      <li ng-if="presAprobador() && user.labor.spres == 'X'"  >
         <a ui-sref="main.views.loans">Prestamos</a>
       </li>
       <li ng-if="vacaAprobador() && user.labor.svaca == 'X'">
@@ -159,19 +159,19 @@
     </a>
     <ul class="left-submenu">
       <li class="back">
-        <a href="">Volver</a>
+        <a href="">Volver </a>
       </li>
-      <li ng-if="extras_not_user.length > 0">
+      <li ng-if="extras_not_user.length + inhabilities_not_user.length > 0">
         <a ui-sref="main.views.approvals_licenses">
           <i class="fa fa-paste fa-lg"></i> Registros
-          <i class="number main-menu-comment registers">{{extras_not_user.length+inhabilities_not_user.length}}</i>
+          <i class="number main-menu-comment registers">{{extras_not_user.length + inhabilities_not_user.length}}</i>
           <i class="fa fa-angle-right fa-right fa-lg"></i>
         </a>
       </li>
-      <li ng-if="only_not_user.length+licenses_not_user.length > 0">
+      <li ng-if="only_not_user.length + licenses_not_user.length > 0">
         <a ui-sref="main.views.approvals_requirements">
           <i class="fa fa-check fa-lg"></i> Solicitudes
-          <i class="number main-menu-comment">{{only_not_user.length+licenses_not_user.length}}</i>
+          <i class="number main-menu-comment">{{only_not_user.length + licenses_not_user.length}}</i>
           <i class="fa fa-angle-right fa-right fa-lg"></i>
         </a>
       </li>

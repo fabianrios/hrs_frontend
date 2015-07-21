@@ -3,15 +3,15 @@
 
   angular.module('profile', [])
 
-    .controller('Profile.ProfileController', function($scope, $stateParams, currentUser, Employee){
+    .controller('Profile.ProfileController', function($scope, $stateParams, currentUser, Employee, $log){
 
 		$scope.user = currentUser;
 		$scope.aprobador = [];
 		//aprobador
 		
 		$scope.cargarAprobador = function(identification){
-      $scope.aprobador = Employee.show({id:identification, id_posicion: identification});
-      console.log($scope.aprobador);
+		      $scope.aprobador = Employee.show({id:identification, id_posicion: identification});
+		      $log.info($scope.aprobador);
 		}
 		
 			// 	    angular.forEach($scope.employees,function(value){
