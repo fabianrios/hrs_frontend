@@ -326,8 +326,12 @@
                     return parseFloat(_value, 10);
                     break;normal
                 case 'DATE':
-                    var parts = _value.split('-');
-                    return new Date(parts[0],parts[1]-1, parts[2]);
+                    if( _value === '0000-00-00' ){
+                      return '';
+                    }else{
+                      var parts = _value.split('-');                    
+                      return new Date(parts[0],parts[1]-1, parts[2]);                      
+                    }
                     break;
                 default:
                     return _value;
