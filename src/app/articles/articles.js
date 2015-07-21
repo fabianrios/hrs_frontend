@@ -43,7 +43,7 @@
 	    });
 	})
 	
-	.controller('Articles.ListController', function($scope, $http, $state, articles, currentUser, Article ){
+	.controller('Articles.ListController', function($scope, $http, $state, articles, currentUser, Article, HRAPI_CONF ){
 		
 		$scope.user = currentUser;
 		$scope.articles = articles.articles;
@@ -67,15 +67,20 @@
 		};
 		
 		$scope.articleDelete = function(article,modal) { 
-			article = Article.show({id: article.id})
-			console.log(article);
+			// article = Article.show({id: article.id})
+			// console.log(article);
 			// article.$delete( function() {
-				var index = $scope.articles.indexOf(article);
+			$http.delete(
+				HRAPI_CONF.apiBaseUrl('/articles/' + article.id + '.json')
+			).success(function (data, status, headers, config) { 
+	            var index = $scope.articles.indexOf(article);
 				console.log(index);
 				$scope.articles.splice(index, 1);
 				$('#myModal-'+modal).foundation('reveal', 'close');  
-				$scope.alerts.push({type: 'alert', msg: "El articulo '"+ article.titulo + "' a sido borrado"});
-			// });
+				$scope.alerts.push({type: 'alert', msg: "El articulo '"+ article.titulo + "' a sido borrado"});               
+	        }).error(function (data, status, headers, config) { 	            	       
+	            $scope.showMessageErrorRails(data);
+            });
 			
 		} ///BORRAR
 		
