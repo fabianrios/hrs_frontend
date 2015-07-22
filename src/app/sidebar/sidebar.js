@@ -2,7 +2,7 @@
   'use strict';
 
 	angular.module('sidebar', ['employee.service'])
-	.controller('Sidebar.SidebarController', function($scope, $state, $http, employees, currentUser){
+	.controller('Sidebar.SidebarController', function($scope, $state, $http, employees, currentUser, HRAPI_CONF){
 		$scope.common = {};
         $scope.employees = employees;
         $scope.user = currentUser;
@@ -27,7 +27,7 @@
         };
 
         $scope.update_favorite =  function(employee){
-            $http.post('/api/users/' + currentUser.employee.identification + '/favorite_employee', { employee_identification: employee.identification }).
+            $http.post( HRAPI_CONF.apiBaseUrl( '/users/' + currentUser.employee.identification + '/favorite_employee' ), { employee_identification: employee.identification }).
               success(function(data, status, headers, config) {
                 console.log(data);
               }).
