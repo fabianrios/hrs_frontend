@@ -278,7 +278,6 @@
 				}
 				return compare;
 		}
-		
 		$scope.sortableOptions = {
 			'placeholder': 'placeholder'
 		};

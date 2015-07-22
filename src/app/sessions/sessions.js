@@ -23,7 +23,6 @@
 
 	.controller('sessions.LoginController', function($scope, Auth){
 
- 
 		$scope.login = function() { //login
 			Auth.login($scope.credentials).then(function(user) {
 				// inicializacion de algun tipo 

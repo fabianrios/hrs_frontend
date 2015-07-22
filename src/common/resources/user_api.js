@@ -2,7 +2,6 @@
   'use strict';
 
   angular.module('user.service', ['Devise'])
-
   .factory('User', function($resource, HRAPI_CONF) {
     var url = HRAPI_CONF.apiBaseUrl('/users/:id.json');
     return $resource(url, { id: '@id' }, {
@@ -13,7 +12,6 @@
       'destroy': { method: 'DELETE' }
     });
   })
-
   .factory('UserInfo', function($q, Auth, User) {
     return {
       autenticado: Auth.isAuthenticated(),

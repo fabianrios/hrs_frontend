@@ -37,6 +37,7 @@
 		});
 	})
 
+
 	.controller('companies.ListController', function($scope, $state, companies){
 		$scope.companies = companies; 
 		$scope.viewCompany = function(id) {

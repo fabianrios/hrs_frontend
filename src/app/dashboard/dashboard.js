@@ -1,6 +1,5 @@
 (function(){
 	'use strict';
-  
 	angular.module('dashboard', [])
 
 	.config(function($stateProvider){
@@ -348,7 +347,8 @@
 		$scope.employee = currentUser.employee;
 		$scope.vacation = currentUser.vacation;
 		$scope.employee_info = currentUser.employee_info;
-		
+		$scope.employees = employees;
+	
 		
 		if (currentUser.saldos != null){
 			$scope.saldos = currentUser.saldos;
@@ -497,7 +497,6 @@
 				$(this).children(".fa").toggleClass("fa-chevron-circle-up");
 				$(this).children(".fa").toggleClass("fa-chevron-circle-down");
 			});
-    
 
     
 		});

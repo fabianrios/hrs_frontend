@@ -65,7 +65,6 @@
 				$scope.only_not_user.push(value);
 			}
 		});
-		
 		$scope.seleccion = $scope.vac_options[0].subty;
 		// console.log($scope.vac_options,$scope.seleccion);
 		

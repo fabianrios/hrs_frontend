@@ -12,7 +12,6 @@
     'chart.js',
     'ngFileUpload',
     //'mm.foundation',
-
     // Config
     'app.config',
 
@@ -63,6 +62,7 @@
   ])
 
   .config(function($stateProvider, $httpProvider, $urlRouterProvider, HRAPI_CONF, AuthProvider, AuthInterceptProvider, ngS3Config){
+
 	
     ngS3Config.theme = 'bootstrap2';
 
@@ -151,8 +151,6 @@
       }
     });
   })
-
-
   .run(function($http, $rootScope, $state, UserInfo, Auth, $window, HRAPI_CONF ){    
 	 
     // #aca no estamos en ningun lado porque es el defaul
