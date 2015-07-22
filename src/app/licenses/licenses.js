@@ -18,7 +18,7 @@
 		})
 	})
 	
-	.controller('Licenses.ListController', function($scope, $http, $state,  currentUser, licenses_req, License_requirement, Upload ){
+	.controller('Licenses.ListController', function($scope, $http, $state,  currentUser, licenses_req, License_requirement, Upload, HRAPI_CONF ){
 		
 		$scope.user = currentUser;
 		$scope.licenses = licenses_req;	
@@ -100,12 +100,8 @@
 					$state.go('main.views.licenses');
 					$scope.alerts.push({type: 'success', msg: "El permiso a sido guardado"});	               
 	            }).error(function (data, status, headers, config) { 
-	            	// $scope.alerts.push({type: 'alert', msg: data.errors.status[0]});	               
-	            	angular.forEach( data.errors, function(value, index){
-	            		angular.forEach( value, function( mensaje, id ){
-	            			$scope.alerts.push({type: 'alert', msg: index + ' ' + mensaje });	               
-	            		});		
-	            	});
+	            	// $scope.alerts.push({type: 'alert', msg: data.errors.status[0]});	               	            	
+	            	$scope.showMessageErrorRails(data);
             });
 		};
 		
