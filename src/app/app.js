@@ -1,3 +1,8 @@
+<<<<<<< Local Changes
+<<<<<<< Local Changes
+<<<<<<< Local Changes
+<<<<<<< Local Changes
+<<<<<<< Local Changes
 (function(){
   'use strict';
 
@@ -151,6 +156,22 @@
       }
     });
   })
+<<<<<<< Local Changes
+<<<<<<< Local Changes
+
+<<<<<<< Local Changes
+
+=======
+>>>>>>> External Changes
+=======
+
+<<<<<<< Local Changes
+>>>>>>> External Changes
+=======
+
+>>>>>>> External Changes
+=======
+>>>>>>> External Changes
   .run(function($http, $rootScope, $state, UserInfo, Auth, $window, HRAPI_CONF ){    
 	 
     // #aca no estamos en ningun lado porque es el defaul
@@ -358,7 +379,32 @@
             });   
           });
         }
+<<<<<<< Local Changes
+=======
 
+<<<<<<< Local Changes
+<<<<<<< Local Changes
+<<<<<<< Local Changes
+<<<<<<< Local Changes
+>>>>>>> External Changes
+=======
+>>>>>>> External Changes
+=======
+>>>>>>> External Changes
+=======
+>>>>>>> External Changes
+=======
+>>>>>>> External Changes
       });
   
     }());
+=======
+>>>>>>> External Changes
+=======
+>>>>>>> External Changes
+=======
+>>>>>>> External Changes
+=======
+>>>>>>> External Changes
+=======
+>>>>>>> External Changes
