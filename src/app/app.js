@@ -310,10 +310,10 @@
         //format date
         $rootScope.formatDate = function( fecha ){
           if( fecha != null && typeof fecha == "string" ){
-            if( _value === '0000-00-00' ){
+            if( fecha === '0000-00-00' ){
               return '';
             }else{
-              var parts = _value.split('-');                    
+              var parts = fecha.split('-');                    
               return new Date(parts[0],parts[1]-1, parts[2]);                      
             }
           }else{
