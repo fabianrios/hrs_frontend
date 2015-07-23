@@ -41,11 +41,12 @@
 		$scope.organigram = organigram.organigram;
 	
 		console.log($scope.organigram);
-    var m = [40, 160, 40, 160],
+    var m = [10, 20, 10, 20],
         w = 1280 - m[1] - m[3],
-        h = 800 - m[0] - m[2],
+        h = 1300 - m[0] - m[2],
         i = 0,
-    root;
+        url =  $stateParams.id,
+        root;
 		url = HRAPI_CONF.apiBaseUrl("/organigram/show/"+url+".json")
 		console.log("url",url);
 		var tree = d3.layout.tree()
