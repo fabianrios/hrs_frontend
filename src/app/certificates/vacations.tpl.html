@@ -3,10 +3,10 @@
 		<div class="large-12 columns large-centered medium-centered small-centered">
 			<div class="text-center">
 				<div class="wrapper hide-for-small-only">
-					<ng-pdf template-url="app/certificates/partials/viewer.tpl.html" canvasid="pdf" scale="1.5"></ng-pdf>
+					<ng-pdf  template-url="app/certificates/partials/viewer.tpl.html" canvasid="pdf" scale="1.5"></ng-pdf>
 				</div>
 				<div class="show-for-small-only">
-					<a ng-href="pdfUrl" class="download"><span class="fa fa-download fa-4x"></span> DESCARGAR </a>
+					<a ng-href="{{pdfUrl}}" class="download"><span class="fa fa-download fa-4x"></span> DESCARGAR </a>
 					<br /><br />
 				</div>
 			</div>

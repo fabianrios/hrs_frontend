@@ -117,6 +117,7 @@
 		$scope.cargarPdfs();
 		
 		$scope.cambiarPdf = function(vacacion) {
+			$scope.pdfUrl = '';
 			$scope.selectedVac = vacacion;
 			// $scope.pdfUrl = "http://hdvbackend.hrinteractive.co/vacations-"+currentUser.company_id+"/"+currentUser.employee_id+"/Vac_"+$scope.selectedVac.begda+"_"+$scope.selectedVac.endda+"_"+currentUser.employee_id+"_"+currentUser.company_id+".pdf";
 			$scope.pdfUrl = HRAPI_CONF.baseUrl(vacacion.file.url);
@@ -172,6 +173,7 @@
 		$scope.cargarPdfs();
 		
 		$scope.cambiarPdf = function(volante) {
+			$scope.pdfUrl = '';
 			$scope.selectedVol = volante;
 			// $scope.pdfUrl = "http://hdvbackend.hrinteractive.co/volantes_p-"+currentUser.company_id+"/"+currentUser.employee_id+"/Nomina_"+$scope.selectedVol.begda+"_"+$scope.selectedVol.endda+"_"+currentUser.employee_id+"_"+currentUser.company_id+".pdf";
 			$scope.pdfUrl = HRAPI_CONF.baseUrl(volante.file.url);
