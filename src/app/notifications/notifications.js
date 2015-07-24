@@ -12,7 +12,7 @@
 			controller: 'Notifications.ListController'			
 		})
 	})	
-	.controller('Notifications.ListController', function($scope, $http, $state, $filter, currentUser, Notification, articles,vac_requirements, extras_requirements, inhabilities_requirements, licenses_requirements ){
+	.controller('Notifications.ListController', function($scope, $http, $state, $filter, currentUser, Notification, articles,vac_requirements, extras_requirements, inhabilities_requirements, licenses_requirements, infos ){
 		
 		var update = new Notification();
 		update.id = currentUser.employee.identification;																
@@ -38,34 +38,41 @@
 			}
 		});
 
+				
 		//vacaciones pendientes
 		angular.forEach($scope.vac_requirements,function(value,index){
-			if (value.employee.apply_reviewer == $scope.user.employee_id && value.status == "Espera"){
+			if (value.employee.vaca_approver == $scope.user.employee.id_posicion && value.status == "Espera"){
 				$scope.only_not_user.push(value);
 			}
 		});
 		
 		//extras pendientes
-		angular.forEach($scope.extras_requirements,function(value,index){
-			if (value.employee.apply_reviewer == $scope.user.employee_id && value.status == "Espera"){
+		angular.forEach($scope.extras_requirements,function(value,index){			
+			if (value.employee.hoex_approver == $scope.user.employee.id_posicion && value.status == "Espera"){				
 				$scope.extras_not_user.push(value);
+			}
+		});
+    
+        // datos maestros
+		angular.forEach(infos, function(value, key) {
+			if (value.employee.dams_approver == $scope.user.employee.id_posicion && value.status == "Espera"){
+				$scope.toapproved.push(value);
 			}
 		});
 		
 		//inhabilidades pendientes
 		angular.forEach($scope.inhabilities_requirements,function(value,index){
-			if (value.employee.apply_reviewer == $scope.user.employee_id && value.status == "Espera"){
+			if (value.employee.inca_approver == $scope.user.employee.id_posicion && value.status == "Espera"){
 				$scope.inhabilities_not_user.push(value);
 			}
 		});
 		
 		//licencias pendientes
 		angular.forEach($scope.licenses_requirements,function(value,index){
-			if (value.employee.apply_reviewer == $scope.user.employee_id && value.status == "Espera"){
+			if (value.employee.perm_approver == $scope.user.employee.id_posicion && value.status == "Espera"){
 				$scope.licenses_not_user.push(value);
 			}
 		});
-		
 
 	})
 }());
