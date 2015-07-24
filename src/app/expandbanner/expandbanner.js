@@ -9,6 +9,15 @@
 	$scope.elusuario = currentUser;
 	$scope.user = currentUser;
 	$scope.vacation = $scope.user.vacation;
+  
+  $scope.privateValidation = function(priv){
+    if (priv == "X" && !$scope.user.employee.see_all_dm){
+      return "hide"
+    }
+    else{
+      return "show"
+    }
+  }
 	
 	//CESANTIAS
 	$scope.saldos = currentUser.saldos;

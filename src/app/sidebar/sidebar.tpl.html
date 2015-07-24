@@ -13,10 +13,7 @@
 	</li>
 	<li class="results" ng-repeat="employee in employees | filter:searchText" ng-init="activado = favorite( employee )">
 		<div class="pic">
-			<a ng-if="user.employee.see_all_dm" ui-sref="main.views.employee_info_lookup({id:employee.identification, c:employee.company.id})"> 
-				<img ng-src="{{employee.image}}">
-			</a>
-			<a ng-if="!user.employee.see_all_dm" ui-sref="main.views.employee_info_lookup({id:employee.identification, c:employee.company.id})"> 
+			<a ui-sref="main.views.employee_info_lookup({id:employee.identification, c:employee.company.id})"> 
 				<img ng-src="{{employee.image}}">
 			</a>
 		</div>
@@ -24,10 +21,7 @@
 			<a ng-click="favorites($event, employee);update_favorite(employee);$event.stopPropagation(); activado = !activado" class="favorite">
 				<span ng-class="activado ? 'fa fa-star' : 'fa fa-star-o'"></span>
 			</a> 
-			<a ng-if="user.employee.see_all_dm" ui-sref="main.views.employee_info_lookup({id:employee.identification, c:employee.company.id })" class="capitalize">
-				{{employee.name | lowercase}} {{employee.lastname | lowercase}}
-			</a>
-			<a ng-if="!user.employee.see_all_dm" class="capitalize">
+			<a ui-sref="main.views.employee_info_lookup({id:employee.identification, c:employee.company.id })" class="capitalize">
 				{{employee.name | lowercase}} {{employee.lastname | lowercase}}
 			</a>
 		</h6>
