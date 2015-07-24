@@ -11,7 +11,7 @@
 	$scope.vacation = $scope.user.vacation;
   
   $scope.privateValidation = function(priv){
-    if (priv == "X" && !$scope.user.employee.see_all_dm){
+    if (priv == "X" && $scope.user.employee.see_all_dm != "true"){
       return "hide"
     }
     else{

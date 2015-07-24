@@ -38,15 +38,6 @@
 		$rootScope.employee_info = $scope.user.employee_info;
 
 		$scope.missolicitudes = [];
-
-    $scope.privateValidation = function(priv){
-      if (priv == "X" && !$scope.user.employee.see_all_dm){
-        return "hide"
-      }
-      else{
-        return "show"
-      }
-    }
     
 		// Mis solicitudes
 		angular.forEach(infos, function(value, key) {
@@ -362,7 +353,8 @@
 		$rootScope.employee_info = info;
     
     $scope.privateValidation = function(priv){
-      if (priv == "X" && !$scope.user.employee.see_all_dm){
+      console.log(priv, $scope.user.employee.see_all_dm)
+      if (priv == "X" && $scope.user.employee.see_all_dm != "true"){
         return "hide"
       }
       else{
