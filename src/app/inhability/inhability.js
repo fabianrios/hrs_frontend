@@ -106,7 +106,7 @@
 	                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total); 		                
 	            }).success(function (data, status, headers, config) { 
 	            	$scope.inhabilities.push(data);
-					$scope.requerimiento = new License_requirement();
+					$scope.requerimiento = new Inhability_requirement(); 
 					$scope.requerimiento.status = "Espera";
 					$scope.requerimiento.employee_id = $scope.user.employee.id;
 					$state.go('main.views.inhabilities');
