@@ -47,33 +47,70 @@
 	.controller('Approvals.ListController', function($scope, $http, $state, currentUser, infos){
 		
 		$scope.user = currentUser;
-    $scope.toapproved = [];
+        $scope.toapproved = [];
     
 		//  solicitudes a aprobar
-		angular.forEach(infos, function(value, key) {
-			if (value.dams_approver == $scope.user.employee.id_posicion){
+		angular.forEach(infos, function(value, key) {		
+			var value_1 = '';
+			if(value.boss != null){
+				value_1 = value.boss.toString();
+			}			
+			var value_2 = '';
+			if($scope.user.employee.id_posicion != null){
+				value_2 = $scope.user.employee.id_posicion.toString();
+			}
+			if (value_1 ===  value_2 && (value.approved === false || value.approved === 'false' )){
 				$scope.toapproved.push(value);
 			}
 		});
     
 		$scope.approvedSolicitud = function(solicitud) {
 			$scope.solicitud_update = solicitud;
-			$scope.solicitud_update.status = "Aprobado"
-      console.log($scope.solicitud_update);
-      // $scope.solicitud_update.$update(function(newData) {
-      //   var index = $scope.user.employee_info.indexOf(solicitud);
-      //   $scope.user.employee_info[index] = newData;
-      //   $scope.alerts.push({type: 'success', msg: "la información ha sido aprobada"});
-      //       window.setTimeout(function() {
-      //           $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
-      //               $(this).remove();
-      //           });
-      //       }, 5000);
-      //   },
-      // function(data) {
-      //   $scope.alerts.push({type: 'alert', msg: data.data.errors.status[0]});
-      // });
-		};
+			$scope.solicitud_update.approved = true;
+			$scope.solicitud_update.$update(
+				function(newData) {
+		        	var index = $scope.toapproved.indexOf(solicitud);
+		        	$scope.toapproved[index] = newData;
+		        	$scope.alerts.push({type: 'success', msg: "la información ha sido aprobada"});
+					window.setTimeout(function() {
+		                $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
+		                    $(this).remove();
+		                });
+		            }, 5000);
+		        },
+		      	function(data) {
+		        	$scope.alerts.push({type: 'alert', msg: data.data.errors.status[0]});
+		      	}
+			);
+		}
+		$scope.deniedSolicitud = function(solicitud) {
+			$scope.solicitud_update = solicitud;
+			$scope.solicitud_update.approved = false;
+			$scope.solicitud_update.$update(
+				function(newData) {
+		        	var index = $scope.toapproved.indexOf(solicitud);
+		        	$scope.toapproved[index] = newData;
+		        	$scope.alerts.push({type: 'success', msg: "la información ha sido aprobada"});
+					window.setTimeout(function() {
+		                $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
+		                    $(this).remove();
+		                });
+		            }, 5000);
+		        },
+		      	function(data) {
+		        	$scope.alerts.push({type: 'alert', msg: data.data.errors.status[0]});
+		      	}
+			);
+		}	
+
+		$scope.deleteSolicitud = function(solicitud, modal) {
+			solicitud.$destroy(function() {
+				var index = $scope.toapproved.indexOf(solicitud)
+				$scope.toapproved.splice(index, 1);
+				$('#myModal-'+modal).foundation('reveal', 'close');  
+				$scope.alerts.push({type: 'alert', msg: "La información a sido borrada"});
+			});
+		}
     
 	})
   

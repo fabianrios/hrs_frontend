@@ -66,8 +66,16 @@
 		});
     
         // datos maestros
-		angular.forEach(infos, function(value, key) {
-			if (value.employee.dams_approver == $scope.user.employee.id_posicion && value.status == "Espera"){
+		angular.forEach(infos, function(value, key) {		
+			var value_1 = '';
+			if(value.boss != null){
+				value_1 = value.boss.toString();
+			}			
+			var value_2 = '';
+			if($scope.user.employee.id_posicion != null){
+				value_2 = $scope.user.employee.id_posicion.toString();
+			}
+			if (value_1 ===  value_2 && (value.approved === false || value.approved === 'false' )){
 				$scope.toapproved.push(value);
 			}
 		});
@@ -90,4 +98,3 @@
 		
     });
 }());
-
