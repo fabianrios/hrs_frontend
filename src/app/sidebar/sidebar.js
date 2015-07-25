@@ -6,8 +6,6 @@
 		$scope.common = {};
         $scope.employees = employees;
         $scope.user = currentUser;
-
-		// console.log($scope.employees);
 		
   	  //toggle expand vacation box
         $scope.favorites = function(e, empleado){
