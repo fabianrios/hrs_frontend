@@ -22,14 +22,6 @@
     .controller('Organigram.MainController', function($scope, $http, organigram, currentUser, HRAPI_CONF, $stateParams){
 		
 		
-	   // función de jairo para iterar
-		// for (var j=0; j < a.length; j++){
-		// 	for(var i=0; i < b.length; i++){
-		// 		if(a[j] == b[i]){
-		// 			a[j].push(b[i]);
-		// 		}
-		// 	}
-		// }
 				
 		$scope.mostrar = function(e) {
 			$(e.currentTarget).parent().children("org-info").slideToggle();
@@ -40,30 +32,26 @@
 		
 		$scope.organigram = organigram.organigram;
 	
-		console.log($scope.organigram);
-    var m = [10, 20, 10, 20],
-        w = 1280 - m[1] - m[3],
-        h = 1300 - m[0] - m[2],
+    var m = [10, 220, 10, 220],
+        w = screen.width - m[1] - m[3],
         i = 0,
-        url =  $stateParams.id,
+        h = 0,
         root;
-		url = HRAPI_CONF.apiBaseUrl("/organigram/show/"+url+".json")
-		console.log("url",url);
-		var tree = d3.layout.tree()
-			.size([h, w]);
-		// var cluster = d3.layout.cluster()
-		//    .size([height, width-400]);
+    var tree = d3.layout.tree()
+    var svg = d3.select("#chart").append("svg")
 		var diagonal = d3.svg.diagonal()    
-		   .projection (function(d) { return [d.y, d.x];}); 
-		var svg = d3.select("#chart").append("svg")    
-		   .attr("width",w)    
-		   .attr("height",h)    
-		   .append("g")    
-		   .attr("transform","translate(300,0)"); 
-		   d3.json(url, function(error, json){    
-		   root = json.organigram
+		   .projection (function(d) { return [d.y, d.x];});  
+		   root = $scope.organigram
 		   root.x0 = h / 2;
 		   root.y0 = 0;
+       console.log(root, root.children.length, w);
+    h = root.children.length*45 - m[0] - m[2];   
+ 		tree.size([h, w]);
+      
+  	   svg.attr("width",w)
+  	   svg.attr("height",h)
+  	   svg.append("g")    
+  	   svg.attr("transform","translate(300,0)");
 	   
 		  function toggleAll(d) {
 	 	    if (d.children) {
@@ -77,7 +65,6 @@
 		  toggle(root.children[0]);
 	  
 	 	  update(root);
-		}); 
 	
 
 	function update(source) {
