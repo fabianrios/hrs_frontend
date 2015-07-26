@@ -32,7 +32,7 @@
 		
 		$scope.organigram = organigram.organigram;
 	
-    var m = [10, 220, 10, 220],
+    var m = [10, 20, 10, 20],
         w = screen.width - m[1] - m[3],
         i = 0,
         h = 0,
@@ -45,7 +45,12 @@
 		   root.x0 = h / 2;
 		   root.y0 = 0;
        console.log(root, root.children.length, w);
-    h = root.children.length*45 - m[0] - m[2];   
+        h = root.children.length*45 - m[0] - m[2];
+        if (h < 1000){
+          h = 1000;
+        }else{
+          h = h + 200;
+        }
  		tree.size([h, w]);
       
   	   svg.attr("width",w)
