@@ -41,7 +41,7 @@
     
 		// Mis solicitudes
 		angular.forEach(infos, function(value, key) {
-			console.log(value.pernr,$scope.user.employee_id);
+			// console.log(value.pernr,$scope.user.employee_id);
 			if (value.pernr == $scope.user.employee_id){
 				$scope.missolicitudes.push(value);
 			}
@@ -71,6 +71,11 @@
 		$scope.especialidad = [{"langu": "S", "faart": "00000", "ftext": ""}, {"langu": "S", "faart": "00001", "ftext": "Clasico"}, {"langu": "S", "faart": "00002", "ftext": "Técnico"}, {"langu": "S", "faart": "00003", "ftext": "Comercial"}, {"langu": "S", "faart": "00004", "ftext": "Adm. Empresas"}, {"langu": "S", "faart": "00005", "ftext": "Químico"}, {"langu": "S", "faart": "00006", "ftext": "Entomólogo"}, {"langu": "S", "faart": "00007", "ftext": "Abogacia"}, {"langu": "S", "faart": "00008", "ftext": "Psicología"}, {"langu": "S", "faart": "00009", "ftext": "T. Social"}, {"langu": "S", "faart": "00010", "ftext": "Contaduría"}, {"langu": "S", "faart": "00011", "ftext": "Economía"}, {"langu": "S", "faart": "00012", "ftext": "Publicidad"}, {"langu": "S", "faart": "00013", "ftext": "Comunicación"}, {"langu": "S", "faart": "00014", "ftext": "Agrícola"}, {"langu": "S", "faart": "00015", "ftext": "Ing. Agronomía"}, {"langu": "S", "faart": "00016", "ftext": "Industrial"}, {"langu": "S", "faart": "00017", "ftext": "Mecánica"}, {"langu": "S", "faart": "00018", "ftext": "Química"}, {"langu": "S", "faart": "00019", "ftext": "Alimentos"}, {"langu": "S", "faart": "00020", "ftext": "Sistemas"}, {"langu": "S", "faart": "00021", "ftext": "Electrónica"}, {"langu": "S", "faart": "00022", "ftext": "Eléctrico"}, {"langu": "S", "faart": "00023", "ftext": "Diseño Gráfico"}, {"langu": "S", "faart": "00024", "ftext": "Panadería"}, {"langu": "S", "faart": "00025", "ftext": "Archivo"}, {"langu": "S", "faart": "00026", "ftext": "Ofic. Construcción"}, {"langu": "S", "faart": "00027", "ftext": "Mercadeo"}, {"langu": "S", "faart": "00051", "ftext": "Produccion"}, {"langu": "S", "faart": "00052", "ftext": "Administracion"}, {"langu": "S", "faart": "00053", "ftext": "Logistica"}, {"langu": "S", "faart": "00054", "ftext": "Ventas"}, {"langu": "S", "faart": "00055", "ftext": "Mercadeo"}, {"langu": "S", "faart": "00056", "ftext": "Financiera"}, {"langu": "S", "faart": "00057", "ftext": "Gestion Humana"}, {"langu": "S", "faart": "00058", "ftext": "Tecnologia Informatica"}, {"langu": "S", "faart": "00059", "ftext": "Planeacion"}, {"langu": "S", "faart": "00060", "ftext": "Calidad"}, {"langu": "S", "faart": "00061", "ftext": "Proyectos"}, {"langu": "S", "faart": "00062", "ftext": "Juridico"}, {"langu": "S", "faart": "00063", "ftext": "Tecnologo"}, {"langu": "S", "faart": "00064", "ftext": "Auditoria"}, {"langu": "S", "faart": "00065", "ftext": "Revisoria Fiscal"}, {"langu": "S", "faart": "00066", "ftext": "Transporte"}];
 		$scope.institutos = [{"sprsl": "S", "slart": "01", "stext": "Bachillerato"}, {"sprsl": "S", "slart": "02", "stext": "Tecnólogo"}, {"sprsl": "S", "slart": "03", "stext": "Técnico"}, {"sprsl": "S", "slart": "04", "stext": "Universidad"}, {"sprsl": "S", "slart": "05", "stext": "Postgrado"}, {"sprsl": "S", "slart": "06", "stext": "Primaria"}, {"sprsl": "S", "slart": "07", "stext": "Capacitacion HDV"}]
 		$scope.rel_laborales = [{"spras": "S", "molga": "38", "ansvh": "01", "atx": "Ley 50."}, {"spras": "S", "molga": "38", "ansvh": "02", "atx": "Régim. Anterior"}, {"spras": "S", "molga": "38", "ansvh": "03", "atx": "Integral."}, {"spras": "S", "molga": "38", "ansvh": "04", "atx": "Aprendizaje."}, {"spras": "S", "molga": "38", "ansvh": "05", "atx": "Pensionado."}];
+
+
+		$scope.edit_field = function( edit ){
+			return edit === 'X' && $scope.user.employee.dams_approver && $scope.user.employee.dams_approver != '00000000'
+		}
 		
 		$scope.search_country = function(data){
 			// Cual es el pais??
@@ -307,6 +312,10 @@
 			// 	console.log("error, data:",data, status, headers, config);
 			// });
 			
+
+     		// [["pernr", 10328], ["subty", "11"], ["ncamp", "P0021-FAVOR"], ["dcamp", "Nombre"], ["ccamp", "OSCAR"], ["boss", "0"], ["approved", "f"], ["employee_id", 69], ["created_at", "2015-07-25 13:41:08.313570"], ["updated_at", "2015-07-25 13:41:08.313570"]]
+    
+
 			$scope.info = new Info();
 			
 			
@@ -317,14 +326,15 @@
 			$scope.info.objid = objid;
 			$scope.info.pernr = $scope.user.employee_id;
 			$scope.info.employee_id = $scope.user.employee.id;
-			$scope.info.boss = $scope.user.employee.data_reviewer;
+			// $scope.info.boss = $scope.user.employee.data_reviewer;
+			$scope.info.boss = $scope.user.employee.dams_approver;
 			$scope.info.approved = false;
 			$scope.info.comparador = $scope.comparador;
 			
 			// console.log($scope.info);
 			$scope.info.$save(function() {
 			   $state.go('main.views.employee_info'); // on success go back to datos_maestros
-			   $scope.alerts.push({type: 'success', msg: "La solicitud para cambiar el campo '"+ $scope.info.dcamp +"' a '"+ $scope.comparador + "' a sido enviada para aprobacion"});
+			   $scope.alerts.push({type: 'success', msg: "La solicitud para cambiar el campo '"+ $scope.info.dcamp +"' a '"+ $scope.info.ccamp + "' a sido enviada para aprobacion"});
 			   $scope.missolicitudes.push($scope.info);
 			   // reset comparador
 			   $scope.comparador = "";
