@@ -90,7 +90,7 @@
 				function(newData) {
 		        	var index = $scope.toapproved.indexOf(solicitud);
 		        	$scope.toapproved[index] = newData;
-		        	$scope.alerts.push({type: 'success', msg: "la información ha sido aprobada"});
+		        	$scope.alerts.push({type: 'success', msg: "la información ha sido rechazada"});
 					window.setTimeout(function() {
 		                $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
 		                    $(this).remove();
