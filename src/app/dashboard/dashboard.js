@@ -437,7 +437,7 @@
           // console.log(nacimiento.getDay(), birth.getDay());
           return show;
         }else{
-          console.log(birth, nacimiento);
+//          console.log(birth, nacimiento);
           return false
         }
         // return $scope.formatDate(empleado.fecha_nac);
