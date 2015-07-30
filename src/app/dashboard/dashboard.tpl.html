@@ -195,7 +195,7 @@
 				<li>
 					<div class="widgets minh-430">
 						<h5 class="encabezado">
-							<a href="#">Publicaciones recientes <i class="fa fa-angle-right"></i> </a>
+							<a ui-sref="main.views.articles()">Publicaciones recientes <i class="fa fa-angle-right"></i> </a>
 							<div class="right actions">
 								<a class="text-right" href="">
 									<span data-tooltip aria-haspopup="true" class="has-tip" title="publicaciones">
@@ -212,7 +212,7 @@
 								<div class="cuantos">
 									<h3><span class="icon-comment"></span>{{articles_not_mine.length}}</h3>
 								</div>
-								<li ng-repeat="articulos in articles_not_mine">
+								<li ng-repeat="articulos in articles_not_mine | orderBy: '-ini' | limitTo: 10">
 									<a ui-sref="main.views.articleDetail({id:articulos.id})">{{articulos.titulo}}</a>
 									<p class="smalltxt no-margin">
 										{{articulos.ini | limitTo:100}}

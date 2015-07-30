@@ -37,13 +37,15 @@
         i = 0,
         h = 0,
         root;
-    var tree = d3.layout.tree()
-    var svg = d3.select("#chart").append("svg")
-		var diagonal = d3.svg.diagonal()    
+    var tree = d3.layout.tree();
+    var svg = d3.select("#chart").append("svg");
+        svg.attr("transform","translate(300,0)");
+        svg.append("g")    
+		var diagonal = d3.svg.diagonal()
 		   .projection (function(d) { return [d.y, d.x];});  
-		   root = $scope.organigram
+		   root = $scope.organigram;
 		   root.x0 = h / 2;
-		   root.y0 = 0;
+		   root.y0 = 500;
        console.log(root, root.children.length, w);
         h = root.children.length*45 - m[0] - m[2];
         if (h < 1000){
@@ -55,8 +57,6 @@
       
   	   svg.attr("width",w)
   	   svg.attr("height",h)
-  	   svg.append("g")    
-  	   svg.attr("transform","translate(300,0)");
 	   
 		  function toggleAll(d) {
 	 	    if (d.children) {

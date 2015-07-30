@@ -3,7 +3,7 @@
     <img ng-src="{{user.pic ? user.pic : user.employee.image}}">
   </div>
   <div class="user-buttons">
-    <a ui-sref="main.views.articles()" class="movil-comments">
+    <a ui-sref="main.views.notifications()" class="movil-comments">
       <span class="icon-comment"></span>
       <i class="number mobile-comment">{{articles_not_mine.length}}</i>
     </a>
@@ -22,7 +22,7 @@
 
 <ul class="off-canvas-list">
   <li><a href="#/home"><i class="fa fa-home fa-lg"></i> Inicio</a></li>
-  <li ng-if="user.employee.see_organ" ui-sref="main.views.organigram({id:user.employee.id})"><a><i class="fa fa-sitemap fa-lg"></i> Organigrama</a></li>
+  <li ng-if="user.employee.see_organ == 'true'" ui-sref="main.views.organigram({id:user.employee.id})"><a><i class="fa fa-sitemap fa-lg"></i> Organigrama</a></li>
   <!-- <li><a ng-href="#/organigram/{{user.employee_id}}" class="disabled"><i class="fa fa-sitemap fa-lg"></i> Organigrama</a></li> -->
   <!-- <li><a ui-sref="main.views.employees"><i class="fa fa-users fa-lg"></i> Empleados</a></li> -->
   <li class="has-submenu">
@@ -112,7 +112,7 @@
       </li>
     </ul>
   </li>
-  <li class="has-submenu disabled" ng-if="user.employee.see_rpgen">
+  <li class="has-submenu disabled" ng-if="user.employee.see_rpgen  == 'true'">
     <a href="" >
       <i class="fa fa-line-chart fa-lg"></i> Servicios gerenciales
       <i class="fa fa-angle-right fa-right fa-lg"></i>
