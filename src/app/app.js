@@ -158,9 +158,7 @@
     // UserInfo.currentUser().then(function(current_user){
       // no hay usuario no devuelve nada hasta que este logueado
       // console.log("Current User:", currentUser);
-      // });
-
-	
+      // });      
       $rootScope.employee = {}
       $rootScope.employee_info = {}
 	

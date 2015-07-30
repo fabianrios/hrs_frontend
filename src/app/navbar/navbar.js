@@ -3,7 +3,7 @@
 
   angular.module('navbar', [])
 
-    .controller('Navbar.NavbarController', function($scope,currentUser,articles,vac_requirements, extras_requirements, inhabilities_requirements, licenses_requirements, infos){
+    .controller('Navbar.NavbarController', function($scope,currentUser,articles,vac_requirements, extras_requirements, inhabilities_requirements, licenses_requirements, infos, Notification){
 		
 		$scope.user = currentUser;
 		$scope.articles = articles.articles;
@@ -27,6 +27,8 @@
       }
     }
     
+      
+    $scope.notifications = Notification.show({id: currentUser.employee.identification});
     
 		$scope.hoexAprobador = function(){
 			return $scope.user.employee.hoex_approver != '00000000' &&  $scope.user.employee.hoex_approver != null 

@@ -86,10 +86,13 @@
 		
 
 	})	
-	.controller('Articles.DetailController', function($scope, $http, $state, article, currentUser){
+	.controller('Articles.DetailController', function($scope, $http, $state, article, currentUser, Notification){
+        
 		
 		$scope.user = currentUser;
 		$scope.article = article;
+        
+        Notification.article({id: currentUser.employee.identification, article_id: $scope.article.id });
 	
 		// console.log("$scope.user",$scope.user, "$scope.article", $scope.article);
 
