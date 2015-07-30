@@ -18,6 +18,16 @@
 		$scope.licenses_not_user = [];
 		$scope.toapproved =[];
     
+    $scope.seeValidation = function(see){
+      console.log(see);
+      if (see == "true"){
+        return true
+      }
+      else{
+        return false
+      }
+    }
+    
     
 		$scope.hoexAprobador = function(){
 			return $scope.user.employee.hoex_approver != '00000000' &&  $scope.user.employee.hoex_approver != null 
