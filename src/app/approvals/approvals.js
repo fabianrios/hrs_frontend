@@ -98,7 +98,7 @@
 		            }, 5000);
 		        },
 		      	function(data) {
-		        	$scope.alerts.push({type: 'alert', msg: data.data.errors.status[0]});
+		        	$scope.showMessageErrorRails(data);
 		      	}
 			);
 		}	
@@ -203,7 +203,7 @@
 		  	  }, 5000);
 		  },
 		function(data) {
-			$scope.alerts.push({type: 'alert', msg: data.data.errors.status[0]});
+			$scope.showMessageErrorRails(data);
 		});
 	};
 		
@@ -253,7 +253,7 @@
 		  	  }, 5000);
 		  },
 		function(data) {
-			$scope.alerts.push({type: 'alert', msg: data.data.errors.status[0]});
+			$scope.showMessageErrorRails(data);
 		});
 	};
 	
@@ -362,7 +362,7 @@
 			  	  }, 5000);
 			  },
 			function(data) {
-				$scope.alerts.push({type: 'alert', msg: data.data.errors.status[0]});
+				$scope.showMessageErrorRails(data);
 			});
 		};
 		//UPDATE DENIED
@@ -392,7 +392,7 @@
 			  	  }, 5000);
 			  },
 			function(data) {
-				$scope.alerts.push({type: 'alert', msg: data.data.errors.status[0]});
+				$scope.showMessageErrorRails(data);
 			});
 		};
 		//UPDATE DENIED
