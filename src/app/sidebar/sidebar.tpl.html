@@ -11,14 +11,14 @@
 			</div>
 		</div>
 	</li>
-	<li class="results" ng-repeat="employee in employees | filter:searchText" ng-init="activado = favorite( employee )">
+	<li class="results" ng-repeat="employee in employees" ng-init="activado = favorite( employee = ( employee.employee ? employee.employee: employee ) );">
 		<div class="pic">
 			<a ui-sref="main.views.employee_info_lookup({id:employee.identification, c:employee.company.id})"> 
 				<img ng-src="{{employee.image}}">
 			</a>
 		</div>
 		<h6 class="name no-margin capitalize">	
-			<a ng-click="favorites($event, employee);update_favorite(employee);$event.stopPropagation(); activado = !activado" class="favorite">
+			<a ng-click="favorites($event, employee);update_favorite(employee);activado = !activado" class="favorite">
 				<span ng-class="activado ? 'fa fa-star' : 'fa fa-star-o'"></span>
 			</a> 
 			<a ui-sref="main.views.employee_info_lookup({id:employee.identification, c:employee.company.id })" class="capitalize">
