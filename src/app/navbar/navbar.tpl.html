@@ -3,9 +3,9 @@
     <img ng-src="{{user.pic ? user.pic : user.employee.image}}">
   </div>
   <div class="user-buttons">
-    <a ui-sref="main.views.articles()" class="movil-comments">
+    <a ui-sref="main.views.notifications()" class="movil-comments">
       <span class="icon-comment"></span>
-      <i class="number mobile-comment">{{articles_not_mine.length}}</i>
+      <i class="number mobile-comment"  ng-if="notifications.count > 0" ng-bind="notifications.count" ></i>
     </a>
     <a ui-sref="main.views.edit()">
       <span class="icon-cog2"></span>

@@ -38,7 +38,7 @@
 			}
 		});
 
-				
+        $scope.articles_not_mine = Notification.articles( {id: currentUser.employee.identification });
 		//vacaciones pendientes
 		angular.forEach($scope.vac_requirements,function(value,index){
 			if (value.employee.vaca_approver == $scope.user.employee.id_posicion && value.status == "Espera"){

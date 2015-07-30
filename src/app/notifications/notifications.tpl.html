@@ -5,8 +5,8 @@
 		<div class="row">
       <div class="large-12 columns">
         <ul>
-          <li ng-if="articles_not_mine.length > 0">
-            <a ui-sref="main.views.articles()"> Tienes <span ng-bind="articles_not_mine.length"></span> articulos por leer.</a>          
+          <li ng-if="articles_not_mine.count > 0">
+            <a ui-sref="main.views.articles()"> Tienes <span ng-bind="articles_not_mine.count"></span> articulos por leer.</a>          
           </li>
           <li ng-if="only_not_user.length > 0">
             <a ui-sref="main.views.approvals_requirements"> Tienes <span ng-bind="only_not_user.length"></span> solicitudes pendiente por vacaciones.</a>          
