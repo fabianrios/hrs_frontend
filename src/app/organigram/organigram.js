@@ -32,20 +32,20 @@
 		
 		$scope.organigram = organigram.organigram;
 	
-    var m = [10, 20, 10, 20],
+    var m = [10, 200, 10, 20],
         w = screen.width - m[1] - m[3],
         i = 0,
         h = 0,
         root;
     var tree = d3.layout.tree();
     var svg = d3.select("#chart").append("svg");
-        svg.attr("transform","translate(300,0)");
+        svg.attr("transform","translate(0,300)");
         svg.append("g")    
 		var diagonal = d3.svg.diagonal()
 		   .projection (function(d) { return [d.y, d.x];});  
 		   root = $scope.organigram;
 		   root.x0 = h / 2;
-		   root.y0 = 500;
+		   root.y0 = 0;
        console.log(root, root.children.length, w);
         h = root.children.length*45 - m[0] - m[2];
         if (h < 1000){
@@ -73,14 +73,15 @@
 	
 
 	function update(source) {
-	  var duration = d3.event && d3.event.altKey ? 5000 : 500;
+    
+	  var duration = d3.event && d3.event.altKey ? 3000 : 300;
 
 	  // Compute the new tree layout.
 	  var nodes = tree.nodes(root).reverse();
 
 	  // console.log(nodes);
 	  // Normalize for fixed-depth.
-	  nodes.forEach(function(d) { d.y = d.depth * 350; });
+	  nodes.forEach(function(d) { d.y = d.depth * 400; });
 
 	  // Update the nodes…
 	  var node = svg.selectAll("g.node")
@@ -91,7 +92,6 @@
 	      .attr("class", "node")
 	      .attr("transform", function(d) { return "translate(" + source.y0 + "," + source.x0 + ")"; })
 	      .on("click", function(d) { toggle(d); update(d); });
-
 
 	  nodeEnter.append("svg:image")
           .attr("x", function(d) { return d.children || d._children ? -55 : 15; })

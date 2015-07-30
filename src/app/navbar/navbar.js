@@ -19,7 +19,6 @@
 		$scope.toapproved =[];
     
     $scope.seeValidation = function(see){
-      console.log(see);
       if (see == "true"){
         return true
       }
