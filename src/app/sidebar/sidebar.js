@@ -4,7 +4,9 @@
 	angular.module('sidebar', ['employee.service'])
 	.controller('Sidebar.SidebarController', function($scope, $state, $http, Employee, currentUser, HRAPI_CONF){
 		$scope.common = {};
-        $scope.employees = currentUser.favorite_employees || Employee.index();
+        
+        
+            
         $scope.user = currentUser;
         $scope.searchText = '';
 		
@@ -57,7 +59,11 @@
                 $scope.employees = Employee.search( { q: newValue } );
             }
             if( newValue.length <= 3 ){
-                $scope.employees = currentUser.favorite_employees || Employee.index();
+                if(currentUser.favorite_employees.length > 0){
+                    $scope.employees = currentUser.favorite_employees;
+                }else{
+                    $scope.employees = Employee.index();
+                }
             }        
         });
 		
