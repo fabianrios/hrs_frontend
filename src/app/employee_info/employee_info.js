@@ -42,7 +42,7 @@
 		// Mis solicitudes
 		angular.forEach(infos, function(value, key) {
 			// console.log(value.pernr,$scope.user.employee_id);
-			if (value.pernr == $scope.user.employee_id){
+			if (value.pernr == $scope.user.employee.identification){
 				$scope.missolicitudes.push(value);
 			}
 		});
