@@ -234,9 +234,9 @@
 			color: #666;
 		}
 		ul.breadcrumbs{
-			background-color: transparent;
+			background-color: rgba(white,.7);
 			border-color: transparent;	
-			padding: 0;
+			padding: 5px;
 			li{
 				&:before{
 					color: #333;
@@ -1255,7 +1255,7 @@ nav.fixed{
 
 .inline-list.linemenu{	
 	position: relative;
-	top: -10px;
+	top: 10px;
 	float: none;
 	text-align: center;
 	margin: 0 auto;
