@@ -336,6 +336,12 @@
 			$scope.info.$save(function() {
 			   $state.go('main.views.employee_info'); // on success go back to datos_maestros
 			   $scope.alerts.push({type: 'success', msg: "La solicitud para cambiar el campo '"+ $scope.info.dcamp +"' a '"+ $scope.info.ccamp + "' a sido enviada para aprobacion"});
+         window.setTimeout(function() {
+           $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
+             $(this).remove();
+             $rootScope.alerts = [];
+           });
+         }, 5000);
 			   $scope.missolicitudes.push($scope.info);
 			   // reset comparador
 			   $scope.comparador = "";
@@ -351,6 +357,12 @@
 				$scope.missolicitudes.splice(index, 1);
 				$('#elmodal-'+modal).foundation('reveal', 'close');  
 				$scope.alerts.push({type: 'alert', msg: "La solicitud a sido borrada"});
+        window.setTimeout(function() {
+          $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
+            $(this).remove();
+            $rootScope.alerts = [];
+          });
+        }, 5000);
 			});
 		} ///BORRAR
 		

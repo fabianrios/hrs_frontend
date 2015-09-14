@@ -29,7 +29,7 @@
 				}
 			},
 			data: {
-				breadcrumb: "Certificado de vacaciones"
+				breadcrumb: "Carta de vacaciones"
 			}
 		})
 		.state('main.views.certificates_payroll', {
@@ -42,7 +42,7 @@
 				}
 			},
 			data: {
-				breadcrumb: "Certificado de nomina"
+				breadcrumb: "Recibos de nomina"
 			} 
 		})
 		.state('main.views.certificates_income', {

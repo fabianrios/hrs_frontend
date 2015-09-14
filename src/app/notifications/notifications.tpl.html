@@ -1,7 +1,18 @@
 <div class="padding-container firstone">
 	<div>
 		<h3 class="expand-title text-center">Notificaciones</h3>
-		<br /><br />
+		<br />
+    <div class="row">
+      <div class="large-12 columns">
+        <label for="">¿Ajusta la frecuencia de las notificaciones?</label>
+        <select style="max-width:150px;"  ng-model="notificaciones" ng-change="changedValue(notificaciones)">
+            <option value="Semanal">Semanal</option>
+            <option value="Diario">Diario</option>
+            <option value="Mensual">Mensual</option>
+        </select>
+      </div>
+    </div>
+    <br />
 		<div class="row">
       <div class="large-12 columns">
         <ul>

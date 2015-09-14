@@ -12,13 +12,41 @@
 			controller: 'Notifications.ListController'			
 		})
 	})	
-	.controller('Notifications.ListController', function($scope, $http, $state, $filter, currentUser, Notification, articles,vac_requirements, extras_requirements, inhabilities_requirements, licenses_requirements, infos ){
+	.controller('Notifications.ListController', function($scope, $http, $state, $filter, currentUser, Notification, articles,vac_requirements, extras_requirements, inhabilities_requirements, licenses_requirements, infos, Employee, HRAPI_CONF ){
 		
-		var update = new Notification();
-		update.id = currentUser.employee.identification;																
-		update.$update();
+    $scope.user = currentUser;
+    $scope.notificaciones = $scope.user.employee.notifications ? $scope.user.employee.notifications : "Semanal";
+    $scope.employee = $scope.user.employee;
+    
+    
+    $scope.changedValue = function(item){
+      console.log(item, $scope.employee, $scope.employee.notifications);
+      $scope.employee.notifications = item;
+      console.log($scope.employee, $scope.employee.notifications);
+      
+		$http({method: 'PUT', 
+			url: HRAPI_CONF.apiBaseUrl('/employees/')+$scope.employee.id+".json",
+			data: { employee: { notifications: $scope.employee.notifications } }
+		})
+		.success( function( data, status ) {
+			console.log("Se actualizarón las notificaciones a", data);
+			$scope.alerts.push({type: 'success', msg: "Se actualizarón la frecuencia de las notificaciones a " + $scope.employee.notifications});
+      window.setTimeout(function() {
+        $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
+          $(this).remove();
+          $rootScope.alerts = [];
+        });
+      }, 5000);
+		})
+		.error( function( data, status ) {
+			// errorService.failure( data, status, $scope);
+			console.log("error", status, data.errors, $scope);
+		});
+      
+    }
+    
 
-		$scope.user = currentUser;
+    
 		$scope.articles = articles.articles;
 		$scope.articles_not_mine = [];
 		$scope.vac_requirements = vac_requirements;
