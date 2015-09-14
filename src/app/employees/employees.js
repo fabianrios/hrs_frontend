@@ -44,6 +44,12 @@
 				
 				if (aleatorio != 4){
 					$scope.alerts.push({type: 'success', msg: "Se corrio satisfactoriamente la nomina para los empleados seleccionados"});
+          window.setTimeout(function() {
+            $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
+              $(this).remove();
+              $rootScope.alerts = [];
+            });
+          }, 5000);
 				} else{
 					$scope.alerts.push({type: 'warning', msg: "Se corrio satisfactoriamente la nomina para los empleados seleccionados, excepto el 2435"});
 					window.setTimeout(function() {
@@ -70,6 +76,12 @@
 					if (data.code != null){
 						$("#"+id).show();
 						$scope.alerts.push({type: 'success', msg: data.data});
+            window.setTimeout(function() {
+              $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
+                $(this).remove();
+                $rootScope.alerts = [];
+              });
+            }, 5000);
 					}else {
 						console.log("error", status, data, headers);
 						$scope.alerts.push({type: 'alert', msg: data.error});
@@ -82,6 +94,12 @@
 				}).
 				error(function(data, status, headers, config) {
 					$scope.alerts.push({type: 'alert', msg: data.error});
+          window.setTimeout(function() {
+            $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
+              $(this).remove();
+              $rootScope.alerts = [];
+            });
+          }, 5000);
 					console.log("error", status, data, headers);
 				});
 				
@@ -98,6 +116,12 @@
 					if (data.data != null){
 						console.log("Empleado creado", data, status, headers, config);
 						$scope.alerts.push({type: 'success', msg: data.data});
+            window.setTimeout(function() {
+              $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
+                $(this).remove();
+                $rootScope.alerts = [];
+              });
+            }, 5000);
 					}else {
 						console.log("error", status, data, headers);
 						$scope.alerts.push({type: 'alert', msg: data.error});

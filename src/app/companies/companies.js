@@ -83,6 +83,12 @@
 			console.log($scope.company.empresa, $scope.company.usuario, $scope.company.confirmar, $scope.company.password, aprobado);
 			if (typeof $scope.company.empresa != "undefined" && typeof $scope.company.usuario != "undefined" && typeof $scope.company.confirmar != "undefined" && typeof $scope.company.password != "undefined" && typeof $scope.company.nombre != "undefined" && typeof $scope.company.apellido != "undefined" && typeof $scope.company.documento != "undefined" && typeof $scope.company.email != "undefined"){
 				$scope.alerts.push({type: 'success', msg: "la empresa " + $scope.company.empresa + " con el usuario " + $scope.company.usuario + " ha sido creada"});
+        window.setTimeout(function() {
+          $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
+            $(this).remove();
+            $rootScope.alerts = [];
+          });
+        }, 5000);
 			}else{
 				$scope.alerts.push({type: 'alert', msg: "la empresa no ha podido crearse revisa los campos "});
 				window.setTimeout(function() {

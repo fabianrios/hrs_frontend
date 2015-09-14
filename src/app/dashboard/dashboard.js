@@ -474,6 +474,7 @@
 			};
     
 			$scope.labels = ["Días usados", "Días restantes"];
+      $scope.colours = ['#cacaca','#2ED63B'];
   
 			$scope.common = {
 				widgets: widgets.items,

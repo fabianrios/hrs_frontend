@@ -151,6 +151,19 @@
       }
     });
   })
+  .filter('cut', function () {
+    return function (value, max) {
+       if (!value) return '';
+       max = parseInt(max, 10);
+       if (!max) return value;
+       if (value.length <= max) return value;
+       
+       value = value.substr(0, max);
+       //re-trim if we are in the middle of a word
+       value = value.substr(0, Math.min(value.length, value.lastIndexOf(" ")))
+       return value;
+    }
+  })
   .run(function($http, $rootScope, $state, UserInfo, Auth, $window, HRAPI_CONF ){    
 	 
     // #aca no estamos en ningun lado porque es el defaul
@@ -352,7 +365,13 @@
         $rootScope.showMessageErrorRails = function(data){
           angular.forEach( data.errors, function(value, index){
             angular.forEach( value, function( mensaje, id ){
-              $rootScope.alerts.push({type: 'alert', msg: index + ' ' + mensaje });                
+              $rootScope.alerts.push({type: 'alert', msg: index + ' ' + mensaje });
+              window.setTimeout(function() {
+                $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
+                  $(this).remove();
+                  $rootScope.alerts = [];
+                });
+              }, 5000);
             });   
           });
         }

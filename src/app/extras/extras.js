@@ -72,9 +72,21 @@
 				$scope.requerimiento.employee_id = $scope.user.employee.id;
 				$state.go('main.views.extras');
 				$scope.alerts.push({type: 'success', msg: "La hora extra a sido guardada"});
+        window.setTimeout(function() {
+          $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
+            $(this).remove();
+            $rootScope.alerts = [];
+          });
+        }, 5000);
 			}, function(data) {
 				console.log(data);
 				$scope.alerts.push({type: 'alert', msg: data.data.errors.status[0]});
+        window.setTimeout(function() {
+          $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
+            $(this).remove();
+            $rootScope.alerts = [];
+          });
+        }, 5000);
 			});
 		};
 		
@@ -86,6 +98,12 @@
 				$scope.extras.splice(index, 1);
 				$('#myModal-'+modal).foundation('reveal', 'close');
 				$scope.alerts.push({type: 'secondary', msg: "El registro de "+ extra.fecha  + " con "+ extra.hours +" horas a sido borrado"});
+        window.setTimeout(function() {
+          $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
+            $(this).remove();
+            $rootScope.alerts = [];
+          });
+        }, 5000);
 			});			
 		} ///BORRAR
 	
@@ -105,6 +123,12 @@
 			  },
 			function(data) {
 				$scope.alerts.push({type: 'alert', msg: data.data.errors.status[0]});
+        window.setTimeout(function() {
+          $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
+            $(this).remove();
+            $rootScope.alerts = [];
+          });
+        }, 5000);
 			});
 		};
 		
@@ -116,6 +140,12 @@
 				var index = $scope.extras.indexOf(req_info);
 				$scope.extras[index] = newData;
 				$scope.alerts.push({type: 'alert', msg: "El registro de hora extra del "+ req_info.fecha  + " con "+ req_info.hours +" a sido negado"});
+        window.setTimeout(function() {
+          $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
+            $(this).remove();
+            $rootScope.alerts = [];
+          });
+        }, 5000);
 			});
 		};
 		
