@@ -132,7 +132,7 @@
 						</h5>
 						<div class="contenido">
 							<ul class="employees">
-								<li ng-repeat="empleado in employees | filter:birthShow">
+								<li ng-repeat="empleado in employees | filter:birthShow | orderBy: sortNacimiento : true">
 									<div class="foto">
 										<a ui-sref="main.views.employee_info_lookup({id:empleado.identification, c:empleado.company.id})">
 											<img alt="profile" ng-src="{{empleado.image}}">
@@ -170,7 +170,7 @@
 						</h5>
 						<div class="contenido">
 							<ul class="employees">
-								<li ng-repeat="empleado in employees | filter:laborShow">
+								<li ng-repeat="empleado in employees | filter:laborShow | orderBy: sortEmpleado : true">
 									<div class="foto">
 										<a ui-sref="main.views.employee_info_lookup({id:empleado.identification, c:empleado.company.id})">
 											<img alt="profile" ng-src="{{empleado.image}}">
@@ -212,7 +212,7 @@
 								<div class="cuantos">
 									<h3><span class="icon-comment"></span>{{articles_not_mine.length}}</h3>
 								</div>
-								<li ng-repeat="articulos in articles_not_mine | orderBy: '-ini' | limitTo: 10">
+								<li ng-repeat="articulos in articles_not_mine | orderBy: 'created_at' : true | limitTo: 10">
 									<a ui-sref="main.views.articleDetail({id:articulos.id})">{{articulos.titulo}}</a>
 									<p class="smalltxt no-margin">
 										{{articulos.ini | limitTo:100}}
