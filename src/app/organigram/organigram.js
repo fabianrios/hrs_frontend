@@ -1,6 +1,6 @@
 (function(){
   'use strict';
-  
+  google.load('visualization', '1', {'packages' : ['orgchart']});
   angular.module('organigram', ['organigram.service'])
 
      // Add http interceptors that allows us to handle http request before it sends and http response parsing
@@ -19,15 +19,29 @@
     })
 	
 	
-    .controller('Organigram.MainController', function($scope, $http, organigram, currentUser, HRAPI_CONF, $stateParams){
+    .controller('Organigram.MainController', function($scope, $http, organigram, currentUser, HRAPI_CONF, $stateParams, google){
 		
 		
 				
 		$scope.mostrar = function(e) {
 			$(e.currentTarget).parent().children("org-info").slideToggle();
-			console.log($(e.currentTarget).parent());
+		  // console.log($(e.currentTarget).parent());
 		}
-		
+    $scope.data = new google.visualization.DataTable();
+    $scope.data.addColumn('string', 'Name');
+    $scope.data.addColumn('string', 'Manager');
+
+    $scope.data.addRows(organigram.employees);
+    
+    
+     $scope.draw = function() {
+       var el = document.getElementById('orgchart');
+       var orgChart = new google.visualization.OrgChart(el);
+       orgChart.draw($scope.data, {allowHtml:true, allowCollapse: true});
+     };
+     
+     $scope.draw();
+  
 		$scope.user = currentUser;
 		
 		$scope.organigram = organigram.organigram;

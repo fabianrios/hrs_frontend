@@ -10,7 +10,10 @@
 	  'show': { method: 'GET', isArray: false }
     });
 
-  });
+  })
+  .factory('google', function(){
+    return google;
+  })
 }());
 
 

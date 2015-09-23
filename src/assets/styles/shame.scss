@@ -148,3 +148,14 @@
 		min-width: 200px;
 	}
 }
+
+
+table.google-visualization-orgchart-table{
+  width: auto;
+  tr:nth-of-type(even){
+    background: none;
+  }
+  .google-visualization-orgchart-node{
+    min-width: 100px;
+  }
+}

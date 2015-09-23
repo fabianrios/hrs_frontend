@@ -60,7 +60,6 @@
     'approvals',
     'notifications'
   ])
-
   .config(function($stateProvider, $httpProvider, $urlRouterProvider, HRAPI_CONF, AuthProvider, AuthInterceptProvider, ngS3Config){
 
 	
