@@ -208,16 +208,20 @@
 							</div>
 						</h5>
 						<div class="contenido">
+  						<div class="cuantos">
+  							<h3><span class="icon-comment"></span>{{articles_not_mine.length}}</h3>
+  						</div>
 							<ul class="employees">
-								<div class="cuantos">
-									<h3><span class="icon-comment"></span>{{articles_not_mine.length}}</h3>
-								</div>
 								<li ng-repeat="articulos in articles_not_mine | orderBy: 'created_at' : true | limitTo: 10">
-									<a ui-sref="main.views.articleDetail({id:articulos.id})">{{articulos.titulo}}</a>
+									<a ui-sref="main.views.articleDetail({id:articulos.id})" ng-class="articulos.category">{{articulos.titulo}}</a>
 									<p class="smalltxt no-margin">
 										{{articulos.ini | limitTo:100}}
 									</p>
 									<div class="text-right">
+										<span class="graytxt">
+											<i class="fa fa-user"></i>
+											<span class="small">{{articulos.employee.short_name | cut:30}}</span>
+										</span>
 										<span class="graytxt">
 											<i class="fa fa-calendar-o"></i>
 											<span class="small">{{articulos.created_at | date:"d 'de' MMMM" }}</span>
