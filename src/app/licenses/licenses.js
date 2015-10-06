@@ -115,7 +115,7 @@
 		$scope.deleteLicense = function(license,modal) { 
 			license.$delete(function() {
 				var index = $scope.licenses.indexOf(license);
-				// console.log(inhability,index,modal);
+        console.log(license,index,modal);
 				$scope.licenses.splice(index, 1);
 				$('#myModal-'+modal).foundation('reveal', 'close');
 				$scope.alerts.push({type: 'secondary', msg: "El permiso del "+ license.start_date  + " al "+ license.end_date +" a sido borrado"});

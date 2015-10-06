@@ -11,7 +11,8 @@
       'show': { method: 'GET', isArray: false },
       'update': { method: 'PUT', params: {id: '@id'} },
       'destroy': { method: 'DELETE' },
-      'search': { url:  HRAPI_CONF.apiBaseUrl('/employees/search') ,method: 'GET', isArray: true, params: { q: '@q'} }
+      'search': { url:  HRAPI_CONF.apiBaseUrl('/employees/search') ,method: 'GET', isArray: true, params: { q: '@q'} },
+			'dams': { url:  HRAPI_CONF.apiBaseUrl('/employees/dams') ,method: 'GET', isArray: false, params: { q: '@q'} }
     });
 	
   });

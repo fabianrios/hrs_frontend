@@ -36,7 +36,6 @@
               <th>STATUS</th>
               <th class="aprobar">APROBAR</th>
               <th class="negar">NEGAR</th>
-              <th class="borrar">BORRAR</th>
             </tr>
           </thead>
           <tbody>
@@ -68,7 +67,7 @@
                   <a href="" ng-click="deniedVacation(req_info)" class="acciones negar"></a>
                 </div>
               </td>
-              <td>
+              <!-- <td>
                 <a ng-if="req_info.status == 'Espera'" href="" class="acciones borrar" ng-click="openModal($index,'elmodal')"></a>
                 <div id="elmodal-{{$index}}" class="reveal-modal tiny" data-reveal>
                   <br />
@@ -78,7 +77,7 @@
                   </div>
                   <a class="close-reveal-modal">&#215;</a>
                 </div>
-              </td>
+              </td> -->
             </tr>
           </tbody>
         </table>

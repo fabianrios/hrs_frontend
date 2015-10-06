@@ -33,6 +33,36 @@
           </li>  
         </ul>
       </div>
-		</div>				
+		</div>
+    <h3  class="expand-title text-center">Historico</h3>
+    <div class="row">
+      <div class="large-12 columns">
+        <ul class="no-bullet">
+          <li ng-repeat="extras in extras_history">
+							<h6>{{ extras.fecha | date:'short' }}</h6> <span>{{extras.hours}}</span> <span>{{extras.status}}</span> 
+          </li>
+        </ul>
+        <ul class="no-bullet">
+          <li ng-repeat="extras in vac_history">
+            {{extra}}
+          </li>
+        </ul>
+        <ul class="no-bullet">
+          <li ng-repeat="extras in dm_history">
+            {{extra}}
+          </li>
+        </ul>
+        <ul class="no-bullet">
+          <li ng-repeat="extras in inhabilities_history">
+            {{extra}}
+          </li>
+        </ul>
+        <ul class="no-bullet">
+          <li ng-repeat="extras in licenses_history">
+            {{extra}}
+          </li>
+        </ul>
+      </div>
+    </div>
 	</div>
 </div>		

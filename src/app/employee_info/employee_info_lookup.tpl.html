@@ -142,7 +142,7 @@
 						<li ng-repeat="data in employee_info.datos_beneficiarios" ng-init="data.ccamp=stringTo(data.tcamp, data.ccamp)" ng-class="privateValidation(data.spriv)">
 							<div ng-switch="data.ncamp">
 								<div ng-switch-default>
-									<label for="{{data.ncamp}}">{{data.dcamp}}</label>
+									<label for="{{data.ncamp}}" data-value="{{data.ccamp}}">{{data.dcamp}}</label>
 									<input disabled="{{data.sedit == 'X' ? true : false}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" ng-model="data.ccamp"/>
 								</div>
 								<div ng-switch-when="P0831-FAM02">
@@ -198,7 +198,7 @@
 					<hr class="m0" />
 					<ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-5" ui-sortable="sortableOptions" ng-model="employee_info.datos_bancarios">
 						<li ng-repeat="data in employee_info.datos_bancarios">
-							<div ng-switch="data.ncamp" ng-init="data.ccamp=stringTo(data.tcamp, data.ccamp)"  ng-class="privateValidation(data.spriv)">
+							<div ng-switch="data.ncamp" ng-init="data.ccamp=stringTo(data.tcamp, data.ccamp)"  ng-class="privateValidation(data.spriv)" data-priv="{{data.spriv}}">
 								<div ng-switch-default>
 									<label for="{{data.ncamp}}">{{data.dcamp}}</label>
 									<input ng-disabled="{{data.sedit == 'X' ? false : true}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" ng-model="data.ccamp"/>
@@ -223,6 +223,30 @@
 						</li>
 					</ul>
 				</div>
+        
+				<div class="information datos_impuestos">
+					<h4><span class="fa fa-child"></span> Datos de impuestos</h4>
+					<hr class="m0" />
+					<ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-5" ui-sortable="sortableOptions" ng-model="employee_info.datos_seguridadsocial">
+						<li ng-repeat="data in employee_info.datos_impuestos" ng-init="data.ccamp=stringTo(data.tcamp, data.ccamp)">
+							<label for="{{data.ncamp}}">{{data.dcamp}}</label>
+							<input ng-disabled="!edit_field(data.sedit)" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" ng-model="data.ccamp"/>
+						</li>
+					</ul>
+				</div>
+        
+				<div class="information datos_seguridadsocial">
+					<h4><span class="fa fa-child"></span> Datos de Seguridad</h4>
+					<hr class="m0" />
+          {{employee_info.datos_seguridadsocial}}
+					<ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-5" ui-sortable="sortableOptions" ng-model="employee_info.datos_impuestos">
+						<li ng-repeat="data in employee_info.datos_seguridadsocial" ng-init="data.ccamp=stringTo(data.tcamp, data.ccamp)">
+							<label for="{{data.ncamp}}">{{data.dcamp}}</label>
+							<input ng-disabled="!edit_field(data.sedit)" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" ng-model="data.ccamp"/>
+						</li>
+					</ul>
+				</div>
+        
 			</div>
 		</div>
 	</div>

@@ -59,7 +59,7 @@
 			} 
 		})
 	})
-	.controller('Certificates.MainController', function($scope, $http, employee, currentUser, $state, $filter, HRAPI_CONF){
+	.controller('Certificates.MainController', function($rootScope, $scope, $http, employee, currentUser, $state, $filter, HRAPI_CONF){
 		
 
 		// $scope.pdfUrl = "http://hdvbackend.hrinteractive.co/carta_laboral-"+currentUser.company_id+"/cartas_lab_"+currentUser.employee_id+"_"+currentUser.company_id+".pdf";
@@ -73,7 +73,18 @@
 		$scope.cargarPdf = function(){
 			var carta = $filter('filter')($scope.user.files, {op:'clabr'})
 			console.log(carta[0]);
-			$scope.pdfUrl = HRAPI_CONF.baseUrl(carta[0].file.url);
+      if (typeof carta[0] !== "undefined"){
+        $scope.pdfUrl = HRAPI_CONF.baseUrl(carta[0].file.url);
+      }else{
+        $rootScope.alerts.push({type: 'warning', msg: "no hay un pdf asociado al usuario"});
+        window.setTimeout(function() {
+          $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
+            $(this).remove(); 
+            $rootScope.alerts = [];
+          });
+        }, 5000);
+      }
+			
 		}
 
 		$scope.cargarPdf();
@@ -101,7 +112,7 @@
 		$scope.employee = employee;
 
 	})
-	.controller('Certificates.Vacaciones.MainController', function($scope, $http, employee, currentUser, $state, $filter, HRAPI_CONF){
+	.controller('Certificates.Vacaciones.MainController', function($rootScope, $scope, $http, employee, currentUser, $state, $filter, HRAPI_CONF){
 		
 		$scope.pdfUrl = '';
 		$scope.user = currentUser;
@@ -111,7 +122,17 @@
 		$scope.cargarPdfs = function(){
 			$scope.vacations = $filter('filter')($scope.user.files, {op:'vctns'})
 			console.log($scope.vacations);
-			$scope.pdfUrl = HRAPI_CONF.baseUrl($scope.vacations[0].file.url);
+      if (typeof $scope.vacations[0] !== "undefined"){
+        $scope.pdfUrl = HRAPI_CONF.baseUrl(vacations[0].file.url);
+      }else{
+        $rootScope.alerts.push({type: 'warning', msg: "no hay un pdf asociado al usuario"});
+        window.setTimeout(function() {
+          $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
+            $(this).remove(); 
+            $rootScope.alerts = [];
+          });
+        }, 5000);
+      }
 		}
 
 		$scope.cargarPdfs();
@@ -152,7 +173,7 @@
 		
 
 	})
-	.controller('Certificates.Nomina.MainController', function($scope, $http, employee, currentUser, $state, $filter, HRAPI_CONF){
+	.controller('Certificates.Nomina.MainController', function($rootScope, $scope, $http, employee, currentUser, $state, $filter, HRAPI_CONF){
 		
 		$scope.pdfUrl = '';
 		$scope.user = currentUser;
@@ -167,7 +188,18 @@
 		$scope.cargarPdfs = function(){
 			$scope.volpago = $filter('filter')($scope.user.files, {op:'volpg'})
 			console.log($scope.volpago);
-			$scope.pdfUrl = HRAPI_CONF.baseUrl($scope.volpago[0].file.url);
+      if (typeof $scope.volpago[0] !== "undefined"){
+        $scope.pdfUrl = HRAPI_CONF.baseUrl($scope.volpago[0].file.url);
+      }else{
+        $rootScope.alerts.push({type: 'warning', msg: "no hay un pdf asociado al usuario"});
+        window.setTimeout(function() {
+          $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
+            $(this).remove(); 
+            $rootScope.alerts = [];
+          });
+        }, 5000);
+      }
+			
 		}
 
 		$scope.cargarPdfs();
@@ -176,9 +208,19 @@
 			$scope.pdfUrl = '';
 			$scope.selectedVol = volante;
 			// $scope.pdfUrl = "http://hdvbackend.hrinteractive.co/volantes_p-"+currentUser.company_id+"/"+currentUser.employee_id+"/Nomina_"+$scope.selectedVol.begda+"_"+$scope.selectedVol.endda+"_"+currentUser.employee_id+"_"+currentUser.company_id+".pdf";
-			$scope.pdfUrl = HRAPI_CONF.baseUrl(volante.file.url);
-			$('#pdf-modal').foundation('reveal','open');
-			console.log($scope.pdfUrl);
+      if (typeof $scope.volante !== "undefined"){
+        $scope.pdfUrl = HRAPI_CONF.baseUrl($scope.volante.file.url);
+  			$('#pdf-modal').foundation('reveal','open');
+  			console.log($scope.pdfUrl);
+      }else{
+        $rootScope.alerts.push({type: 'warning', msg: "no hay un pdf asociado al usuario"});
+        window.setTimeout(function() {
+          $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
+            $(this).remove(); 
+            $rootScope.alerts = [];
+          });
+        }, 5000);
+      }
 		}
 
 		$scope.getNavStyle = function(scroll) {
@@ -202,7 +244,7 @@
 	
 
 	})
-	.controller('Certificates.Income.MainController', function($scope, $http, employee, currentUser, $state, $filter, HRAPI_CONF){
+	.controller('Certificates.Income.MainController', function($rootScope, $scope, $http, employee, currentUser, $state, $filter, HRAPI_CONF){
 		
 		// $scope.pdfUrl = "http://hdvbackend.hrinteractive.co/ingyret-"+currentUser.company_id+"/ingyret_"+currentUser.employee_id+"_"+currentUser.company_id+".pdf";
 		$scope.user = currentUser;
@@ -214,7 +256,17 @@
 		$scope.cargarPdf = function(){
 			var pdf = $filter('filter')($scope.user.files, {op:'inret'})
 			console.log(pdf[0]);
-			$scope.pdfUrl = HRAPI_CONF.baseUrl(pdf[0].file.url);
+      if (typeof pdf[0] !== "undefined"){
+        $scope.pdfUrl = HRAPI_CONF.baseUrl(pdf[0].file.url);
+      }else{
+        $rootScope.alerts.push({type: 'warning', msg: "no hay un pdf asociado al usuario"});
+        window.setTimeout(function() {
+          $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
+            $(this).remove(); 
+            $rootScope.alerts = [];
+          });
+        }, 5000);
+      }
 		}
 
 		$scope.cargarPdf();

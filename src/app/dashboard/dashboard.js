@@ -341,13 +341,13 @@
     
     $scope.sortEmpleado = function(empleado) {
         var date = new Date(empleado.fecha_ingreso).getDate().toString();
-        console.log(parseInt(date));
+        // console.log(parseInt(date));
         return parseInt(date);
     };
     
     $scope.sortNacimiento = function(empleado) {
         var date = new Date(empleado.fecha_nac).getDate().toString();
-        console.log(parseInt(date));
+        // console.log(parseInt(date));
         return parseInt(date);
     };
 		

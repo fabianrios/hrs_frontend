@@ -31,11 +31,13 @@
 		})
 	})
 	
-	.controller('Employee_info.ListController', function($scope, $state, $rootScope,$http, $filter, currentUser, Info, infos){
+	.controller('Employee_info.ListController', function($scope, $state, $rootScope,$http, $filter, currentUser, Info, infos, Employee){
 		
 		$scope.user = currentUser;
 		$scope.vacation = $scope.user.vacation;
 		$rootScope.employee_info = $scope.user.employee_info;
+		
+		$scope.approver = Employee.dams({ q: $scope.user.employee.dams_approver });
 
 		$scope.missolicitudes = [];
     
@@ -90,13 +92,13 @@
 		
 		
 		$scope.trade_date = function(data){
-			console.log("recibido:",data);
+			// console.log("recibido:",data);
 			data = new Date(data);
-			console.log("vuelto fecha:",data);
+			// console.log("vuelto fecha:",data);
 			data = $filter('date')(data, 'yyyy-MM-dd', '-0500');
 			// data = data.setMinutes(data.getMinutes() - data.getTimezoneOffset());
 			// data.toJSON().slice(0, 10);
-			console.log("formateado:",data);
+			// console.log("formateado:",data);
 			return data
 		};
 		
@@ -314,8 +316,8 @@
 			
 
      		// [["pernr", 10328], ["subty", "11"], ["ncamp", "P0021-FAVOR"], ["dcamp", "Nombre"], ["ccamp", "OSCAR"], ["boss", "0"], ["approved", "f"], ["employee_id", 69], ["created_at", "2015-07-25 13:41:08.313570"], ["updated_at", "2015-07-25 13:41:08.313570"]]
-    
-
+   
+			
 			$scope.info = new Info();
 			
 			
@@ -369,14 +371,26 @@
 		
 	})
 	
-	.controller('Employee_info.LookupController', function ($scope, info, $rootScope, employee, $http, currentUser) {
+	.controller('Employee_info.LookupController', function ($state, $scope, info, $rootScope, employee, $http, currentUser) {
 		
     $scope.user = currentUser;
 		$rootScope.employee = employee;
 		$rootScope.employee_info = info;
+		
+		if (typeof $rootScope.employee_info.error !== "undefined"){
+			
+			$rootScope.alerts.push({type: 'alert', msg: $rootScope.employee_info.error});
+      window.setTimeout(function() {
+        $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
+          $(this).remove();
+          $rootScope.alerts = [];
+        });
+      }, 5000);
+		}
+		
+		
     
     $scope.privateValidation = function(priv){
-      console.log(priv, $scope.user.employee.see_all_dm)
       if (priv == "X" && $scope.user.employee.see_all_dm != "true"){
         return "hide"
       }

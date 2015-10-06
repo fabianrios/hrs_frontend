@@ -57,7 +57,12 @@
 		$scope.extras_not_user = [];
 		$scope.inhabilities_not_user = [];
 		$scope.licenses_not_user = [];
-		
+    $scope.extras_history = [];
+		$scope.vac_history = [];
+		$scope.dm_history = [];
+		$scope.inhabilities_history = [];
+		$scope.licenses_history = [];
+    
 		// sacar todos los articulos publicados que NO son mios
 		angular.forEach($scope.articles, function(value, key) {
 			var i = $scope.articles.indexOf(value);
@@ -66,18 +71,22 @@
 			}
 		});
 
-        $scope.articles_not_mine = Notification.articles( {id: currentUser.employee.identification });
+		$scope.articles_not_mine = Notification.articles( {id: currentUser.employee.identification });
 		//vacaciones pendientes
 		angular.forEach($scope.vac_requirements,function(value,index){
 			if (value.employee.vaca_approver == $scope.user.employee.id_posicion && value.status == "Espera"){
 				$scope.only_not_user.push(value);
+			}else if (value.employee.vaca_approver == $scope.user.employee.id_posicion && value.status != "Espera"){
+			  $scope.vac_history.push(value);
 			}
 		});
 		
 		//extras pendientes
 		angular.forEach($scope.extras_requirements,function(value,index){			
-			if (value.employee.hoex_approver == $scope.user.employee.id_posicion && value.status == "Espera"){				
+			if (value.employee.hoex_approver == $scope.user.employee.id_posicion && value.status == "Espera"){
 				$scope.extras_not_user.push(value);
+			}else if (value.employee.hoex_approver == $scope.user.employee.id_posicion && value.status != "Espera"){
+			  $scope.extras_history.push(value);
 			}
 		});
     
@@ -85,6 +94,8 @@
 		angular.forEach(infos, function(value, key) {
 			if (value.employee.dams_approver == $scope.user.employee.id_posicion && value.status == "Espera"){
 				$scope.toapproved.push(value);
+			}else if (value.employee.dams_approver == $scope.user.employee.id_posicion && value.status != "Espera") {
+				$scope.dm_history.push(value);
 			}
 		});
 		
@@ -92,6 +103,8 @@
 		angular.forEach($scope.inhabilities_requirements,function(value,index){
 			if (value.employee.inca_approver == $scope.user.employee.id_posicion && value.status == "Espera"){
 				$scope.inhabilities_not_user.push(value);
+			}else if (value.employee.inca_approver == $scope.user.employee.id_posicion && value.status != "Espera"){
+				$scope.inhabilities_history.push(value);
 			}
 		});
 		
@@ -99,6 +112,8 @@
 		angular.forEach($scope.licenses_requirements,function(value,index){
 			if (value.employee.perm_approver == $scope.user.employee.id_posicion && value.status == "Espera"){
 				$scope.licenses_not_user.push(value);
+			}else if (value.employee.perm_approver == $scope.user.employee.id_posicion && value.status != "Espera"){
+				$scope.licenses_history.push(value);
 			}
 		});
 
