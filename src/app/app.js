@@ -43,6 +43,7 @@
     'expandbanner',
     'companies',
     'vacations',
+		'service_vacations',
     'articles',
     'employee_info',
     'sessions',
