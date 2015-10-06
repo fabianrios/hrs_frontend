@@ -47,8 +47,16 @@
 		});
 		
 			$scope.loadImage = function( file ){
-			archivo = file;
-		}
+			console.log(value.idactv);
+			// if (value.idactv == "VACA"){
+			// 	$scope.vac_options.push(value);
+			// }
+		});
+		
+		
+		//  	   	$scope.loadImage = function( file ){
+		// 	archivo = file;
+		// }
 
 		//CREAR
 		$scope.putRequest = function() {
