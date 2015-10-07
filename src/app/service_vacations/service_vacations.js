@@ -7,7 +7,7 @@
 	.config(function($stateProvider){
 		$stateProvider
 		.state('main.views.service_vacations', {
-			url: '/vacations',
+			url: '/service_vacations',
 			templateUrl: 'app/service_vacations/service_vacations.tpl.html',
 			controller: 'Vacations.ListController'
 		})
