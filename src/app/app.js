@@ -161,7 +161,7 @@
        value = value.substr(0, max);
        //re-trim if we are in the middle of a word
        value = value.substr(0, Math.min(value.length, value.lastIndexOf(" ")))
-       return value;
+       return value.toLowerCase();
     }
   })
   .run(function($http, $rootScope, $state, UserInfo, Auth, $window, HRAPI_CONF ){    

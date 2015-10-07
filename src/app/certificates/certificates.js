@@ -123,7 +123,7 @@
 			$scope.vacations = $filter('filter')($scope.user.files, {op:'vctns'})
 			console.log($scope.vacations);
       if (typeof $scope.vacations[0] !== "undefined"){
-        $scope.pdfUrl = HRAPI_CONF.baseUrl(vacations[0].file.url);
+        $scope.pdfUrl = HRAPI_CONF.baseUrl($scope.vacations[0].file.url);
       }else{
         $rootScope.alerts.push({type: 'warning', msg: "no hay un pdf asociado al usuario"});
         window.setTimeout(function() {
@@ -141,7 +141,7 @@
 			$scope.pdfUrl = '';
 			$scope.selectedVac = vacacion;
 			// $scope.pdfUrl = "http://hdvbackend.hrinteractive.co/vacations-"+currentUser.company_id+"/"+currentUser.employee_id+"/Vac_"+$scope.selectedVac.begda+"_"+$scope.selectedVac.endda+"_"+currentUser.employee_id+"_"+currentUser.company_id+".pdf";
-			$scope.pdfUrl = HRAPI_CONF.baseUrl(vacacion.file.url);
+			$scope.pdfUrl = HRAPI_CONF.baseUrl($scope.selectedVac.file.url);
 			$('#pdf-modal').foundation('reveal','open');
 		}
 		
@@ -208,8 +208,8 @@
 			$scope.pdfUrl = '';
 			$scope.selectedVol = volante;
 			// $scope.pdfUrl = "http://hdvbackend.hrinteractive.co/volantes_p-"+currentUser.company_id+"/"+currentUser.employee_id+"/Nomina_"+$scope.selectedVol.begda+"_"+$scope.selectedVol.endda+"_"+currentUser.employee_id+"_"+currentUser.company_id+".pdf";
-      if (typeof $scope.volante !== "undefined"){
-        $scope.pdfUrl = HRAPI_CONF.baseUrl($scope.volante.file.url);
+      if (typeof $scope.selectedVol !== "undefined"){
+        $scope.pdfUrl = HRAPI_CONF.baseUrl($scope.selectedVol.file.url);
   			$('#pdf-modal').foundation('reveal','open');
   			console.log($scope.pdfUrl);
       }else{
