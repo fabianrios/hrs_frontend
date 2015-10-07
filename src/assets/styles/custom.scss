@@ -1018,6 +1018,9 @@ span{
 	margin: 0 !important;
 	max-height: 360px;
 	overflow: auto;
+	&.publicaciones{
+		max-height: 330px;
+	}
 	li{
 		padding: 5px 0;
 		margin: 5px 0;

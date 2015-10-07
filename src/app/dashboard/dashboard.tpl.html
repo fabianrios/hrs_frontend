@@ -211,7 +211,7 @@
   						<div class="cuantos">
   							<h3><span class="icon-comment"></span>{{articles_not_mine.length}}</h3>
   						</div>
-							<ul class="employees">
+							<ul class="employees publicaciones">
 								<li ng-repeat="articulos in articles_not_mine | orderBy: 'created_at' : true | limitTo: 10">
 									<a ui-sref="main.views.articleDetail({id:articulos.id})" ng-class="articulos.category">{{articulos.titulo}}</a>
 									<p class="smalltxt no-margin">
