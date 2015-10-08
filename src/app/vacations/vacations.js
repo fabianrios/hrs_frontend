@@ -21,7 +21,7 @@
 		})
 	})
 	
-	.controller('Vacations.ListController', function($scope, $http, $state, vacations, Vacation_requirement, vac_requirements, currentUser, Upload, HRAPI_CONF){
+	.controller('Vacations.ListController', function($rootScope, $scope, $http, $state, vacations, Vacation_requirement, vac_requirements, currentUser, Upload, HRAPI_CONF){
 		
 		$scope.user = currentUser;
 		

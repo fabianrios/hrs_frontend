@@ -16,6 +16,7 @@
 		
     $scope.user = currentUser;
     $scope.notificaciones = $scope.user.employee.notifications ? $scope.user.employee.notifications : "Semanal";
+		
     $scope.employee = $scope.user.employee;
     
     
@@ -85,7 +86,7 @@
 		angular.forEach($scope.extras_requirements,function(value,index){			
 			if (value.employee.hoex_approver == $scope.user.employee.id_posicion && value.status == "Espera"){
 				$scope.extras_not_user.push(value);
-			}else if (value.employee.hoex_approver == $scope.user.employee.id_posicion && value.status != "Espera"){
+			}else if (value.employee.id_posicion == $scope.user.employee.id_posicion && value.status != "Espera"){
 			  $scope.extras_history.push(value);
 			}
 		});
@@ -94,7 +95,7 @@
 		angular.forEach(infos, function(value, key) {
 			if (value.employee.dams_approver == $scope.user.employee.id_posicion && value.status == "Espera"){
 				$scope.toapproved.push(value);
-			}else if (value.employee.dams_approver == $scope.user.employee.id_posicion && value.status != "Espera") {
+			}else if (value.employee.id_posicion == $scope.user.employee.id_posicion && value.status != "Espera") {
 				$scope.dm_history.push(value);
 			}
 		});
@@ -103,7 +104,7 @@
 		angular.forEach($scope.inhabilities_requirements,function(value,index){
 			if (value.employee.inca_approver == $scope.user.employee.id_posicion && value.status == "Espera"){
 				$scope.inhabilities_not_user.push(value);
-			}else if (value.employee.inca_approver == $scope.user.employee.id_posicion && value.status != "Espera"){
+			}else if (value.employee.id_posicion == $scope.user.employee.id_posicion && value.status != "Espera"){
 				$scope.inhabilities_history.push(value);
 			}
 		});
@@ -112,7 +113,7 @@
 		angular.forEach($scope.licenses_requirements,function(value,index){
 			if (value.employee.perm_approver == $scope.user.employee.id_posicion && value.status == "Espera"){
 				$scope.licenses_not_user.push(value);
-			}else if (value.employee.perm_approver == $scope.user.employee.id_posicion && value.status != "Espera"){
+			}else if (value.employee.id_posicion == $scope.user.employee.id_posicion && value.status != "Espera"){
 				$scope.licenses_history.push(value);
 			}
 		});

@@ -34,12 +34,13 @@
         </ul>
       </div>
 		</div>
-    <h3  class="expand-title text-center">Historico</h3>
+    <h3  class="expand-title text-center">Histórico</h3>
     <div class="row">
       <div class="large-12 columns">
         <ul class="no-bullet">
           <li ng-repeat="extras in extras_history">
 							<h6>{{ extras.fecha | date:'short' }}</h6> <span>{{extras.hours}}</span> <span>{{extras.status}}</span> 
+              <h3>{{ extras.employee.short_name }}</h3>
           </li>
         </ul>
         <ul class="no-bullet">
