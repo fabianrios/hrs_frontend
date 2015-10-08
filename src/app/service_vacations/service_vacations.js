@@ -19,6 +19,7 @@
 		$scope.only_not_user = [];
 		$scope.tipos = $scope.user.type.tipos;
 		$scope.vac_options = [];
+		$scope.vac_requirements = [];
 		$scope.urlImage = '';
 		var archivo = null;
 
@@ -40,14 +41,12 @@
 
 		
 		angular.forEach($scope.tipos,function(value,index){
-			console.log(value.idactv);
-			// if (value.idactv == "VACA"){
-			// 	$scope.vac_options.push(value);
-			// }
+			if (value.idactv == "VCCP"){
+				$scope.vac_options.push(value);
+			}
 		});
 		
-		
- 	   	$scope.loadImage = function( file ){
+			$scope.loadImage = function( file ){
 			archivo = file;
 		}
 
@@ -55,21 +54,21 @@
 		$scope.putRequest = function() {
 			Upload.upload({ 
 	           		method: 'POST', 
-	                url: HRAPI_CONF.apiBaseUrl('/vacation_requirements.json'), 
+	                url: HRAPI_CONF.apiBaseUrl('/service_vacations.json'), 
 	                fields: $scope.requerimiento, 
 	                file: archivo 
 	            }).progress(function (evt) { 
-	                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total); 	                
+	                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
 	            }).success(function (data, status, headers, config) { 
 	            	var a = moment(data.end_date);
 	            	var b = moment(data.start_date);
 	            	data.dias = a.diff(b,'days');
 	            	$scope.vac_requirements.push(data);
-					$scope.requerimiento = new Vacation_requirement();
+					$scope.requerimiento = new Service_Vacation_requirement();
 					$scope.requerimiento.status = "Espera";
 					$scope.requerimiento.employee_id = $scope.user.employee.id;
-					$state.go('main.views.vacations');
-					$scope.alerts.push({type: 'success', msg: "La vacación a sido guardada"});
+					$state.go('main.views.service_vacations');
+					$scope.alerts.push({type: 'success', msg: "La vacación compensada a sido guardada"});
           window.setTimeout(function() {
             $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
               $(this).remove();

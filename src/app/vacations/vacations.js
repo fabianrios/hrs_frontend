@@ -21,7 +21,7 @@
 		})
 	})
 	
-	.controller('Vacations.ListController', function($rootScope, $scope, $http, $state, vacations, Vacation_requirement, vac_requirements, currentUser, Upload, HRAPI_CONF){
+	.controller('Vacations.ListController', function($scope, $http, $state, vacations, Vacation_requirement, vac_requirements, currentUser, Upload, HRAPI_CONF){
 		
 		// $scope.user = currentUser;
 		
@@ -86,19 +86,6 @@
 
 		//CREAR
 		$scope.putRequest = function() { //create a new vacation. Issues a POST to /api/vacations
-			// $scope.requerimiento.$save(function(newData) {
-			// 	$scope.vac_requirements.push(newData);
-			// 	console.log(newData,$scope.vac_requirements);
-			// 	$scope.requerimiento = new Vacation_requirement();
-			// 	$scope.requerimiento.status = "Espera";
-			// 	$scope.requerimiento.employee_id = $scope.user.employee.id;
-			// 	$state.go('main.views.vacations');
-			// 	$scope.alerts.push({type: 'success', msg: "La vacación a sido guardada"});
-			// }, function(data) {
-			// 	console.log("error:",data);
-			// 	console.log(data.status,data.data);
-			// 	$scope.alerts.push({type: 'alert', msg: data.data.errors.status[0]});
-			// });		
 			Upload.upload({ 
 	           		method: 'POST', 
 	                url: HRAPI_CONF.apiBaseUrl('/vacation_requirements.json'), 
