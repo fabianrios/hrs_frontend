@@ -95,8 +95,9 @@
 		angular.forEach(infos, function(value, key) {
 			if (value.employee.dams_approver == $scope.user.employee.id_posicion && value.status == "Espera"){
 				$scope.toapproved.push(value);
-			}else if (value.employee.id_posicion == $scope.user.employee.id_posicion && value.status != "Espera") {
+			}else if (value.employee.id_posicion == $scope.user.employee.id_posicion) {
 				$scope.dm_history.push(value);
+				console.log(value);
 			}
 		});
 		

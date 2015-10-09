@@ -43,8 +43,8 @@
     
 		// Mis solicitudes
 		angular.forEach(infos, function(value, key) {
-			// console.log(value.pernr,$scope.user.employee_id);
-			if (value.pernr == $scope.user.employee.identification){
+			// console.log(value,parseInt($scope.user.employee.identification));
+			if (value.employee.identification == parseInt($scope.user.employee.identification)){
 				$scope.missolicitudes.push(value);
 			}
 		});
@@ -288,53 +288,25 @@
 		$scope.sortableOptions = {
 			'placeholder': 'placeholder'
 		};
+		
+		$scope.disabling = "disabled";
 	
-		$scope.cambiarInfo = function(subty, ncamp, dcamp, ccamp, objid, comparador, objps){
-			// var req = {
-			//  method: 'POST',
-			//  // url: 'http://190.242.124.184:8000/sap/bc/zpruebarest?OPERATION=UPDDM',
-			//  url: 'http://127.0.0.1:3000/api/infos',
-			//  headers: {
-			//    'Content-Type': undefined,
-			//    'Access-Control-Allow-Origin': "*",
-			//    'X-CSRF-Token': '139120831238129038129038qsjdsajkfdhsk'
-			//  },
-			//  data: { pernr: $scope.user.employee_id, subty: subty, ncamp: ncamp, ccamp: ccamp, objid: objid, boss: $scope.user.employee.boss},
-			// }
-			// console.log(req);
-			// $http(req).
-			// success(function(data, status, headers, config) {
-			// 	// this callback will be called asynchronously
-			// 	// when the response is available
-			// 	console.log("success, data:",data, status, headers, config);
-			// }).
-			// error(function(data, status, headers, config) {
-			// 	// called asynchronously if an error occurs
-			// 	// or server returns response with an error status.
-			// 	console.log("error, data:",data, status, headers, config);
-			// });
-			
-
-     		// [["pernr", 10328], ["subty", "11"], ["ncamp", "P0021-FAVOR"], ["dcamp", "Nombre"], ["ccamp", "OSCAR"], ["boss", "0"], ["approved", "f"], ["employee_id", 69], ["created_at", "2015-07-25 13:41:08.313570"], ["updated_at", "2015-07-25 13:41:08.313570"]]
-   
+		$scope.cambiarInfo = function(subty, ncamp, dcamp, ccamp, objid, comparador, objps, where){
 			
 			$scope.info = new Info();
-			
-			
+
 			$scope.info.subty = subty;
 			$scope.info.ncamp = ncamp;
 			$scope.info.ccamp = ccamp;
 			$scope.info.dcamp = dcamp;
-			$scope.info.objid = objid;
-			$scope.info.objps = objps;
+			$scope.info.objid = where;
 			$scope.info.pernr = $scope.user.employee_id;
 			$scope.info.employee_id = $scope.user.employee.id;
-			// $scope.info.boss = $scope.user.employee.data_reviewer;
 			$scope.info.boss = $scope.user.employee.dams_approver;
 			$scope.info.approved = false;
 			$scope.info.comparador = $scope.comparador;
 			
-			// console.log($scope.info);
+			console.log($scope.info, where);
 			$scope.info.$save(function() {
 			   $state.go('main.views.employee_info'); // on success go back to datos_maestros
 			   $scope.alerts.push({type: 'success', msg: "La solicitud para cambiar el campo '"+ $scope.info.dcamp +"' a '"+ $scope.info.ccamp + "' a sido enviada para aprobacion"});

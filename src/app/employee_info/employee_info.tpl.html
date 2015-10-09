@@ -88,8 +88,8 @@
 							<div ng-switch="data.lstbx" class="relative" ng-init="data.ccamp=stringTo(data.tcamp, data.ccamp)">
 								<div ng-switch-default >
 									<label data="{{data.pvisu}}" for="{{data.ncamp}}">{{data.dcamp}}</label>
-									<input ng-disabled="!edit_field(data.sedit)" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" ng-model="data.ccamp" />									
-									<a ng-if="edit_field(data.sedit)"  ng-click="cambiarInfo(data.subty, data.ncamp, data.dcamp, data.ccamp, data.objid, data.lstbx, data.objps)" class="button tiny changes"><span class="fa fa-pencil fa-lg"></span></a>
+									<input ng-disabled="!edit_field(data.sedit)" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" ng-model="data.ccamp" class="disabling-{{data.sedit}}" />									
+									<a ng-if="edit_field(data.sedit)" ng-click="cambiarInfo(data.subty, data.ncamp, data.dcamp, data.ccamp, data.objid, data.lstbx, data.objps, 'Datos personales')" class="button tiny changes"><span class="fa fa-pencil fa-lg"></span></a>
 								</div>
 								<div ng-switch-when="IH_TB_T005L">
 									<label data="{{data.pvisu}}" for="{{data.ncamp}}">{{data.dcamp}}</label>
@@ -98,7 +98,7 @@
 											<select ng-disabled="!edit_field(data.sedit)" ng-model="country" ng-class="search_country(data.ccamp)" ng-options="pais.land1 as pais.landx for pais in paises"  ng-change="cambiar(country)"></select>
 										</div>
 										<div class="small-3 columns">
-											<a ng-if="edit_field(data.sedit)"  ng-click="cambiarInfo(data.subty, data.ncamp, data.dcamp, country, data.objid, data.lstbx, data.objps)" class="button tiny"><span class="fa fa-pencil fa-lg"></span></a>
+											<a ng-if="edit_field(data.sedit)"  ng-click="cambiarInfo(data.subty, data.ncamp, data.dcamp, country, data.objid, data.lstbx, data.objps, 'Datos personales')" class="button tiny"><span class="fa fa-pencil fa-lg"></span></a>
 										</div>
 									</div>
 								</div>
@@ -109,7 +109,7 @@
 											<select ng-disabled="!edit_field(data.sedit)" ng-model="states" ng-class="search_estado(data.ccamp)" ng-options="estado.bland as estado.bezei for estado in estados"  ng-change="cambiar_estados(states)"></select>
 										</div>
 										<div class="small-3 columns">
-											<a ng-if="edit_field(data.sedit)"  ng-click="cambiarInfo(data.subty, data.ncamp, data.dcamp, data.ccamp, data.objid, data.lstbx, data.objps)" class="button tiny"><span class="fa fa-pencil fa-lg"></span></a>
+											<a ng-if="edit_field(data.sedit)"  ng-click="cambiarInfo(data.subty, data.ncamp, data.dcamp, data.ccamp, data.objid, data.lstbx, data.objps, 'Datos personales')" class="button tiny"><span class="fa fa-pencil fa-lg"></span></a>
 										</div>
 									</div>
 								</div>
@@ -120,7 +120,7 @@
 											<select ng-disabled="!edit_field(data.sedit)" ng-model="natio" ng-class="search_natio(data.ccamp)" ng-options="pais.land1 as pais.natio for pais in paises"  ng-change="cambiar(natio)"></select>
 										</div>
 										<div class="small-3 columns">
-											<a ng-if="edit_field(data.sedit)"  ng-click="cambiarInfo(data.subty, data.ncamp, data.dcamp, data.ccamp, data.objid, data.lstbx, data.objps)" class="button tiny"><span class="fa fa-pencil fa-lg"></span></a>
+											<a ng-if="edit_field(data.sedit)"  ng-click="cambiarInfo(data.subty, data.ncamp, data.dcamp, data.ccamp, data.objid, data.lstbx, data.objps, 'Datos personales')" class="button tiny"><span class="fa fa-pencil fa-lg"></span></a>
 										</div>
 									</div>
 								</div>
@@ -131,7 +131,7 @@
 											<select ng-disabled="!edit_field(data.sedit)" ng-model="gender" ng-class="search_genero(data.ccamp)" ng-options="genero.label as genero.value for genero in gender_obj"  ng-change="cambiar_genero(gender)"></select>
 										</div>
 										<div class="small-3 columns">
-											<a ng-if="edit_field(data.sedit)"  ng-click="cambiarInfo(data.subty, data.ncamp, data.dcamp, data.ccamp, data.objid, data.lstbx, data.objps)" class="button tiny"><span class="fa fa-pencil fa-lg"></span></a>
+											<a ng-if="edit_field(data.sedit)"  ng-click="cambiarInfo(data.subty, data.ncamp, data.dcamp, data.ccamp, data.objid, data.lstbx, data.objps, 'Datos personales')" class="button tiny"><span class="fa fa-pencil fa-lg"></span></a>
 										</div>
 									</div>
 								</div>
@@ -142,7 +142,7 @@
 											<select ng-disabled="!edit_field(data.sedit)" ng-model="est_civil" ng-class="search_est_civil(data.ccamp)" ng-options="est.label as est.value for est in estado_obj"  ng-change="cambiar_est_civil(est_civil)"></select>
 										</div>
 										<div class="small-3 columns">
-											<a ng-if="edit_field(data.sedit)"  ng-click="cambiarInfo(data.subty, data.ncamp, data.dcamp, data.ccamp, data.objid, data.lstbx, data.objps)" class="button tiny"><span class="fa fa-pencil fa-lg"></span></a>
+											<a ng-if="edit_field(data.sedit)"  ng-click="cambiarInfo(data.subty, data.ncamp, data.dcamp, data.ccamp, data.objid, data.lstbx, data.objps, 'Datos personales')" class="button tiny"><span class="fa fa-pencil fa-lg"></span></a>
 										</div>
 									</div>
 								</div>
@@ -166,7 +166,7 @@
 													<input ng-disabled="!edit_field(data.sedit)" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" ng-model="data.ccamp" >
 												</div>
 												<div class="small-3 columns">
-													<a ng-if="edit_field(data.sedit)"  ng-click="cambiarInfo(data.subty, data.ncamp, data.dcamp, data.ccamp, data.objid, data.lstbx, data.objps)" class="button tiny"><span class="fa fa-pencil fa-lg"></span></a>
+													<a ng-if="edit_field(data.sedit)"  ng-click="cambiarInfo(data.subty, data.ncamp, data.dcamp, data.ccamp, data.objid, data.lstbx, data.objps, 'Datos familiares')" class="button tiny"><span class="fa fa-pencil fa-lg"></span></a>
 												</div>
 											</div>
 										</div>
@@ -335,6 +335,7 @@
 					<tr ng-repeat="solicitud in missolicitudes">
 						<td>
 							<h6>{{ solicitud.dcamp }}</h6>
+							<h6 class="subheader"><span class="label secondary">{{ solicitud.objid }}</span></h6>
 						</td>
 						<td>
 							<h5 class="text-center">{{solicitud.comparador ? solicitud.comparador : solicitud.ccamp}}</h5>
