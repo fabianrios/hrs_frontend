@@ -77,7 +77,7 @@
 		angular.forEach($scope.vac_requirements,function(value,index){
 			if (value.employee.vaca_approver == $scope.user.employee.id_posicion && value.status == "Espera"){
 				$scope.only_not_user.push(value);
-			}else if (value.employee.vaca_approver == $scope.user.employee.id_posicion && value.status != "Espera"){
+			}else if (value.employee.id_posicion == $scope.user.employee.id_posicion && value.status != "Espera"){
 			  $scope.vac_history.push(value);
 			}
 		});
@@ -97,7 +97,6 @@
 				$scope.toapproved.push(value);
 			}else if (value.employee.id_posicion == $scope.user.employee.id_posicion) {
 				$scope.dm_history.push(value);
-				console.log(value);
 			}
 		});
 		

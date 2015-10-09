@@ -54,7 +54,7 @@
 					<h3>Datos maestros</h3>
           <li ng-repeat="solicitud in dm_history">
 						<h6><small class="label radius"> <span class="fa fa-calendar fa-lg"></span> {{ solicitud.created_at | date:'short' }}</small></h6>
-						<h6>Cambio de: <b>{{ solicitud.dcamp }}</b> por <b>{{solicitud.comparador ? solicitud.comparador : solicitud.ccamp}}</b> <span class="{{solicitud.approved}} label secondary">{{ solicitud.approved ? "Aprobado" : "En espera" }}</span> </h6>
+						<h6><span class="label success">{{solicitud.where}}</span> Cambio de: <b>{{ solicitud.dcamp }}</b> por <b>{{solicitud.comparador ? solicitud.comparador : solicitud.ccamp}}</b> <span class="{{solicitud.approved}} label secondary">{{ solicitud.approved ? "Aprobado" : "En espera" }}</span> </h6>
           </li>
         </ul>
         <ul class="no-bullet" ng-if="inhabilities_history.length > 0">

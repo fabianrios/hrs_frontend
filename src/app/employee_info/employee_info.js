@@ -299,14 +299,17 @@
 			$scope.info.ncamp = ncamp;
 			$scope.info.ccamp = ccamp;
 			$scope.info.dcamp = dcamp;
-			$scope.info.objid = where;
+			$scope.info.objid = objid;
+			$scope.info.objps = objps;
 			$scope.info.pernr = $scope.user.employee_id;
 			$scope.info.employee_id = $scope.user.employee.id;
+			$scope.info.where = where;
+			// $scope.info.boss = $scope.user.employee.data_reviewer;
 			$scope.info.boss = $scope.user.employee.dams_approver;
 			$scope.info.approved = false;
 			$scope.info.comparador = $scope.comparador;
 			
-			console.log($scope.info, where);
+			console.log($scope.info);
 			$scope.info.$save(function() {
 			   $state.go('main.views.employee_info'); // on success go back to datos_maestros
 			   $scope.alerts.push({type: 'success', msg: "La solicitud para cambiar el campo '"+ $scope.info.dcamp +"' a '"+ $scope.info.ccamp + "' a sido enviada para aprobacion"});
