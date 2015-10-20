@@ -72,20 +72,20 @@
 		        	var index = $scope.toapproved.indexOf(solicitud);
 		        	$scope.toapproved[index] = newData;
 		        	$scope.alerts.push({type: 'success', msg: "la información ha sido aprobada"});
-    					window.setTimeout(function() {
-    		                $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
-    		                    $(this).remove();
-    		                });
-    		            }, 5000);
+                    window.setTimeout(function() {
+                        $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
+                            $(this).remove();
+                        });
+                    }, 5000);
 		        },
 		      	function(data) {
-		        	$scope.alerts.push({type: 'alert', msg: data.data.errors.status[0]});
-              window.setTimeout(function() {
-                $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
-                  $(this).remove();
-                  $rootScope.alerts = [];
-                });
-              }, 5000);
+                    $scope.alerts.push({type: 'alert', msg: data.data.errors.status[0]});
+                    window.setTimeout(function() {
+                        $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
+                          $(this).remove();
+                          $rootScope.alerts = [];
+                        });
+                    }, 5000);
 		      	}
 			);
 		}
@@ -115,12 +115,12 @@
 				$scope.toapproved.splice(index, 1);
 				$('#myModal-'+modal).foundation('reveal', 'close');  
 				$scope.alerts.push({type: 'alert', msg: "La información a sido borrada"});
-        window.setTimeout(function() {
-          $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
-            $(this).remove();
-            $rootScope.alerts = [];
-          });
-        }, 5000);
+                window.setTimeout(function() {
+                  $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
+                    $(this).remove();
+                    $rootScope.alerts = [];
+                  });
+                }, 5000);
 			});
 		}
     
