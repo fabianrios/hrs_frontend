@@ -44,7 +44,7 @@
 	    })
 	})
 	
-	.controller('Approvals.ListController', function($scope, $http, $state, currentUser, infos){
+	.controller('Approvals.ListController', function($rootScope, $scope, $http, $state, currentUser, infos){
 		
 		$scope.user = currentUser;
         $scope.toapproved = [];
@@ -71,21 +71,22 @@
 				function(newData) {
 		        	var index = $scope.toapproved.indexOf(solicitud);
 		        	$scope.toapproved[index] = newData;
-		        	$scope.alerts.push({type: 'success', msg: "la información ha sido aprobada"});
-                    window.setTimeout(function() {
-                        $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
-                            $(this).remove();
-                        });
-                    }, 5000);
+		        	$rootScope.alerts.push({type: 'success', msg: "la información ha sido aprobada"});
+    					window.setTimeout(function() {
+    		                $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
+    		                    $(this).remove();
+								$rootScope.alerts = [];
+    		                });
+    		            }, 5000);
 		        },
 		      	function(data) {
-                    $scope.alerts.push({type: 'alert', msg: data.data.errors.status[0]});
-                    window.setTimeout(function() {
+		        	$rootScope.alerts.push({type: 'alert', msg: data.data.errors.status[0]});
+                      window.setTimeout(function() {
                         $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
                           $(this).remove();
                           $rootScope.alerts = [];
                         });
-                    }, 5000);
+                      }, 5000);
 		      	}
 			);
 		}
@@ -96,15 +97,16 @@
 				function(newData) {
 		        	var index = $scope.toapproved.indexOf(solicitud);
 		        	$scope.toapproved[index] = newData;
-		        	$scope.alerts.push({type: 'success', msg: "la información ha sido rechazada"});
+		        	$rootScope.alerts.push({type: 'success', msg: "la información ha sido rechazada"});
     					window.setTimeout(function() {
     		                $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
     		                    $(this).remove();
+														$rootScope.alerts = [];
     		                });
     		            }, 5000);
 		        },
 		      	function(data) {
-		        	$scope.showMessageErrorRails(data);
+		        	$rootScope.showMessageErrorRails(data);
 		      	}
 			);
 		}	
@@ -126,7 +128,7 @@
     
 	})
   
-  .controller('Approvals.Licenses.ListController', function($scope, $http, $state,  currentUser, extras_req, inhabilities_req, HRAPI_CONF){
+  .controller('Approvals.Licenses.ListController', function($rootScope, $scope, $http, $state,  currentUser, extras_req, inhabilities_req, HRAPI_CONF){
 	$scope.user = currentUser;
 	$scope.extras = extras_req;
     $scope.inhabilities = inhabilities_req;
@@ -155,13 +157,13 @@
 	}
 		
 	angular.forEach($scope.extras,function(value,index){
-		if (value.employee.hoex_approver == $scope.user.employee.id_posicion){
+		if (value.employee.hoex_approver == $scope.user.employee.id_posicion && value.status == "Espera"){
 			$scope.only_not_user.push(value);
 		}
 	});
 		
 	angular.forEach($scope.inhabilities,function(value,index){
-		if (value.employee.inca_approver == $scope.user.employee.id_posicion){
+		if (value.employee.inca_approver == $scope.user.employee.id_posicion && value.status == "Espera"){
 			$scope.no_este_usuario.push(value);
 		}
 	});
@@ -201,38 +203,44 @@
 
     // Licenses
 	//UPDATE APROBAR
-	$scope.aproveLicenses = function(req_info) {
+	$scope.aproveExtra = function(req_info) {
 		$scope.license_update = req_info;
-		$scope.license_update.status = "Aprobado"
+		$scope.license_update.status = "Aprobado";
 		$scope.license_update.$update(function(newData) {
 			var index = $scope.extras.indexOf(req_info);
 			$scope.extras[index] = newData;
-			$scope.alerts.push({type: 'success', msg: "El registro de hora extra del "+ req_info.fecha + " con "+ req_info.hours +" horas a sido aprobada"});
+			$rootScope.alerts.push({type: 'success', msg: "El registro de hora extra del "+ req_info.fecha + " con "+ req_info.hours +" horas a sido aprobada"});
   	  window.setTimeout(function() {
   	      $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
-  	          $(this).remove(); 
+  	          $(this).remove();
+							$rootScope.alerts = [];
   	      });
   	  }, 5000);
-		  },
+		},
 		function(data) {
-			$scope.showMessageErrorRails(data);
+			$rootScope.showMessageErrorRails(data);
+			$scope.license_update.status = "Espera";
 		});
 	};
 		
 	//UPDATE DENIED
-	$scope.deniedLicenses = function(req_info) {
+	$scope.deniedExtra = function(req_info) {
 		$scope.license_update = req_info;
 		$scope.license_update.status = "Negado"
 		$scope.license_update.$update(function(newData) {
 			var index = $scope.extras.indexOf(req_info);
 			$scope.extras[index] = newData;
-			$scope.alerts.push({type: 'alert', msg: "El registro de hora extra del "+ req_info.fecha  + " con "+ req_info.hours +" a sido negado"});
+			$rootScope.alerts.alerts.push({type: 'alert', msg: "El registro de hora extra del "+ req_info.fecha  + " con "+ req_info.hours +" a sido negado"});
       window.setTimeout(function() {
         $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
           $(this).remove();
           $rootScope.alerts = [];
         });
       }, 5000);
+		},
+		function(data) {
+			$rootScope.showMessageErrorRails(data);
+			$scope.license_update.status = "Espera";
 		});
 	};
 		
@@ -263,15 +271,16 @@
 		$scope.inhabilities_update.$update(function(newData) {
 			var index = $scope.inhabilities.indexOf(req_info);
 			$scope.inhabilities[index] = newData;
-			$scope.alerts.push({type: 'secondary', msg: "La inhabilidad del "+ inhability.start_date  + " al "+ inhability.end_date +" a sido aprobada"});
+			$rootScope.alerts.alerts.push({type: 'secondary', msg: "La inhabilidad del "+ inhability.start_date  + " al "+ inhability.end_date +" a sido aprobada"});
   	  window.setTimeout(function() {
   	      $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
   	          $(this).remove(); 
+							$rootScope.alerts = [];
   	      });
   	  }, 5000);
 		  },
 		function(data) {
-			$scope.showMessageErrorRails(data);
+			$rootScope.showMessageErrorRails(data);
 		});
 	};
 	
@@ -282,7 +291,7 @@
 		$scope.inhabilities_update.$update(function(newData) {
 			var index = $scope.inhabilities.indexOf(req_info);
 			$scope.inhabilities[index] = newData;
-			$scope.alerts.push({type: 'secondary', msg: "La inhabilidad del "+ inhability.start_date  + " al "+ inhability.end_date +" a sido negada"});
+			$rootScope.alerts.alerts.push({type: 'secondary', msg: "La inhabilidad del "+ inhability.start_date  + " al "+ inhability.end_date +" a sido negada"});
       window.setTimeout(function() {
         $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
           $(this).remove();
@@ -295,7 +304,7 @@
     ///extras
   
   })
-  .controller('Approvals.Requirements.ListController', function($scope, $http, $state,  currentUser,  vac_requirements, licenses_req, HRAPI_CONF){
+  .controller('Approvals.Requirements.ListController', function($rootScope, $scope, $http, $state,  currentUser,  vac_requirements, licenses_req, HRAPI_CONF){
     
     	$scope.user = currentUser;
 		$scope.vac_requirements = vac_requirements;
@@ -366,7 +375,7 @@
 				var index = $scope.only_not_user_vac.indexOf(vacacion)
 				$scope.only_not_user_vac.splice(index, 1);
 				$('#myModal-'+modal).foundation('reveal', 'close');  
-				$scope.alerts.push({type: 'alert', msg: "La vacación del "+ vacacion.start_date  + " al "+ req_info.end_date +" a sido borrada"});
+				$rootScope.alerts.push({type: 'alert', msg: "La vacación del "+ vacacion.start_date  + " al "+ req_info.end_date +" a sido borrada"});
         window.setTimeout(function() {
           $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
             $(this).remove();
@@ -384,15 +393,16 @@
 			$scope.vacacion_update.$update(function(newData) {
 				var index = $scope.vac_requirements.indexOf(req_info);
 				$scope.vac_requirements[index] = newData;
-				$scope.alerts.push({type: 'success', msg: "La vacación del "+ req_info.start_date + " al "+ req_info.end_date +" a sido aprobada"});
+				$rootScope.alerts.push({type: 'success', msg: "La vacación del "+ req_info.start_date + " al "+ req_info.end_date +" a sido aprobada"});
 	  	  window.setTimeout(function() {
 	  	      $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
-	  	          $(this).remove(); 
+	  	          $(this).remove();
+								$rootScope.alerts = []; 
 	  	      });
 	  	  }, 5000);
 			  },
 			function(data) {
-				$scope.showMessageErrorRails(data);
+				$rootScope.showMessageErrorRails(data);
 			});
 		};
 		//UPDATE DENIED
@@ -402,7 +412,7 @@
 			$scope.vacacion_update.$update(function(newData) {
 				var index = $scope.vac_requirements.indexOf(req_info);
 				$scope.vac_requirements[index] = newData;
-				$scope.alerts.push({type: 'alert', msg: "La vacación del "+ req_info.end_date  + " al "+ req_info.end_date +" a sido negada"});
+				$rootScope.alerts.push({type: 'alert', msg: "La vacación del "+ req_info.end_date  + " al "+ req_info.end_date +" a sido negada"});
         window.setTimeout(function() {
           $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
             $(this).remove();
@@ -424,11 +434,12 @@
 	  	  window.setTimeout(function() {
 	  	      $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
 	  	          $(this).remove(); 
+								$rootScope.alerts = [];
 	  	      });
 	  	  }, 5000);
 			  },
 			function(data) {
-				$scope.showMessageErrorRails(data);
+				$rootScope.showMessageErrorRails(data);
 			});
 		};
 		//UPDATE DENIED

@@ -37,40 +37,71 @@
         </ul>
       </div>
 		</div>
-    <h3  class="expand-title text-center">Histórico</h3>
+    <h3  class="expand-title text-center" ng-if="extras_history.length + vac_history.length + dm_history.length + inhabilities_history.length + inhabilities_history.length + licenses_history.length > 0">Histórico</h3>
     <div class="row">
       <div class="large-12 columns">
         <ul class="no-bullet" ng-if="extras_history.length > 0">
 					<h3>Horas extras</h3>
           <li ng-repeat="extras in extras_history">
-							<h6>{{ extras.fecha | date:'short' }}</h6> <span>{{extras.hours}}</span> <span>{{extras.status}}</span> 
-              <h3>{{ extras.employee.short_name }}</h3>
+						<h6><small class="label radius"> <span class="fa fa-calendar fa-lg"></span> {{ extras.created_at | date:'short'  }}</small></h6>
+						<h6><b>{{extras.hours}}</b> Horas, el: <b>{{ extras.fecha | date:'yyyy-MM-dd' }}</b> <span class="{{extras.status}} label">{{ extras.status }}</span> </h6>
           </li>
+					<li>
+						<hr />
+					</li>
         </ul>
         <ul class="no-bullet" ng-if="vac_history.length > 0">
 					<h3>Vacaciones</h3>
-          <li ng-repeat="extra in vac_history">
-            {{extra}}
+          <li ng-repeat="solicitud in vac_history">
+						<h6><small class="label radius"> <span class="fa fa-calendar fa-lg"></span> {{ solicitud.created_at | date:'short'  }}</small></h6>
+						<h6>Desde: {{solicitud.start_date | date:'yyyy-MM-dd' }}, Hasta: {{solicitud.end_date | date:'yyyy-MM-dd'}} <span class="{{solicitud.status}} label">{{ solicitud.status }}</span> </h6>
+						<div ng-if="solicitud.attachment.attachment.url">
+							<a href="" ng-click="openModal($index,'vac')"> Ver adjunto </a>
+							<div id="vac-{{$index}}" class="reveal-modal large" data-reveal aria-hidden="true" role="dialog">
+								<img ng-src="{{updateUrl(solicitud.attachment.attachment.url)}}" alt="" />
+								<a class="close-reveal-modal" aria-label="Close">&#215;</a>
+							</div>
+						</div>
           </li>
+					<li>
+						<hr />
+					</li>
         </ul>
         <ul class="no-bullet" ng-if="dm_history.length > 0">
 					<h3>Datos maestros</h3>
           <li ng-repeat="solicitud in dm_history">
 						<h6><small class="label radius"> <span class="fa fa-calendar fa-lg"></span> {{ solicitud.created_at | date:'short' }}</small></h6>
-						<h6><span class="label success">{{solicitud.where}}</span> Cambio de: <b>{{ solicitud.dcamp }}</b> por <b>{{solicitud.comparador ? solicitud.comparador : solicitud.ccamp}}</b> <span class="{{solicitud.approved}} label secondary">{{ solicitud.approved ? "Aprobado" : "En espera" }}</span> </h6>
+						<h6><span class="label success">{{solicitud.where}}</span> Cambio de: <b>{{ solicitud.dcamp }}</b> por <b>{{solicitud.comparador ? solicitud.comparador : checkingDate(solicitud.ccamp)}}</b> <span class="{{solicitud.approved}} label secondary">{{ solicitud.approved ? "Aprobado" : "En espera" }}</span> </h6>
           </li>
+					<li>
+						<hr />
+					</li>
         </ul>
         <ul class="no-bullet" ng-if="inhabilities_history.length > 0">
 					<h3>Incapacidades</h3>
           <li ng-repeat="extra in inhabilities_history">
             {{extra}}
           </li>
+					<li>
+						<hr />
+					</li>
         </ul>
         <ul class="no-bullet" ng-if="licenses_history.length > 0">
 					<h3>Permisos</h3>
-          <li ng-repeat="extra in licenses_history">
-            {{extra}}
+          <li ng-repeat="solicitud in licenses_history">
+						<h6><small class="label radius"> <span class="fa fa-calendar fa-lg"></span> {{ solicitud.created_at | date:'short'  }}</small></h6>
+						<h6>Desde: {{solicitud.start_date | date:'yyyy-MM-dd' }}, Hasta: {{solicitud.end_date | date:'yyyy-MM-dd'}} <span class="{{solicitud.status}} label">{{ solicitud.status }}</span> </h6>
+						<div ng-if="solicitud.attachment.attachment.url">
+							<a href="" ng-click="openModal($index,'permisos')"> Ver adjunto </a>
+							<div id="permisos-{{$index}}" class="reveal-modal large" data-reveal aria-hidden="true" role="dialog">
+								<img ng-src="{{updateUrl(solicitud.attachment.attachment.url)}}" alt="" />
+								<a class="close-reveal-modal" aria-label="Close">&#215;</a>
+							</div>
+						</div>
           </li>
+					<li>
+						<hr />
+					</li>
         </ul>
       </div>
     </div>

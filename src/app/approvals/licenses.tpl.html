@@ -54,8 +54,8 @@
 		<br /><br />
 		<div class="row">
 			<div class="large-12 columns">
-                <div class="show-for-small-only">
-                	<div class="table-response" ng-repeat="req_info in only_not_user">
+        <div class="show-for-small-only">
+        	<div class="table-response" ng-repeat="req_info in only_not_user">
 						<h3>{{req_info.employee.short_name}} </h3>
 						<div class="dias {{req_info.status}}">
 							<h2>{{req_info.hours}}</h2>
@@ -69,11 +69,11 @@
 							<h6 class="extras">{{motExtras(req_info.motivo)}}</h6>
 						</div>
 						<div class="posibilidades">
-							<a ng-if="req_info.status != 'Aprobado'" href="" ng-click="aproveLicenses(req_info)" class="acciones"></a>
-							<a ng-if="req_info.status != 'Aprobado'" href="" ng-click="deniedLicenses(req_info)" class="acciones negar"></a>
+							<a ng-if="req_info.status != 'Aprobado'" href="" ng-click="aproveExtra(req_info)" class="acciones"></a>
+							<a ng-if="req_info.status != 'Aprobado'" href="" ng-click="deniedExtra(req_info)" class="acciones negar"></a>
 						</div>
-                	</div>
-                </div>
+        	</div>
+        </div>
 				<table class="vacations show-for-medium-up">
 					<thead>
 						<tr>
@@ -100,12 +100,12 @@
 							<td><h6 class="bold" ><span class="{{req_info.status}}">{{req_info.status}}</span></h6></td>
 							<td>
 								<div ng-if="req_info.status != 'Aprobado'">
-									<a href="" ng-click="aproveLicenses(req_info)" class="acciones"></a>
+									<a href="" ng-click="aproveExtra(req_info)" class="acciones"></a>
 								</div>
 							</td>
 							<td>
 								<div ng-if="req_info.status != 'Aprobado'">
-									<a href="" ng-click="deniedLicenses(req_info)" class="acciones negar"></a>
+									<a href="" ng-click="deniedExtra(req_info)" class="acciones negar"></a>
 								</div>
 							</td>
 						</tr>

@@ -301,7 +301,7 @@
 			console.log($scope.info);
 			$scope.info.$save(function() {
 			   $state.go('main.views.employee_info'); // on success go back to datos_maestros
-			   $scope.alerts.push({type: 'success', msg: "La solicitud para cambiar el campo '"+ $scope.info.dcamp +"' a '"+ $scope.info.ccamp + "' a sido enviada para aprobacion"});
+			   $rootScope.alerts.push({type: 'success', msg: "La solicitud para cambiar el campo '"+ $scope.info.dcamp +"' a '"+ $scope.info.ccamp + "' a sido enviada para aprobacion"});
          window.setTimeout(function() {
            $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
              $(this).remove();
@@ -322,7 +322,7 @@
 				// console.log(index);
 				$scope.missolicitudes.splice(index, 1);
 				$('#elmodal-'+modal).foundation('reveal', 'close');  
-				$scope.alerts.push({type: 'alert', msg: "La solicitud a sido borrada"});
+				$rootScope.alerts.push({type: 'alert', msg: "La solicitud a sido borrada"});
         window.setTimeout(function() {
           $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
             $(this).remove();

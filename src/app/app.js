@@ -164,7 +164,7 @@
        return value.toLowerCase();
     }
   })
-  .run(function($http, $rootScope, $state, UserInfo, Auth, $window, HRAPI_CONF ){    
+  .run(function($filter, $http, $rootScope, $state, UserInfo, Auth, $window, HRAPI_CONF ){    
 	 
     // #aca no estamos en ningun lado porque es el defaul
     // console.log("Current State:", $state.current);
@@ -361,9 +361,20 @@
             return url
           }
         }
+        
+				$rootScope.checkingDate = function(date){
+					var dateStr = new Date(date);
+					if (!(dateStr == "Invalid Date") && !isNaN(dateStr)){
+						var stringParse = $filter('date')(dateStr, "yyyy-MM-dd");
+					}else{
+						var stringParse = date;
+					}
+					return stringParse
+				}
 
         $rootScope.showMessageErrorRails = function(data){
-          angular.forEach( data.errors, function(value, index){
+					var errores = ((typeof data.errors !== "undefined") ? data.errors : data.data.errors);
+          angular.forEach(errores, function(value, index){
             angular.forEach( value, function( mensaje, id ){
               $rootScope.alerts.push({type: 'alert', msg: index + ' ' + mensaje });
               window.setTimeout(function() {

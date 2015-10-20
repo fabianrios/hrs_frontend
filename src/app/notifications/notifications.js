@@ -38,6 +38,7 @@
                   $rootScope.alerts = [];
                 });
               }, 5000);
+
 		})
 		.error( function( data, status ) {
 			// errorService.failure( data, status, $scope);
@@ -63,8 +64,6 @@
 		$scope.dm_history = [];
 		$scope.inhabilities_history = [];
 		$scope.licenses_history = [];
-
-        
     
 		// sacar todos los articulos publicados que NO son mios
 		angular.forEach($scope.articles, function(value, key) {
@@ -97,7 +96,7 @@
 		angular.forEach(infos, function(value, key) {
 			if (value.employee.dams_approver == $scope.user.employee.id_posicion && value.status == "Espera"){
 				$scope.toapproved.push(value);
-			}else if (value.employee.id_posicion == $scope.user.employee.id_posicion) {
+			}else if (value.employee.id_posicion == $scope.user.employee.id_posicion && value.approved) {
 				$scope.dm_history.push(value);
 			}
 		});
@@ -119,6 +118,8 @@
 				$scope.licenses_history.push(value);
 			}
 		});
+		
+		console.log($scope.vac_requirements, $scope.licenses_history);
 
 	})
 }());

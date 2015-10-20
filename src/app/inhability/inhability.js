@@ -18,7 +18,7 @@
 		})
 	})
 	
-	.controller('Inhabilities.ListController', function($scope, $http, $state, currentUser, inhabilities_req, Inhability_requirement, Upload, HRAPI_CONF){
+	.controller('Inhabilities.ListController', function($rootScope, $scope, $http, $state, currentUser, inhabilities_req, Inhability_requirement, Upload, HRAPI_CONF){
 		
 		$scope.user = currentUser;
 		$scope.inhabilities = inhabilities_req;
@@ -103,25 +103,25 @@
 	                fields: $scope.requerimiento, 
 	                file: archivo
 	            }).progress(function (evt) { 
-	                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total); 		                
+	                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
 	            }).success(function (data, status, headers, config) { 
-	            	$scope.inhabilities.push(data);
-					$scope.requerimiento = new Inhability_requirement(); 
-					$scope.requerimiento.status = "Espera";
-					$scope.requerimiento.employee_id = $scope.user.employee.id;
-					$state.go('main.views.inhabilities');
-					$scope.alerts.push({type: 'success', msg: "La incapacidad a sido guardada"});
-          window.setTimeout(function() {
-            $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
-              $(this).remove();
-              $rootScope.alerts = [];
-            });
-          }, 5000);
-	            }).error(function (data, status, headers, config) { 
-	            	// $scope.alerts.push({type: 'alert', msg: data.errors.status[0]});	               
+		            	$scope.inhabilities.push(data);
+									$scope.requerimiento = new Inhability_requirement(); 
+									$scope.requerimiento.status = "Espera";
+									$scope.requerimiento.employee_id = $scope.user.employee.id;
+									$state.go('main.views.inhabilities');
+									$scope.alerts.push({type: 'success', msg: "La incapacidad a sido guardada"});
+				          window.setTimeout(function() {
+				            $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
+				              $(this).remove();
+				              $rootScope.alerts = [];
+				            });
+				          }, 5000);
+	            }).error(function (data, status, headers, config) {
+								console.log("inhabilitys:", data.errors);
 	            	angular.forEach( data.errors, function(value, index){
 	            		angular.forEach( value, function( mensaje, id ){
-	            			$scope.alerts.push({type: 'alert', msg: index + ' ' + mensaje });
+	            			$rootScope.alerts.push({type: 'alert', msg: index + ' ' + mensaje });
                     window.setTimeout(function() {
                       $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
                         $(this).remove();
@@ -140,7 +140,7 @@
 				// console.log(inhability,index,modal);
 				$scope.inhabilities.splice(index, 1);
 				$('#myModal-'+modal).foundation('reveal', 'close');
-				$scope.alerts.push({type: 'secondary', msg: "La inhabilidad del "+ inhability.start_date  + " al "+ inhability.end_date +" a sido borrada"});
+				$rootScope.alerts.push({type: 'secondary', msg: "La inhabilidad del "+ inhability.start_date  + " al "+ inhability.end_date +" a sido borrada"});
         window.setTimeout(function() {
           $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
             $(this).remove();
@@ -150,47 +150,6 @@
 			});			
 		} ///BORRAR
 		
-		//UPDATE APROBAR
-		$scope.aproveInhabilities = function(req_info) {
-			$scope.inhabilities_update = req_info;
-			$scope.inhabilities_update.status = "Aprobado"
-			$scope.inhabilities_update.$update(function(newData) {
-				var index = $scope.inhabilities.indexOf(req_info);
-				$scope.inhabilities[index] = newData;
-				$scope.alerts.push({type: 'secondary', msg: "La inhabilidad del "+ inhability.start_date  + " al "+ inhability.end_date +" a sido aprobada"});
-	  	  window.setTimeout(function() {
-	  	      $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
-	  	          $(this).remove(); 
-	  	      });
-	  	  }, 5000);
-			  },
-			function(data) {
-				$scope.alerts.push({type: 'alert', msg: data.data.errors.status[0]});
-        window.setTimeout(function() {
-          $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
-            $(this).remove();
-            $rootScope.alerts = [];
-          });
-        }, 5000);
-			});
-		};
-		
-		//UPDATE DENIED
-		$scope.deniedInhabilities = function(req_info) {
-			$scope.inhabilities_update = req_info;
-			$scope.inhabilities_update.status = "Negado"
-			$scope.inhabilities_update.$update(function(newData) {
-				var index = $scope.inhabilities.indexOf(req_info);
-				$scope.inhabilities[index] = newData;
-				$scope.alerts.push({type: 'secondary', msg: "La inhabilidad del "+ inhability.start_date  + " al "+ inhability.end_date +" a sido negada"});
-        window.setTimeout(function() {
-          $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
-            $(this).remove();
-            $rootScope.alerts = [];
-          });
-        }, 5000);
-			});
-		};
 		
 	})
 	

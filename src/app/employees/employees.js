@@ -55,6 +55,7 @@
 					window.setTimeout(function() {
 						$(".alert-box").fadeTo(500, 0).slideUp(500, function(){
 							$(this).remove(); 
+							$rootScope.alerts = [];
 						});
 					}, 5000);
 				}
@@ -75,7 +76,7 @@
 					console.log("success", status, data, headers);
 					if (data.code != null){
 						$("#"+id).show();
-						$scope.alerts.push({type: 'success', msg: data.data});
+						$rootScope.alerts.push({type: 'success', msg: data.data});
             window.setTimeout(function() {
               $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
                 $(this).remove();
@@ -84,16 +85,17 @@
             }, 5000);
 					}else {
 						console.log("error", status, data, headers);
-						$scope.alerts.push({type: 'alert', msg: data.error});
+						$rootScope.alerts.push({type: 'alert', msg: data.error});
 						window.setTimeout(function() {
 							$(".alert-box").fadeTo(500, 0).slideUp(500, function(){
 								$(this).remove(); 
+								$rootScope.alerts = [];
 							});
 						}, 5000);
 					}
 				}).
 				error(function(data, status, headers, config) {
-					$scope.alerts.push({type: 'alert', msg: data.error});
+					$rootScope.alerts.push({type: 'alert', msg: data.error});
           window.setTimeout(function() {
             $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
               $(this).remove();
@@ -115,7 +117,7 @@
 				success(function(data, status, headers, config) {
 					if (data.data != null){
 						console.log("Empleado creado", data, status, headers, config);
-						$scope.alerts.push({type: 'success', msg: data.data});
+						$rootScope.alerts.push({type: 'success', msg: data.data});
             window.setTimeout(function() {
               $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
                 $(this).remove();
@@ -124,10 +126,11 @@
             }, 5000);
 					}else {
 						console.log("error", status, data, headers);
-						$scope.alerts.push({type: 'alert', msg: data.error});
+						$rootScope.alerts.push({type: 'alert', msg: data.error});
 						window.setTimeout(function() {
 							$(".alert-box").fadeTo(500, 0).slideUp(500, function(){
 								$(this).remove(); 
+								$rootScope.alerts = [];
 							});
 						}, 5000);
 					}
