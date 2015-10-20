@@ -164,8 +164,23 @@
        return value.toLowerCase();
     }
   })
-  .run(function($filter, $http, $rootScope, $state, UserInfo, Auth, $window, HRAPI_CONF ){    
-	 
+  .run(function($filter, $http, $rootScope, $state, UserInfo, Auth, $window, HRAPI_CONF ){   
+      
+    /////////////
+    //
+    //  BROADCAST  
+    //
+    /////////////
+    $rootScope.updateNotification = function(){        
+      console.log("update-notifications");
+      $rootScope.$broadcast('hrs:updateNotifications');
+    }
+	/////////////
+    //
+    // END BROADCAST  
+    //
+    /////////////
+    
     // #aca no estamos en ningun lado porque es el defaul
     // console.log("Current State:", $state.current);
     // UserInfo.currentUser().then(function(current_user){
@@ -183,19 +198,28 @@
         // esta vaina me dice donde estamos y de donde venimos ademas define el rootscope de ubicacion para userlo como variable
         $rootScope.$on('$stateChangeStart', function(ev, toState, toParams, fromState){
           //se logue hay que cambiar de estado 
-          // console.log("Cambiando estado:", fromState, toState);
+          // console.log("Cambiando estado:", fromState, toState);            
           $rootScope.ubicacion = toState.name;
           $rootScope.locationData = toState.data;
           $rootScope.where = $rootScope.ubicacion.split('.');
           $rootScope.where = $rootScope.where[$rootScope.where.length-1];
           console.log($rootScope.ubicacion, $rootScope.where);
         });
+      
+        // al terminar de cargar la pagina
+        $rootScope.$on('$stateChangeSuccess', function(ev, toState, toParams, fromState){            
+          //update number notifications
+          $window.setTimeout(function() {
+            $rootScope.updateNotification();
+          }, 1000);
+        });      
+      
         // Catch unauthorized requests and recover.
         $rootScope.$on('devise:unauthorized', function(event, xhr, deferred) {
           // Ask user for login credentials
           // console.log("devise:unauthorized -> login.auth", event, xhr, deferred);
           $rootScope.alerts.push({type: 'alert', msg: xhr.data.error});
-          window.setTimeout(function() {
+          $window.setTimeout(function() {
             $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
               $(this).remove();
               $rootScope.alerts = [];
@@ -224,7 +248,7 @@
         $rootScope.logout = function(){
           Auth.logout().then(function(oldUser) {
             $rootScope.alerts.push({type: 'warning', msg: oldUser.name + " has cerrado sesión."});
-            window.setTimeout(function() {
+            $window.setTimeout(function() {
               $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
                 $(this).remove(); 
                 $rootScope.alerts = [];
