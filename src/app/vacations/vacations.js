@@ -116,7 +116,7 @@
 					$scope.requerimiento.status = "Espera";
 					$scope.requerimiento.employee_id = $scope.user.employee.id;
 					$state.go('main.views.vacations');
-					$scope.alerts.push({type: 'success', msg: "La vacación a sido guardada"});
+					$rootScope.alerts.push({type: 'success', msg: "La vacación a sido guardada"});
           window.setTimeout(function() {
             $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
               $(this).remove();
@@ -127,7 +127,7 @@
 	            }).error(function (data, status, headers, config) { 
 	            	angular.forEach( data.errors, function(value, index){
 	            		angular.forEach( value, function( mensaje, id ){
-	            			$scope.alerts.push({type: 'alert', msg: index + ' ' + mensaje });
+	            			$rootScope.alerts.push({type: 'alert', msg: index + ' ' + mensaje });
                     window.setTimeout(function() {
                       $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
                         $(this).remove();
@@ -150,7 +150,7 @@
 				var index = $scope.vac_requirements.indexOf(vacacion)
 				$scope.vac_requirements.splice(index, 1);
 				$('#myModal-'+modal).foundation('reveal', 'close');  
-				$scope.alerts.push({type: 'secondary', msg: "La vacación del "+ vacacion.start_date  + " al "+ vacacion.end_date +" a sido borrada"});
+				$rootScope.alerts.push({type: 'secondary', msg: "La vacación del "+ vacacion.start_date  + " al "+ vacacion.end_date +" a sido borrada"});
         window.setTimeout(function() {
           $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
             $(this).remove();

@@ -18,7 +18,7 @@
 		})
 	})
 	
-	.controller('Extras.ListController', function($scope, $http, $state, extras_req, currentUser, Extra_requirement, HRAPI_CONF){
+	.controller('Extras.ListController', function($rootScope, $scope, $http, $state, extras_req, currentUser, Extra_requirement, HRAPI_CONF){
 		
 		$scope.user = currentUser;
 		$scope.extras = extras_req;
@@ -71,7 +71,7 @@
 				$scope.requerimiento.status = "Espera";
 				$scope.requerimiento.employee_id = $scope.user.employee.id;
 				$state.go('main.views.extras');
-				$scope.alerts.push({type: 'success', msg: "La hora extra a sido guardada"});
+				$rootScope.alerts.push({type: 'success', msg: "La hora extra a sido guardada"});
         window.setTimeout(function() {
           $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
             $(this).remove();
@@ -80,7 +80,7 @@
         }, 5000);
 			}, function(data) {
 				console.log(data);
-				$scope.alerts.push({type: 'alert', msg: data.data.errors.status[0]});
+				$rootScope.alerts.push({type: 'alert', msg: data.data.errors.status[0]});
         window.setTimeout(function() {
           $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
             $(this).remove();
@@ -97,7 +97,7 @@
 				console.log(extra,index,modal);
 				$scope.extras.splice(index, 1);
 				$('#myModal-'+modal).foundation('reveal', 'close');
-				$scope.alerts.push({type: 'secondary', msg: "El registro de "+ extra.fecha  + " con "+ extra.hours +" horas a sido borrado"});
+				$rootScope.alerts.push({type: 'secondary', msg: "El registro de "+ extra.fecha  + " con "+ extra.hours +" horas a sido borrado"});
         window.setTimeout(function() {
           $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
             $(this).remove();
@@ -106,48 +106,7 @@
         }, 5000);
 			});			
 		} ///BORRAR
-	
-		//UPDATE APROBAR
-		$scope.aproveLicenses = function(req_info) {
-			$scope.license_update = req_info;
-			$scope.license_update.status = "Aprobado"
-			$scope.license_update.$update(function(newData) {
-				var index = $scope.extras.indexOf(req_info);
-				$scope.extras[index] = newData;
-				$scope.alerts.push({type: 'success', msg: "El registro de hora extra del "+ req_info.fecha + " con "+ req_info.hours +" horas a sido aprobada"});
-			  	  window.setTimeout(function() {
-			  	      $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
-			  	          $(this).remove(); 
-			  	      });
-			  	  }, 5000);
-			  },
-			function(data) {
-				$scope.alerts.push({type: 'alert', msg: data.data.errors.status[0]});
-        window.setTimeout(function() {
-          $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
-            $(this).remove();
-            $rootScope.alerts = [];
-          });
-        }, 5000);
-			});
-		};
 		
-		//UPDATE DENIED
-		$scope.deniedLicenses = function(req_info) {
-			$scope.license_update = req_info;
-			$scope.license_update.status = "Negado"
-			$scope.license_update.$update(function(newData) {
-				var index = $scope.extras.indexOf(req_info);
-				$scope.extras[index] = newData;
-				$scope.alerts.push({type: 'alert', msg: "El registro de hora extra del "+ req_info.fecha  + " con "+ req_info.hours +" a sido negado"});
-        window.setTimeout(function() {
-          $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
-            $(this).remove();
-            $rootScope.alerts = [];
-          });
-        }, 5000);
-			});
-		};
 		
 		
 		$scope.$on('s3upload:success', function (evt, xhr, fileUrl) {

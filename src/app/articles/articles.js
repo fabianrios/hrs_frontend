@@ -43,7 +43,7 @@
 	    });
 	})
 	
-	.controller('Articles.ListController', function($scope, $http, $state, articles, currentUser, Article, HRAPI_CONF ){
+	.controller('Articles.ListController', function($rootScope, $scope, $http, $state, articles, currentUser, Article, HRAPI_CONF ){
 		
 		$scope.user = currentUser;
 		$scope.articles = articles.articles;
@@ -79,7 +79,7 @@
 				$('#myModal-'+modal).foundation('reveal', 'close');  
 				$scope.alerts.push({type: 'alert', msg: "El articulo '"+ article.titulo + "' a sido borrado"});               
 	        }).error(function (data, status, headers, config) { 	            	       
-	            $scope.showMessageErrorRails(data);
+	            $rootScope.showMessageErrorRails(data);
             });
 			
 		} ///BORRAR
@@ -144,7 +144,7 @@
 	            }).success(function (data, status, headers, config) { 
 	            	$state.go('main.views.articles');	               
 	            }).error(function (data, status, headers, config) { 	            	       
-	            	$scope.showMessageErrorRails(data);
+	            	$rootScope.showMessageErrorRails(data);
             });
 	     };
 
@@ -197,7 +197,7 @@
 	            	$state.go('main.views.articles');	               
 	            }).error(function (data, status, headers, config) { 
 	            	// $scope.alerts.push({type: 'alert', msg: data.errors.status[0]});	               
-	            	$scope.showMessageErrorRails(data);	            	
+	            	$rootScope.showMessageErrorRails(data);	            	
             });
 		};
 

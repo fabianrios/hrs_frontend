@@ -12,7 +12,7 @@
 			        <img  ng-src="{{approver.image}}">
 			      </div>
 			      <div class="info dib">
-			        <a href="mail_to:{{approver.email}}" class=""><i class="fa fa-envelope fa-lg"></i>{{approver.short_name}}</a><br>
+			        <a href="mail_to:{{approver.email}}" class="capitalize"><i class="fa fa-envelope fa-lg"></i>{{approver.short_name | cut:30}}</a><br>
 			        <a ng-if="approver.phone" href="tel://{{approver.phone}}" class=""><i class="fa fa-phone fa-lg"></i>{{approver.phone}}</a>
 			      </div>
 			    </div>
@@ -200,7 +200,7 @@
 				<div class="information datos_beneficiarios">
 					<h4><span class="fa fa-child"></span> Mis datos beneficiarios</h4>
 					<hr class="m0" />
-					<ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-3" ui-sortable="sortableOptions" ng-model="employee_info.datos_beneficiarios">
+					<ul class="small-block-grid-2 medium-block-grid-4 large-block-grid-4" ui-sortable="sortableOptions" ng-model="employee_info.datos_beneficiarios">
 						<li ng-repeat="data in employee_info.datos_beneficiarios" >
 							<div ng-switch="data.ncamp" ng-init="data.ccamp=stringTo(data.tcamp, data.ccamp)">
 								<div ng-switch-default >

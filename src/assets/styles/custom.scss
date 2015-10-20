@@ -934,6 +934,19 @@ span{
 	}
 }
 
+span{
+  &.label{
+  	&.Aprobado{
+  		color: #3AC177;
+      background: rgb(210, 255, 166);
+  	}
+  	&.Negado{
+  		color: #E05162;
+      background: lightpink;
+  	}
+  }
+}
+
 .aprobador{
 	margin-left: 20px;
 	padding-top: 2px;

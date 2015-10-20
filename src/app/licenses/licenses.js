@@ -18,7 +18,7 @@
 		})
 	})
 	
-	.controller('Licenses.ListController', function($scope, $http, $state,  currentUser, licenses_req, License_requirement, Upload, HRAPI_CONF ){
+	.controller('Licenses.ListController', function($rootScope, $scope, $http, $state,  currentUser, licenses_req, License_requirement, Upload, HRAPI_CONF ){
 		
 		$scope.user = currentUser;
 		$scope.licenses = licenses_req;	
@@ -98,7 +98,7 @@
 					$scope.requerimiento.status = "Espera";
 					$scope.requerimiento.employee_id = $scope.user.employee.id;
 					$state.go('main.views.licenses');
-					$scope.alerts.push({type: 'success', msg: "El permiso a sido guardado"});
+					$rootScope.alerts.push({type: 'success', msg: "El permiso a sido guardado"});
           window.setTimeout(function() {
             $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
               $(this).remove();
@@ -107,7 +107,7 @@
           }, 5000);
 	            }).error(function (data, status, headers, config) { 
 	            	// $scope.alerts.push({type: 'alert', msg: data.errors.status[0]});	               	            	
-	            	$scope.showMessageErrorRails(data);
+	            	$rootScope.showMessageErrorRails(data);
             });
 		};
 		
@@ -118,7 +118,7 @@
         console.log(license,index,modal);
 				$scope.licenses.splice(index, 1);
 				$('#myModal-'+modal).foundation('reveal', 'close');
-				$scope.alerts.push({type: 'secondary', msg: "El permiso del "+ license.start_date  + " al "+ license.end_date +" a sido borrado"});
+				$rootScope.alerts.push({type: 'secondary', msg: "El permiso del "+ license.start_date  + " al "+ license.end_date +" a sido borrado"});
         window.setTimeout(function() {
           $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
             $(this).remove();
@@ -135,15 +135,16 @@
 			$scope.licenses_update.$update(function(newData) {
 				var index = $scope.licenses.indexOf(req_info);
 				$scope.licenses[index] = newData;
-				$scope.alerts.push({type: 'secondary', msg: "El permiso del "+ license.start_date  + " al "+ license.end_date +" a sido aprobado"});
+				$rootScope.alerts.push({type: 'secondary', msg: "El permiso del "+ license.start_date  + " al "+ license.end_date +" a sido aprobado"});
 	  	  window.setTimeout(function() {
 	  	      $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
 	  	          $(this).remove(); 
+								$rootScope.alerts = [];
 	  	      });
 	  	  }, 5000);
 			  },
 			function(data) {
-				$scope.alerts.push({type: 'alert', msg: data.data.errors.status[0]});
+				$rootScope.alerts.push({type: 'alert', msg: data.data.errors.status[0]});
         window.setTimeout(function() {
           $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
             $(this).remove();
@@ -160,7 +161,7 @@
 			$scope.licenses_update.$update(function(newData) {
 				var index = $scope.licenses.indexOf(req_info);
 				$scope.licenses[index] = newData;
-				$scope.alerts.push({type: 'secondary', msg: "El permiso del "+ license.start_date  + " al "+ license.end_date +" a sido negado"});
+				$rootScope.alerts.push({type: 'secondary', msg: "El permiso del "+ license.start_date  + " al "+ license.end_date +" a sido negado"});
         window.setTimeout(function() {
           $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
             $(this).remove();
