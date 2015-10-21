@@ -31,8 +31,8 @@
           <li ng-if="licenses_not_user.length > 0">
             <a ui-sref="main.views.approvals_requirements"> Tienes <span ng-bind="licenses_not_user.length"></span> solicitudes pendiente por permisos.</a>          
           </li>
-          <li ng-if="dm_history.length > 0">
-            <a ui-sref="main.views.approvals"> Tienes <span ng-bind="dm_history.length"></span> solicitudes pendiente por datos maestros.</a>          
+          <li ng-if="toapproved.length > 0">
+            <a ui-sref="main.views.approvals"> Tienes <span ng-bind="toapproved.length"></span> solicitudes pendiente por datos maestros.</a>          
           </li>  
         </ul>
       </div>

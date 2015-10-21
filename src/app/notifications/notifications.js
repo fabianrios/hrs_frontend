@@ -64,6 +64,7 @@
 		$scope.dm_history = [];
 		$scope.inhabilities_history = [];
 		$scope.licenses_history = [];
+        $scope.toapproved = [];
     
 		// sacar todos los articulos publicados que NO son mios
 		angular.forEach($scope.articles, function(value, key) {
@@ -91,21 +92,35 @@
 			  $scope.extras_history.push(value);
 			}
 		});
-    
+
         // datos maestros
-		angular.forEach(infos, function(value, key) {
-			if (value.employee.dams_approver == $scope.user.employee.id_posicion && value.status == "Espera"){
+		angular.forEach(infos, function(value, key) {		
+			var value_1 = '';
+			if(value.boss != null){
+				value_1 = value.boss.toString();
+			}			
+			var value_2 = '';
+			if($scope.user.employee.id_posicion != null){
+				value_2 = $scope.user.employee.id_posicion.toString();
+			}
+			if (value_1 ===  value_2 && (value.approved === false || value.approved === 'false' )){
 				$scope.toapproved.push(value);
-			}else if (value.employee.id_posicion == $scope.user.employee.id_posicion && value.approved) {
-				$scope.dm_history.push(value);
 			}
 		});
+               
+//		angular.forEach(infos, function(value, key) {            
+//			if (value.employee.dams_approver == $scope.user.employee.id_posicion && value.status == "Espera"){
+//				$scope.toapproved.push(value);
+//			}else if (value.employee.id_posicion == $scope.user.employee.id_posicion && value.approved) {
+//				$scope.dm_history.push(value);
+//			}
+//		});
 		
 		//inhabilidades pendientes
 		angular.forEach($scope.inhabilities_requirements,function(value,index){
 			if (value.employee.inca_approver == $scope.user.employee.id_posicion && value.status == "Espera"){
 				$scope.inhabilities_not_user.push(value);
-			}else if (value.employee.id_posicion == $scope.user.employee.id_posicion && value.status != "Espera"){
+			}else if (value.employee.id_posicion == $scope.user.employee.id_posicion && value.status != "Espera"){                
 				$scope.inhabilities_history.push(value);
 			}
 		});
@@ -119,7 +134,7 @@
 			}
 		});
 		
-		console.log($scope.vac_requirements, $scope.licenses_history);
+//		console.log($scope.vac_requirements, $scope.licenses_history);
 
 	})
 }());

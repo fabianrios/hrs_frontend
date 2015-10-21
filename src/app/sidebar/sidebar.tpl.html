@@ -7,10 +7,10 @@
 				</span>
 			</div>
 			<div class="small-10 columns">
-				<input id="buscador" name="search" placeholder="Buscar empleados" type="search" ng-model="searchText">
+				<input itoapprovedd="buscador" name="search" placeholder="Buscar empleados" type="search" ng-model="searchText">
 			</div>
 		</div>
-	</li>
+	</li>toapproved
 	<li class="results" ng-repeat="employee in employees" ng-init="activado = favorite( employee = ( employee.employee ? employee.employee: employee ) );">
 		<div class="pic">
 			<a ui-sref="main.views.employee_info_lookup({id:employee.identification, c:employee.company.id})"> 
