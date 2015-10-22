@@ -12,7 +12,7 @@
       'destroy': { method: 'DELETE' }
     });
   })
-  .factory('UserInfo', function($q, Auth, User) {
+.factory('UserInfo', function($q, Auth, User) {
     return {
       autenticado: Auth.isAuthenticated(),
       currentUser: function(){

@@ -4,6 +4,7 @@
   angular.module('hrsReleaseApp', [
 
     // Plugins
+    'ngCookies',
     'ngResource',
     'ngSanitize',
     'ui.router',
@@ -67,6 +68,8 @@
     ngS3Config.theme = 'bootstrap2';
 
     $httpProvider.defaults.headers.common['X-CSRF-Token'] = angular.element('meta[name=csrf-token]').attr('content');
+    
+          
     $httpProvider.defaults.withCredentials = true;
     // $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
   
@@ -76,8 +79,8 @@
     AuthProvider.logoutPath(HRAPI_CONF.apiBaseUrl('/users/sign_out.json'));
     AuthProvider.registerPath(HRAPI_CONF.apiBaseUrl('/users.json'));
 
-    // Enruta a la home
-    $urlRouterProvider.otherwise('/home');
+    // Enruta a la login
+    $urlRouterProvider.otherwise('/login');
   
     // Configura estados de aplicacion ui-router
     $stateProvider
@@ -105,9 +108,9 @@
         licenses_requirements: function(License_requirement){
           return License_requirement.index().$promise;
         },
-				infos:function(Info){
-					return Info.index().$promise;
-				}
+        infos:function(Info){
+            return Info.index().$promise;
+        }
       },
       views: {
         topbar: {
@@ -164,7 +167,11 @@
        return value.toLowerCase();
     }
   })
-  .run(function($filter, $http, $rootScope, $state, UserInfo, Auth, $window, HRAPI_CONF ){   
+  .run(function($filter, $http, $rootScope, $state, UserInfo, Auth, $window, HRAPI_CONF, $cookies, $log){   
+      
+    Auth.currentUser().then(function() {
+        console.log("no se que estoy haciendo");
+    })
       
     /////////////
     //
@@ -180,44 +187,46 @@
     // END BROADCAST  
     //
     /////////////
-    
-    // #aca no estamos en ningun lado porque es el defaul
-    // console.log("Current State:", $state.current);
-    // UserInfo.currentUser().then(function(current_user){
-      // no hay usuario no devuelve nada hasta que este logueado
-      // console.log("Current User:", currentUser);
-      // });      
-      $rootScope.employee = {}
-      $rootScope.employee_info = {}
+
+    $rootScope.employee = {}
+    $rootScope.employee_info = {}
 	
-      // Auth.currentUser().then(function(user){
-        // 	console.log("user",user);
-        // 	console.log(Auth._currentUser);
-        // });
 	
-        // esta vaina me dice donde estamos y de donde venimos ademas define el rootscope de ubicacion para userlo como variable
-        $rootScope.$on('$stateChangeStart', function(ev, toState, toParams, fromState){
-          //se logue hay que cambiar de estado 
-          // console.log("Cambiando estado:", fromState, toState);            
-          $rootScope.ubicacion = toState.name;
-          $rootScope.locationData = toState.data;
-          $rootScope.where = $rootScope.ubicacion.split('.');
-          $rootScope.where = $rootScope.where[$rootScope.where.length-1];
-          console.log($rootScope.ubicacion, $rootScope.where);
-        });
+    // esta vaina me dice donde estamos y de donde venimos ademas define el rootscope de ubicacion para userlo como variable
+    $rootScope.$on('$stateChangeStart', function(ev, toState, toParams, fromState){ 
+        
+        
+        
+//        Si el no hay una session redirect to  login.auth
+        if( !Auth.isAuthenticated() && toState.name != "login.auth" ){                
+            ev.preventDefault();
+            $state.transitionTo('login.auth');
+        }else{
+//        De lo contrario realiza las siguiente operaciones
+            $rootScope.ubicacion = toState.name;
+            $rootScope.locationData = toState.data;
+            $rootScope.where = $rootScope.ubicacion.split('.');
+            $rootScope.where = $rootScope.where[$rootScope.where.length-1];
+            $log.info($rootScope.ubicacion, $rootScope.where);
+        }
+        $rootScope.preload = true;
+    });
       
-        // al terminar de cargar la pagina
-        $rootScope.$on('$stateChangeSuccess', function(ev, toState, toParams, fromState){            
+    // al terminar de cargar la pagina
+    $rootScope.$on('$stateChangeSuccess', function(ev, toState, toParams, fromState){            
+      if( toState.name != "login.auth" ){
           //update number notifications
           $window.setTimeout(function() {
             $rootScope.updateNotification();
           }, 1000);
-        });      
+      }
+      $rootScope.preload = false;    
+    });      
       
-        // Catch unauthorized requests and recover.
-        $rootScope.$on('devise:unauthorized', function(event, xhr, deferred) {
-          // Ask user for login credentials
-          // console.log("devise:unauthorized -> login.auth", event, xhr, deferred);
+    // Catch unauthorized requests and recover.
+    $rootScope.$on('devise:unauthorized', function(event, xhr, deferred) {
+      // Ask user for login credentials
+      // console.log("devise:unauthorized -> login.auth", event, xhr, deferred);
           $rootScope.alerts.push({type: 'alert', msg: xhr.data.error});
           $window.setTimeout(function() {
             $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
@@ -225,24 +234,20 @@
               $rootScope.alerts = [];
             });
           }, 5000);
-          $state.go('login.auth');
-        });
+    });
 
-        $rootScope.$on('devise:login', function(event, currentUser) {
-          // after a login, a hard refresh, a new tab
-          // console.log("devise:login -> main.views.dashboard", currentUser, event);
-          // $rootScope.alerts.push({type: 'success', msg: event});
-          $state.go('main.views.dashboard');
-        });
+    $rootScope.$on('devise:login', function(event, currentUser) {    
+      $state.transitionTo('main.views.dashboard');
+    });
 
-        $rootScope.$on('devise:new-session', function(event, currentUser) {
-          // user logged in by Auth.login({...})
-          // console.log("devise:new-session", "nothing done");
-        });
+    $rootScope.$on('devise:new-session', function(event, currentUser) {
+      // user logged in by Auth.login({...})
+      // console.log("devise:new-session", "nothing done");
+    });
 
-        $rootScope.$on('devise:logout', function(event, oldCurrentUser) {
+    $rootScope.$on('devise:logout', function(event, oldCurrentUser) {
           $state.go('login.auth', {"logout": true});
-        });
+    });
 
 
         $rootScope.logout = function(){
@@ -386,21 +391,21 @@
           }
         }
         
-				$rootScope.checkingDate = function(date){
-					var dateStr = new Date(date);
-					if (!(dateStr == "Invalid Date") && !isNaN(dateStr)){
-						var stringParse = $filter('date')(dateStr, "yyyy-MM-dd");
-					}else{
-						var stringParse = date;
-					}
-					return stringParse
-				}
+        $rootScope.checkingDate = function(date){
+            var dateStr = new Date(date);
+            if (!(dateStr == "Invalid Date") && !isNaN(dateStr)){
+                var stringParse = $filter('date')(dateStr, "yyyy-MM-dd");
+            }else{
+                var stringParse = date;
+            }
+            return stringParse
+        }
 
         $rootScope.showMessageErrorRails = function(data){
-					var errores = ((typeof data.errors !== "undefined") ? data.errors : data.data.errors);
+		  var errores = ((typeof data.errors !== "undefined") ? data.errors : data.data.errors);
           angular.forEach(errores, function(value, index){
             angular.forEach( value, function( mensaje, id ){
-              $rootScope.alerts.push({type: 'alert', msg: index + ' ' + mensaje });
+              $rootScope.alerts.push({type: 'alert', msg: mensaje });
               window.setTimeout(function() {
                 $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
                   $(this).remove();

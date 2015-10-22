@@ -1,7 +1,7 @@
 (function(){
 	'use strict';
   
-	angular.module('sessions', ['sap.service', 'user.service'])
+	angular.module('sessions', [ 'sap.service', 'user.service'])
 
 	.config(function($stateProvider){
 		$stateProvider
@@ -21,32 +21,16 @@
 		});
 	})
 
-	.controller('sessions.LoginController', function($scope, Auth){
+	.controller('sessions.LoginController', function( $scope, Auth ){
 
-		$scope.login = function() { //login
-			Auth.login($scope.credentials).then(function(user) {
-				// inicializacion de algun tipo 
-				// vamos a poner las credenciales en localstorage
-			   // console.log(user, $scope.credentials)
-			   localStorage.setItem('user',user.email);
-   			   localStorage.setItem('psx',$scope.credentials.password);
-			}, function(error) {
-				console.log("sessions.LoginController: error en la autenticacion")
-			});
+		$scope.login = function() {             
+            var config = {
+                headers: {
+                    'X-HTTP-Method-Override': 'POST'
+                }
+            };
+            Auth.login($scope.credentials, config);
 		};
-	  
-		//$scope.login();
-		var user_loc = localStorage.getItem('user');
-		var user_psx = localStorage.getItem('psx');
-		
-		if (typeof user_loc !== 'undefined' && typeof user_psx !== 'undefined'){
-			$scope.credentials = {
-				email: user_loc,
-				password: user_psx
-			};
-			// console.log("existe el user y la contraseña",$scope.credentials);
-			$scope.login();
-		}
      
 	})
 

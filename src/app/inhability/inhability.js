@@ -72,7 +72,6 @@
 					description = value.descr;
 				}
 			});
-			// console.log(description);
 			return description
 		};
 		
@@ -85,18 +84,8 @@
 			archivo = file;
 		}
 
-		$scope.putRequest = function() { //create a new vacation. Issues a POST to /api/vacations
-			//$scope.requerimiento.$save(function(newData) {
-			//	$scope.inhabilities.push(newData);
-			//	$scope.requerimiento = new Inhability_requirement();
-			//	$scope.requerimiento.status = "Espera";
-			//	$scope.requerimiento.employee_id = $scope.user.employee.id;
-			//	$state.go('main.views.inhabilities');
-			//	$scope.alerts.push({type: 'success', msg: "La incapacidad a sido guardada"});
-			//}, function(data) {
-			//	// console.log(data.status,data.data);
-			//	$scope.alerts.push({type: 'alert', msg: data.data.errors.status[0]});
-			//});
+		$scope.putRequest = function() { //create a new 
+            $scope.requerimiento.sending = true;
 			Upload.upload({ 
 	            	method: 'POST', 
 	                url: HRAPI_CONF.apiBaseUrl('/inhability_requirements.json'), 
@@ -105,32 +94,23 @@
 	            }).progress(function (evt) { 
 	                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
 	            }).success(function (data, status, headers, config) { 
-		            	$scope.inhabilities.push(data);
-									$scope.requerimiento = new Inhability_requirement(); 
-									$scope.requerimiento.status = "Espera";
-									$scope.requerimiento.employee_id = $scope.user.employee.id;
-									$state.go('main.views.inhabilities');
-									$scope.alerts.push({type: 'success', msg: "La incapacidad a sido guardada"});
-				          window.setTimeout(function() {
-				            $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
-				              $(this).remove();
-				              $rootScope.alerts = [];
-				            });
-				          }, 5000);
-	            }).error(function (data, status, headers, config) {
-								console.log("inhabilitys:", data.errors);
-	            	angular.forEach( data.errors, function(value, index){
-	            		angular.forEach( value, function( mensaje, id ){
-	            			$rootScope.alerts.push({type: 'alert', msg: index + ' ' + mensaje });
+                    $scope.requerimiento.sending = false;
+                    $scope.inhabilities.push(data);
+                    $scope.requerimiento = new Inhability_requirement(); 
+                    $scope.requerimiento.status = "Espera";
+                    $scope.requerimiento.employee_id = $scope.user.employee.id;
+                    $state.go('main.views.inhabilities');
+                    $scope.alerts.push({type: 'success', msg: "La incapacidad a sido guardada"});
                     window.setTimeout(function() {
-                      $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
-                        $(this).remove();
-                        $rootScope.alerts = [];
-                      });
+                        $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
+                          $(this).remove();
+                          $rootScope.alerts = [];
+                        });
                     }, 5000);
-	            		});		
-	            	});
-            });
+	            }).error(function (data, status, headers, config) {                    
+					$rootScope.showMessageErrorRails(data);
+                    $scope.requerimiento.sending = false;
+                });
 		};
 		
 		//BORRAR

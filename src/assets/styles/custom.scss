@@ -1718,5 +1718,18 @@ footer{
 }
 
 .cargo{
-	text-transform: lowercase;
+	text-transsform: lowercase;
+}
+
+
+.logobug {
+    display: block;
+    z-index: 20000;
+    overflow: visible;
+    position: fixed;
+    left: auto;
+    right: auto;
+    top: 22px;
+    left: 22px;
+    width: 35px;
 }

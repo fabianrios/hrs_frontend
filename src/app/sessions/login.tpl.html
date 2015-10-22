@@ -9,7 +9,7 @@
 			<span ng-bind-html="alert.msg"></span>
 			<a href="" class="close" ng-click="closeAlert($index)">&times;</a>
 		</div>
-		<form role="form" ng-submit="login()" >
+		<form role="form" ng-submit="login()" novalidate >
 		 <label for="email">Correo:</label>
 		 <input type="email" ng-model="credentials.email" id="email">
 		 <label for="password">Contraseña:</label>
