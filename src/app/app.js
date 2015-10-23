@@ -167,11 +167,7 @@
        return value.toLowerCase();
     }
   })
-  .run(function($filter, $http, $rootScope, $state, UserInfo, Auth, $window, HRAPI_CONF, $cookies, $log){   
-      
-    Auth.currentUser().then(function() {
-        console.log("no se que estoy haciendo");
-    })
+  .run(function($filter, $http, $rootScope, $state, UserInfo, Auth, $window, HRAPI_CONF, $cookies, $log){       
       
     /////////////
     //
@@ -193,21 +189,26 @@
 	
 	
     // esta vaina me dice donde estamos y de donde venimos ademas define el rootscope de ubicacion para userlo como variable
-    $rootScope.$on('$stateChangeStart', function(ev, toState, toParams, fromState){ 
-        
-        
-        
-//        Si el no hay una session redirect to  login.auth
-        if( !Auth.isAuthenticated() && toState.name != "login.auth" ){                
+    $rootScope.$on('$stateChangeStart', function(ev, toState, toParams, fromState){                         
+        var is_authenticated = Auth.isAuthenticated();
+//        Si no hay una session redirect to  login.auth
+        if( !is_authenticated && toState.name != "login.auth" ){                
             ev.preventDefault();
             $state.transitionTo('login.auth');
         }else{
-//        De lo contrario realiza las siguiente operaciones
-            $rootScope.ubicacion = toState.name;
-            $rootScope.locationData = toState.data;
-            $rootScope.where = $rootScope.ubicacion.split('.');
-            $rootScope.where = $rootScope.where[$rootScope.where.length-1];
-            $log.info($rootScope.ubicacion, $rootScope.where);
+            if(is_authenticated && toState.name == "login.auth"){
+//                si ingresa a login.auth rederict to home
+                ev.preventDefault();
+                $state.transitionTo('main.views.dashboard');
+            }
+//        De lo contrario realiza las siguiente operaciones & no esta login.auth
+            if(toState.name != "login.auth"){
+                $rootScope.ubicacion = toState.name;
+                $rootScope.locationData = toState.data;
+                $rootScope.where = $rootScope.ubicacion.split('.');
+                $rootScope.where = $rootScope.where[$rootScope.where.length-1];
+                $log.info($rootScope.ubicacion, $rootScope.where);
+            }
         }
         $rootScope.preload = true;
     });

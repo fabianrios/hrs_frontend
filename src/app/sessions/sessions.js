@@ -29,11 +29,28 @@
                     'X-HTTP-Method-Override': 'POST'
                 }
             };
-            Auth.login($scope.credentials, config);
-		};
-     
-	})
+            Auth.login($scope.credentials, config).then( function( user ){                
+//              DEBO QUITAR ESTO 
+                localStorage.setItem('user',user.email);    
+                localStorage.setItem('psx',$scope.credentials.password);
+//              HASTA AQUI
+            });                
+        };                
+            
+//      TAMBIEN ESTO DEBO QUITARLO
+        var user_loc = localStorage.getItem('user');
+        var user_psx = localStorage.getItem('psx');
 
+        if (typeof user_loc !== 'undefined' && typeof user_psx !== 'undefined'){
+            $scope.credentials = {
+                email: user_loc,
+                password: user_psx
+            };                
+            $scope.login();
+        }
+//      HASTA AQUI
+            
+	})
 	.controller('sessions.EditController', function($scope, $state, $stateParams, $http, currentUser){
     
 	
@@ -56,11 +73,7 @@
 	});
 
     
-	$scope.updateUser = function() { //editar
-		//console.log("$scope.user", $scope.user);
-		// $scope.user.$update(function() {
-			//            $location.path('/home'); // on success go back to home
-			//      });
+	$scope.updateUser = function() { //editar		
 			console.log($scope.user);
       
 			$http({method: 'PUT', 
@@ -83,9 +96,6 @@
 				});
       
 			};
-     
-     
-     
      
 		});
 	}());
