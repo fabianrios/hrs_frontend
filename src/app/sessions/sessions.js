@@ -30,24 +30,24 @@
                 }
             };
             Auth.login($scope.credentials, config).then( function( user ){                
-////              DEBO QUITAR ESTO 
-//                localStorage.setItem('user',user.email);    
-//                localStorage.setItem('psx',$scope.credentials.password);
-////              HASTA AQUI
+//              DEBO QUITAR ESTO 
+                localStorage.setItem('user',user.email);    
+                localStorage.setItem('psx',$scope.credentials.password);
+//              HASTA AQUI
             });                
         };                
             
 //      TAMBIEN ESTO DEBO QUITARLO
-//        var user_loc = localStorage.getItem('user');
-//        var user_psx = localStorage.getItem('psx');
-//
-//        if (typeof user_loc !== 'undefined' && typeof user_psx !== 'undefined'){
-//            $scope.credentials = {
-//                email: user_loc,
-//                password: user_psx
-//            };                
-//            $scope.login();
-//        }
+        var user_loc = localStorage.getItem('user');
+        var user_psx = localStorage.getItem('psx');
+
+        if (typeof user_loc !== 'undefined' && typeof user_psx !== 'undefined'){
+            $scope.credentials = {
+                email: user_loc,
+                password: user_psx
+            };                
+            $scope.login();
+        }
 //      HASTA AQUI
             
 	})
