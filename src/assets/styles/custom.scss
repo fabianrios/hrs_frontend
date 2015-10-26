@@ -96,58 +96,66 @@
 		min-height: 250px;
 	}
 	&.dashboard{
-		background: url("/images/Perfil.jpg") no-repeat;
+//		background: url("/images/Perfil.jpg") no-repeat;
+		background: url("/images/Perfil.png") no-repeat;
 		background-repeat: no-repeat;
 		background-position: center top;
 //		background-attachment: fixed;
 		background-attachment: inherit;
-		-webkit-background-size: auto;
+		-webkit-background-size: cover;
 //		background-size: cover;
-		background-size: auto;
+		background-size: cover;
 		width: 100%;
 	}
 	&.organigram{
-		background: url("/images/Organigrama.jpg") no-repeat center top;
+//		background: url("/images/Organigrama.jpg") no-repeat center top;
+		background: url("/images/Organigrama.png") no-repeat;
 		background-repeat: no-repeat;
+		background-position: center top;
 		background-attachment: inherit;
 		width: 100%;
-		-webkit-background-size: auto;
-		background-size: auto;
+		-webkit-background-size: cover;
+		background-size: cover;
 	}
 	&.certificates_vacations, &.certificates_labor, &.certificates_payroll, &.certificates_income{
-		background-image: url("/images/Autoservicios.jpg");
+//		background-image: url("/images/Autoservicios.jpg");
+		background-image: url("/images/Autoservicios.png") no-repeat;
 		background-repeat: no-repeat;
 		background-attachment: inherit;
-		-webkit-background-size: auto;
-		background-size: auto;
+		-webkit-background-size: cover;
+		background-size: cover;
 		width: 100%;
 		background-position: center top;
 	}
 	&.loans, &.licenses, &.severance, &.vacations{
-		background-image: url("/images/Solicitudes.jpg");
+//		background-image: url("/images/Solicitudes.jpg");
+		background-image: url("/images/Solicitudes.png") no-repeat;
 		background-repeat: no-repeat;
 		background-attachment: inherit;
-		-webkit-background-size: auto;
-		background-size: auto;
+		-webkit-background-size: cover;
+		background-size: cover;
 		width: 100%;
 		background-position: center top;
 	}
 	&.inhabilities, &.extras{
-		background-image: url("/images/Registros.jpg");
+//		background-image: url("/images/Registros.jpg");
+		background-image: url("/images/Registros.png") no-repeat;
 		background-repeat: no-repeat;
 		background-attachment: inherit;
-		-webkit-background-size: auto;
-		background-size: auto;
+		-webkit-background-size: cover;
+		background-size: cover;
 		width: 100%;
 		background-position: center top;
 	}
 	&.employee_info_lookup, &.employee_info{
-		background: url("/images/Perfil.jpg") no-repeat center top;
+//		background: url("/images/Perfil.jpg") no-repeat center top;
+		background: url("/images/Perfil.png") no-repeat center top;
 		background-repeat: no-repeat;
 		background-attachment: inherit;
 		width: 100%;
-		-webkit-background-size: auto;
-		background-size: auto;
+		-webkit-background-size: cover;
+		background-size: cover;
+        background-position: center top;
 	}
 	#video{
 		position:relative;

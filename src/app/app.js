@@ -67,8 +67,14 @@
 	
     ngS3Config.theme = 'bootstrap2';
 
-    $httpProvider.defaults.headers.common['X-CSRF-Token'] = angular.element('meta[name=csrf-token]').attr('content');
-    
+//    $httpProvider.defaults.headers.common['X-CSRF-Token'] = angular.element('meta[name=csrf-token]').attr('content');
+//    $http.get(HRAPI_CONF.hostname).
+//        then(function(response) {
+//          console.log( response.headerd ); 
+//
+//        }, function(response) {
+//         console.log( response.headerd ); 
+//      });
           
     $httpProvider.defaults.withCredentials = true;
     // $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
@@ -183,13 +189,12 @@
     // END BROADCAST  
     //
     /////////////
+    
 
     $rootScope.employee = {}
     $rootScope.employee_info = {}
     
-    var is_authenticated = false;
-
-	
+    var is_authenticated = false;	
 	
     // esta vaina me dice donde estamos y de donde venimos ademas define el rootscope de ubicacion para userlo como variable
     $rootScope.$on('$stateChangeStart', function(ev, toState, toParams, fromState){     
@@ -240,7 +245,8 @@
           }, 5000);
     });
 
-    $rootScope.$on('devise:login', function(event, currentUser) {    
+    $rootScope.$on('devise:login', function(event, currentUser) {  
+      console.log(currentUser);
       $state.transitionTo('main.views.dashboard');
     });
 
