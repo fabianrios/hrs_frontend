@@ -20,7 +20,7 @@
 //8.alert-box
 //9.select
 //10.reveal-modal
-//11.button-group
+//11.button-groupsss
 //12.offcanvas
 //13.has-tip
 //14.accordion
@@ -147,6 +147,24 @@ ul{
 
 //4.button
 .button{
+    
+    // needs latest Compass, add '@import "compass"' to your scss
+    &.upload{
+        @include filter-gradient(#008CBA, #007095, vertical); // IE6-9
+        @include background-image(linear-gradient(top,  #008CBA,#007095 98%));
+        @include box-shadow(0 1px 2px rgba(darken(#007095,30%),.8));
+        border-top: 1px solid lighten(#007095,30%);
+        text-shadow:0 -1px 1px rgba(darken(#007095,30%),.5);
+        &:hover{
+            background-color: #00a651; // Old browsers
+            @include filter-gradient(#008CBA, #007095, horizontal); // IE6-9 fallback on horizontal gradient
+            @include background-image(linear-gradient(left bottom,  #008CBA 0%,#007095 100%));
+            @include box-shadow(0 1px 7px rgba(darken(#007095,40%),.7));
+            @include transition-property(box-shadow);
+            @include transition-duration(400ms);
+            @include transition-timing-function(ease-out);
+        }
+    }
 	&.success{
 		// needs latest Compass, add '@import "compass"' to your scss
 		background-color: #00a651; // Old browsers

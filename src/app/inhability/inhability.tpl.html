@@ -32,7 +32,7 @@
 					<label for="">Motivo: </label>
 					<select name="motivo" id="motivo" ng-options="opt.subty as opt.descr for opt in options" ng-model="requerimiento.motivo" required></select>
 					<label for="">Imagen: </label>
-					<div class="button" ngf-select ngf-change="loadImage($files)">Subir archivo</div>
+					<div class="button upload" ngf-select ngf-change="loadImage($files)">Subir archivo</div>
 					<input type="hidden" ng-model="requerimiento.status">
 					<input type="hidden" ng-model="requerimiento.employee_id">
 					<br />

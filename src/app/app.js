@@ -186,11 +186,14 @@
 
     $rootScope.employee = {}
     $rootScope.employee_info = {}
+    
+    var is_authenticated = false;
+
 	
 	
     // esta vaina me dice donde estamos y de donde venimos ademas define el rootscope de ubicacion para userlo como variable
-    $rootScope.$on('$stateChangeStart', function(ev, toState, toParams, fromState){                         
-        var is_authenticated = Auth.isAuthenticated();
+    $rootScope.$on('$stateChangeStart', function(ev, toState, toParams, fromState){     
+        is_authenticated = Auth.isAuthenticated();
 //        Si no hay una session redirect to  login.auth
         if( !is_authenticated && toState.name != "login.auth" ){                
             ev.preventDefault();

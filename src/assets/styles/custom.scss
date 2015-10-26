@@ -98,54 +98,56 @@
 	&.dashboard{
 		background: url("/images/Perfil.jpg") no-repeat;
 		background-repeat: no-repeat;
-		background-position: center center;
-		background-attachment: fixed;
-		-webkit-background-size: cover;
-		background-size: cover;
+		background-position: center top;
+//		background-attachment: fixed;
+		background-attachment: inherit;
+		-webkit-background-size: auto;
+//		background-size: cover;
+		background-size: auto;
 		width: 100%;
 	}
 	&.organigram{
-		background: url("/images/Organigrama.jpg") no-repeat center center;
+		background: url("/images/Organigrama.jpg") no-repeat center top;
 		background-repeat: no-repeat;
-		background-attachment: fixed;
+		background-attachment: inherit;
 		width: 100%;
-		-webkit-background-size: cover;
-		background-size: cover;
+		-webkit-background-size: auto;
+		background-size: auto;
 	}
 	&.certificates_vacations, &.certificates_labor, &.certificates_payroll, &.certificates_income{
 		background-image: url("/images/Autoservicios.jpg");
 		background-repeat: no-repeat;
-		background-attachment: fixed;
-		-webkit-background-size: cover;
-		background-size: cover;
+		background-attachment: inherit;
+		-webkit-background-size: auto;
+		background-size: auto;
 		width: 100%;
-		background-position: center center;
+		background-position: center top;
 	}
-	&.loans, &.licenses, &.severance{
+	&.loans, &.licenses, &.severance, &.vacations{
 		background-image: url("/images/Solicitudes.jpg");
 		background-repeat: no-repeat;
-		background-attachment: fixed;
-		-webkit-background-size: cover;
-		background-size: cover;
+		background-attachment: inherit;
+		-webkit-background-size: auto;
+		background-size: auto;
 		width: 100%;
-		background-position: center center;
+		background-position: center top;
 	}
 	&.inhabilities, &.extras{
 		background-image: url("/images/Registros.jpg");
 		background-repeat: no-repeat;
-		background-attachment: fixed;
-		-webkit-background-size: cover;
-		background-size: cover;
+		background-attachment: inherit;
+		-webkit-background-size: auto;
+		background-size: auto;
 		width: 100%;
-		background-position: center center;
+		background-position: center top;
 	}
 	&.employee_info_lookup, &.employee_info{
-		background: url("/images/Perfil.jpg") no-repeat center center;
+		background: url("/images/Perfil.jpg") no-repeat center top;
 		background-repeat: no-repeat;
-		background-attachment: fixed;
+		background-attachment: inherit;
 		width: 100%;
-		-webkit-background-size: cover;
-		background-size: cover;
+		-webkit-background-size: auto;
+		background-size: auto;
 	}
 	#video{
 		position:relative;
@@ -207,18 +209,20 @@
 	@include filter-gradient(#ffffff, #1a1a1a, vertical); // IE6-9
 	@include background-image(linear-gradient(rgba(#1a1a1a,0) 0%, #1a1a1a 90%));
 	.subheader{
-		color: #ccc;
+//		color: #ccc;
+		color: #000;
+        text-shadow: 0 -1px 1px rgba(255,255,255,.6);
 	}
 	a{
 		color: #123A73;
 		text-shadow: 0 1px 1px rgba(255, 255, 255, 0.3);
 	}
-	@media only screen and (min-width: 40.063em) and (max-width: 64em) {
-		a{
-			color: #CCC;
-			text-shadow: 0 0 0 rgba(255,255,255,0);
-		}
-	}	
+//	@media only screen and (min-width: 40.063em) and (max-width: 64em) {
+//		a{
+//			color: #CCC;
+//			text-shadow: 0 0 0 rgba(255,255,255,0);
+//		}
+//	}	
 	&.whitening{
 		@include filter-gradient(#ffffff, #ffffff, vertical); // IE6-9
 		@include background-image(linear-gradient(rgba(#ffffff,0) 0%, rgba(#ffffff,0.8) 90%));
@@ -226,11 +230,14 @@
 			text-shadow: 0 -1px 1px rgba(255,255,255,.6);
 		}
 		.subheader{
-			color: #4A4A4A;
+//			color: #4A4A4A;
+			color: #000;
+            text-shadow: 0 -1px 1px rgba(255,255,255,.6);
 		}
 		.text-format{
 			.subheader{
-				color: #666;
+				color: #000;
+                text-shadow: 0 -1px 1px rgba(255,255,255,.6);
 			}
 		}
 		.bluelighttxt{
@@ -635,12 +642,14 @@
 
 .vacation-days{
 	.used{
-		padding:5px 20px 28px 20px;
+//		padding:5px 20px 28px 20px;
+		padding:0px 20px 4px 20px;
 		background: #2057A3;
 	}
 	.available{
 		background: #464646;
-		padding:5px 20px 28px 20px;
+//		padding:5px 20px 28px 20px;
+		padding:0px 20px 4px 20px;
 	}
 	h1,h6{
 		color: #fff;
@@ -649,14 +658,17 @@
 	}
 	h1{
 		font-family: "futura-pt","sans-serif";
-		font-size: 70px;
+		font-size: 30px;
+	}
+    h6{		
+		font-size: 10px;
 	}
 }
 
 #vacaciones{
 	border: 1px solid #D6D6D6;
 	padding: 20px 0;
-	height: 306px;
+	height: 306px;    
 }
 
 .ui-datepicker-title{
@@ -834,7 +846,7 @@ table{
 				}
 			}
 			tr{
-				height: 76px;
+				height: 30px;
 				background: none;
 				th{
 					border-right: 1px solid #D6D6D6;
@@ -1737,3 +1749,5 @@ footer{
 .left-submenu{
     height: inherit;
 }
+
+

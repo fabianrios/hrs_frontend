@@ -1,19 +1,21 @@
-<div class="bottomize" ng-class="ubicacion != 'main.views.dashboard' ? 'whitening' : ''" ng-switch="ubicacion">
+<!--ng-class="ubicacion != 'main.views.dashboard' ? 'whitening' : ''"-->
+<div class="bottomize whitening" ng-switch="ubicacion">
 	<div class="row"  ng-switch-default>
 		<div class="large-7 medium-7 columns">
 			<div class="big-profile">
 				<img ng-src="{{user.pic ? user.pic : user.employee.image}}">
 			</div>
-			<div class="dash-text-format p-20">
-				<h4 class="no-margin whitetxt capitalize">
+            <!--dash-text-format-->
+			<div class=" p-20 ">
+				<h4 class="no-margin whitetxt capitalize card">
 					<a ui-sref="main.views.employee_info">
 						{{user.employee.short_name}}
 					</a>
 				</h4>
-				<h5 class="subheader no-margin capitalize">
+				<h5 class="subheader no-margin capitalize card">
 					{{user.employee.posicion}}
 				</h5>
-				<h5 class="subheader no-margin capitalize hide-for-small-only">
+				<h5 class="subheader no-margin capitalize hide-for-small-only card">
 					{{user.employee.unidad_org}}
 				</h5>
 			</div>

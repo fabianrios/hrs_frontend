@@ -2,9 +2,10 @@
 	<div class="row collapse" ng-switch-default>
 		<div class="large-7 medium-7 columns">
 			<div class="thecalendar">
-				<div id="vacaciones"></div>
+                <div id="vacaciones"></div>
 			</div>
 		</div>
+<!--
 		<div class="large-2 medium-2 columns">
 			<div class="vacation-days">
 				<div class="available">
@@ -17,29 +18,43 @@
 				</div>
 			</div>
 		</div>
-		<div class="large-3 medium-3 columns" id="maxfix">
-			<table class="vacations">
-				<thead class="whiteish">
-					<tr>
-						<th class="desde">DESDE</th>
-						<th>HASTA</th>
-						<th class="dias">DIAS</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr ng-repeat="dates in vacationdates">
-						<td class="desde">
-							<h2>{{ dateHanldler(formatDate(dates[0])) | date:'d' }}</h2>
-							<h6>{{ dateHanldler(formatDate(dates[0])) | date:'MMMM' }}</h6>
-						</td>
-						<td>
-							<h2>{{ dateHanldler(formatDate(dates[1])) | date:'d' }}</h2>
-							<h6>{{ dateHanldler(formatDate(dates[1])) | date:'MMMM' }}</h6>
-						</td>
-						<td class="dias"><h2>{{dates[2] | number:0}}</h2></td>
-					</tr>
-				</tbody>
-			</table>
+-->
+		<div class="large-5 medium-5 columns" id="maxfix">
+
+            <div class="vacation-days large-12 medium-12 small-12 column">
+                <div class="available large-6 medium-6 column ">
+                    <h1>{{disponibles}}</h1>
+                    <h6>DISPONIBLES</h6>
+                </div>
+                <div class="used large-6 medium-6 column">
+                    <h1>{{usados}}</h1>
+                    <h6>USADOS</h6>
+                </div>
+            </div>
+            <div class="large-12 medium-12 small-12 column" >
+                <table class="vacations" >
+                    <thead class="whiteish">
+                        <tr>
+                            <th class="desde">DESDE</th>
+                            <th>HASTA</th>
+                            <th class="dias">DIAS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="dates in vacationdates">
+                            <td class="desde">
+                                <h2>{{ dateHanldler(formatDate(dates[0])) | date:'d' }}</h2>
+                                <h6>{{ dateHanldler(formatDate(dates[0])) | date:'MMMM' }}</h6>
+                            </td>
+                            <td>
+                                <h2>{{ dateHanldler(formatDate(dates[1])) | date:'d' }}</h2>
+                                <h6>{{ dateHanldler(formatDate(dates[1])) | date:'MMMM' }}</h6>
+                            </td>
+                            <td class="dias"><h2>{{dates[2] | number:0}}</h2></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>        
 		</div>
 	</div>
 	<div class="row" ng-switch-when="main.views.employee_info">
