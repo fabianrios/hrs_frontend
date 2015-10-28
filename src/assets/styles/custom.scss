@@ -870,10 +870,10 @@ table{
 			}
 		}
 		tbody{
-			tr{
+			tr{             
 				border: 1px solid #D6D6D6;
 				background: transparent;
-				td{
+				td{            
 					border-right: 1px solid #D6D6D6;
 					&.dias{
 						color: #fff;
@@ -888,16 +888,27 @@ table{
 					h2,h6{
 						text-align: center;
 						margin: 0;
-						color: #6C6C6C;
+						color: #6C6C6C;                        
 					}
 					h2{
 						font-family: "futura-pt","sans-serif";
 						line-height: 35px;
-					}
+					}                    
 				}
 			}
 		}
 	}
+    &.expandbanner{
+        tr{    
+            padding: 0;
+            h2{
+                font-size: 25px;
+            }
+            h6{
+                 font-size: 10px;
+            }
+        }
+    }
 }
 
 
@@ -1194,6 +1205,9 @@ span{
 	top: 20px;
 	right: 15px; 
 	display: inline-block;
+    h3{
+        font-size: 20px;
+    }
 }
 
 .animation-canvas {
