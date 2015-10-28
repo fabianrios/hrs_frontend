@@ -81,7 +81,7 @@
 
 	  // console.log(nodes);
 	  // Normalize for fixed-depth.
-	  nodes.forEach(function(d) { d.y = d.depth * 400; });
+	  nodes.forEach(function(d) { d.y = d.depth * 350; });
 
 	  // Update the nodes…
 	  var node = svg.selectAll("g.node")
@@ -93,35 +93,42 @@
 	      .attr("transform", function(d) { return "translate(" + source.y0 + "," + source.x0 + ")"; })
 	      .on("click", function(d) { toggle(d); update(d); });
 
+		// nodeEnter.append("rect")
+		// 	      .attr("x", function(d) { return d.children || d._children ? -58 : 58; })
+		// 	      .attr("y", -25)
+		// 		.attr("width", 260)
+		//     .attr("height", 45)
+		//     .attr("fill", "white");
+
 	  nodeEnter.append("svg:image")
           .attr("x", function(d) { return d.children || d._children ? -55 : 15; })
           .attr('y',-20)
-		  .attr('width', 40)
+				  .attr('width', 40)
           .attr('height', 40)
-		  .attr("xlink:href",	function(d) { return d.image; })
+				  .attr("xlink:href",	function(d) { return d.image; })
 	
 	  
 	  nodeEnter.append("svg:circle")
 	      .attr("class", "thelink")
 	      .attr("r", 1e-6)
 	      .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
-
+		
 	  nodeEnter.append("svg:text")
 	      .attr("x", function(d) { return d.children || d._children ? -60 : 60; })
 	      .attr("dy", "-0.5em")
 	      .attr("text-anchor", function(d) { return d.children || d._children ? "end" : "start"; })
 	      .text(function(d) { return d.short_name; })
-		  .style("font-size","16px")
+		    .style("font-size","16px")
 	      .style("fill-opacity", 1e-6);
   
 	  nodeEnter.append("svg:text")
-		  .attr("class", "cargo")
+		    .attr("class", "cargo")
 	      .attr("x", function(d) { return d.children || d._children ? -60 : 60; })
 	      .attr("dy", ".4em")
 	      .attr("text-anchor", function(d) { return d.children || d._children ? "end" : "start"; })
 	      .text(function(d) { return d.posicion; })
-		  .style("font-size","12px")
-		  .style("fill", "#6f6f6f")
+			  .style("font-size","12px")
+			  .style("fill", "#6f6f6f")
 	      .style("fill-opacity", 1e-6);
 		  
 	  nodeEnter.append("svg:text")
@@ -130,8 +137,8 @@
 	      .attr("dy", "1.4em")
 	      .attr("text-anchor", function(d) { return d.children || d._children ? "end" : "start"; })
 	      .text(function(d) { return d.phone; })
-		  .style("font-size","12px")
-		  .style("fill", "#6f6f6f")
+			  .style("font-size","12px")
+			  .style("fill", "#6f6f6f")
 	      .style("fill-opacity", 1e-6);
 
 	  // Transition nodes to their new position.
@@ -160,6 +167,7 @@
 
 	  // Update the links…
 	  var link = svg.selectAll("path.link")
+				.style("stroke", "#EBF6FF")
 	      .data(tree.links(nodes), function(d) { return d.target.id; });
 
 	  // Enter any new links at the parent's previous position.
