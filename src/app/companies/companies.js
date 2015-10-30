@@ -102,9 +102,9 @@
 	})
 	.controller('companies.EditController', function($scope, $state, $stateParams, Company){
 		$scope.updateCompany = function() { //Update the edited company. Issues a PUT to /api/companies/:id
-			// $scope.company.$update(function() {
-// 				$state.go('main.views.companylisting'); // on success go back to company_listing
-// 			});
+			$scope.company.$update(function() {
+				$state.go('main.views.companylisting'); // on success go back to company_listing
+			});
 		};
 
 		$scope.loadCompany = function() { //Issues a GET request to /api/movies/:id to get a movie to update

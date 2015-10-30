@@ -121,7 +121,7 @@
       views: {
         topbar: {
           templateUrl: 'app/topbar/topbar.tpl.html',
-          controller: 'Topbar.TopbarController'
+          controller: 'Topbar.TopbarController as tb'
         },
         navbar: {
           templateUrl: 'app/navbar/navbar.tpl.html',
@@ -189,8 +189,9 @@
     // END BROADCAST  
     //
     /////////////
+		
+		// $rootScope.subdomain = Subdomain;
     
-
     $rootScope.employee = {}
     $rootScope.employee_info = {}
     
@@ -246,7 +247,8 @@
     });
 
     $rootScope.$on('devise:login', function(event, currentUser) {  
-      console.log(currentUser);
+			// for design template company configuration
+			$rootScope.usuario = currentUser;
       $state.transitionTo('main.views.dashboard');
     });
 

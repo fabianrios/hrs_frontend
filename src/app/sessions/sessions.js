@@ -21,9 +21,28 @@
 		});
 	})
 
-	.controller('sessions.LoginController', function( $scope, Auth ){
-
-		$scope.login = function() {             
+	.controller('sessions.LoginController', function( $scope, Auth, $location, $log){
+    
+    var host = $location.host();
+		$scope.subdomain = function(){
+	    if (host.indexOf('.') < 0) {
+	        return null;
+			}else{
+				if (host.split('.')[0] == "rcn"){
+					var logo = "images/otrologo.png";
+				}else{
+					var logo = "images/rcn.png";
+				}
+		    return logo;
+			}
+		}
+		
+		$scope.logo = $scope.subdomain();
+		
+		$log.log(logo);
+		
+		
+		$scope.login = function() {
             var config = {
                 headers: {
                     'X-HTTP-Method-Override': 'POST'
@@ -53,9 +72,9 @@
 	})
 	.controller('sessions.EditController', function($scope, $state, $stateParams, $http, currentUser){
     
-	
+	  
 		$scope.user = currentUser;
-		console.log($scope.user);
+		// console.log($scope.user);
 		
 		// Hmm esto no tiene cara de ir aca ...
 		$scope.$on('s3upload:success', function (evt, xhr, fileUrl) {
@@ -74,7 +93,7 @@
 
     
 	$scope.updateUser = function() { //editar		
-			console.log($scope.user);
+			// console.log($scope.user);
       
 			$http({method: 'PUT', 
 			url: 'http://hdvbackend.hrinteractive.co/api/users.json',

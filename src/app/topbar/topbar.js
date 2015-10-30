@@ -6,8 +6,10 @@
     .controller('Topbar.TopbarController', function($scope, currentUser, articles, $log, Notification){
 		
 		$scope.user = currentUser;
+		this.user = currentUser;
+		
 		$log.info($scope.user);
-        $scope.notifications = Notification.show({id: currentUser.employee.identification});
+    $scope.notifications = Notification.show({id: currentUser.employee.identification});
 		$scope.articles = articles.articles;
 		$scope.articles_not_mine = [];
 		$scope.articles_mine = [];
