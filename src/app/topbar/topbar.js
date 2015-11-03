@@ -13,7 +13,6 @@
 		// $scope.articles_mine = [];
 		// var mine = articles.articles;
 		// $scope.not_published_mine = articles.not_articles;
-		
   //       $scope.$on( 'hrs:updateNotifications', function(){
   //           $scope.notifications = Notification.show({id: currentUser.employee.identification});
   //       });				

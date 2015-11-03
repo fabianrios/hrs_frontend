@@ -124,12 +124,12 @@
     })
     .state('main.views', {
       resolve: {
-        // currentUser: function(UserInfo){                  
-        //   return UserInfo.currentUser();
-        // },
-        // articles:  function(Article){
-        //   return Article.index();
-        // },
+        currentUser: function($rootScope){                  
+          return $rootScope.user;
+        },        
+        articles:  function(Article){
+          return Article.index();
+        },
         // vac_requirements: function(Vacation_requirement){
         //   return Vacation_requirement.index().$promise;
         // },
@@ -149,7 +149,7 @@
       views: {
         topbar: {
           templateUrl: 'app/topbar/topbar.tpl.html',
-          controller: 'Topbar.TopbarController'
+          controller: 'Topbar.TopbarController as tb'
         },
         navbar: {
           templateUrl: 'app/navbar/navbar.tpl.html',
@@ -216,7 +216,7 @@
     //
     // END BROADCAST  
     //
-    /////////////
+    ////////////
 
     $rootScope.$on('$stateChangeStart',
         function(event, toState, toParams, fromState, fromParams){

@@ -21,6 +21,7 @@
 		});
 	})
 
+
 	.controller('sessions.LoginController', function( $scope, $auth ){
 
 		$scope.login = function() {       
@@ -33,6 +34,7 @@
 	
 	// 	$scope.user = currentUser;
 	// 	console.log($scope.user);
+
 		
 	// 	// Hmm esto no tiene cara de ir aca ...
 	// 	$scope.$on('s3upload:success', function (evt, xhr, fileUrl) {

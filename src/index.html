@@ -2,8 +2,8 @@
 <html class="no-js" ng-app="hrsReleaseApp">
 <head>
   <meta charset="utf-8">
-  <title>hrinteractive</title>
-  <meta name="description" content="hrinteractive a SAP fully functional human resources interface">
+  <title>hrinteractive - {{user.company.name}}</title>
+  <meta name="description" content="hrinteractive a SAP fully functional human resources interface for {{user}} - {{usuario}}">
   <meta name="author" content="fabianrios at www.fabianrios.co for www.hrsolutions-co.com">
   <!-- <meta name="viewport" content="width=1024, user-scalable=no"> -->
   <meta name="viewport" content="width=1024; initial-scale=0.75; minimum-scale=1.0; maximum-scale=1.0">
@@ -21,7 +21,7 @@
   <link rel="stylesheet" href="styles/font.css" />
   <link rel="stylesheet" href="styles/gantt.css" />
   <link rel="stylesheet" href="styles/gantt-plugins.css" />
-  <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,400italic|Roboto:400,700,400italic|Lato:400,700,400italic' rel='stylesheet' type='text/css'>
   <!-- endbuild -->
 	
   <!-- Bugherd -->
@@ -68,11 +68,9 @@
 -->
 		
     <!-- Typekit -->
-<!--
     <script src="//use.typekit.net/tvm0sgh.js"></script>
     <script>try{Typekit.load();}catch(e){}</script>
-	
--->
+
 	
     <!-- build:js(vendor) scripts/oldieshim.js -->
     <!--[if lt IE 9]>
