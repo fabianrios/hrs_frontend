@@ -25,7 +25,7 @@
 	.controller('sessions.LoginController', function( $scope, $auth ){
 
 		$scope.login = function() {       
-            $auth.submitLogin($scope.credentials);           
+            $auth.submitLogin($scope.credentials);
         };                
                         
 	});

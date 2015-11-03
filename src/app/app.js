@@ -130,21 +130,21 @@
         articles:  function(Article){
           return Article.index();
         },
-        // vac_requirements: function(Vacation_requirement){
-        //   return Vacation_requirement.index().$promise;
-        // },
-        // extras_requirements: function(Extra_requirement){
-        //   return Extra_requirement.index().$promise;
-        // },
-        // inhabilities_requirements: function(Inhability_requirement){
-        //   return Inhability_requirement.index().$promise;
-        // },
-        // licenses_requirements: function(License_requirement){
-        //   return License_requirement.index().$promise;
-        // },
-        // infos:function(Info){
-        //     return Info.index().$promise;
-        // }
+        vac_requirements: function(Vacation_requirement){
+          return Vacation_requirement.index().$promise;
+        },
+        extras_requirements: function(Extra_requirement){
+          return Extra_requirement.index().$promise;
+        },
+        inhabilities_requirements: function(Inhability_requirement){
+          return Inhability_requirement.index().$promise;
+        },
+        licenses_requirements: function(License_requirement){
+          return License_requirement.index().$promise;
+        },
+        infos:function(Info){
+            return Info.index().$promise;
+        }
       },
       views: {
         topbar: {
@@ -159,27 +159,27 @@
           templateUrl: 'app/profile/profile.tpl.html',
           controller: 'Profile.ProfileController',
           resolve: {
-            // employees: function(Employee){
-            //   return Employee.index();
-            // }
+            employees: function(Employee){
+              return Employee.index();
+            }
           }
         },
         expandbanner: {
           templateUrl: 'app/expandbanner/expandbanner.tpl.html',
           controller: 'Expandbanner.ExpandbannerController',
           resolve: {
-            // employees: function(Employee){
-            //   return Employee.index();
-            // }
+            employees: function(Employee){
+              return Employee.index();
+            }
           }
         },
         sidebar: {
           templateUrl: 'app/sidebar/sidebar.tpl.html',
           controller: 'Sidebar.SidebarController',
           resolve: {
-            // employees: function(Employee){
-            //   return Employee.index();
-            // }
+            employees: function(Employee){
+              return Employee.index();
+            }
           }
         },
         content: {
@@ -236,6 +236,7 @@
 
     $rootScope.$on('$stateNotFound',
         function(event, unfoundState, fromState, fromParams){
+            $rootScope.preload = false;
             console.log("not fount");
             event.preventDefault();
             $state.transitionTo('main.views.dashboard');
@@ -243,6 +244,7 @@
 
     $rootScope.$on('$stateChangeError',
         function(event, toState, toParams, fromState, fromParams, error){
+            $rootScope.preload = false;
             console.log(error);
             event.preventDefault();
             if( error.reason === "unauthorized"){
@@ -258,7 +260,16 @@
         $state.transitionTo('main.views.dashboard');
     });
     $rootScope.$on('auth:login-error', function(ev, reason) {
-        $state.transitionTo('login.auth');
+        $rootScope.showMessageErrorRails2(reason);
+          // $rootScope.alerts.push({type: 'alert', msg: xhr.data.error});
+          // console.log(reason);
+        
+          // $window.setTimeout(function() {
+          //   $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
+          //     $(this).remove();
+          //     $rootScope.alerts = [];
+          //   });
+          // }, 5000);
     });
 
 
@@ -267,6 +278,7 @@
     });
     $rootScope.$on('auth:logout-error', function(ev, reason) {
         $state.transitionTo('login.auth');
+
     });
 
     $rootScope.$on('auth:session-expired', function(ev) {
@@ -431,6 +443,21 @@
                 });
               }, 5000);
             });   
+          });
+        }
+
+        $rootScope.showMessageErrorRails2 = function(data){
+          var errores = ((typeof data.errors !== "undefined") ? data.errors : data.data.errors);
+          angular.forEach(errores, function(value, index){
+           
+              $rootScope.alerts.push({type: 'alert', msg: value });
+              window.setTimeout(function() {
+                $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
+                  $(this).remove();
+                  $rootScope.alerts = [];
+                });
+              }, 5000);
+        
           });
         }
 
