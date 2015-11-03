@@ -28,7 +28,7 @@
 				workers: function(){
 					return {
 						items: [
-							{ name: "Cumpleaños este mes", config: { param_a: "abc", param_b: "Días que a la liquidación de la última nómina tiene disponibles por este concepto. " }},
+							{ name: "Cumpleaños del mes", config: { param_a: "abc", param_b: "Días que a la liquidación de la última nómina tiene disponibles por este concepto. " }},
 							{ name: "Aniversario laboral", config: { param_a: "def", param_b: "El Valor de los intereses a las cesantias que a la liquidación de la última nómina tiene causados dentro de la compañía" }}
 						]
 					}
@@ -356,7 +356,9 @@
 	})
 	
 	// .controller('Dashboard.MainController', function($scope, widgets, ingresos, workers, publicaciones, employees, currentUser, articles){
-	.controller('Dashboard.MainController', function($scope, widgets, ingresos, workers, publicaciones, articles, currentUser, employees ){
+	.controller('Dashboard.MainController', function($scope, widgets, ingresos, workers, publicaciones, articles, currentUser, employees, Employee){
+
+		$scope.employee_by_fecha_de_ingreso = Employee.all_by_fecha_de_ingreso();
     	
 
 		var mine = articles.articles;
@@ -493,16 +495,16 @@
         // return $scope.formatDate(empleado.fecha_nac);
 			}
     
-			$scope.laborShow = function(empleado) {
+		$scope.laborShow = function(empleado) {
 				var entrada = $scope.formatDate(empleado.fecha_ingreso);
-        var now = new Date();
-        if (Object.prototype.toString.call(entrada) === '[object Date]'){
-          var show = now.getMonth() == entrada.getMonth() ? true : false;
-          // console.log(now.getMonth(), entrada.getMonth());
-          return show;
-        }else{
-          return false
-        }
+        		var now = new Date();
+        		if (Object.prototype.toString.call(entrada) === '[object Date]'){
+          			var show = now.getMonth() == entrada.getMonth() ? true : false;
+          			// console.log(now.getMonth(), entrada.getMonth());
+         	 		return show;
+        		}else{
+          			return false
+        		}
 			}
     
     

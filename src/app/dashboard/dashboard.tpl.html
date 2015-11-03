@@ -171,7 +171,7 @@
 						</h5>
 						<div class="contenido">
 							<ul class="employees">
-								<li ng-repeat="empleado in employees | filter:laborShow | orderBy: sortEmpleado : true">
+								<li ng-repeat="empleado in employee_by_fecha_de_ingreso | orderBy: sortEmpleado : true">
 									<div class="foto">
 										<a ui-sref="main.views.employee_info_lookup({id:empleado.identification, c:empleado.company.id})">
 											<img alt="profile" ng-src="{{empleado.image}}">
