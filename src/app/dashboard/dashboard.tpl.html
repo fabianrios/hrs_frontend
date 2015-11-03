@@ -116,7 +116,7 @@
 			</ul>
 			
 			<ul class="small-block-grid-1 medium-block-grid-3 large-block-grid-3 dashboardlis">
-				<li>
+				<li ng-if="user.company.show_birthday">
 					<div class="widgets minh-430">
 						<h5 class="encabezado">
 							<a href="#">{{ common.workers[0].name }} <i class="fa fa-angle-right"></i> </a>
@@ -154,7 +154,7 @@
 						</div><!-- /contenido -->
 					</div>
 				</li>
-				<li>
+				<li ng-if="user.company.show_labor">
 					<div class="widgets minh-430">
 						<h5 class="encabezado">
 							<a href="#">{{ common.workers[1].name }} <i class="fa fa-angle-right"></i> </a>
@@ -193,7 +193,7 @@
 						</div><!-- /contenido -->
 					</div>
 				</li>
-				<li>
+				<li ng-if="user.company.show_articles">
 					<div class="widgets minh-430">
 						<h5 class="encabezado">
 							<a ui-sref="main.views.articles()">Publicaciones recientes <i class="fa fa-angle-right"></i> </a>
