@@ -8,16 +8,16 @@
 
 	$scope.elusuario = currentUser;
 	$scope.user = currentUser;
-	$scope.vacation = $scope.user.vacation;
+	$scope.vacation = $scope.user.vacation;    
   
-  $scope.privateValidation = function(priv){
-    if (priv == "X" && $scope.user.employee.see_all_dm != "true"){
-      return "hide"
+    $scope.privateValidation = function(priv){
+        if(priv == "X" && $scope.user.employee.see_all_dm != "true"){
+          return "hide"
+        }
+        else{
+          return "show"
+        }
     }
-    else{
-      return "show"
-    }
-  }
 	
 	//CESANTIAS
 	$scope.saldos = currentUser.saldos;

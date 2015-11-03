@@ -21,81 +21,58 @@
 		});
 	})
 
-	.controller('sessions.LoginController', function( $scope, Auth ){
+	.controller('sessions.LoginController', function( $scope, $auth ){
 
-		$scope.login = function() {             
-            var config = {
-                headers: {
-                    'X-HTTP-Method-Override': 'POST'
-                }
-            };
-            Auth.login($scope.credentials, config).then( function( user ){                
-//              DEBO QUITAR ESTO 
-                localStorage.setItem('user',user.email);    
-                localStorage.setItem('psx',$scope.credentials.password);
-//              HASTA AQUI
-            });                
+		$scope.login = function() {       
+            $auth.submitLogin($scope.credentials);           
         };                
-            
-//      TAMBIEN ESTO DEBO QUITARLO
-        var user_loc = localStorage.getItem('user');
-        var user_psx = localStorage.getItem('psx');
-
-        if (typeof user_loc !== 'undefined' && typeof user_psx !== 'undefined'){
-            $scope.credentials = {
-                email: user_loc,
-                password: user_psx
-            };                
-            $scope.login();
-        }
-//      HASTA AQUI
-            
-	})
-	.controller('sessions.EditController', function($scope, $state, $stateParams, $http, currentUser){
+                        
+	});
+	// .controller('sessions.EditController', function($scope, $state, $stateParams, $http, currentUser){
     
 	
-		$scope.user = currentUser;
-		console.log($scope.user);
+	// 	$scope.user = currentUser;
+	// 	console.log($scope.user);
 		
-		// Hmm esto no tiene cara de ir aca ...
-		$scope.$on('s3upload:success', function (evt, xhr, fileUrl) {
-			$http({method: 'PUT', 
-			url: 'http://hdvbackend.hrinteractive.co/api/users/'+$scope.user.employee.user_id,
-			data: { user: { pic: fileUrl.path}}
-		})
-		.success( function( data, status ) {
-			console.log("imagen colocada", data);
-		})
-		.error( function( data, status ) {
-			// errorService.failure( data, status, $scope);
-			console.log("error", status, data.errors, $scope);
-		});
-	});
+	// 	// Hmm esto no tiene cara de ir aca ...
+	// 	$scope.$on('s3upload:success', function (evt, xhr, fileUrl) {
+	// 		$http({method: 'PUT', 
+	// 		url: 'http://hdvbackend.hrinteractive.co/api/users/'+$scope.user.employee.user_id,
+	// 		data: { user: { pic: fileUrl.path}}
+	// 	})
+	// 	.success( function( data, status ) {
+	// 		console.log("imagen colocada", data);
+	// 	})
+	// 	.error( function( data, status ) {
+	// 		// errorService.failure( data, status, $scope);
+	// 		console.log("error", status, data.errors, $scope);
+	// 	});
+	// });
 
     
-	$scope.updateUser = function() { //editar		
-			console.log($scope.user);
+	// $scope.updateUser = function() { //editar		
+	// 		console.log($scope.user);
       
-			$http({method: 'PUT', 
-			url: 'http://hdvbackend.hrinteractive.co/api/users.json',
-			data: {user: {
-				name: $scope.user.name,
-				email: $scope.user.email,
-				password: $scope.user.password,
-				password_confirmation: $scope.user.password_confirmation,
-				current_password: $scope.user.current_password}}})
-				.success( function( data, status ) {
-					// errorService.success( data, status, 'Your password has been changed', $scope);
-					console.log("success",data);
-					$state.go('main.views.dashboard'); //volver al home
-				})
-				.error( function( data, status ) {
-					// errorService.failure( data, status, $scope);
-					console.log("error", status, data.errors, $scope);
-					// $scope.alerts.push({type: 'alert', msg: "Revisa los campos"});
-				});
+	// 		$http({method: 'PUT', 
+	// 		url: 'http://hdvbackend.hrinteractive.co/api/users.json',
+	// 		data: {user: {
+	// 			name: $scope.user.name,
+	// 			email: $scope.user.email,
+	// 			password: $scope.user.password,
+	// 			password_confirmation: $scope.user.password_confirmation,
+	// 			current_password: $scope.user.current_password}}})
+	// 			.success( function( data, status ) {
+	// 				// errorService.success( data, status, 'Your password has been changed', $scope);
+	// 				console.log("success",data);
+	// 				$state.go('main.views.dashboard'); //volver al home
+	// 			})
+	// 			.error( function( data, status ) {
+	// 				// errorService.failure( data, status, $scope);
+	// 				console.log("error", status, data.errors, $scope);
+	// 				// $scope.alerts.push({type: 'alert', msg: "Revisa los campos"});
+	// 			});
       
-			};
+	// 		};
      
-		});
+	// 	});
 	}());

@@ -4,12 +4,13 @@
   angular.module('hrsReleaseApp', [
 
     // Plugins
-    'ngCookies',
+    // 'ngCookies',
     'ngResource',
     'ngSanitize',
     'ui.router',
     'ui.sortable',
-    'Devise',
+    'ng-token-auth',
+//    'Devise',
     'chart.js',
     'ngFileUpload',
     //'mm.foundation',
@@ -62,61 +63,88 @@
     'notifications'
   ])
 
-  .config(function($stateProvider, $httpProvider, $urlRouterProvider, HRAPI_CONF, AuthProvider, AuthInterceptProvider, ngS3Config){
+  .config(function($stateProvider, $httpProvider, $urlRouterProvider, HRAPI_CONF, AuthProvider, AuthInterceptProvider, ngS3Config, $authProvider){
 
 	
     ngS3Config.theme = 'bootstrap2';
 
-//    $httpProvider.defaults.headers.common['X-CSRF-Token'] = angular.element('meta[name=csrf-token]').attr('content');
-//    $http.get(HRAPI_CONF.hostname).
-//        then(function(response) {
-//          console.log( response.headerd ); 
-//
-//        }, function(response) {
-//         console.log( response.headerd ); 
-//      });
-          
-    $httpProvider.defaults.withCredentials = true;
-    // $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
-  
-    // Configura angular-devise
-    AuthInterceptProvider.interceptAuth(true);
-    AuthProvider.loginPath(HRAPI_CONF.apiBaseUrl('/users/sign_in.json'));
-    AuthProvider.logoutPath(HRAPI_CONF.apiBaseUrl('/users/sign_out.json'));
-    AuthProvider.registerPath(HRAPI_CONF.apiBaseUrl('/users.json'));
+    $authProvider.configure({
+      apiUrl:                  HRAPI_CONF.apiBaseUrl(''),
+      tokenValidationPath:     '/auth/validate_token',
+      signOutUrl:              '/auth/sign_out',
+      emailRegistrationPath:   '/auth',
+      accountUpdatePath:       '/auth',
+      accountDeletePath:       '/auth',
+      confirmationSuccessUrl:  window.location.href,
+      passwordResetPath:       '/auth/password',
+      passwordUpdatePath:      '/auth/password',
+      passwordResetSuccessUrl: window.location.href,
+      emailSignInPath:         '/auth/sign_in',
+      storage:                 'cookies',
+      forceValidateToken:      false,
+      validateOnPageLoad:      true,
+      proxyIf:                 function() { return false; },
+      proxyUrl:                '/proxy',
+      omniauthWindowType:      'sameWindow',      
+      tokenFormat: {
+        "access-token": "{{ token }}",
+        "token-type":   "Bearer",
+        "client":       "{{ clientId }}",
+        "expiry":       "{{ expiry }}",
+        "uid":          "{{ uid }}"
+      },
+      parseExpiry: function(headers) {
+        // convert from UTC ruby (seconds) to UTC js (milliseconds)
+        return (parseInt(headers['expiry']) * 1000) || null;
+      },
+      handleLoginResponse: function(response) {
+        return response.data;
+      },
+      handleAccountUpdateResponse: function(response) {
+        return response.data;
+      },
+      handleTokenValidationResponse: function(response) {
+        return response.data;
+      }
+    });
 
     // Enruta a la login
-    $urlRouterProvider.otherwise('/login');
+    $urlRouterProvider.otherwise('/home');
   
     // Configura estados de aplicacion ui-router
     $stateProvider
     .state('main', {
       abstract: true,
-      templateUrl: 'app/layouts/remain.tpl.html'
+      templateUrl: 'app/layouts/remain.tpl.html',
+      resolve: {
+          auth: function($auth) {
+              return $auth.validateUser();
+          }
+      }
     })
     .state('main.views', {
       resolve: {
-        currentUser: function(UserInfo){                  
-          return UserInfo.currentUser();
-        },
-        articles:  function(Article){
-          return Article.index();
-        },
-        vac_requirements: function(Vacation_requirement){
-          return Vacation_requirement.index().$promise;
-        },
-        extras_requirements: function(Extra_requirement){
-          return Extra_requirement.index().$promise;
-        },
-        inhabilities_requirements: function(Inhability_requirement){
-          return Inhability_requirement.index().$promise;
-        },
-        licenses_requirements: function(License_requirement){
-          return License_requirement.index().$promise;
-        },
-        infos:function(Info){
-            return Info.index().$promise;
-        }
+        // currentUser: function(UserInfo){                  
+        //   return UserInfo.currentUser();
+        // },
+        // articles:  function(Article){
+        //   return Article.index();
+        // },
+        // vac_requirements: function(Vacation_requirement){
+        //   return Vacation_requirement.index().$promise;
+        // },
+        // extras_requirements: function(Extra_requirement){
+        //   return Extra_requirement.index().$promise;
+        // },
+        // inhabilities_requirements: function(Inhability_requirement){
+        //   return Inhability_requirement.index().$promise;
+        // },
+        // licenses_requirements: function(License_requirement){
+        //   return License_requirement.index().$promise;
+        // },
+        // infos:function(Info){
+        //     return Info.index().$promise;
+        // }
       },
       views: {
         topbar: {
@@ -131,27 +159,27 @@
           templateUrl: 'app/profile/profile.tpl.html',
           controller: 'Profile.ProfileController',
           resolve: {
-            employees: function(Employee){
-              return Employee.index();
-            }
+            // employees: function(Employee){
+            //   return Employee.index();
+            // }
           }
         },
         expandbanner: {
           templateUrl: 'app/expandbanner/expandbanner.tpl.html',
           controller: 'Expandbanner.ExpandbannerController',
           resolve: {
-            employees: function(Employee){
-              return Employee.index();
-            }
+            // employees: function(Employee){
+            //   return Employee.index();
+            // }
           }
         },
         sidebar: {
           templateUrl: 'app/sidebar/sidebar.tpl.html',
           controller: 'Sidebar.SidebarController',
           resolve: {
-            employees: function(Employee){
-              return Employee.index();
-            }
+            // employees: function(Employee){
+            //   return Employee.index();
+            // }
           }
         },
         content: {
@@ -173,7 +201,7 @@
        return value.toLowerCase();
     }
   })
-  .run(function($filter, $http, $rootScope, $state, UserInfo, Auth, $window, HRAPI_CONF, $cookies, $log){       
+  .run(function($filter, $http, $rootScope, $state, $window, HRAPI_CONF, $auth ){       
       
     /////////////
     //
@@ -184,98 +212,78 @@
       console.log("update-notifications");
       $rootScope.$broadcast('hrs:updateNotifications');
     }
-	/////////////
+	  /////////////
     //
     // END BROADCAST  
     //
     /////////////
-    
+
+    $rootScope.$on('$stateChangeStart',
+        function(event, toState, toParams, fromState, fromParams){
+          $rootScope.preload = true;
+        });
+
+    $rootScope.$on('$stateChangeSuccess',
+        function(event, toState, toParams, fromState, fromParams){
+          if( toState.name != "login.auth" ){
+              //update number notifications
+              $window.setTimeout(function() {
+                $rootScope.updateNotification();
+              }, 1000);
+          }
+          $rootScope.preload = false;
+        });
+
+    $rootScope.$on('$stateNotFound',
+        function(event, unfoundState, fromState, fromParams){
+            console.log("not fount");
+            event.preventDefault();
+            $state.transitionTo('main.views.dashboard');
+        });
+
+    $rootScope.$on('$stateChangeError',
+        function(event, toState, toParams, fromState, fromParams, error){
+            console.log(error);
+            event.preventDefault();
+            if( error.reason === "unauthorized"){
+                $state.transitionTo('login.auth');
+            }else{
+                $state.transitionTo('main.views.dashboard');
+            }
+        });
+
+
+
+    $rootScope.$on('auth:login-success', function(ev, user) {
+        $state.transitionTo('main.views.dashboard');
+    });
+    $rootScope.$on('auth:login-error', function(ev, reason) {
+        $state.transitionTo('login.auth');
+    });
+
+
+    $rootScope.$on('auth:logout-success', function(ev) {
+        $state.transitionTo('login.auth');
+    });
+    $rootScope.$on('auth:logout-error', function(ev, reason) {
+        $state.transitionTo('login.auth');
+    });
+
+    $rootScope.$on('auth:session-expired', function(ev) {
+        $state.transitionTo('login.auth');
+    });
+
 
     $rootScope.employee = {}
     $rootScope.employee_info = {}
     
-    var is_authenticated = false;	
+
 	
-    // esta vaina me dice donde estamos y de donde venimos ademas define el rootscope de ubicacion para userlo como variable
-    $rootScope.$on('$stateChangeStart', function(ev, toState, toParams, fromState){     
-        is_authenticated = Auth.isAuthenticated();
-//        Si no hay una session redirect to  login.auth
-        if( !is_authenticated && toState.name != "login.auth" ){                
-            ev.preventDefault();
-            $state.transitionTo('login.auth');
-        }else{
-            if(is_authenticated && toState.name == "login.auth"){
-//                si ingresa a login.auth rederict to home
-                ev.preventDefault();
-                $state.transitionTo('main.views.dashboard');
-            }
-//        De lo contrario realiza las siguiente operaciones & no esta login.auth
-            if(toState.name != "login.auth"){
-                $rootScope.ubicacion = toState.name;
-                $rootScope.locationData = toState.data;
-                $rootScope.where = $rootScope.ubicacion.split('.');
-                $rootScope.where = $rootScope.where[$rootScope.where.length-1];
-                $log.info($rootScope.ubicacion, $rootScope.where);
-            }
-        }
-        $rootScope.preload = true;
-    });
-      
-    // al terminar de cargar la pagina
-    $rootScope.$on('$stateChangeSuccess', function(ev, toState, toParams, fromState){            
-      if( toState.name != "login.auth" ){
-          //update number notifications
-          $window.setTimeout(function() {
-            $rootScope.updateNotification();
-          }, 1000);
-      }
-      $rootScope.preload = false;    
-    });      
-      
-    // Catch unauthorized requests and recover.
-    $rootScope.$on('devise:unauthorized', function(event, xhr, deferred) {
-      // Ask user for login credentials
-      // console.log("devise:unauthorized -> login.auth", event, xhr, deferred);
-          $rootScope.alerts.push({type: 'alert', msg: xhr.data.error});
-          $window.setTimeout(function() {
-            $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
-              $(this).remove();
-              $rootScope.alerts = [];
-            });
-          }, 5000);
-    });
-
-    $rootScope.$on('devise:login', function(event, currentUser) {  
-      console.log(currentUser);
-      $state.transitionTo('main.views.dashboard');
-    });
-
-    $rootScope.$on('devise:new-session', function(event, currentUser) {
-      // user logged in by Auth.login({...})
-      // console.log("devise:new-session", "nothing done");
-    });
-
-    $rootScope.$on('devise:logout', function(event, oldCurrentUser) {
-          $state.go('login.auth', {"logout": true});
-    });
-
+  
 
         $rootScope.logout = function(){
-          Auth.logout().then(function(oldUser) {
-            $rootScope.alerts.push({type: 'warning', msg: oldUser.name + " has cerrado sesión."});
-            $window.setTimeout(function() {
-              $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
-                $(this).remove(); 
-                $rootScope.alerts = [];
-              });
-            }, 5000);
-            localStorage.removeItem('user');
-            localStorage.removeItem('psx');
-            // console.log(oldUser.email + " has cerrado sesión.");
-          }, function(error) {
-            // An error occurred logging out.
-            console.log("An error occurred logging out", error);
-          });
+          console.log("Logout");
+          $auth.signOut();
         };
 	
         // Foundation nice and working
@@ -412,7 +420,7 @@
         }
 
         $rootScope.showMessageErrorRails = function(data){
-		  var errores = ((typeof data.errors !== "undefined") ? data.errors : data.data.errors);
+		      var errores = ((typeof data.errors !== "undefined") ? data.errors : data.data.errors);
           angular.forEach(errores, function(value, index){
             angular.forEach( value, function( mensaje, id ){
               $rootScope.alerts.push({type: 'alert', msg: mensaje });
