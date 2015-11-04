@@ -71,20 +71,19 @@
 
 
 		$scope.cargarPdf = function(){
-			var carta = $filter('filter')($scope.user.files, {op:'clabr'})
-			console.log(carta[0]);
-      if (typeof carta[0] !== "undefined"){
-        $scope.pdfUrl = HRAPI_CONF.baseUrl(carta[0].file.url);
-      }else{
-        $rootScope.alerts.push({type: 'warning', msg: "no hay un pdf asociado al usuario"});
-        window.setTimeout(function() {
-          $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
-            $(this).remove(); 
-            $rootScope.alerts = [];
-          });
-        }, 5000);
-      }
-			
+			  var carta = $filter('filter')($scope.user.files, {op:'clabr'})
+			  console.log(carta[0]);
+		      if (typeof carta[0] !== "undefined"){
+		        $scope.pdfUrl = HRAPI_CONF.baseUrl(carta[0].file.url);
+		      }else{
+		        $rootScope.alerts.push({type: 'warning', msg: "no hay un pdf asociado al usuario"});
+		        window.setTimeout(function() {
+		          $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
+		            $(this).remove(); 
+		            $rootScope.alerts = [];
+		          });
+		        }, 5000);
+		      }			
 		}
 
 		$scope.cargarPdf();
@@ -208,19 +207,19 @@
 			$scope.pdfUrl = '';
 			$scope.selectedVol = volante;
 			// $scope.pdfUrl = "http://hdvbackend.hrinteractive.co/volantes_p-"+currentUser.company_id+"/"+currentUser.employee_id+"/Nomina_"+$scope.selectedVol.begda+"_"+$scope.selectedVol.endda+"_"+currentUser.employee_id+"_"+currentUser.company_id+".pdf";
-      if (typeof $scope.selectedVol !== "undefined"){
-        $scope.pdfUrl = HRAPI_CONF.baseUrl($scope.selectedVol.file.url);
-  			$('#pdf-modal').foundation('reveal','open');
-  			console.log($scope.pdfUrl);
-      }else{
-        $rootScope.alerts.push({type: 'warning', msg: "no hay un pdf asociado al usuario"});
-        window.setTimeout(function() {
-          $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
-            $(this).remove(); 
-            $rootScope.alerts = [];
-          });
-        }, 5000);
-      }
+		      if (typeof $scope.selectedVol !== "undefined"){
+		        $scope.pdfUrl = HRAPI_CONF.baseUrl($scope.selectedVol.file.url);
+		  			$('#pdf-modal').foundation('reveal','open');
+		  			console.log($scope.pdfUrl);
+		      }else{
+		        $rootScope.alerts.push({type: 'warning', msg: "no hay un pdf asociado al usuario"});
+		        window.setTimeout(function() {
+		          $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
+		            $(this).remove(); 
+		            $rootScope.alerts = [];
+		          });
+		        }, 5000);
+		      }
 		}
 
 		$scope.getNavStyle = function(scroll) {
@@ -256,17 +255,17 @@
 		$scope.cargarPdf = function(){
 			var pdf = $filter('filter')($scope.user.files, {op:'inret'})
 			console.log(pdf[0]);
-      if (typeof pdf[0] !== "undefined"){
-        $scope.pdfUrl = HRAPI_CONF.baseUrl(pdf[0].file.url);
-      }else{
-        $rootScope.alerts.push({type: 'warning', msg: "no hay un pdf asociado al usuario"});
-        window.setTimeout(function() {
-          $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
-            $(this).remove(); 
-            $rootScope.alerts = [];
-          });
-        }, 5000);
-      }
+		      if (typeof pdf[0] !== "undefined"){
+		        $scope.pdfUrl = HRAPI_CONF.baseUrl(pdf[0].file.url);
+		      }else{
+		        $rootScope.alerts.push({type: 'warning', msg: "no hay un pdf asociado al usuario"});
+		        window.setTimeout(function() {
+		          $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
+		            $(this).remove(); 
+		            $rootScope.alerts = [];
+		          });
+		        }, 5000);
+		      }
 		}
 
 		$scope.cargarPdf();
