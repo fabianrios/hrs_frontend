@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8">
   <title>hrinteractive - {{user.company.name}}</title>
-  <meta name="description" content="hrinteractive a SAP fully functional human resources interface for {{user}} - {{usuario}}">
-  <meta name="author" content="fabianrios at www.fabianrios.co for www.hrsolutions-co.com">
+  <meta name="description" content="hrinteractive a SAP fully functional human resources interface for {{user.company.name}}">
+  <meta name="author" content="fabianrios at www.fabianrios.co for www.hrsolutions-co.com" data-company="{{user.company}}">
   <!-- <meta name="viewport" content="width=1024, user-scalable=no"> -->
   <meta name="viewport" content="width=1024; initial-scale=0.75; minimum-scale=1.0; maximum-scale=1.0">
-  <meta name="theme-color" content="#123A73">
+  <meta name="theme-color" content="{{user.company.color_1}}">
   <base href="/#/home"></base>
   <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
   <!-- build:css({.tmp,vendor}) styles/main.css -->
@@ -22,6 +22,25 @@
   <link rel="stylesheet" href="styles/gantt.css" />
   <link rel="stylesheet" href="styles/gantt-plugins.css" />
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,400italic|Roboto:400,700,400italic|Lato:400,700,400italic' rel='stylesheet' type='text/css'>
+	
+	<style>
+		.number-info .greentxt {color: {{user.company.color_1 || "#123A73"}} !important; }
+		.number-info .bluetxt {color: {{user.company.color_2 || "#2ED63B"}} !important; }
+		.blocks li.master h5.encabezado{background: {{user.company.color_1 || "#123A73"}} !important; }
+		.blocks li.master:hover h5.encabezado{background: {{user.company.color_2 || "#2ED63B"}} !important; }
+		.square h5{ background: {{user.company.color_1 || "#123A73"}} !important; }
+		.square:hover h5{ background: {{user.company.color_2 || "#2ED63B"}} !important; }
+		.employees li .foto{ border: 2px solid {{user.company.color_1 || "#123A73"}}; }
+		.worker { border: 2px solid {{user.company.color_1 || "#123A73"}}; }
+		.tab-bar section.left-small .menu-icon:hover{ background: {{user.company.color_1 || "#123A73"}} !important; }
+		.tab-bar section.right-small .menu-icon:hover{ background: {{user.company.color_1 || "#123A73"}} !important; }
+		a{ color: {{user.company.color_1 || "#123A73"}}; }
+		h1, h2, h3, h4, h5, h6{ font-family: {{user.company.fuente || "Lato"}} !important; }
+		a{ font-family: {{user.company.fuente || "Lato"}} !important; }
+		body{ font-family: {{user.company.fuente || "Lato"}} !important; }
+		p{ font-family: {{user.company.fuente || "Lato"}} !important; }
+	</style>
+	
   <!-- endbuild -->
 	
   <!-- Bugherd -->
