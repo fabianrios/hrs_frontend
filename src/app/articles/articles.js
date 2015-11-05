@@ -32,9 +32,9 @@
 		    controller: 'articles.NewController'
 		})
 		.state('main.views.articleedit', { //state for updating a movie
-	      url: '/articles/:id/edit',
-	      templateUrl: 'app/articles/articleedit.tpl.html',
-	      controller: 'articles.EditController',
+		    url: '/articles/:id/edit',
+		    templateUrl: 'app/articles/articleedit.tpl.html',
+		    controller: 'articles.EditController',
 	        resolve: {
 	          article: function(Article, $stateParams){
 	            return Article.show({id: $stateParams.id}).$promise;
@@ -43,46 +43,46 @@
 	    });
 	})
 	
-	.controller('Articles.ListController', function($rootScope, $scope, $http, $state, articles, currentUser, Article, HRAPI_CONF ){
+	.controller('Articles.ListController', function($rootScope, $scope, $http, $state, Article, HRAPI_CONF ){ //articles, 
 		
-		// $scope.user = currentUser;
-		$scope.articles = articles.articles;
-		var mine = articles.articles;
-		$scope.articles_not_mine = [];
+		// // $scope.user = currentUser;
+		// $scope.articles = articles.articles;
+		// var mine = articles.articles;
+		// $scope.articles_not_mine = [];
 		
-		// Articulos publicados que no son mios	
-		angular.forEach(mine, function(value, key) {
-			var i = mine.indexOf(value);
-			if (value.employee_id != 1){
-				$scope.articles_not_mine.push(value);
-			}
-		});
+		// // Articulos publicados que no son mios	
+		// angular.forEach(mine, function(value, key) {
+		// 	var i = mine.indexOf(value);
+		// 	if (value.employee_id != 1){
+		// 		$scope.articles_not_mine.push(value);
+		// 	}
+		// });
 
 		
-		$scope.categorias = {
-			Bienestar : 'Noticias y eventos de bienestar', 
-			Nomina : 'Nomina',
-			Salud : 'Salud ocupacional',
-			Talento : 'Talento humano'
-		};
+		// $scope.categorias = {
+		// 	Bienestar : 'Noticias y eventos de bienestar', 
+		// 	Nomina : 'Nomina',
+		// 	Salud : 'Salud ocupacional',
+		// 	Talento : 'Talento humano'
+		// };
 		
-		$scope.articleDelete = function(article,modal) { 
-			// article = Article.show({id: article.id})
-			// console.log(article);
-			// article.$delete( function() {
-			$http.delete(
-				HRAPI_CONF.apiBaseUrl('/articles/' + article.id + '.json')
-			).success(function (data, status, headers, config) { 
-	            var index = $scope.articles.indexOf(article);
-				console.log(index);
-				$scope.articles.splice(index, 1);
-				$('#myModal-'+modal).foundation('reveal', 'close');  
-				$scope.alerts.push({type: 'alert', msg: "El articulo '"+ article.titulo + "' a sido borrado"});               
-	        }).error(function (data, status, headers, config) { 	            	       
-	            $rootScope.showMessageErrorRails(data);
-            });
+		// $scope.articleDelete = function(article,modal) { 
+		// 	// article = Article.show({id: article.id})
+		// 	// console.log(article);
+		// 	// article.$delete( function() {
+		// 	$http.delete(
+		// 		HRAPI_CONF.apiBaseUrl('/articles/' + article.id + '.json')
+		// 	).success(function (data, status, headers, config) { 
+	 //            var index = $scope.articles.indexOf(article);
+		// 		console.log(index);
+		// 		$scope.articles.splice(index, 1);
+		// 		$('#myModal-'+modal).foundation('reveal', 'close');  
+		// 		$scope.alerts.push({type: 'alert', msg: "El articulo '"+ article.titulo + "' a sido borrado"});               
+	 //        }).error(function (data, status, headers, config) { 	            	       
+	 //            $rootScope.showMessageErrorRails(data);
+  //           });
 			
-		} ///BORRAR
+		// } ///BORRAR
 		
 
 	})	
