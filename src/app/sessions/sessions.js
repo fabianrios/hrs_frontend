@@ -22,12 +22,34 @@
 	})
 
 
-	.controller('sessions.LoginController', function( $scope, $auth ){
+	.controller('sessions.LoginController', function( $scope, $auth, $location ){
+
+    var host = $location.host();
+		$scope.subdomain = function(){
+	     if (host.indexOf('.') < 0) {
+	         return null;
+	     }else{
+	         return host.split('.')[0];
+			 }
+		 };
+		 
+		 $scope.subdomain = $scope.subdomain();
+		 
+		 if ($scope.subdomain == "rcn"){
+			 $scope.logo = "images/rcn.png";
+		 }else if ($scope.subdomain == "harinera"){
+		 	 $scope.logo = "images/otrologo.png";
+		 }else{
+		 	$scope.logo = "images/hrs_logo.png";
+		 }
+		 
+		 console.log($scope.subdomain);
 
 		$scope.login = function() {       
-            $auth.submitLogin($scope.credentials);
-        };                
-                        
+      $auth.submitLogin($scope.credentials);
+    };
+		
+		
 	});
 	// .controller('sessions.EditController', function($scope, $state, $stateParams, $http, currentUser){
     
