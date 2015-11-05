@@ -20,10 +20,10 @@
 	
 	.controller('Extras.ListController', function($rootScope, $scope, $http, $state, extras_req, currentUser, Extra_requirement, HRAPI_CONF){
 		
-		$scope.user = currentUser;
+		// $scope.user = currentUser;
 		$scope.extras = extras_req;
 		
-		$scope.tipos = $scope.user.type.tipos;
+		$scope.tipos = $scope.user.company_type.tipos;
 		$scope.only_not_user = [];
 		$scope.options = [];
 

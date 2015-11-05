@@ -63,7 +63,7 @@
 		
 
 		// $scope.pdfUrl = "http://hdvbackend.hrinteractive.co/carta_laboral-"+currentUser.company_id+"/cartas_lab_"+currentUser.employee_id+"_"+currentUser.company_id+".pdf";
-		$scope.user = currentUser;
+		// $scope.user = currentUser;
 		$scope.scroll = 0;
 		$scope.loading = true;
 		$scope.progress = {};
@@ -114,7 +114,7 @@
 	.controller('Certificates.Vacaciones.MainController', function($rootScope, $scope, $http, employee, currentUser, $state, $filter, HRAPI_CONF){
 		
 		$scope.pdfUrl = '';
-		$scope.user = currentUser;
+		// $scope.user = currentUser;
 		$scope.employee = employee;
 		$scope.vacations = [];
 
@@ -175,7 +175,7 @@
 	.controller('Certificates.Nomina.MainController', function($rootScope, $scope, $http, employee, currentUser, $state, $filter, HRAPI_CONF){
 		
 		$scope.pdfUrl = '';
-		$scope.user = currentUser;
+		// $scope.user = currentUser;
 		$scope.employee = employee;
 		
 		// $scope.pdfUrl = "http://hdvbackend.hrinteractive.co/volantes_p-"+currentUser.company_id+"/"+currentUser.employee_id+"/Nomina_"+employee.volpago[0].begda+"_"+employee.volpago[0].endda+"_"+currentUser.employee_id+"_"+currentUser.company_id+".pdf";
@@ -246,7 +246,7 @@
 	.controller('Certificates.Income.MainController', function($rootScope, $scope, $http, employee, currentUser, $state, $filter, HRAPI_CONF){
 		
 		// $scope.pdfUrl = "http://hdvbackend.hrinteractive.co/ingyret-"+currentUser.company_id+"/ingyret_"+currentUser.employee_id+"_"+currentUser.company_id+".pdf";
-		$scope.user = currentUser;
+		// $scope.user = currentUser;
 		$scope.scroll = 0;
 		$scope.loading = true;
 		$scope.progress = {};

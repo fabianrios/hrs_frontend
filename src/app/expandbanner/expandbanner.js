@@ -6,8 +6,9 @@
   
   .controller('Expandbanner.ExpandbannerController', function($scope, $state, currentUser){
 
-	$scope.elusuario = currentUser;
-	$scope.user = currentUser;
+	// $scope.elusuario = currentUser;
+	$scope.elusuario = $scope.user;
+	// $scope.user = currentUser;
 	$scope.vacation = $scope.user.vacation;    
   
     $scope.privateValidation = function(priv){

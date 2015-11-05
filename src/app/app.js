@@ -447,18 +447,20 @@
         }
 
         $rootScope.showMessageErrorRails2 = function(data){
-          var errores = ((typeof data.errors !== "undefined") ? data.errors : data.data.errors);
-          angular.forEach(errores, function(value, index){
-           
-              $rootScope.alerts.push({type: 'alert', msg: value });
-              window.setTimeout(function() {
-                $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
-                  $(this).remove();
-                  $rootScope.alerts = [];
-                });
-              }, 5000);
-        
-          });
+          if( data  ){
+            var errores = ((typeof data.errors !== "undefined") ? data.errors : data.data.errors);
+            angular.forEach(errores, function(value, index){
+             
+                $rootScope.alerts.push({type: 'alert', msg: value });
+                window.setTimeout(function() {
+                  $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
+                    $(this).remove();
+                    $rootScope.alerts = [];
+                  });
+                }, 5000);
+          
+            });
+          }
         }
 
       });

@@ -70,7 +70,7 @@
       <li class="back">
         <a href="">Volver</a>
       </li>
-      <li ng-if="user.employee.labor.scesa == 'X'" class="disabled">
+      <li ng-if="user.labor.scesa == 'X'" class="disabled">
         <a ui-sref="main.views.severance">Anticipo de cesantías</a>
       </li>
       <li ng-if="permAprobador() && user.labor.sperm == 'X'" >

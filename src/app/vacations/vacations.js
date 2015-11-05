@@ -23,12 +23,12 @@
 	
 	.controller('Vacations.ListController', function($rootScope, $scope, $http, $state, vacations, Vacation_requirement, vac_requirements, currentUser, Upload, HRAPI_CONF){
 		
-		$scope.user = currentUser;
+		// $scope.user = currentUser;
 		
 		$scope.vacations = vacations;
 		$scope.vac_requirements = vac_requirements;
 		$scope.only_not_user = [];
-		$scope.tipos = $scope.user.type.tipos;
+		$scope.tipos = $scope.user.company_type.tipos;
 		$scope.vac_options = [];
 		$scope.urlImage = '';
 		var archivo = null;

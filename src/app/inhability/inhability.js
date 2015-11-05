@@ -20,11 +20,11 @@
 	
 	.controller('Inhabilities.ListController', function($rootScope, $scope, $http, $state, currentUser, inhabilities_req, Inhability_requirement, Upload, HRAPI_CONF){
 		
-		$scope.user = currentUser;
+		// $scope.user = currentUser;
 		$scope.inhabilities = inhabilities_req;
 		//console.log("$scope.user",$scope.user, "inhabilities: ", $scope.inhabilities);
 		
-		$scope.tipos = $scope.user.type.tipos;
+		$scope.tipos = $scope.user.company_type.tipos;
 		$scope.only_not_user = [];
 		$scope.options = [];
 

@@ -21,7 +21,7 @@
 	
 	.controller('Managment.ListController', function($scope, $http, $state, $log, moment, currentUser){
 		
-		$scope.user = currentUser;
+		// $scope.user = currentUser;
 		$scope.data = [
 		    {name: 'Talero Heidi Liliana', tasks: [
 		        {name: 'Vacaciones (4) Días', color: '#9AECA5', from: new Date("2015-02-02"), to: new Date("2015-02-09")},

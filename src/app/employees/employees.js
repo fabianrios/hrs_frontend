@@ -20,7 +20,7 @@
 	
 	.controller('Employees.ListController', function($scope, $http, $state, $filter, currentUser, Employees){
 		
-		$scope.user = currentUser;
+		// $scope.user = currentUser;
 		$scope.employees = Employees;
 		console.log($scope.employees);
 			

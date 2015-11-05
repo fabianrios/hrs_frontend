@@ -14,7 +14,7 @@
 	})	
 	.controller('Notifications.ListController', function($scope, $http, $state, $filter, currentUser, Notification, articles,vac_requirements, extras_requirements, inhabilities_requirements, licenses_requirements, infos, Employee, HRAPI_CONF ){
 		
-    $scope.user = currentUser;
+    // $scope.user = currentUser;
     $scope.notificaciones = $scope.user.employee.notifications ? $scope.user.employee.notifications : "Semanal";
 		
     $scope.employee = $scope.user.employee;

@@ -20,9 +20,9 @@
 	
 	.controller('Licenses.ListController', function($rootScope, $scope, $http, $state,  currentUser, licenses_req, License_requirement, Upload, HRAPI_CONF ){
 		
-		$scope.user = currentUser;
+		// $scope.user = currentUser;
 		$scope.licenses = licenses_req;	
-		$scope.tipos = $scope.user.type.tipos;
+		$scope.tipos = $scope.user.company_type.tipos;
 		$scope.options = [];
 		$scope.urlImage = '';
 		var archivo = null;

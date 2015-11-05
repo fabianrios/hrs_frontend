@@ -28,7 +28,7 @@
 			console.log($(e.currentTarget).parent());
 		}
 		
-		$scope.user = currentUser;
+		// $scope.user = currentUser;
 		
 		$scope.organigram = organigram.organigram;
 	

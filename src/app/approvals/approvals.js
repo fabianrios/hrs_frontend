@@ -46,7 +46,7 @@
 	
 	.controller('Approvals.ListController', function($rootScope, $scope, $http, $state, currentUser, infos){
 		
-		$scope.user = currentUser;
+		// $scope.user = currentUser;
         $scope.toapproved = [];
     
 		//  solicitudes a aprobar
@@ -129,12 +129,12 @@
 	})
   
   .controller('Approvals.Licenses.ListController', function($rootScope, $scope, $http, $state,  currentUser, extras_req, inhabilities_req, HRAPI_CONF){
-	$scope.user = currentUser;
+	// $scope.user = currentUser;
 	$scope.extras = extras_req;
     $scope.inhabilities = inhabilities_req;
 	$scope.only_not_user = [];
     $scope.no_este_usuario = [];
-    $scope.tipos = $scope.user.type.tipos;
+    $scope.tipos = $scope.user.company_type.tipos;
     $scope.options_extras = [];
     $scope.options_inca = [];
 
@@ -306,12 +306,12 @@
   })
   .controller('Approvals.Requirements.ListController', function($rootScope, $scope, $http, $state,  currentUser,  vac_requirements, licenses_req, HRAPI_CONF){
     
-    	$scope.user = currentUser;
+    	// $scope.user = currentUser;
 		$scope.vac_requirements = vac_requirements;
     	$scope.licenses = licenses_req;
     	$scope.only_not_user_vac = [];
 		$scope.only_not_user = [];
-		$scope.tipos = $scope.user.type.tipos;
+		$scope.tipos = $scope.user.company_type.tipos;
 		$scope.vac_options = [];
 		$scope.perm_options = [];
 		$scope.urlImage = '';

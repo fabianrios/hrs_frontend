@@ -13,10 +13,10 @@
 		})
 	})
 	
-	.controller('Severance.ListController', function($scope, $http, $state,  currentUser){
+	.controller('Severance.ListController', function($scope, $http, $state ){
 		
-		$scope.user = currentUser;
-		console.log("$scope.user",$scope.user);
+		// $scope.user = currentUser;
+		// console.log("$scope.user",$scope.user);
 		
 	})
 	

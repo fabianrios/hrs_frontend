@@ -13,9 +13,9 @@
 		})
 	})
 	
-	.controller('Reports.ListController', function($scope, $http, $state,  currentUser){
+	.controller('Reports.ListController', function($scope, $http, $state){
 		
-		$scope.user = currentUser;
+		// $scope.user = currentUser;
 	
 	})
 	

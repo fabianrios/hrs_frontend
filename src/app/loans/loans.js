@@ -16,7 +16,7 @@
 	.controller('Loans.ListController', function($scope, $http, $state, currentUser ){
 
 
-		$scope.user = currentUser;
+		// $scope.user = currentUser;
 		$scope.fondo = "loans";
 		//$scope.user = currentUser;
 		//console.log("$scope.user",$scope.user);

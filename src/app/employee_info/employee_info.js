@@ -32,7 +32,7 @@
 	})	
 	.controller('Employee_info.ListController', function($scope, $state, $rootScope,$http, $filter, currentUser, Info, infos, Employee){
 		
-		$scope.user = currentUser;
+		// $scope.user = currentUser;
 		$scope.vacation = $scope.user.vacation;
 		$rootScope.employee_info = $scope.user.employee_info;
 		
@@ -337,7 +337,7 @@
 	
 	.controller('Employee_info.LookupController', function ($state, $scope, info, $rootScope, employee, $http, currentUser) {
 		
-    $scope.user = currentUser;
+    // $scope.user = currentUser;
 		$rootScope.employee = employee;
 		$rootScope.employee_info = info;
 		

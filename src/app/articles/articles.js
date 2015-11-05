@@ -45,7 +45,7 @@
 	
 	.controller('Articles.ListController', function($rootScope, $scope, $http, $state, articles, currentUser, Article, HRAPI_CONF ){
 		
-		$scope.user = currentUser;
+		// $scope.user = currentUser;
 		$scope.articles = articles.articles;
 		var mine = articles.articles;
 		$scope.articles_not_mine = [];
@@ -89,7 +89,7 @@
 	.controller('Articles.DetailController', function($scope, $http, $state, article, currentUser, Notification){
         
 		
-		$scope.user = currentUser;
+		// $scope.user = currentUser;
 		$scope.article = article;
         
         Notification.article({id: currentUser.employee.identification, article_id: $scope.article.id });
@@ -99,7 +99,7 @@
 	})
 	.controller('articles.EditController', function($scope, $http, $state, article, currentUser, HRAPI_CONF, Upload ){
 		
-		$scope.user = currentUser;
+		// $scope.user = currentUser;
 		$scope.article = article;
 		var archivo = null;
 		
@@ -151,7 +151,7 @@
 	})
 	.controller('articles.NewController', function($scope, $http, $state, Article, currentUser, HRAPI_CONF, Upload ){
 		
-		$scope.user = currentUser;
+		// $scope.user = currentUser;
 		var archivo = null;
 
 	    $scope.options = [
