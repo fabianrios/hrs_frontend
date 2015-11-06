@@ -1,16 +1,16 @@
 <br /><br />
-<div class="row">
+<div ng-if="user.employee.new_cont=='true'" class="row">
 	<div class="large-12 columns">
 		<h1 class="subheader">Crear articulo</h1>
 	</div>
 </div>
-<form role="form" ng-submit="addArticulo()">
+<form ng-if="user.employee.new_cont=='true'" role="form" ng-submit="addArticulo()">
 	<div ng-include="'app/articles/partials/_form.tpl.html'"></div>
 	<div class="row">
 		<div class="large-9 columns">
 			<div class="text-right">
-				<br />
-				<input type="submit" value="Crear articulo" class="button success small">
+				<br />		
+				 <button type="submit" class="button success small" ng-disabled="article.sending" > <img src="images/282.gif" width="15px" ng-if="article.sending" /> &nbsp;<span ng-bind="article.sending ? 'Guardando' : 'Crear articulo'" ></span></button>
 			</div>
 		</div>
 	</div>

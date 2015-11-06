@@ -1,4 +1,4 @@
-<div class="off-canvas-wrap" data-offcanvas>
+<div id = "msg_alerts" class="off-canvas-wrap" data-offcanvas>
 	<div class="inner-wrap">
 		<nav class="tab-bar">
 			<section class="left-small">
@@ -21,7 +21,7 @@
 				<div class="main-container-inner">
 					<div class="main-content" ng-class="{'main-content-bigger': ui.sidebar.mainCollapsed}">
 						
-						<div class="row">
+						<div  class="row">
 							<div class="large-12 columns">
 								<div data-alert class="alert-box {{alert.type}}" ng-repeat="alert in alerts">
 									<span ng-bind-html="alert.msg"></span>

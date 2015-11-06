@@ -2,7 +2,7 @@
 	<div class="row">
 		<div class="large-9 columns">
 			<div ng-model="article" class="article">
-				<h2 ng-class="article.category">{{article.titulo}}</h2>
+				<h2 ng-class="article.category"> <img ng-if="!article.publicado" src="images/prohibited.png" alt="No publico"> {{article.titulo}}</h2>
 				<span class="label" ng-class="article.category">{{article.category}}</span>
 				<div class="right">
 					<span class="label secondary">Creado: {{article.created_at | date:"d 'de' MMMM" }}</span> <br />

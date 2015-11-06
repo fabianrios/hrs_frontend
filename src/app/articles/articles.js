@@ -43,61 +43,48 @@
 	    });
 	})
 	
-	.controller('Articles.ListController', function($rootScope, $scope, $http, $state, Article, HRAPI_CONF ){ //articles, 
+	.controller('Articles.ListController', function($rootScope, $scope, $http, $state, Article, HRAPI_CONF, articles){ //, 
 		
-		// // $scope.user = currentUser;
-		// $scope.articles = articles.articles;
+		// $scope.articles = articles.articles;		
+		$scope.articles = articles.articles.concat(articles.not_articles);
 		// var mine = articles.articles;
-		// $scope.articles_not_mine = [];
-		
-		// // Articulos publicados que no son mios	
-		// angular.forEach(mine, function(value, key) {
-		// 	var i = mine.indexOf(value);
-		// 	if (value.employee_id != 1){
-		// 		$scope.articles_not_mine.push(value);
-		// 	}
-		// });
+		$scope.articles_not_mine = [];		
 
 		
-		// $scope.categorias = {
-		// 	Bienestar : 'Noticias y eventos de bienestar', 
-		// 	Nomina : 'Nomina',
-		// 	Salud : 'Salud ocupacional',
-		// 	Talento : 'Talento humano'
-		// };
+		$scope.categorias = {
+			Bienestar : 'Noticias y eventos de bienestar', 
+			Nomina : 'Nomina',
+			Salud : 'Salud ocupacional',
+			Talento : 'Talento humano'
+		};
 		
-		// $scope.articleDelete = function(article,modal) { 
-		// 	// article = Article.show({id: article.id})
-		// 	// console.log(article);
-		// 	// article.$delete( function() {
-		// 	$http.delete(
-		// 		HRAPI_CONF.apiBaseUrl('/articles/' + article.id + '.json')
-		// 	).success(function (data, status, headers, config) { 
-	 //            var index = $scope.articles.indexOf(article);
-		// 		console.log(index);
-		// 		$scope.articles.splice(index, 1);
-		// 		$('#myModal-'+modal).foundation('reveal', 'close');  
-		// 		$scope.alerts.push({type: 'alert', msg: "El articulo '"+ article.titulo + "' a sido borrado"});               
-	 //        }).error(function (data, status, headers, config) { 	            	       
-	 //            $rootScope.showMessageErrorRails(data);
-  //           });
+		$scope.articleDelete = function(article,modal) { 
+			$http.delete(
+				HRAPI_CONF.apiBaseUrl('/articles/' + article.id + '.json')
+			).success(function (data, status, headers, config) { 
+	            var index = $scope.articles.indexOf(article);
+				console.log(index);
+				$scope.articles.splice(index, 1);
+				$('#myModal-'+modal).foundation('reveal', 'close');  
+				$scope.alerts.push({type: 'alert', msg: "El articulo '"+ article.titulo + "' a sido borrado"});               
+	        }).error(function (data, status, headers, config) { 	            	       
+	            $rootScope.showMessageErrorRails(data);
+            });
 			
-		// } ///BORRAR
-		
+		} 
 
 	})	
-	.controller('Articles.DetailController', function($scope, $http, $state, article, currentUser, Notification){
+	.controller('Articles.DetailController', function($scope, $http, $state, article, Notification){
         
-		
-		// $scope.user = currentUser;
+			
 		$scope.article = article;
         
-        Notification.article({id: currentUser.employee.identification, article_id: $scope.article.id });
+        // Notification.article({id: currentUser.employee.identification, article_id: $scope.article.id });
 	
 		// console.log("$scope.user",$scope.user, "$scope.article", $scope.article);
 
 	})
-	.controller('articles.EditController', function($scope, $http, $state, article, currentUser, HRAPI_CONF, Upload ){
+	.controller('articles.EditController', function($scope, $http, $state, article, HRAPI_CONF, Upload ){
 		
 		// $scope.user = currentUser;
 		$scope.article = article;
@@ -131,9 +118,7 @@
 		};
 	
 	    $scope.updateArticle = function() { //Update the edited company. Issues a PUT to /api/companies/:id
-	       // $scope.article.$update(function() {
-	       //   $state.go('main.views.articles'); // on success go back to company_listing
-	       // });
+	        $scope.article.sending = true;
 			Upload.upload({ 
 	            	method: 'PUT', 
 	                url: HRAPI_CONF.apiBaseUrl('/articles/' + $scope.article.id + '.json'), 
@@ -143,63 +128,63 @@
 	                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total); 		                
 	            }).success(function (data, status, headers, config) { 
 	            	$state.go('main.views.articles');	               
-	            }).error(function (data, status, headers, config) { 	            	       
-	            	$rootScope.showMessageErrorRails(data);
+	            }).error(function (data, status, headers, config) { 
+	            	$scope.article.sending = false;	            	       
+	            	$scope.showMessageErrorRails(data);
             });
 	     };
 
 	})
-	.controller('articles.NewController', function($scope, $http, $state, Article, currentUser, HRAPI_CONF, Upload ){
-		
-		// $scope.user = currentUser;
-		var archivo = null;
+	.controller('articles.NewController', function($scope, $http, $state, Article, HRAPI_CONF, Upload ){	
+		if( $scope.user.employee.new_cont=="true"){
+			var archivo = null;
 
-	    $scope.options = [
-	       { label: 'Noticias y eventos de bienestar', value: 'Bienestar' },
-	       { label: 'Nomina', value: 'Nomina' },
-		   { label: 'Salud ocupacional', value: 'Salud' },
-		   { label: 'Talento humano', value: 'Talento' }
-	   ];
-	   
-	   
-		$scope.update = function(item){
-			$scope.article.category = item.value;
-		};
-	 
-
-		// console.log("$scope.user",$scope.user);
-		
-		$scope.article = new Article();  
-		$scope.article.employee_id = $scope.user.employee.id;
-		$scope.correctlySelected = $scope.options[1];
+		    $scope.options = [
+		       { label: 'Noticias y eventos de bienestar', value: 'Bienestar' },
+		       { label: 'Nomina', value: 'Nomina' },
+			   { label: 'Salud ocupacional', value: 'Salud' },
+			   { label: 'Talento humano', value: 'Talento' }
+		   ];
+		   
+		   
+			$scope.update = function(item){
+				$scope.article.category = item.value;
+			};
+		 
+			
+			$scope.article = new Article();  
+			$scope.article.employee_id = $scope.user.employee.id;
+			$scope.correctlySelected = $scope.options[1];
 
 
-		$scope.update($scope.correctlySelected);
-		
-		// $scope.article.category = $scope.options[2].value;
+			$scope.update($scope.correctlySelected);
+			
+			// $scope.article.category = $scope.options[2].value;
 
-		$scope.loadImage = function( file ){
-			archivo = file;
-		}
+			$scope.loadImage = function( file ){
+				archivo = file;
+			}
 
-		$scope.addArticulo = function() { //create a new company. Issues a POST to /api/companies
-			// $scope.article.$save(function() {
-			//    $state.go('main.views.articles'); // on success go back to company_listing
-			// });		
-			Upload.upload({ 
-	            	method: 'POST', 
-	                url: HRAPI_CONF.apiBaseUrl('/articles.json'), 
-	                fields: $scope.article, 
-	                file: archivo
-	            }).progress(function (evt) { 
-	                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total); 		                
-	            }).success(function (data, status, headers, config) { 
-	            	$state.go('main.views.articles');	               
-	            }).error(function (data, status, headers, config) { 
-	            	// $scope.alerts.push({type: 'alert', msg: data.errors.status[0]});	               
-	            	$rootScope.showMessageErrorRails(data);	            	
-            });
-		};
+			$scope.addArticulo = function() { //create a new company. Issues a POST to /api/companies
+				$scope.article.sending = true;
+				Upload.upload({ 
+		            	method: 'POST', 
+		                url: HRAPI_CONF.apiBaseUrl('/articles.json'), 
+		                fields: $scope.article, 
+		                file: archivo
+		            }).progress(function (evt) { 
+		                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total); 		                
+		            }).success(function (data, status, headers, config) {		            
+		            	$state.go('main.views.articles');	               
+		            }).error(function (data, status, headers, config) { 
+		            	// $scope.alerts.push({type: 'alert', msg: data.errors.status[0]});		
+		            	$scope.article.sending = false;              
+		            	$scope.showMessageErrorRails(data);	            	
+	            });
+			};
+		}else{
+			$state.transactionTo('main.views.articles');
+		}	
 
 	});
 	

@@ -201,7 +201,7 @@
        return value.toLowerCase();
     }
   })
-  .run(function($filter, $http, $rootScope, $state, $window, HRAPI_CONF, $auth ){       
+  .run(function($filter, $http, $rootScope, $state, $window, HRAPI_CONF, $auth , $anchorScroll){       
       
     /////////////
     //
@@ -432,11 +432,13 @@
         }
 
         $rootScope.showMessageErrorRails = function(data){
+          console.log(data);
+          $anchorScroll("msg_alerts");
 		      var errores = ((typeof data.errors !== "undefined") ? data.errors : data.data.errors);
           angular.forEach(errores, function(value, index){
             angular.forEach( value, function( mensaje, id ){
               $rootScope.alerts.push({type: 'alert', msg: mensaje });
-              window.setTimeout(function() {
+              $window.setTimeout(function() {
                 $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
                   $(this).remove();
                   $rootScope.alerts = [];
@@ -448,6 +450,7 @@
 
         $rootScope.showMessageErrorRails2 = function(data){
           if( data  ){
+            $anchorScroll("msg_alerts");
             var errores = ((typeof data.errors !== "undefined") ? data.errors : data.data.errors);
             angular.forEach(errores, function(value, index){
              

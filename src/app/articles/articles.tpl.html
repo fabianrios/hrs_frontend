@@ -9,7 +9,7 @@
 								<img ng-src="{{updateUrl( article.imagen.imagen.url )}}" alt="" />
 								<h5>{{article.titulo}}</h5>
 							</a>
-							<div class="article-actions" ng-if="article.employee.id == user.employee.id">
+							<div class="article-actions" ng-if="article.employee.id == user.employee.id">							
 								<a ui-sref="main.views.articleedit({id:article.id})" class="editar"><span class="fa fa-pencil fa-lg"></a>
 								<a href="" class="borrar" ng-click="openModal($index,'myModal')"><span class="fa fa-close fa-lg"></a>
 								<div id="myModal-{{$index}}" class="reveal-modal tiny" data-reveal>
@@ -54,7 +54,7 @@
 				<li class="Salud"><a href="">Salud ocupacional</a></li>
 				<li class="Talento"><a href="">Talento humano</a></li>
 			</ul>
-			<a ui-sref="main.views.articleNew" class="button success small">Articulo nuevo</a>
+			<a ng-if="user.employee.new_cont=='true'" ui-sref="main.views.articleNew" class="button success small">Articulo nuevo</a>
 		</div>
 	</div>
 </div>
