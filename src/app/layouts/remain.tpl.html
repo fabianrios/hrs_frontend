@@ -38,37 +38,5 @@
 		<a class="exit-off-canvas" href=""></a>
 	</div> <!-- /inner-wrap -->
 </div> <!-- /off-canvas-wrap -->
-<footer>
-  <div class="row">
-    <div class="large-6 columns">
-      <div class="footer-logo">
-        <a href="/#/home"><img alt="Otrologo" ng-src="images/otrologo.png" /></a> 
-      </div>
-      <br /><br />
-      <p class="text-center">Harinera del valle &copy; 2015</p>
-    </div>
-    <div class="large-3 columns">
-      <h5>SECCIONES</h5>
-      <ul class="no-bullet for-footer">
-        <li><a href="">Quiénes Somos</a></li>
-        <li><a href="">Nuestras Áreas</a></li>
-        <li><a href="">GH</a></li>
-        <li><a href="">Tecnología Informática</a></li>
-        <li><a href="">Sitios de Trabajo</a></li>
-        <li><a href="">Un Cliente Industrial</a></li>
-        <li><a href="">Un Cliente Masivo</a></li>
-      </ul>
-    </div>
-    <div class="large-3 columns">
-      <h5>INFORMACIÓN</h5>
-      <ul class="no-bullet for-footer">
-        <li><a href="">Clasificados</a></li>
-        <li><a href="">Formatos</a></li>
-        <li><a href="">Indicadores de Venta</a></li>
-        <li><a href="">Enlaces</a></li>
-      </ul>
-    </div>
-  </div>
-  <hr />
-	<img ng-src="/images/logo-footer.png" alt="" />
+<footer ng-bind-html="user.company.footer_html">
 </footer>
