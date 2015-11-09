@@ -53,10 +53,6 @@
 			// }
 		});
 		
-		
-		//  	   	$scope.loadImage = function( file ){
-		// 	archivo = file;
-		// }
 
 		//CREAR
 		$scope.putRequest = function() {
