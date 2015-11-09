@@ -18,17 +18,15 @@
 		$scope.licenses_not_user = [];
 		$scope.toapproved =[];
     
-    $scope.seeValidation = function(see){
-      if (see == "true"){
-        return true
-      }
-      else{
-        return false
-      }
-    }
-    
-      
-    $scope.notifications = Notification.show({id: $scope.user.employee.identification});
+	    $scope.seeValidation = function(see){
+	      if (see == "true"){
+	        return true
+	      }
+	      else{
+	        return false
+	      }
+	    }
+
     
 		$scope.hoexAprobador = function(){
 			return $scope.user.employee.hoex_approver != '00000000' &&  $scope.user.employee.hoex_approver != null 

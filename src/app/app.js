@@ -10,10 +10,10 @@
     'ui.router',
     'ui.sortable',
     'ng-token-auth',
-//    'Devise',
+    // 'Devise',
     'chart.js',
     'ngFileUpload',
-    //'mm.foundation',
+    // 'mm.foundation',
     // Config
     'app.config',
 
@@ -123,12 +123,9 @@
       }
     })
     .state('main.views', {
-      resolve: {
-        currentUser: function($rootScope){                  
-          return $rootScope.user;
-        },        
+      resolve: {  
         articles:  function(Article){
-          return Article.index();
+          return Article.index().$promise;
         },
         vac_requirements: function(Vacation_requirement){
           return Vacation_requirement.index().$promise;
@@ -141,9 +138,12 @@
         },
         licenses_requirements: function(License_requirement){
           return License_requirement.index().$promise;
+        },        
+        infos:function(Info){ //?
+          return Info.index().$promise;
         },
-        infos:function(Info){
-            return Info.index().$promise;
+        employees: function(Employee){
+          return Employee.index().$promise;
         }
       },
       views: {
@@ -157,30 +157,15 @@
         },
         profile: {
           templateUrl: 'app/profile/profile.tpl.html',
-          controller: 'Profile.ProfileController',
-          resolve: {
-            employees: function(Employee){
-              return Employee.index();
-            }
-          }
+          controller: 'Profile.ProfileController'
         },
         expandbanner: {
           templateUrl: 'app/expandbanner/expandbanner.tpl.html',
-          controller: 'Expandbanner.ExpandbannerController',
-          resolve: {
-            employees: function(Employee){
-              return Employee.index();
-            }
-          }
+          controller: 'Expandbanner.ExpandbannerController'
         },
         sidebar: {
           templateUrl: 'app/sidebar/sidebar.tpl.html',
-          controller: 'Sidebar.SidebarController',
-          resolve: {
-            employees: function(Employee){
-              return Employee.index();
-            }
-          }
+          controller: 'Sidebar.SidebarController'
         },
         content: {
           template: '<div ui-view=""></div>'
@@ -259,23 +244,16 @@
     $rootScope.$on('auth:login-success', function(ev, user) {
         $state.transitionTo('main.views.dashboard');
     });
+
     $rootScope.$on('auth:login-error', function(ev, reason) {
         $rootScope.showMessageErrorRails2(reason);
-          // $rootScope.alerts.push({type: 'alert', msg: xhr.data.error});
-          // console.log(reason);
-        
-          // $window.setTimeout(function() {
-          //   $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
-          //     $(this).remove();
-          //     $rootScope.alerts = [];
-          //   });
-          // }, 5000);
     });
 
 
     $rootScope.$on('auth:logout-success', function(ev) {
         $state.transitionTo('login.auth');
     });
+
     $rootScope.$on('auth:logout-error', function(ev, reason) {
         $state.transitionTo('login.auth');
 
@@ -286,186 +264,182 @@
     });
 
 
-    $rootScope.employee = {}
-    $rootScope.employee_info = {}
+    $rootScope.employee = {};
+    $rootScope.employee_info = {};
     
-
+    $rootScope.logout = function(){
+      console.log("Logout");
+      $auth.signOut();
+    };
 	
-  
-
-        $rootScope.logout = function(){
-          console.log("Logout");
-          $auth.signOut();
-        };
-	
-        // Foundation nice and working
-        $rootScope.$on('$viewContentLoaded', function () {
-          $(document).foundation({
-            offcanvas : {
-              // Sets method in which offcanvas opens.
-              // [ move | overlap_single | overlap ]
-              open_method: 'move', 
-              close_on_click : true
-            }
-          });
-        })
-	  
-        //toggle expand vacation box
-        $rootScope.toggle = function(e){
-          // console.log(e.currentTarget);
-          $(e.currentTarget).toggleClass("active");
-          $(".expandbanner").slideToggle();
-        };
-	  
-        //toggle expand vacation box
-        $rootScope.xtoggle = function(e){
-          $(e.currentTarget).toggleClass("active");
-          $(".dashboard-profile").toggleClass("smallish");
-        };
-	  
-      
-        //sort stuff icon-bar
-        $rootScope.sorthings = function(e,data){
-          // console.log(e);
-          $(".icon-bar a.item").removeClass("active");
-          $(e.currentTarget).toggleClass("active");
-          $('.information').hide('fast');
-          $("."+data).show('slow');
-        };
-      
-        //iconos
-        $rootScope.icons = ["icon-location","fa fa-location-arrow", "fa fa-phone", "fa fa-envelope-o"];
-       
-	   
-        // para las fechas que no vienen formateadas
-        $rootScope.dateHanldler = function(date){
-          var dt = new Date(date);
-          dt.getTime();
-          return dt;
-        };
-   	 	
-        //contar para datos maestros cuantos hijos tiene realmente
-        $rootScope.numbers = ["null", "one-up", "two-up", "tree-up", "four-up", "five-up", "six-up", "seven-up", "eight-up"];
-        $rootScope.countUp = function(){
-          var size = 0;
-          size = $(".icon-bar a.item").length;
-          return $rootScope.numbers[size];
-        };
-	  
-        // Find translation
-        $rootScope.re_laborales = [{"spras": "S", "molga": "38", "ansvh": "01", "atx": "Ley 50."}, {"spras": "S", "molga": "38", "ansvh": "02", "atx": "Régim. Anterior"}, {"spras": "S", "molga": "38", "ansvh": "03", "atx": "Integral."}, {"spras": "S", "molga": "38", "ansvh": "04", "atx": "Aprendizaje."}, {"spras": "S", "molga": "38", "ansvh": "05", "atx": "Pensionado."}];
-        $rootScope.find_job_relation = function (obj, compare){
-          var len = obj.length;
-          for (var i=0; i<len; i++) {
-            // console.log(obj[i].bland);
-            if (obj[i].ansvh == compare) {
-              return obj[i].atx;
-            }
-          }
-          return compare;
+    // Foundation nice and working
+    $rootScope.$on('$viewContentLoaded', function () {
+      $(document).foundation({
+        offcanvas : {
+          // Sets method in which offcanvas opens.
+          // [ move | overlap_single | overlap ]
+          open_method: 'move', 
+          close_on_click : true
         }
-		
-        //alertas
-        $rootScope.alerts = [];
-        $rootScope.closeAlert = function(index) {
-          $rootScope.alerts.splice(index, 1);
-        };
-        ///alertas
-	  
-        //modal
-        $rootScope.openModal = function(modal, which) {
-          $('#'+which+'-'+modal).foundation('reveal', 'open');
-        };
-
-        //format date
-        $rootScope.formatDate = function( fecha ){
-          if( fecha != null && typeof fecha == "string" ){
-            if( fecha === '0000-00-00' ){
-              return '';
-            }else{
-              var parts = fecha.split('-');                    
-              return new Date(parts[0],parts[1]-1, parts[2]);                      
-            }
-          }else{
-            return fecha
-          }
-        }
-
-        $rootScope.stringTo = function( _type, _value ){
-          if( _value != null && typeof _value == "string" ){
-            switch(_type) {
-                case 'NUM':
-                    return parseFloat(_value, 10);
-                    break;normal
-                case 'DATE':
-                    if( _value === '0000-00-00' ){
-                      return '';
-                    }else{
-                      var parts = _value.split('-');                    
-                      return new Date(parts[0],parts[1]-1, parts[2]);                      
-                    }
-                    break;
-                default:
-                    return _value;
-            } 
-          }else{
-            return _value;
-          }
-        }
-
-        $rootScope.updateUrl = function( url ){
-          if(url!=null){
-            return HRAPI_CONF.baseUrl( url );
-          }else{
-            return url
-          }
-        }
-        
-        $rootScope.checkingDate = function(date){
-            var dateStr = new Date(date);
-            if (!(dateStr == "Invalid Date") && !isNaN(dateStr)){
-                var stringParse = $filter('date')(dateStr, "yyyy-MM-dd");
-            }else{
-                var stringParse = date;
-            }
-            return stringParse
-        }
-
-        $rootScope.showMessageErrorRails = function(data){
-          console.log(data);
-          $anchorScroll("msg_alerts");
-		      var errores = ((typeof data.errors !== "undefined") ? data.errors : data.data.errors);
-          angular.forEach(errores, function(value, index){
-            angular.forEach( value, function( mensaje, id ){
-              $rootScope.alerts.push({type: 'alert', msg: mensaje });
-              $window.setTimeout(function() {
-                $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
-                  $(this).remove();
-                  $rootScope.alerts = [];
-                });
-              }, 5000);
-            });   
-          });
-        }
-
-        $rootScope.showMessageErrorRails2 = function(data){
-          if( data  ){
-            $anchorScroll("msg_alerts");
-            var errores = ((typeof data.errors !== "undefined") ? data.errors : data.data.errors);
-            angular.forEach(errores, function(value, index){
-             
-                $rootScope.alerts.push({type: 'alert', msg: value });
-                window.setTimeout(function() {
-                  $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
-                    $(this).remove();
-                    $rootScope.alerts = [];
-                  });
-                }, 5000);
-          
-            });
-          }
-        }
-
       });
+    });
+	  
+    //toggle expand vacation box
+    $rootScope.toggle = function(e){
+      // console.log(e.currentTarget);
+      $(e.currentTarget).toggleClass("active");
+      $(".expandbanner").slideToggle();
+    };
+	  
+    //toggle expand vacation box
+    $rootScope.xtoggle = function(e){
+      $(e.currentTarget).toggleClass("active");
+      $(".dashboard-profile").toggleClass("smallish");
+    };
+	    
+    //sort stuff icon-bar
+    $rootScope.sorthings = function(e,data){
+      // console.log(e);
+      $(".icon-bar a.item").removeClass("active");
+      $(e.currentTarget).toggleClass("active");
+      $('.information').hide('fast');
+      $("."+data).show('slow');
+    };
+      
+    //iconos
+    $rootScope.icons = ["icon-location","fa fa-location-arrow", "fa fa-phone", "fa fa-envelope-o"];
+       	
+    // para las fechas que no vienen formateadas
+    $rootScope.dateHanldler = function(date){
+      var dt = new Date(date);
+      dt.getTime();
+      return dt;
+    };
+   	 	
+    //contar para datos maestros cuantos hijos tiene realmente
+    $rootScope.numbers = ["null", "one-up", "two-up", "tree-up", "four-up", "five-up", "six-up", "seven-up", "eight-up"];
+
+    $rootScope.countUp = function(){
+      var size = 0;
+      size = $(".icon-bar a.item").length;
+      return $rootScope.numbers[size];
+    };
+	  
+    // Find translation
+    $rootScope.re_laborales = [{"spras": "S", "molga": "38", "ansvh": "01", "atx": "Ley 50."}, {"spras": "S", "molga": "38", "ansvh": "02", "atx": "Régim. Anterior"}, {"spras": "S", "molga": "38", "ansvh": "03", "atx": "Integral."}, {"spras": "S", "molga": "38", "ansvh": "04", "atx": "Aprendizaje."}, {"spras": "S", "molga": "38", "ansvh": "05", "atx": "Pensionado."}];
+
+    $rootScope.find_job_relation = function (obj, compare){
+      var len = obj.length;
+      for (var i=0; i<len; i++) {
+        // console.log(obj[i].bland);
+        if (obj[i].ansvh == compare) {
+          return obj[i].atx;
+        }
+      }
+      return compare;
+    }
+		
+    //alertas
+    $rootScope.alerts = [];
+    $rootScope.closeAlert = function(index) {
+      $rootScope.alerts.splice(index, 1);
+    };
+    ///alertas
+	  
+    //modal
+    $rootScope.openModal = function(modal, which) {
+      $('#'+which+'-'+modal).foundation('reveal', 'open');
+    };
+
+    //format date
+    $rootScope.formatDate = function( fecha ){
+      if( fecha != null && typeof fecha == "string" ){
+        if( fecha === '0000-00-00' ){
+          return '';
+        }else{
+          var parts = fecha.split('-');                    
+          return new Date(parts[0],parts[1]-1, parts[2]);                      
+        }
+      }else{
+        return fecha;
+      }
+    };
+
+    $rootScope.stringTo = function( _type, _value ){
+      if( _value != null && typeof _value == "string" ){
+        switch(_type) {
+            case 'NUM':
+                return parseFloat(_value, 10);
+                break;normal
+            case 'DATE':
+                if( _value === '0000-00-00' ){
+                  return '';
+                }else{
+                  var parts = _value.split('-');                    
+                  return new Date(parts[0],parts[1]-1, parts[2]);                      
+                }
+                break;
+            default:
+                return _value;
+        } 
+      }else{
+        return _value;
+      }
+    };
+
+    $rootScope.updateUrl = function( url ){
+      if(url!=null){
+        return HRAPI_CONF.baseUrl( url );
+      }else{
+        return url;
+      }
+    };
+        
+    $rootScope.checkingDate = function(date){
+        var dateStr = new Date(date);
+        if (!(dateStr == "Invalid Date") && !isNaN(dateStr)){
+            var stringParse = $filter('date')(dateStr, "yyyy-MM-dd");
+        }else{
+            var stringParse = date;
+        }
+        return stringParse;
+    };
+
+    $rootScope.showMessageErrorRails = function(data){
+      console.log(data);
+      $anchorScroll("msg_alerts");
+      var errores = ((typeof data.errors !== "undefined") ? data.errors : data.data.errors);
+      angular.forEach(errores, function(value, index){
+        angular.forEach( value, function( mensaje, id ){
+          $rootScope.alerts.push({type: 'alert', msg: mensaje });
+          $window.setTimeout(function() {
+            $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
+              $(this).remove();
+              $rootScope.alerts = [];
+            });
+          }, 5000);
+        });   
+      });
+    };
+
+    $rootScope.showMessageErrorRails2 = function(data){
+      if( data  ){
+        $anchorScroll("msg_alerts");
+        var errores = ((typeof data.errors !== "undefined") ? data.errors : data.data.errors);
+        angular.forEach(errores, function(value, index){
+         
+            $rootScope.alerts.push({type: 'alert', msg: value });
+            window.setTimeout(function() {
+              $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
+                $(this).remove();
+                $rootScope.alerts = [];
+              });
+            }, 5000);
+      
+        });
+      }
+    };
+
+  });
   
-    }());
+}());

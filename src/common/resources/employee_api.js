@@ -13,7 +13,8 @@
       'destroy': { method: 'DELETE' },
       'search': { url:  HRAPI_CONF.apiBaseUrl('/employees/search') ,method: 'GET', isArray: true, params: { q: '@q'} },
 			'dams': { url:  HRAPI_CONF.apiBaseUrl('/employees/dams') ,method: 'GET', isArray: false, params: { q: '@q'} },
-      'all_by_fecha_de_ingreso': { url:  HRAPI_CONF.apiBaseUrl('/employees/all_by_fecha_de_ingreso.json'), method: 'GET', isArray: true }
+      'all_by_fecha_de_ingreso': { url:  HRAPI_CONF.apiBaseUrl('/employees/all_by_fecha_de_ingreso.json'), method: 'GET', isArray: true },
+      'all_by_cumpleano_mes': { url:  HRAPI_CONF.apiBaseUrl('/employees/all_by_cumpleano_mes.json'), method: 'GET', isArray: true }
     });
 	
   });

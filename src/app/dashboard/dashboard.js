@@ -12,9 +12,9 @@
 				widgets: function(){
 					return {
 						items: [
-							{ name: "Mis días de Vacaciones", config: { param_a: "abc", param_b: "Días que a la liquidación de la ultima nomina tiene disponibles y usados por este concepto." }},
-							{ name: "Mis Cesantías", config: { param_a: "def", param_b: "Valor que a la liquidación de la ultima nomina tiene causados en la compañía. Este valor sera consignado al Fondo de Cesantias antes del 14 de Febrero de cada año." }},
-							{ name: "Mis Intereses de Cesantías", config: { param_a: "ghi", param_b: "Valor de los intereses a las cesantias causados a 31 de Diceimbre de cada año." }},
+							{ name: "Mis días de vacaciones", config: { param_a: "abc", param_b: "Días que a la liquidación de la ultima nomina tiene disponibles y usados por este concepto." }},
+							{ name: "Mis cesantías", config: { param_a: "def", param_b: "Valor que a la liquidación de la ultima nomina tiene causados en la compañía. Este valor sera consignado al Fondo de Cesantias antes del 14 de Febrero de cada año." }},
+							{ name: "Mis intereses de cesantías", config: { param_a: "ghi", param_b: "Valor de los intereses a las cesantias causados a 31 de Diceimbre de cada año." }},
 						]
 					}
 				},
@@ -39,9 +39,6 @@
 							{ name: "Publicaciones recientes", config: { cuantos: "1", param_b: "El valor que a la liquidación de la última nómina tiene causado dentro de la compañía y el cual  se transferirá al fondo de Cesantias con que se  cuente al  finalizar el periodo." }},
 						]
 					}
-				},
-				employees: function(Employee){
-					return Employee.index();
 				}
 			}
 		})
@@ -356,9 +353,9 @@
 	})
 	
 	// .controller('Dashboard.MainController', function($scope, widgets, ingresos, workers, publicaciones, employees, currentUser, articles){
-	.controller('Dashboard.MainController', function($scope, widgets, ingresos, workers, publicaciones, articles, currentUser, employees, Employee){
+	.controller('Dashboard.MainController', function($scope, widgets, ingresos, workers, publicaciones, articles,  employees, Employee){
 
-		$scope.employee_by_fecha_de_ingreso = Employee.all_by_fecha_de_ingreso();
+		$scope.$Employee = Employee;
     	
 
 		var mine = articles.articles;
@@ -383,32 +380,27 @@
 	        // console.log(parseInt(date));
 	        return parseInt(date);
 	    };
-		
-		console.log( currentUser );
-		
+				
 		$scope.employees = employees;
 		
 		
-		$scope.employee = currentUser.employee;
-		$scope.vacation = currentUser.vacation;
-		$scope.employee_info = currentUser.employee_info;
-		$scope.employees = employees;
+		$scope.employee = $scope.user.employee;
+		$scope.vacation = $scope.user.vacation;
+		$scope.employee_info = $scope.user.employee_info;
 	
 		
-		if (currentUser.saldos != null){
-			$scope.saldos = currentUser.saldos;
+		if ($scope.user.saldos != null){
+			$scope.saldos = $scope.user.saldos;
 		}else{
-//			$scope.saldos = {"saldo":1.0,"vcausado":1.0,"intsaldo":1.0,"intvcausado":1.0,"totdevengos":1.0,"totdeducciones":1.0,"t_cesantias":[{"fpper":"201504","betrg":"958357.00","fpend":"2015-04-30"},{"fpper":"201503","betrg":"695343.00","fpend":"2015-03-31"},{"fpper":"201503","betrg":"683836.00","fpend":"2015-03-31"},{"fpper":"201502","betrg":"444932.00","fpend":"2015-02-28"},{"fpper":"201501","betrg":"230137.00","fpend":"2015-01-31"},{"fpper":"201412","betrg":"2550000.00","fpend":"2014-12-31"}],"t_intcesantias":[{"fpper":"201504","betrg":"37809.00","fpend":"2015-04-30"},{"fpper":"201503","betrg":"20575.00","fpend":"2015-03-31"},{"fpper":"201503","betrg":"20234.00","fpend":"2015-03-31"},{"fpper":"201502","betrg":"8630.00","fpend":"2015-02-28"},{"fpper":"201501","betrg":"2346.00","fpend":"2015-01-31"},{"fpper":"201412","betrg":"306000.00","fpend":"2014-12-31"}],"t_endeudamiento":[{"fpper":"201504","devng":"21336320001.00","deduc":"7465961193.00","fpend":"2015-04-30"},{"fpper":"201503","devng":"2566667.00","deduc":"749878.00","fpend":"2015-03-31"},{"fpper":"201503","devng":"2920000.00","deduc":"749878.00","fpend":"2015-03-31"},{"fpper":"201502","devng":"2613333.00","deduc":"750500.00","fpend":"2015-02-28"},{"fpper":"201501","devng":"3101968.00","deduc":"927977.00","fpend":"2015-01-31"},{"fpper":"201412","devng":"4104204.00","deduc":"500000.00","fpend":"2014-12-31"}]};
 			$scope.saldos = {};
 		}
 		
-		if (currentUser.vacation != null){
-			// Estos hay que parsearlos como numeros porque llegan como un string para la primera grafica
-			$scope.vacationdays = [parseInt($scope.vacation.resumen[1]),parseInt($scope.vacation.resumen[2])];
-			// console.log($scope.vacationdays);
+		if ( $scope.vacation != null){			
+			$scope.vacationdays = [parseInt($scope.vacation.resumen[1]),parseInt($scope.vacation.resumen[2])];			
 		}else{
 			$scope.vacationdays = [];
 		}
+
 		//porcentaje para classy
 		$scope.porcentaje = 100/($scope.saldos.totdevengos/$scope.saldos.totdeducciones);
 		
@@ -416,6 +408,7 @@
 		var deduc = [];
 		var devng = [];
 		$scope.fechasdeudas = [];
+
 		angular.forEach($scope.saldos.t_endeudamiento,function(value){
 			deduc.push(value.deduc);
 			devng.push(value.devng);
@@ -439,11 +432,13 @@
 		$scope.newbetrg = [];
         $scope.elsaldocesantias = $scope.saldos.saldo;
         $scope.intcesantias = $scope.saldos.intsaldo;
+
         // meter las cesantias
         angular.forEach($scope.saldos.t_cesantias,function(value){
           $scope.betrg.push(value.betrg);
           $scope.fpend.push( moment( $scope.formatDate(value.fpend)  ).format("YYYY-MM-DD") );
         });
+
         // saldo de cesantias a numeros
         $scope.betrg.forEach(function(entry, index) {
             $scope.newbetrg[index] = parseInt(entry);
@@ -456,6 +451,7 @@
         $scope.intbetrg = [];
         $scope.intfpend = [];
 		$scope.intnewbetrg = [];
+
         angular.forEach($scope.saldos.t_intcesantias,function(value){
           $scope.intbetrg.push(value.betrg);
           $scope.intfpend.push( moment( $scope.formatDate(value.fpend)  ).format("YYYY-MM-DD") );            
@@ -469,87 +465,74 @@
             }
         });
 	
-		// $scope.shouldShow = function shouldHide(birthOn){
-			//  console.log(birthOn);
-			//     var birth = new Date(birthOn);
-			//     var now = new Date();
-			//  console.log(now.getMonth(),birth.getMonth());
-			//     var show = now.getMonth() == birth.getMonth() ? true : false;
-			//     return show;
-			// }
     
+		// $scope.birthShow = function(empleado) {
+	 //        var birth = $scope.formatDate(empleado.fecha_nac);
+	 //        var nacimiento = new Date(birth);
+	 //        nacimiento.setHours(0,0,0,0);
+	 //        var now = new Date();
+	 //        if (Object.prototype.toString.call(birth) === '[object Date]'){
+	 //          var show = now.getMonth() == birth.getMonth() ? true : false;	          
+	 //          return show;
+	 //        }else{
+	 //          return false;
+	 //        }    
+		// };
     
-			$scope.birthShow = function(empleado) {
-        var birth = $scope.formatDate(empleado.fecha_nac);
-        var nacimiento = new Date(birth)
-        nacimiento.setHours(0,0,0,0)
-        var now = new Date();
-        if (Object.prototype.toString.call(birth) === '[object Date]'){
-          var show = now.getMonth() == birth.getMonth() ? true : false;
-          // console.log(nacimiento.getDay(), birth.getDay());
-          return show;
-        }else{
-//          console.log(birth, nacimiento);
-          return false
-        }
-        // return $scope.formatDate(empleado.fecha_nac);
-			}
-    
-		$scope.laborShow = function(empleado) {
-				var entrada = $scope.formatDate(empleado.fecha_ingreso);
-        		var now = new Date();
-        		if (Object.prototype.toString.call(entrada) === '[object Date]'){
-          			var show = now.getMonth() == entrada.getMonth() ? true : false;
-          			// console.log(now.getMonth(), entrada.getMonth());
-         	 		return show;
-        		}else{
-          			return false
-        		}
-			}
+		// $scope.laborShow = function(empleado) {
+		// 	var entrada = $scope.formatDate(empleado.fecha_ingreso);
+  //   		var now = new Date();
+  //   		if (Object.prototype.toString.call(entrada) === '[object Date]'){
+  //     			var show = now.getMonth() == entrada.getMonth() ? true : false;          			
+  //    	 		return show;
+  //   		}else{
+  //     			return false;
+  //   		}
+		// };
     
     
     
-			$scope.sortableOptions = {
-				'placeholder': 'placeholder'
-			};
+		$scope.sortableOptions = {
+			'placeholder': 'placeholder'
+		};
     
-			$scope.labels = ["Días usados", "Días restantes"];
-      $scope.colours = ['#cacaca','#2ED63B'];
+		$scope.labels = ["Días usados", "Días restantes"];
+    	$scope.colours = ['#cacaca','#2ED63B'];
   
-			$scope.common = {
-				widgets: widgets.items,
-				workers: workers.items,
-				publicaciones: publicaciones.items,
-				ingresos: ingresos.items
-			};
+		$scope.common = {
+			widgets: widgets.items,
+			workers: workers.items,
+			publicaciones: publicaciones.items,
+			ingresos: ingresos.items
+		};
     
-			$scope.aniversario = function calculateAnniversary(entrada)
-			{
-				var todayDate = new Date();
-				var entrada = new Date(entrada);
-				var age = todayDate.getYear() - entrada.getYear(); 
-				return age;
-			}
+		// $scope.aniversario = function calculateAnniversary(entrada)
+		$scope.aniversario = function(entrada)
+		{
+			var todayDate = new Date();
+			var entrada = new Date(entrada);
+			var age = todayDate.getYear() - entrada.getYear(); 
+			return age;
+		};
 			
+		if($(window).width() <= 500) {
+			$(".dashboardlis li .contenido").hide();
+		}
+		
+		$(window).resize(function() {
 			if($(window).width() <= 500) {
-				$(".dashboardlis li .contenido").hide();
+				$(".dashboardlis li .contenido").slideUp();
+				$(".contenido#vacations-chart").slideDown();
+			}else if ($(window).width() >= 720) {
+				$(".dashboardlis li .contenido").show();
 			}
+		}).resize(); 
 		
-			$(window).resize(function() {
-				if($(window).width() <= 500) {
-					$(".dashboardlis li .contenido").slideUp();
-					$(".contenido#vacations-chart").slideDown();
-				}else if ($(window).width() >= 720) {
-					$(".dashboardlis li .contenido").show();
-				}
-			}).resize(); 
-		
-			$(".closing").click(function(){
-				// console.log($(this));
-				$(this).parent().parent().parent().children(".contenido").slideToggle(70);
-				$(this).children(".fa").toggleClass("fa-chevron-circle-up");
-				$(this).children(".fa").toggleClass("fa-chevron-circle-down");
-			});
+		$(".closing").click(function(){
+			$(this).parent().parent().parent().children(".contenido").slideToggle(70);
+			$(this).children(".fa").toggleClass("fa-chevron-circle-up");
+			$(this).children(".fa").toggleClass("fa-chevron-circle-down");
+		});
 
     
 		});

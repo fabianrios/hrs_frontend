@@ -30,7 +30,7 @@
 			}
 		})
 	})	
-	.controller('Employee_info.ListController', function($scope, $state, $rootScope,$http, $filter, currentUser, Info, infos, Employee){
+	.controller('Employee_info.ListController', function($scope, $state, $rootScope,$http, $filter, Info, infos, Employee){
 		
 		// $scope.user = currentUser;
 		$scope.vacation = $scope.user.vacation;
@@ -335,33 +335,30 @@
 		
 	})
 	
-	.controller('Employee_info.LookupController', function ($state, $scope, info, $rootScope, employee, $http, currentUser) {
+	.controller('Employee_info.LookupController', function ($state, $scope, info, $rootScope, employee, $http) {
 		
     // $scope.user = currentUser;
 		$rootScope.employee = employee;
 		$rootScope.employee_info = info;
 		
-		if (typeof $rootScope.employee_info.error !== "undefined"){
-			
+		if (typeof $rootScope.employee_info.error !== "undefined"){			
 			$rootScope.alerts.push({type: 'alert', msg: $rootScope.employee_info.error});
-      window.setTimeout(function() {
-        $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
-          $(this).remove();
-          $rootScope.alerts = [];
-        });
-      }, 5000);
+		      window.setTimeout(function() {
+		        $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
+		          $(this).remove();
+		          $rootScope.alerts = [];
+		        });
+		      }, 5000);
 		}
-		
-		
-    
-    $scope.privateValidation = function(priv){
-      if (priv == "X" && $scope.user.employee.see_all_dm != "true"){
-        return "hide"
-      }
-      else{
-        return "show"
-      }
-    }
+				  
+	    $scope.privateValidation = function(priv){
+	      if (priv == "X" && $scope.user.employee.see_all_dm != "true"){
+	        return "hide"
+	      }
+	      else{
+	        return "show"
+	      }
+	    }
 
     	$scope.edit_field = function( edit ){
 			return edit === 'X' && $scope.user.employee.dams_approver && $scope.user.employee.dams_approver != '00000000'

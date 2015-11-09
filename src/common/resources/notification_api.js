@@ -4,6 +4,7 @@
   angular.module('notification.service', [])
 
   .factory('Notification', function($resource, HRAPI_CONF) {
+    // se debe actualizar servicio, ya no se debe enviar idenficacion del empleado.
     var url = HRAPI_CONF.apiBaseUrl('/notifications/:id.json');
     return $resource(url, { id: '@id' }, {
       'show': { method: 'GET', isArray: false },

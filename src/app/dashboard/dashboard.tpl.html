@@ -116,7 +116,7 @@
 			</ul>
 			
 			<ul class="small-block-grid-1 medium-block-grid-3 large-block-grid-3 dashboardlis">
-				<li ng-if="user.company.show_birthday">
+				<li ng-if="user.company.show_birthday" ng-init="employee_by_cumpleano_mes = $Employee.all_by_cumpleano_mes();">
 					<div class="widgets minh-430">
 						<h5 class="encabezado">
 							<a href="#">{{ common.workers[0].name }} <i class="fa fa-angle-right"></i> </a>
@@ -133,7 +133,7 @@
 						</h5>
 						<div class="contenido">
 							<ul class="employees">
-								<li ng-repeat="empleado in employees | filter:birthShow | orderBy: sortNacimiento : true">
+								<li ng-repeat="empleado in employee_by_cumpleano_mes | orderBy: sortNacimiento : true">
 									<div class="foto">
 										<a ui-sref="main.views.employee_info_lookup({id:empleado.identification, c:empleado.company.id})">
 											<img alt="profile" ng-src="{{empleado.image}}">
@@ -154,7 +154,7 @@
 						</div><!-- /contenido -->
 					</div>
 				</li>
-				<li ng-if="user.company.show_labor">
+				<li ng-if="user.company.show_labor" ng-init="employee_by_fecha_de_ingreso = $Employee.all_by_fecha_de_ingreso();">
 					<div class="widgets minh-430">
 						<h5 class="encabezado">
 							<a href="#">{{ common.workers[1].name }} <i class="fa fa-angle-right"></i> </a>
@@ -170,6 +170,7 @@
 							</div>
 						</h5>
 						<div class="contenido">
+
 							<ul class="employees">
 								<li ng-repeat="empleado in employee_by_fecha_de_ingreso | orderBy: sortEmpleado : true">
 									<div class="foto">
@@ -179,7 +180,7 @@
 									</div>
 									<h6 class="no-margin capitalize">
 										<a ui-sref="main.views.employee_info_lookup({id:empleado.identification, c:empleado.company.id})">{{empleado.short_name | lowercase}}</a>
-									</h6>
+									</h6>						
 <!--									<h6 class="subheader no-margin capitalize">{{empleado.posicion | lowercase}}</h6>-->
 									<div class="text-right">
 										<span class="graytxt">
