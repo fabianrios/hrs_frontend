@@ -124,9 +124,9 @@
     })
     .state('main.views', {
       resolve: {  
-        articles:  function(Article){
-          return Article.index().$promise;
-        },
+        // articles:  function(Article){
+        //   return Article.index().$promise;
+        // },
         vac_requirements: function(Vacation_requirement){
           return Vacation_requirement.index().$promise;
         },

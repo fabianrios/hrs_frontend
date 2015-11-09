@@ -18,9 +18,8 @@
 		})
 	})
 	
-	.controller('Licenses.ListController', function($rootScope, $scope, $http, $state,  currentUser, licenses_req, License_requirement, Upload, HRAPI_CONF ){
-		
-		// $scope.user = currentUser;
+	.controller('Licenses.ListController', function($rootScope, $scope, $http, $state,  licenses_req, License_requirement, Upload, HRAPI_CONF ){
+				
 		$scope.licenses = licenses_req;	
 		$scope.tipos = $scope.user.company_type.tipos;
 		$scope.options = [];
@@ -73,18 +72,7 @@
 			archivo = file;
 		}
 
-		$scope.putRequest = function() { //create a new vacation. Issues a POST to /api/vacations			
-			// $scope.requerimiento.$save(function(newData) {
-			// 	$scope.licenses.push(newData);
-			// 	$scope.requerimiento = new License_requirement();
-			// 	$scope.requerimiento.status = "Espera";
-			// 	$scope.requerimiento.employee_id = $scope.user.employee.id;
-			// 	$state.go('main.views.licenses');
-			// 	$scope.alerts.push({type: 'success', msg: "El permiso a sido guardado"});
-			// }, function(data) {
-			// 	// console.log(data.status,data.data);
-			// 	$scope.alerts.push({type: 'alert', msg: data.data.errors.status[0]});
-			// });			
+		$scope.putRequest = function() { 		
 			Upload.upload({ 
 	            	method: 'POST', 
 	                url: HRAPI_CONF.apiBaseUrl('/license_requirements.json'), 
@@ -105,8 +93,7 @@
               $rootScope.alerts = [];
             });
           }, 5000);
-	            }).error(function (data, status, headers, config) { 
-	            	// $scope.alerts.push({type: 'alert', msg: data.errors.status[0]});	               	            	
+	            }).error(function (data, status, headers, config) { 	                          	            	
 	            	$rootScope.showMessageErrorRails(data);
             });
 		};

@@ -59,7 +59,7 @@
 			} 
 		})
 	})
-	.controller('Certificates.MainController', function($rootScope, $scope, $http, employee, currentUser, $state, $filter, HRAPI_CONF){
+	.controller('Certificates.MainController', function($rootScope, $scope, $http, employee, $state, $filter, HRAPI_CONF){
 		
 
 		// $scope.pdfUrl = "http://hdvbackend.hrinteractive.co/carta_laboral-"+currentUser.company_id+"/cartas_lab_"+currentUser.employee_id+"_"+currentUser.company_id+".pdf";

@@ -12,7 +12,7 @@
 			controller: 'Notifications.ListController'			
 		})
 	})	
-	.controller('Notifications.ListController', function($scope, $http, $state, $filter, currentUser, Notification, articles,vac_requirements, extras_requirements, inhabilities_requirements, licenses_requirements, infos, Employee, HRAPI_CONF ){
+	.controller('Notifications.ListController', function($scope, $http, $state, $filter,  Notification, vac_requirements, extras_requirements, inhabilities_requirements, licenses_requirements, infos, Employee, HRAPI_CONF ){
 		
     // $scope.user = currentUser;
     $scope.notificaciones = $scope.user.employee.notifications ? $scope.user.employee.notifications : "Semanal";
@@ -49,8 +49,8 @@
     
 
     
-		$scope.articles = articles.articles;
-		$scope.articles_not_mine = [];
+		// $scope.articles = articles.articles;
+		// $scope.articles_not_mine = [];
 		$scope.vac_requirements = vac_requirements;
 		$scope.extras_requirements = extras_requirements;
 		$scope.inhabilities_requirements = inhabilities_requirements;
@@ -66,15 +66,15 @@
 		$scope.licenses_history = [];
         $scope.toapproved = [];
     
-		// sacar todos los articulos publicados que NO son mios
-		angular.forEach($scope.articles, function(value, key) {
-			var i = $scope.articles.indexOf(value);
-			if (value.employee_id != 1){
-				$scope.articles_not_mine.push(value);
-			}
-		});
+		// // sacar todos los articulos publicados que NO son mios
+		// angular.forEach($scope.articles, function(value, key) {
+		// 	var i = $scope.articles.indexOf(value);
+		// 	if (value.employee_id != 1){
+		// 		$scope.articles_not_mine.push(value);
+		// 	}
+		// });
 
-		$scope.articles_not_mine = Notification.articles( {id: currentUser.employee.identification });
+		// $scope.articles_not_mine = Notification.articles( {id: currentUser.employee.identification });
 		//vacaciones pendientes
 		angular.forEach($scope.vac_requirements,function(value,index){
 			if (value.employee.vaca_approver == $scope.user.employee.id_posicion && value.status == "Espera"){

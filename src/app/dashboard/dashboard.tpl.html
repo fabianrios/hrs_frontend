@@ -194,7 +194,7 @@
 						</div><!-- /contenido -->
 					</div>
 				</li>
-				<li ng-if="user.company.show_articles">
+				<li ng-if="user.company.show_articles" ng-init="articles_not_mine = $Article.index({per:10});">
 					<div class="widgets minh-430">
 						<h5 class="encabezado">
 							<a ui-sref="main.views.articles()">Publicaciones recientes <i class="fa fa-angle-right"></i> </a>
@@ -214,7 +214,7 @@
   							<h3><span class="icon-comment"></span>{{articles_not_mine.length}}</h3>
   						</div>
 							<ul class="employees publicaciones">
-								<li ng-repeat="articulos in articles_not_mine | orderBy: 'created_at' : true | limitTo: 10">
+								<li ng-repeat="articulos in articles_not_mine.articles | orderBy: 'created_at' : true | limitTo: 10">
 									<a ui-sref="main.views.articleDetail({id:articulos.id})" ng-class="articulos.category">{{articulos.titulo}}</a>
 									<p class="smalltxt no-margin">
 										{{articulos.ini | limitTo:100}}

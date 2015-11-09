@@ -3,11 +3,11 @@
 
   angular.module('navbar', [])
 
-    .controller('Navbar.NavbarController', function($scope, articles,vac_requirements, extras_requirements, inhabilities_requirements, licenses_requirements, infos, Notification){//,currentUser,articles,vac_requirements, extras_requirements, inhabilities_requirements, licenses_requirements, infos, Notification){
+    .controller('Navbar.NavbarController', function($scope, vac_requirements, extras_requirements, inhabilities_requirements, licenses_requirements, infos, Notification){//,currentUser,articles,vac_requirements, extras_requirements, inhabilities_requirements, licenses_requirements, infos, Notification){
 		
 		
-		$scope.articles = articles.articles;
-		$scope.articles_not_mine = [];
+		// $scope.articles = articles.articles;
+		// $scope.articles_not_mine = [];
 		$scope.vac_requirements = vac_requirements;
 		$scope.extras_requirements = extras_requirements;
 		$scope.inhabilities_requirements = inhabilities_requirements;
@@ -52,13 +52,13 @@
 	      return $scope.user.employee.cesa_approver != '00000000' &&  $scope.user.employee.cesa_approver != null 
 	    };
 		
-		// sacar todos los articulos publicados que NO son mios
-		angular.forEach($scope.articles, function(value, key) {
-			var i = $scope.articles.indexOf(value);
-			if (value.employee_id != 1){
-				$scope.articles_not_mine.push(value);
-			}
-		});
+		// // sacar todos los articulos publicados que NO son mios
+		// angular.forEach($scope.articles, function(value, key) {
+		// 	var i = $scope.articles.indexOf(value);
+		// 	if (value.employee_id != 1){
+		// 		$scope.articles_not_mine.push(value);
+		// 	}
+		// });
 		
 		//vacaciones pendientes
 		angular.forEach($scope.vac_requirements,function(value,index){

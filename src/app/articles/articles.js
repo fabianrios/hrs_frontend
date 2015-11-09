@@ -45,9 +45,8 @@
 	
 	.controller('Articles.ListController', function($rootScope, $scope, $http, $state, Article, HRAPI_CONF, articles){ //, 
 		
-		// $scope.articles = articles.articles;		
-		$scope.articles = articles.articles.concat(articles.not_articles);
-		// var mine = articles.articles;
+		$scope.articles = articles.articles;		
+		$scope.articles = articles.articles.concat(articles.not_articles);	
 		$scope.articles_not_mine = [];		
 
 		
@@ -79,9 +78,6 @@
 			
 		$scope.article = article;
         
-        // Notification.article({id: currentUser.employee.identification, article_id: $scope.article.id });
-	
-		// console.log("$scope.user",$scope.user, "$scope.article", $scope.article);
 
 	})
 	.controller('articles.EditController', function($scope, $http, $state, article, HRAPI_CONF, Upload ){

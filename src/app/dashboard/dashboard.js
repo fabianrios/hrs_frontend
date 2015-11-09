@@ -353,21 +353,10 @@
 	})
 	
 	// .controller('Dashboard.MainController', function($scope, widgets, ingresos, workers, publicaciones, employees, currentUser, articles){
-	.controller('Dashboard.MainController', function($scope, widgets, ingresos, workers, publicaciones, articles,  employees, Employee){
+	.controller('Dashboard.MainController', function($scope, widgets, ingresos, workers, publicaciones, employees, Employee, Article ){
 
 		$scope.$Employee = Employee;
-    	
-
-		var mine = articles.articles;
-		$scope.articles_not_mine = [];
-		
-		// Articulos publicados que no son mios	
-		angular.forEach(mine, function(value, key) {
-			var i = mine.indexOf(value);
-			if (value.employee_id != 1){
-				$scope.articles_not_mine.push(value);
-			}
-		});
+    	$scope.$Article = Article;
     
 	    $scope.sortEmpleado = function(empleado) {
 	        var date = new Date(empleado.fecha_ingreso).getDate().toString();
