@@ -6,9 +6,7 @@
   
   .controller('Expandbanner.ExpandbannerController', function($scope, $state){
 
-	// $scope.elusuario = currentUser;
-	$scope.elusuario = $scope.user;
-	// $scope.user = currentUser;
+	$scope.elusuario = $scope.user;	
 	$scope.vacation = $scope.user.vacation;    
   
     $scope.privateValidation = function(priv){
@@ -63,9 +61,13 @@
 		$scope.disponibles = [];
 		$scope.usados = [];
 	}
-	  var thedates;
-	  $scope.elusuario.$promise.then(function(items){
-			thedates = items.vacation.detalle;
+
+	var thedates;
+
+
+	  // $scope.elusuario.$promise.then(function(items){
+	  	
+			thedates = $scope.elusuario.vacation.detalle;
 	 		$.datepicker.regional['es'] = {
 	 		  closeText: 'Cerrar',
 	 		  prevText: 'anterior',
@@ -115,7 +117,7 @@
 			    return [true, ''];
 			}
 			
-	  });
+	  // });
 		
 		
 		

@@ -45,7 +45,6 @@
 		$scope.progress = {};
 		$scope.progreso = 0;
 
-
 		$scope.cargarPdf = function(){
 			  var carta = $filter('filter')($scope.user.files, {op:'clabr'})
 			  console.log(carta[0]);

@@ -3,10 +3,12 @@
 
   angular.module('topbar', [])
 
-    .controller('Topbar.TopbarController', function($scope, Notification){//, currentUser, articles, $log, Notification){				
+    .controller('Topbar.TopbarController', function($scope, Notification){//, currentUser, articles, $log, Notification){	
+    	$scope.notifications = {}
         $scope.$on( 'hrs:updateNotifications', function(){
-            $scope.notifications = Notification.show().$promise;
-            $scope.notifications.count = $scope.notifications.articles + $scope.notifications.vacation + $scope.notifications.extra + $scope.notifications.inhability +  $scope.notifications.license + $scope.notifications.info;
+            $scope.notifications = Notification.show();
+            // {{notification["count"]}}           
+            // console.log($scope.notifications);
         });						
     });
 }());

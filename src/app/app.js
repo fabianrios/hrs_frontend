@@ -206,6 +206,7 @@
     $rootScope.$on('$stateChangeStart',
         function(event, toState, toParams, fromState, fromParams){
           $rootScope.preload = true;
+          $rootScope.ubicacion = toState.name;
         });
 
     $rootScope.$on('$stateChangeSuccess',
