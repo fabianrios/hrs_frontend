@@ -14,7 +14,7 @@
 						items: [
 							{ name: "Mis días de vacaciones", config: { param_a: "abc", param_b: "Días que a la liquidación de la ultima nomina tiene disponibles y usados por este concepto." }},
 							{ name: "Mis cesantías", config: { param_a: "def", param_b: "Valor que a la liquidación de la ultima nomina tiene causados en la compañía. Este valor sera consignado al Fondo de Cesantias antes del 14 de Febrero de cada año." }},
-							{ name: "Mis intereses de cesantías", config: { param_a: "ghi", param_b: "Valor de los intereses a las cesantias causados a 31 de Diceimbre de cada año." }},
+							{ name: "Mis inters. de cesantías", config: { param_a: "ghi", param_b: "Valor de los intereses a las cesantias causados a 31 de Diceimbre de cada año." }},
 						]
 					}
 				},
@@ -28,8 +28,8 @@
 				workers: function(){
 					return {
 						items: [
-							{ name: "Cumpleaños del mes", config: { param_a: "abc", param_b: "Días que a la liquidación de la última nómina tiene disponibles por este concepto. " }},
-							{ name: "Aniversario laboral", config: { param_a: "def", param_b: "El Valor de los intereses a las cesantias que a la liquidación de la última nómina tiene causados dentro de la compañía" }}
+							{ name: "Cumpleaños del mes", config: { param_a: "abc", param_b: "Empleados que cumplen años en último mes." }},
+							{ name: "Aniversario laboral", config: { param_a: "def", param_b: "Fecha en la cual el empleado cumple año(s) de ingreso a la compañía." }}
 						]
 					}
 				},
