@@ -4,7 +4,7 @@
   angular.module('expandbanner', [])
 	
   
-  .controller('Expandbanner.ExpandbannerController', function($scope, $state, currentUser){
+  .controller('Expandbanner.ExpandbannerController', function($scope, $state){
 
 	// $scope.elusuario = currentUser;
 	$scope.elusuario = $scope.user;
@@ -21,7 +21,7 @@
     }
 	
 	//CESANTIAS
-	$scope.saldos = currentUser.saldos;
+	$scope.saldos = $scope.user.saldos;
     // meter las cesantias
 	$scope.betrg = [];
 	$scope.fpend = [];

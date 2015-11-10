@@ -18,7 +18,7 @@
 		})
 	})
 	
-	.controller('Employees.ListController', function($scope, $http, $state, $filter, currentUser, Employees){
+	.controller('Employees.ListController', function($scope, $http, $state, $filter, Employees){
 		
 		// $scope.user = currentUser;
 		$scope.employees = Employees;

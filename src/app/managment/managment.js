@@ -19,7 +19,7 @@
 		})
 	})
 	
-	.controller('Managment.ListController', function($scope, $http, $state, $log, moment, currentUser){
+	.controller('Managment.ListController', function($scope, $http, $state, $log, moment){
 		
 		// $scope.user = currentUser;
 		$scope.data = [

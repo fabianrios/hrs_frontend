@@ -18,7 +18,7 @@
 		})
 	})
 	
-	.controller('Extras.ListController', function($rootScope, $scope, $http, $state, extras_req, currentUser, Extra_requirement, HRAPI_CONF){
+	.controller('Extras.ListController', function($rootScope, $scope, $http, $state, extras_req,  Extra_requirement, HRAPI_CONF){
 		
 		// $scope.user = currentUser;
 		$scope.extras = extras_req;

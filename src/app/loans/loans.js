@@ -13,7 +13,7 @@
 		})
 	})
 	
-	.controller('Loans.ListController', function($scope, $http, $state, currentUser ){
+	.controller('Loans.ListController', function($scope, $http, $state ){
 
 
 		// $scope.user = currentUser;

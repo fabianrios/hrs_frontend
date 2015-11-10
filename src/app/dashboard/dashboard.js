@@ -36,7 +36,7 @@
 				publicaciones: function(){
 					return {
 						items: [
-							{ name: "Publicaciones recientes", config: { cuantos: "1", param_b: "El valor que a la liquidación de la última nómina tiene causado dentro de la compañía y el cual  se transferirá al fondo de Cesantias con que se  cuente al  finalizar el periodo." }},
+							{ name: "Publicaciones recientes", config: { cuantos: "1", param_b: "Articulos de interés publicados por los Directivos de la empresa." }},
 						]
 					}
 				}

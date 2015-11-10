@@ -19,7 +19,7 @@
     })
 	
 	
-    .controller('Organigram.MainController', function($scope, $http, organigram, currentUser, HRAPI_CONF, $stateParams){
+    .controller('Organigram.MainController', function($scope, $http, organigram, HRAPI_CONF, $stateParams){
 		
 		
 				

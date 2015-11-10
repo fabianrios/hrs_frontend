@@ -44,7 +44,7 @@
 	    })
 	})
 	
-	.controller('Approvals.ListController', function($rootScope, $scope, $http, $state, currentUser, infos){
+	.controller('Approvals.ListController', function($rootScope, $scope, $http, $state, infos){
 		
 		// $scope.user = currentUser;
         $scope.toapproved = [];

@@ -18,7 +18,7 @@
 		})
 	})
 	
-	.controller('Inhabilities.ListController', function($rootScope, $scope, $http, $state, currentUser, inhabilities_req, Inhability_requirement, Upload, HRAPI_CONF){
+	.controller('Inhabilities.ListController', function($rootScope, $scope, $http, $state, inhabilities_req, Inhability_requirement, Upload, HRAPI_CONF){
 		
 		// $scope.user = currentUser;
 		$scope.inhabilities = inhabilities_req;
