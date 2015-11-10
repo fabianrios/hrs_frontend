@@ -255,12 +255,14 @@
     });
 
     $rootScope.$on('auth:logout-error', function(ev, reason) {
-        $state.transitionTo('login.auth');
+        console.log(ev);
+        console.log(reason);
+        // $state.transitionTo('login.auth');
 
     });
 
     $rootScope.$on('auth:session-expired', function(ev) {
-        $state.transitionTo('login.auth');
+        // $state.transitionTo('login.auth');
     });
 
 

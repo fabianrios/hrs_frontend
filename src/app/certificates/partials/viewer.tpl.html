@@ -8,7 +8,7 @@
     <select ng-init="vacacion = vacations[0]" ng-options="vacation as vacation.name_iden for vacation in vacations" ng-model="vacacion" ng-change="cambiarPdf(vacacion)"></select>  
     <!-- <select ng-init="vacacion = employee.vacations[0]" ng-options="vacation as vacation.begda for vacation in employee.vacations" ng-model="vacacion" ng-change="cambiarPdf(vacacion)"></select>	 -->
   </div>
-  <div ng-if="ubicacion == 'main.views.certificates_payroll' && employee.volpago.length > 1" class="vacations-opt">
+  <div ng-if="ubicacion == 'main.views.certificates_payroll' && volpago.length > 1" class="vacations-opt">
     <select ng-init="volante = volpago[0]" ng-options="volante as volante.name_iden for volante in volpago"  ng-model="volante" ng-change="cambiarPdf(volante)"></select><!-- <select ng-init="volante = employee.volpago[0]" ng-options="volante as volante.begda for volante in employee.volpago"  ng-model="volante" ng-change="cambiarPdf(volante)"></select> -->	
   </div>
   

@@ -10,11 +10,6 @@
 			url: '/labor_certificate/:id?c',
 			templateUrl: 'app/certificates/labor.tpl.html',
 			controller: 'Certificates.MainController',
-			resolve: {
-				employee: function(Employee, $stateParams){
-					return Employee.show({id: $stateParams.id, identification: $stateParams.id, c: $stateParams.c}).$promise;
-				}
-			},
 			data: {
 				breadcrumb: "Certificado laboral"
 			} 
@@ -23,11 +18,6 @@
 			url: '/vacations_certificates/:id?c',
 			templateUrl: 'app/certificates/vacations.tpl.html',
 			controller: 'Certificates.Vacaciones.MainController',
-			// resolve: {
-			// 	employee: function(Employee, $stateParams){
-			// 		return Employee.show({id: $stateParams.id, identification: $stateParams.id, c: $stateParams.c}).$promise;
-			// 	}
-			// },
 			data: {
 				breadcrumb: "Carta de vacaciones"
 			}
@@ -36,11 +26,6 @@
 			url: '/payroll_certificates/:id?c',
 			templateUrl: 'app/certificates/payroll.tpl.html',
 			controller: 'Certificates.Nomina.MainController',
-			resolve: {
-				employee: function(Employee, $stateParams){
-					return Employee.show({id: $stateParams.id, identification: $stateParams.id, c: $stateParams.c}).$promise;
-				}
-			},
 			data: {
 				breadcrumb: "Recibos de nomina"
 			} 
@@ -48,22 +33,13 @@
 		.state('main.views.certificates_income', {
 			url: '/income_certificates/:id?c',
 			templateUrl: 'app/certificates/income.tpl.html',
-			controller: 'Certificates.Income.MainController',
-			resolve: {
-				employee: function(Employee, $stateParams){
-					return Employee.show({id: $stateParams.id, identification: $stateParams.id, c: $stateParams.c}).$promise;
-				}
-			},
 			data: {
 				breadcrumb: "Certificado de Ingresos y retenciones"
 			} 
 		})
 	})
-	.controller('Certificates.MainController', function($rootScope, $scope, $http, employee, $state, $filter, HRAPI_CONF){
+	.controller('Certificates.MainController', function($rootScope, $scope, $http, $state, $filter, HRAPI_CONF){
 		
-
-		// $scope.pdfUrl = "http://hdvbackend.hrinteractive.co/carta_laboral-"+currentUser.company_id+"/cartas_lab_"+currentUser.employee_id+"_"+currentUser.company_id+".pdf";
-		// $scope.user = currentUser;
 		$scope.scroll = 0;
 		$scope.loading = true;
 		$scope.progress = {};
@@ -107,8 +83,6 @@
 			$scope.progreso = (100 / $scope.progress.total) * $scope.progress.loaded;
 		}
 		
-		// $scope.user = currentUser;
-		$scope.employee = employee;
 
 	})
 	.controller('Certificates.Vacaciones.MainController', function($rootScope, $scope, $http, $state, $filter, HRAPI_CONF){
@@ -136,13 +110,11 @@
 		
 		$scope.cambiarPdf = function(vacacion) {
 			$scope.pdfUrl = '';
-			$scope.selectedVac = vacacion;
-			// $scope.pdfUrl = "http://hdvbackend.hrinteractive.co/vacations-"+currentUser.company_id+"/"+currentUser.employee_id+"/Vac_"+$scope.selectedVac.begda+"_"+$scope.selectedVac.endda+"_"+currentUser.employee_id+"_"+currentUser.company_id+".pdf";
+			$scope.selectedVac = vacacion;			
 			$scope.pdfUrl = HRAPI_CONF.baseUrl($scope.selectedVac.file.url);
 			$('#pdf-modal').foundation('reveal','open');
 		}
-		
-		// $scope.pdfUrl = "http://hdvbackend.hrinteractive.co/vacations-"+currentUser.company_id+"/"+currentUser.employee_id+"/Vac_"+employee.vacations[0].begda+"_"+employee.vacations[0].endda+"_"+currentUser.employee_id+"_"+currentUser.company_id+".pdf";
+				
 		$scope.scroll = 0;
 		$scope.loading = true;
 		$scope.progress = {};
@@ -162,7 +134,6 @@
 		}
 
 		$scope.onProgress = function(progress) {
-			// console.log(progress);
 			$scope.progress = progress;
 			$scope.progreso = (100 / progress.total) * progress.loaded;
 		}
@@ -170,41 +141,37 @@
 		
 
 	})
-	.controller('Certificates.Nomina.MainController', function($rootScope, $scope, $http, employee, $state, $filter, HRAPI_CONF){
+	.controller('Certificates.Nomina.MainController', function($rootScope, $scope, $http,  $state, $filter, HRAPI_CONF){
 		
-		$scope.pdfUrl = '';
-		// $scope.user = currentUser;
-		$scope.employee = employee;
-		
-		// $scope.pdfUrl = "http://hdvbackend.hrinteractive.co/volantes_p-"+currentUser.company_id+"/"+currentUser.employee_id+"/Nomina_"+employee.volpago[0].begda+"_"+employee.volpago[0].endda+"_"+currentUser.employee_id+"_"+currentUser.company_id+".pdf";
+		$scope.pdfUrl = '';		
 		$scope.scroll = 0;
 		$scope.loading = true;
 		$scope.progress = {};
 		$scope.progreso = 0;
+		$scope.ubicacion = $state.current.name;
 
 		$scope.cargarPdfs = function(){
 			$scope.volpago = $filter('filter')($scope.user.files, {op:'volpg'})
 			console.log($scope.volpago);
-      if (typeof $scope.volpago[0] !== "undefined"){
-        $scope.pdfUrl = HRAPI_CONF.baseUrl($scope.volpago[0].file.url);
-      }else{
-        $rootScope.alerts.push({type: 'warning', msg: "no hay un pdf asociado al usuario"});
-        window.setTimeout(function() {
-          $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
-            $(this).remove(); 
-            $rootScope.alerts = [];
-          });
-        }, 5000);
-      }
-			
+			if (typeof $scope.volpago[0] !== "undefined"){
+				$scope.pdfUrl = HRAPI_CONF.baseUrl($scope.volpago[0].file.url);
+			}else{
+				$rootScope.alerts.push({type: 'warning', msg: "no hay un pdf asociado al usuario"});
+				window.setTimeout(function() {
+				  $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
+				    $(this).remove(); 
+				    $rootScope.alerts = [];
+				  });
+				}, 5000);
+			}
+					
 		}
 
 		$scope.cargarPdfs();
 		
 		$scope.cambiarPdf = function(volante) {
 			$scope.pdfUrl = '';
-			$scope.selectedVol = volante;
-			// $scope.pdfUrl = "http://hdvbackend.hrinteractive.co/volantes_p-"+currentUser.company_id+"/"+currentUser.employee_id+"/Nomina_"+$scope.selectedVol.begda+"_"+$scope.selectedVol.endda+"_"+currentUser.employee_id+"_"+currentUser.company_id+".pdf";
+			$scope.selectedVol = volante;			
 		      if (typeof $scope.selectedVol !== "undefined"){
 		        $scope.pdfUrl = HRAPI_CONF.baseUrl($scope.selectedVol.file.url);
 		  			$('#pdf-modal').foundation('reveal','open');
@@ -233,18 +200,15 @@
 			$scope.loading = false;
 		}
 
-		$scope.onProgress = function(progress) {
-			// console.log(progress);
+		$scope.onProgress = function(progress) {			
 			$scope.progress = progress;
 			$scope.progreso = (100 / progress.total) * progress.loaded;
 		}
 	
 
 	})
-	.controller('Certificates.Income.MainController', function($rootScope, $scope, $http, employee, $state, $filter, HRAPI_CONF){
+	.controller('Certificates.Income.MainController', function($rootScope, $scope, $http, $state, $filter, HRAPI_CONF){
 		
-		// $scope.pdfUrl = "http://hdvbackend.hrinteractive.co/ingyret-"+currentUser.company_id+"/ingyret_"+currentUser.employee_id+"_"+currentUser.company_id+".pdf";
-		// $scope.user = currentUser;
 		$scope.scroll = 0;
 		$scope.loading = true;
 		$scope.progress = {};
@@ -282,12 +246,9 @@
 		}
 
 		$scope.onProgress = function(progress) {
-			// console.log(progress);
 			$scope.progress = progress;
 			$scope.progreso = (100 / progress.total) * progress.loaded;
-		}
-		
-		$scope.employee = employee;
+		}		
 
 	});
 }());
