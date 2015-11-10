@@ -12,7 +12,7 @@
 			controller: 'Articles.ListController',
 			resolve: {
 				articles: function(Article){
-					return Article.index().$promise;
+					return Article.index({per:50}).$promise;
 				}
 			}
 		})
