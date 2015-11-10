@@ -15,6 +15,8 @@ module.exports = function(grunt){
 
   // Medicion de tiempo de ejecucion de tareas 
   require('time-grunt')(grunt);
+  
+  
 
   /**************************************************************************************************
   *  Configuracion de tareas
@@ -41,7 +43,8 @@ module.exports = function(grunt){
         'compass:dist',
         'copy:dist',
         'sass',
-        'imagemin'
+        'imagemin',
+		'publish'
       ]
     },
 
@@ -101,7 +104,7 @@ module.exports = function(grunt){
           }
         ]
       },
-
+	  
       // otros estilos a temporal de desarrollo
       styles: {
         expand: true,
@@ -157,6 +160,22 @@ module.exports = function(grunt){
         }
       }
     },
+	
+	publish: {
+	  aws: grunt.file.readJSON("credentials.json"),
+	  dist: {
+	    options: {
+	      accessKeyId: "<%= aws.accessKeyId %>",
+	      secretAccessKey: "<%= aws.secretAccessKey %>",
+	      bucket: "dev.hrinteractive.co"
+	    },
+	    build: {
+	      cwd: "/",
+	      src: "dist/**"
+	    }
+	  }
+    },
+	
 
     // Servidor local de desarrollo
     connect: {
@@ -448,6 +467,7 @@ module.exports = function(grunt){
         'copy:dist',
         'sass',
         'imagemin',
+	  	'publish',
     'useminPrepare',
     //'autoprefixer',
     'copy:dist',
@@ -457,7 +477,8 @@ module.exports = function(grunt){
     'uglify:generated',
     'htmlmin:dist',
     'rev',
-    'usemin'
+    'usemin',
+	'publish'
   ]);
 
   // Modo predeterminado
