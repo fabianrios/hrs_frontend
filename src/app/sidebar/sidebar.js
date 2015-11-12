@@ -25,7 +25,6 @@
 			
 			if ($scope.non){
 				$scope.user.favorite_employees.push({employee_identification: empleado.identification, user_identification: empleado.user_id, employee: empleado});
-				console.log("meter empleado", empleado);
 			}								
     };
 
