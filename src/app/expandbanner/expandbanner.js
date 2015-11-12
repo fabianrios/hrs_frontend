@@ -6,6 +6,8 @@
   
   .controller('Expandbanner.ExpandbannerController', function($scope, $state){
 
+  	$( "#datepicker" ).datepicker();
+
 	$scope.elusuario = $scope.user;	
 	$scope.vacation = $scope.user.vacation;    
   
@@ -66,8 +68,8 @@
 
 
 	  // $scope.elusuario.$promise.then(function(items){
-	  	
-			thedates = $scope.elusuario.vacation.detalle;
+	$scope.fecha_calendar = function(){
+			thedates = $scope.user.vacation.detalle;		
 	 		$.datepicker.regional['es'] = {
 	 		  closeText: 'Cerrar',
 	 		  prevText: 'anterior',
@@ -88,23 +90,29 @@
 	 		$.datepicker.setDefaults($.datepicker.regional['es']);
 	 		// console.log(thedates, thedates.length);
 	 		var y = new Date(thedates[thedates.length-1][1]); 
-			// console.log(screen.width);
+
+	 		// console.log(y);
+			
 			var number = 2;
 			if (screen.width < 700){
 				number = 1;
 			}else{
 				number = 2;
 			}
+
 	 	    $( "#vacaciones" ).datepicker({
 	 			numberOfMonths: number,
 	 			defaultDate: y,
 	 			beforeShowDay: highlightDays
 	 	    });
 			
-			function highlightDays(d)
-			{
+			// console.log(angular.element("#vacaciones").datepicker()); 
+			function highlightDays(d){
+				console.log("ïngreso");
+				console.log(d);				
 			    for (var i = 0; i < thedates.length; i++) {
-					// console.log(new Date((thedates[i][0]));
+			    	console.log(thedates[i]);
+					console.log(new Date((thedates[i][0])));
 			      if (new Date(thedates[i][0]) <= d && d <= new Date(thedates[i][1])) {
 					  if  (new Date(thedates[i][0]) == d) { 
 	  			      	return [true, 'inicio', 'inicio-vacaciones']; 
@@ -118,8 +126,8 @@
 			}
 			
 	  // });
-		
-		
+	}
+	$scope.fecha_calendar();
 		
     });
 }());
