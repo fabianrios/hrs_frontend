@@ -10,18 +10,22 @@
 			url: '/loans',
 			templateUrl: 'app/loans/loans.tpl.html',
 			controller: 'Loans.ListController'
+			// resolve:{
+			// 	loans: function( Loan ){
+			// 		return Loan.index().$promise;
+			// 	}
+			// }		
 		})
 	})
 	
-	.controller('Loans.ListController', function($scope, $http, $state ){
-
-
-		// $scope.user = currentUser;
-		$scope.fondo = "loans";
-		//$scope.user = currentUser;
-		//console.log("$scope.user",$scope.user);
+	.controller('Loans.ListController', function($scope, $http, $state ){ //, Loan, loans
+		// $scope.loans = loans;
 		
-	})
+		$scope.putRequest = function(){
+
+		}
+		
+	});
 	
 }());
 

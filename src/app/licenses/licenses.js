@@ -87,12 +87,12 @@
 					$scope.requerimiento.employee_id = $scope.user.employee.id;
 					$state.go('main.views.licenses');
 					$rootScope.alerts.push({type: 'success', msg: "El Permiso ha sido guardado"});
-          window.setTimeout(function() {
-            $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
-              $(this).remove();
-              $rootScope.alerts = [];
-            });
-          }, 5000);
+			          window.setTimeout(function() {
+			            $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
+			              $(this).remove();
+			              $rootScope.alerts = [];
+			            });
+			          }, 5000);
 	            }).error(function (data, status, headers, config) { 	                          	            	
 	            	$rootScope.showMessageErrorRails(data);
             });
@@ -101,17 +101,16 @@
 		//BORRAR
 		$scope.deleteLicense = function(license,modal) { 
 			license.$delete(function() {
-				var index = $scope.licenses.indexOf(license);
-        console.log(license,index,modal);
+				var index = $scope.licenses.indexOf(license);        	
 				$scope.licenses.splice(index, 1);
 				$('#myModal-'+modal).foundation('reveal', 'close');
 				$rootScope.alerts.push({type: 'secondary', msg: "El Permiso del "+ license.start_date  + " al "+ license.end_date +" ha sido borrado"});
-        window.setTimeout(function() {
-          $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
-            $(this).remove();
-            $rootScope.alerts = [];
-          });
-        }, 5000);
+		        window.setTimeout(function() {
+		          $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
+		            $(this).remove();
+		            $rootScope.alerts = [];
+		          });
+		        }, 5000);
 			});			
 		} ///BORRAR
 		
@@ -123,21 +122,21 @@
 				var index = $scope.licenses.indexOf(req_info);
 				$scope.licenses[index] = newData;
 				$rootScope.alerts.push({type: 'secondary', msg: "El Permiso del "+ license.start_date  + " al "+ license.end_date +" ha sido aprobado"});
-	  	  window.setTimeout(function() {
-	  	      $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
-	  	          $(this).remove(); 
-								$rootScope.alerts = [];
-	  	      });
-	  	  }, 5000);
+			  	  window.setTimeout(function() {
+			  	      $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
+			  	          $(this).remove(); 
+										$rootScope.alerts = [];
+			  	      });
+			  	  }, 5000);
 			  },
 			function(data) {
 				$rootScope.alerts.push({type: 'alert', msg: data.data.errors.status[0]});
-        window.setTimeout(function() {
-          $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
-            $(this).remove();
-            $rootScope.alerts = [];
-          });
-        }, 5000);
+		        window.setTimeout(function() {
+		          $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
+		            $(this).remove();
+		            $rootScope.alerts = [];
+		          });
+		        }, 5000);
 			});
 		};
 		
@@ -149,12 +148,12 @@
 				var index = $scope.licenses.indexOf(req_info);
 				$scope.licenses[index] = newData;
 				$rootScope.alerts.push({type: 'secondary', msg: "El Permiso del "+ license.start_date  + " al "+ license.end_date +" ha sido negado"});
-        window.setTimeout(function() {
-          $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
-            $(this).remove();
-            $rootScope.alerts = [];
-          });
-        }, 5000);
+		        window.setTimeout(function() {
+		          $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
+		            $(this).remove();
+		            $rootScope.alerts = [];
+		          });
+		        }, 5000);
 			});
 		};
 		

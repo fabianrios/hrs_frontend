@@ -5,13 +5,9 @@
 		<div class="row">
 			<div class="large-5 medium-5 columns">
 				<form ng-submit="putRequest()">
-					<label for="">Motivo: </label>
+					<label for="">Motivo: </label>			
 					<select name="monto" id="monto">
-						<option value="1">Carencia</option>
-						<option value="2">Calamidad domestica</option>
-						<option value="3">Permiso matrimonio</option>
-						<option value="4">Enfermedad profesional 100%</option>
-						<option value="5">Licencia de paternidad</option>
+						<option ng-repeat="tipo_info in user.company_type.tipos | filter: { idactv: 'PERM'} " ng-bind="tipo_info.descr"></option>					
 					</select>
 					<label for="">Monto solicitado: </label>
 					<div class="row collapse prefix-radius">
@@ -41,11 +37,11 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
+						<tr ng-repeat="loan in loans">
 							<td class="desde">
-								<h6>$ 4`000.000</h6>
+								<h6 ng-bind="loan.monto"></h6>
 							</td>
-							<td><h6>Calamidad domestica</h6></td>
+							<td><h6 ng-bind="loan.subty"></h6></td>
 							<td><h6 class="bold"><span>en espera</span></h6></td>
 							<td>
 								<a href="" class="acciones borrar" ng-click="openModal(1,'myModal')"></a>

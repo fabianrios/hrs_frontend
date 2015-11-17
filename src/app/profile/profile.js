@@ -8,7 +8,7 @@
 		$scope.aprobador = [];
 
 		$scope.cargarAprobador = function(identification){
-		    $scope.aprobador = Employee.show({id:identification, id_posicion: identification});		      
+		    $scope.aprobador = Employee.show({id:0, id_posicion: identification});		      
 		}
 	
 		
