@@ -72,21 +72,21 @@
 				$scope.requerimiento.employee_id = $scope.user.employee.id;
 				$state.go('main.views.extras');
 				$rootScope.alerts.push({type: 'success', msg: "La hora extra a sido guardada"});
-        window.setTimeout(function() {
-          $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
-            $(this).remove();
-            $rootScope.alerts = [];
-          });
-        }, 5000);
+	        window.setTimeout(function() {
+	          $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
+	            $(this).remove();
+	            $rootScope.alerts = [];
+	          });
+	        }, 5000);
 			}, function(data) {
 				console.log(data);
 				$rootScope.alerts.push({type: 'alert', msg: data.data.errors.status[0]});
-        window.setTimeout(function() {
-          $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
-            $(this).remove();
-            $rootScope.alerts = [];
-          });
-        }, 5000);
+		        window.setTimeout(function() {
+		          $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
+		            $(this).remove();
+		            $rootScope.alerts = [];
+		          });
+		        }, 5000);
 			});
 		};
 		

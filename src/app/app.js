@@ -31,7 +31,7 @@
     'employee_info.service',
     'info.service',
     'notification.service',
-    // 'loan.service',
+    'loan.service',
 
     // Directives
     'ngS3upload',

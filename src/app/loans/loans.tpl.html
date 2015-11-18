@@ -4,10 +4,11 @@
 		<br /><br />
 		<div class="row">
 			<div class="large-5 medium-5 columns">
-				<form ng-submit="putRequest()">
+				<form ng-submit="putRequest( prestamo )" >					
 					<label for="">Motivo: </label>			
-					<select name="monto" id="monto">
-						<option ng-repeat="tipo_info in user.company_type.tipos | filter: { idactv: 'PERM'} " ng-bind="tipo_info.descr"></option>					
+					<select name="subty" id="subty" ng-model="prestamo.subty" >
+						<option ></option>
+						<option ng-repeat="tipo_info in options" ng-value="tipo_info.subty" ng-bind="tipo_info.descr"></option>					
 					</select>
 					<label for="">Monto solicitado: </label>
 					<div class="row collapse prefix-radius">
@@ -15,14 +16,14 @@
 							<span class="prefix money"><i class="fa fa-usd"></i></span>
 						</div>
 						<div class="small-10 columns">
-							<input type="number" id="monto" ng-model="prestamo.monto" class="money" pattern="^\d+(\.|\,)\d{2}$">
+							<!-- <input type="number" id="monto" ng-model="prestamo.monto" class="money" ng-pattern="^\d+(\.|\,)\d{2}$"> -->
+							<input type="number" id="monto" ng-model="prestamo.monto" class="money">							
 						</div>
 					</div>
-					<input type="hidden" ng-model="prestamo.status">
-					<input type="hidden" ng-model="prestamo.employee_id">
 					<br />
 					<div class="text-right">
-						<input type="submit" value="Solicitar" class="button success small" />
+						<!-- <input type="submit" value="Solicitar" class="button success small" /> -->
+						<button type="submit" class="button success small" ng-disabled="prestamo.sending" > <img src="images/282.gif" width="15px" ng-if="prestamo.sending" /> &nbsp;<span ng-bind="prestamo.sending ? 'Guardando' : 'Solicitar'" ></span></button>
 					</div>
 				</form>
 			</div> <!-- /large-6 -->
@@ -41,15 +42,16 @@
 							<td class="desde">
 								<h6 ng-bind="loan.monto"></h6>
 							</td>
-							<td><h6 ng-bind="loan.subty"></h6></td>
+
+							<td><h6 ng-bind="mot(loan.subty)"></h6></td>
 							<td><h6 class="bold"><span>en espera</span></h6></td>
 							<td>
-								<a href="" class="acciones borrar" ng-click="openModal(1,'myModal')"></a>
-								<div id="myModal-1" class="reveal-modal tiny" data-reveal>
+								<a href="" class="acciones borrar" ng-click="openModal($index,'myModal')"></a>
+								<div id="myModal-{{$index}}" class="reveal-modal tiny" data-reveal>
 									<br />
 									<h4 class="text-center">¿Seguro quieres borrar esto?</h4>
 									<div class="text-center">
-										<a href="" ng-click="deleteLicense(license,$index)" class="button success">Borrar</a>
+										<a href="" ng-click="deletePres(loan,$index)" class="button success">Borrar</a>
 									</div>
 									<a class="close-reveal-modal">&#215;</a>
 								</div>
@@ -73,22 +75,22 @@
 							<th>ESTADO</th>
 							<th class="aprobar">APROBAR</th>
 							<th class="negar">NEGAR</th>
-							<th class="borrar">BORRAR</th>
+							<!-- <th class="borrar">BORRAR</th> -->
 						</tr>
 					</thead>
-					<tbody>
-						<tr>
+					<tbody>		
+						<tr ng-repeat="approve in approve_loans">
 							<td>
-								<h5>Gabriel Rodriguez</h5>
+								<h5 ng-bind="approve.employee.short_name" ></h5>
 							</td>
 							<td class="desde">
-								<h6>$6`000.000</h6>
+								<h6 ng-bind="approve.monto"></h6>
 							</td>
-							<td><h6>Permiso matrimonio</h6></td>
+							<td><h6 ng-bind="mot(approve.subty)"></h6></td>
 							<td><h6 class="bold" ><span>en espera</span></h6></td>
 							<td><a href="" ng-click="aproveLicenses(license)" class="acciones"></a></td>
 							<td><a href="" ng-click="deniedLicenses(license)" class="acciones negar"></a></td>
-							<td>
+							<!-- <td>
 								<a href="" class="acciones borrar" ng-click="openModal(1,'elmodal')"></a>
 								<div id="elmodal-1" class="reveal-modal tiny" data-reveal>
 									<br />
@@ -98,7 +100,7 @@
 									</div>
 									<a class="close-reveal-modal">&#215;</a>
 								</div>
-							</td>
+							</td> -->
 						</tr>
 					</tbody>
 				</table>
