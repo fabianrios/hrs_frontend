@@ -33,6 +33,7 @@
 		.state('main.views.certificates_income', {
 			url: '/income_certificates/:id?c',
 			templateUrl: 'app/certificates/income.tpl.html',
+			controller: 'Certificates.Income.MainController',
 			data: {
 				breadcrumb: "Certificado de Ingresos y retenciones"
 			} 
@@ -230,8 +231,7 @@
 		$scope.progreso = 0;
 
 		$scope.cargarPdf = function(){
-			var pdf = $filter('filter')($scope.user.files, {op:'inret'})
-			console.log(pdf[0]);
+			var pdf = $filter('filter')($scope.user.files, {op:'inret'})		
 		      if (typeof pdf[0] !== "undefined"){
 		        $scope.pdfUrl = HRAPI_CONF.baseUrl(pdf[0].file.url);
 		      }else{
