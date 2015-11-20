@@ -32,6 +32,7 @@
     'info.service',
     'notification.service',
     'loan.service',
+    'compensatory_vacation.service',
 
     // Directives
     'ngS3upload',
@@ -61,7 +62,8 @@
     'licenses',
     'reports',
     'approvals',
-    'notifications'
+    'notifications',
+    'compensatory_vacations'
   ])
 
   .config(function($stateProvider, $httpProvider, $urlRouterProvider, HRAPI_CONF, AuthProvider, AuthInterceptProvider, ngS3Config, $authProvider){
@@ -224,7 +226,7 @@
     $rootScope.$on('$stateNotFound',
         function(event, unfoundState, fromState, fromParams){
             $rootScope.preload = false;
-            console.log("not fount");
+            console.log("not found");
             event.preventDefault();
             $state.transitionTo('main.views.dashboard');
         });
