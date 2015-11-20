@@ -19,6 +19,10 @@
 	})
 	
 	.controller('Licenses.ListController', function($rootScope, $scope, $http, $state,  licenses_req, License_requirement, Upload, HRAPI_CONF ){
+
+		if($scope.user.company.show_licenses ===  false){
+			$state.transitionTo('main.views.dashboard');
+		}		
 				
 		$scope.licenses = licenses_req;	
 		$scope.tipos = $scope.user.company_type.tipos;

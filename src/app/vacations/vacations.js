@@ -22,6 +22,11 @@
 	})
 	
 	.controller('Vacations.ListController', function($rootScope, $scope, $http, $state, vacations, Vacation_requirement, vac_requirements, Upload, HRAPI_CONF){
+
+		if($scope.user.company.show_vacations ===  false){
+			$state.transitionTo('main.views.dashboard');
+		}
+
 		
 		// $scope.user = currentUser;
 		

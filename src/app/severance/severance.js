@@ -14,6 +14,10 @@
 	})
 	
 	.controller('Severance.ListController', function($scope, $http, $state ){
+
+		if($scope.user.company.show_scesa ===  false){
+			$state.transitionTo('main.views.dashboard');
+		}
 		
 		// $scope.user = currentUser;
 		// console.log("$scope.user",$scope.user);

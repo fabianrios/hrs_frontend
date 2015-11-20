@@ -19,6 +19,10 @@
 	})
 	
 	.controller('Inhabilities.ListController', function($rootScope, $scope, $http, $state, inhabilities_req, Inhability_requirement, Upload, HRAPI_CONF){
+
+		if($scope.user.company.show_inhabilities ===  false){
+			$state.transitionTo('main.views.dashboard');
+		} 
 		
 		// $scope.user = currentUser;
 		$scope.inhabilities = inhabilities_req;

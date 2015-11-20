@@ -23,6 +23,10 @@
 	
 	.controller('Loans.ListController', function($scope, $http, $state, Loan, loans, approve_loans){ //, Loan, loans
 
+		if($scope.user.company.show_loans ===  false){
+			$state.transitionTo('main.views.dashboard');
+		}
+
 
 		$scope.loans = loans;
 		$scope.approve_loans = approve_loans;		
