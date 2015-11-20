@@ -24,35 +24,26 @@
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,400italic|Roboto:400,700,400italic|Lato:400,700,400italic' rel='stylesheet' type='text/css'>
 	
 	<style> 
-    /*.dashboard-profile .dashboard { background: url("/images/Perfil.png") no-repeat; }*/
-		.number-info .greentxt {color: {{user.company.color_1 || "#123A73"}} !important; }
-		.number-info .bluetxt {color: {{user.company.color_2 || "#2ED63B"}} !important; }
-		.blocks li.master h5.encabezado{background: {{user.company.color_1 || "#123A73"}} !important; }
-		.blocks li.master:hover h5.encabezado{background: {{user.company.color_2 || "#2ED63B"}} !important; }
-		.square h5{ background: {{user.company.color_1 || "#123A73"}} !important; }
-		.square:hover h5{ background: {{user.company.color_2 || "#2ED63B"}} !important; }
-		.employees li .foto{ border: 2px solid {{user.company.color_1 || "#123A73"}}; }
-		.worker { border: 2px solid {{user.company.color_1 || "#123A73"}}; }
-		.tab-bar section.left-small .menu-icon:hover{ background: {{user.company.color_1 || "#123A73"}} !important; }
-		.tab-bar section.right-small .menu-icon:hover{ background: {{user.company.color_1 || "#123A73"}} !important; }
-		a{ color: {{user.company.color_1 || "#123A73"}}; }
-		h1, h2, h3, h4, h5, h6{ font-family: {{user.company.fuente || "Lato"}} !important; }
-		a{ font-family: {{user.company.fuente || "Lato"}} !important; }
-		body{ font-family: {{user.company.fuente || "Lato"}} !important; }
-		p{ font-family: {{user.company.fuente || "Lato"}} !important; }
+  /*.dashboard-profile .dashboard { background: url("/images/Perfil.png") no-repeat; }*/
+	.number-info .greentxt {color: {{user.company.color_1 || "#123A73"}} !important; }
+	.number-info .bluetxt {color: {{user.company.color_2 || "#2ED63B"}} !important; }
+	.blocks li.master h5.encabezado{background: {{user.company.color_1 || "#123A73"}} !important; }
+	.blocks li.master:hover h5.encabezado{background: {{user.company.color_2 || "#2ED63B"}} !important; }
+	.square h5{ background: {{user.company.color_1 || "#123A73"}} !important; }
+	.square:hover h5{ background: {{user.company.color_2 || "#2ED63B"}} !important; }
+	.employees li .foto{ border: 2px solid {{user.company.color_1 || "#123A73"}}; }
+	.worker { border: 2px solid {{user.company.color_1 || "#123A73"}}; }
+	.tab-bar section.left-small .menu-icon:hover{ background: {{user.company.color_1 || "#123A73"}} !important; }
+	.tab-bar section.right-small .menu-icon:hover{ background: {{user.company.color_1 || "#123A73"}} !important; }
+	a{ color: {{user.company.color_1 || "#123A73"}}; }
+	h1, h2, h3, h4, h5, h6{ font-family: {{user.company.fuente || "Lato"}} !important; }
+	a{ font-family: {{user.company.fuente || "Lato"}} !important; }
+	body{ font-family: {{user.company.fuente || "Lato"}} !important; }
+	p{ font-family: {{user.company.fuente || "Lato"}} !important; }
+		
 	</style>
 	
   <!-- endbuild -->
-	
-  <!-- Bugherd -->
-  <script type='text/javascript'>
-  (function (d, t) {
-    var bh = d.createElement(t), s = d.getElementsByTagName(t)[0];
-    bh.type = 'text/javascript';
-    bh.src = '//www.bugherd.com/sidebarv2.js?apikey=esmmkufwdfdlvrv0nieb2a';
-    s.parentNode.insertBefore(bh, s);
-  })(document, 'script');
-  </script>  
 	
 </head>
 <body>
@@ -62,7 +53,7 @@
     <![endif]-->
     <div ui-view=""></div>    
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
-<!--
+
     <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -85,7 +76,7 @@
     })();
 
     </script>
--->
+
 		
     <!-- Typekit -->
     <script src="//use.typekit.net/tvm0sgh.js"></script>
@@ -110,7 +101,6 @@
       <script src="moment/moment.js"></script>
       <script src="angular-moment/angular-moment.js"></script>
       <script src="angular-aria/angular-aria.js"></script>
-      <!--<script src="angular-cookies/angular-cookies.js"></script>  -->   
       <script src="angular-messages/angular-messages.js"></script>
       <script src="angular-resource/angular-resource.js"></script>
       <script src="angular-route/angular-route.js"></script>
@@ -165,6 +155,7 @@
       <script src="common/resources/info_api.js"></script>
       <script src="common/resources/notification_api.js"></script>
       <script src="common/resources/loan_api.js"></script>
+      <script src="common/resources/compensatory_vacation.api.js"></script>
       <script src="app/navbar/navbar.js"></script>
       <script src="app/topbar/topbar.js"></script>
       <script src="app/sidebar/sidebar.js"></script>
@@ -188,6 +179,7 @@
       <script src="app/reports/reports.js"></script>
       <script src="app/approvals/approvals.js"></script>
       <script src="app/notifications/notifications.js"></script>
+      <script src="app/compensatory_vacations/compensatory_vacations.js"></script>
       <!-- endbuild -->
 	
       <script>

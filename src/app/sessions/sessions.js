@@ -42,8 +42,6 @@
 		 }else{
 		 	$scope.logo = "images/hrs_logo.png";
 		 }
-		 
-		 console.log($scope.subdomain);
 
 		$scope.login = function() {       
       $auth.submitLogin($scope.credentials);
