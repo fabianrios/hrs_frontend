@@ -25,7 +25,7 @@
   <li ng-if="seeValidation(user.employee.see_organ)" ui-sref="main.views.organigram({id:user.employee.id})"><a><i class="fa fa-sitemap fa-lg"></i> Organigrama</a></li>
   <!-- <li><a ng-href="#/organigram/{{user.employee_id}}" class="disabled"><i class="fa fa-sitemap fa-lg"></i> Organigrama</a></li> -->
   <!-- <li><a ui-sref="main.views.employees"><i class="fa fa-users fa-lg"></i> Empleados</a></li> -->
-  <li class="has-submenu">
+  <li class="has-submenu" ng-if="user.company.show_certificates_labor || user.company.show_certificates_vacations || user.company.show_certificates_payroll || user.company.show_certificates_income">
     <a href="">
       <i class="fa fa-file fa-lg"></i> Autoservicios
       <i class="fa fa-angle-right fa-right fa-lg"></i>
@@ -34,22 +34,22 @@
       <li class="back">
         <a href="">Volver</a>
       </li>
-      <li>
+      <li ng-if="user.company.show_certificates_labor" >
         <a ui-sref="main.views.certificates_labor({id:user.employee.identification, c:user.company_id})">
           <i class="fa fa-file-text-o fa-lg"></i> Certificado laboral
         </a>
       </li>
-      <li>
+      <li ng-if="user.company.show_certificates_vacations" >
         <a ui-sref="main.views.certificates_vacations({id:user.employee.identification, c:user.company_id})">
           <i class="fa fa-plane fa-lg"></i> Carta de vacaciones
         </a>
       </li>
-      <li>
+      <li ng-if="user.company.show_certificates_payroll" >
         <a ui-sref="main.views.certificates_payroll({id:user.employee.identification, c:user.company_id})">
           <i class="fa fa-briefcase fa-lg"></i> Recibos de nomina
         </a>
       </li>
-      <li>
+      <li ng-if="user.company.show_certificates_income" >
         <a ui-sref="main.views.certificates_income({id:user.employee.identification, c:user.company_id})">
           <i class="fa fa-institution fa-lg"></i> Certificado de ing. y ret.
         </a>

@@ -39,6 +39,10 @@
 		})
 	})
 	.controller('Certificates.MainController', function($rootScope, $scope, $http, $state, $filter, HRAPI_CONF){
+
+		if($scope.user.company.show_certificates_labor ===  false){
+			$state.transitionTo('main.views.dashboard');
+		} 
 		
 		$scope.scroll = 0;
 		$scope.loading = true;
@@ -85,6 +89,10 @@
 
 	})
 	.controller('Certificates.Vacaciones.MainController', function($rootScope, $scope, $http, $state, $filter, HRAPI_CONF){
+
+		if($scope.user.company.show_certificates_vacations ===  false){
+			$state.transitionTo('main.views.dashboard');
+		} 
 		
 		$scope.pdfUrl = '';
 		$scope.vacations = [];
@@ -141,6 +149,10 @@
 
 	})
 	.controller('Certificates.Nomina.MainController', function($rootScope, $scope, $http,  $state, $filter, HRAPI_CONF){
+
+		if($scope.user.company.show_certificates_payroll ===  false){
+			$state.transitionTo('main.views.dashboard');
+		} 
 		
 		$scope.pdfUrl = '';		
 		$scope.scroll = 0;
@@ -207,6 +219,10 @@
 
 	})
 	.controller('Certificates.Income.MainController', function($rootScope, $scope, $http, $state, $filter, HRAPI_CONF){
+
+		if($scope.user.company.show_certificates_income ===  false){
+			$state.transitionTo('main.views.dashboard');
+		} 
 		
 		$scope.scroll = 0;
 		$scope.loading = true;

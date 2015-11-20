@@ -126,9 +126,7 @@
 	
 	    $scope.updateArticle = function() { //Update the edited company. Issues a PUT to /api/companies/:id
 	        $scope.article.sending = true;
-			Upload.upload({ if($scope.user.company.show_articles ===  false){
-			$state.transitionTo('main.views.dashboard');
-		} 
+			Upload.upload({
 	            	method: 'PUT', 
 	                url: HRAPI_CONF.apiBaseUrl('/articles/' + $scope.article.id + '.json'), 
 	                fields: $scope.article, 
