@@ -207,16 +207,7 @@
     $rootScope.$on('$stateChangeStart',
         function(event, toState, toParams, fromState, fromParams){
           $rootScope.preload = true;
-          $rootScope.ubicacion = toState.name;
-
-          //restricion por ubicacion
-          switch(toState.name){
-            case 'main.views.articles':
-               if($rootScope.user.company.show_articles === false){                
-                  event.
-               }
-              break;
-          }          
+          $rootScope.ubicacion = toState.name;        
         });
 
     $rootScope.$on('$stateChangeSuccess',

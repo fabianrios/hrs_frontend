@@ -43,7 +43,11 @@
 	    });
 	})
 	
-	.controller('Articles.ListController', function($rootScope, $scope, $http, $state, Article, HRAPI_CONF, articles){ //, 
+	.controller('Articles.ListController', function($rootScope, $scope, $http, $state, Article, HRAPI_CONF, articles){ //,
+
+		if($scope.user.company.show_articles ===  false){
+			$state.transitionTo('main.views.dashboard');
+		} 
 		
 		$scope.articles = articles.articles;		
 		$scope.articles = articles.articles.concat(articles.not_articles);	
@@ -74,13 +78,20 @@
 
 	})	
 	.controller('Articles.DetailController', function($scope, $http, $state, article, Notification){
-        
+
+        if($scope.user.company.show_articles ===  false){
+			$state.transitionTo('main.views.dashboard');
+		} 
 			
 		$scope.article = article;
         
 
 	})
 	.controller('articles.EditController', function($scope, $http, $state, article, HRAPI_CONF, Upload ){
+
+		if($scope.user.company.show_articles ===  false){
+			$state.transitionTo('main.views.dashboard');
+		} 
 		
 		// $scope.user = currentUser;
 		$scope.article = article;
@@ -115,7 +126,9 @@
 	
 	    $scope.updateArticle = function() { //Update the edited company. Issues a PUT to /api/companies/:id
 	        $scope.article.sending = true;
-			Upload.upload({ 
+			Upload.upload({ if($scope.user.company.show_articles ===  false){
+			$state.transitionTo('main.views.dashboard');
+		} 
 	            	method: 'PUT', 
 	                url: HRAPI_CONF.apiBaseUrl('/articles/' + $scope.article.id + '.json'), 
 	                fields: $scope.article, 
@@ -132,6 +145,11 @@
 
 	})
 	.controller('articles.NewController', function($scope, $http, $state, Article, HRAPI_CONF, Upload ){	
+		
+		if($scope.user.company.show_articles ===  false){
+			$state.transitionTo('main.views.dashboard');
+		} 
+
 		if( $scope.user.employee.new_cont=="true"){
 			var archivo = null;
 
