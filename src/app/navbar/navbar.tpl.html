@@ -70,7 +70,7 @@
       <li class="back">
         <a href="">Volver</a>
       </li>
-      <li ng-if="user.labor.scesa == 'X' && user.company.show_scesa" class="disabled">
+      <li ng-if="cesaAprobador() && user.labor.scesa == 'X' && user.company.show_scesa" >
         <a ui-sref="main.views.severance">Anticipo de cesantías</a>
       </li>
       <li ng-if="permAprobador() && user.labor.sperm == 'X' && user.company.show_licenses" >
@@ -86,7 +86,7 @@
           Vacaciones
         </a>
       </li>
-      <li  ng-if="user.company.show_vacations_c">
+      <li  ng-if="vccpAprobador() && user.labor.svccp == 'X' && user.company.show_vacations_c">
         <a ui-sref="main.views.compensatory_vacations">
           Vacaciones compensadas
         </a>

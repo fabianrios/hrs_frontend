@@ -34,11 +34,15 @@
 					<label for="">Motivo: </label>
 					<textarea name="motivo" id="" cols="10" ng-model="requerimiento.more_text"></textarea>
 					<label for="">Imagen: </label> 
+
 					<div class="button upload" ngf-select ngf-change="loadImage($files)">Subir archivo</div>
+
+
 					<input type="hidden" ng-model="requerimiento.status">
 					<input type="hidden" ng-model="requerimiento.employee_id">
 					<div class="text-right">
-						<input type="submit" value="Solicitar" class="button success small" />
+						<!-- <input type="submit" value="Solicitar" class="button success small" /> -->
+						<button type="submit" class="button success small" ng-disabled="requerimiento.sending" > <img src="images/282.gif" width="15px" ng-if="requerimiento.sending" /> &nbsp;<span ng-bind="requerimiento.sending ? 'Guardando' : 'Solicitar'" ></span></button>
 					</div>
 				</form>
 			</div> <!-- /large-6 -->

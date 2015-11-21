@@ -29,7 +29,7 @@
 
     
 		$scope.hoexAprobador = function(){
-			return $scope.user.employee.hoex_approver != '00000000' &&  $scope.user.employee.hoex_approver != null 
+		  return $scope.user.employee.hoex_approver != '00000000' &&  $scope.user.employee.hoex_approver != null 
 		};
     
 	    $scope.incaAprobador = function(){
@@ -50,6 +50,10 @@
 	    
 	    $scope.cesaAprobador = function(){
 	      return $scope.user.employee.cesa_approver != '00000000' &&  $scope.user.employee.cesa_approver != null 
+	    };
+
+	    $scope.vccpAprobador = function(){
+	      return $scope.user.employee.vccp_approver != '00000000' &&  $scope.user.employee.vccp_approver != null 
 	    };
 		
 		// // sacar todos los articulos publicados que NO son mios

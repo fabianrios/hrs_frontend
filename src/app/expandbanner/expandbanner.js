@@ -27,7 +27,16 @@
 	$scope.fpend = [];
 	$scope.newbetrg = [];
     $scope.elsaldocesantias = $scope.saldos.saldo;
-    $scope.intcesantias = $scope.saldos.intsaldo;
+    // $scope.intcesantias = $scope.saldos.intsaldo;
+     // Intereses de cesantias a numeros
+
+
+     // meter las int. cesantias     
+
+
+   
+	
+
     // meter las cesantias
     angular.forEach($scope.saldos.t_cesantias,function(value){
       $scope.betrg.push(value.betrg);
@@ -36,6 +45,9 @@
     // saldo de cesantias a numeros
     $scope.betrg.forEach(function(entry, index) {
         $scope.newbetrg[index] = parseInt(entry);
+        if( index === 0){
+            $scope.elsaldocesantias = parseInt(entry);
+        }
     });
 	
     // meter las int. cesantias     
@@ -47,11 +59,13 @@
       $scope.intfpend.push(value.fpend);
     });
   
-    // Intereses de cesantias a numeros
-    $scope.intbetrg.forEach(function(entry) {
+    // Intereses de cesantias a numeros    
+	$scope.intbetrg.forEach(function(entry, index) {
         $scope.intnewbetrg.push(parseInt(entry));
+        if( index === 0){
+            $scope.intcesantias = parseInt(entry);
+        }
     });
-	// /CESANTIAS
 	
 	// esto esta por el rootscope de employee_info
 	// $scope.employee_info = $scope.user.employee_info;
