@@ -1,7 +1,7 @@
 (function(){
 	'use strict';
   
-	angular.module('vacations', ['vacation.service','vacation_requirement.service'])
+	angular.module('vacations', ['vacation_requirement.service'])
 
 	// Add http interceptors that allows us to handle http request before it sends and http response parsing
 	.config(function($stateProvider){
@@ -11,9 +11,9 @@
 			templateUrl: 'app/vacations/vacations.tpl.html',
 			controller: 'Vacations.ListController',
 			resolve: {
-				vacations: function(Vacation){
-					return Vacation.index().$promise;
-				},
+				// vacations: function(Vacation){
+				// 	return Vacation.index().$promise;
+				// },
 				vac_requirements: function(Vacation_requirement){
 					return Vacation_requirement.index().$promise;
 				}
@@ -21,13 +21,13 @@
 		})
 	})
 	
-	.controller('Vacations.ListController', function($rootScope, $scope, $http, $state, vacations, Vacation_requirement, vac_requirements, Upload, HRAPI_CONF){
+	.controller('Vacations.ListController', function($rootScope, $scope, $http, $state, Vacation_requirement, vac_requirements, Upload, HRAPI_CONF){
 
 		if($scope.user.company.show_vacations ===  false){
 			$state.transitionTo('main.views.dashboard');
 		}
 		
-		$scope.vacations = vacations;
+		// $scope.vacations = vacations;
 		$scope.vac_requirements = vac_requirements;
 		$scope.only_not_user = [];
 		$scope.tipos = $scope.user.company_type.tipos;
@@ -61,13 +61,13 @@
 			}
 		});
 		
-		angular.forEach($scope.vac_requirements,function(value,index){			
-			if (value.employee.apply_reviewer == $scope.user.employee_id){
-				$scope.only_not_user.push(value);
-			}
-		});
+		// angular.forEach($scope.vac_requirements,function(value,index){			
+		// 	if (value.employee.apply_reviewer == $scope.user.employee_id){
+		// 		$scope.only_not_user.push(value);
+		// 	}
+		// });
 
-		$scope.seleccion = $scope.vac_options[0].subty;
+		// $scope.seleccion = $scope.vac_options[0].subty;
 		
 		// iniciar los inputs
 		// $( "#inicio" ).datepicker();
@@ -75,16 +75,16 @@
 			
 		
 		$scope.requerimiento = new Vacation_requirement();  
-		$scope.requerimiento.status = "Espera";
-		$scope.requerimiento.tipo = $scope.seleccion;
-		$scope.requerimiento.employee_id = $scope.user.employee.id;
+		// $scope.requerimiento.status = "Espera";
+		// $scope.requerimiento.tipo = $scope.seleccion;
+		// $scope.requerimiento.employee_id = $scope.user.employee.id;
 		
  	   	$scope.loadImage = function( file ){
 			archivo = file;
 		}
 
 		//CREAR
-		$scope.putRequest = function() { //create a new vacation. Issues a POST to /api/vacations
+		$scope.putRequest = function( data ) { //create a new vacation. Issues a POST to /api/vacations
 			$scope.requerimiento.sending = true;
 	
 			Upload.upload({ 

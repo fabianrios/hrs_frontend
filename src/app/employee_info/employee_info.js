@@ -11,7 +11,7 @@
 			templateUrl: 'app/employee_info/employee_info.tpl.html',
 			controller: 'Employee_info.ListController',
 			resolve:{
-				infos:function(Info){
+				missolicitudes:function(Info){
 					return Info.index().$promise;
 				}
 			}
@@ -23,30 +23,19 @@
 			resolve: {
 				info: function(Employee_info, $stateParams){
 					return Employee_info.show({id: $stateParams.id, pernr: $stateParams.id, company_id: $stateParams.c}).$promise;
-				},
+				},			
 				employee: function(Employee, $stateParams){
 					return Employee.show({id: $stateParams.id, identification: $stateParams.id, c: $stateParams.c}).$promise;
 				}
 			}
 		})
 	})	
-	.controller('Employee_info.ListController', function($scope, $state, $rootScope,$http, $filter, Info, infos, Employee){
-		
-		// $scope.user = currentUser;
-		$scope.vacation = $scope.user.vacation;
+	.controller('Employee_info.ListController', function($scope, $rootScope,$state, $filter, Info, missolicitudes, $anchorScroll ){
+				
 		$rootScope.employee_info = $scope.user.employee_info;
-		
-		$scope.approver = Employee.dams({ q: $scope.user.employee.dams_approver });
-
-		$scope.missolicitudes = [];
+ 		$scope.missolicitudes = missolicitudes;
     
-		// Mis solicitudes
-		angular.forEach(infos, function(value, key) {
-			// console.log(value,parseInt($scope.user.employee.identification));
-			if (value.employee.identification == parseInt($scope.user.employee.identification)){
-				$scope.missolicitudes.push(value);
-			}
-		});
+	
 				
 		//harinera
 		$scope.paises = [{"spras": "S", "land1": "AD", "landx": "Andorra", "natio": "andorrana"}, {"spras": "S", "land1": "AE", "landx": "E.A.U.", "natio": "árabe"}, {"spras": "S", "land1": "AF", "landx": "Afganistán", "natio": "afgana"}, {"spras": "S", "land1": "AG", "landx": "Antigua/Barbuda", "natio": "antigüeña"}, {"spras": "S", "land1": "AI", "landx": "Anguilla", "natio": "Anguilla"}, {"spras": "S", "land1": "AL", "landx": "Albania", "natio": "albana"}, {"spras": "S", "land1": "AM", "landx": "Armenia", "natio": "armenia"}, {"spras": "S", "land1": "AN", "landx": "Antillas hol.", "natio": "holandesa"}, {"spras": "S", "land1": "AO", "landx": "Angola", "natio": "angolana"}, {"spras": "S", "land1": "AQ", "landx": "Antártida", "natio": "Antártica"}, {"spras": "S", "land1": "AR", "landx": "Argentina", "natio": "argentina"}, {"spras": "S", "land1": "AS", "landx": "Samoa Americana", "natio": "samoana"}, {"spras": "S", "land1": "AT", "landx": "Austria", "natio": "austríaca"}, {"spras": "S", "land1": "AU", "landx": "Australia", "natio": "australiana"}, {"spras": "S", "land1": "AW", "landx": "Aruba", "natio": "de Aruba"}, {"spras": "S", "land1": "AZ", "landx": "Azerbaiyán", "natio": "azerbaiyana"}, {"spras": "S", "land1": "BA", "landx": "Bosnia-Herz.", "natio": "bosnia"}, {"spras": "S", "land1": "BB", "landx": "Barbados", "natio": "de Barbados"}, {"spras": "S", "land1": "BD", "landx": "Bangladesh", "natio": "bangladesí"}, {"spras": "S", "land1": "BE", "landx": "Bélgica", "natio": "belga"}, {"spras": "S", "land1": "BF", "landx": "Burkina Faso", "natio": "Burkina Faso"}, {"spras": "S", "land1": "BG", "landx": "Bulgaria", "natio": "búlgara"}, {"spras": "S", "land1": "BH", "landx": "Bahrein", "natio": "bahreiní"}, {"spras": "S", "land1": "BI", "landx": "Burundi", "natio": "burundesa"}, {"spras": "S", "land1": "BJ", "landx": "Benin", "natio": "beninesa"}, {"spras": "S", "land1": "BM", "landx": "Bermudas", "natio": "de Bermudas"}, {"spras": "S", "land1": "BN", "landx": "Brunei Darussal", "natio": "de Brunei"}, {"spras": "S", "land1": "BO", "landx": "Bolivia", "natio": "boliviana"}, {"spras": "S", "land1": "BR", "landx": "Brasil", "natio": "brasileña"}, {"spras": "S", "land1": "BS", "landx": "Bahamas", "natio": "Bahamas"}, {"spras": "S", "land1": "BT", "landx": "Bután", "natio": "butanesa"}, {"spras": "S", "land1": "BV", "landx": "Islas Bouvet", "natio": "Islas Bouvet"}, {"spras": "S", "land1": "BW", "landx": "Botsuana", "natio": "botsuana"}, {"spras": "S", "land1": "BY", "landx": "Bielorrusia", "natio": "bielorrusa"}, {"spras": "S", "land1": "BZ", "landx": "Belice", "natio": "beliceña"}, {"spras": "S", "land1": "CA", "landx": "Canadá", "natio": "canadiense"}, {"spras": "S", "land1": "CC", "landx": "Islas Coco", "natio": "australiana"}, {"spras": "S", "land1": "CF", "landx": "Rep. Centroafr.", "natio": "centroafricana"}, {"spras": "S", "land1": "CG", "landx": "Congo", "natio": "congoleña"}, {"spras": "S", "land1": "CH", "landx": "Suiza", "natio": "suiza"}, {"spras": "S", "land1": "CK", "landx": "Islas Cook", "natio": "Islas Cook"}, {"spras": "S", "land1": "CL", "landx": "Chile", "natio": "chilena"}, {"spras": "S", "land1": "CM", "landx": "Camerún", "natio": "camerunesa"}, {"spras": "S", "land1": "CN", "landx": "China", "natio": "Chino"}, {"spras": "S", "land1": "CO", "landx": "Colombia", "natio": "colombiana"}, {"spras": "S", "land1": "CR", "landx": "Costa Rica", "natio": "costarricense"}, {"spras": "S", "land1": "CU", "landx": "Cuba", "natio": "cubana"}, {"spras": "S", "land1": "CV", "landx": "Cabo Verde", "natio": "caboverdiana"}, {"spras": "S", "land1": "CX", "landx": "Islas Navidad", "natio": "australiana"}, {"spras": "S", "land1": "CY", "landx": "Chipre", "natio": "chipriota"}, {"spras": "S", "land1": "CZ", "landx": "República Checa", "natio": "checa"}, {"spras": "S", "land1": "DE", "landx": "Alemania", "natio": "alemana"}, {"spras": "S", "land1": "DJ", "landx": "Yibuti", "natio": "yibutiense"}, {"spras": "S", "land1": "DK", "landx": "Dinamarca", "natio": "Danés"}, {"spras": "S", "land1": "DM", "landx": "Dominica", "natio": "dominicana"}, {"spras": "S", "land1": "DO", "landx": "Rep. Dominicana", "natio": "dominicana"}, {"spras": "S", "land1": "DZ", "landx": "Argelia", "natio": "argelina"}, {"spras": "S", "land1": "EC", "landx": "Ecuador", "natio": "ecuatoriana"}, {"spras": "S", "land1": "EE", "landx": "Estonia", "natio": "estonia"}, {"spras": "S", "land1": "EG", "landx": "Egipto", "natio": "egipcia"}, {"spras": "S", "land1": "EH", "landx": "Sáhara occid.", "natio": "sahariana"}, {"spras": "S", "land1": "ER", "landx": "Eritrea", "natio": "eritrea"}, {"spras": "S", "land1": "ES", "landx": "España", "natio": "española"}, {"spras": "S", "land1": "ET", "landx": "Etiopía", "natio": "etíope"}, {"spras": "S", "land1": "FI", "landx": "Finlandia", "natio": "finlandesa"}, {"spras": "S", "land1": "FJ", "landx": "Fiyi (Islas)", "natio": "fiyiana"}, {"spras": "S", "land1": "FK", "landx": "Islas Malvinas", "natio": "británica"}, {"spras": "S", "land1": "FM", "landx": "Micronesia", "natio": "micronesian"}, {"spras": "S", "land1": "FO", "landx": "Feroe (Islas)", "natio": "danesa"}, {"spras": "S", "land1": "FR", "landx": "Francia", "natio": "francesa"}, {"spras": "S", "land1": "GA", "landx": "Gabón", "natio": "gabonesa"}, {"spras": "S", "land1": "GB", "landx": "Reino Unido", "natio": "británica"}, {"spras": "S", "land1": "GD", "landx": "Granada", "natio": "granadina"}, {"spras": "S", "land1": "GE", "landx": "Georgia", "natio": "georgiana"}, {"spras": "S", "land1": "GF", "landx": "Guayana Franc.", "natio": "francesa"}, {"spras": "S", "land1": "GH", "landx": "Ghana", "natio": "ghanesa"}, {"spras": "S", "land1": "GI", "landx": "Gibraltar", "natio": "Británica"}, {"spras": "S", "land1": "GL", "landx": "Groenlandia", "natio": "Danés"}, {"spras": "S", "land1": "GM", "landx": "Gambia", "natio": "gambiana"}, {"spras": "S", "land1": "GN", "landx": "Guinea", "natio": "guineana"}, {"spras": "S", "land1": "GP", "landx": "Guadalupe", "natio": "francesa"}, {"spras": "S", "land1": "GQ", "landx": "Guinea Ecuator.", "natio": "guineana"}, {"spras": "S", "land1": "GR", "landx": "Grecia", "natio": "griega"}, {"spras": "S", "land1": "GS", "landx": "Isl.S.Sandwich", "natio": ""}, {"spras": "S", "land1": "GT", "landx": "Guatemala", "natio": "guatemalteca"}, {"spras": "S", "land1": "GU", "landx": "Guám", "natio": "estadounidense"}, {"spras": "S", "land1": "GW", "landx": "Guinea-Bissau", "natio": "Guinea-Bissau"}, {"spras": "S", "land1": "GY", "landx": "Guyana", "natio": "guyanesa"}, {"spras": "S", "land1": "HK", "landx": "Hong Kong", "natio": "china"}, {"spras": "S", "land1": "HM", "landx": "Heard/Is.McDon", "natio": "Heard/Is.McDon"}, {"spras": "S", "land1": "HN", "landx": "Honduras", "natio": "hondureña"}, {"spras": "S", "land1": "HR", "landx": "Croacia", "natio": "croata"}, {"spras": "S", "land1": "HT", "landx": "Haití", "natio": "haitiana"}, {"spras": "S", "land1": "HU", "landx": "Hungría", "natio": "húngara"}, {"spras": "S", "land1": "ID", "landx": "Indonesia", "natio": "indonesia"}, {"spras": "S", "land1": "IE", "landx": "Irlanda", "natio": "irlandesa"}, {"spras": "S", "land1": "IL", "landx": "Israel", "natio": "israelí"}, {"spras": "S", "land1": "IN", "landx": "India", "natio": "hindú"}, {"spras": "S", "land1": "IO", "landx": "Terr.br.Oc.Ind.", "natio": "Terr.br.Oc.Ind."}, {"spras": "S", "land1": "IQ", "landx": "Irak", "natio": "iraquí"}, {"spras": "S", "land1": "IR", "landx": "Irán", "natio": "iraní"}, {"spras": "S", "land1": "IS", "landx": "Islandia", "natio": "islandesa"}, {"spras": "S", "land1": "IT", "landx": "Italia", "natio": "italiana"}, {"spras": "S", "land1": "JM", "landx": "Jamaica", "natio": "jamaicana"}, {"spras": "S", "land1": "JO", "landx": "Jordania", "natio": "jordana"}, {"spras": "S", "land1": "JP", "landx": "Japón", "natio": "japonesa"}, {"spras": "S", "land1": "KE", "landx": "Kenia", "natio": "keniana"}, {"spras": "S", "land1": "KG", "landx": "Kirguizistán", "natio": "kirguiz"}, {"spras": "S", "land1": "KH", "landx": "Camboya", "natio": "camboyana"}, {"spras": "S", "land1": "KI", "landx": "Kiribati", "natio": "kiribatiana"}, {"spras": "S", "land1": "KM", "landx": "Comoras", "natio": "comorana"}, {"spras": "S", "land1": "KP", "landx": "Corea del Norte", "natio": "coreana"}, {"spras": "S", "land1": "KR", "landx": "Corea del Sur", "natio": "coreana"}, {"spras": "S", "land1": "KW", "landx": "Kuwait", "natio": "kuwaití"}, {"spras": "S", "land1": "KY", "landx": "Caimán (Islas)", "natio": "neozelandesa"}, {"spras": "S", "land1": "KZ", "landx": "Kazajistán", "natio": "kazajistaní"}, {"spras": "S", "land1": "LA", "landx": "Laos", "natio": "laosiana"}, {"spras": "S", "land1": "LB", "landx": "Líbano", "natio": "libanesa"}, {"spras": "S", "land1": "LC", "landx": "Santa Lucía", "natio": "luciana"}, {"spras": "S", "land1": "LI", "landx": "Liechtenstein", "natio": "liechtenstiana"}, {"spras": "S", "land1": "LK", "landx": "Sri Lanka", "natio": "ceilanesa"}, {"spras": "S", "land1": "LR", "landx": "Liberia", "natio": "liberiana"}, {"spras": "S", "land1": "LS", "landx": "Lesoto", "natio": "lesoto"}, {"spras": "S", "land1": "LT", "landx": "Lituania", "natio": "lituana"}, {"spras": "S", "land1": "LU", "landx": "Luxemburgo", "natio": "luxemburguesa"}, {"spras": "S", "land1": "LV", "landx": "Letonia", "natio": "letona"}, {"spras": "S", "land1": "LY", "landx": "Libia", "natio": "libia"}, {"spras": "S", "land1": "MA", "landx": "Marruecos", "natio": "marroquí"}, {"spras": "S", "land1": "MC", "landx": "Mónaco", "natio": "monegasca"}, {"spras": "S", "land1": "MD", "landx": "Moldavia", "natio": "moldava"}, {"spras": "S", "land1": "MG", "landx": "Madagascar", "natio": "madecasiana"}, {"spras": "S", "land1": "MH", "landx": "Islas Marshall", "natio": "Islas Marshall"}, {"spras": "S", "land1": "MK", "landx": "Macedonia", "natio": "macedonia"}, {"spras": "S", "land1": "ML", "landx": "Mali", "natio": "malí"}, {"spras": "S", "land1": "MM", "landx": "Myanmar", "natio": "Myanmar"}, {"spras": "S", "land1": "MN", "landx": "Mongolia", "natio": "mongola"}, {"spras": "S", "land1": "MO", "landx": "Macao", "natio": "portuguesa"}, {"spras": "S", "land1": "MP", "landx": "Isla N.Mariana", "natio": "mariana"}, {"spras": "S", "land1": "MQ", "landx": "Martinica", "natio": "francesa"}, {"spras": "S", "land1": "MR", "landx": "Mauritania", "natio": "mauritana"}, {"spras": "S", "land1": "MS", "landx": "Montserrat", "natio": "Montserrat"}, {"spras": "S", "land1": "MT", "landx": "Malta", "natio": "maltesa"}, {"spras": "S", "land1": "MU", "landx": "Mauricio (Isl.)", "natio": "mauriciense"}, {"spras": "S", "land1": "MV", "landx": "Isl. Maldivas", "natio": "de Maldivas"}, {"spras": "S", "land1": "MW", "landx": "Malaui", "natio": "malauí"}, {"spras": "S", "land1": "MX", "landx": "México", "natio": "mexicana"}, {"spras": "S", "land1": "MY", "landx": "Malasia", "natio": "malaya"}, {"spras": "S", "land1": "MZ", "landx": "Mozambique", "natio": "mozambiqueña"}, {"spras": "S", "land1": "NA", "landx": "Namibia", "natio": "namibia"}, {"spras": "S", "land1": "NC", "landx": "Nueva Caledonia", "natio": "Francés"}, {"spras": "S", "land1": "NE", "landx": "Níger", "natio": "nigeriense"}, {"spras": "S", "land1": "NF", "landx": "Islas Norfolk", "natio": "Islas Norfolk"}, {"spras": "S", "land1": "NG", "landx": "Nigeria", "natio": "nigeriana"}, {"spras": "S", "land1": "NI", "landx": "Nicaragua", "natio": "nicaragüense"}, {"spras": "S", "land1": "NL", "landx": "Países Bajos", "natio": "holandesa"}, {"spras": "S", "land1": "NO", "landx": "Noruega", "natio": "noruega"}, {"spras": "S", "land1": "NP", "landx": "Nepal", "natio": "nepalí"}, {"spras": "S", "land1": "NR", "landx": "Nauru", "natio": "nauruana"}, {"spras": "S", "land1": "NU", "landx": "Islas Niue", "natio": "Islas Niue"}, {"spras": "S", "land1": "NZ", "landx": "Nueva Zelanda", "natio": "neozelandesa"}, {"spras": "S", "land1": "OM", "landx": "Omán", "natio": "omaní"}, {"spras": "S", "land1": "PA", "landx": "Panamá", "natio": "panameña"}, {"spras": "S", "land1": "PE", "landx": "Perú", "natio": "peruana"}, {"spras": "S", "land1": "PF", "landx": "Polinesia fran.", "natio": "francesa"}, {"spras": "S", "land1": "PG", "landx": "Papúa-N.Guinea", "natio": "papuana"}, {"spras": "S", "land1": "PH", "landx": "Filipinas", "natio": "filipina"}, {"spras": "S", "land1": "PK", "landx": "Pakistán", "natio": "pakistaní"}, {"spras": "S", "land1": "PL", "landx": "Polonia", "natio": "polaca"}, {"spras": "S", "land1": "PM", "landx": "StPier.,Miquel.", "natio": "francesa"}, {"spras": "S", "land1": "PN", "landx": "Islas Pitcairn", "natio": "británica"}, {"spras": "S", "land1": "PR", "landx": "Puerto Rico", "natio": "estadounidense"}, {"spras": "S", "land1": "PT", "landx": "Portugal", "natio": "portuguesa"}, {"spras": "S", "land1": "PW", "landx": "Palau", "natio": "Palau"}, {"spras": "S", "land1": "PY", "landx": "Paraguay", "natio": "paraguaya"}, {"spras": "S", "land1": "QA", "landx": "Qatar", "natio": "Qatar"}, {"spras": "S", "land1": "RE", "landx": "Reunión", "natio": "francesa"}, {"spras": "S", "land1": "RO", "landx": "Rumania", "natio": "rumana"}, {"spras": "S", "land1": "RU", "landx": "Federación rusa", "natio": "rusa"}, {"spras": "S", "land1": "RW", "landx": "Ruanda", "natio": "ruandesa"}, {"spras": "S", "land1": "SA", "landx": "Arabia Saudí", "natio": "saudí"}, {"spras": "S", "land1": "SB", "landx": "Salomón", "natio": "salomonesa"}, {"spras": "S", "land1": "SC", "landx": "Isl. Seychelles", "natio": "de Seychelles"}, {"spras": "S", "land1": "SD", "landx": "Sudán", "natio": "sudanesa"}, {"spras": "S", "land1": "SE", "landx": "Suecia", "natio": "sueca"}, {"spras": "S", "land1": "SG", "landx": "Singapur", "natio": "singaporeana"}, {"spras": "S", "land1": "SH", "landx": "Santa Elena", "natio": "Santa Elena"}, {"spras": "S", "land1": "SI", "landx": "Eslovenia", "natio": "eslovenia"}, {"spras": "S", "land1": "SJ", "landx": "Svalbard", "natio": "Noruego"}, {"spras": "S", "land1": "SK", "landx": "Rep. eslovaca", "natio": "eslovaca"}, {"spras": "S", "land1": "SL", "landx": "Sierra Leona", "natio": "de Sierra Leona"}, {"spras": "S", "land1": "SM", "landx": "San Marino", "natio": "sanmarinesa"}, {"spras": "S", "land1": "SN", "landx": "Senegal", "natio": "senegalesa"}, {"spras": "S", "land1": "SO", "landx": "Somalia", "natio": "somalí"}, {"spras": "S", "land1": "SR", "landx": "Surinám", "natio": "surinamesa"}, {"spras": "S", "land1": "ST", "landx": "S.Tomé,Príncipe", "natio": "santomense"}, {"spras": "S", "land1": "STL", "landx": "Sin nacionalid.", "natio": "Sin nacionalid."}, {"spras": "S", "land1": "SV", "landx": "El Salvador", "natio": "salvadoreña"}, {"spras": "S", "land1": "SY", "landx": "Siria", "natio": "siria"}, {"spras": "S", "land1": "SZ", "landx": "Suazilandia", "natio": "suazili"}, {"spras": "S", "land1": "TC", "landx": "Turks-,Caicosin", "natio": "Turks-,Caicosin"}, {"spras": "S", "land1": "TD", "landx": "Chad", "natio": "chadiana"}, {"spras": "S", "land1": "TF", "landx": "Terr.sur Franc.", "natio": "francesa"}, {"spras": "S", "land1": "TG", "landx": "Togo", "natio": "togolesa"}, {"spras": "S", "land1": "TH", "landx": "Tailandia", "natio": "tailandesa"}, {"spras": "S", "land1": "TJ", "landx": "Tayikistán", "natio": "tayik"}, {"spras": "S", "land1": "TK", "landx": "Islas Tokelau", "natio": "Islas Tokelau"}, {"spras": "S", "land1": "TM", "landx": "Turkmenistán", "natio": "turcomana"}, {"spras": "S", "land1": "TN", "landx": "Túnez", "natio": "tunecina"}, {"spras": "S", "land1": "TO", "landx": "Tonga", "natio": "tongana"}, {"spras": "S", "land1": "TP", "landx": "Timor oriental", "natio": "Timor oriental"}, {"spras": "S", "land1": "TR", "landx": "Turquía", "natio": "turca"}, {"spras": "S", "land1": "TV", "landx": "Tuvalú", "natio": "de Tuvalú"}, {"spras": "S", "land1": "TW", "landx": "Taiwán", "natio": "taiwanesa"}, {"spras": "S", "land1": "TZ", "landx": "Tanzania", "natio": "tanzana"}, {"spras": "S", "land1": "UA", "landx": "Ucrania", "natio": "ucraniana"}, {"spras": "S", "land1": "UG", "landx": "Uganda", "natio": "ugandesa"}, {"spras": "S", "land1": "UM", "landx": "Isl. Minor Outl", "natio": "Isl. Minor Outl"}, {"spras": "S", "land1": "US", "landx": "EE.UU.", "natio": "estadounidense"}, {"spras": "S", "land1": "UY", "landx": "Uruguay", "natio": "uruguaya"}, {"spras": "S", "land1": "UZ", "landx": "Uzbequistán", "natio": "uzbega"}, {"spras": "S", "land1": "VA", "landx": "Ciudad Vaticano", "natio": "Ciudad Vaticano"}, {"spras": "S", "land1": "VC", "landx": "San Vicente", "natio": "de S.Vicente"}, {"spras": "S", "land1": "VE", "landx": "Venezuela", "natio": "venezolana"}, {"spras": "S", "land1": "VG", "landx": "Isl.Vírgenes GB", "natio": "británica"}, {"spras": "S", "land1": "VI", "landx": "Is.Vírgenes USA", "natio": "estadounidense"}, {"spras": "S", "land1": "VN", "landx": "Vietnam", "natio": "vietnamita"}, {"spras": "S", "land1": "VU", "landx": "Vanuatu", "natio": "vanuatí"}, {"spras": "S", "land1": "WF", "landx": "Wallis,Futuna", "natio": "Wallis,Futuna"}, {"spras": "S", "land1": "WS", "landx": "Samoa Occident.", "natio": "samoana"}, {"spras": "S", "land1": "YE", "landx": "Yemen", "natio": "yemenita"}, {"spras": "S", "land1": "YT", "landx": "Mayotte", "natio": "Francesa"}, {"spras": "S", "land1": "YU", "landx": "Yugoslavia", "natio": "yugoslava"}, {"spras": "S", "land1": "ZA", "landx": "Sudáfrica", "natio": "sudafricana"}, {"spras": "S", "land1": "ZM", "landx": "Zambia", "natio": "zambia"}, {"spras": "S", "land1": "ZR", "landx": "Zaire", "natio": "zaireña"}, {"spras": "S", "land1": "ZW", "landx": "Zimbabue", "natio": "zimabua"}];
@@ -281,6 +270,15 @@
 		$scope.disabling = "disabled";
 	
 		$scope.cambiarInfo = function(subty, ncamp, dcamp, ccamp, objid, comparador, objps, where){
+
+			console.log('subty', subty)
+			console.log('ncamp', ncamp)
+			console.log('dcamp', dcamp)
+			console.log('ccamp', ccamp)
+			console.log('objid', objid)
+			console.log('comparador', comparador)
+			console.log('objps', objps)
+			console.log('where', where)
 			
 			$scope.info = new Info();
 
@@ -289,25 +287,20 @@
 			$scope.info.ccamp = ccamp;
 			$scope.info.dcamp = dcamp;
 			$scope.info.objid = objid;
-			$scope.info.objps = objps;
-			$scope.info.pernr = $scope.user.employee_id;
-			$scope.info.employee_id = $scope.user.employee.id;
-			$scope.info.where = where;
-			// $scope.info.boss = $scope.user.employee.data_reviewer;
-			$scope.info.boss = $scope.user.employee.dams_approver;
-			$scope.info.approved = false;
-			$scope.info.comparador = $scope.comparador;
+			$scope.info.objps = objps;					
+			$scope.info.where = where;			
+			$scope.info.comparador = comparador;
 			
-			console.log($scope.info);
-			$scope.info.$save(function() {
+			$scope.info.$save(function() {			
 			   $state.go('main.views.employee_info'); // on success go back to datos_maestros
-			   $rootScope.alerts.push({type: 'success', msg: "La solicitud para cambiar el campo '"+ $scope.info.dcamp +"' a '"+ $scope.info.ccamp + "' a sido enviada para aprobacion"});
-         window.setTimeout(function() {
-           $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
-             $(this).remove();
-             $rootScope.alerts = [];
-           });
-         }, 5000);
+			   $anchorScroll("mis_solicitudes");
+			   $scope.alerts.push({type: 'success', msg: "La solicitud para cambiar el campo '"+ $scope.info.dcamp +"' a '"+ $scope.info.ccamp + "' a sido enviada para aprobacion"});
+		         window.setTimeout(function() {
+		           $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
+		             $(this).remove();
+		             $scope.alerts = [];
+		           });
+		         }, 5000);
 			   $scope.missolicitudes.push($scope.info);
 			   // reset comparador
 			   $scope.comparador = "";
@@ -318,31 +311,34 @@
 		$scope.deleteSolicitud = function(solicitud,modal) { 
 			// console.log(solicitud);
 			solicitud.$delete(function() {
-				var index = $scope.missolicitudes.indexOf(solicitud);
-				// console.log(index);
+				var index = $scope.missolicitudes.indexOf(solicitud);				
 				$scope.missolicitudes.splice(index, 1);
 				$('#elmodal-'+modal).foundation('reveal', 'close');  
-				$rootScope.alerts.push({type: 'alert', msg: "La solicitud a sido borrada"});
-        window.setTimeout(function() {
-          $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
-            $(this).remove();
-            $rootScope.alerts = [];
-          });
-        }, 5000);
+				$scope.alerts.push({type: 'alert', msg: "La solicitud a sido borrada"});
+		        window.setTimeout(function() {
+		          $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
+		            $(this).remove();
+		            $scope.alerts = [];
+		          });
+		        }, 5000);
 			});
 		} ///BORRAR
 		
 		
 	})
 	
-	.controller('Employee_info.LookupController', function ($state, $scope, info, $rootScope, employee, $http) {
+	.controller('Employee_info.LookupController', function ($state, $scope, $rootScope, info, employee, $http) {
+
+		if($scope.user.employee.see_all_dm  ===  'false' || $scope.user.employee.see_all_dm  ===  false ){
+			$state.transitionTo('main.views.dashboard');
+		} 
 		
-    // $scope.user = currentUser;
 		$rootScope.employee = employee;
 		$rootScope.employee_info = info;
 		
-		if (typeof $rootScope.employee_info.error !== "undefined"){			
-			$rootScope.alerts.push({type: 'alert', msg: $rootScope.employee_info.error});
+		
+		if (typeof $scope.employee_info.error !== "undefined"){			
+			$scope.alerts.push({type: 'alert', msg: $scope.employee_info.error});
 		      window.setTimeout(function() {
 		        $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
 		          $(this).remove();

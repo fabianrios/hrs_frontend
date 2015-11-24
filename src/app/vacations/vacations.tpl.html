@@ -4,7 +4,7 @@
 		<br /><br />
 		<div class="row">
 			<div class="large-6 medium-6 columns">
-				<form ng-submit="putRequest()">
+				<form ng-submit="putRequest( requerimiento )">
 					<div class="row">
 						<div class="large-6 medium-6 columns">
 							<label for="inicio">Desde: </label>
@@ -30,7 +30,7 @@
 						</div>
 					</div>
 					<label for="tipo">Tipo: </label>
-					<select name="tipo" id="tipo" ng-options="opt.subty as opt.descr for opt in vac_options" ng-model="seleccion" required></select>
+					<select name="tipo" id="tipo" ng-options="opt.subty as opt.descr for opt in vac_options" ng-model="requerimiento.tipo" required></select>
 					<label for="">Motivo: </label>
 					<textarea name="motivo" id="" cols="10" ng-model="requerimiento.more_text"></textarea>
 					<label for="">Imagen: </label> 
@@ -59,7 +59,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat="req_info in vac_requirements  | filter:{employee_id: user.employee.id}:true">
+						<tr ng-repeat="req_info in vac_requirements">
 							<td class="desde">
 								<h2>{{ formatDate(req_info.start_date) | date:'d' }}</h2>
 								<h6>{{ formatDate(req_info.start_date) | date:'MMMM' }}</h6>
@@ -69,7 +69,7 @@
 								<h6>{{ formatDate(req_info.end_date) | date:'MMMM' }}</h6>
 							</td>
 							<td class="dias"><h2>{{req_info.dias}}</h2></td>
-							<td><h6 class="bold" ><span class="{{req_info.status}}">{{req_info.status}}</span></h6></td>
+							<td><h6 class="bold" ><span class="{{req_info.status}}">en espera</span></h6></td>
 							<td><a href="" class="" ng-click="modalImage(req_info.attachment)">Ver</a></td>
 							<td>
 								<a href="" class="acciones borrar" ng-click="openModal($index,'myModal')"></a>

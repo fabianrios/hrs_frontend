@@ -4,7 +4,7 @@
 		<br /><br />
 		<div class="row">
 			<div class="large-5 medium-5 columns">
-				<form ng-submit="putRequest()">
+				<form ng-submit="putRequest( severance )">
 					<div class="row">
 						<div class="large-12 columns">
 							<label for="inicio"># de autorización:</label>
@@ -30,12 +30,11 @@
 								</div>
 							</div>
 						</div>
-						<div class="large-7 medium-7 columns">
+						<div class="large-7 medium-7 columns">						
 							<label for="inicio">Motivo: </label>
-							<select name="motivo" id="" required>
-								<option value="1">Compra de vivienda</option>
-								<option value="2">Pago de semestre</option>
-								<option value="3">Remodelación de vivienda</option>
+							<select name="subty" id="subty" ng-model="severance.subty" >
+								<option ></option>
+								<option ng-repeat="tipo_info in options" ng-value="tipo_info.subty" ng-bind="tipo_info.descr"></option>			
 							</select>
 						</div>
 					</div>
@@ -45,14 +44,13 @@
 							<span class="prefix money"><i class="fa fa-usd"></i></span>
 						</div>
 						<div class="small-10 columns">
-							<input type="number" id="monto" ng-model="solicitud.monto" class="money" required>
+							<input type="text" id="monto" ng-model="severance.monto" class="money" maxlength="11" required>
 						</div>
 					</div>
-					<input type="hidden" ng-model="requerimiento.status">
-					<input type="hidden" ng-model="requerimiento.employee_id">
 					<br />
 					<div class="text-right">
-						<input type="submit" value="Solicitar" class="button success small" />
+						<!-- <input type="submit" value="Solicitar" class="button success small" /> -->
+						<button type="submit" class="button success small" ng-disabled="severance.sending" > <img src="images/282.gif" width="15px" ng-if="severance.sending" /> &nbsp;<span ng-bind="severance.sending ? 'Guardando' : 'Solicitar'" ></span></button>
 					</div>
 				</form>
 			</div> <!-- /large-6 -->
@@ -68,22 +66,23 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
+					
+						<tr ng-repeat="severance in severances">
 							<td>
-								<h5>2312321321</h5>
+								<h5 ng-bind="severance.numero_de_actorizacion"></h5>
 							</td>
 							<td>
-								<span>Compra de vivienda</span>
+								<span ng-bind="mot(severance.subty)" ></span>
 							</td>
-							<td class="desde"><h5>$ 10`000.000</h5></td>
+							<td class="desde"><h5 ng-bind="severance.monto_current"></h5></td>
 							<td><h6 class="bold" ><span>en espera</span></h6></td>
 							<td>
-								<a href="" class="acciones borrar" ng-click="openModal(1,'myModal')"></a>
-								<div id="myModal-1" class="reveal-modal tiny" data-reveal>
+								<a href="" class="acciones borrar" ng-click="openModal($index,'myModal')"></a>
+								<div id="myModal-{{$index}}" class="reveal-modal tiny" data-reveal>
 									<br />
 									<h4 class="text-center">¿Seguro quieres borrar esto?</h4>
 									<div class="text-center">
-										<a href="" ng-click="deleteSeverance(req_info,$index)" class="button success">Borrar</a>
+										<a href="" ng-click="deleteSeverance(severance,$index)" class="button success">Borrar</a>
 									</div>
 									<a class="close-reveal-modal">&#215;</a>
 								</div>
@@ -93,6 +92,8 @@
 				</table>
 			</div>
 		</div>
+
+		<!-- 
 		<br /><br />
 		<h3 class="expand-title text-center">Aprobar solicitudes de anticipo de cesantias</h3>
 		<br /><br />
@@ -139,6 +140,6 @@
 					</tbody>
 				</table>
 			</div>
-		</div>
+		</div> -->
 	</div>	
 </div>

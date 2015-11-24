@@ -8,6 +8,7 @@
 						<hr class="m0" />
 						<ul class="small-block-grid-2 medium-block-grid-4 large-block-grid-4">
 							<li ng-repeat="data in employee_info.datos_contacto">
+							 <!--  -->
 								<div ng-class="privateValidation(data.spriv)">
 								  <label for="{{data.ncamp}}">{{data.dcamp}}</label>
 								  <div class="row collapse">
@@ -64,7 +65,7 @@
 				<div class="information datos_personales">
 					<h4><span class="fa fa-user"></span> Datos personales</h4>
 					<hr class="m0" />
-					<ul class="small-block-grid-2 medium-block-grid-4 large-block-grid-5" ui-sortable="sortableOptions" ng-model="employee_info.datos_personales">
+					<ul class="small-block-grid-2 medium-block-grid-4 large-block-grid-4" ui-sortable="sortableOptions" ng-model="employee_info.datos_personales">
 						<li ng-repeat="data in employee_info.datos_personales" >				
 							<div ng-switch="data.pvisu" ng-init="data.ccamp=stringTo(data.tcamp, data.ccamp)" ng-class="privateValidation(data.spriv)">
 								<div ng-switch-default>									
@@ -99,7 +100,7 @@
 				<div class="information datos_familiares">
 					<h4><span class="fa fa-users"></span> Datos familiares</h4>
 					<hr class="m0" />
-					<ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-5" ui-sortable="sortableOptions" ng-model="employee_info.datos_familiares">
+					<ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-4" ui-sortable="sortableOptions" ng-model="employee_info.datos_familiares">
 						<li ng-repeat="data in employee_info.datos_familiares">
 							<div ng-switch="data.tcamp" ng-init="data.ccamp=stringTo(data.tcamp, data.ccamp)" ng-class="privateValidation(data.spriv)">								
 								<div ng-switch-default>
@@ -140,7 +141,7 @@
 					<hr class="m0" />
 					<ul class="small-block-grid-3 medium-block-grid-4 large-block-grid-4" ui-sortable="sortableOptions" ng-model="employee_info.datos_beneficiarios">
 						<li ng-repeat="data in employee_info.datos_beneficiarios" ng-init="data.ccamp=stringTo(data.tcamp, data.ccamp)" ng-class="privateValidation(data.spriv)">
-							<div ng-switch="data.ncamp">
+							<div ng-switch="data.ncamp" ng-if="privateValidation(data.spriv)">
 								<div ng-switch-default>
 									<label for="{{data.ncamp}}" data-value="{{data.ccamp}}">{{data.dcamp}}</label>
 									<input disabled="{{data.sedit == 'X' ? true : false}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" ng-model="data.ccamp"/>
@@ -162,7 +163,7 @@
 				<div class="information datos_estudios">
 					<h4><span class="fa fa-bank"></span> Datos estudios</h4>
 					<hr class="m0" />
-					<ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-5" ui-sortable="sortableOptions" ng-model="employee_info.datos_estudios">
+					<ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-4" ui-sortable="sortableOptions" ng-model="employee_info.datos_estudios">
 						<li ng-repeat="data in employee_info.datos_estudios" ng-init="data.ccamp=stringTo(data.tcamp, data.ccamp)" ng-class="privateValidation(data.spriv)">
 							<div ng-switch="data.ncamp">
 								<div ng-switch-default>
@@ -196,7 +197,7 @@
 				<div class="information datos_bancarios">
 					<h4><span class="fa fa-bank"></span> Datos bancarios</h4>
 					<hr class="m0" />
-					<ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-5" ui-sortable="sortableOptions" ng-model="employee_info.datos_bancarios">
+					<ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-4" ui-sortable="sortableOptions" ng-model="employee_info.datos_bancarios">
 						<li ng-repeat="data in employee_info.datos_bancarios">
 							<div ng-switch="data.ncamp" ng-init="data.ccamp=stringTo(data.tcamp, data.ccamp)"  ng-class="privateValidation(data.spriv)" data-priv="{{data.spriv}}">
 								<div ng-switch-default>
@@ -227,7 +228,7 @@
 				<div class="information datos_impuestos">
 					<h4><span class="fa fa-child"></span> Datos de impuestos</h4>
 					<hr class="m0" />
-					<ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-5" ui-sortable="sortableOptions" ng-model="employee_info.datos_seguridadsocial">
+					<ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-4" ui-sortable="sortableOptions" ng-model="employee_info.datos_seguridadsocial">
 						<li ng-repeat="data in employee_info.datos_impuestos" ng-init="data.ccamp=stringTo(data.tcamp, data.ccamp)">
 							<label for="{{data.ncamp}}">{{data.dcamp}}</label>
 							<input ng-disabled="!edit_field(data.sedit)" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" ng-model="data.ccamp"/>
@@ -238,7 +239,7 @@
 				<div class="information datos_seguridadsocial">
 					<h4><span class="fa fa-child"></span> Datos de Seguridad</h4>
 					<hr class="m0" />          
-					<ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-5" ui-sortable="sortableOptions" ng-model="employee_info.datos_impuestos">
+					<ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-4" ui-sortable="sortableOptions" ng-model="employee_info.datos_impuestos">
 						<li ng-repeat="data in employee_info.datos_seguridadsocial" ng-init="data.ccamp=stringTo(data.tcamp, data.ccamp)">
 							<label for="{{data.ncamp}}">{{data.dcamp}}</label>
 							<input ng-disabled="!edit_field(data.sedit)" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" ng-model="data.ccamp"/>

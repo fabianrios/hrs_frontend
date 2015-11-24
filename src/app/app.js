@@ -32,6 +32,7 @@
     'info.service',
     'notification.service',
     'loan.service',
+    'severance.service',
     'compensatory_vacation.service',
 
     // Directives
@@ -142,9 +143,9 @@
         licenses_requirements: function(License_requirement){
           return License_requirement.index().$promise;
         },        
-        infos:function(Info){ //?
-          return Info.index().$promise;
-        },
+        // infos:function(Info){ //?
+        //   return Info.index().$promise;
+        // },
         employees: function(Employee){
           return Employee.index().$promise;
         }

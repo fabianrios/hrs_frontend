@@ -3,7 +3,7 @@
 
   angular.module('navbar', [])
 
-    .controller('Navbar.NavbarController', function($scope, vac_requirements, extras_requirements, inhabilities_requirements, licenses_requirements, infos, Notification){//,currentUser,articles,vac_requirements, extras_requirements, inhabilities_requirements, licenses_requirements, infos, Notification){
+    .controller('Navbar.NavbarController', function($scope, vac_requirements, extras_requirements, inhabilities_requirements, licenses_requirements, Notification){//,currentUser,articles,vac_requirements, extras_requirements, inhabilities_requirements, licenses_requirements, infos, Notification){
 		
 		
 		// $scope.articles = articles.articles;
@@ -64,34 +64,34 @@
 		// 	}
 		// });
 		
-		//vacaciones pendientes
-		angular.forEach($scope.vac_requirements,function(value,index){
-			if (value.employee.vaca_approver == $scope.user.employee.id_posicion && value.status == "Espera"){
-				$scope.only_not_user.push(value);
-			}
-		});
+		// //vacaciones pendientes
+		// angular.forEach($scope.vac_requirements,function(value,index){
+		// 	if (value.employee.vaca_approver == $scope.user.employee.id_posicion && value.status == "Espera"){
+		// 		$scope.only_not_user.push(value);
+		// 	}
+		// });
 		
-		//extras pendientes
-		angular.forEach($scope.extras_requirements,function(value,index){			
-			if (value.employee.hoex_approver == $scope.user.employee.id_posicion && value.status == "Espera"){				
-				$scope.extras_not_user.push(value);
-			}
-		});
+		// //extras pendientes
+		// angular.forEach($scope.extras_requirements,function(value,index){			
+		// 	if (value.employee.hoex_approver == $scope.user.employee.id_posicion && value.status == "Espera"){				
+		// 		$scope.extras_not_user.push(value);
+		// 	}
+		// });
     
         // datos maestros
-		angular.forEach(infos, function(value, key) {		
-			var value_1 = '';
-			if(value.boss != null){
-				value_1 = value.boss.toString();
-			}			
-			var value_2 = '';
-			if($scope.user.employee.id_posicion != null){
-				value_2 = $scope.user.employee.id_posicion.toString();
-			}
-			if (value_1 ===  value_2 && (value.approved === false || value.approved === 'false' )){
-				$scope.toapproved.push(value);
-			}
-		});
+		// angular.forEach(infos, function(value, key) {		
+		// 	var value_1 = '';
+		// 	if(value.boss != null){
+		// 		value_1 = value.boss.toString();
+		// 	}			
+		// 	var value_2 = '';
+		// 	if($scope.user.employee.id_posicion != null){
+		// 		value_2 = $scope.user.employee.id_posicion.toString();
+		// 	}
+		// 	if (value_1 ===  value_2 && (value.approved === false || value.approved === 'false' )){
+		// 		$scope.toapproved.push(value);
+		// 	}
+		// });
 		
 		//inhabilidades pendientes
 		angular.forEach($scope.inhabilities_requirements,function(value,index){

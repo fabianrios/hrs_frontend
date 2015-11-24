@@ -19,9 +19,13 @@
 	})
 	
 	.controller('Compensatory_vacations.ListController', function($rootScope, $scope, $http, $state, Upload, HRAPI_CONF, compensatory_vac){
+
+		if($scope.user.company.show_vacations_c ===  false){
+			$state.transitionTo('main.views.dashboard');
+		}
     
 		$scope.vacations = compensatory_vac;		
-		console.log($scope.user);
+		
 		
 	})
 	

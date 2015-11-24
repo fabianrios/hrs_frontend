@@ -72,9 +72,9 @@
 	<div class="row" ng-switch-when="main.views.employee_info_lookup">
 		<div class="large-12 columns">
 			<div class="datos_empresariales">
-				<h4><span class="fa-building-o fa"></span> Datos laborales</h4>
+				<h4><span class="fa-building-o fa"></span> Datos laborales</h4>								
 				<hr class="m0" />
-				<ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-5" ui-sortable="sortableOptions" ng-model="employee_info.datos_empresariales">
+				<ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-5" ui-sortable="sortableOptions" ng-model="employee_info.datos_empresariales">				
 					<li ng-repeat="data in employee_info.datos_empresariales">
 						<div ng-switch="data.ncamp" ng-class="privateValidation(data.spriv)">
 							<div ng-switch-default>
