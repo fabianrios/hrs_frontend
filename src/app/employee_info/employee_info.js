@@ -30,7 +30,7 @@
 			}
 		})
 	})	
-	.controller('Employee_info.ListController', function($scope, $rootScope,$state, $filter, Info, missolicitudes, $anchorScroll ){
+	.controller('Employee_info.ListController', function($scope, $rootScope,$state, $filter, Info, missolicitudes, $anchorScroll, Employee ){
 				
 		$rootScope.employee_info = $scope.user.employee_info;
  		$scope.missolicitudes = missolicitudes;
@@ -57,6 +57,12 @@
 			return edit === 'X' && $scope.user.employee.dams_approver && $scope.user.employee.dams_approver != '00000000'
 		}
 		
+		$scope.cargarAprobador = function(identification){
+		    $scope.approver = Employee.show({id:0, id_posicion: identification});		      
+		}
+		$scope.cargarAprobador($scope.user.employee.dams_approver)
+	
+
 		$scope.search_country = function(data){
 			// Cual es el pais??
 			angular.forEach($scope.paises, function(value, key) {

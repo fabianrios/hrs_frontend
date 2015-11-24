@@ -4,7 +4,7 @@
 		<br /><br />
 		<div class="row">
 			<div class="large-6 medium-6 columns">
-				<form ng-submit="putRequest()">
+				<form ng-submit="putRequest( requerimiento )">
 					<div class="row">
 						<div class="large-4 medium-4 columns">
 							<label for="inicio">Días: </label>
@@ -19,48 +19,45 @@
 						</div>
 						<div class="large-8 medium-8 columns">
 							<label for="tipo">Tipo: </label>
-							<select name="tipo" id="tipo" ng-options="opt.subty as opt.descr for opt in vac_options" ng-model="seleccion" required></select>
+							<select name="tipo" id="tipo" ng-options="opt.subty as opt.descr for opt in vac_options" ng-model="requerimiento.tipo" required></select>
 						</div>
 					</div>
-					<label for="">Monto solicitado: </label>
+					<!-- <label for="">Monto solicitado: </label>
 					<div class="row collapse prefix-radius">
 						<div class="small-2 columns">
 							<span class="prefix money"><i class="fa fa-usd"></i></span>
 						</div>
 						<div class="small-10 columns">
-							<input type="number" id="monto" ng-model="requerimiento.quantity" class="money">
+							<input type="text" id="monto" ng-model="requerimiento.quantity" class="money" maxlength="11" >
 						</div>
-					</div>
+					</div> -->
 					<label for="">Motivo: </label>
 					<textarea name="motivo" id="" cols="10" ng-model="requerimiento.reason"></textarea>
 					<label for="">Imagen: </label> 
 					<div class="button upload" ngf-select ngf-change="loadImage($files)">Subir archivo</div>
-					<input type="hidden" ng-model="requerimiento.status">
-					<input type="hidden" ng-model="requerimiento.employee_id">
+					
 					<div class="text-right">
-						<input type="submit" value="Solicitar" class="button success small" />
+						<button type="submit" class="button success small" ng-disabled="requerimiento.sending" > <img src="images/282.gif" width="15px" ng-if="requerimiento.sending" /> &nbsp;<span ng-bind="requerimiento.sending ? 'Guardando' : 'Solicitar'" ></span></button>
 					</div>
 				</form>
 			</div> <!-- /large-6 -->
 			<div class="large-6 medium-6 columns">
 				<table class="vacations">
 					<thead>
-						<tr>
-							<th class="desde">DESDE</th>
+						<tr>							
 							<th class="dias">DIAS</th>
+							<th class="tipo">TIPO</th>							
 							<th>ESTADO</th>
 							<th>IMAGEN</th>
 							<th class="borrar">BORRAR</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat="req_info in vac_requirements  | filter:{employee_id: user.employee.id}:true">
-							<td class="desde">
-								<h2>{{ formatDate(req_info.start_date) | date:'d' }}</h2>
-								<h6>{{ formatDate(req_info.start_date) | date:'MMMM' }}</h6>
-							</td>
-							<td class="dias"><h2>{{req_info.dias}}</h2></td>
-							<td><h6 class="bold" ><span class="{{req_info.status}}">{{req_info.status}}</span></h6></td>
+						<tr ng-repeat="req_info in vacations ">							
+							<td class="dias"><h2>{{req_info.at_date}}</h2></td>
+							<td ng-bind="mot(req_info.tipo)"></td>
+							
+							<td><h6 class="bold" ><span class="en espera">en espera</span></h6></td>
 							<td><a href="" class="" ng-click="modalImage(req_info.attachment)">Ver</a></td>
 							<td>
 								<a href="" class="acciones borrar" ng-click="openModal($index,'myModal')"></a>
