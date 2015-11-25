@@ -67,10 +67,10 @@
     'compensatory_vacations'
   ])
 
-  .config(function($stateProvider, $httpProvider, $urlRouterProvider, HRAPI_CONF, AuthProvider, AuthInterceptProvider, ngS3Config, $authProvider){
+  .config(function($stateProvider, $httpProvider, $urlRouterProvider, HRAPI_CONF, AuthProvider, AuthInterceptProvider, $authProvider){ //ngS3Config, 
 
 	
-    ngS3Config.theme = 'bootstrap2';
+    // ngS3Config.theme = 'bootstrap2';
 
     $authProvider.configure({
       apiUrl:                  HRAPI_CONF.apiBaseUrl(''),
@@ -127,29 +127,6 @@
       }
     })
     .state('main.views', {
-      resolve: {  
-        // articles:  function(Article){
-        //   return Article.index().$promise;
-        // },
-        vac_requirements: function(Vacation_requirement){
-          return Vacation_requirement.index().$promise;
-        },
-        extras_requirements: function(Extra_requirement){
-          return Extra_requirement.index().$promise;
-        },
-        inhabilities_requirements: function(Inhability_requirement){
-          return Inhability_requirement.index().$promise;
-        },
-        licenses_requirements: function(License_requirement){
-          return License_requirement.index().$promise;
-        },        
-        // infos:function(Info){ //?
-        //   return Info.index().$promise;
-        // },
-        employees: function(Employee){
-          return Employee.index().$promise;
-        }
-      },
       views: {
         topbar: {
           templateUrl: 'app/topbar/topbar.tpl.html',
@@ -210,7 +187,8 @@
     $rootScope.$on('$stateChangeStart',
         function(event, toState, toParams, fromState, fromParams){
           $rootScope.preload = true;
-          $rootScope.ubicacion = toState.name;        
+          $rootScope.ubicacion = toState.name;  
+          console.log(toState.name);      
         });
 
     $rootScope.$on('$stateChangeSuccess',
@@ -271,8 +249,8 @@
     });
 
 
-    $rootScope.employee = {};
-    $rootScope.employee_info = {};
+    // $rootScope.employee = {};
+    // $rootScope.employee_info = {};
     
     $rootScope.logout = function(){
       console.log("Logout");

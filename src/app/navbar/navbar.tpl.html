@@ -155,39 +155,47 @@
     </a>
   </li>
 -->
-<!--   <li class="has-submenu">
+<!-- {"articles":0,"vacation":0,"extra":0,"inhability":0,"license":0,"info":0,"count":0} -->
+  <li class="has-submenu" ng-if="notifications['count'] > 0">
     <a href="" >
       <i class="fa fa-check-circle-o fa-lg"></i> Aprobaciones
-      <i class="number main-menu-comment aprobaciones" ng-if="0 > 0">{{0}}</i>
+      <i class="number main-menu-comment aprobaciones" ng-if="notifications['count'] > 0">{{notifications['count']}}</i>
       <i class="fa fa-angle-right fa-right fa-lg"></i>
     </a>
     <ul class="left-submenu">
       <li class="back">
         <a href="">Volver </a>
       </li>
-      <li ng-if="extras_not_user.length + inhabilities_not_user.length > 0">
+      <li ng-if="notifications.articles > 0">
+        <a ui-sref="main.views.articles">
+          <i class="fa fa-paste fa-lg"></i> Articulos
+          <i class="number main-menu-comment registers">{{notifications.articles}}</i>
+          <i class="fa fa-angle-right fa-right fa-lg"></i>
+        </a>
+      </li>
+      <li ng-if="notifications.inhability + notifications.extra > 0">
         <a ui-sref="main.views.approvals_licenses">
           <i class="fa fa-paste fa-lg"></i> Registros
-          <i class="number main-menu-comment registers">{{extras_not_user.length + inhabilities_not_user.length}}</i>
+          <i class="number main-menu-comment registers">{{notifications.inhability + notifications.extra}}</i>
           <i class="fa fa-angle-right fa-right fa-lg"></i>
         </a>
       </li>
-      <li ng-if="vac_requirements.length > 0">
+      <li ng-if="notifications.vacation + notifications.license + notifications.severances + notifications.compensatory_vacation > 0">
         <a ui-sref="main.views.approvals_requirements">
           <i class="fa fa-check fa-lg"></i> Solicitudes
-          <i class="number main-menu-comment">{{vac_requirements.length}}</i>
+          <i class="number main-menu-comment">{{ notifications.vacation + notifications.license + notifications.severances + notifications.compensatory_vacation }}</i>
           <i class="fa fa-angle-right fa-right fa-lg"></i>
         </a>
       </li>
-      <li ng-if="toapproved.length > 0">
+      <li ng-if="notifications.info > 0">
         <a ui-sref="main.views.approvals">
           <i class="fa fa-users fa-lg"></i> Datos maestros
-          <i class="number main-menu-comment datos_maestros">{{toapproved.length}}</i>
+          <i class="number main-menu-comment datos_maestros">{{notifications.info}}</i>
           <i class="fa fa-angle-right fa-right fa-lg"></i>
         </a>
       </li>
     </ul>
-  </li> -->
+  </li>
   <!-- <li>
     <a ui-sref="main.views.companynew">
     <i class="fa fa-building fa-lg"></i> Añadir empresa

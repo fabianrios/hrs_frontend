@@ -56,12 +56,12 @@
 			return $scope.user.employee.inca_approver != '00000000' &&  $scope.user.employee.inca_approver != null 
 		};
 		
-		angular.forEach($scope.inhabilities,function(value,index){
-			// console.log(value.employee.apply_reviewer,$scope.user.employee_id);
-			if (value.employee.apply_reviewer == $scope.user.employee_id){
-				$scope.only_not_user.push(value);
-			}
-		});
+		// angular.forEach($scope.inhabilities,function(value,index){
+		// 	// console.log(value.employee.apply_reviewer,$scope.user.employee_id);
+		// 	if (value.employee.apply_reviewer == $scope.user.employee_id){
+		// 		$scope.only_not_user.push(value);
+		// 	}
+		// });
 		
 		angular.forEach($scope.tipos,function(value,index){
 			if (value.idactv == "INCA"){
@@ -80,9 +80,7 @@
 		};
 		
 		$scope.requerimiento = new Inhability_requirement();  
-		$scope.requerimiento.status = "Espera";
-		$scope.requerimiento.motivo = $scope.options[0].subty;
-		$scope.requerimiento.employee_id = $scope.user.employee.id;
+
 
 		$scope.loadImage = function( file ){
 			archivo = file;
@@ -99,10 +97,8 @@
 	                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
 	            }).success(function (data, status, headers, config) { 
                     $scope.requerimiento.sending = false;
-                    $scope.inhabilities.push(data);
-                    $scope.requerimiento = new Inhability_requirement(); 
-                    $scope.requerimiento.status = "Espera";
-                    $scope.requerimiento.employee_id = $scope.user.employee.id;
+                    $scope.inhabilities = Inhability_requirement.index();
+                    $scope.requerimiento = new Inhability_requirement();           
                     $state.go('main.views.inhabilities');
                     $scope.alerts.push({type: 'success', msg: "La incapacidad a sido guardada"});
                     window.setTimeout(function() {
@@ -117,22 +113,20 @@
                 });
 		};
 		
-		//BORRAR
+	
 		$scope.deleteInhability = function(inhability,modal) { 
-			inhability.$delete(function() {
-				var index = $scope.inhabilities.indexOf(inhability);
-				// console.log(inhability,index,modal);
-				$scope.inhabilities.splice(index, 1);
+			inhability.$destroy(function() {
+				$scope.inhabilities = Inhability_requirement.index();
 				$('#myModal-'+modal).foundation('reveal', 'close');
-				$rootScope.alerts.push({type: 'secondary', msg: "La inhabilidad del "+ inhability.start_date  + " al "+ inhability.end_date +" a sido borrada"});
-        window.setTimeout(function() {
-          $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
-            $(this).remove();
-            $rootScope.alerts = [];
-          });
-        }, 5000);
+				$scope.alerts.push({type: 'secondary', msg: "La inhabilidad del "+ inhability.start_date  + " al "+ inhability.end_date +" a sido borrada"});
+		        window.setTimeout(function() {
+			          $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
+			            $(this).remove();
+			            $scope.alerts = [];
+			          });
+		        }, 5000);
 			});			
-		} ///BORRAR
+		} 
 		
 		
 	})

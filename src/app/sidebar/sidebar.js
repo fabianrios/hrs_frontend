@@ -2,7 +2,7 @@
   'use strict';
 
 	angular.module('sidebar', ['employee.service'])
-	.controller('Sidebar.SidebarController', function($scope, $state, $http, Employee, HRAPI_CONF, employees){//, $state, $http, Employee, currentUser, HRAPI_CONF){
+	.controller('Sidebar.SidebarController', function($scope, $state, $http, Employee, HRAPI_CONF){//, $state, $http, Employee, currentUser, HRAPI_CONF){ , employees
 
     $scope.common = {};
     $scope.searchText = '';
@@ -60,8 +60,8 @@
                 $scope.employees = $scope.user.favorite_employees;
 								$scope.flavor_class = "glow";
             }else{
-                // $scope.employees = Employee.index();
-                $scope.employees = employees;
+                $scope.employees = Employee.index();
+                // $scope.employees = employees;
 								$scope.flavor_class = "no-glow";
             }
         }        

@@ -353,7 +353,7 @@
 	})
 	
 	// .controller('Dashboard.MainController', function($scope, widgets, ingresos, workers, publicaciones, employees, currentUser, articles){
-	.controller('Dashboard.MainController', function($scope, widgets, ingresos, workers, publicaciones, employees, Employee, Article ){
+	.controller('Dashboard.MainController', function($scope, widgets, ingresos, workers, publicaciones, Employee, Article ){
 
 		$scope.$Employee = Employee;
     	$scope.$Article = Article;
@@ -370,7 +370,7 @@
 	        return parseInt(date);
 	    };
 				
-		$scope.employees = employees;
+		// $scope.employees = employees;
 		
 		
 		$scope.employee = $scope.user.employee;
@@ -454,31 +454,6 @@
             }
         });
 	
-    
-		// $scope.birthShow = function(empleado) {
-	 //        var birth = $scope.formatDate(empleado.fecha_nac);
-	 //        var nacimiento = new Date(birth);
-	 //        nacimiento.setHours(0,0,0,0);
-	 //        var now = new Date();
-	 //        if (Object.prototype.toString.call(birth) === '[object Date]'){
-	 //          var show = now.getMonth() == birth.getMonth() ? true : false;	          
-	 //          return show;
-	 //        }else{
-	 //          return false;
-	 //        }    
-		// };
-    
-		// $scope.laborShow = function(empleado) {
-		// 	var entrada = $scope.formatDate(empleado.fecha_ingreso);
-  //   		var now = new Date();
-  //   		if (Object.prototype.toString.call(entrada) === '[object Date]'){
-  //     			var show = now.getMonth() == entrada.getMonth() ? true : false;          			
-  //    	 		return show;
-  //   		}else{
-  //     			return false;
-  //   		}
-		// };
-    
     
     
 		$scope.sortableOptions = {

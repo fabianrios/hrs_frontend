@@ -1,6 +1,6 @@
 <div class="padding-container">
-	<div ng-model="reports">
-   <div class="solicitudes" ng-if="toapproved.length > 0">
+   <div class="solicitudes" ng-if="infos.length > 0">
+      <br /><br />
    	<h3 class="expand-title text-center first-one">Aprobaciones de datos maestros</h3>
    	<br />
    	<div class="row">
@@ -18,13 +18,13 @@
    					</tr>
    				</thead>
    				<tbody>
-   					<tr ng-repeat="solicitud in toapproved">
+   					<tr ng-repeat="solicitud in infos">
    						<td>
-   							<div class="profilepic">
+   						<!-- 	<div class="profilepic">
    								<img ng-src="{{solicitud.employee.image}}" alt="" />
-   							</div>
+   							</div> -->
    							<h5>{{solicitud.employee.short_name}} </h5>
-   							<h5 class="subheader">{{solicitud.employee.cargo}} </h5>
+   							<!-- <h6 class="subheader no-margin capitalize">{{solicitud.employee.posicion}} </h6> -->
    						</td>
    						<td>
    							<h6>{{ solicitud.dcamp }}</h6>
@@ -33,13 +33,13 @@
    							<h5 class="text-center">{{solicitud.comparador ? solicitud.comparador : solicitud.ccamp}}</h5>
    						</td>
    						<td>
-   							<h5><span class="{{solicitud.approved}}">{{ solicitud.approved }}</h5>
+   							<h5><span>en espera</h5>
    						</td>
    						<td>	
    							<h6><span class="fa fa-calendar fa-lg"></span> {{ solicitud.created_at | date:'short' }}</h6>
    						</td>
-   						<td><a href="" ng-click="approvedSolicitud(solicitud)" class="acciones"></a></td>
-   						<td><a href="" ng-click="deniedSolicitud(solicitud)" class="acciones negar"></a></td>
+   						<td><a href="" ng-click="approveInfo(solicitud)" class="acciones"></a></td>
+   						<td><a href="" ng-click="deniedInfo(solicitud)" class="acciones negar"></a></td>
           
    					</tr>
    				</tbody>

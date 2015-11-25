@@ -13,31 +13,32 @@
       </div>
     </div>
     <br />
-		<div class="row">
+		<div class="row" ng-if="notifications['count'] > 0">
       <div class="large-12 columns">
         <ul>
-          <li ng-if="articles_not_mine.count > 0">
-            <a ui-sref="main.views.articles()"> Tienes <span ng-bind="articles_not_mine.count"></span> articulos por leer.</a>          
+          <li ng-if="notifications.articles > 0">
+            <a ui-sref="main.views.articles"> Tienes <span ng-bind="notifications.articles"></span> Articulos por leer.</a>          
           </li>
-          <li ng-if="only_not_user.length > 0">
-            <a ui-sref="main.views.approvals_requirements"> Tienes <span ng-bind="only_not_user.length"></span> solicitudes pendiente por vacaciones.</a>          
-          </li>  
-          <li ng-if="extras_not_user.length > 0">
-            <a ui-sref="main.views.approvals_licenses"> Tienes <span ng-bind="extras_not_user.length"></span> solicitudes pendiente por horas extras.</a>          
-          </li>  
-          <li ng-if="inhabilities_not_user.length > 0">
-            <a ui-sref="main.views.approvals_licenses"> Tienes <span ng-bind="inhabilities_not_user.length"></span> solicitudes pendiente por incapacidad.</a>          
-          </li>  
-          <li ng-if="licenses_not_user.length > 0">
-            <a ui-sref="main.views.approvals_requirements"> Tienes <span ng-bind="licenses_not_user.length"></span> solicitudes pendiente por permisos.</a>          
-          </li>
-          <li ng-if="toapproved.length > 0">
-            <a ui-sref="main.views.approvals"> Tienes <span ng-bind="toapproved.length"></span> solicitudes pendiente por datos maestros.</a>          
+          <li ng-if="notifications.vacation + notifications.license + notifications.severances + notifications.compensatory_vacation> 0">
+            <a ui-sref="main.views.approvals_requirements"> Tienes <span ng-bind="notifications.vacation + notifications.license + notifications.severances + notifications.compensatory_vacation"></span> solicitudes pendiente.</a>          
+          </li>   
+          <li ng-if="notifications.inhability + notifications.extra > 0">
+            <a ui-sref="main.views.approvals_licenses"> Tienes <span ng-bind="notifications.inhability + notifications.extra"></span> registros pendiente.</a>          
+          </li>          
+          <li ng-if="notifications.info > 0">
+            <a ui-sref="main.views.approvals"> Tienes <span ng-bind="notifications.info"></span> solicitudes pendiente por datos maestros.</a>          
           </li>  
         </ul>
       </div>
 		</div>
-    <h3  class="expand-title text-center" ng-if="extras_history.length + vac_history.length + dm_history.length + inhabilities_history.length + inhabilities_history.length + licenses_history.length > 0">Histórico</h3>
+
+    <div class="row" ng-if="notifications['count'] === 0">
+      <div class="large-12 columns">
+        No tienes notificaciones.
+      </div>
+    </div>
+
+    <!-- <h3  class="expand-title text-center" ng-if="extras_history.length + vac_history.length + dm_history.length + inhabilities_history.length + inhabilities_history.length + licenses_history.length > 0">Histórico</h3>
     <div class="row">
       <div class="large-12 columns">
         <ul class="no-bullet" ng-if="extras_history.length > 0">
@@ -103,7 +104,7 @@
 						<hr />
 					</li>
         </ul>
-      </div>
-    </div>
+      </div> 
+    </div>-->
 	</div>
 </div>		

@@ -3,20 +3,20 @@
 
   angular.module('navbar', [])
 
-    .controller('Navbar.NavbarController', function($scope, vac_requirements, extras_requirements, inhabilities_requirements, licenses_requirements, Notification){//,currentUser,articles,vac_requirements, extras_requirements, inhabilities_requirements, licenses_requirements, infos, Notification){
+    .controller('Navbar.NavbarController', function($scope, Notification){//,currentUser,articles,vac_requirements, extras_requirements, inhabilities_requirements, licenses_requirements, infos, Notification){
 		
 		
 		// $scope.articles = articles.articles;
 		// $scope.articles_not_mine = [];
-		$scope.vac_requirements = vac_requirements;
-		$scope.extras_requirements = extras_requirements;
-		$scope.inhabilities_requirements = inhabilities_requirements;
-		$scope.licenses_requirements = licenses_requirements;
-		$scope.only_not_user = [];
-		$scope.extras_not_user = [];
-		$scope.inhabilities_not_user = [];
-		$scope.licenses_not_user = [];
-		$scope.toapproved =[];
+		// $scope.vac_requirements = vac_requirements;
+		// $scope.extras_requirements = extras_requirements;
+		// $scope.inhabilities_requirements = inhabilities_requirements;
+		// $scope.licenses_requirements = licenses_requirements;
+		// $scope.only_not_user = [];
+		// $scope.extras_not_user = [];
+		// $scope.inhabilities_not_user = [];
+		// $scope.licenses_not_user = [];
+		// $scope.toapproved =[];
     
 	    $scope.seeValidation = function(see){
 	      if (see == "true"){
@@ -94,18 +94,18 @@
 		// });
 		
 		//inhabilidades pendientes
-		angular.forEach($scope.inhabilities_requirements,function(value,index){
-			if (value.employee.inca_approver == $scope.user.employee.id_posicion && value.status == "Espera"){
-				$scope.inhabilities_not_user.push(value);
-			}
-		});
+		// angular.forEach($scope.inhabilities_requirements,function(value,index){
+		// 	if (value.employee.inca_approver == $scope.user.employee.id_posicion && value.status == "Espera"){
+		// 		$scope.inhabilities_not_user.push(value);
+		// 	}
+		// });
 		
-		//licencias pendientes
-		angular.forEach($scope.licenses_requirements,function(value,index){
-			if (value.employee.perm_approver == $scope.user.employee.id_posicion && value.status == "Espera"){
-				$scope.licenses_not_user.push(value);
-			}
-		});
+		// //licencias pendientes
+		// angular.forEach($scope.licenses_requirements,function(value,index){
+		// 	if (value.employee.perm_approver == $scope.user.employee.id_posicion && value.status == "Espera"){
+		// 		$scope.licenses_not_user.push(value);
+		// 	}
+		// });
 		
 		// console.log($scope.licenses_not_user);
 		

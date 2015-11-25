@@ -1,31 +1,48 @@
 <div class="padding-container firstone">
-  <div ng-model="approvals">
-    <h3 class="expand-title text-center">Aprobar solicitudes de vacaciones</h3>
+  
+  <div ng-if="severances.length > 0">
+    <h3 class="expand-title text-center">Aprobar solicitudes de anticipo de cesantias</h3>
     <br /><br />
     <div class="row">
       <div class="large-12 columns">
-        <div class="show-for-small-only">
-          <div class="vacaciones table-response" ng-repeat="req_info in only_not_user_vac">
-            <h3>{{req_info.employee.short_name}} </h3>
-            <div class="dias {{req_info.status}}">
-              <h2>{{req_info.dias}}</h2>
-              <h6>DIAS</h6>
-            </div>
-            <div class="desde">
-              <h2>{{ req_info.start_date | date:'d' }}</h2>
-              <h6>{{ req_info.start_date | date:'MMMM' }}</h6>
-            </div>
-            <div class="hasta">
-              <h2>{{ req_info.end_date | date:'d' }}</h2>
-              <h6>{{ req_info.end_date | date:'MMMM' }}</h6>
-            </div>
-            <div class="posibilidades">
-              <a ng-if="req_info.status != 'Aprobado'" href="" ng-click="aproveVacation(req_info)" class="acciones"></a>
-              <a ng-if="req_info.status != 'Aprobado'" href="" ng-click="deniedVacation(req_info)" class="acciones negar"></a>
-              <a ng-if="req_info.status == 'Espera'" href="" class="acciones borrar" ng-click="openModal($index,'elmodal')"></a>
-            </div>
-          </div>
-        </div>
+        <table class="vacations">
+          <thead>
+            <tr>
+              <th>NOMBRE</th>
+              <th>MOTIVO</th>
+              <th>MONTO</th>
+              <th>ESTADO</th>
+              <th class="aprobar">APROBAR</th>
+              <th class="negar">NEGAR</th>              
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="severance in severances">
+              <td>
+                <h5 ng-bind="severance.employee.short_name"></h5>
+              </td>
+              <td>
+                <span ng-bind="mot_severance( severance.subty )"> </span>
+              </td>
+              <td>
+                <h5 class="greentxt" ng-bind="severance.monto_current"></h5>
+              </td>
+              <td><h6 class="bold" ><span>en espera</span></h6></td>
+              <td><a href="" ng-click="approveSeverance(severance)" class="acciones"></a></td>
+              <td><a href="" ng-click="deniedSeverance(severance)" class="acciones negar"></a></td>              
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div> 
+    <br /><br />
+  </div>
+
+  <div ng-if="vacations.length > 0" >
+    <br /><br />
+    <h3 class="expand-title text-center">Aprobar solicitudes de vacaciones</h3>    
+    <div class="row">
+      <div class="large-12 columns">        
         <table class="vacations show-for-medium-up">
           <thead>
             <tr>
@@ -33,19 +50,19 @@
               <th class="desde">DESDE</th>
               <th>HASTA</th>
               <th class="dias">DIAS</th>
-              <th>STATUS</th>
+              <th>ESTADO</th>
               <th class="aprobar">APROBAR</th>
               <th class="negar">NEGAR</th>
             </tr>
           </thead>
           <tbody>
-            <tr ng-repeat="req_info in only_not_user_vac">
-              <td>
-                <h5>{{req_info.employee.short_name}} </h5>
-                <div id="modal-{{$index}}" class="reveal-modal" data-reveal>
+            <tr ng-repeat="req_info in vacations">
+              <td ng-bind="req_info.employee.short_name">
+                <!-- <h5>{{req_info.employee.short_name}} </h5> -->
+                <!-- <div id="modal-{{$index}}" class="reveal-modal" data-reveal>
                   <p>{{req_info.more_text}}</p>
                   <a class="close-reveal-modal">&#215;</a>
-                </div>
+                </div> -->
               </td>
               <td class="desde">
                 <h2>{{ req_info.start_date | date:'d' }}</h2>
@@ -56,108 +73,123 @@
                 <h6>{{ req_info.end_date | date:'MMMM' }}</h6>
               </td>
               <td class="dias"><h2>{{req_info.dias}}</h2></td>
-              <td><h6 class="bold" ><span class="{{req_info.status}}">{{req_info.status}}</span></h6></td>
+              <td><h6 class="bold" ><span>en espera</span></h6></td>
               <td>
-                <div ng-if="req_info.status != 'Aprobado'">
-                  <a href="" ng-click="aproveVacation(req_info)" class="acciones"></a>
+                <div >
+                  <a href="" ng-click="approveVacation(req_info)" class="acciones"></a>
                 </div>
               </td>
               <td>
-                <div ng-if="req_info.status != 'Aprobado'">
+                <div>
                   <a href="" ng-click="deniedVacation(req_info)" class="acciones negar"></a>
                 </div>
-              </td>
-              <!-- <td>
-                <a ng-if="req_info.status == 'Espera'" href="" class="acciones borrar" ng-click="openModal($index,'elmodal')"></a>
-                <div id="elmodal-{{$index}}" class="reveal-modal tiny" data-reveal>
-                  <br />
-                  <h4 class="text-center">¿Seguro quieres borrar esto?</h4>
-                  <div class="text-center">
-                    <a href="" ng-click="deleteVacationReq(req_info,$index)" class="button success">Borrar</a>
-                  </div>
-                  <a class="close-reveal-modal">&#215;</a>
-                </div>
-              </td> -->
+              </td>   
             </tr>
           </tbody>
         </table>
       </div>
-    </div>
-		<br /><br />
-		<h3 class="expand-title text-center">Aprobar solicitudes de permisos</h3>
-		<br /><br />
-		<div class="row" ng-if="only_not_user.length > 0">
-			<div class="large-12 columns">
-                <div class="show-for-small-only">
-                	<div class="table-response" ng-repeat="req_info in only_not_user">
-						<h3>{{req_info.employee.short_name}} </h3>
-						<div class="motivo {{req_info.status}}">
-							<h6>{{mot(req_info.motivo)}}</h6>
-						</div>
-						<div class="desde">
-							<h2>{{ req_info.start_date | date:'d' }}</h2>
-							<h6>{{ req_info.start_date | date:'MMMM' }}</h6>
-						</div>
-						<div class="hasta">
-							<h2>{{ req_info.end_date | date:'d' }}</h2>
-							<h6>{{ req_info.end_date | date:'MMMM' }}</h6>
-						</div>
-            <td><h6>{{motPerm(req_info.motivo)}}</h6></td>       
-            <td><a href="" class="" ng-click="modalImage(req_info.attachment)"  >Ver</a></td>
-						<div class="posibilidades">
-							<a ng-if="req_info.status != 'Aprobado'" href="" ng-click="aproveLicense(req_info)" class="acciones"></a>
-							<a ng-if="req_info.status != 'Aprobado'" href="" ng-click="deleteLicense(req_info)" class="acciones negar"></a>
-						</div>
-                	</div>
-                </div>
-				<table class="vacations show-for-medium-up">
-					<thead>
-						<tr>
-							<th>NOMBRE</th>
-							<th class="desde">DESDE</th>
-              <th>HASTA</th>
-							<th>MOTIVO</th>
-							<th>IMAGEN</th>
-							<th>ESTADO</th>
-							<th class="aprobar">APROBAR</th>
-							<th class="negar">NEGAR</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr ng-repeat="req_info in only_not_user">
-							<td>
-								<h5>{{req_info.employee.short_name}} </h5>
-							</td>
-							<td class="desde">
-								<h2>{{ req_info.start_date | date:'d' }}</h2>
-								<h6>{{ req_info.start_date | date:'MMMM' }}</h6>
-							</td>
-							<td>
-								<h2>{{ req_info.end_date | date:'d' }}</h2>
-								<h6>{{ req_info.end_date | date:'MMMM' }}</h6>
-							</td>     
-              <td><h6>{{motPerm(req_info.motivo)}}</h6></td>       
-							<td><a href="" class="" ng-click="modalImage(req_info.attachment)"  >Ver</a></td>
-							<td><h6 class="bold" ><span class="{{req_info.status}}">{{req_info.status}}</span></h6></td>
-							<td>
-								<div ng-if="req_info.status != 'Aprobado'">
-									<a href="" ng-click="aproveLicense(req_info)" class="acciones"></a>
-								</div>
-							</td>
-							<td>
-								<div ng-if="req_info.status != 'Aprobado'">
-									<a href="" ng-click="deniedLicense(req_info)" class="acciones negar"></a>
-								</div>
-							</td>
-						</tr>
-					</tbody>
-				</table> 
-			</div>
-		</div>
+    </div>			
   </div>	
-  <div id="image-modal" class="reveal-modal" data-reveal aria-labelledby="Imagen" aria-hidden="true" role="dialog">
-      <img ng-if="urlImage" ng-src="{{urlImage}}" width="100%" height="1100px" /> 
-      <p ng-hide="urlImage">No existe imagen</p>       
-      <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+
+  <div ng-if="compensatory_vacations.length > 0">
+    <br /><br />
+    <h3 class="expand-title text-center">Aprobar solicitudes de vacaciones compensadas</h3>
+    <br /><br />
+    <div class="row">
+      <div class="large-12 columns">         
+        <table class="vacations show-for-medium-up">
+          <thead>
+            <tr>   
+              <th>NOMBRE</th>          
+              <th class="dias">DIAS</th>
+              <th class="tipo">TIPO</th>              
+              <th>ESTADO</th>
+              <th>IMAGEN</th>
+              <th class="aprobar">APROBAR</th>
+              <th class="negar">NEGAR</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="req_info in compensatory_vacations ">             
+              <td ng-bind = "req_info.employee.short_name"></td>
+              <td class="dias"><h2>{{req_info.at_date}}</h2></td>
+              <td ng-bind="mot_compensatory_vacation(req_info.tipo)"></td>
+              
+              <td><h6 class="bold" ><span class="en espera">en espera</span></h6></td>
+              <td><a href="" class="" ng-click="modalImage(req_info.attachment)">Ver</a></td>
+              <td>
+                <div >
+                  <a href="" ng-click="approveCompensatoryVacation(req_info)" class="acciones"></a>
+                </div>
+              </td>
+              <td>
+                <div>
+                  <a href="" ng-click="deniedCompensatoryVacation(req_info)" class="acciones negar"></a>
+                </div>
+              </td>   
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>  
   </div>
+
+<!-- FALTA -->
+  <div ng-if="Licenses.length > 0" >
+  <br /><br />
+    <h3 class="expand-title text-center">Aprobar solicitudes de permisos</h3>
+    <br /><br />
+    <div class="row" ng-if="only_not_user.length > 0">
+      <div class="large-12 columns">         
+        <table class="vacations show-for-medium-up">
+          <thead>
+            <tr>
+              <th>NOMBRE</th>
+              <th class="desde">DESDE</th>
+              <th>HASTA</th>
+              <th>MOTIVO</th>
+              <th>IMAGEN</th>
+              <th>ESTADO</th>
+              <th class="aprobar">APROBAR</th>
+              <th class="negar">NEGAR</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="req_info in only_not_user">
+              <td>
+                <h5>{{req_info.employee.short_name}} </h5>
+              </td>
+              <td class="desde">
+                <h2>{{ req_info.start_date | date:'d' }}</h2>
+                <h6>{{ req_info.start_date | date:'MMMM' }}</h6>
+              </td>
+              <td>
+                <h2>{{ req_info.end_date | date:'d' }}</h2>
+                <h6>{{ req_info.end_date | date:'MMMM' }}</h6>
+              </td>     
+              <td><h6>{{motPerm(req_info.motivo)}}</h6></td>       
+              <td><a href="" class="" ng-click="modalImage(req_info.attachment)"  >Ver</a></td>
+              <td><h6 class="bold" ><span class="{{req_info.status}}">{{req_info.status}}</span></h6></td>
+              <td>
+                <div ng-if="req_info.status != 'Aprobado'">
+                  <a href="" ng-click="aproveLicense(req_info)" class="acciones"></a>
+                </div>
+              </td>
+              <td>
+                <div ng-if="req_info.status != 'Aprobado'">
+                  <a href="" ng-click="deniedLicense(req_info)" class="acciones negar"></a>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table> 
+      </div>
+  </div>
+
+  <div id="image-modal" class="reveal-modal" data-reveal aria-labelledby="Imagen" aria-hidden="true" role="dialog">
+    <img ng-if="urlImage" ng-src="{{urlImage}}" width="100%" height="1100px" />       
+    <p ng-hide="urlImage">No existe imagen</p> 
+    <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+  </div>
+
 </div>

@@ -111,6 +111,42 @@
 			</div>
 		</div>
 	</div>
+
+	<div class="row" ng-switch-when="main.views.compensatory_vacations" ng-init="cargarAprobador(user.employee.vccp_approver)">
+		<div class="large-5 medium-5 columns">
+			<h4 class="subheader" >Solicitudes de vacaciones compensadas</h4>
+			<ul class="breadcrumbs">
+				<li>
+					<a href="/">Inicio</a>
+				</li>
+				<li class="unavailable">
+					<a href="">Solicitudes</a>
+				</li>
+				<li class="current"><a href="">Vacaciones compensadas</a></li>
+			</ul>
+		</div>
+		<div class="large-7 medium-7 columns">
+			<div class="pt-10">
+				<div class="row" ng-if="aprobador">
+					<div class="large-3 columns">
+						<h6 class="subheader text-center show-for-large-up"> <span class="fa fa-check-circle fa-2x"></span> Aprobador:</h6>
+					</div>
+					<div class="large-9 columns">
+						<div class="aprobador">
+							<div class="pic dib">
+								<img  ng-src="{{aprobador.image}}">
+							</div>
+							<div class="info dib">
+								<a href="mail_to:{{aprobador.email}}" class="capitalize"><i class="fa fa-envelope fa-lg"></i>{{aprobador.short_name | cut:30}}</a><br>
+								<a href="tel://{{aprobador.phone}}" class=""><i class="fa fa-phone fa-lg"></i>{{aprobador.phone}}</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<div class="row" ng-switch-when="main.views.severance" ng-init="cargarAprobador(user.employee.cesa_approver)">
 		<div class="large-5 medium-5 columns">
 			<h4 class="subheader" >Solicitudes de cesantias</h4>
