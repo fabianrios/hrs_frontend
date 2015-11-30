@@ -163,7 +163,7 @@ module.exports = function(grunt){
       options: {
         port: 9000,
         // Cambiar a '0.0.0.0' para acceder al servidor desde otra maquina
-        hostname: '0.0.0.0',
+        hostname: '127.0.0.1',
         livereload: 35729
       },
       rules: [],

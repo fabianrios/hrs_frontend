@@ -22,7 +22,7 @@
 
 <ul class="off-canvas-list">
   <li><a href="#/home"><i class="fa fa-home fa-lg"></i> Inicio</a></li>
-  <li ng-if="seeValidation(user.employee.see_organ)" ui-sref="main.views.organigram({id:user.employee.id})"><a><i class="fa fa-sitemap fa-lg"></i> Organigrama</a></li>
+  <li ng-if="seeValidation(user.employee.see_organ)" ui-sref="main.views.organigram()"><a><i class="fa fa-sitemap fa-lg"></i> Organigrama</a></li>
   <!-- <li><a ng-href="#/organigram/{{user.employee_id}}" class="disabled"><i class="fa fa-sitemap fa-lg"></i> Organigrama</a></li> -->
   <!-- <li><a ui-sref="main.views.employees"><i class="fa fa-users fa-lg"></i> Empleados</a></li> -->
   <li class="has-submenu" ng-if="user.company.show_certificates_labor || user.company.show_certificates_vacations || user.company.show_certificates_payroll || user.company.show_certificates_income">
@@ -71,7 +71,9 @@
         <a href="">Volver</a>
       </li>
       <li ng-if="cesaAprobador() && user.labor.scesa == 'X' && user.company.show_scesa" >
-        <a ui-sref="main.views.severance">Anticipo de cesantías</a>
+        <a ui-sref="main.views.severance">
+          Anticipo de cesantías
+        </a>
       </li>
       <li ng-if="permAprobador() && user.labor.sperm == 'X' && user.company.show_licenses" >
         <a ui-sref="main.views.licenses">
@@ -79,7 +81,9 @@
         </a>
       </li>
       <li ng-if="presAprobador() && user.labor.spres == 'X' && user.company.show_loans"  >
-        <a ui-sref="main.views.loans">Prestamos</a>
+        <a ui-sref="main.views.loans">
+          Prestamos
+        </a>
       </li>
       <li ng-if="vacaAprobador() && user.labor.svaca == 'X' && user.company.show_vacations">
         <a ui-sref="main.views.vacations">

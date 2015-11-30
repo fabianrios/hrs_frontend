@@ -38,7 +38,7 @@
 					<br />
 					
 					<div class="text-right">
-						<input type="submit" value="Solicitar" class="button success small" />
+						<button type="submit" class="button success small" ng-disabled="requerimiento.sending" > <img src="images/282.gif" width="15px" ng-if="requerimiento.sending" /> &nbsp;<span ng-bind="requerimiento.sending ? 'Guardando' : 'Solicitar'" ></span></button>
 					</div>
 				</form>
 			</div> <!-- /large-6 -->
@@ -55,7 +55,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat="req_info in licenses | filter:{employee_id: user.employee.id}:true">
+						<tr ng-repeat="req_info in licenses">
 							<td class="desde">
 								<h2>{{ req_info.start_date | date:'d' }}</h2>
 								<h6>{{ req_info.start_date | date:'MMMM' }}</h6>
@@ -66,7 +66,7 @@
 							</td>
 							<td><h6>{{mot(req_info.motivo)}}</h6></td>
 							<td><a href="" class="" ng-click="modalImage(req_info.attachment)">Ver</a></td>
-							<td><h6 class="bold"><span>{{req_info.status}}</span></h6></td>
+							<td><h6 class="bold"><span>en espera</span></h6></td>
 							<td>
 								<a href="" class="acciones borrar" ng-click="openModal($index,'myModal')"></a>
 								<div id="myModal-{{$index}}" class="reveal-modal tiny" data-reveal>

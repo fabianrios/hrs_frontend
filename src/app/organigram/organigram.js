@@ -11,8 +11,8 @@
           templateUrl: 'app/organigram/organigram.tpl.html',
           controller: 'Organigram.MainController',
             resolve: {
-              organigram: function(Organigram, $stateParams){
-                return Organigram.show({id: $stateParams.id}).$promise;
+              organigram: function(Organigram){
+                return Organigram.index().$promise;
               }
             }
         })

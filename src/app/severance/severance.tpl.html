@@ -48,8 +48,7 @@
 						</div>
 					</div>
 					<br />
-					<div class="text-right">
-						<!-- <input type="submit" value="Solicitar" class="button success small" /> -->
+					<div class="text-right">						
 						<button type="submit" class="button success small" ng-disabled="severance.sending" > <img src="images/282.gif" width="15px" ng-if="severance.sending" /> &nbsp;<span ng-bind="severance.sending ? 'Guardando' : 'Solicitar'" ></span></button>
 					</div>
 				</form>
@@ -91,55 +90,6 @@
 					</tbody>
 				</table>
 			</div>
-		</div>
-
-		<!-- 
-		<br /><br />
-		<h3 class="expand-title text-center">Aprobar solicitudes de anticipo de cesantias</h3>
-		<br /><br />
-		<div class="row">
-			<div class="large-12 columns">
-				<table class="vacations">
-					<thead>
-						<tr>
-							<th>NOMBRE</th>
-							<th>MOTIVO</th>
-							<th>MONTO</th>
-							<th>STATUS</th>
-							<th class="aprobar">APROBAR</th>
-							<th class="negar">NEGAR</th>
-							<th class="borrar">BORRAR</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>
-								<h5>Gabriel Rodriguez</h5>
-							</td>
-							<td>
-								<span>Motivo # 4</span>
-							</td>
-							<td>
-								<h5 class="greentxt">$ 2`000.000</h5>
-							</td>
-							<td><h6 class="bold" ><span>en espera</span></h6></td>
-							<td><a href="" ng-click="aproveVacation(req_info)" class="acciones"></a></td>
-							<td><a href="" ng-click="deniedVacation(req_info)" class="acciones negar"></a></td>
-							<td>
-								<a href="" class="acciones borrar" ng-click="openModal($index,'elmodal')"></a>
-								<div id="elmodal-{{$index}}" class="reveal-modal tiny" data-reveal>
-									<br />
-									<h4 class="text-center">¿Seguro quieres borrar esto?</h4>
-									<div class="text-center">
-									<a href="" ng-click="deleteVacationReq(req_info,$index)" class="button success">Borrar</a>
-									</div>
-									<a class="close-reveal-modal">&#215;</a>
-								</div>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-		</div> -->
+		</div>	
 	</div>	
 </div>
