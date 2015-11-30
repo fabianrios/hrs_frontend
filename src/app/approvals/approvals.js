@@ -23,10 +23,10 @@
 			resolve: {
 				inhabilities_req: function(Inhability_requirement){
 					return Inhability_requirement.index_approve().$promise;
-				}//,
-				// extras_req: function(Extra_requirement){
-				// 	return Extra_requirement.index().$promise;
-				// }
+				},
+				extras_req: function(Extra_requirement){
+					return Extra_requirement.index_approve().$promise;
+				}
 			}
 	    })
 	    .state('main.views.approvals_requirements', {
@@ -105,7 +105,7 @@
     
 	})
   
-  .controller('Approvals.Licenses.ListController', function($scope, $state, inhabilities_req, Inhability_requirement){ //,  currentUser, extras_req, inhabilities_req, HRAPI_CONF
+  .controller('Approvals.Licenses.ListController', function($scope, $state, inhabilities_req, Inhability_requirement, extras_req, Extra_requirement){ //,  currentUser, extras_req, inhabilities_req, HRAPI_CONF
 
   		/////////////
   		//	INHABILITIES
@@ -173,6 +173,76 @@
 
 		//////////////
 		//	INHABILITIES
+		//////////////
+
+
+		/////////////
+  		//	EXTRA  		
+  		/////////////
+
+		$scope.extras_req = extras_req;
+
+		$scope.options_extra = [];
+		angular.forEach($scope.user.company_type.tipos,function(value,index){
+			if (value.idactv == "HOEX"){
+				$scope.options_extra.push(value);
+			}
+		});
+
+		$scope.mot_extra = function(tipo){
+			var description = "";
+			angular.forEach($scope.options_extra,function(value,index){
+				if (value.subty == tipo){
+					description = value.descr;
+				}
+			});
+			// console.log(description);
+			return description
+		};
+
+		$scope.approveExtra= function( extra ) {		
+			 extra.$approve(function(newData) {
+			 	$scope.updateNotification();
+				$scope.extras_req = Extra_requirement.index_approve();
+				$scope.alerts.push({type: 'success', msg: "La hora extra ha sido aprobada"});
+			  	  window.setTimeout(function() {
+			  	      $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
+			  	        $(this).remove();
+						$scope.alerts = []; 
+			  	      });
+			  	  }, 5000);
+			    },
+				function(data) {
+					$scope.updateNotification();
+					$scope.showMessageErrorRails(data);
+				}
+			);
+		};
+		
+
+		$scope.deniedExtra = function( extra ) {			
+			extra.$denied(function(newData) {
+					$scope.updateNotification();
+					$scope.extras_req = Extra_requirement.index_approve();				
+					$scope.alerts.push({type: 'alert', msg: "La hora extra ha sido negada"});
+			        window.setTimeout(function() {
+			          $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
+			            $(this).remove();
+			            $scope.alerts = [];
+			          });
+			        }, 5000);
+				},
+				function(data) {
+					$scope.updateNotification();
+					$scope.showMessageErrorRails(data);
+				}
+
+			);
+		};
+
+
+		//////////////
+		//	EXTRA
 		//////////////
 	
   

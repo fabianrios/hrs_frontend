@@ -36,7 +36,7 @@
 					<input type="hidden" ng-model="requerimiento.employee_id">
 					<br />
 					<div class="text-right">
-						<input type="submit" value="Solicitar" class="button success small" />
+						<button type="submit" class="button success small" ng-disabled="requerimiento.sending" > <img src="images/282.gif" width="15px" ng-if="requerimiento.sending" /> &nbsp;<span ng-bind="requerimiento.sending ? 'Guardando' : 'Solicitar'" ></span></button>
 					</div>
 				</form>
 			</div> <!-- /large-6 -->
@@ -59,11 +59,8 @@
 								<h6>{{ req_info.fecha | date:'MMMM' }}</h6>
 							</td>
 							<td class="dias"><h2>{{req_info.hours}}</h2></td>
-							<!-- <td>
-								<div s3-upload bucket="'hrsolutions'" id="req_info.id" ng-model="req_info.attachment" s3-upload-options="{getOptionsUri: 'http://hdvbackend.hrinteractive.co/api/users/1/s3_access_token', folder: 'users/', id: req_info.id}" ng-class="{{req_info.id}}">
-							</td> -->
 							<td><h6>{{mot(req_info.motivo)}}</h6></td>
-							<td><h6 class="bold"><span>{{req_info.status}}</span></h6></td>
+							<td><h6 class="bold"><span>en espera</span></h6></td>
 							<td>
 								<a href="" class="acciones borrar" ng-click="openModal($index,'myModal')"></a>
 								<div id="myModal-{{$index}}" class="reveal-modal tiny" data-reveal>
