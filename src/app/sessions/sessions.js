@@ -18,9 +18,17 @@
 			url: '/edit',
 			templateUrl: 'app/sessions/edit.tpl.html',
 			controller: 'sessions.EditController'
+		})
+		.state('login.password_reset', {
+			url 				: '/password_reset',
+			templateUrl : 'app/sessions/password_reset.tpl.html',
+			controller 	: 'sessions.PasswordResetController'
 		});
 	})
 
+	.controller('sessions.PasswordResetController', ['$scope', function ($scope) {
+		
+	}])
 
 	.controller('sessions.LoginController', function( $scope, $auth, $location ){
 

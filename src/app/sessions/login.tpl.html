@@ -1,4 +1,3 @@
-
 <div class="row">
 	<div class="large-4 medium-4 small-12 columns">
 		<br /><br /><br /><br />
@@ -14,7 +13,15 @@
 		 <input type="email" ng-model="credentials.email" id="email">
 		 <label for="password">Contraseña:</label>
 		 <input type="password" ng-model="credentials.password" id="password">
-		 <input type="submit" value="Iniciar sesión" class="button success small right">
+		 <div class="row">
+		 	<div class="small-6 columns">
+				<a ui-sref="login.password_reset()" class="whitetxt" >¿Has olvidado tu contraseña?</a>
+ 			</div>
+
+		 	<div class="small-6 columns"> 
+				<input type="submit" value="Iniciar sesión" class="button success small">
+ 			</div>
+		 </div>
 		</form>
 	</div>
 	<div class="large-8 columns">
