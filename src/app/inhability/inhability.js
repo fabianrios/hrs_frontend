@@ -1,7 +1,7 @@
 (function(){
 	'use strict';
   
-	angular.module('inhability', [])
+	angular.module('inhability', ['ui.date'])
 
 	// Add http interceptors that allows us to handle http request before it sends and http response parsing
 	.config(function($stateProvider){
