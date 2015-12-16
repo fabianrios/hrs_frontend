@@ -35,7 +35,7 @@
 		 
 		 $scope.subdomain = $scope.subdomain();
 		 
-		 if ($scope.subdomain == "rcn"){
+		 if ($scope.subdomain == "rcn" || $scope.subdomain == "rcntv"){
 			 $scope.logo = "images/rcn.png";
 		 }else if ($scope.subdomain == "harinera"){
 		 	 $scope.logo = "images/otrologo.png";
