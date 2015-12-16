@@ -18,19 +18,17 @@
         })
     })
 	
-	
     .controller('Organigram.MainController', function($scope, $http, organigram, HRAPI_CONF, $stateParams){
-		
-		
-				
+			
 		$scope.mostrar = function(e) {
-			$(e.currentTarget).parent().children("org-info").slideToggle();
-			console.log($(e.currentTarget).parent());
+			console.log($(e.currentTarget).parent().children("ul.childs"));
+			$(e.currentTarget).parent().children("ul.childs").slideToggle();
 		}
 		
 		// $scope.user = currentUser;
 		
 		$scope.organigram = organigram.organigram;
+		console.log($scope.organigram);
 	
     var m = [10, 200, 10, 20],
         w = screen.width - m[1] - m[3],
@@ -46,7 +44,7 @@
 		   root = $scope.organigram;
 		   root.x0 = h / 2;
 		   root.y0 = 0;
-       console.log(root, root.children.length, w);
+       // console.log(root, root.children.length, w);
         h = root.children.length*45 - m[0] - m[2];
         if (h < 1000){
           h = 1000;

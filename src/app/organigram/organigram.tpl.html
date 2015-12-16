@@ -1,32 +1,41 @@
 <div class="padding-container">
 	<div class="row">
-		<div class="large-12 columns">
-			<ul class="no-bullet organigrama show-for-small-only">
+		<div class="large-6 small-12 columns large-centered">
+			<ul class="no-bullet organigrama">
 				<li>
-					<div class="pictuare">
+					<div class="pictuare boss">
 						<a><img ng-src="{{organigram.image}}" alt="" /></a>
 					</div>
 					<div class="org-info">
-						<h4 class="no-margin">{{organigram.short_name}}</h4>
-						<h5 class="no-margin">{{organigram.posicion}}</h5>
+						<h4 class="no-margin maxup bluetxt">{{organigram.short_name | lowercase}}</h4>
+						<h5 class="no-margin maxup">{{organigram.posicion | lowercase}}</h5>
 					</div>
 					<ul class="no-bullet">
 						<li ng-repeat="employee in organigram.children">
-							<div class="pictuare" ng-click="mostrar($event)">
+							<div class="pictuare first-line" ng-click="mostrar($event)">
 								<a><img ng-src="{{organigram.image}}" alt="" /></a>
 							</div>
-							<div class="org-info">
-								<h5 class="no-margin">{{employee.short_name}}</h5>
-								<h6 class="no-margin">{{employee.posicion}}</h6>
+							<div class="org-info hovered" ng-click="mostrar($event)">
+								<h5 class="no-margin maxup">{{employee.short_name | lowercase}}</h5>
+								<h6 class="no-margin maxup">{{employee.posicion | lowercase}}</h6>
 							</div>
-							<ul class="childs no-bullet" ng-if="employee.children">
+							<ul class="childs no-bullet" ng-if="employee.children || employee._children">
 								<li ng-repeat="razo in employee.children">
-									<div class="pictuare">
+									<div class="pictuare second-line">
 										<a><img ng-src="{{razo.image}}" alt="" /></a>
 									</div>
 									<div class="org-info">
-										<h5 class="no-margin subheader">{{razo.short_name}}</h5>
-										<h6 class="no-margin subheader">{{razo.posicion}}</h6>
+										<h5 class="no-margin subheader maxup fixdown">{{razo.short_name | lowercase}}</h5>
+										<h6 class="no-margin subheader maxup">{{razo.posicion | lowercase}}</h6>
+									</div>
+								</li>
+								<li ng-repeat="razo in employee._children">
+									<div class="pictuare second-line">
+										<a><img ng-src="{{razo.image}}" alt="" /></a>
+									</div>
+									<div class="org-info">
+										<h5 class="no-margin subheader maxup fixdown">{{razo.short_name | lowercase}}</h5>
+										<h6 class="no-margin subheader maxup">{{razo.posicion | lowercase}}</h6>
 									</div>
 								</li>
 							</ul>
@@ -36,5 +45,5 @@
 			</ul>
 		</div>
 	</div>
-	<div id="chart" class="hide-for-small-only"></div>
+	<!-- <div id="chart" class="hide-for-small-only"></div> -->
 </div>
