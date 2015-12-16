@@ -57,7 +57,7 @@
 					width: 150,
 					height: 150,
 					speed: 15,
-					fontFamily: "futura-pt",
+					fontFamily: "Lato",
 					roundedLine: true,
 					diameter: 70,
 					lineColor: "#ff3b30",
@@ -101,7 +101,7 @@
 						backgroundColor:'rgba(255, 255, 255, 0)',
 						height: 250,
 						style: {
-							fontFamily: "futura-pt"
+							fontFamily: "Lato"
 						}
 					},
 					title: {
@@ -187,7 +187,7 @@
                         margin:[15, 0, 0, 0],
                         backgroundColor:'transparent',
                   style: {
-                    fontFamily: "futura-pt"
+                    fontFamily: "Lato"
                   }
                     },
                     title:{
@@ -281,7 +281,7 @@
                         margin:[15, 0, 0, 0],
                         backgroundColor:'transparent',
                   style: {
-                    fontFamily: "futura-pt"
+                    fontFamily: "Lato"
                   }
                     },
                     title:{
