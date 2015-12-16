@@ -9,27 +9,27 @@
 			<div class=" p-20 ">
 				<h4 class="no-margin whitetxt capitalize card">
 					<a ui-sref="main.views.employee_info">
-						{{user.employee.short_name}}
+						{{user.employee.short_name | lowercase}}
 					</a>
 				</h4>
 				<h5 class="subheader no-margin capitalize card">
-					{{user.employee.posicion}}
+					{{user.employee.posicion  | lowercase}}
 				</h5>
 				<h5 class="subheader no-margin capitalize hide-for-small-only card">
-					{{user.employee.unidad_org}}
+					{{user.employee.unidad_org | lowercase}}
 				</h5>
 			</div>
 		</div>
 		<div class="large-5 medium-5 columns">
 			<br>
 			<h4 class="subheader no-margin">
-				{{user.employee.area}}
+				{{user.employee.area | lowercase}}
 			</h4>
 			<h5 class="subheader no-margin">
-				{{user.employee.division_per}}
+				{{user.employee.division_per | lowercase}}
 			</h5>
 			<h5 class="subheader no-margin">
-				{{user.employee.subdivision_per}}
+				{{user.employee.subdivision_per | lowercase}}
 			</h5>
 			<a href="tel://{{user.employee.phone}}">
 				<i class="fa fa-phone fa-lg"></i>
