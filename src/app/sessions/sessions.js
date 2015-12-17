@@ -2,7 +2,27 @@
 	'use strict';
   
 	angular.module('sessions', [ 'sap.service', 'user.service'])
+	.run(function ($rootScope, $location) {
 
+		var host = $location.host();
+		$rootScope.subdomain = function(){
+	     if (host.indexOf('.') < 0) {
+	         return null;
+	     }else{
+	         return host.split('.')[0];
+			 }
+		 };
+		 
+		 $rootScope.subdomain = $rootScope.subdomain();
+		 
+		 if ($rootScope.subdomain == "rcn"){
+			 $rootScope.logo = "images/rcn.png";
+		 }else if ($rootScope.subdomain == "harinera"){
+		 	 $rootScope.logo = "images/otrologo.png";
+		 }else{
+		 	$rootScope.logo = "images/hrs_logo.png";
+		 }
+	})
 	.config(function($stateProvider){
 		$stateProvider
 		.state('login', {
@@ -23,39 +43,54 @@
 			url 				: '/password_reset',
 			templateUrl : 'app/sessions/password_reset.tpl.html',
 			controller 	: 'sessions.PasswordResetController'
+		})
+		.state('login.password_edit', {
+			url 				: '/password_edit/:token',
+			templateUrl : 'app/sessions/password_edit.tpl.html',
+			controller  : 'sessions.PasswordEditController'
 		});
 	})
+	.controller('sessions.PasswordEditController', function ($scope, $auth, HRAPI_CONF, $http, $stateParams) {
+		$scope.errors = [];
 
-	.controller('sessions.PasswordResetController', ['$scope', function ($scope) {
-		
+		$scope.submit = function(){
+			$http.put(HRAPI_CONF.apiBaseUrl('/auth/password'), {
+					'password' 							: $scope.password,
+					'password_confirmation' : $scope.passwordConfirmation,
+					'reset_password_token'  : $stateParams.token
+			})
+			.then(function(resp) {
+					console.log(resp.data.data.message);
+					$scope.successMessage = resp.data.data.message;
+					$scope.password 						= '';
+					$scope.passwordConfirmation = '';
+					$("#msg_success").show('slide');
+        }, function(error) {
+        	$scope.errors = error.data.errors.full_messages;
+      });
+		}
+	})
+	.controller('sessions.PasswordResetController', ['$scope', '$auth', function ($scope, $auth) {
+		$scope.errors = [];
+
+		$scope.submit = function(){
+			$auth.requestPasswordReset({
+			  email: $scope.credentials.email
+			})
+			.then(function(resp) {
+				$scope.successMessage 	 = resp.data.message
+        $scope.credentials.email = '';
+				$("#msg_success").show('slide');
+      })
+      .catch(function(resp) {
+    		$scope.errors = resp.data.errors;
+      });
+		}
 	}])
-
 	.controller('sessions.LoginController', function( $scope, $auth, $location ){
-
-    var host = $location.host();
-		$scope.subdomain = function(){
-	     if (host.indexOf('.') < 0) {
-	         return null;
-	     }else{
-	         return host.split('.')[0];
-			 }
-		 };
-		 
-		 $scope.subdomain = $scope.subdomain();
-		 
-		 if ($scope.subdomain == "rcn"){
-			 $scope.logo = "images/rcn.png";
-		 }else if ($scope.subdomain == "harinera"){
-		 	 $scope.logo = "images/otrologo.png";
-		 }else{
-		 	$scope.logo = "images/hrs_logo.png";
-		 }
-
-		$scope.login = function() {       
+		$scope.login = function() {
       $auth.submitLogin($scope.credentials);
     };
-		
-		
 	});
 	// .controller('sessions.EditController', function($scope, $state, $stateParams, $http, currentUser){
     
