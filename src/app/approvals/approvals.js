@@ -398,6 +398,32 @@
 			return description
 		};
 
+		$scope.payCompensatoryVacation = function( compensatory_vacation ) {
+			 if(compensatory_vacation.pay === true){
+				compensatory_vacation.pay = false;
+			 }else{			 
+			 	compensatory_vacation.pay = true;
+			 }
+			 compensatory_vacation.$pay(function(newData) {
+			 	$scope.updateNotification();
+				$scope.compensatory_vacations = Compensatory_vacation.index_approve();				
+				$scope.alerts.push({type: 'success', msg: "Vacación compensada a sido aprobada"});
+				  
+			  	  window.setTimeout(function() {
+			  	      $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
+			  	        $(this).remove();
+						$scope.alerts = []; 
+			  	      });
+			  	  }, 5000);
+			    },
+				function(data) {
+					$scope.updateNotification();
+					$scope.showMessageErrorRails(data);
+				}
+			);
+		};
+		
+
 	
 		$scope.approveCompensatoryVacation = function( compensatory_vacation ) {		
 			 compensatory_vacation.$approve(function(newData) {

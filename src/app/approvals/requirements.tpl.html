@@ -105,6 +105,7 @@
               <th class="tipo">TIPO</th>              
               <th>ESTADO</th>
               <th>IMAGEN</th>
+              <th>NO LIQUIDAR</th>              
               <th class="aprobar">APROBAR</th>
               <th class="negar">NEGAR</th>
             </tr>
@@ -117,6 +118,11 @@
               
               <td><h6 class="bold" ><span class="en espera">en espera</span></h6></td>
               <td><a href="" class="" ng-click="modalImage(req_info.attachment)">Ver</a></td>
+              <td>
+                <div >
+                  <a href="" ng-click="req_info.pay = !req_info.pay;" class="acciones" ng-class="( req_info.pay === false || req_info.pay === null )? 'negar' : '' " ></a>
+                </div>
+              </td>
               <td>
                 <div >
                   <a href="" ng-click="approveCompensatoryVacation(req_info)" class="acciones"></a>

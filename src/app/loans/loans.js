@@ -13,15 +13,12 @@
 			resolve:{
 				loans: function( Loan ){
 					return Loan.index().$promise;
-				},
-				approve_loans: function(Loan){
-					return Loan.index_approve().$promise;
-				}
+				}			
 			}		
 		})
 	})
 	
-	.controller('Loans.ListController', function($scope, $http, $state, Loan, loans, approve_loans){ //, Loan, loans
+	.controller('Loans.ListController', function($scope, $http, $state, Loan, loans){ //, Loan, loans
 
 		if($scope.user.company.show_loans ===  false){
 			$state.transitionTo('main.views.dashboard');
@@ -29,7 +26,7 @@
 
 
 		$scope.loans = loans;
-		$scope.approve_loans = approve_loans;		
+		// $scope.approve_loans = approve_loans;		
 		$scope.options = [];
 		
 		
@@ -50,20 +47,17 @@
 			return description
 		};
 
-		$scope.putRequest = function( pres ){
-			console.log(pres);
-			var prestamo = new Loan();
-			prestamo.monto = pres.monto;
-			prestamo.subty = pres.subty;
+		$scope.prestamo = new Loan();
+
+		$scope.putRequest = function( pres ){		
 
 			$scope.prestamo.sending = true;
-
-			prestamo.$save( function(){
+			$scope.prestamo.$save( function(){
 				$scope.loans = Loan.index();
-				$scope.prestamo.sending = false;  
-				$scope.prestamo.monto = '';
-				$scope.prestamo.subty = '';
+				$scope.prestamo = new Loan();
+				$scope.prestamo.sending = false;  				
 			},function( data ){
+				console.log(data);
 				$scope.prestamo.sending = false;              
 		        $scope.showMessageErrorRails(data);	  
 			});
@@ -72,9 +66,7 @@
 
 		$scope.deletePres = function(pres,$index){
 			pres.$delete(function() {
-				var index = $scope.loans.indexOf(pres);
-				// console.log(extra,index,modal);
-				$scope.loans.splice(index, 1);
+				$scope.loans = Loan.index();
 				$('#myModal-'+$index).foundation('reveal', 'close');
 				$scope.alerts.push({type: 'secondary', msg: "El registro a sido borrado"});
 		        window.setTimeout(function() {
