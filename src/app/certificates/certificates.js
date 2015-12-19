@@ -7,15 +7,19 @@
 	.config(function($stateProvider){
 		$stateProvider
 		.state('main.views.certificates_labor', {
-			url: '/labor_certificate/:id?c',
+			url: '/labor_certificate/:id',
 			templateUrl: 'app/certificates/labor.tpl.html',
 			controller: 'Certificates.MainController',
 			data: {
-				breadcrumb: "Certificado laboral"
+				breadcrumb: function($rootScope){
+					$rootScope.locationData = {
+						breadcrumb : "Certificado laboral"
+					};
+				} 
 			} 
 		})
 		.state('main.views.certificates_vacations', {
-			url: '/vacations_certificates/:id?c',
+			url: '/vacations_certificates/:id',
 			templateUrl: 'app/certificates/vacations.tpl.html',
 			controller: 'Certificates.Vacaciones.MainController',
 			data: {
@@ -23,7 +27,7 @@
 			}
 		})
 		.state('main.views.certificates_payroll', {
-			url: '/payroll_certificates/:id?c',
+			url: '/payroll_certificates/:id',
 			templateUrl: 'app/certificates/payroll.tpl.html',
 			controller: 'Certificates.Nomina.MainController',
 			data: {
@@ -31,7 +35,7 @@
 			} 
 		})
 		.state('main.views.certificates_income', {
-			url: '/income_certificates/:id?c',
+			url: '/income_certificates/:id',
 			templateUrl: 'app/certificates/income.tpl.html',
 			controller: 'Certificates.Income.MainController',
 			data: {
@@ -39,7 +43,7 @@
 			} 
 		})
 	})
-	.controller('Certificates.MainController', function($rootScope, $scope, $http, $state, $filter, HRAPI_CONF){
+	.controller('Certificates.MainController', function($rootScope, $scope, $http, $state, $filter, HRAPI_CONF, $stateParams){
 
 		if($scope.user.company.show_certificates_labor ===  false){
 			$state.transitionTo('main.views.dashboard');
@@ -49,24 +53,29 @@
 		$scope.loading = true;
 		$scope.progress = {};
 		$scope.progreso = 0;
+		$scope.keyCertificateLabor = parseInt($stateParams.id);
 
-		$scope.cargarPdf = function(){
-			  var carta = $filter('filter')($scope.user.files, {op:'clabr'})
-			  console.log(carta[0]);
-		      if (typeof carta[0] !== "undefined"){
-		        $scope.pdfUrl = HRAPI_CONF.baseUrl(carta[0].file.url);
-		      }else{
-		        $rootScope.alerts.push({type: 'warning', msg: "no hay un pdf asociado al usuario"});
-		        window.setTimeout(function() {
-		          $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
-		            $(this).remove(); 
-		            $rootScope.alerts = [];
-		          });
-		        }, 5000);
-		      }			
-		}
+		
+	  var carta = $filter('filter')($scope.user.files, {op:'clabr'})
+	  console.log(carta[0]);
+    if (typeof carta[0] !== "undefined"){
+      $scope.pdfUrl = HRAPI_CONF.baseUrl(carta[0].file.url);
+    }else{
+      $rootScope.alerts.push({type: 'warning', msg: "no hay un pdf asociado al usuario"});
+      window.setTimeout(function() {
+        $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
+          $(this).remove(); 
+          $rootScope.alerts = [];
+        });
+      }, 5000);
+    }
 
-		$scope.cargarPdf();
+
+		$scope.cambiarPdf = function(keyCertificateLabor) {
+			$state.transitionTo('main.views.certificates_labor', {
+				id: keyCertificateLabor
+			});
+		}		
 		
 		$scope.getNavStyle = function(scroll) {
 			if(scroll > 400) return 'pdf-controls fixed';
@@ -89,7 +98,7 @@
 		
 
 	})
-	.controller('Certificates.Vacaciones.MainController', function($rootScope, $scope, $http, $state, $filter, HRAPI_CONF){
+	.controller('Certificates.Vacaciones.MainController', function($rootScope, $scope, $http, $state, $filter, HRAPI_CONF, $stateParams){
 
 		if($scope.user.company.show_certificates_vacations ===  false){
 			$state.transitionTo('main.views.dashboard');
@@ -97,30 +106,27 @@
 		
 		$scope.pdfUrl = '';
 		$scope.vacations = [];
+		$scope.keyVacation = parseInt($stateParams.id);
 
-		$scope.cargarPdfs = function(){
-			$scope.vacations = $filter('filter')($scope.user.files, {op:'vctns'})
-			console.log($scope.vacations);
-			if (typeof $scope.vacations[0] !== "undefined"){
-				$scope.pdfUrl = HRAPI_CONF.baseUrl($scope.vacations[0].file.url);
-			}else{
-				$rootScope.alerts.push({type: 'warning', msg: "no hay un pdf asociado al usuario"});
-				window.setTimeout(function() {
-				  $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
-				    $(this).remove(); 
-				    $rootScope.alerts = [];
-				  });
-				}, 5000);
-			}
-		}
-
-		$scope.cargarPdfs();
 		
-		$scope.cambiarPdf = function(vacacion) {
-			$scope.pdfUrl = '';
-			$scope.selectedVac = vacacion;			
-			$scope.pdfUrl = HRAPI_CONF.baseUrl($scope.selectedVac.file.url);
-			$('#pdf-modal').foundation('reveal','open');
+		$scope.vacations = $filter('filter')($scope.user.files, {op:'vctns'})
+		console.log($scope.vacations);
+		if (typeof $scope.vacations[0] !== "undefined"){
+			$scope.pdfUrl = HRAPI_CONF.baseUrl($scope.vacations[0].file.url);
+		}else{
+			$rootScope.alerts.push({type: 'warning', msg: "no hay un pdf asociado al usuario"});
+			window.setTimeout(function() {
+			  $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
+			    $(this).remove(); 
+			    $rootScope.alerts = [];
+			  });
+			}, 5000);
+		}
+		
+		$scope.cambiarPdf = function(keyVacacion) {
+			$state.transitionTo('main.views.certificates_vacations', {
+				id: keyVacacion
+			});
 		}
 				
 		$scope.scroll = 0;
@@ -149,54 +155,37 @@
 		
 
 	})
-	.controller('Certificates.Nomina.MainController', function($rootScope, $scope, $http,  $state, $filter, HRAPI_CONF){
-
+	.controller('Certificates.Nomina.MainController', function($rootScope, $scope, $http,  $state, $filter, HRAPI_CONF, $stateParams){
 		if($scope.user.company.show_certificates_payroll ===  false){
 			$state.transitionTo('main.views.dashboard');
 		} 
 		
-		$scope.pdfUrl = '';		
-		$scope.scroll = 0;
-		$scope.loading = true;
-		$scope.progress = {};
-		$scope.progreso = 0;
-		$scope.ubicacion = $state.current.name;
+		$scope.pdfUrl 	  = '';		
+		$scope.scroll 	  = 0;
+		$scope.loading    = true;
+		$scope.progress   = {};
+		$scope.progreso   = 0;
+		$scope.ubicacion  = $state.current.name;
+		$scope.keyVolante = parseInt($stateParams.id);
 
-		$scope.cargarPdfs = function(){
-			$scope.volpago = $filter('filter')($scope.user.files, {op:'volpg'})
-			console.log($scope.volpago);
-			if (typeof $scope.volpago[0] !== "undefined"){
-				$scope.pdfUrl = HRAPI_CONF.baseUrl($scope.volpago[0].file.url);
-			}else{
-				$rootScope.alerts.push({type: 'warning', msg: "no hay un pdf asociado al usuario"});
-				window.setTimeout(function() {
-				  $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
-				    $(this).remove(); 
-				    $rootScope.alerts = [];
-				  });
-				}, 5000);
-			}
-					
+
+		$scope.volpago = $filter('filter')($scope.user.files, {op:'volpg'});
+		if (typeof $scope.volpago[$scope.keyVolante] !== "undefined"){
+			$scope.pdfUrl = HRAPI_CONF.baseUrl($scope.volpago[$scope.keyVolante].file.url);
+		}else{
+			$rootScope.alerts.push({type: 'warning', msg: "no hay un pdf asociado al usuario"});
+			window.setTimeout(function() {
+			  $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
+			    $(this).remove(); 
+			    $rootScope.alerts = [];
+			  });
+			}, 5000);
 		}
-
-		$scope.cargarPdfs();
-		
-		$scope.cambiarPdf = function(volante) {
-			$scope.pdfUrl = '';
-			$scope.selectedVol = volante;			
-		      if (typeof $scope.selectedVol !== "undefined"){
-		        $scope.pdfUrl = HRAPI_CONF.baseUrl($scope.selectedVol.file.url);
-		  			$('#pdf-modal').foundation('reveal','open');
-		  			console.log($scope.pdfUrl);
-		      }else{
-		        $rootScope.alerts.push({type: 'warning', msg: "no hay un pdf asociado al usuario"});
-		        window.setTimeout(function() {
-		          $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
-		            $(this).remove(); 
-		            $rootScope.alerts = [];
-		          });
-		        }, 5000);
-		      }
+				
+		$scope.cambiarPdf = function(keyVolante) {
+			$state.transitionTo('main.views.certificates_payroll', {
+				id: keyVolante
+			});
 		}
 
 		$scope.getNavStyle = function(scroll) {
@@ -219,33 +208,37 @@
 	
 
 	})
-	.controller('Certificates.Income.MainController', function($rootScope, $scope, $http, $state, $filter, HRAPI_CONF){
+	.controller('Certificates.Income.MainController', function($rootScope, $scope, $http, $state, $filter, HRAPI_CONF, $stateParams){
 
 		if($scope.user.company.show_certificates_income ===  false){
 			$state.transitionTo('main.views.dashboard');
 		} 
 		
-		$scope.scroll = 0;
-		$scope.loading = true;
-		$scope.progress = {};
-		$scope.progreso = 0;
+		$scope.scroll    = 0;
+		$scope.loading   = true;
+		$scope.progress  = {};
+		$scope.progreso  = 0;
+		$scope.keyIncome = parseInt($stateParams.id);
+		
 
-		$scope.cargarPdf = function(){
-			var pdf = $filter('filter')($scope.user.files, {op:'inret'})		
-		      if (typeof pdf[0] !== "undefined"){
-		        $scope.pdfUrl = HRAPI_CONF.baseUrl(pdf[0].file.url);
-		      }else{
-		        $rootScope.alerts.push({type: 'warning', msg: "no hay un pdf asociado al usuario"});
-		        window.setTimeout(function() {
-		          $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
-		            $(this).remove(); 
-		            $rootScope.alerts = [];
-		          });
-		        }, 5000);
-		      }
+		var pdf = $filter('filter')($scope.user.files, {op:'inret'})		
+    if (typeof pdf[0] !== "undefined"){
+      $scope.pdfUrl = HRAPI_CONF.baseUrl(pdf[0].file.url);
+    }else{
+      $rootScope.alerts.push({type: 'warning', msg: "no hay un pdf asociado al usuario"});
+      window.setTimeout(function() {
+        $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
+          $(this).remove(); 
+          $rootScope.alerts = [];
+        });
+      }, 5000);
+    }
+
+		$scope.cambiarPdf = function(keyIncome) {
+			$state.transitionTo('main.views.certificates_income', {
+				id: keyIncome
+			});
 		}
-
-		$scope.cargarPdf();
 
 		$scope.getNavStyle = function(scroll) {
 			if(scroll > 400) return 'pdf-controls fixed';
