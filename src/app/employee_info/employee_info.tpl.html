@@ -87,9 +87,16 @@
 						<li ng-repeat="data in employee_info.datos_personales">
 							<div ng-switch="data.lstbx" class="relative" ng-init="data.ccamp=stringTo(data.tcamp, data.ccamp)">
 								<div ng-switch-default >
-									<label data="{{data.pvisu}}" for="{{data.ncamp}}">{{data.dcamp}}</label>
-									<input ng-disabled="!edit_field(data.sedit)" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" ng-model="data.ccamp" class="disabling-{{data.sedit}}" ng-init="copy=data.ccamp" />									
-									<a ng-if="edit_field(data.sedit)" ng-disabled="copy == data.ccamp" ng-click="cambiarInfo(data.subty, data.ncamp, data.dcamp, data.ccamp, data.objid, data.lstbx, data.objps, 'Datos personales')" class="button tiny changes"><span class="fa fa-pencil fa-lg"></span></a>
+									
+									<label data="{{data.pvisu}}" for="{{data.ncamp}}">{{ data.dcamp }}</label>
+									<div ng-switch="data.tcamp">
+										<div ng-switch-when="DATE">
+											<div ng-include="inputDateEmployeeInclude"></div>
+										</div>
+										<div ng-switch-default>
+											<div ng-include="inputEmployeeInclude"></div>
+										</div>
+									</div>
 								</div>
 								<div ng-switch-when="IH_TB_T005L">
 									<label data="{{data.pvisu}}" for="{{data.ncamp}}">{{data.dcamp}}</label>
@@ -97,9 +104,13 @@
 										<div class="small-9 columns">
 											<select ng-disabled="!edit_field(data.sedit)" ng-model="country" ng-class="search_country(data.ccamp)" ng-options="pais.land1 as pais.landx for pais in paises"  ng-change="cambiar(country)" ng-init="copy=data.ccamp" ></select>
 										</div>
+
 										<div class="small-3 columns">
+										<!--
 											<a ng-if="edit_field(data.sedit)" ng-disabled="copy == data.ccamp" ng-click="cambiarInfo(data.subty, data.ncamp, data.dcamp, country, data.objid, data.lstbx, data.objps, 'Datos personales')" class="button tiny"><span class="fa fa-pencil fa-lg"></span></a>
+											-->
 										</div>
+										
 									</div>
 								</div>
 								<div ng-switch-when="IH_TB_T005S">
@@ -109,7 +120,9 @@
 											<select ng-disabled="!edit_field(data.sedit)" ng-model="states" ng-class="search_estado(data.ccamp)" ng-options="estado.bland as estado.bezei for estado in estados"  ng-change="cambiar_estados(states)" ng-init="copy=data.ccamp" ></select>
 										</div>
 										<div class="small-3 columns">
+											<!--
 											<a ng-if="edit_field(data.sedit)" ng-disabled="copy == data.ccamp" ng-click="cambiarInfo(data.subty, data.ncamp, data.dcamp, data.ccamp, data.objid, data.lstbx, data.objps, 'Datos personales')" class="button tiny"><span class="fa fa-pencil fa-lg"></span></a>
+											-->
 										</div>
 									</div>
 								</div>
@@ -120,7 +133,9 @@
 											<select ng-disabled="!edit_field(data.sedit)" ng-model="natio" ng-class="search_natio(data.ccamp)" ng-options="pais.land1 as pais.natio for pais in paises"  ng-change="cambiar(natio)" ng-init="copy=data.ccamp" ></select>
 										</div>
 										<div class="small-3 columns">
+											<!--
 											<a ng-if="edit_field(data.sedit)" ng-disabled="copy == data.ccamp" ng-click="cambiarInfo(data.subty, data.ncamp, data.dcamp, data.ccamp, data.objid, data.lstbx, data.objps, 'Datos personales')" class="button tiny"><span class="fa fa-pencil fa-lg"></span></a>
+											-->
 										</div>
 									</div>
 								</div>
@@ -131,7 +146,9 @@
 											<select ng-disabled="!edit_field(data.sedit)" ng-model="gender" ng-class="search_genero(data.ccamp)" ng-options="genero.label as genero.value for genero in gender_obj"  ng-change="cambiar_genero(gender)" ng-init="copy=data.ccamp" ></select>
 										</div>
 										<div class="small-3 columns">
+											<!--
 											<a ng-if="edit_field(data.sedit)" ng-disabled="copy==data.ccamp" ng-click="cambiarInfo(data.subty, data.ncamp, data.dcamp, data.ccamp, data.objid, data.lstbx, data.objps, 'Datos personales')" class="button tiny"><span class="fa fa-pencil fa-lg"></span></a>
+											-->
 										</div>
 									</div>
 								</div>
@@ -142,7 +159,9 @@
 											<select ng-disabled="!edit_field(data.sedit)" ng-model="est_civil" ng-class="search_est_civil(data.ccamp)" ng-options="est.label as est.value for est in estado_obj"  ng-change="cambiar_est_civil(est_civil)" ng-init="copy=data.ccamp"></select>
 										</div>
 										<div class="small-3 columns">
+											<!--
 											<a ng-if="edit_field(data.sedit)" ng-disabled="copy==data.ccamp" ng-click="cambiarInfo(data.subty, data.ncamp, data.dcamp, data.ccamp, data.objid, data.lstbx, data.objps, 'Datos personales')" class="button tiny"><span class="fa fa-pencil fa-lg"></span></a>
+											-->
 										</div>
 									</div>
 								</div>
@@ -160,13 +179,40 @@
 								<div ng-switch-default>
 									<div ng-switch="data.lstbx">
 										<div ng-switch-default> 
+
 											<label for="{{data.ncamp}}">{{data.dcamp}}</label>
-											<div class="row collapse">
-												<div class="small-9 columns">
-													<input ng-disabled="!edit_field(data.sedit)" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" ng-model="data.ccamp" ng-init="copy=data.ccamp;" >
+											<div ng-switch="data.tcamp">
+												<div ng-switch-when="DATE">
+													<div class="row">
+														<div class="large-12 columns">
+														  <div class="row collapse">
+														    <div class="small-10 columns">
+																	<input ng-disabled="!edit_field(data.sedit)" ui-date type="date" name="{{data.ncamp}}" ng-model="data.ccamp" ng-init="copy=data.ccamp;" class="disabling-{{data.sedit}}">
+														    </div>
+														    <div class="small-2 columns">
+														    	<!--
+																	<a ng-if="edit_field(data.sedit)" ng-disabled="copy == data.ccamp" ng-click="cambiarInfo(copy, data.subty, data.ncamp, data.dcamp, data.ccamp, data.objid, data.lstbx, data.objps, 'Datos familiares')" class="button tiny"><span class="fa fa-pencil fa-lg"></span></a>			
+																	-->
+														    </div>
+														  </div>
+														</div>
+													</div>
 												</div>
-												<div class="small-3 columns">
-													<a ng-if="edit_field(data.sedit)" ng-disabled="copy == data.ccamp" ng-click="cambiarInfo(data.subty, data.ncamp, data.dcamp, data.ccamp, data.objid, data.lstbx, data.objps, 'Datos familiares')" class="button tiny"><span class="fa fa-pencil fa-lg"></span></a>
+												<div ng-switch-default>
+													<div class="row">
+														<div class="large-12 columns">
+														  <div class="row collapse">
+														    <div class="small-10 columns">
+																	<input ng-disabled="!edit_field(data.sedit)" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" ng-model="data.ccamp" ng-init="copy=data.ccamp;" class="disabling-{{data.sedit}}">		
+														    </div>
+														    <div class="small-2 columns">
+														    <!--
+																	<a ng-if="edit_field(data.sedit)" ng-disabled="copy == data.ccamp" ng-click="cambiarInfo(data.subty, data.ncamp, data.dcamp, data.ccamp, data.objid, data.lstbx, data.objps, 'Datos familiares')" class="button tiny"><span class="fa fa-pencil fa-lg"></span></a>	
+														    -->
+														    </div>
+														  </div>
+														</div>
+													</div>
 												</div>
 											</div>
 										</div>
