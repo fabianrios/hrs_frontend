@@ -37,7 +37,7 @@
 				<i class="fa fa-phone fa-lg"></i>
 			</a>
 			<br>
-			<a ng-if="employee.email" class="lowercase" href="mailto:{{employee.email}}">
+			<a ng-if="employee.email" class="lowercase" href="mailto:{{employee.email | lowercase}}">
 				<i class="fa fa-envelope-o fa-lg"></i>
 			</a>
 		</div>
