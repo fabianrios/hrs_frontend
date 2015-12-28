@@ -54,13 +54,16 @@
 		$scope.progress = {};
 		$scope.progreso = 0;
 		$scope.keyCertificateLabor = parseInt($stateParams.id);
+		$scope.keyVolante = parseInt($stateParams.id);
 
 		
-	  var carta = $filter('filter')($scope.user.files, {op:'clabr'})
-	  console.log(carta[0]);
-    if (typeof carta[0] !== "undefined"){
-      $scope.pdfUrl = HRAPI_CONF.baseUrl(carta[0].file.url);
+	  $scope.carta = $filter('filter')($scope.user.files, {op:'clabr'})
+    if (typeof $scope.carta[$scope.keyVolante] !== "undefined"){
+    	$scope.no_pdf = false;
+      $scope.pdfUrl = HRAPI_CONF.baseUrl($scope.carta[$scope.keyVolante].file.url);
+
     }else{
+    	$scope.no_pdf = true;
       $rootScope.alerts.push({type: 'warning', msg: "no hay un pdf asociado al usuario"});
       window.setTimeout(function() {
         $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
@@ -111,9 +114,11 @@
 		
 		$scope.vacations = $filter('filter')($scope.user.files, {op:'vctns'})
 		console.log($scope.vacations);
-		if (typeof $scope.vacations[0] !== "undefined"){
-			$scope.pdfUrl = HRAPI_CONF.baseUrl($scope.vacations[0].file.url);
+		if (typeof $scope.vacations[$scope.keyVacation] !== "undefined"){
+			$scope.no_pdf = false;
+			$scope.pdfUrl = HRAPI_CONF.baseUrl($scope.vacations[$scope.keyVacation].file.url);
 		}else{
+			$scope.no_pdf = true;
 			$rootScope.alerts.push({type: 'warning', msg: "no hay un pdf asociado al usuario"});
 			window.setTimeout(function() {
 			  $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
@@ -160,6 +165,21 @@
 			$state.transitionTo('main.views.dashboard');
 		} 
 		
+		$scope.flagLabel = '';
+		$scope.flag 		 = [];
+
+		$scope.isLabel = function(key, pdfType){
+			if($scope.flagLabel !== pdfType){
+				$scope.flag[key] = true;
+				$scope.flagLabel = pdfType;
+
+				console.log(key+' ) '+$scope.flag[key]+' - '+pdfType);
+				return true;
+			}
+			$scope.flag[key] = false;
+			return false;
+		}
+
 		$scope.pdfUrl 	  = '';		
 		$scope.scroll 	  = 0;
 		$scope.loading    = true;
@@ -168,11 +188,12 @@
 		$scope.ubicacion  = $state.current.name;
 		$scope.keyVolante = parseInt($stateParams.id);
 
-
 		$scope.volpago = $filter('filter')($scope.user.files, {op:'volpg'});
 		if (typeof $scope.volpago[$scope.keyVolante] !== "undefined"){
+			$scope.no_pdf = false;
 			$scope.pdfUrl = HRAPI_CONF.baseUrl($scope.volpago[$scope.keyVolante].file.url);
 		}else{
+			$scope.no_pdf = true;
 			$rootScope.alerts.push({type: 'warning', msg: "no hay un pdf asociado al usuario"});
 			window.setTimeout(function() {
 			  $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
@@ -219,12 +240,15 @@
 		$scope.progress  = {};
 		$scope.progreso  = 0;
 		$scope.keyIncome = parseInt($stateParams.id);
+
 		
 
-		var pdf = $filter('filter')($scope.user.files, {op:'inret'})		
-    if (typeof pdf[0] !== "undefined"){
-      $scope.pdfUrl = HRAPI_CONF.baseUrl(pdf[0].file.url);
+		$scope.pdf = $filter('filter')($scope.user.files, {op:'inret'})		
+    if (typeof $scope.pdf[$scope.keyIncome] !== "undefined"){
+    	$scope.no_pdf = false;
+      $scope.pdfUrl = HRAPI_CONF.baseUrl($scope.pdf[$scope.keyIncome].file.url);
     }else{
+    	$scope.no_pdf = true;
       $rootScope.alerts.push({type: 'warning', msg: "no hay un pdf asociado al usuario"});
       window.setTimeout(function() {
         $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
