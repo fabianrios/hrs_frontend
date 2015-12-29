@@ -1,4 +1,4 @@
-<nav ng-class="getNavStyle(scroll)">
+<nav ng-if="!no_pdf" ng-class="getNavStyle(scroll)">
   <!-- <button class="button small" ng-click="goPrevious()"><span class="fa fa-arrow-circle-o-left"></span></button>
   <button class="button small" ng-click="goNext()"><span class="fa fa-arrow-circle-o-right"></span></button> -->
   <button class="button small secondary" ng-click="zoomIn()"><span class="fa fa-search-plus fa-lg"></span></button>
@@ -8,27 +8,55 @@
 
   <div ng-if="ubicacion == 'main.views.certificates_vacations' && employee.vacations.length > 1" class="vacations-opt">
     <select ng-model="vacacionId" ng-change="cambiarPdf(vacacionId)">
-      <option ng-repeat="(key, vacation) in vacations"
-      ng-value="key" ng-bind="vacation.name_iden"
+      <optgroup ng-repeat="type in user.file_types | filter: { activ: 'VCTN'}" label="{{ type.nomid }}">
+        <optionng-repeat="(key, vacation) in vacations | filter: {pdf_type_ident: type.ident}" ng-value="key" ng-bind="vacation.name_iden"
       ng-selected="key === keyVacation"></option>
+      </optgroup>
     </select>
   </div>
+
   <div ng-if="ubicacion == 'main.views.certificates_payroll' && volpago.length > 1" class="vacations-opt">
     <select ng-model="volanteId" ng-change="cambiarPdf(volanteId)">
-      <option ng-repeat="(key, volante) in volpago" 
-      ng-value="key" ng-bind="volante.name_iden"
-      ng-selected="key === keyVolante"></option>
+      <optgroup ng-repeat="type in user.file_types | filter: { activ: 'VPAG'}" label="{{ type.nomid }}">
+        <option ng-repeat="(key, volante) in volpago | filter: {pdf_type_ident: type.ident}" 
+        ng-bind="volante.name_iden" ng-value="key" ng-selected="key === keyVolante"></option>
+      </optgroup>
     </select>
   </div>
+
+  <div ng-if="ubicacion == 'main.views.certificates_income' && pdf.length > 1" class="vacations-opt">
+    <select ng-model="volanteId" ng-change="cambiarPdf(volanteId)">
+      <optgroup ng-repeat="type in user.file_types | filter: { activ: 'CIYR'}" label="{{ type.nomid }}">
+        <option ng-repeat="(key, volante) in pdf | filter: {pdf_type_ident: type.ident}" 
+        ng-bind="volante.name_iden" ng-value="key" ng-selected="key === keyVolante"></option>
+      </optgroup>
+    </select>
+  </div>
+
+
+  <div ng-if="ubicacion == 'main.views.certificates_labor' && carta.length > 1" class="vacations-opt">
+    <select ng-model="volanteId" ng-change="cambiarPdf(volanteId)">
+      <optgroup ng-repeat="type in user.file_types | filter: { activ: 'CLAB'}" label="{{ type.nomid }}">
+        <option ng-repeat="(key, volante) in carta | filter: {pdf_type_ident: type.ident}" 
+        ng-bind="volante.name_iden" ng-value="key" ng-selected="key === keyVolante"></option>
+      </optgroup>
+    </select>
+  </div>
+
   
   <div class="paginas" ng-if="pageCount > 1" data="{{pageCount}}" class="dib">
-  	  <span>Página: </span>
-  	  <input type="text" min=1 ng-model="pageNum" id="smallinput">
-  	  <span> / {{pageCount}}</span>
-  	</div>
+     <span>Página: </span>
+     <input type="text" min=1 ng-model="pageNum" id="smallinput">
+     <span> / {{pageCount}}</span>
+   </div>
 </nav>
 
 
-<h5 class="text-center subheader" ng-show="loading"> Cargando <b>{{progreso}}</b> de <span>100%</span></h5>
-<canvas id="pdf" class="rotate0"></canvas>
-<div class="finalpdf"></div>
+<h5 ng-if="!no_pdf" class="text-center subheader" ng-show="loading"> Cargando <b>{{progreso}}</b> de <span>100%</span></h5>
+<canvas ng-hide="no_pdf" id="pdf" class="rotate0"></canvas>
+<div ng-if="!no_pdf" class="finalpdf"></div>  
+<div ng-if="no_pdf">
+  <h1>NO EXISTE PDF</h1>
+</div>
+
+
