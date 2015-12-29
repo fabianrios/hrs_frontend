@@ -172,7 +172,7 @@
 						<div class="contenido">
 
 							<ul class="employees">
-								<li ng-repeat="empleado in employee_by_fecha_de_ingreso | orderBy: sortEmpleado : true">
+								<li ng-repeat="empleado in employee_by_fecha_de_ingreso">
 									<div class="foto">
 										<a ui-sref="main.views.employee_info_lookup({id:empleado.identification, c:empleado.company.id})">
 											<img alt="profile" ng-src="{{empleado.image}}">
@@ -194,6 +194,47 @@
 						</div><!-- /contenido -->
 					</div>
 				</li>
+
+				<li ng-if="user.company.show_new_employees" 
+				ng-init="new_employees = $Employee.all_by_current_month_entry();">
+					<div class="widgets minh-430">
+						<h5 class="encabezado">
+							<a href="#">{{ common.workers[2].name }} <i class="fa fa-angle-right"></i> </a>
+							<div class="right actions">
+								<a class="text-right" href="">
+									<span data-tooltip aria-haspopup="true" class="has-tip" title="Empleados nuevos en el mes actual">
+										<i class="fa fa-info-circle fa-lg"></i>
+									</span>
+								</a>
+								<a class="text-right closing" href="">
+									<i class="fa fa-chevron-circle-up fa-lg"></i>
+								</a>
+							</div>
+						</h5>
+						<div class="contenido">
+							<ul class="employees">
+								<li ng-repeat="empleado in new_employees">
+									<div class="foto">
+										<a ui-sref="main.views.employee_info_lookup({id:empleado.identification, c:empleado.company.id})">
+											<img alt="profile" ng-src="{{empleado.image}}">
+										</a>
+									</div>
+									<h6 class="no-margin capitalize">
+										<a ui-sref="main.views.employee_info_lookup({id:empleado.identification, c:empleado.company.id})">{{empleado.short_name | lowercase}}</a>
+									</h6>
+									<h6 class="subheader no-margin capitalize">{{empleado.posicion | lowercase}}</h6>
+									<div class="text-right">
+										<span class="graytxt">
+											<i class="fa fa-calendar-o"></i>
+											<span class="small">{{empleado.fecha_ingreso | date:"d 'de' MMMM"}}</span>
+										</span>
+									</div>
+								</li>
+							</ul>
+						</div><!-- /contenido -->
+					</div>
+				</li>
+
 				<li ng-if="user.company.show_articles" ng-init="articles_not_mine = $Article.index({per:10});">
 					<div class="widgets minh-430">
 						<h5 class="encabezado">
