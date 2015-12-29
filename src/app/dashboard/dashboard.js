@@ -91,12 +91,13 @@
 				}else{
 					scope.deducciones = [];
 				}
+	      
 				// console.log(scope.fechasdeudas,scope.ingresos,scope.deducciones);
-                Highcharts.setOptions({
-                    global : {
-                        useUTC : true
-                    }
-                });
+        Highcharts.setOptions({
+            global : {
+                useUTC : true
+            }
+        });
 				$(element).highcharts({
 					chart: {
 						backgroundColor:'rgba(255, 255, 255, 0)',
@@ -120,6 +121,9 @@
 					legend: {
 						enabled: false
 					},
+					credits: {
+      			enabled: false
+  				},
 					tooltip:{
 						enabled:true,
 						borderWidth: 1,
@@ -161,6 +165,8 @@
 						color: '#ff2211'
 					}]
 				})//endeudamiento
+
+
 			}
 		}
 	})
