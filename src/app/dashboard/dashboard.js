@@ -103,6 +103,7 @@
 						backgroundColor:'rgba(255, 255, 255, 0)',
 						height: 250,
 						style: {
+							color     : "#333333", 
 							fontFamily: "Lato"
 						}
 					},
@@ -111,11 +112,13 @@
 					},
 					xAxis: {
 						type: 'datetime',
+						style: { "color": "#333333", "fontFamily": "Lato" },
 						categories: scope.fechasdeudas.reverse()
 					},
 					yAxis: {
 						title: {
-							text: 'Unidades en Millones'
+							text: 'Unidades en Millones',
+							style: { "color": "#333333", "fontFamily": "Lato" }
 						}
 					},
 					legend: {
