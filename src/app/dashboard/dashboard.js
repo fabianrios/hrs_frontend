@@ -29,7 +29,8 @@
 					return {
 						items: [
 							{ name: "Cumpleaños del mes", config: { param_a: "abc", param_b: "Empleados que cumplen años en último mes." }},
-							{ name: "Aniversario laboral", config: { param_a: "def", param_b: "Fecha en la cual el empleado cumple año(s) de ingreso a la compañía." }}
+							{ name: "Aniversario laboral", config: { param_a: "def", param_b: "Fecha en la cual el empleado cumple año(s) de ingreso a la compañía." }},
+							{ name: "Empleados nuevos del mes", config: { }}
 						]
 					}
 				},
@@ -355,6 +356,7 @@
 	// .controller('Dashboard.MainController', function($scope, widgets, ingresos, workers, publicaciones, employees, currentUser, articles){
 	.controller('Dashboard.MainController', function($scope, widgets, ingresos, workers, publicaciones, Employee, Article ){
 
+		console.log(Employee);
 		$scope.$Employee = Employee;
     	$scope.$Article = Article;
     
