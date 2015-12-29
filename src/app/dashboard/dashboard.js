@@ -355,8 +355,6 @@
 	
 	// .controller('Dashboard.MainController', function($scope, widgets, ingresos, workers, publicaciones, employees, currentUser, articles){
 	.controller('Dashboard.MainController', function($scope, widgets, ingresos, workers, publicaciones, Employee, Article ){
-
-		console.log(Employee);
 		$scope.$Employee = Employee;
     	$scope.$Article = Article;
     
