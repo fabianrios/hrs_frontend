@@ -91,17 +91,19 @@
 				}else{
 					scope.deducciones = [];
 				}
+	      
 				// console.log(scope.fechasdeudas,scope.ingresos,scope.deducciones);
-                Highcharts.setOptions({
-                    global : {
-                        useUTC : true
-                    }
-                });
+        Highcharts.setOptions({
+            global : {
+                useUTC : true
+            }
+        });
 				$(element).highcharts({
 					chart: {
 						backgroundColor:'rgba(255, 255, 255, 0)',
 						height: 250,
 						style: {
+							color     : "#333333", 
 							fontFamily: "Lato"
 						}
 					},
@@ -110,16 +112,21 @@
 					},
 					xAxis: {
 						type: 'datetime',
+						style: { "color": "#333333", "fontFamily": "Lato" },
 						categories: scope.fechasdeudas.reverse()
 					},
 					yAxis: {
 						title: {
-							text: 'Unidades en Millones'
+							text: 'Unidades en Millones',
+							style: { "color": "#333333", "fontFamily": "Lato" }
 						}
 					},
 					legend: {
 						enabled: false
 					},
+					credits: {
+      			enabled: false
+  				},
 					tooltip:{
 						enabled:true,
 						borderWidth: 1,
@@ -161,6 +168,8 @@
 						color: '#ff2211'
 					}]
 				})//endeudamiento
+
+
 			}
 		}
 	})
