@@ -5,7 +5,16 @@
 				<li>
 					<div class="widgets">
 						<h5 class="encabezado">
-							<a href="#">{{ common.widgets[0].name }} <i class="fa fa-angle-right"></i> </a>
+							<a href="javascript:void(0)" title="{{ common.widgets[0].name }}">
+								<div class="text-complete">
+								{{ common.widgets[0].name }}
+								</div>
+								<div class="text-cut">
+								{{ common.widgets[0].name | limitTo : 15 }}	...
+								</div>
+								<i class="fa fa-angle-right" style=""></i>
+							</a>
+
 							<div class="right actions">
 								<a class="text-right" href="">
 									<span data-tooltip aria-haspopup="true" class="has-tip" title="Días que a la liquidación de la ultima nomina tiene disponibles y usados por este concepto.">
@@ -16,6 +25,7 @@
 									<i class="fa fa-chevron-circle-up fa-lg"></i>
 								</a>
 							</div>
+
 						</h5>
 						<div class="contenido" id="vacations-chart">
 							<br />
@@ -28,7 +38,16 @@
 				<li>
 					<div class="widgets">
 						<h5 class="encabezado">
-							<a href="#">{{ common.widgets[1].name }} <i class="fa fa-angle-right"></i> </a>
+							<a href="#" title="{{ common.widgets[1].name }}">
+								<div class="text-complete">
+								{{ common.widgets[1].name }}
+								</div>
+								<div class="text-cut">
+								{{ common.widgets[1].name | limitTo : 15 }}	...
+								</div>
+								<i class="fa fa-angle-right" style=""></i>
+							</a>
+
 							<div class="right actions">
 								<a class="text-right" href="">
 									<span data-tooltip aria-haspopup="true" class="has-tip" title="Valor que a la liquidación de la ultima nomina tiene causados en la compañía. Este valor sera consignado al Fondo de Cesantias antes del 14 de Febrero de cada año.">
@@ -55,7 +74,16 @@
 				<li>
 					<div class="widgets">
 						<h5 class="encabezado">
-							<a href="#"><span id="intid">{{ common.widgets[2].name }}</span> <i class="fa fa-angle-right"></i> </a>
+							<a href="#" title="{{ common.widgets[2].name }}">
+								<div class="text-complete">
+								{{ common.widgets[2].name }}
+								</div>
+								<div class="text-cut">
+								{{ common.widgets[2].name | limitTo : 15 }}	...
+								</div>
+								<i class="fa fa-angle-right" style=""></i>
+							</a>
+
 							<div class="right actions">
 								<a class="text-right" href="">
 									<span data-tooltip aria-haspopup="true" class="has-tip" title="Valor de los intereses a las cesantias causados a 31 de Diceimbre de cada año.">
@@ -84,7 +112,15 @@
 				<li>
 					<div class="widgets">
 						<h5 class="encabezado">
-							<a href="#">Mis ingresos y deducciones <i class="fa fa-angle-right"></i> </a>
+							<a href="#" title="{{ common.widgets[2].name }}">
+								<div class="text-complete">
+								Mis ingresos y deducciones
+								</div>
+								<div class="text-cut">
+								{{ 'Mis ingresos y deducciones' | limitTo : 15 }}	...
+								</div>
+								<i class="fa fa-angle-right" style=""></i>
+							</a>
 							<div class="right actions">
 								<a class="text-right" href="">
 									<span data-tooltip aria-haspopup="true" class="has-tip" title="Los ingresos hacen referecia a la remuneracion economica que recibe el empleado. Las Deducciones son los descuentos que le realiza la empresa al empleado por concepto de aporte a seguridad social, préstamos, entre otros.">
@@ -116,10 +152,18 @@
 			</ul>
 			
 			<ul class="small-block-grid-1 medium-block-grid-3 large-block-grid-3 dashboardlis">
-				<li ng-if="user.company.show_birthday" ng-init="employee_by_cumpleano_mes = $Employee.all_by_cumpleano_mes();">
+				<li ng-hide="!user.company.show_birthday" ng-init="employee_by_cumpleano_mes = $Employee.all_by_cumpleano_mes();">
 					<div class="widgets minh-430">
 						<h5 class="encabezado">
-							<a href="#">{{ common.workers[0].name }} <i class="fa fa-angle-right"></i> </a>
+							<a href="#" title="{{ common.widgets[2].name }}">
+								<div class="text-complete">
+								{{ common.workers[0].name }}
+								</div>
+								<div class="text-cut">
+								{{ common.workers[0].name | limitTo : 15 }}	...
+								</div>
+								<i class="fa fa-angle-right" style=""></i>
+							</a>
 							<div class="right actions">
 								<a class="text-right" href="">
 									<span data-tooltip aria-haspopup="true" class="has-tip" title="Empleados que cumplen años en último mes.">
@@ -154,7 +198,7 @@
 						</div><!-- /contenido -->
 					</div>
 				</li>
-				<li ng-if="user.company.show_labor" ng-init="employee_by_fecha_de_ingreso = $Employee.all_by_fecha_de_ingreso();">
+				<li ng-hide="!user.company.show_labor" ng-init="employee_by_fecha_de_ingreso = $Employee.all_by_fecha_de_ingreso();">
 					<div class="widgets minh-430">
 						<h5 class="encabezado">
 							<a href="#">{{ common.workers[1].name }} <i class="fa fa-angle-right"></i> </a>
@@ -195,7 +239,7 @@
 					</div>
 				</li>
 
-				<li ng-if="user.company.show_new_employees" 
+				<li ng-hide="!user.company.show_new_employees" 
 				ng-init="new_employees = $Employee.all_by_current_month_entry();">
 					<div class="widgets minh-430">
 						<h5 class="encabezado">
@@ -235,7 +279,7 @@
 					</div>
 				</li>
 
-				<li ng-if="user.company.show_articles" ng-init="articles_not_mine = $Article.index({per:10});">
+				<li ng-hide="!user.company.show_articles" ng-init="articles_not_mine = $Article.index({per:10});">
 					<div class="widgets minh-430">
 						<h5 class="encabezado">
 							<a ui-sref="main.views.articles()">Publicaciones recientes <i class="fa fa-angle-right"></i> </a>
