@@ -1,7 +1,17 @@
+<style type="text/css">
+/*
+	@media only screen and (max-width: 800px) { 
+		#employe_area{
+			display: none;
+		}
+	}
+	*/
+</style>
+
 <!--ng-class="ubicacion != 'main.views.dashboard' ? 'whitening' : ''"-->
 <div class="bottomize whitening" ng-switch="ubicacion">
 	<div class="row"  ng-switch-default>
-		<div class="large-7 medium-7 columns">
+		<div class="small-12 medium-10 large-7 columns">
 			<div class="big-profile">
 				<img ng-src="{{user.pic ? user.pic : user.employee.image}}">
 			</div>
@@ -20,7 +30,8 @@
 				</h5>
 			</div>
 		</div>
-		<div class="large-5 medium-5 columns">
+
+		<div id="employe_area" class="hide-for-small-only hide-for-medium-only large-5 columns">
 			<br>
 			<h4 class="subheader no-margin">
 				{{user.employee.area | lowercase}}
