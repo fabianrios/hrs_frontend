@@ -4,15 +4,25 @@
 </div>
 <div class="right">
 	<div class="user_nav show-for-large-up">
-		<div class="text-right" ng-init="">			   
-		    
-			<a ui-sref="main.views.notifications()" class="comments"><span class="icon-light-bulb"></span><i class="number comment" ng-if="notifications['count']> 0" ng-bind="notifications['count']"> </i></a>
+		<div class="text-right" ng-init="">
+			<a ui-sref="main.views.notifications()" class="comments" data-tooltip aria-haspopup="true" title="Notificaciones">
+				<span class="icon-light-bulb"></span>
+				<i class="number comment" ng-if="notifications['count']> 0" ng-bind="notifications['count']"> </i>
+			</a>
 			<h5 class="subheader no-margin capitalize"><span class="icon-user"></span> {{user.name | lowercase}}</h5>
 			<div class="worker">
 				<img ng-src="{{user.pic ? user.pic : user.employee.image}}">
 			</div>
-			<h5 class="subheader no-margin"><a ui-sref="main.views.employee_info"><span class="icon-cog2"></span></a></h5>
-			<h5 class="subheader no-margin"><a href="" ng-click="logout()" rel="nofollow"><span class="icon-logout"></span></a></h5>
+			<h5 class="subheader no-margin">
+				<a ui-sref="main.views.employee_info" data-tooltip aria-haspopup="true" title="Configuración">
+					<span class="icon-cog2"></span>
+				</a>
+			</h5>
+			<h5 class="subheader no-margin">
+				<a href="" ng-click="logout()" rel="nofollow" data-tooltip aria-haspopup="true" title="Salir">
+					<span class="icon-logout"></span>
+				</a>
+			</h5>
 		</div>
 	</div>
 </div>
