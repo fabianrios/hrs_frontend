@@ -97,7 +97,7 @@
       </li>
     </ul>
   </li>
-  <li class="has-submenu" ng-if="user.company.show_hoex || user.company.show_inhabilities" >
+  <li class="has-submenu" ng-if="user.company.show_hoex || user.company.show_inhabilities || existsIndebtedness()" >
     <a href="">
       <i class="fa fa-paste fa-lg"></i> Registros
       <i class="fa fa-angle-right fa-right fa-lg"></i>
@@ -106,6 +106,13 @@
       <li class="back">
         <a href="">Volver</a>
       </li>
+
+      <li ng-if="existsIndebtedness()">
+        <a ui-sref="main.views.indebtedness_levels">
+          Nivel de endeudamiento
+        </a>
+      </li>
+
       <li ng-if="hoexAprobador() && user.labor.shoex == 'X' && user.company.show_hoex">
         <a ui-sref="main.views.extras">
           Horas extras

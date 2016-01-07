@@ -1,0 +1,58 @@
+<div class="padding-container">
+	<div>
+		<h3 class="expand-title text-center first-one">Nivel de endeudamiento</h3>
+		<div class="row">
+			<fieldset>
+				<legend>Filtros</legend>
+
+				<div class="large-2 medium-2 columns">
+					<label for="date_filter" class="inline">Periodo Nomina:</label>
+				</div>
+				<div class="large-2 medium-2 columns">
+					<select id="date_filter" ng-model="payroll_date_filter.$">
+						<option value="">Todos</option>
+						<option ng-repeat="date in payroll_dates">{{ date }}</option>
+					</select>
+				</div>
+
+				<div class="large-2 medium-2 columns">
+					<label for="payroll_filter" class="inline">Concepto Nomina:</label>
+				</div>
+				<div class="large-4 medium-4 columns left">
+					<select id="payroll_filter" ng-model="payroll_concept_filter">
+						<option ng-repeat="concept in payroll_concepts">{{ concept }}</option>
+					</select>
+				</div>
+				{{ payroll_concept_filter }}
+			</fieldset>
+		</div>
+
+		<div class="row">
+			<div class="large-12 medium-12 columns">
+				<table>
+				  <caption>Nivel de endeudamiento</caption>
+				  <thead>
+					  <tr>
+					  	<th scope="column" class="text-center">Periodo de Nomina</th>
+					  	<!--<th scope="column" class="text-center">Fecha</th>-->
+					    <th scope="column" class="text-center">Concepto de Nomina</th>
+					    <th scope="column" class="text-center">Devengado</th>
+					    <th scope="column" class="text-center">Deducciones</th>
+					  </tr>	
+				  </thead>
+			  	<tbody ng-repeat="date in payroll_dates | filter : payroll_date_filter">
+			  		<tr id="tr_payroll_period">
+			  			<td id="td_payroll_period" rowspan="{{ user.indebtedness_levels.length | filter : {payroll_date: date} }}">{{ date }}</td>
+			  		</tr>
+		  			<tr ng-repeat="(key, indebtedness) in user.indebtedness_levels | filter : {payroll_date: date, payroll_concept_txt: payroll_concept_filter}">
+		  				<!-- <td scope="row">{{ indebtedness.payroll_date }}</td>-->
+					    <td scope="row">{{ indebtedness.payroll_concept_txt }}</td>
+					    <td scope="row">$ {{ indebtedness.deven.toLocaleString() }}</td>
+					    <td scope="row">$ {{ indebtedness.deduc.toLocaleString() }}</td>
+		  			</tr>
+				  </tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
