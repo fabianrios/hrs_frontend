@@ -62,7 +62,8 @@
     	$scope.no_pdf = false;
       $scope.pdfUrl = HRAPI_CONF.baseUrl($scope.carta[$scope.keyVolante].file.url);
 
-    }else{
+    }
+    else{
     	$scope.no_pdf = true;
       $rootScope.alerts.push({type: 'warning', msg: "no hay un pdf asociado al usuario"});
       window.setTimeout(function() {
@@ -119,13 +120,6 @@
 			$scope.pdfUrl = HRAPI_CONF.baseUrl($scope.vacations[$scope.keyVacation].file.url);
 		}else{
 			$scope.no_pdf = true;
-			$rootScope.alerts.push({type: 'warning', msg: "no hay un pdf asociado al usuario"});
-			window.setTimeout(function() {
-			  $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
-			    $(this).remove(); 
-			    $rootScope.alerts = [];
-			  });
-			}, 5000);
 		}
 		
 		$scope.cambiarPdf = function(keyVacacion) {

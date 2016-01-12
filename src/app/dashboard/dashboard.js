@@ -28,9 +28,9 @@
 				workers: function(){
 					return {
 						items: [
-							{ name: "Cumpleaños del mes", config: { param_a: "abc", param_b: "Empleados que cumplen años en último mes." }},
-							{ name: "Aniversario laboral", config: { param_a: "def", param_b: "Fecha en la cual el empleado cumple año(s) de ingreso a la compañía." }},
-							{ name: "Empleados nuevos del mes", config: { }}
+							{ name: "Cumpleaños", config: { param_a: "abc", param_b: "Empleados que cumplen años en último mes." }},
+							{ name: "Aniversario", config: { param_a: "def", param_b: "Fecha en la cual el empleado cumple año(s) de ingreso a la compañía." }},
+							{ name: "Ingresos Recientes", config: { }}
 						]
 					}
 				},
@@ -369,17 +369,8 @@
     
 	    $scope.sortEmpleado = function(empleado) {
 	        var date = new Date(empleado.fecha_ingreso).getDate().toString();
-	        // console.log(parseInt(date));
 	        return parseInt(date);
 	    };
-	    
-	    $scope.sortNacimiento = function(empleado) {
-	        var date = new Date(empleado.fecha_nac).getDate().toString();
-	        // console.log(parseInt(date));
-	        return parseInt(date);
-	    };
-				
-		// $scope.employees = employees;
 		
 		
 		$scope.employee = $scope.user.employee;

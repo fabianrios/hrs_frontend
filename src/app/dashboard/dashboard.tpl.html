@@ -177,7 +177,7 @@
 						</h5>
 						<div class="contenido">
 							<ul class="employees">
-								<li ng-repeat="empleado in employee_by_cumpleano_mes | orderBy: sortNacimiento : true">
+								<li ng-repeat="empleado in employee_by_cumpleano_mes">
 									<div class="foto">
 										<a ui-sref="main.views.employee_info_lookup({id:empleado.identification, c:empleado.company.id})">
 											<img alt="profile" ng-src="{{empleado.image}}">
@@ -295,9 +295,11 @@
 							</div>
 						</h5>
 						<div class="contenido">
-  						<div class="cuantos">
-  							<h3><span class="icon-comment"></span>{{articles_not_mine.length}}</h3>
-  						</div>
+						  <div ng-if="articles_not_mine.articles.length >= 1">
+						    <div class="cuantos">
+    							<h3><span class="icon-comment"></span>{{articles_not_mine.length}}</h3>
+    						</div>
+						  </div>
 							<ul class="employees publicaciones">
 								<li ng-repeat="articulos in articles_not_mine.articles | orderBy: 'created_at' : true | limitTo: 10">
 									<a ui-sref="main.views.articleDetail({id:articulos.id})" ng-class="articulos.category">{{articulos.titulo}}</a>

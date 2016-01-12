@@ -42,7 +42,6 @@
       </optgroup>
     </select>
   </div>
-
   
   <div class="paginas" ng-if="pageCount > 1" data="{{pageCount}}" class="dib">
      <span>Página: </span>
@@ -51,12 +50,14 @@
    </div>
 </nav>
 
-
 <h5 ng-if="!no_pdf" class="text-center subheader" ng-show="loading"> Cargando <b>{{progreso}}</b> de <span>100%</span></h5>
 <canvas ng-hide="no_pdf" id="pdf" class="rotate0"></canvas>
 <div ng-if="!no_pdf" class="finalpdf"></div>  
 <div ng-if="no_pdf">
-  <h1>NO EXISTE PDF</h1>
+  <div data-alert class="alert-box warning">
+    <h5>Estimado colaborador, <strong>no hay Carta de Vacaciones</strong> disponible.</h5>
+    <a href="#" class="close">&times;</a>
+  </div>
 </div>
 
 
