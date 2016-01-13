@@ -4,7 +4,7 @@
   angular.module('navbar', [])
 
     .controller('Navbar.NavbarController', function($scope, Notification){//,currentUser,articles,vac_requirements, extras_requirements, inhabilities_requirements, licenses_requirements, infos, Notification){
-		
+		console.log($scope.user);
 		
 		// $scope.articles = articles.articles;
 		// $scope.articles_not_mine = [];
@@ -27,6 +27,9 @@
 	      }
 	    }
 
+    $scope.existsIndebtedness = function(){
+			return $scope.user.indebtedness_levels.length != 0
+    }
     
 		$scope.hoexAprobador = function(){
 		  return $scope.user.employee.hoex_approver != '00000000' &&  $scope.user.employee.hoex_approver != null 
