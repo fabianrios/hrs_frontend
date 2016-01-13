@@ -4,7 +4,7 @@
 * Tipo: Gruntfile
 * Doc: http://gruntjs.com/
 * Autor: 
-*   - Maciej Ruckgaber <maciekrb@gmail.com>
+*   - Maciej Ruckgaber <maciekrb@gmail.com> & Fabián Ríos <hola@fabianrios.co>
 **/
 
 module.exports = function(grunt){
@@ -12,7 +12,8 @@ module.exports = function(grunt){
 
   // Cargar modulos de tarea de grunt automaticamente
   require('load-grunt-tasks')(grunt);
-
+  // Cargar el modulo npm
+	grunt.loadNpmTasks('grunt-aws');
   // Medicion de tiempo de ejecucion de tareas 
   require('time-grunt')(grunt);
 
@@ -21,6 +22,7 @@ module.exports = function(grunt){
   **************************************************************************************************/
   grunt.initConfig({
     // Variables de configuracion generales
+		aws: grunt.file.readJSON("credentials.json"),
     yeoman: {
       app: 'src', // ruta fuentes de la aplicacion
       dist: 'dist' // ruta archivos de distribucion
