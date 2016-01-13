@@ -11,7 +11,9 @@
 			</div>
 		</div>
 	</li>
-	<li class="results" ng-repeat="employee in employees" ng-init="activado = favorite( employee = ( employee.employee ? employee.employee: employee ) ); ">	
+	
+	<li class="results" ng-repeat="employee in empFavorites" 
+	ng-init="activado = favorite( employee = employee.employee ? employee.employee: employee );">	
 		<div class="pic" >
 			<a ui-sref="main.views.employee_info_lookup({id:employee.identification, c:employee.company.id})" ng-if="user.employee.see_all_dm === 'true'" > 
 				<img ng-src="{{employee.image}}">
@@ -21,7 +23,42 @@
 			</div>
 		</div>
 		<h6 class="name no-margin capitalize">	
-			<a ng-click="favorites($event, employee);update_favorite(employee);activado = !activado" class="favorite">
+			<a ng-click="updateContact($event, employee);activado = !activado;" class="favorite">
+				<span ng-class="activado ? 'fa fa-star' : 'fa fa-star-o'"></span>
+			</a> 
+			<a ui-sref="main.views.employee_info_lookup({id:employee.identification, c:employee.company.id})" class="capitalize" ng-if="user.employee.see_all_dm === 'true'" >
+				{{employee.name | lowercase}} {{employee.lastname | lowercase}}
+			</a>
+			<div ng-if="user.employee.see_all_dm === 'false'" class="capitalize">
+				{{employee.name | lowercase}} {{employee.lastname | lowercase}}
+			</div>
+		</h6>
+		<h6 class="no-margin subheader cargo capitalize">{{employee.posicion | lowercase}}</h6>
+		<div class="action-buttons">
+			<a ng-if="employee.phone" href="tel://{{employee.phone}}">
+				<i class="fa fa-phone fa-lg"></i>
+			</a>
+			<br>
+			<a ng-if="employee.email" class="lowercase" href="mailto:{{employee.email | lowercase}}">
+				<i class="fa fa-envelope-o fa-lg"></i>
+			</a>
+		</div>
+	</li>
+	
+	<li class="results" ng-repeat="employee in employees" 
+	ng-init="activado = favorite( employee = ( employee.employee ? employee.employee: employee ) ); "
+	ng-hide="activado ? true : false"
+	>	
+		<div class="pic" >
+			<a ui-sref="main.views.employee_info_lookup({id:employee.identification, c:employee.company.id})" ng-if="user.employee.see_all_dm === 'true'" > 
+				<img ng-src="{{employee.image}}">
+			</a>
+			<div ng-if="user.employee.see_all_dm === 'false'"> 
+				<img ng-src="{{employee.image}}">
+			</div>
+		</div>
+		<h6 class="name no-margin capitalize">	
+			<a ng-click="updateContact($event, employee);activado = !activado;" class="favorite">
 				<span ng-class="activado ? 'fa fa-star' : 'fa fa-star-o'"></span>
 			</a> 
 			<a ui-sref="main.views.employee_info_lookup({id:employee.identification, c:employee.company.id})" class="capitalize" ng-if="user.employee.see_all_dm === 'true'" >

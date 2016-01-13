@@ -6,65 +6,79 @@
 
     $scope.common = {};
     $scope.searchText = '';
-    $scope.employees = $scope.user.favorite_employees;
-				
-	  //toggle expand vacation box
+    $scope.employees = Employee.index();
+    $scope.empFavorites = $scope.user.favorite_employees;
+
     $scope.favorites = function(e, empleado){
       $(e.currentTarget).children("span").removeClass("fa-start-o");
       $(e.currentTarget).children("span").addClass("fa-start");
       $(e.currentTarget).toggleClass("active");
-			
-			$scope.non = true;
-			var len = $scope.user.favorite_employees.length;
-			for (var i=0; i<len; i++) {
-				if ($scope.user.favorite_employees[i].employee_identification == empleado.identification) {
-					$scope.non = false;
-					console.log(true, $scope.user.favorite_employees[i].employee_identification, empleado.identification);
-				}
-			}
-			
-			if ($scope.non){
-				$scope.user.favorite_employees.push({employee_identification: empleado.identification, user_identification: empleado.user_id, employee: empleado});
-			}								
     };
 
     $scope.update_favorite =  function(employee){
-        $http.post( 
-            HRAPI_CONF.apiBaseUrl( '/users/' + $scope.user.employee.identification + '/favorite_employee' ), 
-            { employee_identification: employee.identification }
-          ).success(function(data, status, headers, config) {
-            console.log("empleado actualizado en favoritos", data);
-          }).error(function(data, status, headers, config) {
-            console.log("no se pudo vincular el empleado a favoritos", data);
-          });
+      $http.post( 
+        HRAPI_CONF.apiBaseUrl( '/users/' + $scope.user.employee.identification + '/favorite_employee' ), 
+        { employee_identification: employee.identification }
+      ).success(function(data, status, headers, config) {
+        $http.get(
+          HRAPI_CONF.apiBaseUrl( '/users/' + $scope.user.employee.identification + '/favorite_employees' ), 
+          {}
+        ).success(function(data2){
+          console.log(data2)
+          $scope.empFavorites = data2
+        })
+        console.log("empleado actualizado en favoritos", data);
+      }).error(function(data, status, headers, config) {
+        console.log("no se pudo vincular el empleado a favoritos", data);
+      });
     };
 				
+    $scope.updateContact = function(e, employee){
+      $scope.favorites(e, employee);
+      $scope.update_favorite(employee);
+      $scope.searchText = '';
+    }
+
     $scope.favorite =  function( employee ){  
-        var _return;
-        _return = false;
-        $scope.user.favorite_employees.some( function( favorite ){        
-          if(favorite.employee_identification === employee.identification){
-              _return = true;
-          }
-        });
-        return _return;
+      var _return;
+      _return = false;
+      $scope.empFavorites.some( function( favorite ){        
+        if(favorite.employee_identification === employee.identification){
+            _return = true;
+        }
+      });
+      return _return;
     };
-				
+			
     $scope.$watch('searchText', function(newValue, oldValue) {
         if( newValue.length > 3 ){
             $scope.employees = Employee.search( { q: newValue } );
+            $scope.empFavorites = []
 						$scope.flavor_class = "no-glow";
+        }else{
+          $scope.employees = Employee.index();
+          $scope.empFavorites = $scope.user.favorite_employees;
         }
+        /*
         if( newValue.length <= 3 ){
             if($scope.user.favorite_employees.length > 0){
-                $scope.employees = $scope.user.favorite_employees;
+              //console.log('entre: favorite_employees');
+                //var arr = new Array();
+                //arr.push($scope.user.favorite_employees);
+                //$scope.employees = arr;
+                ////console.log($scope.user.favorite_employees)
+                ////console.log(arr)
+                
+                //$scope.employees = $scope.user.favorite_employees;
+                //$scope.employees = employees.push($scope.user.favorite_employees);
 								$scope.flavor_class = "glow";
             }else{
                 $scope.employees = Employee.index();
-                // $scope.employees = employees;
+                //$scope.employees = employees;
 								$scope.flavor_class = "no-glow";
             }
-        }        
+        }
+        */
     });
 		
 	});
