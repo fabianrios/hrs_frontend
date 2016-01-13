@@ -24,7 +24,6 @@
           HRAPI_CONF.apiBaseUrl( '/users/' + $scope.user.employee.identification + '/favorite_employees' ), 
           {}
         ).success(function(data2){
-          console.log(data2)
           $scope.empFavorites = data2
         })
         console.log("empleado actualizado en favoritos", data);
