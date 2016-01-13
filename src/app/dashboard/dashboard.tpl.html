@@ -139,13 +139,26 @@
 									<div endeudamiento fechasdeudas='{{fechasdeudas}}' ingresos="{{ingresos}}" deducciones="{{deducciones}}"></div>
 								</div>
 								<div class="large-4 medium-4 columns">
-							    <canvas id="doughnut" class="chart chart-doughnut" chart-data="chartData" chart-labels="chartLabels" width="150" height="150"></canvas> 
+									<div class="large-7 medium-7 columns">
+										<canvas id="doughnut" class="chart chart-doughnut" chart-data="chartData" chart-labels="chartLabels" chart-colours="chartColors" width="80" height="80"></canvas>
+									</div>
+									<div class="large-5 medium-5 columns">
+										<div class="text-right">
+										<strong>
+											<h4 class="orangetxt futura">
+												{{porcentaje}} %
+											</h4>
+										</strong>
+										</div>		
+									</div>
 									<!--
 									<canvas classy="{{porcentaje}}" class="loader animation-canvas" width="150" height="150"></canvas>
 									-->
-									<div class="text-left">
-										<h4 class="greentxt futura"><small class="blacktxt">Total ingresos:</small>{{saldos.totdevengos | currency:"$":0}}</h4>
-										<h4 class="redtxt futura"><small class="blacktxt">Total deducciones:</small>{{saldos.totdeducciones | currency:"$":0}}</h4>
+									<div class="large-12 medium-12 columns">
+										<div class="text-left">
+											<h4 class="greentxt futura"><small class="blacktxt">Total ingresos:</small>{{saldos.totdevengos | currency:"$":0}}</h4>
+											<h4 class="redtxt futura"><small class="blacktxt">Total deducciones:</small>{{saldos.totdeducciones | currency:"$":0}}</h4>
+										</div>	
 									</div>
 								</div>
 							</div>
