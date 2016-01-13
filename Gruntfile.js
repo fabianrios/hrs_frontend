@@ -390,7 +390,31 @@ module.exports = function(grunt){
           '<%= yeoman.app %>/assets/images/**/*.{png,jpg,jpeg,gif,webp,svg}'
         ]
       }
-    }
+    },
+		
+	  rcn: {
+	       options: {
+	         accessKeyId: "<%= aws.accessKeyId %>",
+	         secretAccessKey: "<%= aws.secretAccessKey %>",
+	         bucket: "rcntv.hrsolutions.co"
+	       },
+	       build: {
+	         cwd: "/",
+	         src: "**"
+	       }
+	     },
+			 
+	 	  harinera: {
+	 	       options: {
+	 	         accessKeyId: "<%= aws.accessKeyId %>",
+	 	         secretAccessKey: "<%= aws.secretAccessKey %>",
+	 	         bucket: "harinera.hrsolutions.co"
+	 	       },
+	 	       build: {
+	 	         cwd: "/",
+	 	         src: "**"
+	 	       }
+	 	     }
 
   });
 
@@ -411,7 +435,9 @@ module.exports = function(grunt){
         'configureRewriteRules',
         'configureProxies:dist',
         'build',
-        'connect:dist:keepalive'
+        'connect:dist:keepalive',
+				'rcn',
+				'harinera'
       ]);
     }
 
