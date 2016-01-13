@@ -1,6 +1,6 @@
 (function(){
 	'use strict';
-	angular.module('dashboard', [])
+	angular.module('dashboard', ['chart.js'])
 
 	.config(function($stateProvider){
 		$stateProvider
@@ -391,8 +391,11 @@
 		}
 
 		//porcentaje para classy
-		$scope.porcentaje = 100/($scope.saldos.totdevengos/$scope.saldos.totdeducciones);
-		
+		//$scope.porcentaje = 100/($scope.saldos.totdevengos/$scope.saldos.totdeducciones);
+		$scope.porcentaje  = 37.29;
+		$scope.chartLabels = ["Nivel de Endeudamiento", ""];
+  	$scope.chartData   = [$scope.porcentaje, 100-$scope.porcentaje];
+
 		//Deudas
 		var deduc = [];
 		var devng = [];
