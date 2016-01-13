@@ -1,6 +1,6 @@
 (function(){
 	'use strict';
-	angular.module('dashboard', [])
+	angular.module('dashboard', ['chart.js'])
 
 	.config(function($stateProvider){
 		$stateProvider
@@ -50,9 +50,7 @@
 	        restrict: 'A',
 	        link: function(scope, element, attrs) {
 				//porcentaje
-				// var porcentaje = 100/(scope.saldos.totdevengos/scope.saldos.totdeducciones);
 				scope.porcentaje = attrs["classy"];
-				// console.log(scope.porcentaje);
 				$(element).ClassyLoader({
 					percentage: scope.porcentaje,
 					width: 150,
@@ -390,9 +388,24 @@
 			$scope.vacationdays = [];
 		}
 
+		function getDecimal(value){
+			var newValue = angular.isNumber(value) ? 0 : value
+			var values   = value.toString()
+			values = values.split('.');
+			if(values.length == 2){
+				newValue = values[0]
+				newValue = newValue.concat(".", values[1].substring(0, 2))
+			}
+			return newValue
+		}
+
+
 		//porcentaje para classy
-		$scope.porcentaje = 100/($scope.saldos.totdevengos/$scope.saldos.totdeducciones);
-		
+		$scope.porcentaje = getDecimal(100/($scope.saldos.totdevengos/$scope.saldos.totdeducciones));
+		$scope.chartLabels = ["Nivel de Endeudamiento", ""];
+  	$scope.chartData   = [$scope.porcentaje, 100-$scope.porcentaje];
+  	$scope.chartColors = ['#ff7e00', '#DDDDDD']
+
 		//Deudas
 		var deduc = [];
 		var devng = [];
