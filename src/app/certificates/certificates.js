@@ -182,7 +182,7 @@
 		$scope.ubicacion  = $state.current.name;
 		$scope.keyVolante = parseInt($stateParams.id);
 
-		$scope.volpago = $filter('filter')($scope.user.files, {op:'volpg'});
+		$scope.volpago = $filter('filter')($scope.user.files_last_months, {op:'volpg'});
 		if (typeof $scope.volpago[$scope.keyVolante] !== "undefined"){
 			$scope.no_pdf = false;
 			$scope.pdfUrl = HRAPI_CONF.baseUrl($scope.volpago[$scope.keyVolante].file.url);
