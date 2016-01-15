@@ -24,7 +24,6 @@
           HRAPI_CONF.apiBaseUrl( '/users/' + $scope.user.employee.identification + '/favorite_employees' ), 
           {}
         ).success(function(data2){
-          console.log(data2)
           $scope.empFavorites = data2
         })
         console.log("empleado actualizado en favoritos", data);
@@ -81,5 +80,10 @@
         */
     });
 		
-	});
+	})
+  .filter("autoAdjusts", function(){
+    return function(value) {
+      return value.length >= 21 ? value.substring(0, 20).toLowerCase()+'...' : value.toLowerCase();
+    }
+  });
 }());
