@@ -33,13 +33,10 @@
     </select>
   </div>
 
-
-  <div ng-if="ubicacion == 'main.views.certificates_labor' && carta.length > 1" class="vacations-opt">
+  <div ng-if="ubicacion == 'main.views.certificates_labor' && cartas.length > 1" class="vacations-opt">
     <select ng-model="volanteId" ng-change="cambiarPdf(volanteId)">
-      <optgroup ng-repeat="type in user.file_types | filter: { activ: 'CLAB'}" label="{{ type.nomid }}">
-        <option ng-repeat="(key, volante) in carta | filter: {pdf_type_ident: type.ident}" 
-        ng-bind="volante.name_iden" ng-value="key" ng-selected="key === keyVolante"></option>
-      </optgroup>
+      <option ng-repeat="type in user.file_types | filter: { activ: 'CLAB'}" 
+      ng-bind="type.nomid" ng-value="type.ident" ng-selected="type.ident === keyVolante"></option>
     </select>
   </div>
   
