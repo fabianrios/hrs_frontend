@@ -10,7 +10,9 @@
 				</div>
 				<br /><br /><br />			
 				<img ng-src="{{updateUrl(article.imagen.imagen.url)}}" alt="" class="imgborder" />
-				<div class="parrafo" ng-bind-html="article.cuerpo"></div>
+				<!--<div class="parrafo" ng-bind-html="article.cuerpo"></div>-->
+		        <div ta-bind="text" ng-model="article.cuerpo" ta-readonly='disabled'></div>
+
 			</div>
 		</div>
 		<div class="large-3 columns">
