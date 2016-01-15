@@ -18,7 +18,7 @@
   <div ng-if="ubicacion == 'main.views.certificates_payroll' && volpago.length > 1" class="vacations-opt">
     <select ng-model="volanteId" ng-change="cambiarPdf(volanteId)">
       <optgroup ng-repeat="type in user.file_types | filter: { activ: 'VPAG'}" label="{{ type.nomid }}">
-        <option ng-repeat="(key, volante) in volpago | filter: {pdf_type_ident: type.ident}" 
+        <option ng-repeat="(key, volante) in volpago | filter: {pdf_type_ident: type.ident} | orderBy:'-name_iden' " 
         ng-bind="volante.name_iden" ng-value="key" ng-selected="key === keyVolante"></option>
       </optgroup>
     </select>
