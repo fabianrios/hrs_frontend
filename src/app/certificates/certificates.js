@@ -49,21 +49,19 @@
 			$state.transitionTo('main.views.dashboard');
 		} 
 		
-		$scope.scroll = 0;
-		$scope.loading = true;
-		$scope.progress = {};
-		$scope.progreso = 0;
-		$scope.keyCertificateLabor = parseInt($stateParams.id);
-		$scope.keyVolante = parseInt($stateParams.id);
+		$scope.scroll              = 0;
+		$scope.loading             = true;
+		$scope.progress            = {};
+		$scope.progreso            = 0;
+		$scope.keyCertificateLabor = 0;
+		$scope.keyVolante 		     = $stateParams.id.toString();
+  	$scope.cartas 						 = $filter('filter')($scope.user.files, {op:'clabr'})
+  	$scope.carta  						 = $filter('filter')($scope.user.files, {op:'clabr', pdf_type_ident:$scope.keyVolante})
 
-		
-	  $scope.carta = $filter('filter')($scope.user.files, {op:'clabr'})
-    if (typeof $scope.carta[$scope.keyVolante] !== "undefined"){
+    if (typeof $scope.carta[$scope.keyCertificateLabor] !== "undefined"){
     	$scope.no_pdf = false;
-      $scope.pdfUrl = HRAPI_CONF.baseUrl($scope.carta[$scope.keyVolante].file.url);
-
-    }
-    else{
+      $scope.pdfUrl = HRAPI_CONF.baseUrl($scope.carta[$scope.keyCertificateLabor].file.url);
+    }else{
     	$scope.no_pdf = true;
       $rootScope.alerts.push({type: 'warning', msg: "no hay un pdf asociado al usuario"});
       window.setTimeout(function() {
@@ -73,7 +71,6 @@
         });
       }, 5000);
     }
-
 
 		$scope.cambiarPdf = function(keyCertificateLabor) {
 			$state.transitionTo('main.views.certificates_labor', {

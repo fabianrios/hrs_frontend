@@ -4,7 +4,6 @@
   angular.module('navbar', [])
 
     .controller('Navbar.NavbarController', function($scope, Notification){//,currentUser,articles,vac_requirements, extras_requirements, inhabilities_requirements, licenses_requirements, infos, Notification){
-		console.log($scope.user);
 		
 		// $scope.articles = articles.articles;
 		// $scope.articles_not_mine = [];
@@ -17,6 +16,8 @@
 		// $scope.inhabilities_not_user = [];
 		// $scope.licenses_not_user = [];
 		// $scope.toapproved =[];
+		$scope.laborCertificate = 'SLPR';
+		$scope.pdfKeyInit 			= 0;
     
 	    $scope.seeValidation = function(see){
 	      if (see == "true"){

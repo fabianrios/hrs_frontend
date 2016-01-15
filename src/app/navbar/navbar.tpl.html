@@ -35,22 +35,22 @@
         <a href="">Volver</a>
       </li>
       <li ng-if="user.company.show_certificates_labor" >
-        <a ui-sref="main.views.certificates_labor({id:0})">
+        <a ui-sref="main.views.certificates_labor({id:laborCertificate})">
           <i class="fa fa-file-text-o fa-lg"></i> Certificado laboral
         </a>
       </li>
       <li ng-if="user.company.show_certificates_vacations" >
-        <a ui-sref="main.views.certificates_vacations({id:0})">
+        <a ui-sref="main.views.certificates_vacations({id:pdfKeyInit})">
           <i class="fa fa-plane fa-lg"></i> Carta de vacaciones
         </a>
       </li>
       <li ng-if="user.company.show_certificates_payroll" >
-        <a ui-sref="main.views.certificates_payroll({id:0})">
+        <a ui-sref="main.views.certificates_payroll({id:pdfKeyInit})">
           <i class="fa fa-briefcase fa-lg"></i> Recibos de nomina
         </a>
       </li>
       <li ng-if="user.company.show_certificates_income" >
-        <a ui-sref="main.views.certificates_income({id:0})">
+        <a ui-sref="main.views.certificates_income({id:pdfKeyInit})">
           <i class="fa fa-institution fa-lg"></i> Certificado de ing. y ret.
         </a>
       </li>
