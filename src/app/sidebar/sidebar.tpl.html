@@ -31,18 +31,19 @@
 			</a>
 			<div ng-if="user.employee.see_all_dm === 'false'" class="capitalize">
 				{{employee.name | lowercase}} {{employee.lastname | lowercase}}
-			</div>
+			</div>	
 		</h6>
 		<h6 class="no-margin subheader cargo capitalize" title="{{employee.posicion | lowercase}}">{{employee.posicion  | autoAdjusts}}</h6>
-		<div class="action-buttons">
-			<a ng-if="employee.phone" href="tel://{{employee.phone}}">
-				<i class="fa fa-phone fa-lg"></i>
-			</a>
-			<br>
-			<a ng-if="employee.email" class="lowercase" href="mailto:{{employee.email | lowercase}}">
-				<i class="fa fa-envelope-o fa-lg"></i>
-			</a>
-		</div>
+			<div class="action-buttons">
+				<a ng-if="employee.phone" href="tel://{{employee.phone}}" data-tooltip aria-haspopup="true" title="{{employee.phone}}">
+					<i class="fa fa-phone fa-lg"></i>
+				</a>
+				<br>
+				<a ng-if="employee.email" class="lowercase" href="mailto:{{employee.email | lowercase}}" data-tooltip aria-haspopup="true" title="{{employee.email | lowercase}}">
+					<i class="fa fa-envelope-o fa-lg"></i>
+				</a>
+			</div>
+
 	</li>
 	
 	<li class="results" ng-repeat="employee in employees" 
@@ -70,11 +71,11 @@
 		</h6>
 		<h6 class="no-margin subheader cargo capitalize" title="{{employee.posicion | lowercase}}">{{employee.posicion  | autoAdjusts}}</h6>
 		<div class="action-buttons">
-			<a ng-if="employee.phone" href="tel://{{employee.phone}}">
+			<a ng-if="employee.phone" href="tel://{{employee.phone}}" data-tooltip aria-haspopup="true" title="{{employee.phone}}">
 				<i class="fa fa-phone fa-lg"></i>
 			</a>
 			<br>
-			<a ng-if="employee.email" class="lowercase" href="mailto:{{employee.email | lowercase}}">
+			<a ng-if="employee.email" class="lowercase" href="mailto:{{employee.email | lowercase}}" data-tooltip aria-haspopup="true" title="{{employee.email | lowercase}}">
 				<i class="fa fa-envelope-o fa-lg"></i>
 			</a>
 		</div>
