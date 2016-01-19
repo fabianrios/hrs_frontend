@@ -11,7 +11,17 @@
 		    $scope.aprobador = Employee.show({id:0, id_posicion: identification});		      
 		}
 	
-		
+		$scope.certificatesRoute = function (ubication){
+			if(ubication == 'main.views.certificates_error' 
+			|| ubication == 'main.views.certificates_labor' 
+			|| ubication == 'main.views.certificates_vacations' 
+			|| ubication == 'main.views.certificates_payroll' 
+			|| ubication == 'main.views.certificates_income'){
+				return true;
+			}else{
+				return false;
+			}
+		}
 		$scope.toggleSelection = function(valor){
 			$("#audio_btn .fa").toggleClass("fa-volume-up");
 			$("#audio_btn .fa").toggleClass("fa-volume-off");

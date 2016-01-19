@@ -377,7 +377,7 @@
 				</ul>
 			</div>
 		</div>
-		<div class="large-5 medium-5 columns" ng-if="ubicacion == 'main.views.certificates_error' || ubicacion == 'main.views.certificates_labor' || ubicacion == 'main.views.certificates_vacations' || ubicacion == 'main.views.certificates_payroll' || ubicacion == 'main.views.certificates_income'">
+		<div class="large-5 medium-5 columns" ng-if="certificatesRoute(ubicacion)">
 			<ul class="inline-list linemenu">
 				<li>
 					<a ui-sref="main.views.certificates_labor({id:0})" data-tooltip aria-haspopup="true" title="Certificado Laboral">
