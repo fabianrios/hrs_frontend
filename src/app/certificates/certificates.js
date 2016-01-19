@@ -6,6 +6,11 @@
 	// Add http interceptors that allows us to handle http request before it sends and http response parsing
 	.config(function($stateProvider){
 		$stateProvider
+		.state('main.views.certificates_error', {
+			url: '/error_certificate/:type',
+			templateUrl: 'app/certificates/error.tpl.html',
+			controller: 'Certificates.ErrorController'
+		})
 		.state('main.views.certificates_labor', {
 			url: '/labor_certificate/:id',
 			templateUrl: 'app/certificates/labor.tpl.html',
@@ -43,12 +48,13 @@
 			} 
 		})
 	})
-	.controller('Certificates.MainController', function($rootScope, $scope, $http, $state, $filter, HRAPI_CONF, $stateParams){
+	.controller('Certificates.ErrorController', function($rootScope, $scope, $http, $state, $filter, HRAPI_CONF, $stateParams){
 
+	})
+	.controller('Certificates.MainController', function($rootScope, $scope, $http, $state, $filter, HRAPI_CONF, $stateParams){
 		if($scope.user.company.show_certificates_labor ===  false){
 			$state.transitionTo('main.views.dashboard');
 		} 
-		
 		$scope.scroll              = 0;
 		$scope.loading             = true;
 		$scope.progress            = {};
@@ -62,14 +68,7 @@
     	$scope.no_pdf = false;
       $scope.pdfUrl = HRAPI_CONF.baseUrl($scope.carta[$scope.keyCertificateLabor].file.url);
     }else{
-    	$scope.no_pdf = true;
-      $rootScope.alerts.push({type: 'warning', msg: "no hay un pdf asociado al usuario"});
-      window.setTimeout(function() {
-        $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
-          $(this).remove(); 
-          $rootScope.alerts = [];
-        });
-      }, 5000);
+		$state.transitionTo('main.views.certificates_error');
     }
 
 		$scope.cambiarPdf = function(keyCertificateLabor) {
@@ -117,6 +116,7 @@
 			$scope.pdfUrl = HRAPI_CONF.baseUrl($scope.vacations[$scope.keyVacation].file.url);
 		}else{
 			$scope.no_pdf = true;
+			$state.transitionTo('main.views.certificates_error');
 		}
 		
 		$scope.cambiarPdf = function(keyVacacion) {
@@ -185,13 +185,7 @@
 			$scope.pdfUrl = HRAPI_CONF.baseUrl($scope.volpago[$scope.keyVolante].file.url);
 		}else{
 			$scope.no_pdf = true;
-			$rootScope.alerts.push({type: 'warning', msg: "no hay un pdf asociado al usuario"});
-			window.setTimeout(function() {
-			  $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
-			    $(this).remove(); 
-			    $rootScope.alerts = [];
-			  });
-			}, 5000);
+			$state.transitionTo('main.views.certificates_error');
 		}
 				
 		$scope.cambiarPdf = function(keyVolante) {
@@ -240,13 +234,7 @@
       $scope.pdfUrl = HRAPI_CONF.baseUrl($scope.pdf[$scope.keyIncome].file.url);
     }else{
     	$scope.no_pdf = true;
-      $rootScope.alerts.push({type: 'warning', msg: "no hay un pdf asociado al usuario"});
-      window.setTimeout(function() {
-        $(".alert-box").fadeTo(500, 0).slideUp(500, function(){
-          $(this).remove(); 
-          $rootScope.alerts = [];
-        });
-      }, 5000);
+      $state.transitionTo('main.views.certificates_error');
     }
 
 		$scope.cambiarPdf = function(keyIncome) {

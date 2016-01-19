@@ -7,16 +7,19 @@
       <span class="icon-comment"></span>
       <i class="number mobile-comment"  ng-if="notifications.count > 0" ng-bind="notifications.count" ></i>
     </a>
-    <a ui-sref="main.views.edit()">
+    <!--<a ui-sref="main.views.edit()">
       <span class="icon-cog2"></span>
     </a>
+    -->
     <a ng-click="logout()">
       <span class="icon-logout"></span>
     </a>
   </div>
   <h6 class="text-center no-margin">
-    <span class="icon-user"></span>
-    {{user.name}}
+    <a ui-sref="main.views.employee_info">
+      <span class="icon-user"></span>
+      {{user.name}}
+    </a>
   </h6>
 </div>
 
