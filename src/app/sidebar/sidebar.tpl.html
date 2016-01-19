@@ -16,10 +16,10 @@
 	ng-init="activado = favorite( employee = employee.employee ? employee.employee: employee );">	
 		<div class="pic" >
 			<a ui-sref="main.views.employee_info_lookup({id:employee.identification, c:employee.company.id})" ng-if="user.employee.see_all_dm === 'true'" > 
-				<img ng-src="{{employee.image}}">
+				<img ng-src="{{employee.image.url}}">
 			</a>
 			<div ng-if="user.employee.see_all_dm === 'false'"> 
-				<img ng-src="{{employee.image}}">
+				<img ng-src="{{employee.image.url}}">
 			</div>
 		</div>
 		<h6 class="name no-margin capitalize">

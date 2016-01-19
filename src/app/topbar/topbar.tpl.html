@@ -11,7 +11,7 @@
 			</a>
 			<h5 class="subheader no-margin capitalize"><span class="icon-user"></span> {{user.name | lowercase}}</h5>
 			<div class="worker">
-				<img ng-src="{{user.pic ? user.pic : user.employee.image}}">
+				<img ng-src="{{user.pic ? user.pic : user.employee.image.url}}">
 			</div>
 			<h5 class="subheader no-margin">
 				<a ui-sref="main.views.employee_info" data-tooltip aria-haspopup="true" title="Configuración">
