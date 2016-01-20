@@ -52,10 +52,17 @@
 	>	
 		<div class="pic" >
 			<a ui-sref="main.views.employee_info_lookup({id:employee.identification, c:employee.company.id})" ng-if="user.employee.see_all_dm === 'true'" > 
-				<img ng-src="{{employee.image.url}}">
+				<img ng-src="{{employee.image.image.url}}">
+				<!-- <img ng-src="viewUrl(employee)">-->
 			</a>
 			<div ng-if="user.employee.see_all_dm === 'false'"> 
-				<img ng-src="{{employee.image.url}}">
+				<div ng-if="isSearchEmployee()">
+					<img ng-src="{{employee.image.url}}">	
+				</div>
+				<div ng-if="!isSearchEmployee()">
+					<img ng-src="{{employee.image.image.url}}">
+				</div>
+				<!--<img ng-src="viewUrl(employee)">-->
 			</div>
 		</div>
 		<h6 class="name no-margin capitalize">
