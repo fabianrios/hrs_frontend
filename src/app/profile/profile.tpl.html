@@ -1,13 +1,3 @@
-<style type="text/css">
-/*
-	@media only screen and (max-width: 800px) { 
-		#employe_area{
-			display: none;
-		}
-	}
-	*/
-</style>
-
 <!--ng-class="ubicacion != 'main.views.dashboard' ? 'whitening' : ''"-->
 <div class="bottomize whitening" ng-switch="ubicacion">
 	<div class="row"  ng-switch-default>
@@ -387,7 +377,7 @@
 				</ul>
 			</div>
 		</div>
-		<div class="large-5 medium-5 columns">
+		<div class="large-5 medium-5 columns" ng-if="certificatesRoute(ubicacion)">
 			<ul class="inline-list linemenu">
 				<li>
 					<a ui-sref="main.views.certificates_labor({id:0})" data-tooltip aria-haspopup="true" title="Certificado Laboral">
