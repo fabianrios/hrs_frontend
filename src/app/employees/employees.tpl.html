@@ -168,7 +168,7 @@
 							<td>
 								<div class="foto">
 									<a ui-sref="main.views.employee_info_lookup({id:employee.identification, c:employee.company.id})">
-										<img alt="profile" ng-src="{{employee.image}}" >
+										<img alt="profile" ng-src="{{employee.image.image.url}}" >
 									</a>
 								</div>
 								<h5 class="capitalize no-margin">{{ employee.short_name | lowercase }}</h5>

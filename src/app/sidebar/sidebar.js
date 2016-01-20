@@ -48,6 +48,11 @@
       });
       return _return;
     };
+
+    $scope.isSearchEmployee = function(){
+      return $scope.searchText.length != 0 ? true : false;
+      //return 'https://hrsolutions.s3.amazonaws.com/uploads/employee/image/340/980.jpeg';
+    }
 			
     $scope.$watch('searchText', function(newValue, oldValue) {
         if( newValue.length > 3 ){
