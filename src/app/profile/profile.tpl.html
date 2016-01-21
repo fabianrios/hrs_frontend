@@ -32,11 +32,11 @@
 			<h5 class="subheader no-margin">
 				{{user.employee.subdivision_per | lowercase}}
 			</h5>
-			<a href="tel://{{user.employee.phone}}">
+			<a href="tel://{{user.employee.phone}}" data-tooltip aria-haspopup="true" class="has-tip" title="{{user.employee.phone}}">
 				<i class="fa fa-phone fa-lg"></i>
 			</a>
 			&nbsp;
-			<a class="lowercase" href="mailto:{{user.employee.email}}">
+			<a class="lowercase" href="mailto:{{user.employee.email}}" data-tooltip aria-haspopup="true" class="has-tip" title="{{user.employee.email}}">
 				<i class="fa fa-envelope-o fa-lg"></i>
 			</a>
 		</div>
@@ -69,11 +69,11 @@
 			<h5 class="subheader no-margin capitalize">
 				{{employee.subdivision_per | lowercase}}
 			</h5>
-			<a href="tel://{{employee.phone}}">
+			<a href="tel://{{employee.phone}}" data-tooltip aria-haspopup="true" title="{{employee.phone}}">
 				<i class="fa fa-phone fa-lg"></i>
 			</a>
 			&nbsp;
-			<a class="lowercase" href="mailto:{{employee.email}}">
+			<a class="lowercase" href="mailto:{{employee.email}}" data-tooltip aria-haspopup="true" title="{{employee.email}}">
 				<i class="fa fa-envelope-o fa-lg"></i>
 			</a>
 		</div>

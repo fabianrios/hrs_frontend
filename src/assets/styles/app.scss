@@ -29,3 +29,26 @@
 #td_payroll_period {
 	border-bottom: 2pt solid white
 }
+
+/**sidebar**/
+.contact-name {
+	cursor: pointer;
+}
+.employee-full-name {
+	font-size: 15px;
+}
+.employee-position {
+	font-size: 12px;
+}
+.reveal-modal {
+	min-height: 0vh;
+}
+
+@media screen and (min-width: 40em) {
+	.employee-full-name {
+		font-size: 25px;
+	}	
+	.employee-position {
+		font-size: 18px;
+	}
+}
