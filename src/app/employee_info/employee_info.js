@@ -31,7 +31,7 @@
 		})
 	})	
 	.controller('Employee_info.ListController', function($scope, $rootScope,$state, $filter, Info, missolicitudes, $anchorScroll, Employee ){
-				
+		$state.transitionTo('main.views.dashboard'); //Temporary redirect
 		$rootScope.employee_info = $scope.user.employee_info;
  		$scope.missolicitudes = missolicitudes;
     
