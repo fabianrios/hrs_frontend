@@ -32,14 +32,6 @@
 			<div class="contact-name" ng-if="!showMasterData(user.employee)" ng-click="showModal(employee)">
 				{{employee.name | lowercase}} {{employee.lastname | lowercase}}
 			</div>
-			<!--
-			<a ui-sref="main.views.employee_info_lookup({id:employee.identification, c:employee.company.id})" class="capitalize" ng-if="showMasterData(user.employee)" >
-				{{employee.name | lowercase}} {{employee.lastname | lowercase}}
-			</a>
-			<div ng-if="!showMasterData(user.employee)" class="capitalize">
-				{{employee.name | lowercase}} {{employee.lastname | lowercase}}
-			</div>	
-			-->
 		</h6>
 		<h6 class="no-margin subheader cargo capitalize" title="{{employee.posicion | lowercase}}">{{employee.posicion  | autoAdjusts}}</h6>
 			<div class="action-buttons">
@@ -98,7 +90,7 @@
 	<div id="employeeDataModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="false" role="dialog">
 		<div class="row">
 			<div class="small-4 large-2 columns left">
-				<img ng-src="{{employee.image.image.url}}" alt="employee image">
+				<img ng-src="{{employeeData.image.image.url}}" alt="employee image">
 			</div>
 			<div class="small-8 large-8 columns left">
 				<div class="row">
