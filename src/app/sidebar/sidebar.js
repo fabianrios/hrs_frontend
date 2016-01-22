@@ -4,10 +4,43 @@
 	angular.module('sidebar', ['employee.service'])
 	.controller('Sidebar.SidebarController', function($scope, $state, $http, Employee, HRAPI_CONF){//, $state, $http, Employee, currentUser, HRAPI_CONF){ , employees
 
-    $scope.common = {};
-    $scope.searchText = '';
-    $scope.employees = Employee.index();
+    $scope.rcntv        = 2;
+    $scope.common       = {};
+    $scope.searchText   = '';
+    $scope.employees    = Employee.index();
     $scope.empFavorites = $scope.user.favorite_employees;
+    $scope.subdomain = $scope.getAppSubdomain();
+
+    $scope.isRcnTv = function (){
+      $scope.subdomain = $scope.getAppSubdomain();
+      return $scope.subdomain == "rcntv";
+    }
+
+    $scope.showMasterData = function(employee){
+      return employee.see_all_dm === 'true';
+    }
+
+    $scope.showModal = function(employee){
+      $('#employeeDataModal').foundation('reveal', 'open');
+      $scope.employeeData = employee;
+    }
+
+    $scope.employeeFullName = function(employee){
+      name = '';
+      if(employee.name){
+        name += ' '+employee.name;
+      }
+      if(employee.second_name){
+        name += ' '+employee.second_name;
+      }
+      if(employee.lastname){
+        name += ' '+employee.lastname;
+      }
+      if(employee.second_lastname){
+        name += ' '+employee.second_lastname;
+      }
+      return name;
+    }
 
     $scope.favorites = function(e, empleado){
       $(e.currentTarget).children("span").removeClass("fa-start-o");

@@ -2,27 +2,6 @@
 	'use strict';
   
 	angular.module('sessions', [ 'sap.service', 'user.service'])
-	.run(function ($rootScope, $location) {
-
-		var host = $location.host();
-		$rootScope.subdomain = function(){
-	     if (host.indexOf('.') < 0) {
-	         return null;
-	     }else{
-	         return host.split('.')[0];
-			 }
-		 };
-		 
-		 $rootScope.subdomain = $rootScope.subdomain();
-		 
-		 if ($rootScope.subdomain == "rcn"){
-			 $rootScope.logo = "images/rcn.png";
-		 }else if ($rootScope.subdomain == "harinera"){
-		 	 $rootScope.logo = "images/otrologo.png";
-		 }else{
-		 	$rootScope.logo = "images/hrs_logo.png";
-		 }
-	})
 	.config(function($stateProvider){
 		$stateProvider
 		.state('login', {
@@ -96,9 +75,8 @@
 	         return host.split('.')[0];
 			 }
 		 };
-		 
-		 $scope.subdomain = $scope.subdomain();
-		 
+	
+		 $scope.subdomain = $scope.getAppSubdomain();
 		 if ($scope.subdomain == "rcn" || $scope.subdomain == "rcntv"){
 			 $scope.logo = "images/rcn.png";
 		 }else if ($scope.subdomain == "harinera"){

@@ -44,7 +44,7 @@
 			}
 		})
 	})
-    
+  /*
 	.directive('classy', function() {
 	    return {
 	        restrict: 'A',
@@ -67,7 +67,7 @@
 	        }
 	    }
 	})
-	
+	*/
 	.directive('endeudamiento', function() {
 		return {
 			restrict: 'A',

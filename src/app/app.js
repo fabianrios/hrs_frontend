@@ -168,14 +168,14 @@
        return value.toLowerCase();
     }
   })
-  .run(function($filter, $http, $rootScope, $state, $window, HRAPI_CONF, $auth , $anchorScroll){       
+  .run(function($filter, $http, $rootScope, $state, $window, HRAPI_CONF, $auth , $anchorScroll, $location){       
       
     /////////////
     //
     //  BROADCAST  
     //
     /////////////
-    $rootScope.updateNotification = function(){        
+    $rootScope.updateNotification = function(){
       console.log("update-notifications");
       $rootScope.$broadcast('hrs:updateNotifications');
     }
@@ -184,6 +184,15 @@
     // END BROADCAST  
     //
     ////////////
+    
+    $rootScope.getAppSubdomain = function(){
+      var host = $location.host();
+      if (host.indexOf('.') < 0) {
+        return null;
+      }else{
+        return host.split('.')[0];
+      }
+    }
 
     $rootScope.$on('$stateChangeStart',
         function(event, toState, toParams, fromState, fromParams){
