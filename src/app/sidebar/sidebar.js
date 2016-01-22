@@ -9,9 +9,11 @@
     $scope.searchText   = '';
     $scope.employees    = Employee.index();
     $scope.empFavorites = $scope.user.favorite_employees;
+    $scope.subdomain = $scope.getAppSubdomain();
 
-    $scope.isRcnTv = function (companyId){
-      return companyId == $scope.rcntv;
+    $scope.isRcnTv = function (){
+      $scope.subdomain = $scope.getAppSubdomain();
+      return $scope.subdomain == "rcntv";
     }
 
     $scope.showMasterData = function(employee){

@@ -43,7 +43,7 @@
 		</h6>
 		<h6 class="no-margin subheader cargo capitalize" title="{{employee.posicion | lowercase}}">{{employee.posicion  | autoAdjusts}}</h6>
 			<div class="action-buttons">
-				<div ng-if="!isRcnTv(user.company_id)">
+				<div ng-if="!isRcnTv()">
 					<a ng-if="employee.phone" href="tel://{{employee.phone}}" data-tooltip aria-haspopup="true" title="{{employee.phone}}">
 						<i class="fa fa-phone fa-lg"></i>
 					</a>
@@ -84,7 +84,7 @@
 		</h6>
 		<h6 class="no-margin subheader cargo capitalize" title="{{employee.posicion | lowercase}}">{{employee.posicion  | autoAdjusts}}</h6>
 		<div class="action-buttons">
-			<div ng-if="!isRcnTv(user.company_id)">
+			<div ng-if="!isRcnTv()">
 				<a ng-if="employee.phone" href="tel://{{employee.phone}}" data-tooltip aria-haspopup="true" title="{{employee.phone}}">
 					<i class="fa fa-phone fa-lg"></i>
 				</a>
