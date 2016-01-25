@@ -1,8 +1,6 @@
 (function(){
 	'use strict';
-  
 	angular.module('reports', [])
-
 	// Add http interceptors that allows us to handle http request before it sends and http response parsing
 	.config(function($stateProvider){
 		$stateProvider
@@ -12,12 +10,8 @@
 			controller: 'Reports.ListController'
 		})
 	})
-	
-	.controller('Reports.ListController', function($scope, $http, $state){
+	.controller('Reports.ListController', ['$scope', '$http', '$state', function($scope, $http, $state){
 		
-		// $scope.user = currentUser;
-	
-	})
-	
+	}])
 }());
 

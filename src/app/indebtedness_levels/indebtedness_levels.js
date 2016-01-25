@@ -11,7 +11,7 @@
 			resolve     : {}
 		})
 	})
-	.controller('IndebtednessLevels.ListController', function($rootScope, $scope){
+	.controller('IndebtednessLevels.ListController', ['$rootScope', '$scope', function($rootScope, $scope){
 		$scope.payroll_date_filter = ''
 
 		if($scope.user.indebtedness_levels.length == 0){
@@ -29,6 +29,6 @@
       if($.inArray(value.payroll_concept_txt, uniqueVals) === -1) uniqueVals.push(value.payroll_concept_txt);
     });
     $scope.payroll_concepts = uniqueVals;
-	})
+	}]);
 }());
 

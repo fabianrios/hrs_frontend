@@ -18,7 +18,7 @@
 		})
 	})
 	
-	.controller('Extras.ListController', function($rootScope, $scope, $http, $state, extras_req,  Extra_requirement, HRAPI_CONF){
+	.controller('Extras.ListController', ['$rootScope', '$scope', '$http', '$state', 'extras_req', 'Extra_requirement', 'HRAPI_CONF', function($rootScope, $scope, $http, $state, extras_req,  Extra_requirement, HRAPI_CONF){
 
 		if($scope.user.company.show_hoex ===  false){
 			$state.transitionTo('main.views.dashboard');
@@ -86,8 +86,6 @@
 		        }, 5000);
 			});			
 		}; ///BORRAR
-		
-	})
-	
+	}])
 }());
 

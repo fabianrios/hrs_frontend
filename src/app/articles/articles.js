@@ -16,16 +16,16 @@
 				}
 			}
 		})
-        .state('main.views.articleDetail', {
-          url: '/articles/:id/view',
-          templateUrl: 'app/articles/article.tpl.html',
-          controller: 'Articles.DetailController',
-          resolve: {
-            article: function(Article, $stateParams){
-              return Article.show({id: $stateParams.id}).$promise;
-            }
-          }
-        })
+    .state('main.views.articleDetail', {
+      url: '/articles/:id/view',
+      templateUrl: 'app/articles/article.tpl.html',
+      controller: 'Articles.DetailController',
+      resolve: {
+        article: function(Article, $stateParams){
+          return Article.show({id: $stateParams.id}).$promise;
+        }
+      }
+    })
 		.state('main.views.articleNew', { //state for adding a new company
 		    url: '/articles/new',
 		    templateUrl: 'app/articles/articlenew.tpl.html',
@@ -43,8 +43,7 @@
 	    });
 	})
 	
-	.controller('Articles.ListController', function($rootScope, $scope, $http, $state, Article, HRAPI_CONF, articles){ //,
-
+	.controller('Articles.ListController', ['$rootScope', '$scope', '$http', '$state', 'Article', 'HRAPI_CONF', 'articles', function($rootScope, $scope, $http, $state, Article, HRAPI_CONF, articles){
 		if($scope.user.company.show_articles ===  false){
 			$state.transitionTo('main.views.dashboard');
 		} 
@@ -76,18 +75,14 @@
 			
 		} 
 
-	})	
-	.controller('Articles.DetailController', function($scope, $http, $state, article, Notification){
-
-        if($scope.user.company.show_articles ===  false){
+	}])	
+	.controller('Articles.DetailController', ['$scope', '$http', '$state', 'article', 'Notification', function($scope, $http, $state, article, Notification){
+    if($scope.user.company.show_articles ===  false){
 			$state.transitionTo('main.views.dashboard');
-		} 
-			
+		} 		
 		$scope.article = article;
-        
-
-	})
-	.controller('articles.EditController', function($scope, $http, $state, article, HRAPI_CONF, Upload ){
+	}])
+	.controller('articles.EditController', ['$scope', '$http', '$state', 'article', 'HRAPI_CONF', 'Upload', function($scope, $http, $state, article, HRAPI_CONF, Upload){
 
 		if($scope.user.company.show_articles ===  false){
 			$state.transitionTo('main.views.dashboard');
@@ -141,9 +136,8 @@
             });
 	     };
 
-	})
-	.controller('articles.NewController', function($scope, $http, $state, Article, HRAPI_CONF, Upload ){	
-		
+	}])
+	.controller('articles.NewController', ['$scope', '$http', '$state', 'Article', 'HRAPI_CONF', 'Upload', function($scope, $http, $state, Article, HRAPI_CONF, Upload){	
 		if($scope.user.company.show_articles ===  false){
 			$state.transitionTo('main.views.dashboard');
 		} 
@@ -196,8 +190,6 @@
 			};
 		}else{
 			$state.transactionTo('main.views.articles');
-		}	
-
-	});
-	
+		}
+	}]);
 }());

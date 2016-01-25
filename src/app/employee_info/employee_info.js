@@ -30,7 +30,7 @@
 			}
 		})
 	})	
-	.controller('Employee_info.ListController', function($scope, $rootScope,$state, $filter, Info, missolicitudes, $anchorScroll, Employee ){
+	.controller('Employee_info.ListController', ['$scope', '$rootScope', '$state', '$filter', 'Info', 'missolicitudes', '$anchorScroll', 'Employee', function($scope, $rootScope,$state, $filter, Info, missolicitudes, $anchorScroll, Employee){
 		$state.transitionTo('main.views.dashboard'); //Temporary redirect
 		$rootScope.employee_info = $scope.user.employee_info;
  		$scope.missolicitudes = missolicitudes;
@@ -334,10 +334,8 @@
 		        }, 5000);
 			});
 		} ///BORRAR
-		
-		
-	})
-	.controller('Employee_info.LookupController', function ($state, $scope, $rootScope, info, employee, $http) {
+	}])
+	.controller('Employee_info.LookupController', ['$state', '$scope', '$rootScope', 'info', 'employee', '$http', function ($state, $scope, $rootScope, info, employee, $http) {
 
 		if($scope.user.employee.see_all_dm  ===  'false' || $scope.user.employee.see_all_dm  ===  false ){
 			$state.transitionTo('main.views.dashboard');
@@ -482,10 +480,5 @@
 				}
 				return compare;
 		}
-		
-		// console.log($scope.estados);
-		
-		// console.log("employee",$scope.employee);
-		
-	});
+	}]);
 }());

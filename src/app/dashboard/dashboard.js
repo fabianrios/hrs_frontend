@@ -1,7 +1,6 @@
 (function(){
 	'use strict';
 	angular.module('dashboard', ['chart.js'])
-
 	.config(function($stateProvider){
 		$stateProvider
 		.state('main.views.dashboard', {
@@ -359,9 +358,7 @@
 			}
 		}
 	})
-	
-	// .controller('Dashboard.MainController', function($scope, widgets, ingresos, workers, publicaciones, employees, currentUser, articles){
-	.controller('Dashboard.MainController', function($scope, widgets, ingresos, workers, publicaciones, Employee, Article ){
+	.controller('Dashboard.MainController', ['$scope', 'widgets', 'ingresos', 'workers', 'publicaciones', 'Employee', 'Article', function($scope, widgets, ingresos, workers, publicaciones, Employee, Article){
 		$scope.$Employee = Employee;
     	$scope.$Article = Article;
     
@@ -512,5 +509,5 @@
 		});
 
     
-		});
-	}());
+	}]);
+}());

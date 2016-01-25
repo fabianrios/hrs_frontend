@@ -18,7 +18,7 @@
         })
     })
 	
-    .controller('Organigram.MainController', function($scope, $http, organigram, HRAPI_CONF, $stateParams){
+  .controller('Organigram.MainController', ['$scope', '$http', 'organigram', 'HRAPI_CONF', '$stateParams', function($scope, $http, organigram, HRAPI_CONF, $stateParams){
 			
 		$scope.mostrar = function(e) {
 			console.log($(e.currentTarget).parent().children("ul.childs"));
@@ -70,147 +70,145 @@
 	 	  update(root);
 	
 
-	function update(source) {
+		function update(source) {
     
-	  var duration = d3.event && d3.event.altKey ? 3000 : 300;
+		  var duration = d3.event && d3.event.altKey ? 3000 : 300;
 
-	  // Compute the new tree layout.
-	  var nodes = tree.nodes(root).reverse();
+		  // Compute the new tree layout.
+		  var nodes = tree.nodes(root).reverse();
 
-	  // console.log(nodes);
-	  // Normalize for fixed-depth.
-	  nodes.forEach(function(d) { d.y = d.depth * 350; });
+		  // console.log(nodes);
+		  // Normalize for fixed-depth.
+		  nodes.forEach(function(d) { d.y = d.depth * 350; });
 
-	  // Update the nodes…
-	  var node = svg.selectAll("g.node")
-	      .data(nodes, function(d) { return d.id || (d.id = ++i); });
+		  // Update the nodes…
+		  var node = svg.selectAll("g.node")
+		      .data(nodes, function(d) { return d.id || (d.id = ++i); });
 
-	  // Enter any new nodes at the parent's previous position.
-	  var nodeEnter = node.enter().append("svg:g")
-	      .attr("class", "node")
-	      .attr("transform", function(d) { return "translate(" + source.y0 + "," + source.x0 + ")"; })
-	      .on("click", function(d) { toggle(d); update(d); });
+		  // Enter any new nodes at the parent's previous position.
+		  var nodeEnter = node.enter().append("svg:g")
+		      .attr("class", "node")
+		      .attr("transform", function(d) { return "translate(" + source.y0 + "," + source.x0 + ")"; })
+		      .on("click", function(d) { toggle(d); update(d); });
 
-		// nodeEnter.append("rect")
-		// 	      .attr("x", function(d) { return d.children || d._children ? -58 : 58; })
-		// 	      .attr("y", -25)
-		// 		.attr("width", 260)
-		//     .attr("height", 45)
-		//     .attr("fill", "white");
+			// nodeEnter.append("rect")
+			// 	      .attr("x", function(d) { return d.children || d._children ? -58 : 58; })
+			// 	      .attr("y", -25)
+			// 		.attr("width", 260)
+			//     .attr("height", 45)
+			//     .attr("fill", "white");
 
-	  nodeEnter.append("svg:image")
-          .attr("x", function(d) { return d.children || d._children ? -55 : 15; })
-          .attr('y',-20)
-				  .attr('width', 40)
-          .attr('height', 40)
-				  .attr("xlink:href",	function(d) { return d.image; })
-	
-	  
-	  nodeEnter.append("svg:circle")
-	      .attr("class", "thelink")
-	      .attr("r", 1e-6)
-	      .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
-		
-	  nodeEnter.append("svg:text")
-	      .attr("x", function(d) { return d.children || d._children ? -60 : 60; })
-	      .attr("dy", "-0.5em")
-	      .attr("text-anchor", function(d) { return d.children || d._children ? "end" : "start"; })
-	      .text(function(d) { return d.short_name; })
-		    .style("font-size","16px")
-	      .style("fill-opacity", 1e-6);
-  
-	  nodeEnter.append("svg:text")
-		    .attr("class", "cargo")
-	      .attr("x", function(d) { return d.children || d._children ? -60 : 60; })
-	      .attr("dy", ".4em")
-	      .attr("text-anchor", function(d) { return d.children || d._children ? "end" : "start"; })
-	      .text(function(d) { return d.posicion; })
-			  .style("font-size","12px")
-			  .style("fill", "#6f6f6f")
-	      .style("fill-opacity", 1e-6);
+		  nodeEnter.append("svg:image")
+		        .attr("x", function(d) { return d.children || d._children ? -55 : 15; })
+		        .attr('y',-20)
+					  .attr('width', 40)
+		        .attr('height', 40)
+					  .attr("xlink:href",	function(d) { return d.image; })
+
 		  
-	  nodeEnter.append("svg:text")
-		  .attr("class", "tel")
-	      .attr("x", function(d) { return d.children || d._children ? -60 : 60; })
-	      .attr("dy", "1.4em")
-	      .attr("text-anchor", function(d) { return d.children || d._children ? "end" : "start"; })
-	      .text(function(d) { return d.phone; })
-			  .style("font-size","12px")
-			  .style("fill", "#6f6f6f")
-	      .style("fill-opacity", 1e-6);
+		  nodeEnter.append("svg:circle")
+		      .attr("class", "thelink")
+		      .attr("r", 1e-6)
+		      .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
+			
+		  nodeEnter.append("svg:text")
+		      .attr("x", function(d) { return d.children || d._children ? -60 : 60; })
+		      .attr("dy", "-0.5em")
+		      .attr("text-anchor", function(d) { return d.children || d._children ? "end" : "start"; })
+		      .text(function(d) { return d.short_name; })
+			    .style("font-size","16px")
+		      .style("fill-opacity", 1e-6);
 
-	  // Transition nodes to their new position.
-	  var nodeUpdate = node.transition()
-	      .duration(duration)
-	      .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; });
+		  nodeEnter.append("svg:text")
+			    .attr("class", "cargo")
+		      .attr("x", function(d) { return d.children || d._children ? -60 : 60; })
+		      .attr("dy", ".4em")
+		      .attr("text-anchor", function(d) { return d.children || d._children ? "end" : "start"; })
+		      .text(function(d) { return d.posicion; })
+				  .style("font-size","12px")
+				  .style("fill", "#6f6f6f")
+		      .style("fill-opacity", 1e-6);
+			  
+		  nodeEnter.append("svg:text")
+			  .attr("class", "tel")
+		      .attr("x", function(d) { return d.children || d._children ? -60 : 60; })
+		      .attr("dy", "1.4em")
+		      .attr("text-anchor", function(d) { return d.children || d._children ? "end" : "start"; })
+		      .text(function(d) { return d.phone; })
+				  .style("font-size","12px")
+				  .style("fill", "#6f6f6f")
+		      .style("fill-opacity", 1e-6);
 
-	  nodeUpdate.select("circle.thelink")
-	      .attr("r", 6.5)
-	      .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
+		  // Transition nodes to their new position.
+		  var nodeUpdate = node.transition()
+		      .duration(duration)
+		      .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; });
 
-	  nodeUpdate.selectAll("text")
-	      .style("fill-opacity", 1);
+		  nodeUpdate.select("circle.thelink")
+		      .attr("r", 6.5)
+		      .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
 
-	  // Transition exiting nodes to the parent's new position.
-	  var nodeExit = node.exit().transition()
-	      .duration(duration)
-	      .attr("transform", function(d) { return "translate(" + source.y + "," + source.x + ")"; })
-	      .remove();
+		  nodeUpdate.selectAll("text")
+		      .style("fill-opacity", 1);
 
-	  nodeExit.select("circle.thelink")
-	      .attr("r", 1e-6);
+		  // Transition exiting nodes to the parent's new position.
+		  var nodeExit = node.exit().transition()
+		      .duration(duration)
+		      .attr("transform", function(d) { return "translate(" + source.y + "," + source.x + ")"; })
+		      .remove();
 
-	  nodeExit.selectAll("text")
-	      .style("fill-opacity", 1e-6);
+		  nodeExit.select("circle.thelink")
+		      .attr("r", 1e-6);
 
-	  // Update the links…
-	  var link = svg.selectAll("path.link")
-				.style("stroke", "#EBF6FF")
-	      .data(tree.links(nodes), function(d) { return d.target.id; });
+		  nodeExit.selectAll("text")
+		      .style("fill-opacity", 1e-6);
 
-	  // Enter any new links at the parent's previous position.
-	  link.enter().insert("svg:path", "g")
-	      .attr("class", "link")
-	      .attr("d", function(d) {
-	        var o = {x: source.x0, y: source.y0};
-	        return diagonal({source: o, target: o});
-	      })
-	    .transition()
-	      .duration(duration)
-	      .attr("d", diagonal);
+		  // Update the links…
+		  var link = svg.selectAll("path.link")
+					.style("stroke", "#EBF6FF")
+		      .data(tree.links(nodes), function(d) { return d.target.id; });
 
-	  // Transition links to their new position.
-	  link.transition()
-	      .duration(duration)
-	      .attr("d", diagonal);
+		  // Enter any new links at the parent's previous position.
+		  link.enter().insert("svg:path", "g")
+		      .attr("class", "link")
+		      .attr("d", function(d) {
+		        var o = {x: source.x0, y: source.y0};
+		        return diagonal({source: o, target: o});
+		      })
+		    .transition()
+		      .duration(duration)
+		      .attr("d", diagonal);
 
-	  // Transition exiting nodes to the parent's new position.
-	  link.exit().transition()
-	      .duration(duration)
-	      .attr("d", function(d) {
-	        var o = {x: source.x, y: source.y};
-	        return diagonal({source: o, target: o});
-	      })
-	      .remove();
+		  // Transition links to their new position.
+		  link.transition()
+		      .duration(duration)
+		      .attr("d", diagonal);
 
-	  // Stash the old positions for transition.
-	  nodes.forEach(function(d) {
-	    d.x0 = d.x;
-	    d.y0 = d.y;
-	  });
-	}
+		  // Transition exiting nodes to the parent's new position.
+		  link.exit().transition()
+		      .duration(duration)
+		      .attr("d", function(d) {
+		        var o = {x: source.x, y: source.y};
+		        return diagonal({source: o, target: o});
+		      })
+		      .remove();
 
-	// Toggle children.
-	function toggle(d) {
-	  if (d.children) {
-	    d._children = d.children;
-	    d.children = null;
-	  } else {
-	    d.children = d._children;
-	    d._children = null;
-	  }
-	}
-	
-		
-    });
+		  // Stash the old positions for transition.
+		  nodes.forEach(function(d) {
+		    d.x0 = d.x;
+		    d.y0 = d.y;
+		  });
+		}
+
+		// Toggle children.
+		function toggle(d) {
+		  if (d.children) {
+		    d._children = d.children;
+		    d.children = null;
+		  } else {
+		    d.children = d._children;
+		    d._children = null;
+		  }
+		}
+  }]);
 }());

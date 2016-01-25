@@ -1,9 +1,7 @@
 (function(){
   'use strict';
-
   angular.module('navbar', [])
-
-    .controller('Navbar.NavbarController', function($scope, Notification){//,currentUser,articles,vac_requirements, extras_requirements, inhabilities_requirements, licenses_requirements, infos, Notification){
+  .controller('Navbar.NavbarController', ['$scope', 'Notification', function($scope, Notification){//,currentUser,articles,vac_requirements, extras_requirements, inhabilities_requirements, licenses_requirements, infos, Notification){
 		
 		// $scope.articles = articles.articles;
 		// $scope.articles_not_mine = [];
@@ -111,7 +109,6 @@
 		// 	}
 		// });
 		
-		// console.log($scope.licenses_not_user);
-		
-    });
+		// console.log($scope.licenses_not_user);		
+  }]);
 }());

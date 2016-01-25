@@ -50,8 +50,7 @@
 	    })
 	})
 	
-	.controller('Approvals.ListController', function($scope, $http, $state,  infos, Info ){//,{
-
+	.controller('Approvals.ListController', ['$scope', '$http', '$state', 'infos', 'Info', function($scope, $http, $state,  infos, Info){
 		/////////////
   		//	INFO
   		/////////////
@@ -101,11 +100,8 @@
 		//////////////
 		//	INFO
 		//////////////
-		
-    
-	})
-  
-  .controller('Approvals.Licenses.ListController', function($scope, $state, inhabilities_req, Inhability_requirement, extras_req, Extra_requirement){ //,  currentUser, extras_req, inhabilities_req, HRAPI_CONF
+	}])
+  .controller('Approvals.Licenses.ListController', ['$scope', '$state', 'inhabilities_req', 'Inhability_requirement', 'extras_req', 'Extra_requirement', function($scope, $state, inhabilities_req, Inhability_requirement, extras_req, Extra_requirement){
 
   		/////////////
   		//	INHABILITIES
@@ -246,8 +242,8 @@
 		//////////////
 	
   
-  })
-  .controller('Approvals.Requirements.ListController', function( $scope, $http, $state, approve_severances, Severance, approve_vacations, Vacation_requirement, approve_compensatory_vacations, Compensatory_vacation, approve_license_requirement, License_requirement, HRAPI_CONF){
+  }])
+  .controller('Approvals.Requirements.ListController', ['$scope', '$http', '$state', 'approve_severances', 'Severance', 'approve_vacations', 'Vacation_requirement', 'approve_compensatory_vacations', 'Compensatory_vacation', 'approve_license_requirement', 'License_requirement', 'HRAPI_CONF', function( $scope, $http, $state, approve_severances, Severance, approve_vacations, Vacation_requirement, approve_compensatory_vacations, Compensatory_vacation, approve_license_requirement, License_requirement, HRAPI_CONF){
 
   		/////////////
   		//	SEVERANCE
@@ -548,10 +544,6 @@
 		//////////////
 		//	ALL
 		//////////////
-  
-  
-  })
-  
-	
+  }])
 }());
 

@@ -18,7 +18,7 @@
 		})
 	})
 	
-	.controller('Inhabilities.ListController', function($rootScope, $scope, $http, $state, inhabilities_req, Inhability_requirement, Upload, HRAPI_CONF){
+	.controller('Inhabilities.ListController', ['$rootScope', '$scope', '$http', '$state', 'inhabilities_req', 'Inhability_requirement', 'Upload', 'HRAPI_CONF', function($rootScope, $scope, $http, $state, inhabilities_req, Inhability_requirement, Upload, HRAPI_CONF){
 
 		if($scope.user.company.show_inhabilities ===  false){
 			$state.transitionTo('main.views.dashboard');
@@ -126,10 +126,7 @@
 			          });
 		        }, 5000);
 			});			
-		} 
-		
-		
-	})
-	
+		}
+	}])
 }());
 

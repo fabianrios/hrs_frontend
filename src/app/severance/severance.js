@@ -17,8 +17,7 @@
 			}	
 		})
 	})
-	
-	.controller('Severance.ListController', function($scope, $http, $state, Severance, severances){
+	.controller('Severance.ListController', ['$scope', '$http', '$state', 'Severance', 'severances', function($scope, $http, $state, Severance, severances){
 
 		if($scope.user.company.show_scesa ===  false){
 			$state.transitionTo('main.views.dashboard');
@@ -85,9 +84,6 @@
 			});	
 			
 		};
-		
-
-	})
-	
+	}])
 }());
 

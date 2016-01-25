@@ -18,7 +18,7 @@
 		})
 	})
 	
-	.controller('Loans.ListController', function($scope, $http, $state, Loan, loans){ //, Loan, loans
+	.controller('Loans.ListController', ['$scope', '$http', '$state', 'Loan', 'loans', function($scope, $http, $state, Loan, loans){ 
 
 		if($scope.user.company.show_loans ===  false){
 			$state.transitionTo('main.views.dashboard');
@@ -77,8 +77,6 @@
 		        }, 5000);
 			});	
 		}
-		
-	});
-	
+	}]);
 }());
 

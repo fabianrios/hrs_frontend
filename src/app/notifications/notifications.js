@@ -12,7 +12,7 @@
 			controller: 'Notifications.ListController'			
 		})
 	})	
-	.controller('Notifications.ListController', function($scope, $http, $state, HRAPI_CONF ){//, $filter,  Notification, vac_requirements, extras_requirements, inhabilities_requirements, licenses_requirements, infos, Employee,
+	.controller('Notifications.ListController', ['$scope', '$http', '$state', 'HRAPI_CONF', function($scope, $http, $state, HRAPI_CONF){
 		
     // $scope.user = currentUser;
     $scope.notificaciones = $scope.user.employee.notifications ? $scope.user.employee.notifications : "Semanal";
@@ -135,5 +135,5 @@
 		
 // //		console.log($scope.vac_requirements, $scope.licenses_history);
 
-	})
+	}])
 }());

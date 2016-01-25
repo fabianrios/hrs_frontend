@@ -18,7 +18,7 @@
 		})
 	})
 	
-	.controller('Licenses.ListController', function( $scope, $http, $state,  licenses_req, License_requirement, Upload, HRAPI_CONF ){
+	.controller('Licenses.ListController', ['$scope', '$http', '$state', 'licenses_req', 'License_requirement', 'Upload', 'HRAPI_CONF', function($scope, $http, $state,  licenses_req, License_requirement, Upload, HRAPI_CONF){
 
 		if($scope.user.company.show_licenses ===  false){
 			$state.transitionTo('main.views.dashboard');
@@ -112,9 +112,6 @@
 		        }, 5000);
 			});			
 		} ///BORRAR
-			
-		
-	})
-	
+	}])
 }());
 

@@ -18,7 +18,7 @@
 		})
 	})
 	
-	.controller('Compensatory_vacations.ListController', function($rootScope, $scope, $http, $state, Upload, HRAPI_CONF, compensatory_vac, Compensatory_vacation){
+	.controller('Compensatory_vacations.ListController', ['$rootScope', '$scope', '$http', '$state', 'Upload', 'HRAPI_CONF', 'compensatory_vac', 'Compensatory_vacation', function($rootScope, $scope, $http, $state, Upload, HRAPI_CONF, compensatory_vac, Compensatory_vacation){
 
 		if($scope.user.company.show_vacations_c ===  false){
 			$state.transitionTo('main.views.dashboard');
@@ -97,8 +97,5 @@
 			});
 			
 		} ///BORRAR	
-		
-		
-	})
-	
+	}])
 }());

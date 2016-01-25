@@ -19,7 +19,7 @@
 		})
 	})
 	
-	.controller('Managment.ListController', function($scope, $http, $state, $log, moment){
+	.controller('Managment.ListController', ['$scope', '$http', '$state', '$log', 'moment', function($scope, $http, $state, $log, moment){
 		
 		// $scope.user = currentUser;
 		$scope.data = [
@@ -103,13 +103,8 @@
 			timeFramesNonWorkingMode: 'visible',
 			columnMagnet: '15 minutes',
 			timeFramesMagnet: true,
-		}
-				
-				
+		}		
 		console.log("$scope.data",$scope.data);
-		
-		
-	})
-	
+	}])
 }());
 

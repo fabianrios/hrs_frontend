@@ -55,10 +55,10 @@
 	  
 	})
 	
-	.controller('companies.DetailController', function($scope, company){
+	.controller('companies.DetailController', ['$scope', 'company', function($scope, company){
 		$scope.company = company;
-	})
-	.controller('companies.NewController', function($rootScope, $scope, $state, Company){
+	}])
+	.controller('companies.NewController', ['$rootScope', '$scope', '$state', 'Company', function($rootScope, $scope, $state, Company){
 		$scope.company = new Company();  
  
 		$scope.addCompany = function(e) { //create a new company. Issues a POST to /api/companies
@@ -99,8 +99,8 @@
 				}, 5000);
 			}
 		};
-	})
-	.controller('companies.EditController', function($scope, $state, $stateParams, Company){
+	}])
+	.controller('comanies.EditController', ['$scope', '$state', '$stateParams', 'Company', function($scope, $state, $stateParams, Company){
 		$scope.updateCompany = function() { //Update the edited company. Issues a PUT to /api/companies/:id
 			$scope.company.$update(function() {
 				$state.go('main.views.companylisting'); // on success go back to company_listing
@@ -113,5 +113,5 @@
 		};
 
 		$scope.loadCompany(); // Load a movie which can be edited on UI
-	});
+	}]);
 }());
