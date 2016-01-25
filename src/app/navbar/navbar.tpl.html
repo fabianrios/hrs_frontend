@@ -169,8 +169,7 @@
     </a>
   </li>
 -->
-<!-- {"articles":0,"vacation":0,"extra":0,"inhability":0,"license":0,"info":0,"count":0} -->
-  <li class="has-submenu" ng-if="notifications['count'] > 0">
+  <li class="has-submenu" ng-if="existsApprovals()">
     <a href="" >
       <i class="fa fa-check-circle-o fa-lg"></i> Aprobaciones
       <i class="number main-menu-comment aprobaciones" ng-if="notifications['count'] > 0">{{notifications['count']}}</i>
@@ -180,6 +179,7 @@
       <li class="back">
         <a href="">Volver </a>
       </li>
+      <!-- Esto se debe eliminar más adelante, 
       <li ng-if="notifications.articles > 0">
         <a ui-sref="main.views.articles">
           <i class="fa fa-paste fa-lg"></i> Articulos
@@ -187,21 +187,22 @@
           <i class="fa fa-angle-right fa-right fa-lg"></i>
         </a>
       </li>
-      <li ng-if="notifications.inhability + notifications.extra > 0">
+      -->
+      <li ng-if="existsRegisters()">
         <a ui-sref="main.views.approvals_licenses">
           <i class="fa fa-paste fa-lg"></i> Registros
           <i class="number main-menu-comment registers">{{notifications.inhability + notifications.extra}}</i>
           <i class="fa fa-angle-right fa-right fa-lg"></i>
         </a>
       </li>
-      <li ng-if="notifications.vacation + notifications.license + notifications.severances + notifications.compensatory_vacation > 0">
+      <li ng-if="existsRequests()">
         <a ui-sref="main.views.approvals_requirements">
           <i class="fa fa-check fa-lg"></i> Solicitudes
           <i class="number main-menu-comment">{{ notifications.vacation + notifications.license + notifications.severances + notifications.compensatory_vacation }}</i>
           <i class="fa fa-angle-right fa-right fa-lg"></i>
         </a>
       </li>
-      <li ng-if="notifications.info > 0">
+      <li ng-if="existsMasterData()">
         <a ui-sref="main.views.approvals">
           <i class="fa fa-users fa-lg"></i> Datos maestros
           <i class="number main-menu-comment datos_maestros">{{notifications.info}}</i>
