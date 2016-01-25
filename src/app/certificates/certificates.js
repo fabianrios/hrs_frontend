@@ -61,12 +61,14 @@
 		$scope.progreso            = 0;
 		$scope.keyCertificateLabor = 0;
 		$scope.keyVolante 		     = $stateParams.id.toString();
-  	$scope.cartas 						 = $filter('filter')($scope.user.files, {op:'clabr'})
-  	$scope.carta  						 = $filter('filter')($scope.user.files, {op:'clabr', pdf_type_ident:$scope.keyVolante})
-
+  	$scope.cartas 						 = $filter('filter')($scope.user.files, {op:'clabr'});
+  	$scope.carta  						 = $filter('filter')($scope.user.files, {op:'clabr', pdf_type_ident:$scope.keyVolante});
     if (typeof $scope.carta[$scope.keyCertificateLabor] !== "undefined"){
     	$scope.no_pdf = false;
-      $scope.pdfUrl = HRAPI_CONF.baseUrl($scope.carta[$scope.keyCertificateLabor].file.url);
+      	$scope.pdfUrl = HRAPI_CONF.baseUrl($scope.carta[$scope.keyCertificateLabor].file.url);
+    }else if(typeof $scope.cartas[$scope.keyCertificateLabor] !== "undefined"){
+    	$scope.no_pdf = false;
+      	$scope.pdfUrl = HRAPI_CONF.baseUrl($scope.cartas[$scope.keyCertificateLabor].file.url);
     }else{
 		$state.transitionTo('main.views.certificates_error');
     }
@@ -180,6 +182,7 @@
 		$scope.keyVolante = parseInt($stateParams.id);
 
 		$scope.volpago = $filter('filter')($scope.user.files_last_months, {op:'volpg'});
+		
 		if (typeof $scope.volpago[$scope.keyVolante] !== "undefined"){
 			$scope.no_pdf = false;
 			$scope.pdfUrl = HRAPI_CONF.baseUrl($scope.volpago[$scope.keyVolante].file.url);
