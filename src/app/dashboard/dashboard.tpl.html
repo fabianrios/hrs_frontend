@@ -7,12 +7,9 @@
 						<h5 class="encabezado">
 							<a href="javascript:void(0)" title="{{ common.widgets[0].name }}">
 								<div class="text-complete">
-								{{ common.widgets[0].name }}
+									{{ common.widgets[0].name }}
+									<i class="fa fa-angle-right" style=""></i>
 								</div>
-								<div class="text-cut">
-								{{ common.widgets[0].name | limitTo : 15 }}	...
-								</div>
-								<i class="fa fa-angle-right" style=""></i>
 							</a>
 
 							<div class="right actions">
@@ -40,12 +37,10 @@
 						<h5 class="encabezado">
 							<a href="#" title="{{ common.widgets[1].name }}">
 								<div class="text-complete">
-								{{ common.widgets[1].name }}
+									{{ common.widgets[1].name }}
+									<i class="fa fa-angle-right" style=""></i>
 								</div>
-								<div class="text-cut">
-								{{ common.widgets[1].name | limitTo : 15 }}	...
-								</div>
-								<i class="fa fa-angle-right" style=""></i>
+								
 							</a>
 
 							<div class="right actions">
@@ -76,12 +71,9 @@
 						<h5 class="encabezado">
 							<a href="#" title="{{ common.widgets[2].name }}">
 								<div class="text-complete">
-								{{ common.widgets[2].name }}
+									{{ common.widgets[2].name }}
+									<i class="fa fa-angle-right" style=""></i>
 								</div>
-								<div class="text-cut">
-								{{ common.widgets[2].name | limitTo : 15 }}	...
-								</div>
-								<i class="fa fa-angle-right" style=""></i>
 							</a>
 
 							<div class="right actions">
@@ -115,11 +107,8 @@
 							<a href="#" title="{{ common.widgets[2].name }}">
 								<div class="text-complete">
 								Mis ingresos y deducciones
-								</div>
-								<div class="text-cut">
-								{{ 'Mis ingresos y deducciones' | limitTo : 15 }}	...
-								</div>
 								<i class="fa fa-angle-right" style=""></i>
+								</div>
 							</a>
 							<div class="right actions">
 								<a class="text-right" href="">
@@ -174,11 +163,8 @@
 							<a href="#" title="{{ common.widgets[2].name }}">
 								<div class="text-complete">
 								{{ common.workers[0].name }}
-								</div>
-								<div class="text-cut">
-								{{ common.workers[0].name | limitTo : 15 }}	...
-								</div>
 								<i class="fa fa-angle-right" style=""></i>
+								</div>
 							</a>
 							<div class="right actions">
 								<a class="text-right" href="">
@@ -217,7 +203,11 @@
 				<li ng-hide="!user.company.show_labor" ng-init="employee_by_fecha_de_ingreso = $Employee.all_by_fecha_de_ingreso();">
 					<div class="widgets minh-430">
 						<h5 class="encabezado">
-							<a href="#">{{ common.workers[1].name }} <i class="fa fa-angle-right"></i> </a>
+							<a href="#">
+								<div class="text-complete">
+									{{ common.workers[1].name }} <i class="fa fa-angle-right"></i> 
+								</div>
+							</a>
 							<div class="right actions">
 								<a class="text-right" href="">
 									<span data-tooltip aria-haspopup="true" class="has-tip" title="Fecha en la cual el empleado cumple año(s) de ingreso a la compañía.">
@@ -259,7 +249,11 @@
 				ng-init="new_employees = $Employee.all_by_current_month_entry();">
 					<div class="widgets minh-430">
 						<h5 class="encabezado">
-							<a href="#">{{ common.workers[2].name }} <i class="fa fa-angle-right"></i> </a>
+							<a href="#">
+								<div class="text-complete">
+									{{ common.workers[2].name }} <i class="fa fa-angle-right"></i> 
+								</div>
+							</a>
 							<div class="right actions">
 								<a class="text-right" href="">
 									<span data-tooltip aria-haspopup="true" class="has-tip" title="Empleados nuevos en el mes actual">
@@ -298,7 +292,11 @@
 				<li ng-hide="!user.company.show_articles" ng-init="articles_not_mine = $Article.index({per:10});">
 					<div class="widgets minh-430">
 						<h5 class="encabezado">
-							<a ui-sref="main.views.articles()">Publicaciones recientes <i class="fa fa-angle-right"></i> </a>
+							<a ui-sref="main.views.articles()">
+							<div class="text-complete">
+								Publicaciones recientes <i class="fa fa-angle-right"></i> 
+							</div>
+							</a>
 							<div class="right actions">
 								<a class="text-right" href="">
 									<span data-tooltip aria-haspopup="true" class="has-tip" title="Articulos de interés publicados por los Directivos de la empresa.">
