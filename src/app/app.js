@@ -264,7 +264,6 @@
     
     $rootScope.logout = function(){
       $(document).foundation('tooltip','off');
-      console.log("Logout");
       $auth.signOut();
     };
 	
