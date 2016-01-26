@@ -4,7 +4,7 @@
 			<ul class="no-bullet organigrama">
 				<li>
 					<div class="pictuare boss">
-						<a><img ng-src="{{organigram.image}}" alt="" /></a>
+						<a><img ng-src="{{organigram.image.image.url}}" alt="" /></a>
 					</div>
 					<div class="org-info">
 						<h4 class="no-margin maxup bluetxt">{{organigram.short_name | lowercase}}</h4>
@@ -13,7 +13,7 @@
 					<ul class="no-bullet">
 						<li ng-repeat="employee in organigram.children">
 							<div class="pictuare first-line" ng-click="mostrar($event)">
-								<a><img ng-src="{{organigram.image}}" alt="" /></a>
+								<a><img ng-src="{{organigram.image.image.url}}" alt="" /></a>
 							</div>
 							<div class="org-info hovered" ng-click="mostrar($event)">
 								<h5 class="no-margin maxup">{{employee.short_name | lowercase}}</h5>
@@ -22,7 +22,7 @@
 							<ul class="childs no-bullet" ng-if="employee.children || employee._children">
 								<li ng-repeat="razo in employee.children">
 									<div class="pictuare second-line">
-										<a><img ng-src="{{razo.image}}" alt="" /></a>
+										<a><img ng-src="{{razo.image.url}}" alt="" /></a>
 									</div>
 									<div class="org-info">
 										<h5 class="no-margin subheader maxup fixdown">{{razo.short_name | lowercase}}</h5>
@@ -31,7 +31,7 @@
 								</li>
 								<li ng-repeat="razo in employee._children">
 									<div class="pictuare second-line">
-										<a><img ng-src="{{razo.image}}" alt="" /></a>
+										<a><img ng-src="{{razo.image.url}}" alt="" /></a>
 									</div>
 									<div class="org-info">
 										<h5 class="no-margin subheader maxup fixdown">{{razo.short_name | lowercase}}</h5>

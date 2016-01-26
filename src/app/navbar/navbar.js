@@ -18,7 +18,22 @@
 		// $scope.toapproved =[];
 		$scope.laborCertificate = 'SLPR';
 		$scope.pdfKeyInit 			= 0;
-    
+
+		$scope.existsRegisters  = function(){
+			return $scope.notifications.inhability + $scope.notifications.extra > 0;
+		} 
+		$scope.existsRequests   = function(){
+			return $scope.notifications.vacation + $scope.notifications.license + $scope.notifications.severances + $scope.notifications.compensatory_vacation > 0
+		}
+		$scope.existsMasterData = function(){
+			return $scope.notifications.info > 0;
+		}
+
+		$scope.existsApprovals = function(){
+			return $scope.existsRegisters() || $scope.existsRequests() ||	$scope.existsMasterData();
+		}
+
+
 	    $scope.seeValidation = function(see){
 	      if (see == "true"){
 	        return true
