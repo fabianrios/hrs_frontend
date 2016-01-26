@@ -21,7 +21,7 @@
 		})
 	})
 	
-	.controller('Vacations.ListController', function($rootScope, $scope, $http, $state, Vacation_requirement, vac_requirements, Upload, HRAPI_CONF){
+	.controller('Vacations.ListController', ['$rootScope', '$scope', '$http', '$state', 'Vacation_requirement', 'vac_requirements', 'Upload', 'HRAPI_CONF', function($rootScope, $scope, $http, $state, Vacation_requirement, vac_requirements, Upload, HRAPI_CONF){
 
 		if($scope.user.company.show_vacations ===  false){
 			$state.transitionTo('main.views.dashboard');
@@ -134,9 +134,5 @@
 			});
 			
 		} ///BORRAR
-		
-	
-		
-	})
-	
+	}])
 }());

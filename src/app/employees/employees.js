@@ -18,9 +18,7 @@
 		})
 	})
 	
-	.controller('Employees.ListController', function($scope, $http, $state, $filter, Employees){
-		
-		// $scope.user = currentUser;
+	.controller('Employees.ListController', ['$scope', '$http', '$state', '$filter', 'Employees', function($scope, $http, $state, $filter, Employees){
 		$scope.employees = Employees;
 		console.log($scope.employees);
 			
@@ -166,7 +164,6 @@
 								// 	$scope.alerts.push({type: 'alert', msg: data.data.errors.status[0]});
 								// });
 							};
-						})
-	
-					}());
+	}])
+}());
 

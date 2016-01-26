@@ -1,9 +1,7 @@
 (function(){
   'use strict';
-
   angular.module('profile', [])
-
-    .controller('Profile.ProfileController', function($scope,  Employee ){//, $stateParams, currentUser, Employee, $log){
+  .controller('Profile.ProfileController', ['$scope', 'Employee', function($scope,  Employee ){//, $stateParams, currentUser, Employee, $log){
 
 		$scope.aprobador = [];
 
@@ -28,6 +26,6 @@
 			}
 		}
 
-    });
+  }]);
 }());
 

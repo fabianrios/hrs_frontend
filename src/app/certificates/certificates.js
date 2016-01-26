@@ -48,10 +48,10 @@
 			} 
 		})
 	})
-	.controller('Certificates.ErrorController', function($rootScope, $scope, $http, $state, $filter, HRAPI_CONF, $stateParams){
+	.controller('Certificates.ErrorController', ['$rootScope', '$scope', '$http', '$state', '$filter', 'HRAPI_CONF', '$stateParams', function($rootScope, $scope, $http, $state, $filter, HRAPI_CONF, $stateParams){
 
-	})
-	.controller('Certificates.MainController', function($rootScope, $scope, $http, $state, $filter, HRAPI_CONF, $stateParams){
+	}])
+	.controller('Certificates.MainController', ['$rootScope', '$scope', '$http', '$state', '$filter', 'HRAPI_CONF', '$stateParams', function($rootScope, $scope, $http, $state, $filter, HRAPI_CONF, $stateParams){
 		if($scope.user.company.show_certificates_labor ===  false){
 			$state.transitionTo('main.views.dashboard');
 		} 
@@ -99,8 +99,8 @@
 		}
 		
 
-	})
-	.controller('Certificates.Vacaciones.MainController', function($rootScope, $scope, $http, $state, $filter, HRAPI_CONF, $stateParams){
+	}])
+	.controller('Certificates.Vacaciones.MainController', ['$rootScope', '$scope', '$http', '$state', '$filter', 'HRAPI_CONF', '$stateParams', function($rootScope, $scope, $http, $state, $filter, HRAPI_CONF, $stateParams){
 
 		if($scope.user.company.show_certificates_vacations ===  false){
 			$state.transitionTo('main.views.dashboard');
@@ -149,11 +149,8 @@
 			$scope.progress = progress;
 			$scope.progreso = (100 / progress.total) * progress.loaded;
 		}
-		
-		
-
-	})
-	.controller('Certificates.Nomina.MainController', function($rootScope, $scope, $http,  $state, $filter, HRAPI_CONF, $stateParams){
+	}])
+	.controller('Certificates.Nomina.MainController', ['$rootScope', '$scope', '$http', '$state', '$filter', 'HRAPI_CONF', '$stateParams', function($rootScope, $scope, $http,  $state, $filter, HRAPI_CONF, $stateParams){
 		if($scope.user.company.show_certificates_payroll ===  false){
 			$state.transitionTo('main.views.dashboard');
 		} 
@@ -216,8 +213,8 @@
 		}
 	
 
-	})
-	.controller('Certificates.Income.MainController', function($rootScope, $scope, $http, $state, $filter, HRAPI_CONF, $stateParams){
+	}])
+	.controller('Certificates.Income.MainController', ['$rootScope', '$scope', '$http', '$state', '$filter', 'HRAPI_CONF', '$stateParams', function($rootScope, $scope, $http, $state, $filter, HRAPI_CONF, $stateParams){
 
 		if($scope.user.company.show_certificates_income ===  false){
 			$state.transitionTo('main.views.dashboard');
@@ -262,7 +259,6 @@
 		$scope.onProgress = function(progress) {
 			$scope.progress = progress;
 			$scope.progreso = (100 / progress.total) * progress.loaded;
-		}		
-
-	});
+		}	
+	}]);
 }());

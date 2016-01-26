@@ -29,7 +29,7 @@
 			controller  : 'sessions.PasswordEditController'
 		});
 	})
-	.controller('sessions.PasswordEditController', function ($scope, $auth, HRAPI_CONF, $http, $stateParams) {
+	.controller('sessions.PasswordEditController', ['$scope', '$auth', 'HRAPI_CONF', '$http', '$stateParams', function ($scope, $auth, HRAPI_CONF, $http, $stateParams) {
 		$scope.errors = [];
 
 		$scope.submit = function(){
@@ -48,7 +48,7 @@
         	$scope.errors = error.data.errors.full_messages;
       });
 		}
-	})
+	}])
 	.controller('sessions.PasswordResetController', ['$scope', '$auth', function ($scope, $auth) {
 		$scope.errors = [];
 
@@ -66,7 +66,7 @@
       });
 		}
 	}])
-	.controller('sessions.LoginController', function( $scope, $auth, $location ){
+	.controller('sessions.LoginController', ['$scope', '$auth', '$location', function($scope, $auth, $location){
     	var host = $location.host();
 		$scope.subdomain = function(){
 	     if (host.indexOf('.') < 0) {
@@ -88,7 +88,7 @@
 		$scope.login = function() {       
 	      $auth.submitLogin($scope.credentials);
 	    };
-	});
+	}]);
 	// .controller('sessions.EditController', function($scope, $state, $stateParams, $http, currentUser){
     
 	
@@ -137,4 +137,4 @@
 	// 		};
      
 	// 	});
-	}());
+}());

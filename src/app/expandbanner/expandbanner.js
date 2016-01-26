@@ -1,31 +1,28 @@
 (function(){
   'use strict';
-
   angular.module('expandbanner', [])
-	
-  
-  .controller('Expandbanner.ExpandbannerController', function($scope, $state){
+  .controller('Expandbanner.ExpandbannerController', ['$scope', '$state', function($scope, $state){
 
   	$( "#datepicker" ).datepicker();
 
-	$scope.elusuario = $scope.user;	
-	$scope.vacation = $scope.user.vacation;    
-  
-    $scope.privateValidation = function(priv){
-        if(priv == "X" && $scope.user.employee.see_all_dm != "true"){
-          return "hide"
-        }
-        else{
-          return "show"
-        }
-    }
+		$scope.elusuario = $scope.user;	
+		$scope.vacation = $scope.user.vacation;    
+
+	  $scope.privateValidation = function(priv){
+      if(priv == "X" && $scope.user.employee.see_all_dm != "true"){
+        return "hide"
+      }
+      else{
+        return "show"
+      }
+		}
 	
-	//CESANTIAS
-	$scope.saldos = $scope.user.saldos;
-    // meter las cesantias
-	$scope.betrg = [];
-	$scope.fpend = [];
-	$scope.newbetrg = [];
+		//CESANTIAS
+		$scope.saldos = $scope.user.saldos;
+	    // meter las cesantias
+		$scope.betrg = [];
+		$scope.fpend = [];
+		$scope.newbetrg = [];
     $scope.elsaldocesantias = $scope.saldos.saldo;
     // $scope.intcesantias = $scope.saldos.intsaldo;
      // Intereses de cesantias a numeros
@@ -53,36 +50,36 @@
     // meter las int. cesantias     
     $scope.intbetrg = [];
     $scope.intfpend = [];
-	$scope.intnewbetrg = [];
-    angular.forEach($scope.saldos.t_intcesantias,function(value){
+		$scope.intnewbetrg = [];
+	  angular.forEach($scope.saldos.t_intcesantias,function(value){
       $scope.intbetrg.push(value.betrg);
       $scope.intfpend.push(value.fpend);
     });
   
     // Intereses de cesantias a numeros    
-	$scope.intbetrg.forEach(function(entry, index) {
+		$scope.intbetrg.forEach(function(entry, index) {
         $scope.intnewbetrg.push(parseInt(entry));
         if( index === 0){
             $scope.intcesantias = parseInt(entry);
         }
     });
 	
-	// esto esta por el rootscope de employee_info
-	// $scope.employee_info = $scope.user.employee_info;
-	$scope.vacationdates = $scope.vacation.detalle;
-	if 	($scope.user.vacation != null){
-		$scope.disponibles = parseInt($scope.vacation.resumen[2]);
-		$scope.usados = parseInt($scope.vacation.resumen[1]);
-	}else{
-		$scope.disponibles = [];
-		$scope.usados = [];
-	}
+		// esto esta por el rootscope de employee_info
+		// $scope.employee_info = $scope.user.employee_info;
+		$scope.vacationdates = $scope.vacation.detalle;
+		if 	($scope.user.vacation != null){
+			$scope.disponibles = parseInt($scope.vacation.resumen[2]);
+			$scope.usados = parseInt($scope.vacation.resumen[1]);
+		}else{
+			$scope.disponibles = [];
+			$scope.usados = [];
+		}
 
-	var thedates;
+		var thedates;
 
 
 	  // $scope.elusuario.$promise.then(function(items){
-	$scope.fecha_calendar = function(){
+		$scope.fecha_calendar = function(){
 			thedates = $scope.user.vacation.detalle;		
 	 		$.datepicker.regional['es'] = {
 	 		  closeText: 'Cerrar',
@@ -114,11 +111,11 @@
 				number = 2;
 			}
 
-	 	    $( "#vacaciones" ).datepicker({
+ 	    $( "#vacaciones" ).datepicker({
 	 			numberOfMonths: number,
 	 			defaultDate: y,
 	 			beforeShowDay: highlightDays
-	 	    });
+ 	    });
 			
 			// console.log(angular.element("#vacaciones").datepicker()); 
 			function highlightDays(d){
@@ -140,8 +137,7 @@
 			}
 			
 	  // });
-	}
-	$scope.fecha_calendar();
-		
-    });
+		}
+		$scope.fecha_calendar();
+  }]);
 }());
