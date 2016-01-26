@@ -263,6 +263,7 @@
     // $rootScope.employee_info = {};
     
     $rootScope.logout = function(){
+      $(document).foundation('tooltip','off');
       console.log("Logout");
       $auth.signOut();
     };
