@@ -94,12 +94,14 @@
 
 .logo{
 	//background: white;
-	max-width: 250px;
+	max-width: 100%;
 	@include border-radius(5px);
-	padding: 10px;
-	margin-right: 10px;
+	margin: 5px 0;
+	@media screen and (min-width: 64em){
+		margin: 2px 0;
+	}
 	float: left;
-	max-height: 80px;
+	max-height: 100%;
 }
 
 .no-margin{
