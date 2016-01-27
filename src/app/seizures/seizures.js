@@ -1,16 +1,16 @@
 (function(){
 	'use strict';
-	angular.module('embargoes', [])
+	angular.module('seizures', [])
 	.config(['$stateProvider',function($stateProvider) {
 		$stateProvider
-		.state('main.views.embargoes', {
-			url 				: '/embargoes',
-			templateUrl	: 'app/embargoes/embargoes.tpl.html',
-			controller  : 'Embargoes.ListController',
+		.state('main.views.seizures', {
+			url 		: '/seizures',
+			templateUrl	: 'app/seizures/seizures.tpl.html',
+			controller  : 'Seizures.ListController',
 			resolve     : {}
 		})
 	}])
-	.controller('Embargoes.ListController', ['$scope', function($scope){
+	.controller('Seizures.ListController', ['$scope', function($scope){
 		$scope.payroll_date_filter = ''
 
 		if($scope.user.embargoes.length == 0){
