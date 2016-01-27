@@ -23,13 +23,13 @@
 
 		<div id="employe_area" class="hide-for-small-only hide-for-medium-only large-5 columns">
 			<br>
-			<h4 class="subheader no-margin">
+			<h4 class="subheader no-margin capitalize">
 				{{user.employee.area | lowercase}}
 			</h4>
-			<h5 class="subheader no-margin">
+			<h5 class="subheader no-margin capitalize">
 				{{user.employee.division_per | lowercase}}
 			</h5>
-			<h5 class="subheader no-margin">
+			<h5 class="subheader no-margin capitalize">
 				{{user.employee.subdivision_per | lowercase}}
 			</h5>
 			<a href="tel://{{user.employee.phone}}" data-tooltip aria-haspopup="true" class="has-tip" title="{{user.employee.phone}}">
