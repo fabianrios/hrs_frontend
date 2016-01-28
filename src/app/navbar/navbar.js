@@ -44,6 +44,10 @@
     $scope.existsIndebtedness = function(){
 			return $scope.user.indebtedness_levels.length != 0
     }
+
+    $scope.existsEmbargoes = function(){
+    	return $scope.user.embargoes.length != 0	
+    }
     
 		$scope.hoexAprobador = function(){
 		  return $scope.user.employee.hoex_approver != '00000000' &&  $scope.user.employee.hoex_approver != null 
