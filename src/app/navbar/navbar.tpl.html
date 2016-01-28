@@ -100,7 +100,7 @@
       </li>
     </ul>
   </li>
-  <li class="has-submenu" ng-if="user.company.show_hoex || user.company.show_inhabilities || existsIndebtedness() || existsEmbargoes()" >
+  <li class="has-submenu" ng-if="user.company.show_hoex || user.company.show_inhabilities || existsIndebtedness() || existsEmbargoes() || exitsLoanRecords()" >
     <a href="">
       <i class="fa fa-paste fa-lg"></i> Registros
       <i class="fa fa-angle-right fa-right fa-lg"></i>
@@ -118,6 +118,11 @@
       <li ng-if="existsEmbargoes()">
         <a ui-sref="main.views.seizures">
           Embargos
+        </a>
+      </li>
+      <li ng-if="exitsLoanRecords()">
+        <a ui-sref="main.views.loan_records">
+          Prestamos
         </a>
       </li>
 
