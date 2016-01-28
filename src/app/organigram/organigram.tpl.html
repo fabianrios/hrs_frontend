@@ -13,7 +13,7 @@
 					<ul class="no-bullet">
 						<li ng-repeat="employee in organigram.children">
 							<div class="pictuare first-line" ng-click="mostrar($event)">
-								<a><img ng-src="{{organigram.image.image.url}}" alt="" /></a>
+								<a><img ng-src="{{employee.image.image.url}}" alt="" /></a>
 							</div>
 							<div class="org-info hovered" ng-click="mostrar($event)">
 								<h5 class="no-margin maxup">{{employee.short_name | lowercase}}</h5>
