@@ -66,7 +66,8 @@
     'notifications',
     'compensatory_vacations',
     'indebtedness_levels',
-    'seizures'
+    'seizures', 
+    'loan_records'
   ])
 
   .config(function($stateProvider, $httpProvider, $urlRouterProvider, HRAPI_CONF, AuthProvider, AuthInterceptProvider, $authProvider){ //ngS3Config, 
