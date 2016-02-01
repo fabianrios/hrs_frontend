@@ -3,7 +3,9 @@
   angular.module('profile', [])
   .controller('Profile.ProfileController', ['$scope', 'Employee', function($scope,  Employee ){//, $stateParams, currentUser, Employee, $log){
 
-		$scope.aprobador = [];
+		$scope.aprobador 			  = [];
+		$scope.dataContactModal = '';
+		$scope.classContacModal = '';
 
 		$scope.cargarAprobador = function(identification){
 		    $scope.aprobador = Employee.show({id:0, id_posicion: identification});		      
@@ -24,6 +26,12 @@
 			}else if (!valor){
 				$("video").prop('muted', true); //mute
 			}
+		}
+
+		$scope.contactModal = function(data, type){
+			$scope.classContacModal = type == 'phone' ? 'fa fa-phone' : 'fa fa-envelope-o';
+			$scope.dataContactModal = data;
+			$('#employee_contact_data_modal').foundation('reveal','open');
 		}
 
   }]);

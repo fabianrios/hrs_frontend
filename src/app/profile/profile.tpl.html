@@ -32,11 +32,11 @@
 			<h5 class="subheader no-margin capitalize">
 				{{user.employee.subdivision_per | lowercase}}
 			</h5>
-			<a href="tel://{{user.employee.phone}}" data-tooltip aria-haspopup="true" class="has-tip" title="{{user.employee.phone}}">
+			<a href="#" data-tooltip aria-haspopup="true" class="has-tip" title="{{user.employee.phone}}" ng-click="contactModal(user.employee.phone, 'phone')">
 				<i class="fa fa-phone fa-lg"></i>
 			</a>
 			&nbsp;
-			<a class="lowercase" href="mailto:{{user.employee.email}}" data-tooltip aria-haspopup="true" class="has-tip" title="{{user.employee.email}}">
+			<a class="lowercase" href="#" data-tooltip aria-haspopup="true" title="{{employee.email | lowercase}}" ng-click="contactModal(user.employee.email, 'email')">
 				<i class="fa fa-envelope-o fa-lg"></i>
 			</a>
 		</div>
@@ -69,15 +69,30 @@
 			<h5 class="subheader no-margin capitalize">
 				{{employee.subdivision_per | lowercase}}
 			</h5>
-			<a href="tel://{{employee.phone}}" data-tooltip aria-haspopup="true" title="{{employee.phone}}">
+			<a href="#" data-tooltip aria-haspopup="true" title="{{employee.phone}}" ng-click="contactModal(employee.phone, 'phone')">
 				<i class="fa fa-phone fa-lg"></i>
 			</a>
 			&nbsp;
-			<a class="lowercase" href="mailto:{{employee.email}}" data-tooltip aria-haspopup="true" title="{{employee.email}}">
+			<a class="lowercase" href="#" data-tooltip aria-haspopup="true" title="{{employee.email | lowercase}}" ng-click="contactModal(employee.email, 'email')">
 				<i class="fa fa-envelope-o fa-lg"></i>
 			</a>
 		</div>
 	</div>
+
+	<div id="employee_contact_data_modal" class="reveal-modal" data-reveal>
+		<div class="row collapse">
+	    <div class="small-3 large-2 columns">
+	      <span class="prefix">
+	      	<i class="{{ classContacModal }} fa-lg"></i>
+	      </span>
+	    </div>
+	    <div class="small-9 large-10 columns">
+	      <input type="text" value="{{dataContactModal | lowercase}}" >
+	    </div>
+	  </div>
+	  <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+	</div>
+
 	<div class="row" ng-switch-when="main.views.vacations" ng-init="cargarAprobador(user.employee.vaca_approver)">
 		<div class="large-5 medium-5 columns">
 			<h4 class="subheader" >Solicitudes de vacaciones</h4>
