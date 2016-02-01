@@ -103,8 +103,23 @@
 						<div id="modalTitle" class="employee-full-name" ng-bind="employeeFullName(employeeData)">
 						</div>
 					</div>
-					<div class="small-12 large-12 columns left employee-position">
+					<div class="small-6 large-6 columns left employee-position">
 						{{employeeData.posicion}}
+					</div>
+					<div class="small-6 large-6 columns left employee-position">
+						{{employeeData.area}}
+					</div>
+					<div class="small-12 large-6 columns left employee-position">
+						<a ng-if="employee.email" class="lowercase" href="mailto:{{employee.email | lowercase}}" data-tooltip aria-haspopup="true" title="{{employee.email | lowercase}}">
+							<i class="fa fa-envelope-o fa-lg"></i>
+						</a>
+						{{employee.email | lowercase}}
+					</div>
+					<div class="small-12 large-6 columns left employee-position">
+						<a ng-if="employee.phone" href="tel://{{employee.phone}}" data-tooltip aria-haspopup="true" title="{{employee.phone}}">
+							<i class="fa fa-phone fa-lg"></i>
+						</a>
+					{{employee.phone}}
 					</div>
 				</div>
 			</div>
