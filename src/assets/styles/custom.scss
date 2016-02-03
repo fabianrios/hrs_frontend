@@ -1041,9 +1041,11 @@ span{
 				&.first-line{
 					&:after{
 						content:" ";
+						/*
 						border-top: 10px solid $header;
 						border-right: 10px solid transparent;
 						border-left: 10px solid transparent;
+						*/
 						position: absolute;
 				    left: 55px;
 				    margin-top: 0px;
@@ -1088,6 +1090,18 @@ span{
 	}
 }
 
+li .picture-icon {
+	visibility: hidden;
+	position: absolute;
+	left: 57px;
+	z-index: 2;
+	margin-top: 15px
+}
+li .pictuare:hover img {
+  -webkit-opacity: 0.4;
+  -moz-opacity: 0.4;
+  opacity: 0.4;
+}
 
 .maxup{
   max-width: 350px;

@@ -11,14 +11,23 @@
 						<h5 class="no-margin maxup">{{organigram.posicion | lowercase}}</h5>
 					</div>
 					<ul class="no-bullet">
-						<li ng-repeat="employee in organigram.children">
-							<div class="pictuare first-line" ng-click="mostrar($event)">
+						<li ng-repeat="(key, employee) in organigram.children">
+							<div class="pictuare first-line" 
+							ng-mouseover="changedOverIcon($event, key)" 
+							ng-mouseleave="changedDownIcon($event, key)" 
+							ng-click="mostrar($event, key)">
+								<div ng-if="employee.children || employee._children">
+									<div class="picture-icon" id="icon_{{key}}">
+										<span class="fa fa-minus fa-lg"></span>
+									</div>
+								</div>
 								<a><img ng-src="{{employee.image.image.url}}" alt="" /></a>
 							</div>
 							<div class="org-info hovered" ng-click="mostrar($event)">
 								<h5 class="no-margin maxup">{{employee.short_name | lowercase}}</h5>
 								<h6 class="no-margin maxup">{{employee.posicion | lowercase}}</h6>
 							</div>
+
 							<ul class="childs no-bullet" ng-if="employee.children || employee._children">
 								<li ng-repeat="razo in employee.children">
 									<div class="pictuare second-line">
