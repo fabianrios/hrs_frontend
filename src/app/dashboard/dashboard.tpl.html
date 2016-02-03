@@ -123,31 +123,73 @@
 						</h5>
 						<div class="contenido">						
 							<div class="row">
-								<div class="large-8 medium-8 columns">
+								<div class="large-7 medium-7 columns">
 									<br />
 									<div endeudamiento fechasdeudas='{{fechasdeudas}}' ingresos="{{ingresos}}" deducciones="{{deducciones}}"></div>
 								</div>
-								<div class="large-4 medium-4 columns">
-									<div class="large-7 medium-7 columns">
-										<canvas id="doughnut" class="chart chart-doughnut" chart-data="chartData" chart-labels="chartLabels" chart-colours="chartColors" width="80" height="80"></canvas>
+								<div class="large-5 medium-5 columns">
+									<div class="large-6 medium-6 columns">
+										<canvas id="doughnut" class="chart chart-doughnut" chart-data="chartData" chart-labels="chartLabels" chart-colours="chartColors" width="187" height="187"></canvas>
 									</div>
-									<div class="large-5 medium-5 columns">
-										<div class="text-right">
-										<strong>
-											<h4 class="orangetxt futura">
-												{{porcentaje}} %
-											</h4>
-										</strong>
-										</div>		
+									<div class="large-6 medium-6 columns">
+										<div class="large-12 medium-12 columns">
+											<div class="text-left">
+												<h4 class="greentxt museo">
+													<small class="blacktxt">Nivel o Capacidad de Endeudamiento:</small>
+												</h4>	
+											</div>
+										</div>
+										<div class="large-12 medium-12 columns">
+											<div class="text-left">
+												<a href="#" data-tooltip aria-haspopup="true" title="Nivel o Capacidad de Endeudamiento">
+													<strong>
+													<h4 class="orangetxt futura">
+														{{porcentaje}} %	
+													</h4>
+													</strong>
+												</a>
+											</div>		
+										</div>
 									</div>
 									<!--
 									<canvas classy="{{porcentaje}}" class="loader animation-canvas" width="150" height="150"></canvas>
 									-->
 									<div class="large-12 medium-12 columns">
+										<div class="large-6 medium-12 columns">
+											<div class="text-left">
+												<h4 class="greentxt museo">
+													<small class="blacktxt">Total ingresos:</small>
+												</h4>	
+											</div>
+										</div>
+										<div class="large-6 medium-12 columns">
+											<div class="text-left">
+												<h4 class="greentxt museo">
+													{{saldos.totdevengos | currency:"$":0}}
+												</h4>
+											</div>
+										</div>
+
+										<div class="large-6 medium-12 columns">
+											<div class="text-left">
+												<h4 class="greentxt museo">
+													<small class="blacktxt">Total deducciones:</small>
+												</h4>	
+											</div>
+										</div>
+										<div class="large-6 medium-12 columns">
+											<div class="text-left">
+												<h4 class="greentxt museo">
+													{{saldos.totdeducciones | currency:"$":0}}
+												</h4>
+											</div>
+										</div>
+										<!--
 										<div class="text-left">
-											<h4 class="greentxt futura"><small class="blacktxt">Total ingresos:</small>{{saldos.totdevengos | currency:"$":0}}</h4>
-											<h4 class="redtxt futura"><small class="blacktxt">Total deducciones:</small>{{saldos.totdeducciones | currency:"$":0}}</h4>
+											<h4 class="greentxt museo"><small class="blacktxt">Total ingresos:</small>{{saldos.totdevengos | currency:"$":0}}</h4>
+											<h4 class="redtxt museo"><small class="blacktxt">Total deducciones:</small>{{saldos.totdeducciones | currency:"$":0}}</h4>
 										</div>	
+										-->
 									</div>
 								</div>
 							</div>
@@ -186,7 +228,9 @@
 										</a>
 									</div>
 									<h6 class="no-margin capitalize">
-										<a ui-sref="main.views.employee_info_lookup({id:empleado.identification, c:empleado.company.id})">{{empleado.short_name | lowercase}}</a>
+										<a ui-sref="main.views.employee_info_lookup({id:empleado.identification, c:empleado.company.id})">
+											{{empleado.lastname | lowercase}} {{empleado.name | lowercase}}
+										</a>
 									</h6>
 									<h6 class="subheader no-margin capitalize">{{empleado.posicion | lowercase}}</h6>
 									<div class="text-right">
@@ -209,12 +253,12 @@
 								</div>
 							</a>
 							<div class="right actions">
-								<a class="text-right" href="">
+								<a class="text-right" href="#">
 									<span data-tooltip aria-haspopup="true" class="has-tip" title="Fecha en la cual los empleados cumplen año(s) de ingreso a la compañía.">
 										<i class="fa fa-info-circle fa-lg"></i>
 									</span>
 								</a>
-								<a class="text-right closing" href="">
+								<a class="text-right closing" href="#">
 									<i class="fa fa-chevron-circle-up fa-lg"></i>
 								</a>
 							</div>
@@ -229,7 +273,9 @@
 										</a>
 									</div>
 									<h6 class="no-margin capitalize">
-										<a ui-sref="main.views.employee_info_lookup({id:empleado.identification, c:empleado.company.id})">{{empleado.short_name | lowercase}}</a>
+										<a ui-sref="main.views.employee_info_lookup({id:empleado.identification, c:empleado.company.id})">
+										{{empleado.lastname | lowercase}} {{empleado.name | lowercase}}
+										</a>
 									</h6>						
 <!--									<h6 class="subheader no-margin capitalize">{{empleado.posicion | lowercase}}</h6>-->
 									<div class="text-right">
@@ -274,7 +320,9 @@
 										</a>
 									</div>
 									<h6 class="no-margin capitalize">
-										<a ui-sref="main.views.employee_info_lookup({id:empleado.identification, c:empleado.company.id})">{{empleado.short_name | lowercase}}</a>
+										<a ui-sref="main.views.employee_info_lookup({id:empleado.identification, c:empleado.company.id})">
+											{{empleado.lastname | lowercase}} {{empleado.name | lowercase}}
+										</a>
 									</h6>
 									<h6 class="subheader no-margin capitalize">{{empleado.posicion | lowercase}}</h6>
 									<div class="text-right">

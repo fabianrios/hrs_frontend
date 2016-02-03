@@ -109,7 +109,7 @@
 					},
 					xAxis: {
 						type: 'datetime',
-						style: { "color": "#333333", "fontFamily": "Lato" },
+						style: { "color": "#333333", "fontFamily": "Lato", "fontWeight": "bold" },
 						categories: scope.fechasdeudas.reverse()
 					},
 					yAxis: {
@@ -399,8 +399,8 @@
 
 		//porcentaje para classy
 		$scope.porcentaje = getDecimal(100/($scope.saldos.totdevengos/$scope.saldos.totdeducciones));
-		$scope.chartLabels = ["Nivel de Endeudamiento", ""];
-  	$scope.chartData   = [$scope.porcentaje, 100-$scope.porcentaje];
+		$scope.chartLabels = ["", ""];
+  	$scope.chartData   = [$scope.porcentaje, getDecimal(100-$scope.porcentaje)];
   	$scope.chartColors = ['#ff7e00', '#DDDDDD']
 
 		//Deudas
