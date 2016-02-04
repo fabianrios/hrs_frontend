@@ -36,7 +36,8 @@
 					$('#icon_'+key).children('span').removeClass('fa fa-minus fa-lg').addClass('fa fa-plus fa-lg');
 				}
 			});
-
+		}
+		
 		$scope.image_organigram = function(image){
 			if (image == undefined){
 				return "images/generic_user_image.jpg";
