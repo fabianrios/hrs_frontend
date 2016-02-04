@@ -19,10 +19,23 @@
     })
 	
   .controller('Organigram.MainController', ['$scope', '$http', 'organigram', 'HRAPI_CONF', '$stateParams', function($scope, $http, organigram, HRAPI_CONF, $stateParams){
-			
-		$scope.mostrar = function(e) {
-			console.log($(e.currentTarget).parent().children("ul.childs"));
-			$(e.currentTarget).parent().children("ul.childs").slideToggle();
+
+		$scope.changedOverIcon = function(e, key){
+			$('#icon_'+key).css('visibility', 'visible');
+		}
+
+		$scope.changedDownIcon = function(e, key){
+			$('#icon_'+key).css('visibility', 'hidden');
+		}
+
+		$scope.mostrar = function(e, key) {
+			$(e.currentTarget).parent().children("ul.childs").slideToggle(function(){
+				if($(this).is(':visible')){
+					$('#icon_'+key).children('span').removeClass('fa fa-plus fa-lg').addClass('fa fa-minus fa-lg');
+				}else{
+					$('#icon_'+key).children('span').removeClass('fa fa-minus fa-lg').addClass('fa fa-plus fa-lg');
+				}
+			});
 		}
 		
 		// $scope.user = currentUser;
