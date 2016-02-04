@@ -36,12 +36,17 @@
 					$('#icon_'+key).children('span').removeClass('fa fa-minus fa-lg').addClass('fa fa-plus fa-lg');
 				}
 			});
+
+		$scope.image_organigram = function(image){
+			if (image == undefined){
+				return "images/generic_user_image.jpg";
+			}else{
+				return image;
+			}
+			
 		}
 		
-		// $scope.user = currentUser;
-		
-		$scope.organigram = organigram.organigram;
-		console.log($scope.organigram);
+	$scope.organigram = organigram.organigram;
 	
     var m = [10, 200, 10, 20],
         w = screen.width - m[1] - m[3],
