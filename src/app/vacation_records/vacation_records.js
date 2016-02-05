@@ -12,7 +12,6 @@
 		})
 	})
 	.controller('VacationRecords.ListController', ['$rootScope', '$scope', function($rootScope, $scope){
-
 		$scope.date_filter = ''
 
 		if($scope.user.vacation_records.length == 0){
