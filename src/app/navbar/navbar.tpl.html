@@ -100,9 +100,31 @@
       </li>
     </ul>
   </li>
-  <li class="has-submenu" ng-if="user.company.show_hoex || user.company.show_inhabilities || existsIndebtedness() || existsEmbargoes() || exitsLoanRecords() || existPermissions() || existsVacationRecords()" >
+  <li class="has-submenu" ng-if="user.company.show_hoex || user.company.show_inhabilities" >
     <a href="">
       <i class="fa fa-paste fa-lg"></i> Registros
+      <i class="fa fa-angle-right fa-right fa-lg"></i>
+    </a>
+    <ul class="left-submenu">
+      <li class="back">
+        <a href="">Volver</a>
+      </li>
+      <li ng-if="hoexAprobador() && user.labor.shoex == 'X' && user.company.show_hoex">
+        <a ui-sref="main.views.extras">
+          Horas extras
+        </a>
+      </li>
+      <li ng-if="incaAprobador() && user.labor.sinca == 'X' && user.company.show_inhabilities">
+        <a ui-sref="main.views.inhabilities">
+          Incapacidades
+        </a>
+      </li>
+    </ul>
+  </li>
+
+  <li class="has-submenu" ng-if="existsIndebtedness() || existsEmbargoes() || exitsLoanRecords() || existPermissions() || existsVacationRecords()" >
+    <a href="">
+      <i class="fa fa-paste fa-lg"></i> Consultas
       <i class="fa fa-angle-right fa-right fa-lg"></i>
     </a>
     <ul class="left-submenu">
@@ -126,30 +148,18 @@
         </a>
       </li>
       <li ng-if="existsVacationRecords()">
-        <a ui-sref="main.views.vacation_records">
-          Vacaciones
+        <a ui-sref="main.views.enjoyed_vacation_records">
+          Vacaciones Disfrutadas
         </a>
       </li>
-
-      <li ng-if="hoexAprobador() && user.labor.shoex == 'X' && user.company.show_hoex">
-        <a ui-sref="main.views.extras">
-          Horas extras
-        </a>
-      </li>
-      <li ng-if="incaAprobador() && user.labor.sinca == 'X' && user.company.show_inhabilities">
-        <a ui-sref="main.views.inhabilities">
-          Incapacidades
-        </a>
-      </li>
-
       <li ng-if="existPermissions()">
         <a ui-sref="main.views.permissions">
           Permisos
         </a>
       </li>
-
     </ul>
   </li>
+
   <li class="has-submenu disabled" ng-if="seeValidation(user.employee.see_rpgen)">
     <a href="" >
       <i class="fa fa-line-chart fa-lg"></i> Servicios gerenciales

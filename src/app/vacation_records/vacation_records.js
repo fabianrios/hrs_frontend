@@ -4,8 +4,8 @@
 	angular.module('vacation_records', ['ui.date'])
 	.config(function($stateProvider){
 		$stateProvider
-		.state('main.views.vacation_records', {
-			url 				: '/vacation_records',
+		.state('main.views.enjoyed_vacation_records', {
+			url 				: '/enjoyed_vacation_records',
 			templateUrl	: 'app/vacation_records/vacation_records.tpl.html',
 			controller  : 'VacationRecords.ListController',
 			resolve     : {}
@@ -18,15 +18,6 @@
 		if($scope.user.vacation_records.length == 0){
 			$state.transitionTo('main.views.dashboard');
   	}
-		/*
-  	$scope.getPorcentage = function(value){
-  		return '% '+parseInt(value).toLocaleString();
-  	}
-
-  	$scope.getMoneyValue = function(value){
-			return '$ '+parseInt(value).toLocaleString();
-  	}
-	*/
 
     var uniqueVals = [];
     $.each($scope.user.vacation_records, function(i, value){
