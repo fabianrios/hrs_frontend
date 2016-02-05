@@ -4,8 +4,8 @@
 	angular.module('vacation_records', ['ui.date'])
 	.config(function($stateProvider){
 		$stateProvider
-		.state('main.views.enjoyed_vacations_records', {
-			url 				: '/vacation_records',
+		.state('main.views.enjoyed_vacation_records', {
+			url 				: '/enjoyed_vacation_records',
 			templateUrl	: 'app/vacation_records/vacation_records.tpl.html',
 			controller  : 'VacationRecords.ListController',
 			resolve     : {}
