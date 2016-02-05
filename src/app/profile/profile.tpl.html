@@ -3,20 +3,20 @@
 	<div class="row"  ng-switch-default>
 		<div class="small-12 medium-10 large-7 columns">
 			<div class="big-profile">
-				<img ng-src="{{user.pic ? user.pic : user.employee.image.url}}">
+				<img ng-src="images/generic_user_image.jpg">
 			</div>
             <!--dash-text-format-->
 			<div class=" p-20 ">
 				<h4 class="no-margin whitetxt capitalize card">
 					<a ui-sref="main.views.employee_info">
-						{{user.employee.short_name | lowercase}}
+						USUARIO USUARIO USUARIO
 					</a>
 				</h4>
 				<h5 class="subheader no-margin capitalize card">
-					{{user.employee.posicion  | lowercase}}
+					GERENTE TI
 				</h5>
 				<h5 class="subheader no-margin capitalize hide-for-small-only card">
-					{{user.employee.unidad_org | lowercase}}
+					GERENCIA
 				</h5>
 			</div>
 		</div>
@@ -24,13 +24,13 @@
 		<div id="employe_area" class="hide-for-small-only hide-for-medium-only large-5 columns">
 			<br>
 			<h4 class="subheader no-margin">
-				{{user.employee.area | lowercase}}
+				Departamente de tecnólogia
 			</h4>
 			<h5 class="subheader no-margin">
-				{{user.employee.division_per | lowercase}}
+				TI
 			</h5>
 			<h5 class="subheader no-margin">
-				{{user.employee.subdivision_per | lowercase}}
+				INFO
 			</h5>
 			<a href="tel://{{user.employee.phone}}" data-tooltip aria-haspopup="true" class="has-tip" title="{{user.employee.phone}}">
 				<i class="fa fa-phone fa-lg"></i>
@@ -48,7 +48,7 @@
 			</div>
 			<div class="dash-text-format p-20">
 				<h4 class="no-margin capitalize">
-					{{employee.short_name | lowercase }}
+					USUARIO USUARIO
 				</h4>
 				<h5 class="subheader no-margin capitalize">
 					{{employee.posicion | lowercase}}
@@ -78,329 +78,4 @@
 			</a>
 		</div>
 	</div>
-	<div class="row" ng-switch-when="main.views.vacations" ng-init="cargarAprobador(user.employee.vaca_approver)">
-		<div class="large-5 medium-5 columns">
-			<h4 class="subheader" >Solicitudes de vacaciones</h4>
-			<ul class="breadcrumbs">
-				<li>
-					<a href="/">Inicio</a>
-				</li>
-				<li class="unavailable">
-					<a href="">Solicitudes</a>
-				</li>
-				<li class="current"><a href="">Solicitud de vacaciones</a></li>
-			</ul>
-		</div>
-		<div class="large-7 medium-7 columns">
-			<div class="pt-10">
-				<div class="row" ng-if="aprobador">
-					<div class="large-3 columns">
-						<h6 class="subheader text-center show-for-large-up"> <span class="fa fa-check-circle fa-2x"></span> Aprobador:</h6>
-					</div>
-					<div class="large-9 columns">
-						<div class="aprobador">
-							<div class="pic dib">
-								<img  ng-src="{{aprobador.image}}">
-							</div>
-							<div class="info dib">
-								<a href="mail_to:{{aprobador.email}}" class="capitalize"><i class="fa fa-envelope fa-lg"></i>{{aprobador.short_name | cut:30}}</a><br>
-								<a href="tel://{{aprobador.phone}}" class=""><i class="fa fa-phone fa-lg"></i>{{aprobador.phone}}</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="row" ng-switch-when="main.views.compensatory_vacations" ng-init="cargarAprobador(user.employee.vccp_approver)">
-		<div class="large-5 medium-5 columns">
-			<h4 class="subheader" >Solicitudes de vacaciones compensadas</h4>
-			<ul class="breadcrumbs">
-				<li>
-					<a href="/">Inicio</a>
-				</li>
-				<li class="unavailable">
-					<a href="">Solicitudes</a>
-				</li>
-				<li class="current"><a href="">Vacaciones compensadas</a></li>
-			</ul>
-		</div>
-		<div class="large-7 medium-7 columns">
-			<div class="pt-10">
-				<div class="row" ng-if="aprobador">
-					<div class="large-3 columns">
-						<h6 class="subheader text-center show-for-large-up"> <span class="fa fa-check-circle fa-2x"></span> Aprobador:</h6>
-					</div>
-					<div class="large-9 columns">
-						<div class="aprobador">
-							<div class="pic dib">
-								<img  ng-src="{{aprobador.image}}">
-							</div>
-							<div class="info dib">
-								<a href="mail_to:{{aprobador.email}}" class="capitalize"><i class="fa fa-envelope fa-lg"></i>{{aprobador.short_name | cut:30}}</a><br>
-								<a href="tel://{{aprobador.phone}}" class=""><i class="fa fa-phone fa-lg"></i>{{aprobador.phone}}</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="row" ng-switch-when="main.views.severance" ng-init="cargarAprobador(user.employee.cesa_approver)">
-		<div class="large-5 medium-5 columns">
-			<h4 class="subheader" >Solicitudes de cesantias</h4>
-			<ul class="breadcrumbs">
-				<li>
-					<a href="/">Inicio</a>
-				</li>
-				<li class="unavailable">
-					<a href="">Solicitudes</a>
-				</li>
-				<li class="current"><a href="">Solicitudes de cesantias</a></li>
-			</ul>
-		</div>
-		<div class="large-7 medium-7 columns">
-			<div class="pt-10">
-				<div class="row" ng-if="aprobador">
-					<div class="large-3 columns">
-						<h6 class="subheader text-center show-for-large-up"> <span class="fa fa-check-circle fa-2x"></span> Aprobador:</h6>
-					</div>
-					<div class="large-9 columns">
-						<div class="aprobador">
-							<div class="pic dib">
-								<img  ng-src="{{aprobador[0].image}}">
-							</div>
-							<div class="info dib">
-								<a href="mail_to:{{aprobador.email}}" class="capitalize"><i class="fa fa-envelope fa-lg"></i>{{aprobador.short_name | cut:30}}</a><br>
-								<a href="tel://{{aprobador.phone}}" class=""><i class="fa fa-phone fa-lg"></i>{{aprobador.phone}}</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="row" ng-switch-when="main.views.inhabilities" ng-init="cargarAprobador(user.employee.inca_approver)">
-		<div class="large-5 medium-5 columns">
-			<h4 class="subheader" >Registro de incapacidades</h4>
-			<ul class="breadcrumbs">
-				<li>
-					<a href="/">Inicio</a>
-				</li>
-				<li class="unavailable">
-					<a href="">Registro</a>
-				</li>
-				<li class="current"><a href="">Registro de incapacidades</a></li>
-			</ul>
-		</div>
-		<div class="large-7 medium-7 columns">
-			<div class="pt-10">
-				<div class="row" ng-if="aprobador">
-					<div class="large-3 columns">
-						<h6 class="subheader text-center show-for-large-up"> <span class="fa fa-check-circle fa-2x"></span> Aprobador:</h6>
-					</div>
-					<div class="large-9 columns">
-						<div class="aprobador">
-							<div class="pic dib">
-								<img  ng-src="{{aprobador.image}}">
-							</div>
-							<div class="info dib">
-								<a href="mail_to:{{aprobador.email}}" class="capitalze"><i class="fa fa-envelope fa-lg"></i>{{aprobador.short_name | cut:30}}</a><br>
-								<a href="tel://{{aprobador.phone}}" class=""><i class="fa fa-phone fa-lg"></i>{{aprobador.phone}}</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="row" ng-switch-when="main.views.extras" ng-init="cargarAprobador(user.employee.hoex_approver)">
-		<div class="large-5 medium-5 columns">
-			<h4 class="subheader">Registro de horas extras</h4>
-			<ul class="breadcrumbs">
-				<li>
-					<a href="/">Inicio</a>
-				</li>
-				<li class="unavailable">
-					<a href="">Registro</a>
-				</li>
-				<li class="current"><a href="">Registro de horas extras</a></li>
-			</ul>
-		</div>
-		<div class="large-7 medium-7 columns">
-			<div class="pt-10">
-				<div class="row" ng-if="aprobador">
-					<div class="large-3 columns">
-						<h6 class="subheader text-center show-for-large-up"> <span class="fa fa-check-circle fa-2x"></span> Aprobador:</h6>
-					</div>
-					<div class="large-9 columns">
-						<div class="aprobador">
-							<div class="pic dib">
-								<img  ng-src="{{aprobador.image}}">
-							</div>
-							<div class="info dib">
-								<a href="mail_to:{{aprobador.email}}" class="capitalize"><i class="fa fa-envelope fa-lg"></i>{{aprobador.short_name | cut:30}}</a><br>
-								<a href="tel://{{aprobador.phone}}" class=""><i class="fa fa-phone fa-lg"></i>{{aprobador.phone}}</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="row" ng-switch-when="main.views.loans" ng-init="cargarAprobador(user.employee.pres_approver)">
-		<div class="large-5 medium-5 columns">
-			<h4 class="subheader" >Solicitudes de prestamos</h4>
-			<ul class="breadcrumbs">
-				<li>
-					<a href="/">Inicio</a>
-				</li>
-				<li class="unavailable">
-					<a href="">Solicitudes</a>
-				</li>
-				<li class="current"><a href="">Solicitudes de prestamos</a></li>
-			</ul>
-		</div>
-		<div class="large-7 medium-7 columns">
-			<div class="pt-10">
-				<div class="row" ng-if="aprobador">
-					<div class="large-3 columns">
-						<h6 class="subheader text-center show-for-large-up"> <span class="fa fa-check-circle fa-2x"></span> Aprobador:</h6>
-					</div>
-					<div class="large-9 columns">
-						<div class="aprobador">
-							<div class="pic dib">
-								<img ng-src="{{aprobador.image}}">
-							</div>
-							<div class="info dib">
-								<a href="mail_to:{{aprobador.email}}" class="capitalize"><i class="fa fa-envelope fa-lg"></i>{{aprobador.short_name | cut:30}}</a><br>
-								<a href="tel://{{aprobador.phone}}" class=""><i class="fa fa-phone fa-lg"></i>{{aprobador.phone}}</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="row" ng-switch-when="main.views.licenses" ng-init="cargarAprobador(user.employee.perm_approver)">
-		<div class="large-5 medium-5 columns">
-			<h4 class="subheader" >Solicitudes de permisos</h4>
-			<ul class="breadcrumbs">
-				<li>
-					<a href="/">Inicio</a>
-				</li>
-				<li class="unavailable">
-					<a href="">Solicitudes</a>
-				</li>
-				<li class="current"><a href="">Solicitudes de permisos</a></li>
-			</ul>
-		</div>
-		<div class="large-7 medium-7 columns">
-			<div class="pt-10">
-				<div class="row" ng-if="aprobador">
-					<div class="large-3 columns">
-						<h6 class="subheader text-center show-for-large-up"> <span class="fa fa-check-circle fa-2x"></span> Aprobador:</h6>
-					</div>
-					<div class="large-9 columns">
-						<div class="aprobador">
-							<div class="pic dib">
-								<img  ng-src="{{aprobador.image}}">
-							</div>
-							<div class="info dib">
-								<a href="mail_to:{{aprobador.email}}" class="capitalize"><i class="fa fa-envelope fa-lg"></i>{{aprobador.short_name | cut:30}}</a><br>
-								<a href="tel://{{aprobador.phone}}" class=""><i class="fa fa-phone fa-lg"></i>{{aprobador.phone}}</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="large-7 medium-7 columns">
-			<div ng-switch-when="main.views.certificates_labor">
-				<h4 class="subheader" >Certificado Laboral</h4>
-				<ul class="breadcrumbs">
-					<li>
-						<a href="/">Inicio</a>
-					</li>
-					<li class="unavailable">
-						<a href="#">Autoservicios</a>
-					</li>
-					<li class="current">
-						<a href="#">Certificado Laboral</a>
-					</li>
-				</ul>
-			</div>	
-			<div ng-switch-when="main.views.certificates_vacations">
-				<h4 class="subheader">Carta de vacaciones</h4>
-				<ul class="breadcrumbs">
-					<li>
-						<a href="/">Inicio</a>
-					</li>
-					<li class="unavailable">
-						<a href="#">Autoservicios</a>
-					</li>
-					<li class="current">
-						<a href="#">Carta de vacaciones</a>
-					</li>
-				</ul>
-			</div>
-			<div ng-switch-when="main.views.certificates_payroll">
-				<h4 class="subheader">Recibos de nomina</h4>
-				<ul class="breadcrumbs">
-					<li>
-						<a href="/">Inicio</a>
-					</li>
-					<li class="unavailable">
-						<a href="#">Autoservicios</a>
-					</li>
-					<li class="current">
-						<a href="#">Recibos de nomina</a>
-					</li>
-				</ul>
-			</div>
-			<div ng-switch-when="main.views.certificates_income">
-				<h4 class="subheader">Certificado de Ingresos y retenciones</h4>
-				<ul class="breadcrumbs">
-					<li>
-						<a href="/">Inicio</a>
-					</li>
-					<li class="unavailable">
-						<a href="#">Autoservicios</a>
-					</li>
-					<li class="current">
-						<a href="#">Certificado de Ingresos y retenciones </a>
-					</li>
-				</ul>
-			</div>
-		</div>
-		<div class="large-5 medium-5 columns" ng-if="certificatesRoute(ubicacion)">
-			<ul class="inline-list linemenu">
-				<li>
-					<a ui-sref="main.views.certificates_labor({id:laborCertificate})" data-tooltip aria-haspopup="true" title="Certificado Laboral">
-						<i class="fa fa-file-text-o fa-lg"></i>
-					</a>
-				</li>
-				<li>
-					<a ui-sref="main.views.certificates_vacations({id:0})" data-tooltip aria-haspopup="true" title="Carta de Vacaciones">
-						<i class="fa fa-plane fa-lg"></i>
-					</a>
-				</li>
-				<li>
-					<a ui-sref="main.views.certificates_payroll({id:0})" data-tooltip aria-haspopup="true" title="Recibos de Nomina">
-						<i class="fa fa-briefcase fa-lg"></i>
-					</a>
-				</li>
-				<li>
-					<a  ui-sref="main.views.certificates_income({id:0})" data-tooltip aria-haspopup="true" title="Certif. Ingresos y Retenciones">
-						<i class="fa fa-institution fa-lg"></i>
-					</a>
-				</li>
-			</ul>
-		</div>
-	</div>
-</div>
-<div class="close-banner invert"><a href="" ng-click="xtoggle($event)"></a></div>
+	

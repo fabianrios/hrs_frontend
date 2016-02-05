@@ -1,7 +1,7 @@
 (function(){
   'use strict';
 
-  angular.module('hrsReleaseApp', [
+  angular.module('hrSodexo', [
 
     // Plugins
     // 'ngCookies',
@@ -54,6 +54,7 @@
     'dashboard',
     'organigram',
     'certificates',
+    'secondcalculator',
     'severance',
     'loans',
     'managment',
@@ -72,7 +73,7 @@
 
 	
     // ngS3Config.theme = 'bootstrap2';
-
+    /*
     $authProvider.configure({
       apiUrl:                  HRAPI_CONF.apiBaseUrl(''),
       tokenValidationPath:     '/auth/validate_token',
@@ -111,9 +112,9 @@
       handleTokenValidationResponse: function(response) {
         return response.data;
       }
-    });
+    });*/
 
-    // Enruta a la login
+    /*// Enruta a la login
     $urlRouterProvider.otherwise('/home');
   
     // Configura estados de aplicacion ui-router
@@ -155,6 +156,7 @@
       }
     });
   })
+
   .filter('cut', function () {
     return function (value, max) {
        if (!value) return '';
@@ -168,9 +170,33 @@
        return value.toLowerCase();
     }
   })
+  */
+  $urlRouterProvider.otherwise('/calculator');
+   $stateProvider
+    .state('main', {
+      abstract: true,
+      templateUrl: 'app/layouts/remain.tpl.html',
+    })
+    .state('main.views', {
+      views: {
+         topbar: {
+          templateUrl: 'app/topbar/topbar.tpl.html',
+          controller: 'Topbar.TopbarController as tb'
+        },
+        navbar: {
+          templateUrl: 'app/navbar/navbar.tpl.html',
+          controller: 'Navbar.NavbarController'
+        },
+        
+        content: {
+          template: '<div ui-view=""></div>'
+        }
+      }
+    });
+  })
   .run(function($filter, $http, $rootScope, $state, $window, HRAPI_CONF, $auth , $anchorScroll, $location){       
-      
-    /////////////
+      $rootScope.ubication = 1;
+  /*  /////////////
     //
     //  BROADCAST  
     //
@@ -266,7 +292,7 @@
       console.log("Logout");
       $auth.signOut();
     };
-	
+	*/
     // Foundation nice and working
     $rootScope.$on('$viewContentLoaded', function () {
       $(document).foundation({
@@ -278,7 +304,7 @@
         }
       });
     });
-	  
+	  /*
     //toggle expand vacation box
     $rootScope.toggle = function(e){
       // console.log(e.currentTarget);
@@ -434,7 +460,7 @@
         });
       }
     };
-
+    */
   });
   
 }());

@@ -3,7 +3,7 @@
 
   // Configuraciones generales aplicacion front end
   var ui = {
-    default_state: 'main.views.dashboard.home'
+    default_state: 'main_sodexo.views.first_step'
   };
 
   // Informacion de entorno

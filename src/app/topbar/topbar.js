@@ -5,7 +5,10 @@
   	$rootScope.notifications = {}
       $scope.$on( 'hrs:updateNotifications', function(){
           $rootScope.notifications = Notification.show();            
-      });						
+      });
+ 	    $scope.change = function(ubi){
+			$rootScope.ubication = ubi;
+		}						
   }]);
 }());
 

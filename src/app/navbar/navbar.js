@@ -2,7 +2,6 @@
   'use strict';
   angular.module('navbar', [])
   .controller('Navbar.NavbarController', ['$scope', 'Notification', function($scope, Notification){//,currentUser,articles,vac_requirements, extras_requirements, inhabilities_requirements, licenses_requirements, infos, Notification){
-		
 		// $scope.articles = articles.articles;
 		// $scope.articles_not_mine = [];
 		// $scope.vac_requirements = vac_requirements;
@@ -40,10 +39,6 @@
 	        return false
 	      }
 	    }
-
-    $scope.existsIndebtedness = function(){
-			return $scope.user.indebtedness_levels.length != 0
-    }
     
 		$scope.hoexAprobador = function(){
 		  return $scope.user.employee.hoex_approver != '00000000' &&  $scope.user.employee.hoex_approver != null 
