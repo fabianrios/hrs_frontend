@@ -100,7 +100,7 @@
       </li>
     </ul>
   </li>
-  <li class="has-submenu" ng-if="user.company.show_hoex || user.company.show_inhabilities || existsIndebtedness() || existsEmbargoes() || exitsLoanRecords()" >
+  <li class="has-submenu" ng-if="user.company.show_hoex || user.company.show_inhabilities || existsIndebtedness() || existsEmbargoes() || exitsLoanRecords() || existPermissions()" >
     <a href="">
       <i class="fa fa-paste fa-lg"></i> Registros
       <i class="fa fa-angle-right fa-right fa-lg"></i>
@@ -136,6 +136,13 @@
           Incapacidades
         </a>
       </li>
+
+      <li ng-if="existPermissions()">
+        <a ui-sref="main.views.permissions">
+          Permisos
+        </a>
+      </li>
+
     </ul>
   </li>
   <li class="has-submenu disabled" ng-if="seeValidation(user.employee.see_rpgen)">

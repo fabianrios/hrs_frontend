@@ -52,6 +52,9 @@
     $scope.exitsLoanRecords = function(){
     	return $scope.user.loan_records.length != 0
     }
+    $scope.existPermissions = function (){
+    	return $scope.user.permissions.length != 0;
+    }
     
 		$scope.hoexAprobador = function(){
 		  return $scope.user.employee.hoex_approver != '00000000' &&  $scope.user.employee.hoex_approver != null 
