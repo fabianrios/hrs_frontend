@@ -1,0 +1,47 @@
+<div class="padding-container">
+	<div>
+		<h3 class="expand-title text-center first-one">Permisos</h3>
+		<div class="row">
+			<fieldset>
+				<legend>Filtros</legend>
+
+				<div class="large-6 medium-6 columns end">
+					<div class="large-6 medium-6 columns end">
+							<label for="begda_filter" class="inline">Permiso asignado en:</label>
+					</div>
+					<div class="large-6 medium-6 columns">
+						<select id="begda_filter" ng-model="begda_filter">
+							<option value="">Todos los permisos</option>
+							<option ng-repeat="date in begdas_permissions">{{ date }}</option>
+						</select>
+					</div>
+				</div>
+			</fieldset>
+		</div>
+		<div class="row">
+			<div class="large-12 medium-12 columns">
+				<table>
+				  <caption>Permisos</caption>
+				  <thead>
+					  <tr>
+					  	<th scope="column" class="text-center">Motivo del permiso</th>
+					  	<th scope="column" class="text-center">Fecha de inicio</th>
+					    <th scope="column" class="text-center">Fecha final</th>
+					    <th scope="column" class="text-center">Dias habiles asignados</th>
+					    <th scope="column" class="text-center">Dias calendario recibidos</th>
+					  </tr>	
+				  </thead>
+			  	<tbody>
+		  			<tr ng-repeat="permission in user.permissions | filter:begda_filter ">
+		  				<td scope="row">{{ permission.text_permission }}</td>
+					    <td scope="row">{{ permission.begda  }}</td>
+					    <td scope="row">{{ permission.endda  }}</td>
+					    <td scope="row">{{ permission.days_working }}</td>
+					    <td scope="row">{{ permission.days_taken }}</td>
+		  			</tr>
+				  </tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

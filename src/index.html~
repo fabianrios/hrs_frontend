@@ -165,8 +165,11 @@
       <script src="app/indebtedness_levels/indebtedness_levels.js"></script>
       <script src="app/seizures/seizures.js"></script>
       <script src="app/loan_records/loan_records.js"></script>
+<<<<<<< HEAD
       <script src="app/vacation_records/vacation_records.js"></script>
+=======
       <script src="app/permissions/permissions.js"></script>
+>>>>>>> report_permissions
       <script src="app/navbar/navbar.js"></script>
       <script src="app/topbar/topbar.js"></script>
       <script src="app/sidebar/sidebar.js"></script>
