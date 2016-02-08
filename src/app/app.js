@@ -173,6 +173,26 @@
        return value.toLowerCase();
     }
   })
+  .filter('special_capitalize',function(){
+    return function (value,type){
+      if (!value) return '';
+      var words = value.split(" ");
+      var newValue = "";
+      var newWord;
+      var exceptionsAcronyms = ['TI'];
+      angular.forEach(words,function(word,iWord){
+        if (exceptionsAcronyms.indexOf(word) != -1){
+          newWord = word.toUpperCase()+" ";;
+        }else if((word.length == 1 || word.length == 2 || word.length == 3) && type!="own"){
+          newWord = word.toLowerCase()+" ";
+        }else{
+          newWord = word.substring(0,1).toUpperCase() + word.substring(1).toLowerCase()+" ";
+        }
+        newValue = newValue.concat(newWord);
+      });
+      return newValue;
+    }
+  })
   .run(function($filter, $http, $rootScope, $state, $window, HRAPI_CONF, $auth , $anchorScroll, $location){       
       
     /////////////
