@@ -33,7 +33,7 @@
 				{{employee.name | lowercase}} {{employee.lastname | lowercase}}
 			</div>
 		</h6>
-		<h6 class="no-margin subheader cargo capitalize contact-name" title="{{employee.posicion | lowercase}}" ng-click="showModal(employee)">{{employee.posicion  | autoAdjusts}}</h6>
+		<h6 class="no-margin subheader cargo capitalize contact-name" title="{{employee.posicion | special_capitalize }}" ng-click="showModal(employee)">{{employee.posicion  | autoAdjusts | special_capitalize }}</h6>
 			<div class="action-buttons">
 				<div ng-if="!isRcnTv()">
 					<a ng-if="employee.phone" href="tel://{{employee.phone}}" data-tooltip aria-haspopup="true" title="{{employee.phone}}">
@@ -74,7 +74,7 @@
 				{{employee.name | lowercase}} {{employee.lastname | lowercase}}
 			</div>
 		</h6>
-		<h6 class="no-margin subheader cargo capitalize  contact-name" title="{{employee.posicion | lowercase}}" ng-click="showModal(employee)">{{employee.posicion  | autoAdjusts}}</h6>
+		<h6 class="no-margin subheader cargo contact-name" title="{{employee.posicion | special_capitalize }}" ng-click="showModal(employee)">{{employee.posicion | autoAdjusts | special_capitalize  }}</h6>
 		<div class="action-buttons">
 			<div ng-if="!isRcnTv()">
 				<a ng-if="employee.phone" href="tel://{{employee.phone}}" data-tooltip aria-haspopup="true" title="{{employee.phone}}">
