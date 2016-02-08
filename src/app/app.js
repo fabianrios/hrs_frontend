@@ -70,7 +70,8 @@
     'loan_records',
     'vacation_records',
     'permissions', 
-    'extra_hour_records'
+    'extra_hour_records',
+    'compensatory_vacation_records'
   ])
 
   .config(function($stateProvider, $httpProvider, $urlRouterProvider, HRAPI_CONF, AuthProvider, AuthInterceptProvider, $authProvider){ //ngS3Config, 
