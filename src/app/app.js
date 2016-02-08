@@ -178,9 +178,9 @@
       var words = value.split(" ");
       var newValue = "";
       var newWord;
-      var exceptionsAcronyms = ['TI'];
+      var exceptionsAcronyms = ['TI','BTL'];
       angular.forEach(words,function(word,iWord){
-        if (exceptionsAcronyms.indexOf(word) != -1){
+        if (exceptionsAcronyms.indexOf(word.toUpperCase()) != -1){
           newWord = word.toUpperCase()+" ";;
         }else if((word.length == 1 || word.length == 2 || word.length == 3) && type!="own"){
           newWord = word.toLowerCase()+" ";
