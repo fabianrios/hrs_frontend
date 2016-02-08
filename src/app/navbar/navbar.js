@@ -61,6 +61,10 @@
 
     $scope.existExtraHours = function(){
     	return $scope.user.extra_hour_records.length != 0;
+	}
+
+    $scope.existIncapacities = function (){
+    	return $scope.user.incapacities.length != 0;
     }
     
 		$scope.hoexAprobador = function(){
