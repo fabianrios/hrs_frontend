@@ -162,6 +162,11 @@
           Permisos
         </a>
       </li>
+      <li ng-if="existIncapacities()">
+        <a ui-sref="main.views.incapacities">
+          Incapacidades
+        </a>
+      </li>
       <li ng-if="existExtraHours()">
         <a ui-sref="main.views.extra_hour_records">
           Horas Extras
