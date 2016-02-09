@@ -229,10 +229,10 @@
 									</div>
 									<h6 class="no-margin capitalize">
 										<a ui-sref="main.views.employee_info_lookup({id:empleado.identification, c:empleado.company.id})">
-											{{empleado.lastname | lowercase}} {{empleado.name | lowercase}}
+											{{empleado.lastname | special_capitalize:'own'}} {{empleado.name | special_capitalize:'own'}}
 										</a>
 									</h6>
-									<h6 class="subheader no-margin capitalize">{{empleado.posicion | lowercase}}</h6>
+									<h6 class="subheader no-margin">{{empleado.posicion | special_capitalize }}</h6>
 									<div class="text-right">
 										<span class="graytxt">
 											<i class="fa fa-calendar-o"></i>
@@ -272,9 +272,9 @@
 											<img alt="profile" ng-src="{{empleado.image.url}}">
 										</a>
 									</div>
-									<h6 class="no-margin capitalize">
+									<h6 class="no-margin">
 										<a ui-sref="main.views.employee_info_lookup({id:empleado.identification, c:empleado.company.id})">
-										{{empleado.lastname | lowercase}} {{empleado.name | lowercase}}
+										{{empleado.lastname | special_capitalize:'own'}} {{empleado.name | special_capitalize:'own'}}
 										</a>
 									</h6>						
 <!--									<h6 class="subheader no-margin capitalize">{{empleado.posicion | lowercase}}</h6>-->
@@ -319,12 +319,12 @@
 											<img alt="profile" ng-src="{{empleado.image.url}}">
 										</a>
 									</div>
-									<h6 class="no-margin capitalize">
+									<h6 class="no-margin">
 										<a ui-sref="main.views.employee_info_lookup({id:empleado.identification, c:empleado.company.id})">
-											{{empleado.lastname | lowercase}} {{empleado.name | lowercase}}
+											{{empleado.lastname | special_capitalize:'own'}} {{empleado.name | special_capitalize:'own'}}
 										</a>
 									</h6>
-									<h6 class="subheader no-margin capitalize">{{empleado.posicion | lowercase}}</h6>
+									<h6 class="subheader no-margin">{{empleado.posicion | special_capitalize }}</h6>
 									<div class="text-right">
 										<span class="graytxt">
 											<i class="fa fa-calendar-o"></i>
