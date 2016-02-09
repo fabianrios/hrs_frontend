@@ -72,7 +72,8 @@
     'permissions', 
     'extra_hour_records',
     'compensatory_vacation_records',
-    'incapacities'
+    'incapacities',
+    'vacation_balance_records'
   ])
 
   .config(function($stateProvider, $httpProvider, $urlRouterProvider, HRAPI_CONF, AuthProvider, AuthInterceptProvider, $authProvider){ //ngS3Config, 
@@ -225,7 +226,6 @@
         function(event, toState, toParams, fromState, fromParams){
           $rootScope.preload = true;
           $rootScope.ubicacion = toState.name;  
-          console.log(toState.name);      
         });
 
     $rootScope.$on('$stateChangeSuccess',
@@ -242,7 +242,6 @@
     $rootScope.$on('$stateNotFound',
         function(event, unfoundState, fromState, fromParams){
             $rootScope.preload = false;
-            console.log("not found");
             event.preventDefault();
             $state.transitionTo('main.views.dashboard');
         });
@@ -250,7 +249,6 @@
     $rootScope.$on('$stateChangeError',
         function(event, toState, toParams, fromState, fromParams, error){
             $rootScope.preload = false;
-            console.log(error);
             event.preventDefault();
             if( error.reason === "unauthorized"){
                 $state.transitionTo('login.auth');
@@ -428,7 +426,6 @@
     };
 
     $rootScope.showMessageErrorRails = function(data){
-      console.log(data);
       $anchorScroll("msg_alerts");
       var errores = ((typeof data.errors !== "undefined") ? data.errors : data.data.errors);
       angular.forEach(errores, function(value, index){

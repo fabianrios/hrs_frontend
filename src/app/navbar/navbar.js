@@ -42,18 +42,21 @@
 	    }
 
     $scope.existsIndebtedness = function(){
-			return $scope.user.indebtedness_levels.length != 0
+			return $scope.user.indebtedness_levels.length != 0;
     }
 
     $scope.existsEmbargoes = function(){
-    	return $scope.user.embargoes.length != 0	
+    	return $scope.user.embargoes.length != 0;
     }
 
     $scope.exitsLoanRecords = function(){
-    	return $scope.user.loan_records.length != 0
+    	return $scope.user.loan_records.length != 0;
     }
     $scope.existsVacationRecords = function(){
-    	return $scope.user.vacation_records.length != 0
+    	return $scope.user.vacation_records.length != 0;
+    }
+    $scope.existsVacationBalanceRecords = function(){
+    	return $scope.user.vacation_balance_records.length != 0;
     }
     $scope.existPermissions = function (){
     	return $scope.user.permissions.length != 0;

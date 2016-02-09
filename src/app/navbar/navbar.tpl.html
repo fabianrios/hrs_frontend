@@ -152,9 +152,14 @@
           Vacaciones Disfrutadas
         </a>
       </li>
-      <li ng-if="existsVacationRecords()">
+      <li ng-if="existsVacationBalanceRecords()">
         <a ui-sref="main.views.compensatory_vacation_records">
           Vacaciones Compensadas
+        </a>
+      </li>
+      <li ng-if="existsVacationBalanceRecords()">
+        <a ui-sref="main.views.vacation_balance_records">
+          Saldo de Vacaciones
         </a>
       </li>
       <li ng-if="existPermissions()">
