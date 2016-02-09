@@ -182,7 +182,7 @@
       angular.forEach(words,function(word,iWord){
         if (exceptionsAcronyms.indexOf(word.toUpperCase()) != -1){
           newWord = word.toUpperCase()+" ";;
-        }else if((word.length == 1 || word.length == 2 || word.length == 3) && type!="own"){
+        }else if((word.length > 0 && word.length <= 3) && type!="own"){
           newWord = word.toLowerCase()+" ";
         }else{
           newWord = word.substring(0,1).toUpperCase() + word.substring(1).toLowerCase()+" ";
