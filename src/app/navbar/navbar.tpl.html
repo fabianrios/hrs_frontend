@@ -152,6 +152,11 @@
           Vacaciones Disfrutadas
         </a>
       </li>
+      <li ng-if="existsVacationRecords()">
+        <a ui-sref="main.views.compensatory_vacation_records">
+          Vacaciones Compensadas
+        </a>
+      </li>
       <li ng-if="existPermissions()">
         <a ui-sref="main.views.permissions">
           Permisos
