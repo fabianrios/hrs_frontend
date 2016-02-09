@@ -69,7 +69,8 @@
     'seizures', 
     'loan_records',
     'vacation_records',
-    'permissions'
+    'permissions', 
+    'extra_hour_records'
   ])
 
   .config(function($stateProvider, $httpProvider, $urlRouterProvider, HRAPI_CONF, AuthProvider, AuthInterceptProvider, $authProvider){ //ngS3Config, 
