@@ -175,7 +175,7 @@
     </ul>
   </li>
 
-  <li class="has-submenu disabled" ng-if="seeValidation(user.employee.see_rpgen)">
+  <li class="has-submenu" ng-if="seeValidation(user.employee.see_rpgen)">
     <a href="" >
       <i class="fa fa-line-chart fa-lg"></i> Servicios gerenciales
       <i class="fa fa-angle-right fa-right fa-lg"></i>
@@ -184,11 +184,13 @@
       <li class="back">
         <a href="">Volver</a>
       </li>
-      <li class="disabled">
-        <a href="">Empleados activos</a>
+      <li>
+        <a ui-sref="main.views.personal_rotation">
+          Rotación de personal <span ng-show="existsPersonalRotation()" class="secondary round label"><b>{{ user.personal_rotation_length }}</b></span>
+        </a>
       </li>
       <li class="disabled">
-        <a href="">Rotación de personal</a>
+        <a href="">Empleados activos</a>
       </li>
       <li class="disabled">
         <a href="">Vencimiento de contratos</a>
