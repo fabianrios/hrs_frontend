@@ -16,6 +16,26 @@
 		font-size: 1em;
 	}
 }
+
+.panel h4{
+	color: #ff7e00;
+}
+
+#indebtedness_level_porcentage {
+	font-size: 30px;
+	@media screen and (min-width: 40em) {
+	
+		font-size: 35px;
+	
+	}
+	@media screen and (min-width: 64em) {
+	
+		font-size: 40px;
+	
+	}
+}
+
+
 /** indebtedness_levels **/
 #tr_payroll_period {
 	background: #EDEAEA;
