@@ -31,16 +31,22 @@
 			return $scope.existsRegisters() || $scope.existsRequests() ||	$scope.existsMasterData();
 		}
 
+		//Management Services Validation
+    $scope.seeValidation = function(see){
+      if (see == "true"){
+        return true
+      }
+      else{
+        return false
+      }
+    }
+    
+    $scope.existsPersonalRotation = function(){
+  		return parseInt($scope.user.personal_rotation_length) != 0
+    }
 
-	    $scope.seeValidation = function(see){
-	      if (see == "true"){
-	        return true
-	      }
-	      else{
-	        return false
-	      }
-	    }
 
+		//Records Validation
     $scope.existsIndebtedness = function(){
 			return $scope.user.indebtedness_levels.length != 0;
     }

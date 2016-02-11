@@ -34,6 +34,7 @@
     'loan.service',
     'severance.service',
     'compensatory_vacation.service',
+    'personal_rotation.service',
 
     // Directives
     'ngS3upload',
@@ -73,7 +74,8 @@
     'extra_hour_records',
     'compensatory_vacation_records',
     'incapacities',
-    'vacation_balance_records'
+    'vacation_balance_records',
+    'personal_rotation'
   ])
 
   .config(function($stateProvider, $httpProvider, $urlRouterProvider, HRAPI_CONF, AuthProvider, AuthInterceptProvider, $authProvider){ //ngS3Config, 
