@@ -35,7 +35,7 @@
     'severance.service',
     'compensatory_vacation.service',
     'personal_rotation.service',
-
+    'historical_positions.service',
     // Directives
     'ngS3upload',
     'highcharts-ng',
@@ -75,7 +75,8 @@
     'compensatory_vacation_records',
     'incapacities',
     'vacation_balance_records',
-    'personal_rotation'
+    'personal_rotation', 
+    'historical_positions'
   ])
 
   .config(function($stateProvider, $httpProvider, $urlRouterProvider, HRAPI_CONF, AuthProvider, AuthInterceptProvider, $authProvider){ //ngS3Config, 

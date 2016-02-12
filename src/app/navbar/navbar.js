@@ -45,6 +45,9 @@
   		return parseInt($scope.user.personal_rotation_length) != 0
     }
 
+    $scope.existsHistoricalPositions = function(){
+    	return parseInt($scope.user.historical_positions_length) != 0
+    }
 
 		//Records Validation
     $scope.existsIndebtedness = function(){
