@@ -122,7 +122,8 @@
     </ul>
   </li>
 
-  <li class="has-submenu" ng-if="existsIndebtedness() || existsEmbargoes() || exitsLoanRecords() || existPermissions() || existsVacationRecords()" >
+  <li class="has-submenu">
+  <!-- ng-if="existsIndebtedness() || existsEmbargoes() || exitsLoanRecords() || existPermissions() || existsVacationRecords()" -->
     <a href="">
       <i class="fa fa-paste fa-lg"></i> Consultas
       <i class="fa fa-angle-right fa-right fa-lg"></i>
@@ -132,47 +133,47 @@
         <a href="">Volver</a>
       </li>
 
-      <li ng-if="existsIndebtedness()">
+      <li> <!-- ng-if="existsIndebtedness()" -->
         <a ui-sref="main.views.indebtedness_levels">
           Nivel de endeudamiento
         </a>
       </li>
-      <li ng-if="existsEmbargoes()">
+      <li> <!-- ng-if="existsEmbargoes()" -->
         <a ui-sref="main.views.seizures">
           Embargos
         </a>
       </li>
-      <li ng-if="exitsLoanRecords()">
+      <li> <!-- ng-if="exitsLoanRecords()" -->
         <a ui-sref="main.views.loan_records">
           Prestamos
         </a>
       </li>
-      <li ng-if="existsVacationRecords()">
+      <li> <!-- ng-if="existsVacationRecords()" -->
         <a ui-sref="main.views.enjoyed_vacation_records">
           Vacaciones Disfrutadas
         </a>
       </li>
-      <li ng-if="existsVacationBalanceRecords()">
+      <li> <!-- ng-if="existsVacationBalanceRecords()" -->
         <a ui-sref="main.views.compensatory_vacation_records">
           Vacaciones Compensadas
         </a>
       </li>
-      <li ng-if="existsVacationBalanceRecords()">
+      <li> <!-- ng-if="existsVacationBalanceRecords()" -->
         <a ui-sref="main.views.vacation_balance_records">
           Saldo de Vacaciones
         </a>
       </li>
-      <li ng-if="existPermissions()">
+      <li> <!-- ng-if="existPermissions()" -->
         <a ui-sref="main.views.permissions">
           Permisos
         </a>
       </li>
-      <li ng-if="existIncapacities()">
+      <li> <!-- ng-if="existIncapacities()" -->
         <a ui-sref="main.views.incapacities">
           Incapacidades
         </a>
       </li>
-      <li ng-if="existExtraHours()">
+      <li> <!-- ng-if="existExtraHours()" -->
         <a ui-sref="main.views.extra_hour_records">
           Horas Extras
         </a>
@@ -199,6 +200,12 @@
           Historico de cargos
         </a>
       </li>
+      <li>
+        <a ui-sref="main.views.variance_analysis">
+          Analisis de variaciones
+        </a>
+      </li>
+      <!--
       <li class="disabled">
         <a href="">Empleados activos</a>
       </li>
@@ -214,6 +221,7 @@
       <li class="disabled">
         <a href="">Resumen de cargos</a>
       </li>
+      -->
     </ul>
   </li>
   <li ng-if="user.company.show_articles">
