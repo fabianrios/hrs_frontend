@@ -20,10 +20,10 @@
 				</div>
 				<div class="large-4 medium-4 columns left">
 					<select id="payroll_filter" ng-model="payroll_concept_filter">
+						<option value="">Todos</option>
 						<option ng-repeat="concept in payroll_concepts">{{ concept }}</option>
 					</select>
 				</div>
-				{{ payroll_concept_filter }}
 			</fieldset>
 		</div>
 

@@ -1,0 +1,59 @@
+<div class="padding-container">
+	<h3 class="expand-title text-center first-one">Ingresoso y Retenciones</h3>
+	
+	<div ng-hide="existsPaymentsAndDeductions()" ng-include="warningMessage"></div>
+
+	<div ng-show="existsPaymentsAndDeductions()">
+		<div class="row">
+			<fieldset>
+				<legend>Filtros</legend>
+				<div class="large-2 medium-2 columns">
+					<label for="payroll_filter" class="inline">Empleado:</label>
+				</div>
+				<div class="large-4 medium-4 columns left">
+					<select id="payroll_filter" ng-model="position_filter" ng-change="employeeFilter()">
+						<option ng-repeat="(key, payment) in payments_deductions" value="{{ key }}">{{ payment.employee_name }} {{ payment.employee_lastname }}</option>
+					</select>
+				</div>
+			</fieldset>
+		</div>
+		
+		<div class="row">
+			<div class="panel callout radius">
+				<div class="row">
+					<div class="large-2 small-4 columns left">
+						<a><img ng-src="{{ employeeData.image.image.url }}" alt="" /></a>
+					</div>
+					<div class="large-8 small-8 columns left">
+						<div class="row">
+							<div class="large-12 small-12 columns left">
+								<h4>{{ employeeData.employee_name }} {{ employeeData.employee_lastname }}</h4>
+							</div>
+							<div class="large-6 small-6 columns left">
+								{{ employeeData.position_current }}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div ng-repeat="(key, payment) in employeeData.payments_deductions | orderBy:'-year_report'" class="large-6 medium-6 small-12 columns left">
+				<div class="panel">
+					<div class="row">
+						<div class="large-6 small-6 columns left">
+							<h5>{{payment.year_report}}</h5>
+						</div>
+						<div class="large-6 small-6 columns left">
+							{{payment.amount |  currency: payment.currency+" $":0}}
+						</div>
+						<div class="large-12 small-12 columns left">
+							<h5>{{payment.text}}</h5>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
