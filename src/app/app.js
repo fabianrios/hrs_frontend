@@ -83,7 +83,8 @@
     'historical_positions', 
     'absences',
     'variance_analysis', 
-    'manager_organigram'
+    'manager_organigram',
+    'payments_deductions'
   ])
 
   .config(function($stateProvider, $httpProvider, $urlRouterProvider, HRAPI_CONF, AuthProvider, AuthInterceptProvider, $authProvider){ //ngS3Config, 
