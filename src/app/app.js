@@ -38,6 +38,8 @@
     'historical_positions.service',
     'variance_analysis.service',
     'absences.service',
+    'manager_organigram.service',
+
     // Directives
     'ngS3upload',
     'highcharts-ng',
@@ -79,8 +81,9 @@
     'vacation_balance_records',
     'personal_rotation', 
     'historical_positions', 
-    'variance_analysis',
-    'absences'
+    'absences',
+    'variance_analysis', 
+    'manager_organigram'
   ])
 
   .config(function($stateProvider, $httpProvider, $urlRouterProvider, HRAPI_CONF, AuthProvider, AuthInterceptProvider, $authProvider){ //ngS3Config, 

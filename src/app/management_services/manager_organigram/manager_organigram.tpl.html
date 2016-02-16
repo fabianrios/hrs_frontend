@@ -1,0 +1,48 @@
+<div class="padding-container">
+	<h3 class="expand-title text-center first-one">Organigrama</h3>
+	
+	<div>
+		<div class="row">
+			<fieldset>
+				<legend>Filtros</legend>
+				<div class="large-2 medium-2 columns">
+					<label for="payroll_filter" class="inline">Cargos:</label>
+				</div>
+				<div class="large-4 medium-4 columns left">
+					<select id="position_filter" ng-model="position_filter">
+						<option value="">Todos</option>
+						<option ng-repeat="position in positions">{{ position }}</option>
+					</select>
+				</div>
+			</fieldset>
+		</div>
+
+		<div class="row">
+			<div class="large-12 medium-12 columns">
+				<table>
+				  <thead>
+					  <tr>
+					  	<th scope="column" class="text-center th-pointer">Nombre</th>
+					  	<th scope="column" class="text-center th-pointer">Cod. Cargo</th>
+					    <th scope="column" class="text-center th-pointer">Cargo</th>
+					  </tr>
+				  </thead>
+			  	<tbody >
+		  			<tr ng-repeat="(key, employee) in employees | filter : {position: position_filter}">
+			  			<td scope="row">
+			  				<div ng-show="isVacant(employee)">
+			  					<span class="secondary label">{{ fullName(employee) }}</span>
+			  				</div>
+		  					<div ng-hide="isVacant(employee)">
+		  						{{ fullName(employee) }}
+		  					</div>
+			  			</td>
+		  				<td scope="row" ng-bind="employee.position_id"></td>
+		  				<td scope="row" ng-bind="employee.position"></td>
+		  			</tr>
+				  </tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
