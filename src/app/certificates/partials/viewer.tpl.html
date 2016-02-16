@@ -30,10 +30,7 @@
 
   <div ng-if="ubicacion == 'main.views.certificates_income' && pdf.length >= 1" class="vacations-opt">
     <select ng-model="volanteId" ng-change="cambiarPdf(volanteId)">
-      <optgroup ng-repeat="type in user.file_types | filter: { activ: 'CIYR'}" label="{{ type.nomid }}">
-        <option ng-repeat="(key, volante) in pdf | filter: {pdf_type_ident: type.ident}" 
-        ng-bind="volante.name_iden" ng-value="key" ng-selected="key === keyVolante"></option>
-      </optgroup>
+      <option ng-repeat="(key, volante) in pdf" ng-bind="filterVolante(volante.pdf_type_ident)" ng-value="key" ng-selected="key === keyIncome"></option>
     </select>
   </div>
 

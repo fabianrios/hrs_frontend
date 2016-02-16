@@ -225,16 +225,23 @@
 		$scope.progress  = {};
 		$scope.progreso  = 0;
 		$scope.keyIncome = parseInt($stateParams.id);
+		$scope.pdf 			 = $filter('filter')($scope.user.files, {op:'inret'})		
 
-		
-
-		$scope.pdf = $filter('filter')($scope.user.files, {op:'inret'})		
     if (typeof $scope.pdf[$scope.keyIncome] !== "undefined"){
     	$scope.no_pdf = false;
       $scope.pdfUrl = HRAPI_CONF.baseUrl($scope.pdf[$scope.keyIncome].file.url);
     }else{
     	$scope.no_pdf = true;
       $state.transitionTo('main.views.certificates_error');
+    }
+
+    $scope.filterVolante = function(pdf_type){
+    	var types = $filter('filter')($scope.user.file_types, {ident:pdf_type});
+    	var name = '';
+    	if(types.length >= 1){
+				name = types[0].nomid;
+    	}
+    	return name;
     }
 
 		$scope.cambiarPdf = function(keyIncome) {
