@@ -37,6 +37,7 @@
     'personal_rotation.service',
     'historical_positions.service',
     'variance_analysis.service',
+    'absences.service',
     // Directives
     'ngS3upload',
     'highcharts-ng',
@@ -78,7 +79,8 @@
     'vacation_balance_records',
     'personal_rotation', 
     'historical_positions', 
-    'variance_analysis'
+    'variance_analysis',
+    'absences'
   ])
 
   .config(function($stateProvider, $httpProvider, $urlRouterProvider, HRAPI_CONF, AuthProvider, AuthInterceptProvider, $authProvider){ //ngS3Config, 
