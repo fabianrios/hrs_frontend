@@ -110,16 +110,16 @@
 						{{employeeData.area}}
 					</div>
 					<div class="small-12 large-6 columns left employee-position">
-						<a ng-if="employee.email" class="lowercase" href="mailto:{{employee.email | lowercase}}" data-tooltip aria-haspopup="true" title="{{employee.email | lowercase}}">
+						<a ng-if="employeeData.email" class="lowercase" href="mailto:{{employeeData.email | lowercase}}" data-tooltip aria-haspopup="true" title="{{employeeData.email | lowercase}}">
 							<i class="fa fa-envelope-o fa-lg"></i>
 						</a>
-						{{employee.email | lowercase}}
+						{{employeeData.email | lowercase}}
 					</div>
 					<div class="small-12 large-6 columns left employee-position">
-						<a ng-if="employee.phone" href="tel://{{employee.phone}}" data-tooltip aria-haspopup="true" title="{{employee.phone}}">
+						<a ng-if="employeeData.phone" href="tel://{{employeeData.phone}}" data-tooltip aria-haspopup="true" title="{{employeeData.phone}}">
 							<i class="fa fa-phone fa-lg"></i>
 						</a>
-					{{employee.phone}}
+					{{employeeData.phone}}
 					</div>
 				</div>
 			</div>
