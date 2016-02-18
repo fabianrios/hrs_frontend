@@ -319,7 +319,7 @@
 								</div>
 								<div ng-switch-when="P0008-BET01">
 									<label for="{{data.ncamp}}">{{data.dcamp}}</label>
-									<input ng-disabled="!edit_field(data.sedit)" type="{{data.tcamp == 'TEX2' ? 'text' : data.tcamp}}" name="{{data.ncamp}}" value="{{find_country(paises,data.ccamp)}}"/>
+									<input ng-disabled="!edit_field(data.sedit)" type="{{data.tcamp == 'TEX2' ? 'text' : data.tcamp}}" name="{{data.ncamp}}" value="{{data.ccamp | currency: '$':0}}"/>
 								</div>
 								<div ng-switch-when="P0009-BANKL">
 									<label for="{{data.ncamp}}">{{data.dcamp}}</label>
