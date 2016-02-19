@@ -12,59 +12,41 @@
 				</div>
 				<div class="large-4 medium-4 columns left">
 					<select id="payroll_filter" ng-model="position_filter" ng-change="employeeFilter()">
-						<option ng-repeat="(key, historical) in historical_positions" value="{{ key }}">{{ historical.employee_name }} {{ historical.employee_lastname }}</option>
+						<option ng-repeat="(key, historical) in historical_salaries" value="{{ key }}">{{ historical.employee_name }} {{ historical.employee_lastname }}</option>
 					</select>
 				</div>
 			</fieldset>
 		</div>
 		
 		<div class="row">
-			<div class="panel callout radius">
-				<div class="row">
-					<div class="large-2 small-4 columns left">
-						<a><img ng-src="{{ employeeData.image.image.url }}" alt="" /></a>
-					</div>
-					<div class="large-8 small-8 columns left">
-						<div class="row">
-							<div class="large-12 small-12 columns left">
-								<h4>{{ employeeData.employee_name }} {{ employeeData.employee_lastname }}</h4>
-							</div>
-
-							<div class="large-6 small-6 columns left">
-								{{ employeeData.position_current }}
-							</div>
-							<div class="large-6 small-6 columns left">
-								{{ employeeData.boss_current }}
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="row">
-			<div ng-repeat="(key, historical) in employeeData.historical | orderBy:'-begda'" class="large-6 medium-6 small-12 columns left">
-				<div class="panel">
-					<div class="row">
-						<div class="large-12 small-12 columns left">
-							<h5>{{historical.position}}</h5>
-						</div>
-						<div class="large-6 small-12 columns left">
-							<div ng-if="key == 0">
-								{{historical.begda | date:"dd/MM/yyyy"}} - <strong>{{ validateDateNow(historical.endda) }}</strong>
-							</div>
-							<div ng-if="key != 0">
-								{{historical.begda | date:"dd/MM/yyyy"}} - {{ validateDateNow(historical.endda) }}
-							</div>
-						</div>
-						<div class="large-6 small-12 columns left">
-							<i>{{ diffDates(historical.begda, historical.endda) }}</i>
-						</div>
-						<div class="large-12 small-12 columns left">
-							{{historical.amount_accrued |  currency: historical.currency+" $":0}}
-						</div>
-					</div>
-				</div>
+			<div class="large-12 medium-12 columns">
+				<table>
+				  <thead>
+					  <tr>
+					  	<th scope="column" class="text-center">Cargo</th>
+					    <th scope="column" class="text-center">Fecha Inicio</th>
+					    <th scope="column" class="text-center">Fecha Final</th>
+					    <th scope="column" class="text-center">Salario</th>
+					  </tr>	
+				  </thead>
+			  	<tbody ng-repeat="(key, employee) in employeeData.historical">
+			  		<tr id="tr_payroll_period">
+			  			<td id="td_payroll_period" rowspan="{{ rowFilter(employee) }}">{{ employee.position }}-{{ employee.salaries.length }}</td>
+			  		</tr>
+		  			<tr ng-repeat="(key2, salary) in employee.salaries | orderBy:'-begda'">
+					    <td scope="row">{{salary.begda}}</td>
+					    <td scope="row">
+					    	<div ng-show="showDate(key, key2)">
+									<strong>{{ validateDateNow(salary.endda) }}</strong>
+								</div>
+								<div ng-hide="showDate(key, key2)">
+									{{ validateDateNow(salary.endda) }}
+								</div>
+					    </td>
+					    <td scope="row">{{salary.amount_accrued | currency: salary.currency+" $":0}}</td>
+		  			</tr>
+				  </tbody>
+				</table>
 			</div>
 		</div>
 	</div>
