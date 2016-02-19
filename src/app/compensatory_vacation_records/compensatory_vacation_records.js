@@ -21,7 +21,7 @@
 
   	$scope.dateFilter = function(value){
 			var filterValue = $filter('filter')($scope.user.compensatory_vacation_records, {endda: value});
-			return filterValue.length != 1 ? filterValue.length + 1 : 0;
+			return filterValue.length >= 1 ? filterValue.length + 1 : 0;
   	}
 
     var uniqueVals = [];
