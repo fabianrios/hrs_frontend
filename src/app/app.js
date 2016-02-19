@@ -39,6 +39,7 @@
     'variance_analysis.service',
     'absences.service',
     'manager_organigram.service',
+    'historical_salaries.service',
 
     // Directives
     'ngS3upload',
@@ -84,7 +85,8 @@
     'absences',
     'variance_analysis', 
     'manager_organigram',
-    'payments_deductions'
+    'payments_deductions',
+    'historical_salaries'
   ])
 
   .config(function($stateProvider, $httpProvider, $urlRouterProvider, HRAPI_CONF, AuthProvider, AuthInterceptProvider, $authProvider){ //ngS3Config, 

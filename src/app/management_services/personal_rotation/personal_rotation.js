@@ -28,8 +28,7 @@
   	}
 
   	$scope.existsPersonalRotation = function(){
-  		//return parseInt($scope.personal_rotations.staff_turnover.length) != 0
-  		return 0 != 0
+  		return parseInt($scope.personal_rotations.staff_turnover.length) != 0
     }
 
 		$scope.rotationType = function(value){
