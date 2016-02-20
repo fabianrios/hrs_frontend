@@ -31,7 +31,7 @@
 				  </thead>
 			  	<tbody ng-repeat="(key, employee) in employeeData.historical">
 			  		<tr id="tr_payroll_period">
-			  			<td id="td_payroll_period" rowspan="{{ rowFilter(employee) }}">{{ employee.position }}-{{ employee.salaries.length }}</td>
+			  			<td id="td_payroll_period" rowspan="{{ rowFilter(employee) }}">{{ employee.position }}</td>
 			  		</tr>
 		  			<tr ng-repeat="(key2, salary) in employee.salaries | orderBy:'-begda'">
 					    <td scope="row">{{salary.begda}}</td>
