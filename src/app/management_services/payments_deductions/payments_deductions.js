@@ -17,9 +17,9 @@
 	})
 	.controller('PaymentsDeductions.ListController', ['$rootScope', '$scope', '$filter', 'paymentsDeductions',function($rootScope, $scope, $filter, paymentsDeductions){
 		$scope.payments_deductions = paymentsDeductions.payments_and_deductions;
-		$scope.warningMessage       = 'app/management_services/warning.tpl.html';
-		$scope.position_filter      = parseInt($scope.payments_deductions[0]);
-		$scope.employeeData         = $scope.payments_deductions[0]
+		$scope.warningMessage      = 'app/management_services/warning.tpl.html';
+		$scope.position_filter     = parseInt($scope.payments_deductions[0]);
+		$scope.employeeData        = $scope.payments_deductions[0]
 
 		$scope.existsPaymentsAndDeductions = function(){
   		return parseInt($scope.payments_deductions.length) != 0
@@ -28,6 +28,9 @@
     $scope.employeeFilter = function(){
 			$scope.employeeData = $scope.payments_deductions[$scope.position_filter];
 		}		
+
+		$scope.rowFilter = function(payment){
+			return payment.reports.length >= 1 ? payment.reports.length + 1 : 0;
+		}
 	}]);
 }());
-

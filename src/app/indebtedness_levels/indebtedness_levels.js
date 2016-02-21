@@ -11,11 +11,16 @@
 			resolve     : {}
 		})
 	})
-	.controller('IndebtednessLevels.ListController', ['$rootScope', '$scope', function($rootScope, $scope){
+	.controller('IndebtednessLevels.ListController', ['$rootScope', '$scope', '$filter', function($rootScope, $scope, $filter){
 		$scope.payroll_date_filter = ''
 
 		if($scope.user.indebtedness_levels.length == 0){
 			$state.transitionTo('main.views.dashboard');
+  	}
+
+  	$scope.dateFilter = function(value){
+			var filterValue = $filter('filter')($scope.user.indebtedness_levels, {payroll_date: value});
+			return filterValue.length >= 1 ? filterValue.length + 1 : 0;
   	}
   	
     var uniqueVals = [];
