@@ -195,7 +195,7 @@
       var words = value.split(" ");
       var newValue = "";
       var newWord;
-      var exceptionsAcronyms = ['TI','BTL'];
+      var exceptionsAcronyms = ['TI','BTL','SAP'];
       angular.forEach(words,function(word,iWord){
         if (exceptionsAcronyms.indexOf(word.toUpperCase()) != -1){
           newWord = word.toUpperCase()+" ";;

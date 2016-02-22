@@ -20,7 +20,7 @@
 				ingresos: function(){
 					return {
 						items: [
-							{ name: "Mis Ingresos y Deducciones", config: { param_a: "abc", param_b: "Los ingresos hacen referecia a la remuneracion economica que recibe el empleado. Las Deducciones son los descuentos que le realiza la empresa al empleado por concepto de aporte a seguridad social, préstamos, entre otros." }}
+							{ name: "Mis ingresos y deducciones", config: { param_a: "abc", param_b: "Los ingresos hacen referecia a la remuneracion economica que recibe el empleado. Las Deducciones son los descuentos que le realiza la empresa al empleado por concepto de aporte a seguridad social, préstamos, entre otros." }}
 						]
 					}
 				},
@@ -29,7 +29,7 @@
 						items: [
 							{ name: "Cumpleaños", config: { param_a: "abc", param_b: "Empleados que cumplen años en último mes." }},
 							{ name: "Aniversario", config: { param_a: "def", param_b: "Fecha en la cual el empleado cumple año(s) de ingreso a la compañía." }},
-							{ name: "Ingresos Recientes", config: { }}
+							{ name: "Ingresos recientes", config: { }}
 						]
 					}
 				},

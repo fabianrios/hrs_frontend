@@ -10,7 +10,7 @@
       <div class="large-2 medium-2 columns">
         <select id="date_filter" ng-model="date_filter.$">
           <option value="">Todos</option>
-          <option ng-repeat="date in payroll_dates | orderBy:date">{{ date }}</option>
+          <option ng-repeat="date in payroll_dates | orderBy:date" value="{{ date }}">{{ date | date:'dd/MM/yyyy' }}</option>
         </select>
       </div>
       
@@ -33,18 +33,18 @@
         <thead>
           <tr>
             <th scope="column" class="text-center">Descripción</th>
-            <th scope="column" class="text-center">Fecha de Inicio</th>
-            <th scope="column" class="text-center">Fecha Final</th>
-            <th scope="column" class="text-center">Dias Totales</th>
-            <th scope="column" class="text-center">Dias Tomados</th>
-            <th scope="column" class="text-center">Dias Pendientes</th>
+            <th scope="column" class="text-center">Fecha de inicio</th>
+            <th scope="column" class="text-center">Fecha final</th>
+            <th scope="column" class="text-center">Dias totales</th>
+            <th scope="column" class="text-center">Dias tomados</th>
+            <th scope="column" class="text-center">Dias pendientes</th>
           </tr> 
         </thead>
         <tbody ng-repeat="date in payroll_dates | filter : date_filter | orderBy:date">
           <tr ng-repeat="(key, vacation) in user.vacation_balance_records | filter : {endda: date, ktext: payroll_concept_filter}"> 
             <td scope="row" ng-bind="vacation.ktext"></td>
-            <td scope="row" ng-bind="vacation.begda"></td>
-            <td scope="row" id="td_payroll_period" ng-bind="vacation.endda"></td>
+            <td scope="row" ng-bind="vacation.begda | date:'dd/MM/yyyy'"></td>
+            <td scope="row" id="td_payroll_period" ng-bind="vacation.endda | date:'dd/MM/yyyy'"></td>
             <td scope="row" ng-bind="vacation.anzhl"></td>
             <td scope="row" ng-bind="vacation.kverb"></td>
             <td scope="row" ng-bind="remainingDays(vacation)"></td>

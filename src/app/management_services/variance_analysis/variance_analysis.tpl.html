@@ -1,5 +1,5 @@
 <div class="padding-container">
-	<h3 class="expand-title text-center first-one">Analisis de Variaciones</h3>
+	<h3 class="expand-title text-center first-one">Análisis de Variaciones</h3>
 	
 	<div ng-hide="existsVarianceAnalysis()" ng-include="warningMessage"></div>
 
@@ -12,7 +12,8 @@
 				</div>
 				<div class="large-4 medium-4 columns left">
 					<select id="employee_filter" ng-model="employee_filter">
-						<option ng-repeat="(key, variance) in variance_analysis" value="{{ key }}">{{ variance.employee_name }} {{ variance.employee_lastname }}</option>
+						<option value="">Todos</option>
+						<option ng-repeat="(key, variance) in variance_analysis" value="{{ variance.employee_lastname }}">{{ variance.employee_name }} {{ variance.employee_lastname }}</option>
 					</select>
 				</div>
 			</fieldset>
@@ -21,18 +22,17 @@
 		<div class="row">
 			<div class="large-12 medium-12 columns">
 				<table>
-				  <!-- <caption>Analisis de Variaciones</caption>-->
 				  <thead>
 					  <tr>
 					  	<th scope="column" class="text-center th-pointer">Apellido</th>
 					  	<th scope="column" class="text-center th-pointer">Nombre</th>
 					    <th scope="column" class="text-center th-pointer">Cargo</th>
-					    <th scope="column" class="text-center th-pointer">Jefe Inmediato</th>
+					    <th scope="column" class="text-center th-pointer">Jefe inmediato</th>
 					    <th scope="column" class="text-center th-pointer">Detalle</th>
 					  </tr>
 				  </thead>
 			  	<tbody >
-		  			<tr ng-repeat="(key, variance) in variance_analysis">
+		  			<tr ng-repeat="(key, variance) in variance_analysis | filter : {employee_lastname: employee_filter}">
 			  			<td scope="row" ng-bind="variance.employee_lastname"></td>
 		  				<td scope="row" ng-bind="variance.employee_name"></td>
 		  				<td scope="row" ng-bind="variance.position_current"></td>

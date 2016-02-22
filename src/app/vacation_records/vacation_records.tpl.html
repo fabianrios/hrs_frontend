@@ -10,7 +10,7 @@
 			<div class="large-2 medium-2 columns">
 				<select id="date_filter" ng-model="date_filter.$">
 					<option value="">Todos</option>
-					<option ng-repeat="date in payroll_dates | orderBy:date">{{ date }}</option>
+					<option ng-repeat="date in payroll_dates | orderBy:date" value="{{ date }}">{{ date | date:'dd/MM/yyyy' }}</option>
 				</select>
 			</div>
 			
@@ -34,20 +34,20 @@
 				  <tr>
 				  	<th scope="column" class="text-center">Periodo</th>
 				  	<th scope="column" class="text-center">Descripción</th>
-				  	<th scope="column" class="text-center">Fecha de Inicio</th>
-				    <th scope="column" class="text-center">Fecha Final</th>
+				  	<th scope="column" class="text-center">Fecha de inicio</th>
+				    <th scope="column" class="text-center">Fecha final</th>
 				    <th scope="column" class="text-center">Dias de absentismo/presencia</th>
-				    <th scope="column" class="text-center">Dias Naturales</th>
+				    <th scope="column" class="text-center">Dias naturales</th>
 				  </tr>	
 			  </thead>
 		  	<tbody ng-repeat="date in payroll_dates | filter : date_filter | orderBy:date">
 		  		<tr id="tr_payroll_period">
-		  			<td id="td_payroll_period" rowspan="{{ user.vacation_records.length | filter : {endda: date} }}">{{ date }}</td>
+		  			<td id="td_payroll_period" rowspan="{{ user.vacation_records.length | filter : {endda: date} }}">{{ date | date:'dd/MM/yyyy'}}</td>
 		  		</tr>
 	  			<tr ng-repeat="(key, vacation) in user.vacation_records | filter : {endda: date, atext: payroll_concept_filter}"> 
 	  				<td scope="row" ng-bind="vacation.atext"></td>
-	  				<td scope="row" ng-bind="vacation.begda"></td>
-				    <td scope="row" ng-bind="vacation.endda"></td>
+	  				<td scope="row" ng-bind="vacation.begda | date:'dd/MM/yyyy'"></td>
+				    <td scope="row" ng-bind="vacation.endda | date:'dd/MM/yyyy'"></td>
 				    <td scope="row" ng-bind="vacation.abwtg"></td>
 				    <td scope="row" ng-bind="vacation.kaltg"></td>
 	  			</tr>
