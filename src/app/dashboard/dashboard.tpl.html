@@ -370,11 +370,13 @@
 							</div>
 						</h5>
 						<div class="contenido">
+							<!--
 						  <div ng-if="articles_not_mine.articles.length >= 1">
 						    <div class="cuantos">
     							<h3><span class="icon-comment"></span>{{articles_not_mine.length}}</h3>
     						</div>
 						  </div>
+						  -->
 							<ul class="employees publicaciones">
 								<li ng-repeat="articulos in articles_not_mine.articles | orderBy: 'created_at' : true | limitTo: 10">
 									<a ui-sref="main.views.articleDetail({id:articulos.id})" ng-class="articulos.category">{{articulos.titulo}}</a>

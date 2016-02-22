@@ -13,7 +13,7 @@
 				<div class="large-4 medium-4 columns left">
 					<select id="employee_filter" ng-model="employee_filter">
 						<option value="">Todos</option>
-						<option ng-repeat="(key, variance) in variance_analysis" value="{{ variance.employee_lastname }}">{{ variance.employee_name }} {{ variance.employee_lastname }}</option>
+						<option ng-repeat="(key, variance) in variance_analysis" value="{{ variance.short_name }}">{{ variance.employee_name }} {{ variance.employee_lastname }}</option>
 					</select>
 				</div>
 			</fieldset>
@@ -32,7 +32,7 @@
 					  </tr>
 				  </thead>
 			  	<tbody >
-		  			<tr ng-repeat="(key, variance) in variance_analysis | filter : {employee_lastname: employee_filter}">
+		  			<tr ng-repeat="(key, variance) in variance_analysis | filter : {short_name: employee_filter}">
 			  			<td scope="row" ng-bind="variance.employee_lastname"></td>
 		  				<td scope="row" ng-bind="variance.employee_name"></td>
 		  				<td scope="row" ng-bind="variance.position_current"></td>
