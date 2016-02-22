@@ -24,8 +24,8 @@
 				  <thead>
 					  <tr>
 					  	<th scope="column" class="text-center">Cargo</th>
-					    <th scope="column" class="text-center">Fecha Inicio</th>
-					    <th scope="column" class="text-center">Fecha Final</th>
+					    <th scope="column" class="text-center">Fecha inicio</th>
+					    <th scope="column" class="text-center">Fecha final</th>
 					    <th scope="column" class="text-center">Salario</th>
 					  </tr>	
 				  </thead>
@@ -34,10 +34,10 @@
 			  			<td id="td_payroll_period" rowspan="{{ rowFilter(employee) }}">{{ employee.position }}</td>
 			  		</tr>
 		  			<tr ng-repeat="(key2, salary) in employee.salaries | orderBy:'-begda'">
-					    <td scope="row">{{salary.begda}}</td>
+					    <td scope="row">{{salary.begda | date:'dd/MM/yyyy'}}</td>
 					    <td scope="row">
 					    	<div ng-show="showDate(key, key2)">
-									<strong>{{ validateDateNow(salary.endda) }}</strong>
+									<strong>{{ validateDateNow(salary.endda) | date:'dd/MM/yyyy'}}</strong>
 								</div>
 								<div ng-hide="showDate(key, key2)">
 									{{ validateDateNow(salary.endda) }}

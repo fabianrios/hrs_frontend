@@ -255,11 +255,11 @@
 								</div>
 								<div ng-switch-when="P0831-FAM02">
 									<label for="{{data.ncamp}}">{{data.dcamp}}</label>
-									<input ng-disabled="!edit_field(data.sedit)" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{find_related(familiares, data.ccamp)}}"/>
+									<input ng-disabled="!edit_field(data.sedit)" type="{{data.tcamp == 'NUM' ? 'number' : 'text'}}" name="{{data.ncamp}}" value="{{find_related(familiares, data.ccamp)}}"/>
 								</div>
 								<div ng-switch-when="P0831-FAM01">
 									<label for="{{data.ncamp}}">{{data.dcamp}}</label>
-									<input ng-disabled="!edit_field(data.sedit)" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{find_related(familiares, data.ccamp)}}"/>
+									<input ng-disabled="!edit_field(data.sedit)" type="{{data.tcamp == 'NUM' ? 'number' : 'text'}}" name="{{data.ncamp}}" value="{{find_related(familiares, data.ccamp)}}"/>
 								</div>
 							</div>
 						</li>

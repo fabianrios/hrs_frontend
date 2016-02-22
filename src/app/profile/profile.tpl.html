@@ -7,16 +7,16 @@
 			</div>
             <!--dash-text-format-->
 			<div class=" p-20 ">
-				<h4 class="no-margin whitetxt capitalize card">
+				<h4 class="no-margin whitetxt card">
 					<a ui-sref="main.views.employee_info">
-						{{user.employee.short_name | lowercase}}
+						{{user.employee.short_name | special_capitalize}}
 					</a>
 				</h4>
-				<h5 class="subheader no-margin capitalize card">
-					{{user.employee.posicion  | lowercase}}
+				<h5 class="subheader no-margin card">
+					{{user.employee.posicion  | special_capitalize}}
 				</h5>
-				<h5 class="subheader no-margin capitalize hide-for-small-only card">
-					{{user.employee.unidad_org | lowercase}}
+				<h5 class="subheader no-margin hide-for-small-only card">
+					{{user.employee.unidad_org | special_capitalize}}
 				</h5>
 			</div>
 		</div>
@@ -26,11 +26,11 @@
 			<h4 class="subheader no-margin capitalize">
 				{{user.employee.area | lowercase}}
 			</h4>
-			<h5 class="subheader no-margin capitalize">
-				{{user.employee.division_per | lowercase}}
+			<h5 class="subheader no-margin">
+				{{user.employee.division_per | special_capitalize}}
 			</h5>
-			<h5 class="subheader no-margin capitalize">
-				{{user.employee.subdivision_per | lowercase}}
+			<h5 class="subheader no-margin">
+				{{user.employee.subdivision_per | special_capitalize}}
 			</h5>
 			<a href="#" data-tooltip aria-haspopup="true" class="has-tip" title="{{user.employee.phone}}" ng-click="contactModal(user.employee.phone, 'phone')">
 				<i class="fa fa-phone fa-lg"></i>
