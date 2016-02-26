@@ -374,6 +374,16 @@
     $scope.showChartSeveranceInterest = function(){
     	return $scope.user.company.show_shart_severance_interest;
     }
+
+    $scope.getDayVacations = function(value){
+    	var days = parseInt(value);
+  		if(isNaN(days)){
+				return '00';
+  		}else if(days <= 9){
+  			return '0'+days;
+  		}
+  		return days;
+    }
 		
 		
 		$scope.employee = $scope.user.employee;
