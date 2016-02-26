@@ -54,14 +54,42 @@
 								</a>
 							</div>
 						</h5>
+
+						<style type="text/css">
+							#cesantias_value {
+								font-size: 40px;
+								color: #123A76;
+							}
+							#intereses_cesantias_value {
+								font-size: 40px;
+								color: #2ED63B;	
+							}
+						</style>
+
 						<div class="contenido">
-							<div class="left">
-								<div cesantias fpend='{{fpend}}' newbetrg="{{newbetrg}}" style="height: 180px; width: 140px; overflow:hidden;"></div>
+							<div ng-hide="showChartSeverance()">
+								<div class="panel">
+									<h3 class="museo text-center">
+										Saldo actual
+									</h3>
+								  <strong class="futura text-center">
+										<h4 id="cesantias_value">
+											$<b>{{elsaldocesantias | currency:"":0}}</b>
+										</h4>
+									</strong>
+								  <h3 class="greentxt museo text-center">
+										<small class="blacktxt">Pesos Colombianos (COP)</small>
+									</h3>	
+								</div>
 							</div>
-							<div class="number-info">
-                                
-								<label class="no-margin">Saldo actual:</label>
-								<h3 class="no-margin bluetxt futura">{{elsaldocesantias | currency:"$":0}}</h3>
+							<div ng-show="showChartSeverance()">
+								<div class="left">
+									<div cesantias fpend='{{fpend}}' newbetrg="{{newbetrg}}" style="height: 180px; width: 140px; overflow:hidden;"></div>
+								</div>
+								<div class="number-info">                 
+									<label class="no-margin">Saldo actual:</label>
+									<h3 class="no-margin bluetxt futura">{{elsaldocesantias | currency:"$":0}}</h3>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -88,12 +116,29 @@
 							</div>
 						</h5>
 						<div class="contenido">
-							<div class="left">
-								<div intcesantias intfpend='{{intfpend}}' intnewbetrg="{{intnewbetrg}}" style="height: 180px; width: 140px; overflow:hidden;"></div>
+							<div ng-hide="showChartSeveranceInterest()">
+								<div class="panel">
+									<h3 class="museo text-center">
+										Saldo actual
+									</h3>
+								  <strong class="futura text-center">
+										<h4 id="intereses_cesantias_value">
+											$<b>{{intcesantias | currency:"":0}}</b>
+										</h4>
+									</strong>
+								  <h3 class="greentxt museo text-center">
+										<small class="blacktxt">Pesos Colombianos (COP)</small>
+									</h3>	
+								</div>
 							</div>
-							<div class="number-info">
-								<label class="no-margin">Saldo actual:</label>
-								<h3 class="no-margin greentxt futura"> {{intcesantias | currency:"$":0}} </h3>
+							<div ng-show="showChartSeveranceInterest()">
+								<div class="left">
+									<div intcesantias intfpend='{{intfpend}}' intnewbetrg="{{intnewbetrg}}" style="height: 180px; width: 140px; overflow:hidden;"></div>
+								</div>
+								<div class="number-info">
+									<label class="no-margin">Saldo actual:</label>
+									<h3 class="no-margin greentxt futura"> {{intcesantias | currency:"$":0}} </h3>
+								</div>
 							</div>
 						</div>
 					</div>
