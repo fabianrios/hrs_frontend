@@ -366,6 +366,14 @@
 	        var date = new Date(empleado.fecha_ingreso).getDate().toString();
 	        return parseInt(date);
 	    };
+
+    $scope.showChartSeverance = function(){
+    	return $scope.user.company.show_shart_severance;
+    }
+
+    $scope.showChartSeveranceInterest = function(){
+    	return $scope.user.company.show_shart_severance_interest;
+    }
 		
 		
 		$scope.employee = $scope.user.employee;
