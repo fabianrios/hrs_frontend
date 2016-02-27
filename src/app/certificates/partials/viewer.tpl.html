@@ -23,7 +23,7 @@
     <select ng-model="volanteId" ng-change="cambiarPdf(volanteId)">
       <optgroup ng-repeat="type in user.file_types | filter: { activ: 'VPAG'}" label="{{ type.nomid }}">
         <option ng-repeat="(key, volante) in volpago | filter: {pdf_type_ident: type.ident} | orderBy:'-name_iden' " 
-        ng-bind="volante.endda" ng-value="key" ng-selected="key === keyVolante"></option>
+        ng-bind="volante.endda | date:'dd/MM/yyyy'" ng-value="key" ng-selected="key === keyVolante"></option>
       </optgroup>
     </select>
   </div>

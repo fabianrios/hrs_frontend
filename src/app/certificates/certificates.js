@@ -112,7 +112,6 @@
 
 		
 		$scope.vacations = $filter('filter')($scope.user.files, {op:'vctns'})
-		console.log($scope.vacations);
 		if (typeof $scope.vacations[$scope.keyVacation] !== "undefined"){
 			$scope.no_pdf = false;
 			$scope.pdfUrl = HRAPI_CONF.baseUrl($scope.vacations[$scope.keyVacation].file.url);

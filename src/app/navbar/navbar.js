@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   angular.module('navbar', [])
-  .controller('Navbar.NavbarController', ['$scope', 'Notification', function($scope, Notification){//,currentUser,articles,vac_requirements, extras_requirements, inhabilities_requirements, licenses_requirements, infos, Notification){
+  .controller('Navbar.NavbarController', ['$scope', '$filter', 'Notification', function($scope, $filter, Notification){//,currentUser,articles,vac_requirements, extras_requirements, inhabilities_requirements, licenses_requirements, infos, Notification){
 		
 		// $scope.articles = articles.articles;
 		// $scope.articles_not_mine = [];
@@ -14,8 +14,12 @@
 		// $scope.inhabilities_not_user = [];
 		// $scope.licenses_not_user = [];
 		// $scope.toapproved =[];
-		$scope.laborCertificate = 'SLPR';
+		$scope.vacations = $filter('filter')($scope.user.files, {op:'vctns'});
+		$scope.incomes 	 = $filter('filter')($scope.user.files, {op:'inret'});
+		$scope.laborCertificate = '0001';
 		$scope.pdfKeyInit 			= 0;
+		$scope.pdfKeyVacations 	= $scope.vacations.length !== 0 ? $scope.vacations.length - 1 : $scope.vacations.length;
+		$scope.pdfKeyIncome     = $scope.incomes.length !== 0 ? $scope.incomes.length - 1 : $scope.incomes.length;
 
 		$scope.existsRegisters  = function(){
 			return $scope.notifications.inhability + $scope.notifications.extra > 0;
