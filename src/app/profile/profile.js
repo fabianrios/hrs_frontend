@@ -34,6 +34,32 @@
 			$('#employee_contact_data_modal').foundation('reveal','open');
 		}
 
+		$scope.showIconContact = function(data){
+			return data == null;
+		}
+
+        $scope.success = function () {
+        	$("#msgCopied").fadeIn();
+        	$scope.msgCopied = "Copiado!";
+        	$scope.viewMsg = true;
+        	setTimeout(function(){
+        		$scope.msgCopied = "";
+        		$scope.viewMsg = false;
+        		$("#msgCopied").fadeOut();
+        	},1000);
+        };
+
+        $scope.fail = function (err) {
+        	$("#msgCopied").fadeIn();
+        	$scope.msgCopied = "Error!" + err;
+        	$scope.viewMsg = true;
+        	setTimeout(function(){
+        		$scope.msgCopied = "";
+        		$scope.viewMsg = false;
+        		$("#msgCopied").fadeOut();
+        	},4000);
+        };
+
   }]);
 }());
 
