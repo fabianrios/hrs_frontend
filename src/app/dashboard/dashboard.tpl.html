@@ -22,13 +22,26 @@
 									<i class="fa fa-chevron-circle-up fa-lg"></i>
 								</a>
 							</div>
-
 						</h5>
 						<div class="contenido" id="vacations-chart">
+							<div class="row">
+								<div class="small-6 small-centered large-centered columns">
+									<span class="fa fa-calendar-o fa-1">
+										<div class="value-icon">{{getDayVacations(vacationdays[1])}}</div>
+									</span>
+								</div>
+								<div class="small-10 small-centered large-centered columns">
+									<h3 class="museo text-center">
+										Dias por Disfrutar
+									</h3>
+								</div>
+							</div>
+							<!--
 							<br />
 							<h4 class="restantes">{{vacationdays[1]}}<span>Restantes</span></h4>
 							<canvas id="doughnut_vacations" class="chart chart-doughnut" chart-data="vacationdays" chart-labels="labels" chart-colours="colours"></canvas>
 							<h4 class="usados">{{vacationdays[0]}}<span>Usados</span></h4>
+							-->
 						</div>
 					</div>
 				</li>
@@ -54,17 +67,6 @@
 								</a>
 							</div>
 						</h5>
-
-						<style type="text/css">
-							#cesantias_value {
-								font-size: 40px;
-								color: #123A76;
-							}
-							#intereses_cesantias_value {
-								font-size: 40px;
-								color: #2ED63B;	
-							}
-						</style>
 
 						<div class="contenido">
 							<div ng-hide="showChartSeverance()">
