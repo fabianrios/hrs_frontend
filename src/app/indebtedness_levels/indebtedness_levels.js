@@ -5,7 +5,7 @@
 	.config(function($stateProvider){
 		$stateProvider
 		.state('main.views.indebtedness_levels', {
-			url 				: '/indebtedness_levels',
+			url 				: '/payment_details',
 			templateUrl	: 'app/indebtedness_levels/indebtedness_levels.tpl.html',
 			controller  : 'IndebtednessLevels.ListController',
 			resolve     : {}
