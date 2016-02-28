@@ -15,7 +15,7 @@
 	<li class="results" ng-repeat="employee in empFavorites" 
 	ng-init="activado = favorite( employee = employee.employee ? employee.employee: employee );">	
 		<div class="pic" >
-			<a ui-sref="main.views.employee_info_lookup({id:employee.identification, c:employee.company.id})" ng-if="showMasterData(user.employee)" > 
+			<a ui-sref="#" ng-click="showModal(employee)" ng-if="showMasterData(user.employee)" > 
 				<img ng-src="{{employee.image.url}}">
 			</a>
 			<div ng-if="!showMasterData(user.employee)"> 
@@ -26,7 +26,7 @@
 			<div ng-click="updateContact($event, employee);activado = !activado;" class="favorite">
 				<span ng-class="activado ? 'fa fa-star' : 'fa fa-star-o'"></span>
 			</div>
-			<a ui-sref="main.views.employee_info_lookup({id:employee.identification, c:employee.company.id})" class="capitalize" ng-if="showMasterData(user.employee)" >
+			<a ui-sref="#"  ng-click="showModal(employee)" class="capitalize" ng-if="showMasterData(user.employee)" >
 				{{employee.name | lowercase}} {{employee.lastname | lowercase}}
 			</a>
 			<div class="contact-name" ng-if="!showMasterData(user.employee)" ng-click="showModal(employee)">
@@ -51,7 +51,7 @@
 	ng-hide="activado ? true : false"
 	>	
 		<div class="pic" >
-			<a ui-sref="main.views.employee_info_lookup({id:employee.identification, c:employee.company.id})" ng-if="showMasterData(user.employee)" > 
+			<a ui-sref="#" ng-click="showModal(employee)" ng-if="showMasterData(user.employee)" > 
 				<img ng-src="{{employee.image.image.url}}">
 			</a>
 			<div ng-if="!showMasterData(user.employee)"> 
@@ -67,7 +67,7 @@
 			<div ng-click="updateContact($event, employee);activado = !activado;" class="favorite">
 				<span ng-class="activado ? 'fa fa-star' : 'fa fa-star-o'"></span>
 			</div>
-			<a ui-sref="main.views.employee_info_lookup({id:employee.identification, c:employee.company.id})" class="capitalize" ng-if="showMasterData(user.employee)" >
+			<a ui-sref="#" ng-click="showModal(employee)" class="capitalize" ng-if="showMasterData(user.employee)" >
 				{{employee.name | lowercase}} {{employee.lastname | lowercase}}
 			</a>
 			<div class="contact-name" ng-if="!showMasterData(user.employee)" ng-click="showModal(employee)">

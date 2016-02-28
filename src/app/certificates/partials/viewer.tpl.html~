@@ -1,0 +1,67 @@
+<nav ng-if="!no_pdf" ng-class="getNavStyle(scroll)">
+  <button class="button small secondary has-tip" ng-click="zoomIn()" data-tooltip aria-haspopup="true" title="Zoom (Aumentar Tamaño)">
+    <span class="fa fa-search-plus fa-lg"></span>
+  </button>
+  <button class="button small secondary has-tip" ng-click="zoomOut()" data-tooltip aria-haspopup="true" title="Zoom (Disminuir Tamaño)">
+    <span class="fa fa-search-minus fa-lg"></span>
+  </button>
+  <a ng-href="{{pdfUrl}}" class="button small secondary has-tip" target="_blank
+  " data-tooltip aria-haspopup="true" title="Imprimir">
+    <span class="fa fa-print fa-lg"></span>
+  </a>
+
+  <div ng-if="ubicacion == 'main.views.certificates_vacations' && employee.vacations.length >= 1" class="vacations-opt">
+    <select ng-model="vacacionId" ng-change="cambiarPdf(vacacionId)">
+      <optgroup ng-repeat="type in user.file_types | filter: { activ: 'VCTN'}" label="{{ type.nomid }}">
+        <optionng-repeat="(key, vacation) in vacations | filter: {pdf_type_ident: type.ident}" ng-value="key" ng-bind="vacation.name_iden"
+      ng-selected="key === keyVacation"></option>
+      </optgroup>
+    </select>
+  </div>
+
+  <div ng-if="ubicacion == 'main.views.certificates_payroll' && volpago.length >= 1" class="vacations-opt">
+    <select ng-model="volanteId" ng-change="cambiarPdf(volanteId)">
+      <optgroup ng-repeat="type in user.file_types | filter: { activ: 'VPAG'}" label="{{ type.nomid }}">
+        <option ng-repeat="(key, volante) in volpago | filter: {pdf_type_ident: type.ident} | orderBy:'-name_iden' " 
+<<<<<<< HEAD
+        ng-bind="volante.endda | date:'dd/MM/yyyy'" ng-value="key" ng-selected="key === keyVolante"></option>
+=======
+        ng-bind="volante.endda | date:dd/MM/YYY " ng-value="key" ng-selected="key === keyVolante"></option>
+>>>>>>> phone_and_email_buttons_profile
+      </optgroup>
+    </select>
+  </div>
+
+  <div ng-if="ubicacion == 'main.views.certificates_income' && pdf.length >= 1" class="vacations-opt">
+    <select ng-model="volanteId" ng-change="cambiarPdf(volanteId)">
+      <option ng-repeat="(key, volante) in pdf" ng-bind="filterVolante(volante.pdf_type_ident)" ng-value="key" ng-selected="key === keyIncome"></option>
+    </select>
+  </div>
+
+  <div ng-if="ubicacion == 'main.views.certificates_labor' && cartas.length >= 1" class="vacations-opt">
+    <select ng-model="volanteId" ng-change="cambiarPdf(volanteId)">
+      <option ng-repeat="type in user.file_types | filter: { activ: 'CLAB'}" 
+      ng-bind="type.nomid" ng-value="type.ident" ng-selected="type.ident === keyVolante"></option>
+    </select>
+  </div>
+  
+  <div class="paginas" ng-if="pageCount > 1" data="{{pageCount}}" class="dib">
+     <span>Página: </span>
+     <input type="text" min=1 ng-model="pageNum" id="smallinput">
+     <span> / {{pageCount}}</span>
+   </div>
+</nav>
+
+<h5 ng-if="!no_pdf" class="text-center subheader" ng-show="loading"> Cargando <b>{{progreso}}</b> de <span>100%</span></h5>
+<canvas ng-hide="no_pdf" id="pdf" class="rotate0"></canvas>
+<div ng-if="!no_pdf" class="finalpdf"></div>  
+<!--
+<div ng-if="no_pdf">
+  <div data-alert class="alert-box warning">
+    <p><h5>Estimado colaborador, <strong>no hay Carta de Vacaciones</strong> disponible,</h5></p><p><h5>ya que durante los <strong>ultimos 3 meses no se han disfrutado</strong> en tiempo de las mismas.</h5></p>
+    <a href="#" class="close">&times;</a>
+  </div>
+</div>
+-->
+
+
