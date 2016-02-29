@@ -35,7 +35,11 @@
 		}
 
 		$scope.showIconContact = function(data){
-			return data == null;
+			if(data == null || data == ''){
+				return true;	
+			}else{
+				return false;
+			}
 		}
 
         $scope.success = function () {
