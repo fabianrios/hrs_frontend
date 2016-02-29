@@ -439,6 +439,29 @@
         return stringParse;
     };
 
+    $rootScope.employeeFullName = function(employee){
+      var name = '';
+      if(angular.isObject(employee)){
+        if(employee.name){
+          name += ' '+employee.name;
+        }
+        if(employee.second_name){
+          name += ' '+employee.second_name;
+        }
+        if(employee.lastname){
+          name += ' '+employee.lastname;
+        }
+        if(employee.second_lastname){
+          name += ' '+employee.second_lastname;
+        }
+      }
+      return name;
+    };
+
+    $rootScope.showMasterData = function(employee){
+      return employee.see_all_dm === 'true';
+    }
+
     $rootScope.showMessageErrorRails = function(data){
       $anchorScroll("msg_alerts");
       var errores = ((typeof data.errors !== "undefined") ? data.errors : data.data.errors);

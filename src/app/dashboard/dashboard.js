@@ -360,12 +360,20 @@
 	})
 	.controller('Dashboard.MainController', ['$scope', 'widgets', 'ingresos', 'workers', 'publicaciones', 'Employee', 'Article', function($scope, widgets, ingresos, workers, publicaciones, Employee, Article){
 		$scope.$Employee = Employee;
-    	$scope.$Article = Article;
-    
-	    $scope.sortEmpleado = function(empleado) {
-	        var date = new Date(empleado.fecha_ingreso).getDate().toString();
-	        return parseInt(date);
-	    };
+  	$scope.$Article = Article;
+
+  	$scope.employeeData      = null;
+		$scope.modalDataEmployee = 'app/includes/modal_data_employee.tpl.html';
+
+		$scope.showModal = function(employee){
+      $('#employeeDataDashboardModal').foundation('reveal', 'open');
+      $scope.employeeData = employee;
+    }
+
+    $scope.sortEmpleado = function(empleado) {
+        var date = new Date(empleado.fecha_ingreso).getDate().toString();
+        return parseInt(date);
+    };
 
     $scope.showChartSeverance = function(){
     	return $scope.user.company.show_shart_severance;

@@ -19,7 +19,14 @@
     })
 	
   .controller('Organigram.MainController', ['$scope', '$http', 'organigram', 'HRAPI_CONF', '$stateParams', function($scope, $http, organigram, HRAPI_CONF, $stateParams){
+  	$scope.employeeData      = null;
+		$scope.modalDataEmployee = 'app/includes/modal_data_employee.tpl.html';
 
+		$scope.showModal = function(employee){
+      $('#employeeDataOrganigramModal').foundation('reveal', 'open');
+      $scope.employeeData = employee;
+    }
+    
 		$scope.changedOverIcon = function(e, key){
 			$('#icon_'+key).css('visibility', 'visible');
 		}

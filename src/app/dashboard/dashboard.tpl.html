@@ -245,12 +245,6 @@
 												</h4>
 											</div>
 										</div>
-										<!--
-										<div class="text-left">
-											<h4 class="greentxt museo"><small class="blacktxt">Total ingresos:</small>{{saldos.totdevengos | currency:"$":0}}</h4>
-											<h4 class="redtxt museo"><small class="blacktxt">Total deducciones:</small>{{saldos.totdeducciones | currency:"$":0}}</h4>
-										</div>	
-										-->
 									</div>
 								</div>
 							</div>
@@ -329,16 +323,18 @@
 							<ul class="employees">
 								<li ng-repeat="empleado in employee_by_fecha_de_ingreso">
 									<div class="foto">
-										<a ui-sref="main.views.employee_info_lookup({id:empleado.identification, c:empleado.company.id})">
+										<a ui-sref="#" ng-click="showModal(empleado)">
 											<img alt="profile" ng-src="{{empleado.image.url}}">
 										</a>
 									</div>
 									<h6 class="no-margin">
-										<a ui-sref="main.views.employee_info_lookup({id:empleado.identification, c:empleado.company.id})">
-										{{empleado.lastname | special_capitalize:'own'}} {{empleado.name | special_capitalize:'own'}}
+										<a ng-show="showMasterData(empleado)" ui-sref="#" ng-click="showModal(empleado)" class="capitalize" >
+											{{empleado.name | special_capitalize:'own'}} {{empleado.lastname | special_capitalize:'own'}}
 										</a>
-									</h6>						
-<!--									<h6 class="subheader no-margin capitalize">{{empleado.posicion | lowercase}}</h6>-->
+										<div ng-hide="showMasterData(empleado)" class="contact-name" ng-click="showModal(empleado)">
+											{{empleado.name | special_capitalize:'own'}} {{empleado.lastname | special_capitalize:'own'}}
+										</div>
+									</h6>
 									<div class="text-right">
 										<span class="graytxt">
 											<span class="label radius success">{{aniversario(empleado.fecha_ingreso)}} Años</span>
@@ -376,14 +372,17 @@
 							<ul class="employees">
 								<li ng-repeat="empleado in new_employees">
 									<div class="foto">
-										<a ui-sref="main.views.employee_info_lookup({id:empleado.identification, c:empleado.company.id})">
+										<a ui-sref="#" ng-click="showModal(empleado)">
 											<img alt="profile" ng-src="{{empleado.image.url}}">
 										</a>
 									</div>
 									<h6 class="no-margin">
-										<a ui-sref="main.views.employee_info_lookup({id:empleado.identification, c:empleado.company.id})">
-											{{empleado.lastname | special_capitalize:'own'}} {{empleado.name | special_capitalize:'own'}}
+										<a ng-show="showMasterData(empleado)" ui-sref="#" ng-click="showModal(empleado)" class="capitalize" >
+											{{empleado.name | special_capitalize:'own'}} {{empleado.lastname | special_capitalize:'own'}}
 										</a>
+										<div ng-hide="showMasterData(empleado)" class="contact-name" ng-click="showModal(empleado)">
+											{{empleado.name | special_capitalize:'own'}} {{empleado.lastname | special_capitalize:'own'}}
+										</div>
 									</h6>
 									<h6 class="subheader no-margin">{{empleado.posicion | special_capitalize }}</h6>
 									<div class="text-right">
@@ -418,13 +417,6 @@
 							</div>
 						</h5>
 						<div class="contenido">
-							<!--
-						  <div ng-if="articles_not_mine.articles.length >= 1">
-						    <div class="cuantos">
-    							<h3><span class="icon-comment"></span>{{articles_not_mine.length}}</h3>
-    						</div>
-						  </div>
-						  -->
 							<ul class="employees publicaciones">
 								<li ng-repeat="articulos in articles_not_mine.articles | orderBy: 'created_at' : true | limitTo: 10">
 									<a ui-sref="main.views.articleDetail({id:articulos.id})" ng-class="articulos.category">{{articulos.titulo}}</a>
@@ -447,6 +439,9 @@
 					</div>
 				</li>
 			</ul>
+			<div id="employeeDataDashboardModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="false" role="dialog">
+				<div ng-include="modalDataEmployee"></div>
+			</div>
 		</div>
 	</div>
 </div>
