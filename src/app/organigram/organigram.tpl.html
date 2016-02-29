@@ -23,9 +23,23 @@
 								</div>
 								<a><img ng-src="{{image_organigram(employee.image.image.url)}}" alt="" /></a>
 							</div>
-							<div class="org-info hovered" ng-click="mostrar($event)">
-								<h5 class="no-margin maxup">{{employee.short_name | special_capitalize:'own'}}</h5>
-								<h6 class="no-margin maxup">{{employee.posicion | special_capitalize }}</h6>
+							<div class="org-info hovered">
+								<a ng-show="showMasterData(employee)" ui-sref="#" ng-click="showModal(employee)" class="capitalize" >
+									<h5 class="no-margin subheader maxup fixdown">
+										{{employee.short_name | special_capitalize:'own'}}
+									</h5>
+									<h6 class="no-margin subheader maxup">
+										{{employee.posicion | lowercase}}
+									</h6>
+								</a>
+								<div ng-hide="showMasterData(employee)" class="contact-name" ng-click="showModal(employee)">
+									<h5 class="no-margin subheader maxup fixdown">
+										{{employee.short_name | special_capitalize:'own'}}
+									</h5>
+									<h6 class="no-margin subheader maxup">
+										{{employee.posicion | lowercase}}
+									</h6>
+								</div>
 							</div>
 
 							<ul class="childs no-bullet" ng-if="employee.children || employee._children">
@@ -34,8 +48,22 @@
 										<a><img ng-src="{{image_organigram(razo.image.url)}}" alt="" /></a>
 									</div>
 									<div class="org-info">
-										<h5 class="no-margin subheader maxup fixdown">{{razo.short_name | special_capitalize:'own' }}</h5>
-										<h6 class="no-margin subheader maxup">{{razo.posicion | special_capitalize}}</h6>
+										<a ng-show="showMasterData(razo)" ui-sref="#" ng-click="showModal(razo)" class="capitalize" >
+											<h5 class="no-margin subheader maxup fixdown">
+												{{razo.short_name | special_capitalize:'own'}}
+											</h5>
+											<h6 class="no-margin subheader maxup">
+												{{razo.posicion | lowercase}}
+											</h6>
+										</a>
+										<div ng-hide="showMasterData(razo)" class="contact-name" ng-click="showModal(razo)">
+											<h5 class="no-margin subheader maxup fixdown">
+												{{razo.short_name | special_capitalize:'own'}}
+											</h5>
+											<h6 class="no-margin subheader maxup">
+												{{razo.posicion | lowercase}}
+											</h6>
+										</div>
 									</div>
 								</li>
 								<li ng-repeat="razo in employee._children">
@@ -43,8 +71,22 @@
 										<a><img ng-src="{{razo.image.url}}" alt="" /></a>
 									</div>
 									<div class="org-info">
-										<h5 class="no-margin subheader maxup fixdown">{{razo.short_name | lowercase}}</h5>
-										<h6 class="no-margin subheader maxup">{{razo.posicion | lowercase}}</h6>
+										<a ng-show="showMasterData(razo)" ui-sref="#" ng-click="showModal(razo)" class="capitalize" >
+											<h5 class="no-margin subheader maxup fixdown">
+												{{razo.short_name | special_capitalize:'own'}}
+											</h5>
+											<h6 class="no-margin subheader maxup">
+												{{razo.posicion | lowercase}}
+											</h6>
+										</a>
+										<div ng-hide="showMasterData(razo)" class="contact-name" ng-click="showModal(razo)">
+											<h5 class="no-margin subheader maxup fixdown">
+												{{razo.short_name | special_capitalize:'own'}}
+											</h5>
+											<h6 class="no-margin subheader maxup">
+												{{razo.posicion | lowercase}}
+											</h6>
+										</div>
 									</div>
 								</li>
 							</ul>
@@ -52,6 +94,9 @@
 					</ul>
 				</li>
 			</ul>
+			<div id="employeeDataOrganigramModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="false" role="dialog">
+				<div ng-include="modalDataEmployee"></div>
+			</div>
 		</div>
 	</div>
 	<!-- <div id="chart" class="hide-for-small-only"></div> -->
