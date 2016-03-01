@@ -358,7 +358,7 @@
 			}
 		}
 	})
-	.controller('Dashboard.MainController', ['$scope', 'widgets', 'ingresos', 'workers', 'publicaciones', 'Employee', 'Article', function($scope, widgets, ingresos, workers, publicaciones, Employee, Article){
+	.controller('Dashboard.MainController', ['$scope', 'widgets', 'ingresos', 'workers', 'publicaciones', 'Employee', 'Article', 'CONSTANT', function($scope, widgets, ingresos, workers, publicaciones, Employee, Article, CONSTANT){
 		$scope.$Employee = Employee;
   	$scope.$Article = Article;
 
@@ -375,12 +375,22 @@
         return parseInt(date);
     };
 
+    function isSeveranceLaw50(){
+    	return $scope.user.employee.rel_lab === CONSTANT.SEVERANCE_LAW_50;;
+    }
+
+    function isSeverancePreviousRegime(){
+    	return $scope.user.employee.rel_lab === CONSTANT.SEVERANCE_PREVIOUS_REGIME;
+    }
+
     $scope.showChartSeverance = function(){
-    	return $scope.user.company.show_shart_severance;
+    	var showChart = $scope.user.company.show_shart_severance;
+    	return showChart && (isSeveranceLaw50() || isSeverancePreviousRegime());
     }
 
     $scope.showChartSeveranceInterest = function(){
-    	return $scope.user.company.show_shart_severance_interest;
+    	var showChart = $scope.user.company.show_shart_severance_interest;
+    	return showChart && (isSeveranceLaw50() || isSeverancePreviousRegime());
     }
 
     $scope.getDayVacations = function(value){
