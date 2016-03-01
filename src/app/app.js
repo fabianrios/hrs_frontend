@@ -210,6 +210,10 @@
       return newValue;
     }
   })
+  .constant('CONSTANT', {
+    SEVERANCE_LAW_50: "01",
+    SEVERANCE_PREVIOUS_REGIME: "02",
+  })
   .run(function($filter, $http, $rootScope, $state, $window, HRAPI_CONF, $auth , $anchorScroll, $location){       
       
     /////////////
