@@ -40,7 +40,6 @@
     'absences.service',
     'manager_organigram.service',
     'historical_salaries.service',
-    'angular-clipboard',
 
     // Directives
     'ngS3upload',
