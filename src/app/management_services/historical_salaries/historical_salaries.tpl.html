@@ -43,7 +43,7 @@
 									{{ validateDateNow(salary.endda) }}
 								</div>
 					    </td>
-					    <td scope="row">{{salary.amount_accrued | currency: salary.currency+" $":0}}</td>
+					    <td scope="row" class="text-right">{{salary.amount_accrued.toLocaleString(undefined,{minimumFractionDigits: 2}) }}</td>
 		  			</tr>
 				  </tbody>
 				</table>

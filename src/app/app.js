@@ -294,7 +294,7 @@
     });
 
     $rootScope.$on('auth:session-expired', function(ev) {
-        // $state.transitionTo('login.auth');
+        $state.transitionTo('login.auth');
     });
 
 
