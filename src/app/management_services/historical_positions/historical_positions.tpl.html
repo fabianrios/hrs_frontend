@@ -61,7 +61,7 @@
 							<i>{{ diffDates(historical.begda, historical.endda) }}</i>
 						</div>
 						<div class="large-12 small-12 columns left">
-							{{historical.amount_accrued |  currency: historical.currency+" $":0}}
+							{{historical.amount_accrued.toLocaleString(undefined,{minimumFractionDigits: 2})}}
 						</div>
 					</div>
 				</div>
