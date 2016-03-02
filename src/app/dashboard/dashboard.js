@@ -376,7 +376,7 @@
     };
 
     function isSeveranceLaw50(){
-    	return $scope.user.employee.rel_lab === CONSTANT.SEVERANCE_LAW_50;;
+    	return $scope.user.employee.rel_lab === CONSTANT.SEVERANCE_LAW_50;
     }
 
     function isSeverancePreviousRegime(){
