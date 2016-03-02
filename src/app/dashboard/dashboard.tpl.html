@@ -24,7 +24,7 @@
 							</div>
 						</h5>
 						<div class="contenido" id="vacations-chart">
-							<div class="panel">
+							<div class="panel-chart-value panel">
 								<h3 class="museo text-center">
 									Dias por Disfrutar
 								</h3>
@@ -36,13 +36,6 @@
 									</div>
 								</div>
 							</div>
-							
-							<!--
-							<br />
-							<h4 class="restantes">{{vacationdays[1]}}<span>Restantes</span></h4>
-							<canvas id="doughnut_vacations" class="chart chart-doughnut" chart-data="vacationdays" chart-labels="labels" chart-colours="colours"></canvas>
-							<h4 class="usados">{{vacationdays[0]}}<span>Usados</span></h4>
-							-->
 						</div>
 					</div>
 				</li>
@@ -54,9 +47,7 @@
 									{{ common.widgets[1].name }}
 									<i class="fa fa-angle-right" style=""></i>
 								</div>
-								
 							</a>
-
 							<div class="right actions">
 								<a class="text-right" href="">
 									<span data-tooltip aria-haspopup="true" class="has-tip" title="Valor que a la liquidación de la última nómina tiene causados en la compañía. Este valor será consignado al Fondo de Cesantías antes del 14 de Febrero de cada año.">
@@ -71,7 +62,7 @@
 
 						<div class="contenido">
 							<div ng-hide="showChartSeverance()">
-								<div class="panel">
+								<div class="panel panel-chart-value">
 									<h3 class="museo text-center">
 										Saldo actual
 									</h3>
@@ -120,7 +111,7 @@
 						</h5>
 						<div class="contenido">
 							<div ng-hide="showChartSeveranceInterest()">
-								<div class="panel">
+								<div class="panel panel-chart-value">
 									<h3 class="museo text-center">
 										Saldo actual
 									</h3>
