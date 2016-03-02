@@ -44,23 +44,35 @@
 
         $scope.success = function () {
         	$("#msgCopied").fadeIn();
+        	$("#msgCopied").parent().parent().parent().animate({
+        		height:130
+        	},1000);
         	$scope.msgCopied = "Copiado!";
         	$scope.viewMsg = true;
         	setTimeout(function(){
         		$scope.msgCopied = "";
         		$scope.viewMsg = false;
         		$("#msgCopied").fadeOut();
+        		$("#msgCopied").parent().parent().parent().animate({
+	        		height:90
+	        	},1000);
         	},1000);
         };
 
         $scope.fail = function (err) {
         	$("#msgCopied").fadeIn();
+        	$("#msgCopied").parent().parent().parent().animate({
+        		height:130
+        	},1000);
         	$scope.msgCopied = "Error!" + err;
         	$scope.viewMsg = true;
         	setTimeout(function(){
         		$scope.msgCopied = "";
         		$scope.viewMsg = false;
         		$("#msgCopied").fadeOut();
+        		$("#msgCopied").parent().parent().parent().animate({
+	        		height:90
+	        	},1000);
         	},4000);
         };
 

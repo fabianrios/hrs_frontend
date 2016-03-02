@@ -40,6 +40,7 @@
     'absences.service',
     'manager_organigram.service',
     'historical_salaries.service',
+    'angular-clipboard',
 
     // Directives
     'ngS3upload',
@@ -297,7 +298,7 @@
     });
 
     $rootScope.$on('auth:session-expired', function(ev) {
-        // $state.transitionTo('login.auth');
+        $state.transitionTo('login.auth');
     });
 
 

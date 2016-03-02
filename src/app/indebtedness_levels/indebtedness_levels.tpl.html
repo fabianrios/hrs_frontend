@@ -44,8 +44,8 @@
 			  		</tr>
 		  			<tr ng-repeat="(key, indebtedness) in user.indebtedness_levels | filter : {payroll_date: date, payroll_concept_txt: payroll_concept_filter}">
 					    <td scope="row">{{ indebtedness.payroll_concept_txt }}</td>
-					    <td scope="row">$ {{ indebtedness.deven.toLocaleString() }}</td>
-					    <td scope="row">$ {{ indebtedness.deduc.toLocaleString() }}</td>
+					    <td scope="row" class="text-right">{{ indebtedness.deven.toLocaleString(undefined,{minimumFractionDigits: 2}) }}</td>
+					    <td scope="row" class="text-right">{{ indebtedness.deduc.toLocaleString(undefined,{minimumFractionDigits: 2}) }}</td>
 		  			</tr>
 				  </tbody>
 				</table>

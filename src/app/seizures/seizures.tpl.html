@@ -47,9 +47,9 @@
 	  			<tr ng-repeat="(key, embargo) in user.embargoes | filter : {fpper: date, desga: payroll_concept_filter}"> 
 	  				<td scope="row">{{ embargo.desga }}</td>
 	  				<td scope="row">{{ embargo.gorna }} {{ embargo.pnach }}</td>
-	  				<td scope="row">$ {{ embargo.value.toLocaleString() }}</td>
-				    <td scope="row">$ {{ embargo.gardv.toLocaleString() }}</td>
-				    <td scope="row">$ {{ embargo.balan.toLocaleString() }}</td>
+	  				<td scope="row" class="text-right">$ {{ embargo.value.toLocaleString(undefined,{minimumFractionDigits: 2}) }}</td>
+				    <td scope="row" class="text-right">$ {{ embargo.gardv.toLocaleString(undefined,{minimumFractionDigits: 2}) }}</td>
+				    <td scope="row" class="text-right">$ {{ embargo.balan.toLocaleString(undefined,{minimumFractionDigits: 2}) }}</td>
 	  			</tr>
 			  </tbody>
 			</table>
