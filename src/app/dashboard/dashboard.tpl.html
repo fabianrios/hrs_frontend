@@ -269,14 +269,22 @@
 							<ul class="employees">
 								<li ng-repeat="empleado in employee_by_cumpleano_mes">
 									<div class="foto">
-										<a ui-sref="main.views.employee_info_lookup({id:empleado.identification, c:empleado.company.id})">
+										<a ui-sref="#" ng-click="showModal(empleado)">
 											<img alt="profile" ng-src="{{empleado.image.url}}">
 										</a>
 									</div>
 									<h6 class="no-margin capitalize">
+										<!--
 										<a ui-sref="main.views.employee_info_lookup({id:empleado.identification, c:empleado.company.id})">
 											{{empleado.lastname | special_capitalize:'own'}} {{empleado.name | special_capitalize:'own'}}
 										</a>
+										-->
+										<a ng-show="showMasterData(empleado)" ui-sref="#" ng-click="showModal(empleado)" class="capitalize" >
+											{{empleado.name | special_capitalize:'own'}} {{empleado.lastname | special_capitalize:'own'}}
+										</a>
+										<div ng-hide="showMasterData(empleado)" class="contact-name" ng-click="showModal(empleado)">
+											{{empleado.name | special_capitalize:'own'}} {{empleado.lastname | special_capitalize:'own'}}
+										</div>
 									</h6>
 									<h6 class="subheader no-margin">{{empleado.posicion | special_capitalize }}</h6>
 									<div class="text-right">
