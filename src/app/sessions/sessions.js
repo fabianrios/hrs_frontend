@@ -75,16 +75,18 @@
 	         return host.split('.')[0];
 			 }
 		 };
-	
+
 		 $scope.subdomain = $scope.getAppSubdomain();
 		 if ($scope.subdomain == "rcn" || $scope.subdomain == "rcntv"){
 			 $scope.logo = "images/rcn.png";
 		 }else if ($scope.subdomain == "harinera"){
 		 	 $scope.logo = "images/otrologo.png";
+		 }else if ($scope.subdomain == "publicar"){
+				$scope.logo = "images/publicar_logo.png";
 		 }else{
 		 	$scope.logo = "images/hrs_logo.png";
 		 }
-
+		 
 		$scope.login = function() {       
 	      $auth.submitLogin($scope.credentials);
 	    };
