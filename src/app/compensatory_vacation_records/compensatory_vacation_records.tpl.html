@@ -1,56 +1,62 @@
 <div class="padding-container">
 	<h3 class="expand-title text-center first-one">Vacaciones Compensadas</h3>
 	
-	<div class="row">
-		<fieldset>
-			<legend>Filtros</legend>
-			<div class="large-2 medium-2 columns">
-				<label for="date_filter" class="inline">Periodo Final:</label>
-			</div>
-			<div class="large-2 medium-2 columns">
-				<select id="date_filter" ng-model="date_filter.$">
-					<option value="">Todos</option>
-					<option ng-repeat="date in payroll_dates | orderBy:date" value="{{ date }}">{{ date  | date:'dd/MM/yyyy'}}</option>
-				</select>
-			</div>
-			
-			<div class="large-2 medium-2 columns">
-				<label for="payroll_filter" class="inline">Descripción:</label>
-			</div>
-			<div class="large-4 medium-4 columns left">
-				<select id="payroll_filter" ng-model="payroll_concept_filter">
-					<option value="">Todos</option>
-					<option ng-repeat="concept in payroll_concepts">{{ concept}}</option>
-				</select>
-			</div>
-		</fieldset>
+	<div ng-hide="existsCompesatoryVacations()">
+		<message-report titulo="titleReport" other="titleReport2"></message-report>
 	</div>
-	
-	<div class="row">
-		<div class="large-12 medium-12 columns">
-			<table>
-			  <caption>Vacaciones Compensadas</caption>
-			  <thead>
-				  <tr>
-				  	<th scope="column" class="text-center">Periodo</th>
-				  	<th scope="column" class="text-center">Descripción</th>
-				  	<th scope="column" class="text-center">Fecha de inicio</th>
-				    <th scope="column" class="text-center">Fecha de fin</th>
-				    <th scope="column" class="text-center">Dias</th>
-				  </tr>	
-			  </thead>
-		  	<tbody ng-repeat="date in payroll_dates | filter : date_filter | orderBy:date">
-		  		<tr id="tr_payroll_period">
-		  			<td id="td_payroll_period" rowspan="{{ dateFilter(date) }}">{{ date | date:'dd/MM/yyyy' }}</td>
-		  		</tr>
-	  			<tr ng-repeat="(key, vacation) in user.compensatory_vacation_records | filter : {endda: date, qctxt: payroll_concept_filter}"> 
-	  				<td scope="row" ng-bind="vacation.qctxt"></td>
-	  				<td scope="row" ng-bind="vacation.begda | date:'dd/MM/yyyy'" class="text-right"></td>
-				    <td scope="row" ng-bind="vacation.endda | date:'dd/MM/yyyy'" class="text-right"></td>
-				    <td scope="row" ng-bind="vacation.numbr" class="text-right"></td>
-	  			</tr>
-			  </tbody>
-			</table>
+
+	<div ng-show="existsCompesatoryVacations()">
+		<div class="row">
+			<fieldset>
+				<legend>Filtros</legend>
+				<div class="large-2 medium-2 columns">
+					<label for="date_filter" class="inline">Periodo Final:</label>
+				</div>
+				<div class="large-2 medium-2 columns">
+					<select id="date_filter" ng-model="date_filter.$">
+						<option value="">Todos</option>
+						<option ng-repeat="date in payroll_dates | orderBy:date" value="{{ date }}">{{ date  | date:'dd/MM/yyyy'}}</option>
+					</select>
+				</div>
+				
+				<div class="large-2 medium-2 columns">
+					<label for="payroll_filter" class="inline">Descripción:</label>
+				</div>
+				<div class="large-4 medium-4 columns left">
+					<select id="payroll_filter" ng-model="payroll_concept_filter">
+						<option value="">Todos</option>
+						<option ng-repeat="concept in payroll_concepts">{{ concept}}</option>
+					</select>
+				</div>
+			</fieldset>
+		</div>
+		
+		<div class="row">
+			<div class="large-12 medium-12 columns">
+				<table>
+				  <caption>Vacaciones Compensadas</caption>
+				  <thead>
+					  <tr>
+					  	<th scope="column" class="text-center">Periodo</th>
+					  	<th scope="column" class="text-center">Descripción</th>
+					  	<th scope="column" class="text-center">Fecha de inicio</th>
+					    <th scope="column" class="text-center">Fecha de fin</th>
+					    <th scope="column" class="text-center">Dias</th>
+					  </tr>	
+				  </thead>
+			  	<tbody ng-repeat="date in payroll_dates | filter : date_filter | orderBy:date">
+			  		<tr id="tr_payroll_period">
+			  			<td id="td_payroll_period" rowspan="{{ dateFilter(date) }}">{{ date | date:'dd/MM/yyyy' }}</td>
+			  		</tr>
+		  			<tr ng-repeat="(key, vacation) in user.compensatory_vacation_records | filter : {endda: date, qctxt: payroll_concept_filter}"> 
+		  				<td scope="row" ng-bind="vacation.qctxt"></td>
+		  				<td scope="row" ng-bind="vacation.begda | date:'dd/MM/yyyy'" class="text-right"></td>
+					    <td scope="row" ng-bind="vacation.endda | date:'dd/MM/yyyy'" class="text-right"></td>
+					    <td scope="row" ng-bind="vacation.numbr" class="text-right"></td>
+		  			</tr>
+				  </tbody>
+				</table>
+			</div>
 		</div>
 	</div>
 </div>

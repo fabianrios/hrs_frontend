@@ -12,12 +12,13 @@
 		})
 	})
 	.controller('VacationBalanceRecords.ListController', ['$rootScope', '$scope', '$filter',  function($rootScope, $scope, $filter){
+		$scope.date_filter  = ''
+		$scope.titleReport  = 'no existen consultas';
+		$scope.titleReport2 = "asociadas";
 
-		$scope.date_filter = ''
-
-		if($scope.user.vacation_balance_records.length == 0){
-			$state.transitionTo('main.views.dashboard');
-  	}
+		$scope.existsBalanceVacations = function(){
+			return $scope.user.vacation_balance_records.length !== 0;			
+		}
 
   	$scope.dateFilter = function(value){
 			var filterValue = $filter('filter')($scope.user.vacation_balance_records, {endda: value});

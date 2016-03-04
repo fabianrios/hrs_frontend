@@ -1,6 +1,11 @@
 <div class="padding-container">
-	<div>
-		<h3 class="expand-title text-center first-one">Permisos</h3>
+	<h3 class="expand-title text-center first-one">Permisos</h3>
+
+	<div ng-hide="existsPermissions()">
+		<message-report titulo="titleReport" other="titleReport2"></message-report>
+	</div>
+
+	<div ng-show="existsPermissions()">
 		<div class="row">
 			<fieldset>
 				<legend>Filtros</legend>

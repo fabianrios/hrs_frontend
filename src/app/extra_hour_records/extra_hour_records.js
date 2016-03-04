@@ -12,16 +12,17 @@
 		})
 	})
 	.controller('ExtraHourRecords.ListController', ['$rootScope', '$scope', '$filter', function($rootScope, $scope, $filter){
+		$scope.date_filter  = ''
+		$scope.titleReport  = 'no existen consultas';
+		$scope.titleReport2 = "asociadas";
 
-		$scope.date_filter = ''
-
-		if($scope.user.extra_hour_records.length == 0){
-			$state.transitionTo('main.views.dashboard');
-  	}
+		$scope.existsExtraHours = function(){
+			$scope.user.extra_hour_records.length !== 0;
+		}
 
   	$scope.dateFilter = function(value){
 			var filterValue = $filter('filter')($scope.user.extra_hour_records, {fecha: value});
-			return filterValue.length != 1 ? filterValue.length + 1 : 0;
+			return filterValue.length >= 1 ? filterValue.length + 1 : 0;
   	}
 
     var uniqueVals = [];

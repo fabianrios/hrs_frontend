@@ -1,6 +1,11 @@
 <div class="padding-container">
-	<div>
-		<h3 class="expand-title text-center first-one">Detalle de Pagos y Descuentos</h3>
+	<h3 class="expand-title text-center first-one">Detalle de Pagos y Descuentos</h3>
+
+	<div ng-hide="existsPaimentDetails()">
+		<message-report titulo="titleReport" other="titleReport2"></message-report>
+	</div>
+
+	<div ng-show="existsPaimentDetails()">
 		<div class="row">
 			<fieldset>
 				<legend>Filtros</legend>

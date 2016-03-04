@@ -177,6 +177,16 @@
       }
     });
   })
+  .directive('messageReport', function(){
+    return {
+      restrict: 'E',
+      scope: {
+        titulo: "=",
+        other: "="
+      },
+      templateUrl: 'app/includes/warning_report.tpl.html'
+    }
+  })
   .filter('cut', function () {
     return function (value, max) {
        if (!value) return '';
