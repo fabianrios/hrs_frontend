@@ -34,8 +34,8 @@
 			  			<td id="td_payroll_period" rowspan="{{ rowFilter(employee) }}">{{ employee.position }}</td>
 			  		</tr>
 		  			<tr ng-repeat="(key2, salary) in employee.salaries | orderBy:'-begda'">
-					    <td scope="row">{{salary.begda | date:'dd/MM/yyyy'}}</td>
-					    <td scope="row">
+					    <td scope="row" class="text-right">{{salary.begda | date:'dd/MM/yyyy'}}</td>
+					    <td scope="row" class="text-right">
 					    	<div ng-show="showDate(key, key2)">
 									<strong>{{ validateDateNow(salary.endda) | date:'dd/MM/yyyy'}}</strong>
 								</div>

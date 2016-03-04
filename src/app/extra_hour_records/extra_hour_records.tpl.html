@@ -43,7 +43,7 @@
 		  		</tr>
 	  			<tr ng-repeat="(key, extra) in user.extra_hour_records | filter : {fecha: date, lgtxt: payroll_concept_filter}"> 
 	  				<td scope="row" ng-bind="extra.lgtxt"></td>
-	  				<td scope="row" ng-bind="extra.anzhl"></td>
+	  				<td scope="row" ng-bind="extra.anzhl" class="text-right"></td>
 	  			</tr>
 			  </tbody>
 			</table>

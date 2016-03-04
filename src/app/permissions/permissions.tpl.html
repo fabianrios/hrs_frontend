@@ -34,10 +34,10 @@
 			  	<tbody>
 		  			<tr ng-repeat="permission in user.permissions | filter:begda_filter ">
 		  				<td scope="row">{{ permission.text_permission }}</td>
-					    <td scope="row">{{ permission.begda  }}</td>
-					    <td scope="row">{{ permission.endda  }}</td>
-					    <td scope="row">{{ permission.days_working }}</td>
-					    <td scope="row">{{ permission.days_taken }}</td>
+					    <td scope="row" class="text-right">{{ permission.begda  }}</td>
+					    <td scope="row" class="text-right">{{ permission.endda  }}</td>
+					    <td scope="row" class="text-right">{{ permission.days_working }}</td>
+					    <td scope="row" class="text-right">{{ permission.days_taken }}</td>
 		  			</tr>
 				  </tbody>
 				</table>
