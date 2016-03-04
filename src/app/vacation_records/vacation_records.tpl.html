@@ -51,10 +51,10 @@
 			  		</tr>
 		  			<tr ng-repeat="(key, vacation) in user.vacation_records | filter : {endda: date, atext: payroll_concept_filter}"> 
 		  				<td scope="row" ng-bind="vacation.atext"></td>
-		  				<td scope="row" ng-bind="vacation.begda | date:'dd/MM/yyyy'"></td>
-					    <td scope="row" ng-bind="vacation.endda | date:'dd/MM/yyyy'"></td>
-					    <td scope="row" ng-bind="vacation.abwtg"></td>
-					    <td scope="row" ng-bind="vacation.kaltg"></td>
+		  				<td scope="row" ng-bind="vacation.begda | date:'dd/MM/yyyy'" class="text-right"></td>
+					    <td scope="row" ng-bind="vacation.endda | date:'dd/MM/yyyy'" class="text-right"></td>
+					    <td scope="row" ng-bind="vacation.abwtg" class="text-right"></td>
+					    <td scope="row" ng-bind="vacation.kaltg" class="text-right"></td>
 		  			</tr>
 				  </tbody>
 				</table>

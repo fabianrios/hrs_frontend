@@ -46,10 +46,10 @@
 			<div ng-repeat="(key, absenteeism) in employeeData.absences | orderBy:'-start'" class="large-6 medium-6 small-12 columns left"> 
 				<div class="panel">
 					<div class="row">
-						<div class="large-6 small-6 columns left">
+						<div class="large-4 small-4 columns left">
 							<h5>{{absenteeism.type_absence}}</h5>
 						</div>
-						<div class="large-6 small-6 columns left">
+						<div class="large-8 small-8 columns left">
 							<h5>{{absenteeism.description_absence}}</h5>
 						</div>
 						<div ng-show="absenteeism.description_disease != null" class="large-12 small-12 columns right">
