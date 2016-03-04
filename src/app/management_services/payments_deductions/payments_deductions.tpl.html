@@ -35,7 +35,7 @@
 			  		</tr>
 		  			<tr ng-repeat="(key, report) in payment.reports">
 					    <td scope="row">{{ report.text }}</td>
-					    <td scope="row">{{report.amount |  currency: report.currency+" $":0}}</td>
+					    <td scope="row" class="text-right">{{report.amount.toLocaleString(undefined,{minimumFractionDigits: 2})}}</td>
 		  			</tr>
 				  </tbody>
 				</table>
