@@ -61,8 +61,8 @@
 		$scope.progreso            = 0;
 		$scope.keyCertificateLabor = 0;
 		$scope.keyVolante 		     = $stateParams.id.toString();
-  	$scope.cartas 						 = $filter('filter')($scope.user.files, {op:'clabr'});
-  	$scope.carta  						 = $filter('filter')($scope.user.files, {op:'clabr', pdf_type_ident:$scope.keyVolante});
+  	$scope.cartas 						 = $filter('filter')($scope.user.files, {op:'CLAB'});
+  	$scope.carta  						 = $filter('filter')($scope.user.files, {op:'CLAB', pdf_type_ident:$scope.keyVolante});
     if (typeof $scope.carta[$scope.keyCertificateLabor] !== "undefined"){
     	$scope.no_pdf = false;
       	$scope.pdfUrl = HRAPI_CONF.baseUrl($scope.carta[$scope.keyCertificateLabor].file.url);
@@ -111,7 +111,7 @@
 		$scope.keyVacation = parseInt($stateParams.id);
 
 		
-		$scope.vacations = $filter('filter')($scope.user.files, {op:'vctns'})
+		$scope.vacations = $filter('filter')($scope.user.files, {op:'VCTN'});
 		if (typeof $scope.vacations[$scope.keyVacation] !== "undefined"){
 			$scope.no_pdf = false;
 			$scope.pdfUrl = HRAPI_CONF.baseUrl($scope.vacations[$scope.keyVacation].file.url);
@@ -177,7 +177,7 @@
 		$scope.ubicacion  = $state.current.name;
 		$scope.keyVolante = parseInt($stateParams.id);
 
-		$scope.volpago = $filter('filter')($scope.user.files_last_months, {op:'volpg'});
+		$scope.volpago = $filter('filter')($scope.user.files_last_months, {op:'VPAG'});
 		
 		if (typeof $scope.volpago[$scope.keyVolante] !== "undefined"){
 			$scope.no_pdf = false;
@@ -224,7 +224,7 @@
 		$scope.progress  = {};
 		$scope.progreso  = 0;
 		$scope.keyIncome = parseInt($stateParams.id);
-		$scope.pdf 			 = $filter('filter')($scope.user.files, {op:'inret'})		
+		$scope.pdf 			 = $filter('filter')($scope.user.files, {op:'CIYR'})		
 
     if (typeof $scope.pdf[$scope.keyIncome] !== "undefined"){
     	$scope.no_pdf = false;
@@ -234,8 +234,8 @@
       $state.transitionTo('main.views.certificates_error');
     }
 
-    $scope.filterVolante = function(pdf_type){
-    	var types = $filter('filter')($scope.user.file_types, {ident:pdf_type});
+    $scope.filterVolante = function(op_type, pdf_type){
+    	var types = $filter('filter')($scope.user.file_types, {ident:pdf_type, activ:op_type});
     	var name = '';
     	if(types.length >= 1){
 				name = types[0].nomid;
