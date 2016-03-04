@@ -12,12 +12,13 @@
 		})
 	})
 	.controller('CompensatoryVacationRecords.ListController', ['$rootScope', '$scope', '$filter', function($rootScope, $scope, $filter){
+		$scope.date_filter  = ''
+		$scope.titleReport  = 'no existen consultas';
+		$scope.titleReport2 = "asociadas";
 
-		$scope.date_filter = ''
-
-		if($scope.user.compensatory_vacation_records.length == 0){
-			$state.transitionTo('main.views.dashboard');
-  	}
+		$scope.existsCompesatoryVacations = function(){
+			return $scope.user.compensatory_vacation_records.length !== 0;
+		}
 
   	$scope.dateFilter = function(value){
 			var filterValue = $filter('filter')($scope.user.compensatory_vacation_records, {endda: value});

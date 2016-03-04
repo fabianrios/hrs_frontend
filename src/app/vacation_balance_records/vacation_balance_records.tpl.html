@@ -1,56 +1,63 @@
 <div class="padding-container">
   <h3 class="expand-title text-center first-one">Saldo de Vacaciones</h3>
   
-  <div class="row">
-    <fieldset>
-      <legend>Filtros</legend>
-      <div class="large-2 medium-2 columns">
-        <label for="date_filter" class="inline">Periodo Final:</label>
-      </div>
-      <div class="large-2 medium-2 columns">
-        <select id="date_filter" ng-model="date_filter.$">
-          <option value="">Todos</option>
-          <option ng-repeat="date in payroll_dates | orderBy:date" value="{{ date }}">{{ date | date:'dd/MM/yyyy' }}</option>
-        </select>
-      </div>
-      
-      <div class="large-2 medium-2 columns">
-        <label for="payroll_filter" class="inline">Descripción:</label>
-      </div>
-      <div class="large-4 medium-4 columns left">
-        <select id="payroll_filter" ng-model="payroll_concept_filter">
-          <option value="">Todos</option>
-          <option ng-repeat="concept in payroll_concepts">{{ concept }}</option>
-        </select>
-      </div>
-    </fieldset>
+  <div ng-hide="existsBalanceVacations()">
+    <message-report titulo="titleReport" other="titleReport2"></message-report>
   </div>
-  
-  <div class="row">
-    <div class="large-12 medium-12 columns">
-      <table>
-        <caption>Saldo de Vacaciones</caption>
-        <thead>
-          <tr>
-            <th scope="column" class="text-center">Descripción</th>
-            <th scope="column" class="text-center">Fecha de inicio</th>
-            <th scope="column" class="text-center">Fecha de fin</th>
-            <th scope="column" class="text-center">Dias totales</th>
-            <th scope="column" class="text-center">Dias tomados</th>
-            <th scope="column" class="text-center">Dias pendientes</th>
-          </tr> 
-        </thead>
-        <tbody ng-repeat="date in payroll_dates | filter : date_filter | orderBy:date">
-          <tr ng-repeat="(key, vacation) in user.vacation_balance_records | filter : {endda: date, ktext: payroll_concept_filter}"> 
-            <td scope="row" ng-bind="vacation.ktext"></td>
-            <td scope="row" ng-bind="vacation.begda | date:'dd/MM/yyyy'"></td>
-            <td scope="row" id="td_payroll_period" ng-bind="vacation.endda | date:'dd/MM/yyyy'"></td>
-            <td scope="row" ng-bind="vacation.anzhl"></td>
-            <td scope="row" ng-bind="vacation.kverb"></td>
-            <td scope="row" ng-bind="remainingDays(vacation)"></td>
-          </tr>
-        </tbody>
-      </table>
+
+  <div ng-show="existsBalanceVacations()">
+
+    <div class="row">
+      <fieldset>
+        <legend>Filtros</legend>
+        <div class="large-2 medium-2 columns">
+          <label for="date_filter" class="inline">Periodo Final:</label>
+        </div>
+        <div class="large-2 medium-2 columns">
+          <select id="date_filter" ng-model="date_filter.$">
+            <option value="">Todos</option>
+            <option ng-repeat="date in payroll_dates | orderBy:date" value="{{ date }}">{{ date | date:'dd/MM/yyyy' }}</option>
+          </select>
+        </div>
+        
+        <div class="large-2 medium-2 columns">
+          <label for="payroll_filter" class="inline">Descripción:</label>
+        </div>
+        <div class="large-4 medium-4 columns left">
+          <select id="payroll_filter" ng-model="payroll_concept_filter">
+            <option value="">Todos</option>
+            <option ng-repeat="concept in payroll_concepts">{{ concept }}</option>
+          </select>
+        </div>
+      </fieldset>
+    </div>
+    
+    <div class="row">
+      <div class="large-12 medium-12 columns">
+        <table>
+          <caption>Saldo de Vacaciones</caption>
+          <thead>
+            <tr>
+              <th scope="column" class="text-center">Descripción</th>
+              <th scope="column" class="text-center">Fecha de inicio</th>
+              <th scope="column" class="text-center">Fecha de fin</th>
+              <th scope="column" class="text-center">Dias totales</th>
+              <th scope="column" class="text-center">Dias tomados</th>
+              <th scope="column" class="text-center">Dias pendientes</th>
+            </tr> 
+          </thead>
+          <tbody ng-repeat="date in payroll_dates | filter : date_filter | orderBy:date">
+            <tr ng-repeat="(key, vacation) in user.vacation_balance_records | filter : {endda: date, ktext: payroll_concept_filter}"> 
+              <td scope="row" ng-bind="vacation.ktext"></td>
+              <td scope="row" ng-bind="vacation.begda | date:'dd/MM/yyyy'"></td>
+              <td scope="row" id="td_payroll_period" ng-bind="vacation.endda | date:'dd/MM/yyyy'"></td>
+              <td scope="row" ng-bind="vacation.anzhl"></td>
+              <td scope="row" ng-bind="vacation.kverb"></td>
+              <td scope="row" ng-bind="remainingDays(vacation)"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>

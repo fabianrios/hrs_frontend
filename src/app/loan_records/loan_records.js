@@ -11,13 +11,14 @@
 			resolve     : {}
 		})
 	})
-	.controller('LoanRecords.ListController', ['$rootScope', '$scope', function($rootScope, $scope){
+	.controller('LoanRecords.ListController', ['$rootScope', '$scope', '$filter', function($rootScope, $scope, $filter){
+		$scope.date_filter  = ''
+		$scope.titleReport  = 'no existen consultas';
+		$scope.titleReport2 = "asociadas";
 
-		$scope.date_filter = ''
-
-		if($scope.user.loan_records.length == 0){
-			$state.transitionTo('main.views.dashboard');
-  	}
+		$scope.existsLoanRecords = function(){
+			return $scope.user.loan_records.length !== 0;
+		}
 
   	$scope.getPorcentage = function(value){
   		return '% '+parseInt(value).toLocaleString();
@@ -25,6 +26,11 @@
 
   	$scope.getMoneyValue = function(value){
 			return '$ '+parseInt(value).toLocaleString();
+  	}
+
+  	$scope.dateFilter = function(value){
+			var filterValue = $filter('filter')($scope.user.loan_records, {fpper: value});
+			return filterValue.length >= 1 ? filterValue.length + 1 : 0;
   	}
 
     var uniqueVals = [];

@@ -10,11 +10,18 @@
 			resolve     : {}
 		})
 	}])
-	.controller('Seizures.ListController', ['$scope', function($scope){
+	.controller('Seizures.ListController', ['$scope', '$filter', function($scope, $filter){
 		$scope.payroll_date_filter = ''
+		$scope.titleReport  = 'no existen consultas';
+		$scope.titleReport2 = "asociadas";
+		
+		$scope.existsSeizures = function(){
+			return $scope.user.embargoes.length !== 0;			
+		}
 
-		if($scope.user.embargoes.length == 0){
-			$state.transitionTo('main.views.dashboard');
+		$scope.dateFilter = function(value){
+			var filterValue = $filter('filter')($scope.user.embargoes, {fpper: value});
+			return filterValue.length >= 1 ? filterValue.length + 1 : 0;
   	}
 
   	var uniqueVals = [];

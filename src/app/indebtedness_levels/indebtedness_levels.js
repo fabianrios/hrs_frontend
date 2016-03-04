@@ -13,10 +13,12 @@
 	})
 	.controller('IndebtednessLevels.ListController', ['$rootScope', '$scope', '$filter', function($rootScope, $scope, $filter){
 		$scope.payroll_date_filter = ''
-
-		if($scope.user.indebtedness_levels.length == 0){
-			$state.transitionTo('main.views.dashboard');
-  	}
+		$scope.titleReport  = 'no existen consultas';
+		$scope.titleReport2 = "asociadas";
+		
+		$scope.existsPaimentDetails = function(){
+			return $scope.user.indebtedness_levels.length !== 0	;
+		}
 
   	$scope.dateFilter = function(value){
 			var filterValue = $filter('filter')($scope.user.indebtedness_levels, {payroll_date: value});
