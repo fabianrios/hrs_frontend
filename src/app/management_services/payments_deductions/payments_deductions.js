@@ -22,7 +22,7 @@
 		$scope.employeeData        = $scope.payments_deductions[0]
 
 		$scope.existsPaymentsAndDeductions = function(){
-  		return parseInt($scope.payments_deductions.length) != 0
+  		return parseInt($scope.payments_deductions.length) !== 0;
     }
 
     $scope.employeeFilter = function(){
