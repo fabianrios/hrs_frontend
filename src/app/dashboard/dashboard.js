@@ -358,7 +358,7 @@
 			}
 		}
 	})
-	.controller('Dashboard.MainController', ['$scope', 'widgets', 'ingresos', 'workers', 'publicaciones', 'Employee', 'Article', 'CONSTANT', function($scope, widgets, ingresos, workers, publicaciones, Employee, Article, CONSTANT){
+	.controller('Dashboard.MainController', ['$scope', 'widgets', 'ingresos', 'workers', 'publicaciones', 'Employee', 'Article', 'CONSTANT', '$filter', function($scope, widgets, ingresos, workers, publicaciones, Employee, Article, CONSTANT, $filter){
 		$scope.$Employee = Employee;
   	$scope.$Article = Article;
 
@@ -465,43 +465,46 @@
 		$scope.betrg = [];
 		$scope.fpend = [];
 		$scope.newbetrg = [];
-        $scope.elsaldocesantias = $scope.saldos.saldo;
-        $scope.intcesantias = $scope.saldos.intsaldo;
 
-        // meter las cesantias
-        angular.forEach($scope.saldos.t_cesantias,function(value){
-          $scope.betrg.push(value.betrg);
-          $scope.fpend.push( moment( $scope.formatDate(value.fpend)  ).format("YYYY-MM-DD") );
-        });
+    $scope.elsaldocesantias = $scope.saldos.saldo;
+    $scope.intcesantias     = $scope.saldos.intsaldo;
 
-        // saldo de cesantias a numeros
-        $scope.betrg.forEach(function(entry, index) {
-            $scope.newbetrg[index] = parseInt(entry);
-            if( index === 0){
-                $scope.elsaldocesantias = parseInt(entry);
-            }
-        });
+    // meter las cesantias
+    angular.forEach($filter('orderBy')($scope.saldos.t_cesantias, 'fpper', true),function(value){
+      $scope.betrg.push(value.betrg);
+      $scope.fpend.push( moment( $scope.formatDate(value.fpend)  ).format("YYYY-MM-DD") );
+    });
+    
+    // saldo de cesantias a numeros
+    $scope.betrg.forEach(function(entry, index) {
+      $scope.newbetrg[index] = parseInt(entry);
+      /*
+      if( index === 0){
+          $scope.elsaldocesantias = parseInt(entry);
+      }
+      */
+    });
 		
-        // meter las int. cesantias     
-        $scope.intbetrg = [];
-        $scope.intfpend = [];
+    // meter las int. cesantias     
+    $scope.intbetrg = [];
+    $scope.intfpend = [];
 		$scope.intnewbetrg = [];
 
-        angular.forEach($scope.saldos.t_intcesantias,function(value){
-          $scope.intbetrg.push(value.betrg);
-          $scope.intfpend.push( moment( $scope.formatDate(value.fpend)  ).format("YYYY-MM-DD") );            
-        });
-      
-        // Intereses de cesantias a numeros
-        $scope.intbetrg.forEach(function(entry, index) {
-            $scope.intnewbetrg.push(parseInt(entry));
-            if( index === 0){
-                $scope.intcesantias = parseInt(entry);
-            }
-        });
-	
-    
-    
+    angular.forEach($filter('orderBy')($scope.saldos.t_intcesantias, 'fpper', true),function(value){
+      $scope.intbetrg.push(value.betrg);
+      $scope.intfpend.push( moment( $scope.formatDate(value.fpend)  ).format("YYYY-MM-DD") );            
+    });
+  	
+    // Intereses de cesantias a numeros
+    $scope.intbetrg.forEach(function(entry, index) {
+      $scope.intnewbetrg.push(parseInt(entry));
+      /*
+      if( index === 0){
+          $scope.intcesantias = parseInt(entry);
+      }
+      */
+    });
+		
 		$scope.sortableOptions = {
 			'placeholder': 'placeholder'
 		};
