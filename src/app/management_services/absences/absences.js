@@ -26,7 +26,7 @@
 		}
 
 		$scope.existsAbsences = function(){
-			return parseInt($scope.absences.length) != 0
+			return parseInt($scope.absences.length) !== 0;
 		}
 	}]);
 }());

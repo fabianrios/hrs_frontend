@@ -19,9 +19,10 @@
 		$scope.variance_analysis = varianceAnalysis.variace_analysis;
 		$scope.employeeData      = '';
 		$scope.employee_filter   = '';
+		$scope.warningMessage    = 'app/management_services/warning.tpl.html';
 
 		$scope.existsVarianceAnalysis = function(){
-			return true;
+			return parseInt($scope.variance_analysis.length) !== 0;
 		}
 
 		$scope.showModal = function(variance){

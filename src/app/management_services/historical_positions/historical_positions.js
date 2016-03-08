@@ -22,7 +22,7 @@
 		$scope.employeeData         = $scope.historical_positions[0]
 		
 		$scope.existsHistoricalPositions = function(){
-  		return parseInt($scope.historical_positions.length) != 0
+  		return parseInt($scope.historical_positions.length) !== 0;
     }
     
 		$scope.employeeFilter = function(){

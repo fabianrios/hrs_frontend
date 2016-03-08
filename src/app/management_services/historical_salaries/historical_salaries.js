@@ -22,7 +22,7 @@
 		$scope.employeeData        = $scope.historical_salaries[0]
 
 		$scope.existsHistoricalSalaries = function(){
-  		return parseInt($scope.historical_salaries.length) != 0
+  		return parseInt($scope.historical_salaries.length) !== 0;
     }
 
 		$scope.employeeFilter = function(){
