@@ -22,7 +22,7 @@
     }else if(runEnv.isDevelopmentCloud === true){
       return 'http://devhrinteractive.herokuapp.com';
     }
-    return 'http://hdvbackend.hrinteractive.co';
+    return 'https://hdvbackend.hrinteractive.co';
   }();
   hrapi.apiName = 'humanresources';
   hrapi.apiVersion = 'v1';
