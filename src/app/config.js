@@ -9,18 +9,20 @@
   // Informacion de entorno
   var runEnv = {
     isDevelopment: window.location.port === '9000',
+    isDevelopmentCloud: window.location.host === 'hritest.hrinteractive.co',
     dummyHost: 'hrsolutions.co',
     clientHostResourceUrl : 'http://hrsolutions.amazonaws.com/client-resources/'
   };
-
   // Configuracion API HR
   var hrapi = {};
   hrapi.hostname = function(){
     if(runEnv.isDevelopment === true){
       return 'http://127.0.0.1:3000';
       // return 'http://10.0.1.74:3000';
+    }else if(runEnv.isDevelopmentCloud === true){
+      return 'http://devhrinteractive.herokuapp.com';
     }
-    return 'http://hdvbackend.hrinteractive.co';
+    return 'https://hdvbackend.hrinteractive.co';
   }();
   hrapi.apiName = 'humanresources';
   hrapi.apiVersion = 'v1';
