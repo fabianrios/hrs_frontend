@@ -1,7 +1,9 @@
 <div class="padding-container">
 	<h3 class="expand-title text-center first-one">Reporte de Vacantes</h3>
 	
-	<div>
+	<div ng-hide="existsManagerOrganigram()" ng-include="warningMessage"></div>
+
+	<div ng-show="existsManagerOrganigram()">
 		<div class="row">
 			<fieldset>
 				<legend>Filtros</legend>

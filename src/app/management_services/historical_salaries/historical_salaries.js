@@ -30,7 +30,6 @@
 		}
 
 		$scope.rowFilter = function(value){
-			console.log(value.salaries.length);
 			return value.salaries.length >= 1 ? value.salaries.length + 1 : 0;
   	}
 

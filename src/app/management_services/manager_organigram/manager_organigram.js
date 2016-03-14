@@ -17,6 +17,11 @@
 	})
 	.controller('ManagerOrganigram.ListController', ['$rootScope', '$scope', '$filter', 'managerOrganigram', function($rootScope, $scope, $filter, managerOrganigram){
 		$scope.manager_organigram = managerOrganigram.manager_organigram;
+		$scope.warningMessage     = 'app/management_services/warning.tpl.html';
+
+		$scope.existsManagerOrganigram = function(){
+  		return parseInt($scope.manager_organigram.length) !== 0;
+    }
 
 		$scope.fullName = function(employee){
 			return $filter('uppercase')(employee.name +' '+employee.lastname);
@@ -35,7 +40,7 @@
 				});		
 			});
     });
-    console.log(uniqueVals);
+    
     $scope.positions = uniqueVals;
 
     $scope.isVacant = function(employee){

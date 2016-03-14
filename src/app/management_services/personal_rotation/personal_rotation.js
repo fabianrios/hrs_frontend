@@ -23,10 +23,6 @@
 		$scope.position_filter 			= ''
 		$scope.warningMessage       = 'app/management_services/warning.tpl.html';
 
-		if($scope.personal_rotations.staff_turnover.length == 0){
-			$state.transitionTo('main.views.dashboard');
-  	}
-
   	$scope.existsPersonalRotation = function(){
   		return parseInt($scope.personal_rotations.staff_turnover.length) !== 0;
     }
