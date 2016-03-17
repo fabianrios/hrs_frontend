@@ -1,5 +1,8 @@
 <div class="padding-container">
-	<div class="row">
+
+	<message-permission ng-show="showMessagePermission()" titulo="permission_alert"></message-permission>
+
+	<div ng-hide="showMessagePermission()" class="row">
 		<div class="large-9 medium-9 columns">
 			<div ng-model="articles" class="articles">
 				<ul class="large-block-grid-3 medium-block-grid-3 small-block-grid-2">

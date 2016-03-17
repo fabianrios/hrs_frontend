@@ -1,91 +1,94 @@
 <div class="padding-container">
-	<h3 class="expand-title text-center first-one">Rotación de Personal</h3>
-	
-	<div ng-hide="existsPersonalRotation()" ng-include="warningMessage"></div>
+	<message-permission ng-show="showMessagePermission()" titulo="permission_alert"></message-permission>
+	<div ng-if="!showMessagePermission()">
+		<h3 class="expand-title text-center first-one">Rotación de Personal</h3>
+		
+		<div ng-hide="existsPersonalRotation()" ng-include="warningMessage"></div>
 
-	<div ng-show="existsPersonalRotation()">
-		<div class="row">
-			<fieldset>
-				<legend>Filtros</legend>
-				<div class="large-2 medium-2 columns">
-					<label for="payroll_filter" class="inline">Cargo:</label>
-				</div>
-				<div class="large-4 medium-4 columns left">
-					<select id="payroll_filter" ng-model="position_filter">
-						<option value="">Todos</option>
-						<option ng-repeat="concept in positions">{{ concept }}</option>
-					</select>
-				</div>
-			</fieldset>
-		</div>
-		<div class="row">
-			<div class="large-12 medium-12 columns">
-				<table>
-				  <!--<caption>Rotación de Personal</caption>-->
-				  <thead>
-					  <tr>
-					  	<th scope="column" class="text-center th-pointer">Apellido</th>
-					  	<th scope="column" class="text-center th-pointer">Nombre</th>
-					    <th scope="column" class="text-center th-pointer">Cargo</th>
-					    <th scope="column" class="text-center th-pointer">Jefe inmediato</th>
-					    <th scope="column" class="text-center th-pointer">Detalle</th>
-					  </tr>
-				  </thead>
-			  	<tbody >
-		  			<tr ng-repeat="(key, personal) in personal_rotations.staff_turnover | filter : {position: position_filter}">
-			  			<td scope="row" ng-bind="personal.lastName"></td>
-		  				<td scope="row" ng-bind="personal.name"></td>
-		  				<td scope="row" ng-bind="personal.position"></td>
-		  				<td scope="row" ng-bind="personal.boss_position"></td>
-		  				<td scope="row">
-		  					<a href="javascript:void(0)" class="button tiny" data-tooltip aria-haspopup="true" class="has-tip" title="Ver detalles de las rotaciones que ha tenido el empleado" ng-click="showModal(personal)">
-		  						<i class="fa fa-eye"></i>
-		  					</a>
-	  					</td>
-		  			</tr>
-				  </tbody>
-				</table>
-				<div id="rotation_modal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
-					<div class="panel">
-						<div class="row">
-						  <div class="medium-12 columns">
-								<h5 class="text-left">{{ personalModalData.lastName }} {{ personalModalData.name }}</h5>
-						  </div>
-						  <div class="medium-6 columns">
-						  	<h6 class="text-left">
-								{{ personalModalData.position }}		
-								</h6>
-						  </div>
-						  <div class="medium-6 columns">
-						  	<div class="text-right">
-						  		<h6>
-	  							{{ personalModalData.boss_position }}
-	  							</h6>
-	  							<i>(Jefe Directo)</i>
-						  	</div>
-						  </div>
-						</div>
+		<div ng-show="existsPersonalRotation()">
+			<div class="row">
+				<fieldset>
+					<legend>Filtros</legend>
+					<div class="large-2 medium-2 columns">
+						<label for="payroll_filter" class="inline">Cargo:</label>
 					</div>
-			    <div id="panel1a" class="content active">
-			    	<table>
-						  <caption>Rotación de Personal</caption>
-						  <thead>
-							  <tr>
-							    <th scope="column" class="text-center">Fecha</th>
-							    <th scope="column" class="text-center">Tipo rotación</th>
-							    <th scope="column" class="text-center">Clase de medida</th>
-							    <th scope="column" class="text-center">Motivo de medida</th>
-							  </tr>
-						  </thead>
-					  	<tbody ng-repeat="(key, rotation) in personalModalData.rotations">
-					  		<td scope="row" ng-bind="rotation.date | date:'dd/MM/yyyy'"></td>
-								<td scope="row" ng-bind="rotationType(rotation.type_rotation)"></td>
-			  				<td scope="row" ng-bind="rotation.denomination_class"></td>
-			  				<td scope="row" ng-bind="rotation.denomination_motive"></td>
-					  	</tbody>
-				  	</table>
-			    </div>
-				  <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+					<div class="large-4 medium-4 columns left">
+						<select id="payroll_filter" ng-model="position_filter">
+							<option value="">Todos</option>
+							<option ng-repeat="concept in positions">{{ concept }}</option>
+						</select>
+					</div>
+				</fieldset>
+			</div>
+			<div class="row">
+				<div class="large-12 medium-12 columns">
+					<table>
+					  <!--<caption>Rotación de Personal</caption>-->
+					  <thead>
+						  <tr>
+						  	<th scope="column" class="text-center th-pointer">Apellido</th>
+						  	<th scope="column" class="text-center th-pointer">Nombre</th>
+						    <th scope="column" class="text-center th-pointer">Cargo</th>
+						    <th scope="column" class="text-center th-pointer">Jefe inmediato</th>
+						    <th scope="column" class="text-center th-pointer">Detalle</th>
+						  </tr>
+					  </thead>
+				  	<tbody >
+			  			<tr ng-repeat="(key, personal) in personal_rotations.staff_turnover | filter : {position: position_filter}">
+				  			<td scope="row" ng-bind="personal.lastName"></td>
+			  				<td scope="row" ng-bind="personal.name"></td>
+			  				<td scope="row" ng-bind="personal.position"></td>
+			  				<td scope="row" ng-bind="personal.boss_position"></td>
+			  				<td scope="row">
+			  					<a href="javascript:void(0)" class="button tiny" data-tooltip aria-haspopup="true" class="has-tip" title="Ver detalles de las rotaciones que ha tenido el empleado" ng-click="showModal(personal)">
+			  						<i class="fa fa-eye"></i>
+			  					</a>
+		  					</td>
+			  			</tr>
+					  </tbody>
+					</table>
+					<div id="rotation_modal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+						<div class="panel">
+							<div class="row">
+							  <div class="medium-12 columns">
+									<h5 class="text-left">{{ personalModalData.lastName }} {{ personalModalData.name }}</h5>
+							  </div>
+							  <div class="medium-6 columns">
+							  	<h6 class="text-left">
+									{{ personalModalData.position }}		
+									</h6>
+							  </div>
+							  <div class="medium-6 columns">
+							  	<div class="text-right">
+							  		<h6>
+		  							{{ personalModalData.boss_position }}
+		  							</h6>
+		  							<i>(Jefe Directo)</i>
+							  	</div>
+							  </div>
+							</div>
+						</div>
+				    <div id="panel1a" class="content active">
+				    	<table>
+							  <caption>Rotación de Personal</caption>
+							  <thead>
+								  <tr>
+								    <th scope="column" class="text-center">Fecha</th>
+								    <th scope="column" class="text-center">Tipo rotación</th>
+								    <th scope="column" class="text-center">Clase de medida</th>
+								    <th scope="column" class="text-center">Motivo de medida</th>
+								  </tr>
+							  </thead>
+						  	<tbody ng-repeat="(key, rotation) in personalModalData.rotations">
+						  		<td scope="row" ng-bind="rotation.date | date:'dd/MM/yyyy'"></td>
+									<td scope="row" ng-bind="rotationType(rotation.type_rotation)"></td>
+				  				<td scope="row" ng-bind="rotation.denomination_class"></td>
+				  				<td scope="row" ng-bind="rotation.denomination_motive"></td>
+						  	</tbody>
+					  	</table>
+				    </div>
+					  <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+					</div>
 				</div>
 			</div>
 		</div>

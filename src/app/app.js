@@ -187,6 +187,15 @@
       templateUrl: 'app/includes/warning_report.tpl.html'
     }
   })
+  .directive('messagePermission', function(){
+    return {
+      restrict: 'E',
+      scope: {
+        titulo: "="
+      },
+      templateUrl: 'app/includes/permission_alert.tpl.html'
+    }
+  })
   .filter('cut', function () {
     return function (value, max) {
        if (!value) return '';
@@ -222,7 +231,8 @@
   })
   .constant('CONSTANT', {
     SEVERANCE_LAW_50: "01",
-    SEVERANCE_PREVIOUS_REGIME: "02"
+    SEVERANCE_PREVIOUS_REGIME: "02",
+    MESSAGE_PERMISSION: "usuario no autorizado"
   })
   .run(function($filter, $http, $rootScope, $state, $window, HRAPI_CONF, $auth , $anchorScroll, $location){       
       

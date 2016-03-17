@@ -245,7 +245,7 @@
 			</ul>
 			
 			<ul class="small-block-grid-1 medium-block-grid-3 large-block-grid-3 dashboardlis">
-				<li ng-hide="!user.company.show_birthday" ng-init="employee_by_cumpleano_mes = $Employee.all_by_cumpleano_mes();">
+				<li ng-show="showBirthdayEmployees()">
 					<div class="widgets minh-430">
 						<h5 class="encabezado">
 							<a href="#" title="{{ common.widgets[2].name }}">
@@ -274,11 +274,6 @@
 										</a>
 									</div>
 									<h6 class="no-margin capitalize">
-										<!--
-										<a ui-sref="main.views.employee_info_lookup({id:empleado.identification, c:empleado.company.id})">
-											{{empleado.lastname | special_capitalize:'own'}} {{empleado.name | special_capitalize:'own'}}
-										</a>
-										-->
 										<a ng-show="showMasterData(empleado)" ui-sref="#" ng-click="showModal(empleado)" class="capitalize" >
 											{{empleado.name | special_capitalize:'own'}} {{empleado.lastname | special_capitalize:'own'}}
 										</a>
@@ -298,7 +293,7 @@
 						</div><!-- /contenido -->
 					</div>
 				</li>
-				<li ng-hide="!user.company.show_labor" ng-init="employee_by_fecha_de_ingreso = $Employee.all_by_fecha_de_ingreso();">
+				<li ng-show="showAniversaryEmployees()">
 					<div class="widgets minh-430">
 						<h5 class="encabezado">
 							<a href="">
@@ -347,8 +342,7 @@
 					</div>
 				</li>
 
-				<li ng-hide="!user.company.show_new_employees" 
-				ng-init="new_employees = $Employee.all_by_current_month_entry();">
+				<li ng-show="showNewEmployees()">
 					<div class="widgets minh-430">
 						<h5 class="encabezado">
 							<a href="#">
@@ -396,7 +390,7 @@
 					</div>
 				</li>
 
-				<li ng-hide="!user.company.show_articles" ng-init="articles_not_mine = $Article.index({per:10});">
+				<li ng-show="showArticles()">
 					<div class="widgets minh-430">
 						<h5 class="encabezado">
 							<a ui-sref="main.views.articles()">

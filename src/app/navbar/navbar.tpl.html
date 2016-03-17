@@ -73,27 +73,27 @@
       <li class="back">
         <a href="">Volver</a>
       </li>
-      <li ng-if="cesaAprobador() && user.labor.scesa == 'X' && user.company.show_scesa" >
+      <li ng-if="cesaAprobador() && user.company.show_scesa" >
         <a ui-sref="main.views.severance">
           Anticipo de cesantías
         </a>
       </li>
-      <li ng-if="permAprobador() && user.labor.sperm == 'X' && user.company.show_licenses" >
+      <li ng-if="permAprobador() && user.company.show_licenses" >
         <a ui-sref="main.views.licenses">
           Permisos
         </a>
       </li>
-      <li ng-if="presAprobador() && user.labor.spres == 'X' && user.company.show_loans"  >
+      <li ng-if="presAprobador() && user.company.show_loans"  >
         <a ui-sref="main.views.loans">
           Prestamos
         </a>
       </li>
-      <li ng-if="vacaAprobador() && user.labor.svaca == 'X' && user.company.show_vacations">
+      <li ng-if="vacaAprobador() && user.company.show_vacations">
         <a ui-sref="main.views.vacations">
           Vacaciones
         </a>
       </li>
-      <li  ng-if="vccpAprobador() && user.labor.svccp == 'X' && user.company.show_vacations_c">
+      <li  ng-if="vccpAprobador() && user.company.show_vacations_c">
         <a ui-sref="main.views.compensatory_vacations">
           Vacaciones compensadas
         </a>
@@ -109,12 +109,12 @@
       <li class="back">
         <a href="">Volver</a>
       </li>
-      <li ng-if="hoexAprobador() && user.labor.shoex == 'X' && user.company.show_hoex">
+      <li ng-if="hoexAprobador() && user.company.show_hoex">
         <a ui-sref="main.views.extras">
           Horas extras
         </a>
       </li>
-      <li ng-if="incaAprobador() && user.labor.sinca == 'X' && user.company.show_inhabilities">
+      <li ng-if="incaAprobador() && user.company.show_inhabilities">
         <a ui-sref="main.views.inhabilities">
           Incapacidades
         </a>

@@ -1,44 +1,45 @@
 <div class="padding-container">
-	<h3 class="expand-title text-center first-one">Ingresos y Retenciones</h3>
-	
-	<div ng-hide="existsPaymentsAndDeductions()" ng-include="warningMessage"></div>
+	<message-permission ng-show="showMessagePermission()" titulo="permission_alert"></message-permission>
+	<div ng-if="!showMessagePermission()">
+		<h3 class="expand-title text-center first-one">Ingresos y Retenciones</h3>
+		<div ng-hide="existsPaymentsAndDeductions()" ng-include="warningMessage"></div>
+		<div ng-show="existsPaymentsAndDeductions()">
+			<div class="row">
+				<fieldset>
+					<legend>Filtros</legend>
+					<div class="large-2 medium-2 columns">
+						<label for="payroll_filter" class="inline">Empleado:</label>
+					</div>
+					<div class="large-4 medium-4 columns left">
+						<select id="payroll_filter" ng-model="position_filter" ng-change="employeeFilter()">
+							<option ng-repeat="(key, payment) in payments_deductions" value="{{ key }}">{{ payment.employee_name }} {{ payment.employee_lastname }}</option>
+						</select>
+					</div>
+				</fieldset>
+			</div>
 
-	<div ng-show="existsPaymentsAndDeductions()">
-		<div class="row">
-			<fieldset>
-				<legend>Filtros</legend>
-				<div class="large-2 medium-2 columns">
-					<label for="payroll_filter" class="inline">Empleado:</label>
+			<div class="row">
+				<div class="large-12 medium-12 columns">
+					<table>
+					  <thead>
+						  <tr>
+						  	<th scope="column" class="text-center">Periodo</th>
+						    <th scope="column" class="text-center">Concepto de nomina</th>
+						    <th scope="column" class="text-center">Valor</th>
+						  </tr>	
+					  </thead>
+				  	<tbody ng-repeat="(key, payment) in employeeData.payments_deductions | orderBy:'-year_report'">
+
+				  		<tr id="tr_payroll_period">
+				  			<td id="td_payroll_period" rowspan="{{ rowFilter(payment)}}">{{ payment.year_report }}</td>
+				  		</tr>
+			  			<tr ng-repeat="(key, report) in payment.reports">
+						    <td scope="row">{{ report.text }}</td>
+						    <td scope="row" class="text-right">{{report.amount.toLocaleString(undefined,{minimumFractionDigits: 2})}}</td>
+			  			</tr>
+					  </tbody>
+					</table>
 				</div>
-				<div class="large-4 medium-4 columns left">
-					<select id="payroll_filter" ng-model="position_filter" ng-change="employeeFilter()">
-						<option ng-repeat="(key, payment) in payments_deductions" value="{{ key }}">{{ payment.employee_name }} {{ payment.employee_lastname }}</option>
-					</select>
-				</div>
-			</fieldset>
-		</div>
-
-		<div class="row">
-			<div class="large-12 medium-12 columns">
-				<table>
-				  <thead>
-					  <tr>
-					  	<th scope="column" class="text-center">Periodo</th>
-					    <th scope="column" class="text-center">Concepto de nomina</th>
-					    <th scope="column" class="text-center">Valor</th>
-					  </tr>	
-				  </thead>
-			  	<tbody ng-repeat="(key, payment) in employeeData.payments_deductions | orderBy:'-year_report'">
-
-			  		<tr id="tr_payroll_period">
-			  			<td id="td_payroll_period" rowspan="{{ rowFilter(payment)}}">{{ payment.year_report }}</td>
-			  		</tr>
-		  			<tr ng-repeat="(key, report) in payment.reports">
-					    <td scope="row">{{ report.text }}</td>
-					    <td scope="row" class="text-right">{{report.amount.toLocaleString(undefined,{minimumFractionDigits: 2})}}</td>
-		  			</tr>
-				  </tbody>
-				</table>
 			</div>
 		</div>
 	</div>

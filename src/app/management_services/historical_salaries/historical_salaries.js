@@ -15,11 +15,24 @@
 			}
 		})
 	})
-	.controller('HistoricalSalaries.ListController', ['$rootScope', '$scope', '$filter', 'historicalSalaries',function($rootScope, $scope, $filter, historicalSalaries){
+	.controller('HistoricalSalaries.ListController', ['$rootScope', '$scope', '$filter', 'historicalSalaries', '$state', function($rootScope, $scope, $filter, historicalSalaries, $state){
 		$scope.historical_salaries = historicalSalaries.historical_salaries;
 		$scope.warningMessage      = 'app/management_services/warning.tpl.html';
-		$scope.position_filter     = parseInt($scope.historical_salaries[0]);
-		$scope.employeeData        = $scope.historical_salaries[0]
+		$scope.permission_alert 	 = '';
+
+		if(angular.isObject(historicalSalaries.message)){
+			$scope.permission_alert = historicalSalaries.message.permission_alert;
+			setTimeout(function() {
+				$state.transitionTo('main.views.dashboard');
+			}, 2000);
+		}else{
+			$scope.position_filter     = parseInt($scope.historical_salaries[0]);
+			$scope.employeeData        = $scope.historical_salaries[0]
+		}
+		
+		$scope.showMessagePermission = function(){
+			return angular.isObject(historicalSalaries.message);
+		}
 
 		$scope.existsHistoricalSalaries = function(){
   		return parseInt($scope.historical_salaries.length) !== 0;
@@ -30,7 +43,6 @@
 		}
 
 		$scope.rowFilter = function(value){
-			console.log(value.salaries.length);
 			return value.salaries.length >= 1 ? value.salaries.length + 1 : 0;
   	}
 

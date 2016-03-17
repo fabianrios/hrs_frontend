@@ -51,27 +51,43 @@
 	.controller('Certificates.ErrorController', ['$rootScope', '$scope', '$http', '$state', '$filter', 'HRAPI_CONF', '$stateParams', function($rootScope, $scope, $http, $state, $filter, HRAPI_CONF, $stateParams){
 
 	}])
-	.controller('Certificates.MainController', ['$rootScope', '$scope', '$http', '$state', '$filter', 'HRAPI_CONF', '$stateParams', function($rootScope, $scope, $http, $state, $filter, HRAPI_CONF, $stateParams){
-		if($scope.user.company.show_certificates_labor ===  false){
-			$state.transitionTo('main.views.dashboard');
-		} 
-		$scope.scroll              = 0;
-		$scope.loading             = true;
-		$scope.progress            = {};
-		$scope.progreso            = 0;
-		$scope.keyCertificateLabor = 0;
-		$scope.keyVolante 		     = $stateParams.id.toString();
-  	$scope.cartas 						 = $filter('filter')($scope.user.files, {op:'CLAB'});
-  	$scope.carta  						 = $filter('filter')($scope.user.files, {op:'CLAB', pdf_type_ident:$scope.keyVolante});
-    if (typeof $scope.carta[$scope.keyCertificateLabor] !== "undefined"){
-    	$scope.no_pdf = false;
+	.controller('Certificates.MainController', ['$rootScope', '$scope', '$http', '$state', '$filter', 'HRAPI_CONF', '$stateParams', 'CONSTANT', function($rootScope, $scope, $http, $state, $filter, HRAPI_CONF, $stateParams, CONSTANT){
+		$scope.permission_alert = '';
+		
+		function messagePermission() {
+			$scope.permission_alert = CONSTANT.MESSAGE_PERMISSION;
+			setTimeout(function() {
+				$state.transitionTo('main.views.dashboard');
+			}, 2000);
+		}
+
+		$scope.showMessagePermission = function(){
+			return !$scope.user.company.show_certificates_labor;
+		}
+
+		if(!$scope.user.company.show_certificates_labor){
+			messagePermission();
+		}else{
+			$scope.scroll              = 0;
+			$scope.loading             = true;
+			$scope.progress            = {};
+			$scope.progreso            = 0;
+			$scope.keyCertificateLabor = 0;
+			$scope.keyVolante 		     = $stateParams.id.toString();
+	  	$scope.cartas 						 = $filter('filter')($scope.user.files, {op:'CLAB'});
+	  	$scope.carta  						 = $filter('filter')($scope.user.files, {op:'CLAB', pdf_type_ident:$scope.keyVolante});
+
+			if (typeof $scope.carta[$scope.keyCertificateLabor] !== "undefined"){
+	    	$scope.no_pdf = false;
       	$scope.pdfUrl = HRAPI_CONF.baseUrl($scope.carta[$scope.keyCertificateLabor].file.url);
-    }else if(typeof $scope.cartas[$scope.keyCertificateLabor] !== "undefined"){
-    	$scope.no_pdf = false;
+	    }else if(typeof $scope.cartas[$scope.keyCertificateLabor] !== "undefined"){
+	    	$scope.no_pdf = false;
       	$scope.pdfUrl = HRAPI_CONF.baseUrl($scope.cartas[$scope.keyCertificateLabor].file.url);
-    }else{
-		$state.transitionTo('main.views.certificates_error');
-    }
+	    }else{
+				$state.transitionTo('main.views.certificates_error');
+	    }
+		}
+    
 
 		$scope.cambiarPdf = function(keyCertificateLabor) {
 			$state.transitionTo('main.views.certificates_labor', {
@@ -100,24 +116,35 @@
 		
 
 	}])
-	.controller('Certificates.Vacaciones.MainController', ['$rootScope', '$scope', '$http', '$state', '$filter', 'HRAPI_CONF', '$stateParams', function($rootScope, $scope, $http, $state, $filter, HRAPI_CONF, $stateParams){
-
-		if($scope.user.company.show_certificates_vacations ===  false){
-			$state.transitionTo('main.views.dashboard');
-		} 
+	.controller('Certificates.Vacaciones.MainController', ['$rootScope', '$scope', '$http', '$state', '$filter', 'HRAPI_CONF', '$stateParams', 'CONSTANT', function($rootScope, $scope, $http, $state, $filter, HRAPI_CONF, $stateParams, CONSTANT){
+		$scope.permission_alert = '';
 		
-		$scope.pdfUrl = '';
-		$scope.vacations = [];
-		$scope.keyVacation = parseInt($stateParams.id);
+		function messagePermission() {
+			$scope.permission_alert = CONSTANT.MESSAGE_PERMISSION;
+			setTimeout(function() {
+				$state.transitionTo('main.views.dashboard');
+			}, 2000);
+		}
 
-		
-		$scope.vacations = $filter('filter')($scope.user.files, {op:'VCTN'});
-		if (typeof $scope.vacations[$scope.keyVacation] !== "undefined"){
-			$scope.no_pdf = false;
-			$scope.pdfUrl = HRAPI_CONF.baseUrl($scope.vacations[$scope.keyVacation].file.url);
+		$scope.showMessagePermission = function(){
+			return !$scope.user.company.show_certificates_vacations;
+		}
+
+		if(!$scope.user.company.show_certificates_vacations){
+			messagePermission();
 		}else{
-			$scope.no_pdf = true;
-			$state.transitionTo('main.views.certificates_error');
+			$scope.pdfUrl 			= '';
+			$scope.vacations 		= [];
+			$scope.keyVacation 	= parseInt($stateParams.id);
+			$scope.vacations 		= $filter('filter')($scope.user.files, {op:'VCTN'});
+
+			if (typeof $scope.vacations[$scope.keyVacation] !== "undefined"){
+				$scope.no_pdf = false;
+				$scope.pdfUrl = HRAPI_CONF.baseUrl($scope.vacations[$scope.keyVacation].file.url);
+			}else{
+				$scope.no_pdf = true;
+				$state.transitionTo('main.views.certificates_error');
+			}
 		}
 		
 		$scope.cambiarPdf = function(keyVacacion) {
@@ -149,10 +176,40 @@
 			$scope.progreso = (100 / progress.total) * progress.loaded;
 		}
 	}])
-	.controller('Certificates.Nomina.MainController', ['$rootScope', '$scope', '$http', '$state', '$filter', 'HRAPI_CONF', '$stateParams', function($rootScope, $scope, $http,  $state, $filter, HRAPI_CONF, $stateParams){
-		if($scope.user.company.show_certificates_payroll ===  false){
-			$state.transitionTo('main.views.dashboard');
-		} 
+	.controller('Certificates.Nomina.MainController', ['$rootScope', '$scope', '$http', '$state', '$filter', 'HRAPI_CONF', '$stateParams', 'CONSTANT', function($rootScope, $scope, $http,  $state, $filter, HRAPI_CONF, $stateParams, CONSTANT){
+		$scope.pdfUrl 	  = '';		
+		$scope.scroll 	  = 0;
+		$scope.loading    = true;
+		$scope.progress   = {};
+		$scope.progreso   = 0;
+		$scope.ubicacion  = $state.current.name;
+		$scope.keyVolante = parseInt($stateParams.id);
+		$scope.permission_alert = '';
+		
+		function messagePermission() {
+			$scope.permission_alert = CONSTANT.MESSAGE_PERMISSION;
+			setTimeout(function() {
+				$state.transitionTo('main.views.dashboard');
+			}, 2000);
+		}
+
+		$scope.showMessagePermission = function(){
+			return !$scope.user.company.show_certificates_payroll;
+		}
+
+		if(!$scope.user.company.show_certificates_payroll){
+			messagePermission();
+		}else{
+			$scope.volpago = $filter('filter')($scope.user.files_last_months, {op:'VPAG'});
+			
+			if (typeof $scope.volpago[$scope.keyVolante] !== "undefined"){
+				$scope.no_pdf = false;
+				$scope.pdfUrl = HRAPI_CONF.baseUrl($scope.volpago[$scope.keyVolante].file.url);
+			}else{
+				$scope.no_pdf = true;
+				$state.transitionTo('main.views.certificates_error');
+			}
+		}
 		
 		$scope.flagLabel = '';
 		$scope.flag 		 = [];
@@ -167,24 +224,6 @@
 			}
 			$scope.flag[key] = false;
 			return false;
-		}
-
-		$scope.pdfUrl 	  = '';		
-		$scope.scroll 	  = 0;
-		$scope.loading    = true;
-		$scope.progress   = {};
-		$scope.progreso   = 0;
-		$scope.ubicacion  = $state.current.name;
-		$scope.keyVolante = parseInt($stateParams.id);
-
-		$scope.volpago = $filter('filter')($scope.user.files_last_months, {op:'VPAG'});
-		
-		if (typeof $scope.volpago[$scope.keyVolante] !== "undefined"){
-			$scope.no_pdf = false;
-			$scope.pdfUrl = HRAPI_CONF.baseUrl($scope.volpago[$scope.keyVolante].file.url);
-		}else{
-			$scope.no_pdf = true;
-			$state.transitionTo('main.views.certificates_error');
 		}
 				
 		$scope.cambiarPdf = function(keyVolante) {
@@ -213,26 +252,38 @@
 	
 
 	}])
-	.controller('Certificates.Income.MainController', ['$rootScope', '$scope', '$http', '$state', '$filter', 'HRAPI_CONF', '$stateParams', function($rootScope, $scope, $http, $state, $filter, HRAPI_CONF, $stateParams){
-
-		if($scope.user.company.show_certificates_income ===  false){
-			$state.transitionTo('main.views.dashboard');
-		} 
-		
+	.controller('Certificates.Income.MainController', ['$rootScope', '$scope', '$http', '$state', '$filter', 'HRAPI_CONF', '$stateParams', 'CONSTANT', function($rootScope, $scope, $http, $state, $filter, HRAPI_CONF, $stateParams, CONSTANT){
 		$scope.scroll    = 0;
 		$scope.loading   = true;
 		$scope.progress  = {};
 		$scope.progreso  = 0;
 		$scope.keyIncome = parseInt($stateParams.id);
-		$scope.pdf 			 = $filter('filter')($scope.user.files, {op:'CIYR'})		
+		$scope.permission_alert = '';
+		
+		function messagePermission() {
+			$scope.permission_alert = CONSTANT.MESSAGE_PERMISSION;
+			setTimeout(function() {
+				$state.transitionTo('main.views.dashboard');
+			}, 2000);
+		}
 
-    if (typeof $scope.pdf[$scope.keyIncome] !== "undefined"){
-    	$scope.no_pdf = false;
-      $scope.pdfUrl = HRAPI_CONF.baseUrl($scope.pdf[$scope.keyIncome].file.url);
-    }else{
-    	$scope.no_pdf = true;
-      $state.transitionTo('main.views.certificates_error');
-    }
+		$scope.showMessagePermission = function(){
+			return !$scope.user.company.show_certificates_income;
+		}
+
+		if(!$scope.user.company.show_certificates_income){
+			messagePermission();
+		}else{
+			$scope.pdf 			 = $filter('filter')($scope.user.files, {op:'CIYR'})		
+
+	    if (typeof $scope.pdf[$scope.keyIncome] !== "undefined"){
+	    	$scope.no_pdf = false;
+	      $scope.pdfUrl = HRAPI_CONF.baseUrl($scope.pdf[$scope.keyIncome].file.url);
+	    }else{
+	    	$scope.no_pdf = true;
+	      $state.transitionTo('main.views.certificates_error');
+	    }
+		}
 
     $scope.filterVolante = function(op_type, pdf_type){
     	var types = $filter('filter')($scope.user.file_types, {ident:pdf_type, activ:op_type});

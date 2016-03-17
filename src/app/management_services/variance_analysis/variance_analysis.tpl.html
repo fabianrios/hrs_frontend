@@ -1,100 +1,101 @@
 <div class="padding-container">
-	<h3 class="expand-title text-center first-one">Análisis de Variaciones</h3>
-	
-	<div ng-hide="existsVarianceAnalysis()" ng-include="warningMessage"></div>
+	<message-permission ng-show="showMessagePermission()" titulo="permission_alert"></message-permission>
+	<div ng-if="!showMessagePermission()">
+		<h3 class="expand-title text-center first-one">Análisis de Variaciones</h3>
+		<div ng-hide="existsVarianceAnalysis()" ng-include="warningMessage"></div>
+		<div ng-show="existsVarianceAnalysis()">
+			<div class="row">
+				<fieldset>
+					<legend>Filtros</legend>
+					<div class="large-2 medium-2 columns">
+						<label for="payroll_filter" class="inline">Empleado:</label>
+					</div>
+					<div class="large-4 medium-4 columns left">
+						<select id="employee_filter" ng-model="employee_filter">
+							<option value="">Todos</option>
+							<option ng-repeat="(key, variance) in variance_analysis" value="{{ variance.short_name }}">{{ variance.employee_name }} {{ variance.employee_lastname }}</option>
+						</select>
+					</div>
+				</fieldset>
+			</div>
 
-	<div ng-show="existsVarianceAnalysis()">
-		<div class="row">
-			<fieldset>
-				<legend>Filtros</legend>
-				<div class="large-2 medium-2 columns">
-					<label for="payroll_filter" class="inline">Empleado:</label>
-				</div>
-				<div class="large-4 medium-4 columns left">
-					<select id="employee_filter" ng-model="employee_filter">
-						<option value="">Todos</option>
-						<option ng-repeat="(key, variance) in variance_analysis" value="{{ variance.short_name }}">{{ variance.employee_name }} {{ variance.employee_lastname }}</option>
-					</select>
-				</div>
-			</fieldset>
-		</div>
+			<div class="row">
+				<div class="large-12 medium-12 columns">
+					<table>
+					  <thead>
+						  <tr>
+						  	<th scope="column" class="text-center th-pointer">Apellido</th>
+						  	<th scope="column" class="text-center th-pointer">Nombre</th>
+						    <th scope="column" class="text-center th-pointer">Cargo</th>
+						    <th scope="column" class="text-center th-pointer">Jefe inmediato</th>
+						    <th scope="column" class="text-center th-pointer">Detalle</th>
+						  </tr>
+					  </thead>
+				  	<tbody >
+			  			<tr ng-repeat="(key, variance) in variance_analysis | filter : {short_name: employee_filter}">
+				  			<td scope="row" ng-bind="variance.employee_lastname"></td>
+			  				<td scope="row" ng-bind="variance.employee_name"></td>
+			  				<td scope="row" ng-bind="variance.position_current"></td>
+			  				<td scope="row" ng-bind="variance.boss_current"></td>
+			  				<td scope="row">
+			  					<a href="javascript:void(0)" class="button tiny" data-tooltip aria-haspopup="true" class="has-tip" title="Ver detalles de los analisis de variaciones del empleado" ng-click="showModal(variance)">
+			  						<i class="fa fa-eye"></i>
+			  					</a>
+		  					</td>
+			  			</tr>
+					  </tbody>
+					</table>
 
-		<div class="row">
-			<div class="large-12 medium-12 columns">
-				<table>
-				  <thead>
-					  <tr>
-					  	<th scope="column" class="text-center th-pointer">Apellido</th>
-					  	<th scope="column" class="text-center th-pointer">Nombre</th>
-					    <th scope="column" class="text-center th-pointer">Cargo</th>
-					    <th scope="column" class="text-center th-pointer">Jefe inmediato</th>
-					    <th scope="column" class="text-center th-pointer">Detalle</th>
-					  </tr>
-				  </thead>
-			  	<tbody >
-		  			<tr ng-repeat="(key, variance) in variance_analysis | filter : {short_name: employee_filter}">
-			  			<td scope="row" ng-bind="variance.employee_lastname"></td>
-		  				<td scope="row" ng-bind="variance.employee_name"></td>
-		  				<td scope="row" ng-bind="variance.position_current"></td>
-		  				<td scope="row" ng-bind="variance.boss_current"></td>
-		  				<td scope="row">
-		  					<a href="javascript:void(0)" class="button tiny" data-tooltip aria-haspopup="true" class="has-tip" title="Ver detalles de los analisis de variaciones del empleado" ng-click="showModal(variance)">
-		  						<i class="fa fa-eye"></i>
-		  					</a>
-	  					</td>
-		  			</tr>
-				  </tbody>
-				</table>
-
-				<div id="variance_modal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
-					<div class="row">
-						<div class="panel callout radius">
-							<div class="row">
-								<div class="large-2 small-4 columns left">
-									<a><img ng-src="{{ employeeData.image.image.url }}" alt="" /></a>
-								</div>
-								<div class="large-8 small-8 columns left">
-									<div class="row">
-										<div class="large-12 small-12 columns left">
-											<h4>{{ employeeData.employee_name }} {{ employeeData.employee_lastname }}</h4>
-										</div>
-										<div class="large-6 small-6 columns left">
-											{{ employeeData.position_current }}
-										</div>
-										<div class="large-6 small-6 columns left">
-											{{ employeeData.boss_current }} <i>(Jefe Inmediato)</i>
+					<div id="variance_modal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+						<div class="row">
+							<div class="panel callout radius">
+								<div class="row">
+									<div class="large-2 small-4 columns left">
+										<a><img ng-src="{{ employeeData.image.image.url }}" alt="" /></a>
+									</div>
+									<div class="large-8 small-8 columns left">
+										<div class="row">
+											<div class="large-12 small-12 columns left">
+												<h4>{{ employeeData.employee_name }} {{ employeeData.employee_lastname }}</h4>
+											</div>
+											<div class="large-6 small-6 columns left">
+												{{ employeeData.position_current }}
+											</div>
+											<div class="large-6 small-6 columns left">
+												{{ employeeData.boss_current }} <i>(Jefe Inmediato)</i>
+											</div>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
+
+				    <div id="panel1a" class="content active">
+					    <fieldset ng-repeat="(key, rotation) in employeeData.variances">
+					    	<legend>{{rotation.type_acumulation}}</legend>
+					    	<table>
+								  <thead>
+									  <tr>
+									    <th scope="column" class="text-center payroll-description">Nomina</th>
+									    <th scope="column" class="text-center">Importe Anterior</th>
+									    <th scope="column" class="text-center">Importe Actual</th>
+									    <th scope="column" class="text-center">Diferencia</th>
+									    <th scope="column" class="text-center">Porcentaje</th>
+									  </tr>
+								  </thead>
+							  	<tbody>
+							  		<td scope="row" ng-bind="rotation.description_payroll"></td>
+										<td scope="row" ng-bind="getValueFormat(rotation.previous_amount, 'currency', rotation.currency)"></td>
+					  				<td scope="row" ng-bind="getValueFormat(rotation.current_amount, 'currency', rotation.currency)"></td>
+					  				<td scope="row" ng-bind="getValueFormat(rotation.difference_amount, 'currency', rotation.currency)"></td>
+					  				<td scope="row" ng-bind="getValueFormat(rotation.percentage_difference, 'porcentage', '')"></td>
+							  	</tbody>
+						  	</table>
+							</fieldset>
+
+				    </div>
+					  <a class="close-reveal-modal" aria-label="Close">&#215;</a>
 					</div>
-
-			    <div id="panel1a" class="content active">
-				    <fieldset ng-repeat="(key, rotation) in employeeData.variances">
-				    	<legend>{{rotation.type_acumulation}}</legend>
-				    	<table>
-							  <thead>
-								  <tr>
-								    <th scope="column" class="text-center payroll-description">Nomina</th>
-								    <th scope="column" class="text-center">Importe Anterior</th>
-								    <th scope="column" class="text-center">Importe Actual</th>
-								    <th scope="column" class="text-center">Diferencia</th>
-								    <th scope="column" class="text-center">Porcentaje</th>
-								  </tr>
-							  </thead>
-						  	<tbody>
-						  		<td scope="row" ng-bind="rotation.description_payroll"></td>
-									<td scope="row" ng-bind="getValueFormat(rotation.previous_amount, 'currency', rotation.currency)"></td>
-				  				<td scope="row" ng-bind="getValueFormat(rotation.current_amount, 'currency', rotation.currency)"></td>
-				  				<td scope="row" ng-bind="getValueFormat(rotation.difference_amount, 'currency', rotation.currency)"></td>
-				  				<td scope="row" ng-bind="getValueFormat(rotation.percentage_difference, 'porcentage', '')"></td>
-						  	</tbody>
-					  	</table>
-						</fieldset>
-
-			    </div>
-				  <a class="close-reveal-modal" aria-label="Close">&#215;</a>
 				</div>
 			</div>
 		</div>
