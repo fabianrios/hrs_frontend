@@ -1,68 +1,69 @@
 <div class="padding-container">
-	<h3 class="expand-title text-center first-one">Absentismos</h3>
-	
-	<div ng-hide="existsAbsences()" ng-include="warningMessage"></div>
-
-	<div ng-show="existsAbsences()">
-		<div class="row">
-			<fieldset>
-				<legend>Filtros</legend>
-				<div class="large-2 medium-2 columns">
-					<label for="payroll_filter" class="inline">Empleado:</label>
-				</div>
-				<div class="large-4 medium-4 columns left">
-					<select id="employee_filter" ng-model="employee_filter" ng-change="employeeFilter()">
-						<option ng-repeat="(key, absenteeism) in absences" value="{{ key }}">{{ absenteeism.employee_name }} {{ absenteeism.employee_lastname }}</option>
-					</select>
-				</div>
-			</fieldset>
-		</div>
-		
-		<div class="row">
-			<div class="panel callout radius">
-				<div class="row">
-					<div class="large-2 small-4 columns left">
-						<a><img ng-src="{{ employeeData.image.image.url }}" alt="" /></a>
+	<message-permission ng-show="showMessagePermission()" titulo="permission_alert"></message-permission>
+	<div ng-if="!showMessagePermission()">
+		<h3 class="expand-title text-center first-one">Absentismos</h3>
+		<div ng-hide="existsAbsences()" ng-include="warningMessage"></div>
+		<div ng-show="existsAbsences()">
+			<div class="row">
+				<fieldset>
+					<legend>Filtros</legend>
+					<div class="large-2 medium-2 columns">
+						<label for="payroll_filter" class="inline">Empleado:</label>
 					</div>
-					<div class="large-8 small-8 columns left">
-						<div class="row">
-							<div class="large-12 small-12 columns left">
-								<h4>{{ employeeData.employee_name }} {{ employeeData.employee_lastname }}</h4>
-							</div>
+					<div class="large-4 medium-4 columns left">
+						<select id="employee_filter" ng-model="employee_filter" ng-change="employeeFilter()">
+							<option ng-repeat="(key, absenteeism) in absences" value="{{ key }}">{{ absenteeism.employee_name }} {{ absenteeism.employee_lastname }}</option>
+						</select>
+					</div>
+				</fieldset>
+			</div>
+			
+			<div class="row">
+				<div class="panel callout radius">
+					<div class="row">
+						<div class="large-2 small-4 columns left">
+							<a><img ng-src="{{ employeeData.image.image.url }}" alt="" /></a>
+						</div>
+						<div class="large-8 small-8 columns left">
+							<div class="row">
+								<div class="large-12 small-12 columns left">
+									<h4>{{ employeeData.employee_name }} {{ employeeData.employee_lastname }}</h4>
+								</div>
 
-							<div class="large-6 small-6 columns left">
-								{{ employeeData.position_current }}
-							</div>
-							<div class="large-6 small-6 columns left">
-								{{ employeeData.boss_current }} <i>(Jefe Inmediato)</i>
+								<div class="large-6 small-6 columns left">
+									{{ employeeData.position_current }}
+								</div>
+								<div class="large-6 small-6 columns left">
+									{{ employeeData.boss_current }} <i>(Jefe Inmediato)</i>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
 
-		<div class="row">
-			<div ng-repeat="(key, absenteeism) in employeeData.absences | orderBy:'-start'" class="large-6 medium-6 small-12 columns left"> 
-				<div class="panel">
-					<div class="row">
-						<div class="large-4 small-4 columns left">
-							<h5>{{absenteeism.type_absence}}</h5>
-						</div>
-						<div class="large-8 small-8 columns left">
-							<h5>{{absenteeism.description_absence}}</h5>
-						</div>
-						
-						<div class="large-6 small-6 columns left">
-							<div>
-								{{absenteeism.start | date:"dd/MM/yyyy"}} - {{absenteeism.end | date:"dd/MM/yyyy"}}
+			<div class="row">
+				<div ng-repeat="(key, absenteeism) in employeeData.absences | orderBy:'-start'" class="large-6 medium-6 small-12 columns left"> 
+					<div class="panel">
+						<div class="row">
+							<div class="large-4 small-4 columns left">
+								<h5>{{absenteeism.type_absence}}</h5>
 							</div>
-						</div>
-						<div class="large-3 small-6 columns left">
-							  <span class="label info info-absences">Dias Nomina <h6>{{absenteeism.days_payroll}}</h6></span>
-						</div>
-						<div class="large-3 small-6 columns left">
-							<span class="label secondary">Dias Naturales<h6>{{absenteeism.days_natural}}</h6></span>
+							<div class="large-8 small-8 columns left">
+								<h5>{{absenteeism.description_absence}}</h5>
+							</div>
+							
+							<div class="large-6 small-6 columns left">
+								<div>
+									{{absenteeism.start | date:"dd/MM/yyyy"}} - {{absenteeism.end | date:"dd/MM/yyyy"}}
+								</div>
+							</div>
+							<div class="large-3 small-6 columns left">
+								  <span class="label info info-absences">Dias Nomina <h6>{{absenteeism.days_payroll}}</h6></span>
+							</div>
+							<div class="large-3 small-6 columns left">
+								<span class="label secondary">Dias Naturales<h6>{{absenteeism.days_natural}}</h6></span>
+							</div>
 						</div>
 					</div>
 				</div>

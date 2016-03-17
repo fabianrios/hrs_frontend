@@ -15,11 +15,24 @@
 			}
 		})
 	})
-	.controller('PaymentsDeductions.ListController', ['$rootScope', '$scope', '$filter', 'paymentsDeductions',function($rootScope, $scope, $filter, paymentsDeductions){
+	.controller('PaymentsDeductions.ListController', ['$rootScope', '$scope', '$filter', 'paymentsDeductions', '$state', function($rootScope, $scope, $filter, paymentsDeductions, $state){
 		$scope.payments_deductions = paymentsDeductions.payments_and_deductions;
 		$scope.warningMessage      = 'app/management_services/warning.tpl.html';
-		$scope.position_filter     = parseInt($scope.payments_deductions[0]);
-		$scope.employeeData        = $scope.payments_deductions[0]
+		$scope.permission_alert    = '';
+
+		if(angular.isObject(paymentsDeductions.message)){
+			$scope.permission_alert = paymentsDeductions.message.permission_alert;
+			setTimeout(function() {
+				$state.transitionTo('main.views.dashboard');
+			}, 2000);
+		}else{
+			$scope.position_filter = parseInt($scope.payments_deductions[0]);
+			$scope.employeeData    = $scope.payments_deductions[0];
+		}
+		
+		$scope.showMessagePermission = function(){
+			return angular.isObject(paymentsDeductions.message);
+		}
 
 		$scope.existsPaymentsAndDeductions = function(){
   		return parseInt($scope.payments_deductions.length) !== 0;

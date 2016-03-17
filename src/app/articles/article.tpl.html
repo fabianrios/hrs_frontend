@@ -1,5 +1,7 @@
 <div class="padding-container">
-	<div class="row">
+	<message-permission ng-show="showMessagePermission()" titulo="permission_alert"></message-permission>
+
+	<div ng-hide="showMessagePermission()" class="row">
 		<div class="large-9 columns">
 			<div ng-model="article" class="article">
 				<h2 ng-class="article.category"> <img ng-if="!article.publicado" src="images/prohibited.png" alt="No publico"> {{article.titulo}}</h2>

@@ -358,12 +358,54 @@
 			}
 		}
 	})
-	.controller('Dashboard.MainController', ['$scope', 'widgets', 'ingresos', 'workers', 'publicaciones', 'Employee', 'Article', 'CONSTANT', '$filter', function($scope, widgets, ingresos, workers, publicaciones, Employee, Article, CONSTANT, $filter){
+	.controller('Dashboard.MainController', ['$scope', 'widgets', 'ingresos', 'workers', 'publicaciones', 'Employee', 'Article', 'CONSTANT', '$filter', '$stateParams', function($scope, widgets, ingresos, workers, publicaciones, Employee, Article, CONSTANT, $filter, $stateParams){
 		$scope.$Employee = Employee;
-  	$scope.$Article = Article;
+  	$scope.$Article  = Article;
 
-  	$scope.employeeData      = null;
+  	$scope.employee_by_cumpleano_mes 		= [];
+  	$scope.employee_by_fecha_de_ingreso = [];
+  	$scope.new_employees 								= [];
+  	$scope.articles_not_mine						= [];
+
+  	$scope.birthday_employees 	  = $scope.$Employee.all_by_cumpleano_mes();
+		$scope.aniversary_employees   = $scope.$Employee.all_by_fecha_de_ingreso();
+		$scope.recent_input_employees = $scope.$Employee.all_by_current_month_entry();
+		$scope.last_articles					= $scope.$Article.index({per:10});
+
+		$scope.employeeData      = null;
 		$scope.modalDataEmployee = 'app/includes/modal_data_employee.tpl.html';
+
+  	if (!angular.isObject($scope.birthday_employees[0])) {
+			$scope.employee_by_cumpleano_mes = $scope.birthday_employees;
+  	}
+  	
+  	if (!angular.isObject($scope.aniversary_employees[0])) {
+			$scope.employee_by_fecha_de_ingreso = $scope.aniversary_employees;
+  	}
+
+  	if (!angular.isObject($scope.recent_input_employees[0])) {
+			$scope.new_employees = $scope.recent_input_employees;
+  	}
+
+		if (!angular.isObject($scope.last_articles[0])) {
+			$scope.articles_not_mine = $scope.last_articles;
+  	}
+
+  	$scope.showBirthdayEmployees = function(){
+  		return $scope.user.company.show_birthday;
+  	}
+
+  	$scope.showAniversaryEmployees = function(){
+  		return $scope.user.company.show_labor;
+  	}
+
+  	$scope.showNewEmployees = function(){
+  		return $scope.user.company.show_new_employees;
+  	}
+
+  	$scope.showArticles = function(){
+  		return $scope.user.company.show_articles;
+  	}
 
 		$scope.showModal = function(employee){
       $('#employeeDataDashboardModal').foundation('reveal', 'open');

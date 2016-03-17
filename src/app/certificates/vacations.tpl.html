@@ -1,5 +1,7 @@
 <div class="container">
-	<div class="row">
+	<message-permission ng-show="showMessagePermission()" titulo="permission_alert"></message-permission>
+
+	<div ng-hide="showMessagePermission()" class="row">
 		<div class="large-12 columns large-centered medium-centered small-centered">
 			<div class="text-center">
 				<div class="wrapper hide-for-small-only">

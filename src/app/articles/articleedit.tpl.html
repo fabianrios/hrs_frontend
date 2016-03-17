@@ -1,17 +1,20 @@
 <br /><br />
-<div class="row">
-	<div class="large-12 columns">
-		<h1 class="subheader">Editar articulo</h1>
-	</div>
-</div>
-<form role="form" ng-submit="updateArticle()" class="{{article.publicado}}">
-	<div ng-include="'app/articles/partials/_form.tpl.html'"></div>
+<message-permission ng-show="showMessagePermission()" titulo="permission_alert"></message-permission>
+<div ng-hide="showMessagePermission()">
 	<div class="row">
-		<div class="large-9 columns">
-			<div class="text-right">
-				<br />
-				<button type="submit" class="button success small" ng-disabled="article.sending" > <img src="images/282.gif" width="15px" ng-if="article.sending" /> &nbsp;<span ng-bind="article.sending ? 'Guardando' : 'Crear articulo'" ></span></button>
-			</div>
+		<div class="large-12 columns">
+			<h1 class="subheader">Editar articulo</h1>
 		</div>
 	</div>
-</form>
+	<form role="form" ng-submit="updateArticle()" class="{{article.publicado}}">
+		<div ng-include="'app/articles/partials/_form.tpl.html'"></div>
+		<div class="row">
+			<div class="large-9 columns">
+				<div class="text-right">
+					<br />
+					<button type="submit" class="button success small" ng-disabled="article.sending" > <img src="images/282.gif" width="15px" ng-if="article.sending" /> &nbsp;<span ng-bind="article.sending ? 'Guardando' : 'Crear articulo'" ></span></button>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

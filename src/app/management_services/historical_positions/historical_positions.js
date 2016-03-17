@@ -15,12 +15,25 @@
 			}
 		})
 	})
-	.controller('HistoricalPositions.ListController', ['$rootScope', '$scope', '$filter', 'historicalPositions',function($rootScope, $scope, $filter, historicalPositions){
+	.controller('HistoricalPositions.ListController', ['$rootScope', '$scope', '$filter', 'historicalPositions', '$state', function($rootScope, $scope, $filter, historicalPositions, $state){
 		$scope.historical_positions = historicalPositions.historical_positions;
 		$scope.warningMessage       = 'app/management_services/warning.tpl.html';
-		$scope.position_filter      = parseInt($scope.historical_positions[0]);
-		$scope.employeeData         = $scope.historical_positions[0]
+		$scope.permission_alert 		= '';
+
+		if(angular.isObject(historicalPositions.message)){
+			$scope.permission_alert = historicalPositions.message.permission_alert;
+			setTimeout(function() {
+				$state.transitionTo('main.views.dashboard');
+			}, 2000);
+		}else{
+			$scope.position_filter      = parseInt($scope.historical_positions[0]);
+			$scope.employeeData         = $scope.historical_positions[0]
+		}
 		
+		$scope.showMessagePermission = function(){
+			return angular.isObject(historicalPositions.message);
+		}
+
 		$scope.existsHistoricalPositions = function(){
   		return parseInt($scope.historical_positions.length) !== 0;
     }
