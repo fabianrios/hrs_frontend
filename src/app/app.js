@@ -29,6 +29,7 @@
     'inhability_requirement.service',
     'license_requirement.service',
     'employee_info.service',
+    'data_master.service',
     'info.service',
     'notification.service',
     'loan.service',
@@ -88,7 +89,7 @@
     'variance_analysis', 
     'manager_organigram',
     'payments_deductions',
-    'historical_salaries'
+    'historical_salaries',
   ])
 
   .config(function($stateProvider, $httpProvider, $urlRouterProvider, HRAPI_CONF, AuthProvider, AuthInterceptProvider, $authProvider){ //ngS3Config, 
