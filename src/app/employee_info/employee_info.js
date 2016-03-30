@@ -15,8 +15,9 @@
 					return Info.index().$promise;
 				},
 				datamaster: function(DataMaster){
-          return DataMaster.master_data_labels_company().$promise;
-        }
+		          return DataMaster.master_data_labels_company().$promise;
+		        }
+
 			}
 		})
 		.state('main.views.employee_info_lookup', {
@@ -31,8 +32,8 @@
 					return Employee.show({id: $stateParams.id, identification: $stateParams.id, c: $stateParams.c}).$promise;
 				},
 				datamaster: function(DataMaster){
-          return DataMaster.master_data_labels_company().$promise;
-        }
+		          return DataMaster.master_data_labels_company().$promise;
+		        }
 			}
 		})
 	})	
@@ -65,10 +66,9 @@
 		
 		
 		$scope.cargarAprobador = function(identification){
-		    $scope.approver = Employee.show({id:0, id_posicion: identification});		      
+		    $scope.approver = Employee.approver_employee({id_posicion: identification});      
 		}
-		$scope.cargarAprobador($scope.user.employee.dams_approver)
-	
+		$scope.cargarAprobador($scope.user.employee.dams_approver);
 
 		$scope.search_country = function(data){
 			// Cual es el pais??
