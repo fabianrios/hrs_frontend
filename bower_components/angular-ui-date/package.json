@@ -1,0 +1,40 @@
+{
+  "name": "angular-ui-date",
+  "version": "0.0.11",
+  "description": "This directive allows you to add a date-picker to your form elements.",
+  "main": "src/date.js",
+  "scripts": {
+    "update": "bower update",
+    "test": "npm run update && grunt"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Nexxa/ui-date.git"
+  },
+  "author": "https://github.com/angular-ui/ui-date/graphs/contributors",
+  "license": "MIT",
+  "homepage": "http://angular-ui.github.com/ui-date",
+  "bugs": {
+    "url": "https://github.com/angular-ui/ui-date/issues"
+  },
+  "devDependencies": {
+    "bower": "^1.6.6",
+    "cz-conventional-changelog": "^1.1.4",
+    "grunt": "^0.4.5",
+    "grunt-cli": "^0.1.13",
+    "grunt-contrib-jshint": "^0.11.3",
+    "grunt-conventional-changelog": "^5.0.0",
+    "grunt-karma": "^0.12.1",
+    "jasmine-core": "^2.3.4",
+    "karma": "^0.13.0",
+    "karma-chrome-launcher": "^0.2.1",
+    "karma-firefox-launcher": "^0.1.7",
+    "karma-jasmine": "^0.3.6",
+    "load-grunt-tasks": "^3.3.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}

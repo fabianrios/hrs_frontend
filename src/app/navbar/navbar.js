@@ -16,10 +16,79 @@
 		// $scope.toapproved =[];
 		$scope.vacations = $filter('filter')($scope.user.files, {op:'vctns'});
 		$scope.incomes 	 = $filter('filter')($scope.user.files, {op:'inret'});
-		$scope.laborCertificate = '0001';
-		$scope.pdfKeyInit 			= 0;
-		$scope.pdfKeyVacations 	= $scope.vacations.length !== 0 ? $scope.vacations.length - 1 : $scope.vacations.length;
-		$scope.pdfKeyIncome     = $scope.incomes.length !== 0 ? $scope.incomes.length - 1 : $scope.incomes.length;
+		$scope.laborCertificate  = '0001';
+		$scope.pdfKeyInit 			 = 0;
+		$scope.pdfKeyVacations 	 = $scope.vacations.length !== 0 ? $scope.vacations.length - 1 : $scope.vacations.length;
+		$scope.pdfKeyIncome      = $scope.incomes.length !== 0 ? $scope.incomes.length - 1 : $scope.incomes.length;
+		$scope.consultationsMenu = [
+			{
+				name: 'Detalle de Pagos y Deducciones',
+				url:  'main.views.indebtedness_levels'
+			},
+			{
+				name: 'Embargos',
+				url:  'main.views.seizures'
+			},
+			{
+				name: 'Prestamos',
+				url:  'main.views.loan_records'
+			},
+			{
+				name: 'Vacaciones disfrutadas',
+				url:  'main.views.enjoyed_vacation_records'
+			},
+			{
+				name: 'Vacaciones compensadas',
+				url:  'main.views.compensatory_vacation_records'
+			},
+			{
+				name: 'Saldo de vacaciones',
+				url:  'main.views.vacation_balance_records'
+			},
+			{
+				name: 'Permisos',
+				url:  'main.views.permissions'
+			},
+			{
+				name: 'Incapacidades',
+				url:  'main.views.incapacities'
+			},
+			{
+				name: 'Horas extras',
+				url:  'main.views.extra_hour_records'
+			}
+		];
+		
+		$scope.managerServicesMenu = [
+			{
+				name: 'Rotación de personal',
+				url:  'main.views.personal_rotation'
+			},
+			{
+				name: 'Historico de cargos',
+				url:  'main.views.historical_positions'
+			},
+			{
+				name: 'Historico de sueldos',
+				url:  'main.views.historical_salaries'
+			},
+			{
+				name: 'Análisis de variaciones',
+				url:  'main.views.variance_analysis'
+			},
+			{
+				name: 'Absentismos',
+				url:  'main.views.absences'
+			},
+			{
+				name: 'Reporte de vacantes',
+				url:  'main.views.manager_organigram'
+			},
+			{
+				name: 'Ingresos y retenciones',
+				url:  'main.views.payments_deductions'
+			}
+		];
 
 		$scope.existsRegisters  = function(){
 			return $scope.notifications.inhability + $scope.notifications.extra > 0;
