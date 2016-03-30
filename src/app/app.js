@@ -40,6 +40,7 @@
     'absences.service',
     'manager_organigram.service',
     'historical_salaries.service',
+    'indebtedness_level.service',
     'angular-clipboard',
 
     // Directives

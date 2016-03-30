@@ -123,7 +123,6 @@
   </li>
 
   <li class="has-submenu">
-  <!-- ng-if="existsIndebtedness() || existsEmbargoes() || exitsLoanRecords() || existPermissions() || existsVacationRecords()" -->
     <a href="">
       <i class="fa fa-paste fa-lg"></i> Consultas
       <i class="fa fa-angle-right fa-right fa-lg"></i>
@@ -132,50 +131,9 @@
       <li class="back">
         <a href="">Volver</a>
       </li>
-
-      <li> <!-- ng-if="existsIndebtedness()" -->
-        <a ui-sref="main.views.indebtedness_levels">
-         Detalle de Pagos y Deducciones
-        </a>
-      </li>
-      <li> <!-- ng-if="existsEmbargoes()" -->
-        <a ui-sref="main.views.seizures">
-          Embargos
-        </a>
-      </li>
-      <li> <!-- ng-if="exitsLoanRecords()" -->
-        <a ui-sref="main.views.loan_records">
-          Prestamos
-        </a>
-      </li>
-      <li> <!-- ng-if="existsVacationRecords()" -->
-        <a ui-sref="main.views.enjoyed_vacation_records">
-          Vacaciones disfrutadas
-        </a>
-      </li>
-      <li> <!-- ng-if="existsVacationBalanceRecords()" -->
-        <a ui-sref="main.views.compensatory_vacation_records">
-          Vacaciones compensadas
-        </a>
-      </li>
-      <li> <!-- ng-if="existsVacationBalanceRecords()" -->
-        <a ui-sref="main.views.vacation_balance_records">
-          Saldo de vacaciones
-        </a>
-      </li>
-      <li> <!-- ng-if="existPermissions()" -->
-        <a ui-sref="main.views.permissions">
-          Permisos
-        </a>
-      </li>
-      <li> <!-- ng-if="existIncapacities()" -->
-        <a ui-sref="main.views.incapacities">
-          Incapacidades
-        </a>
-      </li>
-      <li> <!-- ng-if="existExtraHours()" -->
-        <a ui-sref="main.views.extra_hour_records">
-          Horas extras
+      <li ng-repeat="consultation in consultationsMenu | orderBy:'name'">
+        <a ui-sref="{{ consultation.url }}">
+         {{ consultation.name }}
         </a>
       </li>
     </ul>
@@ -190,39 +148,9 @@
       <li class="back">
         <a href="">Volver</a>
       </li>
-      <li>
-        <a ui-sref="main.views.personal_rotation">
-          Rotación de personal
-        </a>
-      </li>
-      <li>
-        <a ui-sref="main.views.historical_positions">
-          Historico de cargos
-        </a>
-      </li>
-      <li>
-        <a ui-sref="main.views.historical_salaries">
-          Historico de sueldos
-        </a>
-      </li>
-      <li>
-        <a ui-sref="main.views.variance_analysis">
-          Análisis de variaciones
-        </a>
-      </li>
-      <li>
-        <a ui-sref="main.views.absences">
-          Absentismos
-        </a>
-      </li>
-      <li>
-        <a ui-sref="main.views.manager_organigram">
-          Reporte de vacantes
-        </a>
-      </li>
-      <li>
-        <a ui-sref="main.views.payments_deductions">
-          Ingresos y retenciones
+      <li ng-repeat="managerService in managerServicesMenu | orderBy:'name'">
+        <a ui-sref="{{ managerService.url }}">
+          {{ managerService.name }}
         </a>
       </li>
     </ul>
