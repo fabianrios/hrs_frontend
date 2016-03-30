@@ -8,7 +8,7 @@
 		$scope.classContacModal = '';
 
 		$scope.cargarAprobador = function(identification){
-		    $scope.aprobador = Employee.show({id:0, id_posicion: identification});		      
+		    $scope.aprobador = Employee.approver_employee({id_posicion: identification});		      
 		}
 	
 	  var expected = ['main.views.certificates_error','main.views.certificates_labor','main.views.certificates_vacations','main.views.certificates_payroll','main.views.certificates_income'];
