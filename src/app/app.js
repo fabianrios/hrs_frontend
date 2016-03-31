@@ -42,6 +42,14 @@
     'manager_organigram.service',
     'historical_salaries.service',
     'indebtedness_level.service',
+    'enjoyed_vacation.service',
+    'embargo.service',
+    'extra_hour_record.service',
+    'incapacity.service',
+    'permission.service',
+    'loan_record.service',
+    'vacation_balance_record.service',
+    'compensatory_vacation_record.service',
     'angular-clipboard',
 
     // Directives
