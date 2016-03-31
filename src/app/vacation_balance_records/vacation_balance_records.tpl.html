@@ -15,7 +15,7 @@
         <div class="large-2 medium-2 columns">
           <select id="date_filter" ng-model="date_filter.$">
             <option value="">Todos</option>
-            <option ng-repeat="date in payroll_dates | orderBy:date" value="{{ date }}">{{ date | date:'dd/MM/yyyy' }}</option>
+            <option ng-repeat="date in payroll_dates" value="{{ date }}">{{ date | date:'dd/MM/yyyy' }}</option>
           </select>
         </div>
         
@@ -45,8 +45,8 @@
               <th scope="column" class="text-center">Dias pendientes</th>
             </tr> 
           </thead>
-          <tbody ng-repeat="date in payroll_dates | filter : date_filter | orderBy:date">
-            <tr ng-repeat="(key, vacation) in user.vacation_balance_records | filter : {endda: date, ktext: payroll_concept_filter}"> 
+          <tbody ng-repeat="date in payroll_dates | filter : date_filter">
+            <tr ng-repeat="(key, vacation) in vacationBalanceRecords | filter : {endda: date, ktext: payroll_concept_filter}"> 
               <td scope="row" ng-bind="vacation.ktext"></td>
               <td scope="row" ng-bind="vacation.begda | date:'dd/MM/yyyy'" class="text-right"></td>
               <td scope="row" id="td_payroll_period" ng-bind="vacation.endda | date:'dd/MM/yyyy'" class="text-right"></td>

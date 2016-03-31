@@ -37,7 +37,7 @@
 					  </tr>	
 				  </thead>
 			  	<tbody>
-		  			<tr ng-repeat="permission in user.permissions | filter:begda_filter ">
+		  			<tr ng-repeat="permission in permissions | filter:begda_filter ">
 		  				<td scope="row">{{ permission.text_permission }}</td>
 					    <td scope="row" class="text-right">{{ permission.begda  }}</td>
 					    <td scope="row" class="text-right">{{ permission.endda  }}</td>
