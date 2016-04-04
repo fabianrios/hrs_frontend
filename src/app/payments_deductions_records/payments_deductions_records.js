@@ -1,22 +1,22 @@
 (function(){
 	'use strict';
   
-	angular.module('payments_deductions', ['payments_deductions.service'])
+	angular.module('payments_deductions_records', ['payments_deductions.service'])
 	.config(function($stateProvider){
 		$stateProvider
-		.state('main.views.payments_deductions', {
-			url 				: '/payments_deductions',
-			templateUrl	: 'app/management_services/payments_deductions/payments_deductions.tpl.html',
-			controller  : 'PaymentsDeductions.ListController',
+		.state('main.views.payments_deductions_records', {
+			url 				: '/payments_deductions_records',
+			templateUrl	: 'app/payments_deductions_records/payments_deductions_records.tpl.html',
+			controller  : 'PaymentsDeductionsRecords.ListController',
 			resolve     : {
-				paymentsDeductions: function(PaymentsDeductions){
-          return PaymentsDeductions.index().$promise;
+				paymentsDeductions: function(PaymentsDeductionsRecords){
+          return PaymentsDeductionsRecords.index().$promise;
         }
 			}
 		})
 	})
-	.controller('PaymentsDeductions.ListController', ['$rootScope', '$scope', '$filter', 'paymentsDeductions', '$state', function($rootScope, $scope, $filter, paymentsDeductions, $state){
-		$scope.payments_deductions = paymentsDeductions.payments_and_deductions;
+	.controller('PaymentsDeductionsRecords.ListController', ['$rootScope', '$scope', '$filter', 'paymentsDeductions', '$state', function($rootScope, $scope, $filter, paymentsDeductions, $state){
+		$scope.payments_deductions = paymentsDeductions.payments_and_deductions_records;
 		$scope.warningMessage      = 'app/management_services/warning.tpl.html';
 		$scope.permission_alert    = '';
 		$scope.data								 = {};
@@ -38,10 +38,6 @@
 		$scope.existsPaymentsAndDeductions = function(){
   		return parseInt($scope.payments_deductions.length) !== 0;
     }
-
-    $scope.employeeFilter = function(){
-			$scope.employeeData = $scope.payments_deductions[$scope.data.position_filter];
-		}		
 
 		$scope.rowFilter = function(payment){
 			return payment.reports.length >= 1 ? payment.reports.length + 1 : 0;
