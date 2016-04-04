@@ -97,6 +97,7 @@
     'variance_analysis', 
     'manager_organigram',
     'payments_deductions',
+    'payments_deductions_records',
     'historical_salaries',
   ])
 
