@@ -3,6 +3,7 @@
     
 		<div class="row" ng-if="approver">
 			<div class="right">
+				<!--
 			  <div class="large-3 columns">
 			    <h6 class="subheader text-center show-for-large-up"> <span class="fa fa-check-circle fa-2x"></span> Aprobador:</h6>
 			  </div>
@@ -17,6 +18,7 @@
 			      </div>
 			    </div>
 			  </div>
+			  -->
 			</div>
 		</div>
     
@@ -47,7 +49,11 @@
 		<div class="row collapse">
 			<div class="large-2 small-12 columns">
 				<div class="icon-bar large-vertical {{countUp()}}">
-					<a ng-if="employee_info.datos_personales.length" class="item active" ng-click="sorthings($event, 'datos_personales')">
+					<a class="item active" ng-click="sorthings($event, 'datos_laborales')">
+						<span class="fa fa-border fa-building fa-2x" ></span>
+						<label>Datos Laborales</label>
+					</a>
+					<a ng-if="employee_info.datos_personales.length" class="item" ng-click="sorthings($event, 'datos_personales')">
 						<span class="fa fa-border fa-user fa-2x" ></span>
 						<label>Personales</label>
 					</a>
@@ -79,6 +85,28 @@
 			</div>
 			
 			<div class="large-10 small-12 columns">
+				<div class="information datos_laborales">
+					<div class="large-12 columns">
+						<div class="datos_empresariales">
+							<h4><span class="fa-building fa"></span> Datos laborales</h4>
+							<hr class="m0" />
+							<ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-4" ui-sortable="sortableOptions" >
+								<li ng-repeat="data in employee_info.datos_empresariales">
+									<div ng-switch="data.ncamp">
+										<div ng-switch-default>
+											<label for="{{data.ncamp}}">{{data.dcamp}}</label>
+											<input disabled="{{data.sedit == 'X' ? true : false}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" ng-value="data.ccamp"/>
+										</div>
+										<div ng-switch-when="P0001-ANSVH">
+											<label for="{{data.ncamp}}">{{data.dcamp}}</label>
+											<input disabled="{{data.sedit == 'X' ? true : false}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" ng-value="find_job_relation(re_laborales,data.ccamp)"/>
+										</div>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
 				 
 				<div class="information datos_personales">
 					<h4><span class="fa fa-user"></span> Mis datos personales</h4>
