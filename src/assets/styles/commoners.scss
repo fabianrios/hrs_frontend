@@ -2,6 +2,10 @@
 @import "variables";
 @import 'mixins';
 
+.field-disabled{
+	background: #DDD !important;
+	background-color: #DDD; 
+}
 // esto es ridiculo cada vez que cambio una fuenta
 
 .futura{

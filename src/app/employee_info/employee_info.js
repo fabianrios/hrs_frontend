@@ -42,6 +42,7 @@
     
 		$scope.inputEmployeeInclude 		= 'app/employee_info/input_employee_info.tpl.html';
 		$scope.inputDateEmployeeInclude = 'app/employee_info/input_date_employee_info.tpl.html';	
+		$scope.includeInfoMessage 			= 'app/employee_info/info_message.tpl.html'
 				
 		//all companies
 		$scope.paises = datamaster.master_data.countries;
@@ -62,7 +63,14 @@
 		$scope.edit_field = function( edit ){
 			return edit === 'X' && $scope.user.employee.dams_approver && $scope.user.employee.dams_approver != '00000000'
 		}
-		
+
+		$scope.isFieldDisabled = function(edit){
+			var style = '';
+			if (!$scope.edit_field(edit)) {
+				style = 'field-disabled'
+			}
+			return style;
+		}
 		
 		$scope.cargarAprobador = function(identification){
 		    $scope.approver = Employee.approver_employee({id_posicion: identification});      
@@ -72,13 +80,35 @@
 		$scope.search_country = function(data){
 			// Cual es el pais??
 			angular.forEach($scope.paises, function(value, key) {
-				// console.log(value.land1,key);
 				if (value.land1 == data){
 					$scope.country = $scope.paises[key].land1;
-					// console.log($scope.country,key)
 				}
-			})
+			});
 		};
+
+		var flagFamily = 0;
+		var uniqueVals = [];
+		var familyData = [];
+		angular.forEach($rootScope.employee_info.datos_familiares, function(value, key) {
+			if (value.tcamp !== "HIDE"){
+				var data 			 = {};
+				data.tcamp = value.tcamp;
+				data.ccamp = value.ccamp;
+				data.lstbx = value.lstbx;
+				data.ncamp = value.ncamp;
+				data.dcamp = value.dcamp;
+				data.sedit = value.sedit;
+				
+				uniqueVals.push(data);
+
+				if (value.pvisu === '10'){
+					familyData[flagFamily] = uniqueVals;
+					uniqueVals = [];
+					flagFamily += 1;
+				}
+			}
+		});
+		$rootScope.familyData = familyData;
 		
 		
 		$scope.trade_date = function(data){

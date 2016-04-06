@@ -95,18 +95,20 @@
 									<div ng-switch="data.ncamp">
 										<div ng-switch-default>
 											<label for="{{data.ncamp}}">{{data.dcamp}}</label>
-											<input disabled="{{data.sedit == 'X' ? true : false}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" ng-value="data.ccamp"/>
+											<input disabled="{{data.sedit == 'X' ? true : false}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" ng-value="data.ccamp" class="{{ isFieldDisabled(data.sedit) }}"/>
 										</div>
 										<div ng-switch-when="P0001-ANSVH">
 											<label for="{{data.ncamp}}">{{data.dcamp}}</label>
-											<input disabled="{{data.sedit == 'X' ? true : false}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" ng-value="find_job_relation(re_laborales,data.ccamp)"/>
+											<input disabled="{{data.sedit == 'X' ? true : false}}" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" ng-value="find_job_relation(re_laborales,data.ccamp)" class="{{ isFieldDisabled(data.sedit) }}"/>
 										</div>
 									</div>
 								</li>
 							</ul>
 						</div>
+						<div ng-include="includeInfoMessage"></div>
 					</div>
 				</div>
+				
 				 
 				<div class="information datos_personales">
 					<h4><span class="fa fa-user"></span> Mis datos personales</h4>
@@ -114,8 +116,7 @@
 					<ul class="small-block-grid-2 medium-block-grid-4 large-block-grid-4" ui-sortable="sortableOptions" ng-model="employee_info.datos_personales">
 						<li ng-repeat="data in employee_info.datos_personales">
 							<div ng-switch="data.lstbx" class="relative" ng-init="data.ccamp=stringTo(data.tcamp, data.ccamp)">
-								<div ng-switch-default >
-									
+								<div ng-switch-default>
 									<label data="{{data.pvisu}}" for="{{data.ncamp}}">{{ data.dcamp }}</label>
 									<div ng-switch="data.tcamp">
 										<div ng-switch-when="DATE">
@@ -128,147 +129,81 @@
 								</div>
 								<div ng-switch-when="IH_TB_T005L">
 									<label data="{{data.pvisu}}" for="{{data.ncamp}}">{{data.dcamp}}</label>
-									<div class="row collapse">
-										<div class="small-9 columns">
-											<select ng-disabled="!edit_field(data.sedit)" ng-model="country" ng-class="search_country(data.ccamp)" ng-options="pais.land1 as pais.landx for pais in paises"  ng-change="cambiar(country)" ng-init="copy=data.ccamp" ></select>
-										</div>
-
-										<div class="small-3 columns">
-										<!--
-											<a ng-if="edit_field(data.sedit)" ng-disabled="copy == data.ccamp" ng-click="cambiarInfo(data.subty, data.ncamp, data.dcamp, country, data.objid, data.lstbx, data.objps, 'Datos personales')" class="button tiny"><span class="fa fa-pencil fa-lg"></span></a>
-											-->
-										</div>
-										
-									</div>
+									<select ng-disabled="!edit_field(data.sedit)" ng-model="country" ng-class="search_country(data.ccamp)" ng-options="pais.land1 as pais.landx for pais in paises"  ng-change="cambiar(country)" ng-init="copy=data.ccamp" ></select>
 								</div>
 								<div ng-switch-when="IH_TB_T005S">
 									<label data="{{data.pvisu}}" for="{{data.ncamp}}">{{data.dcamp}}</label>
-									<div class="row collapse">
-										<div class="small-9 columns">
-											<select ng-disabled="!edit_field(data.sedit)" ng-model="states" ng-class="search_estado(data.ccamp)" ng-options="estado.bland as estado.bezei for estado in estados"  ng-change="cambiar_estados(states)" ng-init="copy=data.ccamp" ></select>
-										</div>
-										<div class="small-3 columns">
-											<!--
-											<a ng-if="edit_field(data.sedit)" ng-disabled="copy == data.ccamp" ng-click="cambiarInfo(data.subty, data.ncamp, data.dcamp, data.ccamp, data.objid, data.lstbx, data.objps, 'Datos personales')" class="button tiny"><span class="fa fa-pencil fa-lg"></span></a>
-											-->
-										</div>
-									</div>
+									<select ng-disabled="!edit_field(data.sedit)" ng-model="states" ng-class="search_estado(data.ccamp)" ng-options="estado.bland as estado.bezei for estado in estados"  ng-change="cambiar_estados(states)" ng-init="copy=data.ccamp" ></select>
 								</div>
 								<div ng-switch-when="IH_TB_T005">
 									<label data="{{data.pvisu}}" for="{{data.ncamp}}">{{data.dcamp}}</label>
-									<div class="row collapse">
-										<div class="small-9 columns">
-											<select ng-disabled="!edit_field(data.sedit)" ng-model="natio" ng-class="search_natio(data.ccamp)" ng-options="pais.land1 as pais.natio for pais in paises"  ng-change="cambiar(natio)" ng-init="copy=data.ccamp" ></select>
-										</div>
-										<div class="small-3 columns">
-											<!--
-											<a ng-if="edit_field(data.sedit)" ng-disabled="copy == data.ccamp" ng-click="cambiarInfo(data.subty, data.ncamp, data.dcamp, data.ccamp, data.objid, data.lstbx, data.objps, 'Datos personales')" class="button tiny"><span class="fa fa-pencil fa-lg"></span></a>
-											-->
-										</div>
-									</div>
+									<select ng-disabled="!edit_field(data.sedit)" ng-model="natio" ng-class="search_natio(data.ccamp)" ng-options="pais.land1 as pais.natio for pais in paises"  ng-change="cambiar(natio)" ng-init="copy=data.ccamp" ></select>
 								</div>
 								<div ng-switch-when="IH_TB_GESC">
 									<label data="{{data.pvisu}}" for="{{data.ncamp}}">{{data.dcamp}}</label>
-									<div class="row collapse">
-										<div class="small-9 columns">
-											<select ng-disabled="!edit_field(data.sedit)" ng-model="gender" ng-class="search_genero(data.ccamp)" ng-options="genero.label as genero.value for genero in gender_obj"  ng-change="cambiar_genero(gender)" ng-init="copy=data.ccamp" ></select>
-										</div>
-										<div class="small-3 columns">
-											<!--
-											<a ng-if="edit_field(data.sedit)" ng-disabled="copy==data.ccamp" ng-click="cambiarInfo(data.subty, data.ncamp, data.dcamp, data.ccamp, data.objid, data.lstbx, data.objps, 'Datos personales')" class="button tiny"><span class="fa fa-pencil fa-lg"></span></a>
-											-->
-										</div>
-									</div>
+									<select ng-disabled="!edit_field(data.sedit)" ng-model="gender" ng-class="search_genero(data.ccamp)" ng-options="genero.label as genero.value for genero in gender_obj"  ng-change="cambiar_genero(gender)" ng-init="copy=data.ccamp" ></select>
 								</div>
 								<div ng-switch-when="IH_TB_T502T">
 									<label data="{{data.pvisu}}" for="{{data.ncamp}}">{{data.dcamp}}</label>
-									<div class="row collapse">
-										<div class="small-9 columns">
-											<select ng-disabled="!edit_field(data.sedit)" ng-model="est_civil" ng-class="search_est_civil(data.ccamp)" ng-options="est.label as est.value for est in estado_obj"  ng-change="cambiar_est_civil(est_civil)" ng-init="copy=data.ccamp"></select>
-										</div>
-										<div class="small-3 columns">
-											<!--
-											<a ng-if="edit_field(data.sedit)" ng-disabled="copy==data.ccamp" ng-click="cambiarInfo(data.subty, data.ncamp, data.dcamp, data.ccamp, data.objid, data.lstbx, data.objps, 'Datos personales')" class="button tiny"><span class="fa fa-pencil fa-lg"></span></a>
-											-->
-										</div>
-									</div>
+									<select ng-disabled="!edit_field(data.sedit)" ng-model="est_civil" ng-class="search_est_civil(data.ccamp)" ng-options="est.label as est.value for est in estado_obj"  ng-change="cambiar_est_civil(est_civil)" ng-init="copy=data.ccamp"></select>
 								</div>
 							</div>
 						<li>
 					</ul>
+					<div ng-include="includeInfoMessage"></div>
 				</div>
 				
 				<div class="information datos_familiares">
 					<h4><span class="fa fa-users"></span> Mis datos familiares </h4>
 					<hr class="m0" />
-					<ul class="small-block-grid-2 medium-block-grid-4 large-block-grid-4" ui-sortable="sortableOptions" ng-model="employee_info.datos_familiares">
-						<li ng-repeat="data in employee_info.datos_familiares" >										
-							<div ng-switch="data.tcamp" ng-init="data.ccamp=stringTo(data.tcamp, data.ccamp)">
-								<div ng-switch-default>
-									<div ng-switch="data.lstbx">
-										<div ng-switch-default> 
-
-											<label for="{{data.ncamp}}">{{data.dcamp}}</label>
-											<div ng-switch="data.tcamp">
-												<div ng-switch-when="DATE">
-													<div class="row">
-														<div class="large-12 columns">
-														  <div class="row collapse">
-														    <div class="small-10 columns">
-																	<input ng-disabled="!edit_field(data.sedit)" ui-date type="text" name="{{data.ncamp}}" ng-model="data.ccamp" ng-init="copy=data.ccamp;" class="disabling-{{data.sedit}}">
-														    </div>
-														    <div class="small-2 columns">
-														    	<!--
-																	<a ng-if="edit_field(data.sedit)" ng-disabled="copy == data.ccamp" ng-click="cambiarInfo(copy, data.subty, data.ncamp, data.dcamp, data.ccamp, data.objid, data.lstbx, data.objps, 'Datos familiares')" class="button tiny"><span class="fa fa-pencil fa-lg"></span></a>			
-																	-->
-														    </div>
-														  </div>
-														</div>
+					<div ng-repeat="family in familyData">
+						<ul class="small-block-grid-2 medium-block-grid-4 large-block-grid-4" ui-sortable="sortableOptions" ng-model="employee_info.datos_familiares">
+							<li ng-repeat="data in family" >
+								<div ng-switch="data.tcamp" ng-init="data.ccamp=stringTo(data.tcamp, data.ccamp)">
+									<div ng-switch-default>
+										<div ng-switch="data.lstbx">
+											<div ng-switch-default>
+												<label for="{{data.ncamp}}">{{data.dcamp}}</label>
+												<div ng-switch="data.tcamp">
+													<div ng-switch-when="DATE">
+														<input ng-disabled="!edit_field(data.sedit)" ui-date type="text" name="{{data.ncamp}}" ng-model="data.ccamp" ng-init="copy=data.ccamp;" class="{{ isFieldDisabled(data.sedit) }}">
 													</div>
-												</div>
-												<div ng-switch-default>
-													<div class="row">
-														<div class="large-12 columns">
-														  <div class="row collapse">
-														    <div class="small-10 columns">
-																	<input ng-disabled="!edit_field(data.sedit)" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" ng-model="data.ccamp" ng-init="copy=data.ccamp;" class="disabling-{{data.sedit}}">		
-														    </div>
-														    <div class="small-2 columns">
-														    <!--
-																	<a ng-if="edit_field(data.sedit)" ng-disabled="copy == data.ccamp" ng-click="cambiarInfo(data.subty, data.ncamp, data.dcamp, data.ccamp, data.objid, data.lstbx, data.objps, 'Datos familiares')" class="button tiny"><span class="fa fa-pencil fa-lg"></span></a>	
-														    -->
-														    </div>
-														  </div>
-														</div>
+													<div ng-switch-default>
+														<input ng-disabled="!edit_field(data.sedit)" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" ng-model="data.ccamp" ng-init="copy=data.ccamp;" class="{{ isFieldDisabled(data.sedit) }}">
 													</div>
 												</div>
 											</div>
-										</div>
-										<div ng-switch-when="IH_TB_FAMSA">
-											<label for="{{data.ncamp}}">{{data.dcamp}}</label>
-											<input ng-disabled="!edit_field(data.sedit)" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{find_related(familiares, data.ccamp)}}"/>
-										</div>
-										<div ng-switch-when="IH_TB_T005L">
-											<label for="{{data.ncamp}}">{{data.dcamp}}</label>
-											<input ng-disabled="!edit_field(data.sedit)" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{find_country(paises,data.ccamp)}}"/>
-										</div>
-										<div ng-switch-when="IH_TB_T005">
-											<label for="{{data.ncamp}}">{{data.dcamp}}</label>
-											<input ng-disabled="!edit_field(data.sedit)" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{find_natio(paises,data.ccamp)}}"/>
-										</div>
-										<div ng-switch-when="IH_TB_GESC">
-											<label for="{{data.ncamp}}">{{data.dcamp}}</label>
-											<input ng-disabled="!edit_field(data.sedit)" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{genero[data.ccamp]}}"/>
+											<div ng-switch-when="IH_TB_FAMSA">
+												<label for="{{data.ncamp}}">{{data.dcamp}}</label>
+												<input ng-disabled="!edit_field(data.sedit)" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{find_related(familiares, data.ccamp)}}" class="{{ isFieldDisabled(data.sedit) }}"/>
+											</div>
+											<div ng-switch-when="IH_TB_T005L">
+												<label for="{{data.ncamp}}">{{data.dcamp}}</label>
+												<input ng-disabled="!edit_field(data.sedit)" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{find_country(paises,data.ccamp)}}" class="{{ isFieldDisabled(data.sedit) }}"/>
+											</div>
+											<div ng-switch-when="IH_TB_T005">
+												<label for="{{data.ncamp}}">{{data.dcamp}}</label>
+												<input ng-disabled="!edit_field(data.sedit)" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{find_natio(paises,data.ccamp)}}" class="{{ isFieldDisabled(data.sedit) }}"/>
+											</div>
+											<div ng-switch-when="IH_TB_GESC">
+												<label for="{{data.ncamp}}">{{data.dcamp}}</label>
+												<input ng-disabled="!edit_field(data.sedit)" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{genero[data.ccamp]}}" class="{{ isFieldDisabled(data.sedit) }}"/>
+											</div>
 										</div>
 									</div>
+									<!--
+									<div ng-switch-when="HIDE">
+										<label for="{{data.ncamp}}" class="hide">{{data.dcamp}}</label>
+										<input type="hidden" name="{{data.ncamp}}" value="{{data.ccamp}}"/>
+									</div>
+									-->
 								</div>
-								<div ng-switch-when="HIDE">
-									<label for="{{data.ncamp}}" class="hide">{{data.dcamp}}</label>
-									<input type="hidden" name="{{data.ncamp}}" value="{{data.ccamp}}"/>
-								</div>
-							</div>
-						</li>
-					</ul>
+							</li>
+						</ul>
+						<br class="m0" />
+						<hr class="m0" />
+					</div>
+					<div ng-include="includeInfoMessage"></div>
 				</div>
 				
 				<div class="information datos_beneficiarios">
@@ -279,21 +214,21 @@
 							<div ng-switch="data.ncamp" ng-init="data.ccamp=stringTo(data.tcamp, data.ccamp)">
 								<div ng-switch-default >
 									<label for="{{data.ncamp}}" data-value="{{data.ccamp}}">{{data.dcamp}}</label>
-									<input ng-disabled="!edit_field(data.sedit)" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" ng-model="data.ccamp"/>
+									<input ng-disabled="!edit_field(data.sedit)" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" ng-model="data.ccamp" class="{{ isFieldDisabled(data.sedit) }}"/>
 								</div>
 								<div ng-switch-when="P0831-FAM02">
 									<label for="{{data.ncamp}}">{{data.dcamp}}</label>
-									<input ng-disabled="!edit_field(data.sedit)" type="{{data.tcamp == 'NUM' ? 'number' : 'text'}}" name="{{data.ncamp}}" value="{{find_related(familiares, data.ccamp)}}"/>
+									<input ng-disabled="!edit_field(data.sedit)" type="{{data.tcamp == 'NUM' ? 'number' : 'text'}}" name="{{data.ncamp}}" value="{{find_related(familiares, data.ccamp)}}" class="{{ isFieldDisabled(data.sedit) }}"/>
 								</div>
 								<div ng-switch-when="P0831-FAM01">
 									<label for="{{data.ncamp}}">{{data.dcamp}}</label>
-									<input ng-disabled="!edit_field(data.sedit)" type="{{data.tcamp == 'NUM' ? 'number' : 'text'}}" name="{{data.ncamp}}" value="{{find_related(familiares, data.ccamp)}}"/>
+									<input ng-disabled="!edit_field(data.sedit)" type="{{data.tcamp == 'NUM' ? 'number' : 'text'}}" name="{{data.ncamp}}" value="{{find_related(familiares, data.ccamp)}}" class="{{ isFieldDisabled(data.sedit) }}"/>
 								</div>
 							</div>
 						</li>
 					</ul>
+					<div ng-include="includeInfoMessage"></div>
 				</div>
-				
 				
 				<div class="information datos_estudios">
 					<h4><span class="fa fa-bank"></span> Mis datos estudios</h4>
@@ -303,31 +238,32 @@
 							<div ng-switch="data.ncamp" ng-init="data.ccamp=stringTo(data.tcamp, data.ccamp)">
 								<div ng-switch-default>
 									<label for="{{data.ncamp}}">{{data.dcamp}}</label>
-									<input ng-disabled="!edit_field(data.sedit)" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" ng-model="data.ccamp"/>
+									<input ng-disabled="!edit_field(data.sedit)" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" ng-model="data.ccamp" class="{{ isFieldDisabled(data.sedit) }}"/>
 								</div>
 								<div ng-switch-when="P0022-AUSBI">
 									<label for="{{data.ncamp}}">{{data.dcamp}}</label>
-									<input ng-disabled="!edit_field(data.sedit)" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{find_formacion(formacion,data.ccamp)}}"/>
+									<input ng-disabled="!edit_field(data.sedit)" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{find_formacion(formacion,data.ccamp)}}" class="{{ isFieldDisabled(data.sedit) }}"/>
 								</div>
 								<div ng-switch-when="P0022-SLAND">
 									<label for="{{data.ncamp}}">{{data.dcamp}}</label>
-									<input ng-disabled="!edit_field(data.sedit)" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{find_country(paises,data.ccamp)}}"/>
+									<input ng-disabled="!edit_field(data.sedit)" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{find_country(paises,data.ccamp)}}" class="{{ isFieldDisabled(data.sedit) }}"/>
 								</div>
 								<div ng-switch-when="P0022-SLABS">
 									<label for="{{data.ncamp}}">{{data.dcamp}}</label>
-									<input ng-disabled="!edit_field(data.sedit)" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{find_titulos(titulos,data.ccamp)}}"/>
+									<input ng-disabled="!edit_field(data.sedit)" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{find_titulos(titulos,data.ccamp)}}" class="{{ isFieldDisabled(data.sedit) }}"/>
 								</div>
 								<div ng-switch-when="P0022-SLTP1">
 									<label for="{{data.ncamp}}">{{data.dcamp}}</label>
-									<input ng-disabled="!edit_field(data.sedit)" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{find_especialidad(especialidad,data.ccamp)}}"/>
+									<input ng-disabled="!edit_field(data.sedit)" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{find_especialidad(especialidad,data.ccamp)}}" class="{{ isFieldDisabled(data.sedit) }}"/>
 								</div>
 								<div ng-switch-when="P0022-SLART">
 									<label for="{{data.ncamp}}">{{data.dcamp}}</label>
-									<input ng-disabled="!edit_field(data.sedit)" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{find_institutos(institutos,data.ccamp)}}"/>
+									<input ng-disabled="!edit_field(data.sedit)" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{find_institutos(institutos,data.ccamp)}}" class="{{ isFieldDisabled(data.sedit) }}"/>
 								</div>
 							</div>
 						</li>
 					</ul>
+					<div ng-include="includeInfoMessage"></div>
 				</div>
 				
 				
@@ -339,27 +275,28 @@
 							<div ng-switch="data.ncamp" ng-init="data.ccamp=stringTo(data.tcamp, data.ccamp)">
 								<div ng-switch-default>
 									<label for="{{data.ncamp}}">{{data.dcamp}}</label>
-									<input ng-disabled="!edit_field(data.sedit)" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" ng-model="data.ccamp"/>
+									<input ng-disabled="!edit_field(data.sedit)" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" ng-model="data.ccamp" class="{{ isFieldDisabled(data.sedit) }}"/>
 								</div>
 								<div ng-switch-when="P0009-BANKS">
 									<label for="{{data.ncamp}}">{{data.dcamp}}</label>
-									<input ng-disabled="!edit_field(data.sedit)" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{find_country(paises,data.ccamp)}}"/>
+									<input ng-disabled="!edit_field(data.sedit)" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{find_country(paises,data.ccamp)}}" class="{{ isFieldDisabled(data.sedit) }}"/>
 								</div>
 								<div ng-switch-when="P0008-BET01">
 									<label for="{{data.ncamp}}">{{data.dcamp}}</label>
-									<input ng-disabled="!edit_field(data.sedit)" type="{{data.tcamp == 'TEX2' ? 'text' : data.tcamp}}" name="{{data.ncamp}}" value="{{data.ccamp | currency: '$':0}}"/>
+									<input ng-disabled="!edit_field(data.sedit)" type="{{data.tcamp == 'TEX2' ? 'text' : data.tcamp}}" name="{{data.ncamp}}" value="{{data.ccamp | currency: '$':0}}" class="{{ isFieldDisabled(data.sedit) }}"/>
 								</div>
 								<div ng-switch-when="P0009-BANKL">
 									<label for="{{data.ncamp}}">{{data.dcamp}}</label>
-									<input ng-disabled="!edit_field(data.sedit)" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{find_banks(bancos,data.ccamp)}}"/>
+									<input ng-disabled="!edit_field(data.sedit)" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{find_banks(bancos,data.ccamp)}}" class="{{ isFieldDisabled(data.sedit) }}"/>
 								</div>
 								<div ng-switch-when="P0009-BKONT">
 									<label for="{{data.ncamp}}">{{data.dcamp}}</label>
-									<input ng-disabled="!edit_field(data.sedit)" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{data.ccamp == '01' ? 'Cuenta corriente' : 'Cuenta de ahorros'}}"/>
+									<input ng-disabled="!edit_field(data.sedit)" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{data.ccamp == '01' ? 'Cuenta corriente' : 'Cuenta de ahorros'}}" class="{{ isFieldDisabled(data.sedit) }}"/>
 								</div>
 							</div>
 						</li>
 					</ul>
+					<div ng-include="includeInfoMessage"></div>
 				</div>
 				
 				
@@ -369,22 +306,23 @@
 					<ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-4" ui-sortable="sortableOptions" ng-model="employee_info.datos_impuestos">
 						<li ng-repeat="data in employee_info.datos_impuestos" ng-init="data.ccamp=stringTo(data.tcamp, data.ccamp)">
 							<label for="{{data.ncamp}}">{{data.dcamp}}</label>
-							<input ng-disabled="!edit_field(data.sedit)" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" ng-model="data.ccamp"/>
+							<input ng-disabled="!edit_field(data.sedit)" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" ng-model="data.ccamp" class="{{ isFieldDisabled(data.sedit) }}"/>
 						</li>
 					</ul>
+					<div ng-include="includeInfoMessage"></div>
 				</div>
         
 				<div class="information datos_seguridadsocial">
 					<h4><span class="fa fa-child"></span> Mis datos de Seguridad</h4>
 					<hr class="m0" />
-					<ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-4" ui-sortable="sortableOptions" ng-model="employee_info.datos_seguridadsocial">
+					<ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-3" ui-sortable="sortableOptions" ng-model="employee_info.datos_seguridadsocial">
 						<li ng-repeat="data in employee_info.datos_seguridadsocial" ng-init="data.ccamp=stringTo(data.tcamp, data.ccamp)">
 							<label for="{{data.ncamp}}">{{data.dcamp}}</label>
-							<input ng-disabled="!edit_field(data.sedit)" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" ng-model="data.ccamp"/>
+							<input ng-disabled="!edit_field(data.sedit)" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" ng-model="data.ccamp" class="{{ isFieldDisabled(data.sedit) }}"/>
 						</li>
 					</ul>
+					<div ng-include="includeInfoMessage"></div>
 				</div>
-        
 			</div> 
 		</div>
 	</div>
