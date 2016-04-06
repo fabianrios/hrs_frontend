@@ -1,14 +1,1 @@
-<div class="row">
-	<div class="large-12 columns">
-	  <div class="row collapse">
-	    <div class="small-10 columns">
-	      <input ng-disabled="!edit_field(data.sedit)" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" ng-model="data.ccamp" class="disabling-{{data.sedit}}" ng-init="copy=data.ccamp" />
-	    </div>
-	    <div class="small-2 columns">
-	    	<!--
-				<a ng-if="edit_field(data.sedit)" ng-disabled="copy == data.ccamp" ng-click="cambiarInfo(copy, data.subty, data.ncamp, data.dcamp, data.ccamp, data.objid, data.lstbx, data.objps, sectionTitle)" class="button tiny"><span class="fa fa-pencil fa-lg"></span></a>      
-				-->
-	    </div>
-	  </div>
-	</div>
-</div>
+<input ng-disabled="!edit_field(data.sedit)" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" ng-model="data.ccamp" class="{{ isFieldDisabled(data.sedit) }}" ng-init="copy=data.ccamp" />
