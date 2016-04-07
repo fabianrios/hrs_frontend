@@ -1,3 +1,44 @@
+<style type="text/css">
+	table thead .orderby {
+    background: #fff;
+	}
+	table thead {
+    background: #376AB3;
+	}
+	.header { 
+    background-image: url(../assets/images/bg.gif); 
+    cursor: pointer; 
+    font-weight: bold; 
+    background-repeat: no-repeat; 
+    background-position: center right; 
+    padding-left: 20px; 
+    padding-right: 20px;
+    border-right: 1px solid #dad9c7; 
+    margin-left: -1px; 
+	} 
+	.headerSortUp { 
+    background-image: url(../assets/images/asc.gif); 
+    background-color: #6583AE; /*#3399FF; */
+    background-position: center right;
+	} 
+	.headerSortDown { 
+		background-image: url(../assets/images/desc.gif); 
+		background-color: #6583AE; /*#3399FF; */
+		background-position: center right;
+	}
+	input[type="text"] {
+		background-color: #f0f0f0;
+	} 
+
+	td, th {
+    display: table-cell;
+    vertical-align: inherit;
+	}	
+
+	#th_pern{
+		width: 100px;
+	}
+</style>
 <div class="padding-container">
 	<message-permission ng-show="showMessagePermission()" titulo="permission_alert"></message-permission>
 	<div ng-if="!showMessagePermission()">
@@ -6,6 +47,52 @@
 		<div ng-hide="existsHistoricalPositions()" ng-include="warningMessage"></div>
 
 		<div ng-show="existsHistoricalPositions()">
+			<!--
+			<div class="row">
+				<div class="large-12 medium-12 columns">
+					<div ng-show="expression">
+						<button>Atras</button>
+					</div>
+					<div></div>
+					<div ng-show="expression">
+						<button>Adelante</button>
+					</div>
+				</div>
+				<div class="large-12 medium-12 columns">
+					<table>
+					  <thead>
+					    <tr>
+					      <th id="th_pern">
+					      	<input type="text" ng-model="pernr" placeholder="Filtro">
+					      	<div class="header" id="employee_pernr" ng-click="sorting('employee_pernr')">PERNR</div>
+				      	</th>
+					      <th>
+					      	<input type="text" ng-model="name" placeholder="Filtro">
+					      	<div class="header" id="employee_name" ng-click="sorting('employee_name')">Nombre</div>
+					      </th>
+					      <th>
+					      	<input type="text" ng-model="position" placeholder="Filtro">
+					      	<div class="header" id="position" ng-click="sorting('position')">Cargo</div>
+				      	</th>
+					      <th>Fecha Inicial</th>
+					      <th>Fecha Final</th>
+					    </tr>
+					  </thead>
+					  <tbody ng-repeat="employee in historical_positions | filter : {employee_pernr: pernr, short_name: name} | orderBy:predicate:reverse">
+				  		<tr id="tr_payroll_period">
+				  			<td id="td_payroll_period" rowspan="{{ rowspanFilter(employee) }}">{{ employee.employee_pernr}}</td>
+				  			<td scope="row" rowspan="{{ rowspanFilter(employee) }}">{{ employee.short_name}}</td>
+				  		</tr>
+			  			<tr ng-repeat="(key, historical) in employee.historical | filter : {position: position} | orderBy:predicate:reverse">
+						    <td scope="row">{{ historical.position }}</td>
+						    <td scope="row">{{ historical.begda | date:'dd/MM/yyyy' }}</td>
+						    <td scope="row">{{ validateDateNow(historical.endda) }}</td>
+			  			</tr>
+					  </tbody>
+					</table>
+				</div>
+			</div>
+			-->			
 			<div class="row">
 				<fieldset>
 					<legend>Filtros</legend>
@@ -62,13 +149,11 @@
 							<div class="large-6 small-12 columns left">
 								<i>{{ diffDates(historical.begda, historical.endda) }}</i>
 							</div>
-							<!--<div class="large-12 small-12 columns left">
-								{{historical.amount_accrued.toLocaleString(undefined,{minimumFractionDigits: 2})}}
-							</div>-->
 						</div>
 					</div>
 				</div>
 			</div>
+			
 		</div>
 	</div>
 </div>

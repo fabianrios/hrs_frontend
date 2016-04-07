@@ -20,6 +20,77 @@
 		$scope.warningMessage       = 'app/management_services/warning.tpl.html';
 		$scope.permission_alert 		= '';
 
+		//###START###
+		$scope.position_filter      = parseInt($scope.historical_positions[0]);
+		$scope.employeeData         = $scope.historical_positions[0]
+		$scope.predicate 						= '';
+    $scope.reverse   						= true;
+    $scope.registers 			      = $scope.historical_positions;
+    $scope.registersCountByPage = 5;
+
+    $scope.existsPageBehind = function(){
+    	console.log('existsPageBehind: ')
+  		return $scope.registers.length / $scope.registersCountByPage > 1;
+    }
+
+    $scope.existsPageForward = function(){
+
+    }
+
+    $scope.filters = ['employee_pernr', 'employee_name', 'position'];
+
+    function removeSort(filter_id){
+			var uniqueVals = [];
+			var isHeader = $('#'+filter_id).hasClass('header');
+    	var isUp     = $('#'+filter_id).hasClass('header headerSortUp');
+    	var isDown   = $('#'+filter_id).hasClass('header headerSortDown');
+
+	    $.each($scope.filters, function(i, value){
+	    	if(value === filter_id){
+	    		if(isDown){
+						$('#'+filter_id).removeClass('header headerSortDown').addClass('header');
+			  	}else if(isUp){
+			  		$('#'+filter_id).removeClass('header headerSortUp').addClass('header');
+			  	}
+	    	}
+	    });
+    }
+
+    $scope.sorting = function(filter_id){
+    	$scope.reverse = ($scope.predicate === filter_id) ? !$scope.reverse : false;
+    	$scope.predicate = filter_id;
+
+    	$.each($scope.filters, function(i, value){
+	    	if(value !== filter_id){
+	    		var isHeader = $('#'+value).hasClass('header');
+		    	var isUp     = $('#'+value).hasClass('header headerSortUp');
+		    	var isDown   = $('#'+value).hasClass('header headerSortDown');
+	    		if(isDown){
+						$('#'+value).removeClass('header headerSortDown').addClass('header');
+			  	}else if(isUp){
+			  		$('#'+value).removeClass('header headerSortUp').addClass('header');
+			  	}
+	    	}
+	    });
+
+	    var isHeader = $('#'+filter_id).hasClass('header');
+    	var isUp     = $('#'+filter_id).hasClass('header headerSortUp');
+    	var isDown   = $('#'+filter_id).hasClass('header headerSortDown');
+
+    	if(isDown){
+				$('#'+filter_id).removeClass('header headerSortDown').addClass('header headerSortUp');
+    	}else if(isUp){
+    		$('#'+filter_id).removeClass('header headerSortUp').addClass('header headerSortDown');
+    	}else{
+    		$('#'+filter_id).removeClass('header').addClass('header headerSortUp');
+    	}
+    }
+
+    $scope.rowspanFilter = function(employee){
+			return employee.historical.length >= 1 ? employee.historical.length + 1 : 0;
+  	}
+		//###END###
+
 		if(angular.isObject(historicalPositions.message)){
 			$scope.permission_alert = historicalPositions.message.permission_alert;
 			setTimeout(function() {
@@ -37,11 +108,11 @@
 		$scope.existsHistoricalPositions = function(){
   		return parseInt($scope.historical_positions.length) !== 0;
     }
-    
+  	/*
 		$scope.employeeFilter = function(){
 			$scope.employeeData = $scope.historical_positions[$scope.position_filter]
 		}
-
+		*/
 		$scope.diffDates = function(date_1, date_2){
 			var dates       = date_2.split('-');
 			var date1 		  = new Date(date_1);
