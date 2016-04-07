@@ -18,9 +18,9 @@
 	.controller('VarianceAnalysis.ListController', ['$rootScope', '$scope', '$filter', 'varianceAnalysis', '$state', function($rootScope, $scope, $filter, varianceAnalysis, $state){
 		$scope.variance_analysis = varianceAnalysis.variace_analysis;
 		$scope.employeeData      = '';
-		$scope.employee_filter   = '';
 		$scope.warningMessage    = 'app/management_services/warning.tpl.html';
 		$scope.permission_alert  = '';
+		$scope.data 						 = {};
 
 		if(angular.isObject(varianceAnalysis.message)){
 			$scope.permission_alert = varianceAnalysis.message.permission_alert;

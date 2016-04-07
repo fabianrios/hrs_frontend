@@ -13,7 +13,7 @@
 						<label for="payroll_filter" class="inline">Empleado:</label>
 					</div>
 					<div class="large-4 medium-4 columns left">
-						<select id="payroll_filter" ng-model="position_filter" ng-change="employeeFilter()">
+						<select id="payroll_filter" ng-model="data.position_filter" ng-change="employeeFilter()">
 							<option ng-repeat="(key, historical) in historical_positions" value="{{ key }}">{{ historical.employee_name }} {{ historical.employee_lastname }}</option>
 						</select>
 					</div>

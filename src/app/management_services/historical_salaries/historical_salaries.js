@@ -19,6 +19,7 @@
 		$scope.historical_salaries = historicalSalaries.historical_salaries;
 		$scope.warningMessage      = 'app/management_services/warning.tpl.html';
 		$scope.permission_alert 	 = '';
+		$scope.data 							 = {};
 
 		if(angular.isObject(historicalSalaries.message)){
 			$scope.permission_alert = historicalSalaries.message.permission_alert;
@@ -26,8 +27,8 @@
 				$state.transitionTo('main.views.dashboard');
 			}, 2000);
 		}else{
-			$scope.position_filter     = parseInt($scope.historical_salaries[0]);
-			$scope.employeeData        = $scope.historical_salaries[0]
+			$scope.data.position_filter = parseInt($scope.historical_salaries[0]);
+			$scope.employeeData        	= $scope.historical_salaries[0]
 		}
 		
 		$scope.showMessagePermission = function(){
@@ -39,7 +40,7 @@
     }
 
 		$scope.employeeFilter = function(){
-			$scope.employeeData = $scope.historical_salaries[$scope.position_filter]
+			$scope.employeeData = $scope.historical_salaries[$scope.data.position_filter]
 		}
 
 		$scope.rowFilter = function(value){
