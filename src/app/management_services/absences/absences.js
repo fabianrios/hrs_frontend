@@ -16,9 +16,10 @@
 		})
 	})
 	.controller('Absences.ListController', ['$rootScope', '$scope', '$filter', 'absences', '$state', function($rootScope, $scope, $filter, absences, $state){
-		$scope.absences        = absences.absences;
-		$scope.warningMessage  = 'app/management_services/warning.tpl.html';
-		$scope.permission_alert  = '';
+		$scope.absences         = absences.absences;
+		$scope.warningMessage   = 'app/management_services/warning.tpl.html';
+		$scope.permission_alert = '';
+		$scope.data 						= {};
 
 		if(angular.isObject(absences.message)){
 			$scope.permission_alert = absences.message.permission_alert;
@@ -26,8 +27,8 @@
 				$state.transitionTo('main.views.dashboard');
 			}, 2000);
 		}else{
-			$scope.employee_filter = parseInt($scope.absences[0]);
-			$scope.employeeData    = $scope.absences[0];
+			$scope.data.employee_filter = parseInt($scope.absences[0]);
+			$scope.employeeData    			= $scope.absences[0];
 		}
 		
 		$scope.showMessagePermission = function(){
@@ -35,7 +36,7 @@
 		}
 
 		$scope.employeeFilter = function(){
-			$scope.employeeData = $scope.absences[$scope.employee_filter];
+			$scope.employeeData = $scope.absences[$scope.data.employee_filter];
 		}
 
 		$scope.existsAbsences = function(){

@@ -19,6 +19,7 @@
 		$scope.historical_positions = historicalPositions.historical_positions;
 		$scope.warningMessage       = 'app/management_services/warning.tpl.html';
 		$scope.permission_alert 		= '';
+		$scope.data 								= {};
 
 		if(angular.isObject(historicalPositions.message)){
 			$scope.permission_alert = historicalPositions.message.permission_alert;
@@ -26,7 +27,7 @@
 				$state.transitionTo('main.views.dashboard');
 			}, 2000);
 		}else{
-			$scope.position_filter      = parseInt($scope.historical_positions[0]);
+			$scope.data.position_filter = parseInt($scope.historical_positions[0]);
 			$scope.employeeData         = $scope.historical_positions[0]
 		}
 		
@@ -39,7 +40,7 @@
     }
     
 		$scope.employeeFilter = function(){
-			$scope.employeeData = $scope.historical_positions[$scope.position_filter]
+			$scope.employeeData = $scope.historical_positions[$scope.data.position_filter];
 		}
 
 		$scope.diffDates = function(date_1, date_2){
