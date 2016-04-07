@@ -13,7 +13,7 @@
 		})
 	})	
 	.controller('Notifications.ListController', ['$scope', '$http', '$state', 'HRAPI_CONF', function($scope, $http, $state, HRAPI_CONF){
-		
+		$state.transitionTo('main.views.dashboard');
     // $scope.user = currentUser;
     $scope.notificaciones = $scope.user.employee.notifications ? $scope.user.employee.notifications : "Semanal";
 		
