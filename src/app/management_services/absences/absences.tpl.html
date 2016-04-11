@@ -11,7 +11,7 @@
 						<label for="payroll_filter" class="inline">Empleado:</label>
 					</div>
 					<div class="large-4 medium-4 columns left">
-						<select id="employee_filter" ng-model="employee_filter" ng-change="employeeFilter()">
+						<select id="employee_filter" ng-model="data.employee_filter" ng-change="employeeFilter()">
 							<option ng-repeat="(key, absenteeism) in absences" value="{{ key }}">{{ absenteeism.employee_name }} {{ absenteeism.employee_lastname }}</option>
 						</select>
 					</div>

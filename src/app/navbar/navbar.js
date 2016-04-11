@@ -22,11 +22,11 @@
 		$scope.pdfKeyIncome      = $scope.incomes.length !== 0 ? $scope.incomes.length - 1 : $scope.incomes.length;
 		$scope.consultationsMenu = [
 			{
-				name: 'Ingresos y Retenciones',
+				name: 'Ingresos y retenciones',
 				url:  'main.views.payments_deductions_records'
 			},
 			{
-				name: 'Pagos y Deducciones',
+				name: 'Pagos y deducciones',
 				url:  'main.views.indebtedness_levels'
 			},
 			{

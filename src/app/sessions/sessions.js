@@ -80,7 +80,7 @@
 		 if ($scope.subdomain == "rcn" || $scope.subdomain == "rcntv"){
 			 $scope.logo = "images/rcn.png";
 		 }else if ($scope.subdomain == "harinera"){
-		 	 $scope.logo = "images/otrologo.png";
+		 	 $scope.logo = "images/harinera_logo.png";
 		 }else if ($scope.subdomain == "publicar"){
 				$scope.logo = "images/publicar_logo.png";
 		 }else{
