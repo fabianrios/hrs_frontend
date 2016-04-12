@@ -79,12 +79,16 @@
 		 $scope.subdomain = $scope.getAppSubdomain();
 		 if ($scope.subdomain == "rcn" || $scope.subdomain == "rcntv"){
 			 $scope.logo = "images/rcn.png";
+			 $scope.viewforgotpassword = false;
 		 }else if ($scope.subdomain == "harinera"){
 		 	 $scope.logo = "images/harinera_logo.png";
+		 	 $scope.viewforgotpassword = true;
 		 }else if ($scope.subdomain == "publicar"){
 				$scope.logo = "images/publicar_logo.png";
+				$scope.viewforgotpassword = true;
 		 }else{
 		 	$scope.logo = "images/hrs_logo.png";
+		 	$scope.viewforgotpassword = true;
 		 }
 		 
 		$scope.login = function() {       
