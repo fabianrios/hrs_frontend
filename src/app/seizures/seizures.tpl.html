@@ -1,45 +1,3 @@
-<style type="text/css">
-	table thead .orderby {
-    background: #fff;
-	}
-	table thead {
-    background: #376AB3;
-	}
-	.header { 
-    background-image: url(../assets/images/bg.gif); 
-    cursor: pointer; 
-    font-weight: bold; 
-    background-repeat: no-repeat; 
-    background-position: center right; 
-    padding-left: 20px; 
-    padding-right: 20px;
-    border-right: 1px solid #dad9c7; 
-    margin-left: -1px; 
-	} 
-	.headerSortUp { 
-    background-image: url(../assets/images/asc.gif); 
-    background-color: #6583AE; /*#3399FF; */
-    background-position: center right;
-	} 
-	.headerSortDown { 
-		background-image: url(../assets/images/desc.gif); 
-		background-color: #6583AE; /*#3399FF; */
-		background-position: center right;
-	}
-	input[type="text"] {
-		background-color: #f0f0f0;
-	} 
-
-	td, th {
-    display: table-cell;
-    vertical-align: inherit;
-	}	
-
-	#th_pern{
-		width: 100px;
-	}
-</style>
-
 <div class="padding-container">
 	<h3 class="expand-title text-center first-one">Embargos</h3>
 
@@ -64,11 +22,11 @@
 				    <tr>
 				      <th id="th_pern">
 				      	<input type="text" ng-model="payroll_date_filter" placeholder="Filtro">
-				      	<div class="header" id="payroll_date_filter" ng-click="periodSorting('payroll_date_filter')">Periodo</div>
+				      	<div class="header" id="payroll_date_filter" ng-click="sortTables.periodSorting('payroll_date_filter')">Periodo</div>
 			      	</th>
 				      <th>
 				      	<input type="text" ng-model="payroll_concept_filter" placeholder="Filtro">
-				      	<div class="header" id="desga" ng-click="sorting('desga')">Descripción</div>
+				      	<div class="header" id="desga" ng-click="sortTables.sorting('desga')">Descripción</div>
 				      </th>
 				      <th>
 				      	<div id="position">Demandante</div>
@@ -79,80 +37,11 @@
 				    </tr>
 				  </thead>
 
-				  <tbody ng-repeat="date in payroll_dates | filter : payroll_date_filter | orderBy:'value':date_reverse">
+				  <tbody ng-repeat="date in payroll_dates | filter : payroll_date_filter | orderBy:'origin':sortTables.getDateReverse()">
 			  		<tr id="tr_payroll_period">
 			  			<td id="td_payroll_period" rowspan="{{ dateFilter(date.value) }}">{{ date.value }}</td>
 			  		</tr>
-		  			<tr ng-repeat="(key, embargo) in embargoes | filter : {fpper: date.value, desga: payroll_concept_filter} | orderBy:predicate:reverse">
-		  				<td scope="row">{{ embargo.desga }}</td>
-		  				<td scope="row">{{ embargo.gorna }} {{ embargo.pnach }}</td>
-		  				<td scope="row" class="text-right">${{ embargo.value.toLocaleString(undefined,{minimumFractionDigits: 2}) }}</td>
-					    <td scope="row" class="text-right">${{ embargo.gardv.toLocaleString(undefined,{minimumFractionDigits: 2}) }}</td>
-					    <td scope="row" class="text-right">${{ embargo.balan.toLocaleString(undefined,{minimumFractionDigits: 2}) }}</td>
-		  			</tr>
-				  </tbody>
-					<!--
-				  <tbody ng-repeat="employee in historical_positions | filter : {employee_pernr: period, short_name: description} | orderBy:predicate:reverse">
-			  		<tr id="tr_payroll_period">
-			  			<td id="td_payroll_period" rowspan="{{ rowspanFilter(employee) }}">{{ employee.employee_pernr}}</td>
-			  			<td scope="row" rowspan="{{ rowspanFilter(employee) }}">{{ employee.short_name}}</td>
-			  		</tr>
-		  			<tr ng-repeat="(key, historical) in employee.historical | filter : {position: position} | orderBy:predicate:reverse">
-					    <td scope="row">{{ historical.position }}</td>
-					    <td scope="row">{{ historical.begda | date:'dd/MM/yyyy' }}</td>
-					    <td scope="row">{{ validateDateNow(historical.endda) }}</td>
-					    <td scope="row">{{ validateDateNow(historical.endda) }}</td>
-		  			</tr>
-				  </tbody>
-				  -->
-				</table>
-			</div>
-		</div>
-		<!--
-		<div class="row">
-			<fieldset>
-				<legend>Filtros</legend>
-				<div class="large-2 medium-2 columns">
-					<label for="date_filter" class="inline">Periodo Nomina:</label>
-				</div>
-				<div class="large-2 medium-2 columns">
-					<select id="date_filter" ng-model="payroll_date_filter.$">
-						<option value="">Todos</option>
-						<option ng-repeat="date in payroll_dates">{{ date }}</option>
-					</select>
-				</div>
-				
-				<div class="large-2 medium-2 columns">
-					<label for="payroll_filter" class="inline">Descripción:</label>
-				</div>
-				<div class="large-4 medium-4 columns left">
-					<select id="payroll_filter" ng-model="payroll_concept_filter">
-						<option value="">Todos</option>
-						<option ng-repeat="concept in payroll_concepts">{{ concept }}</option>
-					</select>
-				</div>
-			</fieldset>
-		</div>
-		
-		<div class="row">
-			<div class="large-12 medium-12 columns">
-				<table>
-				  <caption>Embargos</caption>
-				  <thead>
-					  <tr>
-					  	<th scope="column" class="text-center">Periodo de nomina</th>
-					  	<th scope="column" class="text-center">Descripción</th>
-					  	<th scope="column" class="text-center">Demandante</th>
-					    <th scope="column" class="text-center">Monto</th>
-					    <th scope="column" class="text-center">Pagos</th>
-					    <th scope="column" class="text-center">Saldos</th>
-					  </tr>	
-				  </thead>
-			  	<tbody ng-repeat="date in payroll_dates | filter : payroll_date_filter">
-			  		<tr id="tr_payroll_period">
-			  			<td id="td_payroll_period" rowspan="{{ dateFilter(date) }}">{{ date }}</td>
-			  		</tr>
-		  			<tr ng-repeat="(key, embargo) in embargoes | filter : {fpper: date, desga: payroll_concept_filter}"> 
+		  			<tr ng-repeat="(key, embargo) in embargoes | filter : {fpper: sortTables.getDateFilter(date.value), desga: payroll_concept_filter} | orderBy:sortTables.getPredicate():sortTables.getReverse()">
 		  				<td scope="row">{{ embargo.desga }}</td>
 		  				<td scope="row">{{ embargo.gorna }} {{ embargo.pnach }}</td>
 		  				<td scope="row" class="text-right">${{ embargo.value.toLocaleString(undefined,{minimumFractionDigits: 2}) }}</td>
@@ -163,6 +52,5 @@
 				</table>
 			</div>
 		</div>
-		-->
 	</div>
 </div>

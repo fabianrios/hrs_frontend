@@ -1,3 +1,8 @@
+<style type="text/css">
+	.th-incapacity-date {
+		width: 155px;
+	}
+</style>
 <div class="padding-container">
 	<h3 class="expand-title text-center first-one">Incapacidades</h3>
 	<div ng-hide="existsIncapacities()">
@@ -5,6 +10,62 @@
 	</div>
 
 	<div ng-show="existsIncapacities()">
+		<div class="row">
+			<div class="large-12 medium-12 columns">
+				<div ng-show="expression">
+					<button>Atras</button>
+				</div>
+				<div></div>
+				<div ng-show="expression">
+					<button>Adelante</button>
+				</div>
+			</div>
+			<div class="large-12 medium-12 columns">
+				<table>
+					<thead>
+					  <tr>
+					  	<th scope="column" class="text-center">
+					  		<input type="text" ng-model="date_filter" placeholder="Filtro">
+				      	<div class="header" id="date_filter" ng-click="sortTables.periodSorting('date_filter')">Motivo de la incapacidad</div>
+					  	</th>
+					  	<th scope="column" class="text-center th-incapacity-date" >
+					  		<input type="text" ng-model="concept_filter" placeholder="Filtro">
+				      	<div class="header" id="date_filter" ng-click="sortTables.periodSorting('date_filter')">Fecha de inicio</div>
+				  		</th>
+					    <th scope="column" class="text-center th-incapacity-date">Fecha de fin</th>
+					    <th scope="column" class="text-center">Dias habiles asignados</th>
+					    <th scope="column" class="text-center">Dias calendario recibidos</th>
+					  </tr>	
+				  </thead>
+					<!--
+				  <thead>
+				    <tr>
+				      <th id="th_pern">
+				      	<input type="text" ng-model="date_filter" placeholder="Filtro">
+				      	<div class="header" id="date_filter" ng-click="sortTables.periodSorting('date_filter')">Periodo</div>
+			      	</th>
+				      <th>
+				      	<input type="text" ng-model="concept_filter" placeholder="Filtro">
+				      	<div class="header" id="lgtxt" ng-click="sortTables.sorting('lgtxt')">Descripción</div>
+				      </th>
+					    <th class="text-center">Horas</th>
+				    </tr>
+				  </thead>
+				  -->
+
+				  <tbody>
+			  		<tr ng-repeat="permission in incapacities | filter:begda_filter ">
+		  				<td scope="row" ng-bind="permission.text_incapacity"></td>
+					    <td scope="row" class="text-right" ng-bind="permission.begda | date:'dd/MM/yyyy'"></td>
+					    <td scope="row" class="text-right" ng-bind="permission.endda | date:'dd/MM/yyyy'"></td>
+					    <td scope="row" class="text-right" ng-bind="permission.days_working_incapacity"></td>
+					    <td scope="row" class="text-right" ng-bind="permission.days_taken_incapacity"></td>
+		  			</tr>
+				  </tbody>
+				</table>
+			</div>
+		</div>
+		<!--
 		<div class="row">
 			<fieldset>
 				<legend>Filtros</legend>
@@ -47,5 +108,6 @@
 				</table>
 			</div>
 		</div>
+		-->
 	</div>
 </div>

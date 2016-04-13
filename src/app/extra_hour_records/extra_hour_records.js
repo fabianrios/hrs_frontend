@@ -1,7 +1,7 @@
 (function(){
 	'use strict';
   
-	angular.module('extra_hour_records', ['ui.date', 'extra_hour_record.service'])
+	angular.module('extra_hour_records', ['ui.date', 'extra_hour_record.service', 'sort_tables.service'])
 	.config(function($stateProvider){
 		$stateProvider
 		.state('main.views.extra_hour_records', {
@@ -15,11 +15,15 @@
 			}
 		})
 	})
-	.controller('ExtraHourRecords.ListController', ['$rootScope', '$scope', '$filter', 'extraHourRecord', function($rootScope, $scope, $filter, extraHourRecord){
+	.controller('ExtraHourRecords.ListController', ['$rootScope', '$scope', '$filter', 'extraHourRecord', 'sortTables', function($rootScope, $scope, $filter, extraHourRecord, sortTables){
 		$scope.extraHourRecords = extraHourRecord.extra_hours;
 		$scope.date_filter      = ''
 		$scope.titleReport      = 'no existen consultas';
 		$scope.titleReport2     = "asociadas";
+
+		$scope.sortTables 	 = sortTables;
+		sortTables.registers = $scope.extraHourRecords;
+		sortTables.filters 	 = ['date_filter', 'lgtxt'];
 
 		$scope.existsExtraHours = function(){
 			return $scope.extraHourRecords.length !== 0;
@@ -30,11 +34,18 @@
 			return filterValue.length >= 1 ? filterValue.length + 1 : 0;
   	}
 
-    var uniqueVals = [];
+    var uniqueVals 		= [];
+  	var payroll_dates = [];
     $.each($scope.extraHourRecords, function(i, value){
-      if($.inArray(value.fecha, uniqueVals) === -1) uniqueVals.push(value.fecha);
+      if ($.inArray(value.fecha.trim(), uniqueVals) === -1) {
+      	uniqueVals.push(value.fecha.trim());
+    		payroll_dates[i] = {
+    			value: $filter('date')(value.fecha.trim(), 'dd/MM/yyyy'),
+    			origin: value.fecha.trim()
+    		}
+      }
     });
-    $scope.payroll_dates = uniqueVals;
+    $scope.payroll_dates = payroll_dates;
 		
 		var uniqueVals = [];
 		$.each($scope.extraHourRecords, function(i, value){
