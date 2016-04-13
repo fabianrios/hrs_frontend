@@ -54,11 +54,11 @@
 
 		$scope.submit = function(){
 			$auth.requestPasswordReset({
-			  email: $scope.credentials.email
+			  email: $scope.credentials.login
 			})
 			.then(function(resp) {
 				$scope.successMessage 	 = resp.data.message
-        $scope.credentials.email = '';
+        $scope.credentials.login = '';
 				$("#msg_success").show('slide');
       })
       .catch(function(resp) {
@@ -94,6 +94,9 @@
 		$scope.login = function() {       
 	      $auth.submitLogin($scope.credentials);
 	    };
+	    $scope.convertlowercase = function(){
+	    	$scope.credentials.login = $scope.credentials.login.toLowerCase();
+	    }
 	}]);
 	// .controller('sessions.EditController', function($scope, $state, $stateParams, $http, currentUser){
     
