@@ -57,10 +57,12 @@
 				name: 'Incapacidades',
 				url:  'main.views.incapacities'
 			},
+			/* Eliminación temporal
 			{
 				name: 'Horas extras',
 				url:  'main.views.extra_hour_records'
 			}
+			*/
 		];
 		
 		$scope.managerServicesMenu = [
@@ -85,13 +87,13 @@
 				url:  'main.views.absences'
 			},
 			{
-				name: 'Reporte de vacantes',
+				name: 'Reporte de cargos',
 				url:  'main.views.manager_organigram'
 			},
-			{
+			/*{ //Eliminación temporal de no ingreso
 				name: 'Ingresos y retenciones',
 				url:  'main.views.payments_deductions'
-			}
+			}*/
 		];
 
 		$scope.existsRegisters  = function(){
