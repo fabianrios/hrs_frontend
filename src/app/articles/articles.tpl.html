@@ -30,17 +30,15 @@
 							<div class="fechas">
 								<span class="graytxt">
 									<i class="fa fa-calendar-o"></i>
-									<span class="small ng-binding">{{article.created_at | date:"d 'de' MMMM" }}</span>
+									<span class="small ng-binding capitalize">{{article.created_at | date:"MMMM d 'de' yyyy" }}</span>
 								</span>
 							</div>
 							<div class="author">
-								<div class="foto">
-									<a href="">
-										<img ng-src="{{article.employee.image.url}}" alt="" />
-									</a>
+								<div class="foto">	
+									<img ng-src="{{article.employee.image.image.url}}" alt="" />
 								</div>
 								<h6 class="no-margin capitalize">
-									<a href="">{{article.employee.short_name | cut:20 }}</a>
+									{{article.employee.short_name | cut:20 }}
 								</h6>
 							</div>
 						</div>

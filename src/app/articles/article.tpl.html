@@ -7,23 +7,21 @@
 				<h2 ng-class="article.category"> <img ng-if="!article.publicado" src="images/prohibited.png" alt="No publico"> {{article.titulo}}</h2>
 				<span class="label" ng-class="article.category">{{article.category}}</span>
 				<div class="right">
-					<span class="label secondary">Creado: {{article.created_at | date:"d 'de' MMMM" }}</span> <br />
+					<span class="label secondary">Creado: <span class="capitalize">{{article.created_at | date:"MMMM d 'de' yyyy" }}</span></span> <br />
 					<i>Ultima actualización: {{article.updated_at | date:"medium" }}</i>
 				</div>
 				<br /><br /><br />			
 				<img ng-src="{{updateUrl(article.imagen.imagen.url)}}" alt="" class="imgborder" />
-				<!--<div class="parrafo" ng-bind-html="article.cuerpo"></div>-->
-		        <div ta-bind="text" ng-model="article.cuerpo" ta-readonly='disabled'></div>
-
+	        <div ta-bind="text" ng-model="article.cuerpo" ta-readonly='disabled'></div>
 			</div>
 		</div>
 		<div class="large-3 columns">
 			<h4>Autor</h4>
 			<div class="profilepic">
-				<a href="#"><img alt="profile" ng-src="{{article.employee.image.url}}"></a>
+				<img alt="profile" ng-src="{{article.employee.image.image.url}}">
 			</div>
 			<h6 class="no-margin capitalize">
-				<a href="" class="ng-binding">{{article.employee.short_name}}</a>
+				<div class="ng-binding">{{article.employee.short_name}}</div>
 			</h6>
 			<h6 class="subheader no-margin capitalize ng-binding">{{article.employee.posicion}}</h6>
 		</div><!-- large-3 -->

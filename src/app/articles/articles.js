@@ -74,7 +74,6 @@
 				HRAPI_CONF.apiBaseUrl('/articles/' + article.id + '.json')
 			).success(function (data, status, headers, config) {
 	      var index = $scope.articles.indexOf(article);
-				console.log(index);
 				$scope.articles.splice(index, 1);
 				$('#myModal-'+modal).foundation('reveal', 'close');  
 				$scope.alerts.push({type: 'alert', msg: "El articulo '"+ article.titulo + "' a sido borrado"});               
@@ -199,8 +198,6 @@
 
 
 			$scope.update($scope.correctlySelected);
-			
-			// $scope.article.category = $scope.options[2].value;
 
 			$scope.loadImage = function( file ){
 				archivo = file;
