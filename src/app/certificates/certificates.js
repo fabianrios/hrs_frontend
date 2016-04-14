@@ -49,7 +49,12 @@
 		})
 	})
 	.controller('Certificates.ErrorController', ['$rootScope', '$scope', '$http', '$state', '$filter', 'HRAPI_CONF', '$stateParams', function($rootScope, $scope, $http, $state, $filter, HRAPI_CONF, $stateParams){
-
+		if ($stateParams.type == 'vacations'){
+			$scope.msgError = "No se registra información de carta de vacaciones en el último año.";
+		}else{
+			$scope.msgError = "Estimado colaborador, no existen PDFs asociados";
+		}
+		
 	}])
 	.controller('Certificates.MainController', ['$rootScope', '$scope', '$http', '$state', '$filter', 'HRAPI_CONF', '$stateParams', 'CONSTANT', function($rootScope, $scope, $http, $state, $filter, HRAPI_CONF, $stateParams, CONSTANT){
 		$scope.permission_alert = '';
@@ -143,7 +148,9 @@
 				$scope.pdfUrl = HRAPI_CONF.baseUrl($scope.vacations[$scope.keyVacation].file.url);
 			}else{
 				$scope.no_pdf = true;
-				$state.transitionTo('main.views.certificates_error');
+				$state.transitionTo('main.views.certificates_error',{
+					type: "vacations"
+				});
 			}
 		}
 		

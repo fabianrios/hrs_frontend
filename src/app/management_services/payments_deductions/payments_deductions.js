@@ -20,7 +20,8 @@
 		$scope.warningMessage      = 'app/management_services/warning.tpl.html';
 		$scope.permission_alert    = '';
 		$scope.data								 = {};
-
+		//Redireccion temporal de no ingreso
+		$state.transitionTo('main.views.dashboard');
 		if(angular.isObject(paymentsDeductions.message)){
 			$scope.permission_alert = paymentsDeductions.message.permission_alert;
 			setTimeout(function() {

@@ -10,11 +10,11 @@
 		</div>
 		<form role="form" ng-submit="login()" novalidate >
 		 <label for="login">Correo:</label>
-		 <input type="text" ng-model="credentials.login" id="login">
-		 <label for="password">Contraseña:</label>
+		 <input type="text" ng-model="credentials.login" id="login" ng-keyup="convertlowercase()">
+		 <label for="password">Contraseña: </label>
 		 <input type="password" ng-model="credentials.password" id="password">
 		 <div class="row">
-		 	<div class="small-6 columns">
+		 	<div class="small-6 columns" ng-show="viewforgotpassword">
 				<a ui-sref="login.password_reset()" class="whitetxt" >¿Has olvidado tu contraseña?</a>
  			</div>
 

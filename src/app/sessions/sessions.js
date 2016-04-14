@@ -51,14 +51,14 @@
 	}])
 	.controller('sessions.PasswordResetController', ['$scope', '$auth', function ($scope, $auth) {
 		$scope.errors = [];
-
+		$scope.credentials.login = '';
 		$scope.submit = function(){
 			$auth.requestPasswordReset({
-			  email: $scope.credentials.email
+			  email: $scope.credentials.login
 			})
 			.then(function(resp) {
 				$scope.successMessage 	 = resp.data.message
-        $scope.credentials.email = '';
+        $scope.credentials.login = '';
 				$("#msg_success").show('slide');
       })
       .catch(function(resp) {
@@ -79,17 +79,24 @@
 		 $scope.subdomain = $scope.getAppSubdomain();
 		 if ($scope.subdomain == "rcn" || $scope.subdomain == "rcntv"){
 			 $scope.logo = "images/rcn.png";
+			 $scope.viewforgotpassword = false;
 		 }else if ($scope.subdomain == "harinera"){
 		 	 $scope.logo = "images/harinera_logo.png";
+		 	 $scope.viewforgotpassword = true;
 		 }else if ($scope.subdomain == "publicar"){
 				$scope.logo = "images/publicar_logo.png";
+				$scope.viewforgotpassword = true;
 		 }else{
 		 	$scope.logo = "images/hrs_logo.png";
+		 	$scope.viewforgotpassword = true;
 		 }
 		 
 		$scope.login = function() {       
 	      $auth.submitLogin($scope.credentials);
 	    };
+	    $scope.convertlowercase = function(){
+	    	$scope.credentials.login = $scope.credentials.login.toLowerCase();
+	    }
 	}]);
 	// .controller('sessions.EditController', function($scope, $state, $stateParams, $http, currentUser){
     
