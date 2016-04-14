@@ -51,7 +51,7 @@
 	}])
 	.controller('sessions.PasswordResetController', ['$scope', '$auth', function ($scope, $auth) {
 		$scope.errors = [];
-
+		$scope.credentials.login = '';
 		$scope.submit = function(){
 			$auth.requestPasswordReset({
 			  email: $scope.credentials.login
