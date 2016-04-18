@@ -1,7 +1,7 @@
 (function(){
 	'use strict';
   
-	angular.module('vacation_records', ['ui.date', 'enjoyed_vacation.service'])
+	angular.module('vacation_records', ['ui.date', 'enjoyed_vacation.service', 'sort_tables.service'])
 	.config(function($stateProvider){
 		$stateProvider
 		.state('main.views.enjoyed_vacation_records', {
@@ -15,12 +15,15 @@
 			}
 		})
 	})
-	.controller('VacationRecords.ListController', ['$rootScope', '$scope', '$filter', 'enjoyedVacation', function($rootScope, $scope, $filter, enjoyedVacation){
-		console.log(enjoyedVacation.enjoyed_vacations);
+	.controller('VacationRecords.ListController', ['$rootScope', '$scope', '$filter', 'enjoyedVacation', 'sortTables', function($rootScope, $scope, $filter, enjoyedVacation, sortTables){
 		$scope.enjoyedVacation = enjoyedVacation.enjoyed_vacations;
 		$scope.date_filter  = ''
 		$scope.titleReport  = 'no existen consultas';
 		$scope.titleReport2 = "asociadas";
+
+		$scope.sortTables 	 = sortTables;
+		sortTables.registers = $scope.embargoes;
+		sortTables.setFilters(['', '']);
 
 		$scope.existsEnjoyedVacations = function(){
 			return $scope.enjoyedVacation.length !== 0;

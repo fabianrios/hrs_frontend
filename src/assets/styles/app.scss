@@ -57,6 +57,11 @@
 	}
 }
 
+/** consultations **/
+.th-incapacity-date, .th-permission-date {
+	width: 155px;
+}
+
 
 /** indebtedness_levels **/
 #tr_payroll_period {
@@ -126,8 +131,12 @@ table thead .orderby {
 	background: #fff;
 }
 table thead {
-	background: #376AB3;
+	background: #F0F0F0; /*#376AB3;*/
 }
+table thead tr th{
+	color: #000;
+}
+
 .header { 
 	background-image: url(../assets/images/bg.gif); 
 	cursor: pointer; 
@@ -141,7 +150,7 @@ table thead {
 } 
 .headerSortUp { 
 	background-image: url(../assets/images/asc.gif); 
-	background-color: #6583AE; /*#3399FF; */
+	background-color: #D4D4D4; /*#6583AE; #3399FF; */
 	background-position: center right;
 } 
 .headerSortDown { 
@@ -149,9 +158,15 @@ table thead {
 	background-color: #6583AE; /*#3399FF; */
 	background-position: center right;
 }
+/*
 input[type="text"] {
-	background-color: #f0f0f0;
+	background-color: #FFF; 
 } 
+*/
+.input-filter {
+	background-color: #FFF !important; /*#f0f0f0;*/
+	border: 1px solid #CAC5C5 !important;
+}
 
 td, th {
 	display: table-cell;

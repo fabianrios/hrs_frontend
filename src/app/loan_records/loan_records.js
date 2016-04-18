@@ -1,7 +1,7 @@
 (function(){
 	'use strict';
   
-	angular.module('loan_records', ['ui.date', 'loan_record.service'])
+	angular.module('loan_records', ['ui.date', 'loan_record.service', 'sort_tables.service'])
 	.config(function($stateProvider){
 		$stateProvider
 		.state('main.views.loan_records', {
@@ -15,11 +15,15 @@
 			}
 		})
 	})
-	.controller('LoanRecords.ListController', ['$rootScope', '$scope', '$filter', 'loanRecord', function($rootScope, $scope, $filter, loanRecord){
+	.controller('LoanRecords.ListController', ['$rootScope', '$scope', '$filter', 'loanRecord', 'sortTables', function($rootScope, $scope, $filter, loanRecord, sortTables){
 		$scope.loanRecords  = loanRecord.loan_records;
 		$scope.date_filter  = ''
 		$scope.titleReport  = 'no existen consultas';
 		$scope.titleReport2 = "asociadas";
+
+		$scope.sortTables 	 = sortTables;
+		sortTables.registers = $scope.embargoes;
+		sortTables.setFilters(['origin', 'stext']);
 
 		$scope.existsLoanRecords = function(){
 			return $scope.loanRecords.length !== 0;
@@ -37,12 +41,24 @@
 			var filterValue = $filter('filter')($scope.loanRecords, {fpper: value});
 			return filterValue.length >= 1 ? filterValue.length + 1 : 0;
   	}
-
-    var uniqueVals = [];
+  	
+    var uniqueVals 		= [];
+  	var payroll_dates = [];
+  	var count 				= 0;
     $.each($scope.loanRecords, function(i, value){
-      if($.inArray(value.fpend, uniqueVals) === -1) uniqueVals.push(value.fpend);
+    	var filterDate = value.fpend;
+      if ($.inArray(filterDate, uniqueVals) === -1) {
+      	uniqueVals.push(filterDate);
+
+    		payroll_dates[count] = {
+    			value: $filter('date')(filterDate, 'dd/MM/yyyy'),
+    			origin:filterDate
+    		}
+    		count += 1;
+      }
     });
-    $scope.payroll_dates = uniqueVals;
+    $scope.payroll_dates = payroll_dates;
+
 		
 		var uniqueVals = [];
 		$.each($scope.loanRecords, function(i, value){

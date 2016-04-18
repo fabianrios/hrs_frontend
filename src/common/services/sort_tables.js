@@ -6,10 +6,42 @@
 		this.position_filter      = null; //parseInt($scope.embargoes.length)
 		this.predicate 						= '';
     this.reverse   						= true;
+    this.reverses             = [];
     this.registers 			      = null; //$scope.embargoes
     this.registersCountByPage = 5;
     this.filters 							= [];
     this.date_reverse 				= true;
+    this.filter_sort          = 0;
+
+    this.setRegisters = function(registers){
+      this.registers = registers;
+    }
+
+    this.setFilters = function(filters_array){
+      this.filters = filters_array;
+      for (var i = 0; i < this.filters.length; i++) {
+        this.reverses[this.filters[i]] = true;
+      }
+    }
+
+    this.sortingTable = function(filter_id){
+      this.filter_sort = filter_id;
+      this.reverses[this.filter_sort] = (this.predicate === filter_id) ? !this.reverses[this.filter_sort] : false;
+      this.sort(filter_id);
+    }
+
+    this.getReverses = function(){
+      return this.reverses[this.filter_sort];
+    }
+
+    this.getReverse = function(){
+      return this.reverse;
+    }
+
+    this.getPredicate = function(){
+      return this.predicate;
+    }
+    /*#################################*/
 
     this.getDateFilter = function(value){
     	var dates = value.split('/');
@@ -27,14 +59,6 @@
 
 		this.getDateReverse = function () {
     	return this.date_reverse;
-    }
-
-    this.getReverse = function(){
-    	return this.reverse;
-    }
-
-    this.getPredicate = function(){
-    	return this.predicate;
     }
 
     this.periodSorting = function(filter_id){

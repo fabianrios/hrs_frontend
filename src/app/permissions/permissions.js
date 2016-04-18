@@ -1,7 +1,7 @@
 (function(){
 	'use strict';
   
-	angular.module('permissions', ['ui.date', 'permission.service'])
+	angular.module('permissions', ['ui.date', 'permission.service', 'sort_tables.service'])
 	.config(function($stateProvider){
 		$stateProvider
 		.state('main.views.permissions', {
@@ -15,11 +15,15 @@
 			}
 		})
 	})
-	.controller('Permissions.ListController', ['$rootScope', '$scope', '$filter', 'permission', function($rootScope, $scope, $filter, permission){
+	.controller('Permissions.ListController', ['$rootScope', '$scope', '$filter', 'permission', 'sortTables', function($rootScope, $scope, $filter, permission, sortTables){
 		$scope.permissions = permission.permissions;
 		$scope.begda_filter = '';
 		$scope.titleReport  = 'no existen consultas';
 		$scope.titleReport2 = "asociadas";
+
+		$scope.sortTables 	 = sortTables;
+		sortTables.registers = $scope.embargoes;
+		sortTables.setFilters(['text_permission_filter', 'begda_filter']);
 
 		$scope.existsPermissions = function(){
 			return $scope.permissions.length !== 0;

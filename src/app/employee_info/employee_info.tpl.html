@@ -283,7 +283,7 @@
 								</div>
 								<div ng-switch-when="P0008-BET01">
 									<label for="{{data.ncamp}}">{{data.dcamp}}</label>
-									<input ng-disabled="!edit_field(data.sedit)" type="{{data.tcamp == 'TEX2' ? 'text' : data.tcamp}}" name="{{data.ncamp}}" value="{{data.ccamp | currency: '$':0}}" class="{{ isFieldDisabled(data.sedit) }}"/>
+									<input ng-disabled="!edit_field(data.sedit)" type="{{data.tcamp == 'TEX2' || data.tcamp == 'NUM' ? 'text' : data.tcamp}}" name="{{data.ncamp}}" value="{{data.ccamp | currency: '$':0}}" class="{{ isFieldDisabled(data.sedit) }}"/>
 								</div>
 								<div ng-switch-when="P0009-BANKL">
 									<label for="{{data.ncamp}}">{{data.dcamp}}</label>

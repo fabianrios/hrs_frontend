@@ -22,38 +22,19 @@
 		$scope.titleReport2 = "asociadas";
 
 		$scope.sortTables 	 = sortTables;
-		sortTables.registers = $scope.incapacities;
-		sortTables.filters 	 = ['begda_filter'];
+		sortTables.setRegisters($scope.incapacities);
+		sortTables.setFilters(['begda', 'text_incapacity']);
 
 		$scope.existsIncapacities = function(){
 			return $scope.incapacities.length !== 0;
 		}
-		/*
-		var uniqueBegdas = []
-		$.each($scope.incapacities, function(i,val){
-			val.begda = $filter('date')(val.begda,'dd/MM/yyyy');
-			val.endda = $filter('date')(val.endda,'dd/MM/yyyy');
-			if($.inArray(val.begda, uniqueBegdas) === -1) uniqueBegdas.push($filter('date')(val.begda,'dd/MM/yyyy'));
-		});
-		$scope.begdas_incapacities = uniqueBegdas
-		*/
+		
 		var uniqueVals 		= [];
   	var begdas_incapacities = [];
     $.each($scope.incapacities, function(i, value){
-    	/*
-    	value.begda = $filter('date')(value.begda.trim(),'dd/MM/yyyy');
-			value.endda = $filter('date')(value.endda.trim(),'dd/MM/yyyy');
-			*/
-      if ($.inArray(value.begda, uniqueVals) === -1) {
-      	//uniqueVals.push($filter('date')(val.begda,'dd/MM/yyyy'))
-      	uniqueVals.push(value.begdas_incapacities);
-    		begdas_incapacities[i] = {
-    			value:  $filter('date')(value.begda.trim(), 'dd/MM/yyyy'),
-    			origin: value.begda.trim()
-    		}
-      }
+    	value.begda_format = $filter('date')(value.begda.trim(),'dd/MM/yyyy');
+  		value.endda_format = $filter('date')(value.endda.trim(),'dd/MM/yyyy');
     });
     $scope.begdas_incapacities = begdas_incapacities;
-
 	}]);
 }());

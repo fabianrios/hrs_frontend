@@ -15,7 +15,7 @@
 			}
 		})
 	})
-	.controller('ExtraHourRecords.ListController', ['$rootScope', '$scope', '$filter', 'extraHourRecord', 'sortTables', function($rootScope, $scope, $filter, extraHourRecord, sortTables){
+	.controller('ExtraHourRecords.ListController', ['$rootScope', '$scope', '$filter', 'extraHourRecord', 'sortTables', '$state', function($rootScope, $scope, $filter, extraHourRecord, sortTables, $state){
 		$scope.extraHourRecords = extraHourRecord.extra_hours;
 		$scope.date_filter      = ''
 		$scope.titleReport      = 'no existen consultas';
@@ -25,6 +25,8 @@
 		sortTables.registers = $scope.extraHourRecords;
 		sortTables.filters 	 = ['date_filter', 'lgtxt'];
 
+		$state.transitionTo('main.views.dashboard');
+		
 		$scope.existsExtraHours = function(){
 			return $scope.extraHourRecords.length !== 0;
 		}

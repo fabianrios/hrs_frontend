@@ -15,6 +15,7 @@
 		})
 	}])
 	.controller('Seizures.ListController', ['$scope', '$filter', 'embargo', 'sortTables', function($scope, $filter, embargo, sortTables){
+		console.log(embargo.embargoes);
 		$scope.embargoes 						= embargo.embargoes;
 		$scope.payroll_date_filter 	= ''
 		$scope.titleReport  				= 'no existen consultas';
@@ -22,7 +23,7 @@
 		
 		$scope.sortTables 	 = sortTables;
 		sortTables.registers = $scope.embargoes;
-		sortTables.filters 	 = ['payroll_date_filter', 'desga'];
+		sortTables.setFilters(['payroll_date_filter', 'desga']);
 		
 		$scope.existsSeizures = function(){
 			return $scope.embargoes.length !== 0;			

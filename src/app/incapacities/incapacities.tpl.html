@@ -1,14 +1,8 @@
-<style type="text/css">
-	.th-incapacity-date {
-		width: 155px;
-	}
-</style>
 <div class="padding-container">
 	<h3 class="expand-title text-center first-one">Incapacidades</h3>
 	<div ng-hide="existsIncapacities()">
 		<message-report titulo="titleReport" other="titleReport2"></message-report>
 	</div>
-
 	<div ng-show="existsIncapacities()">
 		<div class="row">
 			<div class="large-12 medium-12 columns">
@@ -25,39 +19,32 @@
 					<thead>
 					  <tr>
 					  	<th scope="column" class="text-center">
-					  		<input type="text" ng-model="date_filter" placeholder="Filtro">
-				      	<div class="header" id="date_filter" ng-click="sortTables.periodSorting('date_filter')">Motivo de la incapacidad</div>
+				      	<div class="header" id="text_incapacity" ng-click="sortTables.sortingTable('text_incapacity')">Motivo de la incapacidad</div>
 					  	</th>
 					  	<th scope="column" class="text-center th-incapacity-date" >
-					  		<input type="text" ng-model="concept_filter" placeholder="Filtro">
-				      	<div class="header" id="date_filter" ng-click="sortTables.periodSorting('date_filter')">Fecha de inicio</div>
+				      	<div class="header" id="begda" ng-click="sortTables.sortingTable('begda')">Fecha de inicio</div>
 				  		</th>
 					    <th scope="column" class="text-center th-incapacity-date">Fecha de fin</th>
 					    <th scope="column" class="text-center">Dias habiles asignados</th>
 					    <th scope="column" class="text-center">Dias calendario recibidos</th>
+					  </tr>
+					  <tr>
+					  	<th scope="column">
+					  		<input type="text" class="input-filter" ng-model="text_incapacity" placeholder="Filtro">
+					  	</th>
+					  	<th scope="column">
+					  		<input type="text" class="input-filter" ng-model="begda" placeholder="Filtro">
+				  		</th>
+					    <th scope="column"></th>
+					    <th scope="column"></th>
+					    <th scope="column"></th>
 					  </tr>	
 				  </thead>
-					<!--
-				  <thead>
-				    <tr>
-				      <th id="th_pern">
-				      	<input type="text" ng-model="date_filter" placeholder="Filtro">
-				      	<div class="header" id="date_filter" ng-click="sortTables.periodSorting('date_filter')">Periodo</div>
-			      	</th>
-				      <th>
-				      	<input type="text" ng-model="concept_filter" placeholder="Filtro">
-				      	<div class="header" id="lgtxt" ng-click="sortTables.sorting('lgtxt')">Descripción</div>
-				      </th>
-					    <th class="text-center">Horas</th>
-				    </tr>
-				  </thead>
-				  -->
-
 				  <tbody>
-			  		<tr ng-repeat="permission in incapacities | filter:begda_filter ">
+			  		<tr ng-repeat="permission in incapacities | filter : {begda_format: begda, text_incapacity: text_incapacity} | orderBy:sortTables.getPredicate():sortTables.getReverses()"> <!--   -->
 		  				<td scope="row" ng-bind="permission.text_incapacity"></td>
-					    <td scope="row" class="text-right" ng-bind="permission.begda | date:'dd/MM/yyyy'"></td>
-					    <td scope="row" class="text-right" ng-bind="permission.endda | date:'dd/MM/yyyy'"></td>
+					    <td scope="row" class="text-right" ng-bind="permission.begda_format"></td>
+					    <td scope="row" class="text-right" ng-bind="permission.endda.value"></td>
 					    <td scope="row" class="text-right" ng-bind="permission.days_working_incapacity"></td>
 					    <td scope="row" class="text-right" ng-bind="permission.days_taken_incapacity"></td>
 		  			</tr>
@@ -65,49 +52,5 @@
 				</table>
 			</div>
 		</div>
-		<!--
-		<div class="row">
-			<fieldset>
-				<legend>Filtros</legend>
-
-				<div class="large-6 medium-6 columns end">
-					<div class="large-6 medium-6 columns end">
-							<label for="begda_filter" class="inline">Fecha inicio incapacidad:</label>
-					</div>
-					<div class="large-6 medium-6 columns">
-						<select id="begda_filter" ng-model="begda_filter">
-							<option value="">Todos las incapacidades</option>
-							<option ng-repeat="date in begdas_incapacities">{{ date }}</option>
-						</select>
-					</div>
-				</div>
-			</fieldset>
-		</div>
-		<div class="row">
-			<div class="large-12 medium-12 columns">
-				<table>
-				  <caption>Incapacidades</caption>
-				  <thead>
-					  <tr>
-					  	<th scope="column" class="text-center">Motivo de la incapacidad</th>
-					  	<th scope="column" class="text-center">Fecha de inicio</th>
-					    <th scope="column" class="text-center">Fecha de fin</th>
-					    <th scope="column" class="text-center">Dias habiles asignados</th>
-					    <th scope="column" class="text-center">Dias calendario recibidos</th>
-					  </tr>	
-				  </thead>
-			  	<tbody>
-		  			<tr ng-repeat="permission in incapacities | filter:begda_filter ">
-		  				<td scope="row">{{ permission.text_incapacity }}</td>
-					    <td scope="row" class="text-right">{{ permission.begda  }}</td>
-					    <td scope="row" class="text-right">{{ permission.endda  }}</td>
-					    <td scope="row" class="text-right">{{ permission.days_working_incapacity }}</td>
-					    <td scope="row" class="text-right">{{ permission.days_taken_incapacity }}</td>
-		  			</tr>
-				  </tbody>
-				</table>
-			</div>
-		</div>
-		-->
 	</div>
 </div>

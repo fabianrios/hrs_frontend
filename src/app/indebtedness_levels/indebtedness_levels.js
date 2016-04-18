@@ -1,7 +1,7 @@
 (function(){
 	'use strict';
   
-	angular.module('indebtedness_levels', ['ui.date', 'indebtedness_level.service'])
+	angular.module('indebtedness_levels', ['ui.date', 'indebtedness_level.service', 'sort_tables.service'])
 	.config(function($stateProvider){
 		$stateProvider
 		.state('main.views.indebtedness_levels', {
@@ -15,11 +15,15 @@
 			}
 		})
 	})
-	.controller('IndebtednessLevels.ListController', ['$rootScope', '$scope', '$filter', 'indebtednessLevel', function($rootScope, $scope, $filter, indebtednessLevel){
+	.controller('IndebtednessLevels.ListController', ['$rootScope', '$scope', '$filter', 'indebtednessLevel', 'sortTables', function($rootScope, $scope, $filter, indebtednessLevel, sortTables){
 	  $scope.indebtednessLevels  = indebtednessLevel.indebtedness_levels;
 		$scope.payroll_date_filter = ''
 		$scope.titleReport         = 'no existen consultas';
 		$scope.titleReport2        = "asociadas";
+
+		$scope.sortTables 	 = sortTables;
+		sortTables.registers = $scope.embargoes;
+		sortTables.setFilters(['origin', 'payroll_concept_txt']);
 		
 		$scope.existsPaimentDetails = function(){
 			return $scope.indebtednessLevels.length !== 0	;
@@ -29,13 +33,23 @@
 			var filterValue = $filter('filter')($scope.indebtednessLevels, {payroll_date: value});
 			return filterValue.length >= 1 ? filterValue.length + 1 : 0;
   	}
-  	
-    var uniqueVals = [];
+
+    var uniqueVals 		= [];
+  	var payroll_dates = [];
+  	var count 				= 0;
     $.each($scope.indebtednessLevels, function(i, value){
-      var filterDate = value.payroll_date;
-      if($.inArray(filterDate, uniqueVals) === -1) uniqueVals.push(filterDate);
+    	var filterDate = value.payroll_date;
+      if ($.inArray(filterDate, uniqueVals) === -1) {
+      	uniqueVals.push(filterDate);
+
+    		payroll_dates[count] = {
+    			value: $filter('date')(filterDate, 'dd/MM/yyyy'),
+    			origin:filterDate
+    		}
+    		count += 1;
+      }
     });
-    $scope.payroll_dates = uniqueVals;
+    $scope.payroll_dates = payroll_dates;
 
 		var uniqueVals = [];
 		$.each($scope.indebtednessLevels, function(i, value){
