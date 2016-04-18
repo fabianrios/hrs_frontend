@@ -39,7 +39,8 @@
 					  <tr>
 					  	<th scope="column" class="text-center">Periodo de nomina</th>
 					  	<th scope="column" class="text-center">Descripción</th>
-					  	<th scope="column" class="text-center">Demandante</th>
+					  	<th scope="column" class="text-center">Juzgado</th>
+					  	<th scope="column" class="text-center">Beneficiario</th>
 					    <th scope="column" class="text-center">Monto</th>
 					    <th scope="column" class="text-center">Pagos</th>
 					    <th scope="column" class="text-center">Saldos</th>
@@ -51,6 +52,7 @@
 			  		</tr>
 		  			<tr ng-repeat="(key, embargo) in embargoes | filter : {fpper: date, desga: payroll_concept_filter}"> 
 		  				<td scope="row">{{ embargo.desga }}</td>
+		  				<td scope="row">{{ embargo.orcod }}</td>
 		  				<td scope="row">{{ embargo.gorna }} {{ embargo.pnach }}</td>
 		  				<td scope="row" class="text-right">${{ embargo.value.toLocaleString(undefined,{minimumFractionDigits: 2}) }}</td>
 					    <td scope="row" class="text-right">${{ embargo.gardv.toLocaleString(undefined,{minimumFractionDigits: 2}) }}</td>
