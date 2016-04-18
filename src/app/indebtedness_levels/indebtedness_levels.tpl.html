@@ -1,5 +1,5 @@
 <div class="padding-container">
-	<h3 class="expand-title text-center first-one">Detalle de Pagos y Deducciones</h3>
+	<h3 class="expand-title text-center first-one">Pagos y Deducciones</h3>
 
 	<div ng-hide="existsPaimentDetails()">
 		<message-report titulo="titleReport" other="titleReport2"></message-report>
@@ -7,47 +7,35 @@
 
 	<div ng-show="existsPaimentDetails()">
 		<div class="row">
-			<fieldset>
-				<legend>Filtros</legend>
-
-				<div class="large-2 medium-2 columns">
-					<label for="date_filter" class="inline">Periodo Nomina:</label>
-				</div>
-				<div class="large-2 medium-2 columns">
-					<select id="date_filter" ng-model="payroll_date_filter.$">
-						<option value="">Todos</option>
-						<option ng-repeat="date in payroll_dates" value="{{ date }}">{{ date | date:'dd/MM/yyyy' }}</option>
-					</select>
-				</div>
-
-				<div class="large-2 medium-2 columns">
-					<label for="payroll_filter" class="inline">Concepto Nomina:</label>
-				</div>
-				<div class="large-4 medium-4 columns left">
-					<select id="payroll_filter" ng-model="payroll_concept_filter">
-						<option value="">Todos</option>
-						<option ng-repeat="concept in payroll_concepts">{{ concept }}</option>
-					</select>
-				</div>
-			</fieldset>
-		</div>
-
-		<div class="row">
 			<div class="large-12 medium-12 columns">
 				<table>
 				  <thead>
 					  <tr>
-					  	<th scope="column" class="text-center" id="payroll_period_title">Periodo de nomina</th>
-					    <th scope="column" class="text-center">Concepto de nomina</th>
+					  	<th id="th_pern" scope="column">
+				      	<div class="header" id="origin" ng-click="sortTables.sortingTable('origin')">Periodo</div>
+					  	</th>
+					  	<th scope="column" class="text-center" >
+				      	<div class="header" id="payroll_concept_txt" ng-click="sortTables.sortingTable('payroll_concept_txt')">Concepto de nomina</div>
+				  		</th>
 					    <th scope="column" class="text-center">Devengos</th>
 					    <th scope="column" class="text-center">Deducciones</th>
-					  </tr>	
+					  </tr>
+					  <tr>
+					  	<th scope="column">
+					  		<input type="text" class="input-filter" ng-model="period_filter" placeholder="Filtro">
+					  	</th>
+					  	<th scope="column">
+					  		<input type="text" class="input-filter" ng-model="payroll_concept_filter" placeholder="Filtro">
+				  		</th>
+					    <th scope="column"></th>
+					    <th scope="column"></th>
+					  </tr>
 				  </thead>
-			  	<tbody ng-repeat="date in payroll_dates | filter : payroll_date_filter">
+				  <tbody ng-repeat="date in payroll_dates | filter : period_filter  | orderBy:sortTables.getPredicate():sortTables.getReverses()">
 			  		<tr id="tr_payroll_period">
-			  			<td id="td_payroll_period" class="text-center" rowspan="{{ dateFilter(date) }}">{{ date | date:'dd/MM/yyyy'}}</td>
+			  			<td id="td_payroll_period" class="text-center" rowspan="{{ dateFilter(date.origin) }}" ng-bind="date.value"></td>
 			  		</tr>
-		  			<tr ng-repeat="(key, indebtedness) in indebtednessLevels | filter : {payroll_date: date, payroll_concept_txt: payroll_concept_filter}">
+		  			<tr ng-repeat="(key, indebtedness) in indebtednessLevels | filter : {payroll_date: date.origin, payroll_concept_txt: payroll_concept_filter} | orderBy:sortTables.getPredicate():sortTables.getReverses()">
 					    <td scope="row">{{ indebtedness.payroll_concept_txt }}</td>
 					    <td scope="row" class="text-right">{{ indebtedness.deven.toLocaleString(undefined,{minimumFractionDigits: 2}) }}</td>
 					    <td scope="row" class="text-right">{{ indebtedness.deduc.toLocaleString(undefined,{minimumFractionDigits: 2}) }}</td>

@@ -1,7 +1,7 @@
 (function(){
 	'use strict';
   
-	angular.module('vacation_balance_records', ['ui.date', 'vacation_balance_record.service'])
+	angular.module('vacation_balance_records', ['ui.date', 'vacation_balance_record.service', 'sort_tables.service'])
 	.config(function($stateProvider){
 		$stateProvider
 		.state('main.views.vacation_balance_records', {
@@ -15,11 +15,15 @@
 			}
 		})
 	})
-	.controller('VacationBalanceRecords.ListController', ['$rootScope', '$scope', '$filter', 'vacationBalanceRecord', function($rootScope, $scope, $filter, vacationBalanceRecord){
+	.controller('VacationBalanceRecords.ListController', ['$rootScope', '$scope', '$filter', 'vacationBalanceRecord', 'sortTables', function($rootScope, $scope, $filter, vacationBalanceRecord, sortTables){
 		$scope.vacationBalanceRecords = vacationBalanceRecord.vacation_balance_records;
 		$scope.date_filter  = ''
 		$scope.titleReport  = 'no existen consultas';
 		$scope.titleReport2 = "asociadas";
+
+		$scope.sortTables 	 = sortTables;
+		sortTables.registers = $scope.embargoes;
+		sortTables.setFilters(['ktext', 'origin']);
 
 		$scope.existsBalanceVacations = function(){
 			return $scope.vacationBalanceRecords.length !== 0;			
@@ -33,12 +37,23 @@
   	$scope.remainingDays = function(vacation){
   		return vacation.anzhl - vacation.kverb;
   	}
-
-    var uniqueVals = [];
+  	
+    var uniqueVals 		= [];
+  	var payroll_dates = [];
+  	var count 				= 0;
     $.each($scope.vacationBalanceRecords, function(i, value){
-      if($.inArray(value.endda, uniqueVals) === -1) uniqueVals.push(value.endda);
+    	var filterDate = value.begda;
+      if ($.inArray(filterDate, uniqueVals) === -1) {
+      	uniqueVals.push(filterDate);
+
+    		payroll_dates[count] = {
+    			value: $filter('date')(filterDate, 'dd/MM/yyyy'),
+    			origin:filterDate
+    		}
+    		count += 1;
+      }
     });
-    $scope.payroll_dates = uniqueVals;
+    $scope.payroll_dates = payroll_dates;
 		
 		var uniqueVals = [];
 		$.each($scope.vacationBalanceRecords, function(i, value){

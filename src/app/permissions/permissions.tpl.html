@@ -7,37 +7,35 @@
 
 	<div ng-show="existsPermissions()">
 		<div class="row">
-			<fieldset>
-				<legend>Filtros</legend>
-
-				<div class="large-6 medium-6 columns end">
-					<div class="large-6 medium-6 columns end">
-							<label for="begda_filter" class="inline">Permiso asignado en:</label>
-					</div>
-					<div class="large-6 medium-6 columns">
-						<select id="begda_filter" ng-model="begda_filter">
-							<option value="">Todos los permisos</option>
-							<option ng-repeat="date in begdas_permissions">{{ date }}</option>
-						</select>
-					</div>
-				</div>
-			</fieldset>
-		</div>
-		<div class="row">
 			<div class="large-12 medium-12 columns">
 				<table>
-				  <caption>Permisos</caption>
 				  <thead>
 					  <tr>
-					  	<th scope="column" class="text-center">Motivo del permiso</th>
-					  	<th scope="column" class="text-center">Fecha de inicio</th>
-					    <th scope="column" class="text-center">Fecha de fin</th>
+					  	<th scope="column" class="text-center">
+				      	<div class="header" id="text_permission" ng-click="sortTables.sortingTable('text_permission')">Motivo del permiso</div>
+					  	</th>
+					  	<th scope="column" class="text-center th-permission-date" >
+				      	<div class="header" id="begda" ng-click="sortTables.sortingTable('begda')">Fecha de inicio</div>
+				  		</th>
+				  		<th scope="column" class="text-center th-permission-date">Fecha de fin</th>
 					    <th scope="column" class="text-center">Dias habiles asignados</th>
 					    <th scope="column" class="text-center">Dias calendario recibidos</th>
-					  </tr>	
+					  </tr>
+
+					  <tr>
+					  	<th scope="column">
+					  		<input type="text" class="input-filter" ng-model="text_permission_filter" placeholder="Filtro">
+					  	</th>
+					  	<th scope="column">
+					  		<input type="text" class="input-filter" ng-model="begda_filter" placeholder="Filtro">
+				  		</th>
+				  		<th scope="column"></th>
+					    <th scope="column"></th>
+					    <th scope="column"></th>
+					  </tr>
 				  </thead>
-			  	<tbody>
-		  			<tr ng-repeat="permission in permissions | filter:begda_filter ">
+				  <tbody>
+				  	<tr ng-repeat="permission in permissions | filter:{text_permission:text_permission_filter, begda:begda_filter} | orderBy:sortTables.getPredicate():sortTables.getReverses()">
 		  				<td scope="row">{{ permission.text_permission }}</td>
 					    <td scope="row" class="text-right">{{ permission.begda  }}</td>
 					    <td scope="row" class="text-right">{{ permission.endda  }}</td>

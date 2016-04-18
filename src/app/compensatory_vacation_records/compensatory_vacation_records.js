@@ -1,7 +1,7 @@
 (function(){
 	'use strict';
   
-	angular.module('compensatory_vacation_records', ['ui.date', 'compensatory_vacation_record.service'])
+	angular.module('compensatory_vacation_records', ['ui.date', 'compensatory_vacation_record.service', 'sort_tables.service'])
 	.config(function($stateProvider){
 		$stateProvider
 		.state('main.views.compensatory_vacation_records', {
@@ -15,11 +15,15 @@
 			}
 		})
 	})
-	.controller('CompensatoryVacationRecords.ListController', ['$rootScope', '$scope', '$filter', 'compensatoryVacationRecord', function($rootScope, $scope, $filter, compensatoryVacationRecord){
+	.controller('CompensatoryVacationRecords.ListController', ['$rootScope', '$scope', '$filter', 'compensatoryVacationRecord', 'sortTables', function($rootScope, $scope, $filter, compensatoryVacationRecord, sortTables){
 		$scope.compensatoryVacationRecords = compensatoryVacationRecord.compensatory_vacation_records;
 		$scope.date_filter  = ''
 		$scope.titleReport  = 'no existen consultas';
 		$scope.titleReport2 = "asociadas";
+
+		$scope.sortTables 	 = sortTables;
+		sortTables.registers = $scope.embargoes;
+		sortTables.setFilters(['begda', 'qctxt']);
 
 		$scope.existsCompesatoryVacations = function(){
 			return $scope.compensatoryVacationRecords.length !== 0;
