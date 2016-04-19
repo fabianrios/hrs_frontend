@@ -1,6 +1,6 @@
 (function(){
 	'use strict';
-	angular.module('seizures', ['embargo.service'])
+	angular.module('seizures', ['embargo.service', 'sort_tables.service'])
 	.config(['$stateProvider',function($stateProvider) {
 		$stateProvider
 		.state('main.views.seizures', {
@@ -14,11 +14,16 @@
 			}
 		})
 	}])
-	.controller('Seizures.ListController', ['$scope', '$filter', 'embargo', function($scope, $filter, embargo){
-		$scope.embargoes = embargo.embargoes;
-		$scope.payroll_date_filter = ''
-		$scope.titleReport  = 'no existen consultas';
-		$scope.titleReport2 = "asociadas";
+	.controller('Seizures.ListController', ['$scope', '$filter', 'embargo', 'sortTables', function($scope, $filter, embargo, sortTables){
+		console.log(embargo.embargoes);
+		$scope.embargoes 						= embargo.embargoes;
+		$scope.payroll_date_filter 	= ''
+		$scope.titleReport  				= 'no existen consultas';
+		$scope.titleReport2 				= "asociadas";
+		
+		$scope.sortTables 	 = sortTables;
+		sortTables.registers = $scope.embargoes;
+		sortTables.setFilters(['payroll_date_filter', 'desga']);
 		
 		$scope.existsSeizures = function(){
 			return $scope.embargoes.length !== 0;			
@@ -29,11 +34,18 @@
 			return filterValue.length >= 1 ? filterValue.length + 1 : 0;
   	}
 
-  	var uniqueVals = [];
+  	var uniqueVals 		= [];
+  	var payroll_dates = [];
     $.each($scope.embargoes, function(i, value){
-      if($.inArray(value.fpper.trim(), uniqueVals) === -1) uniqueVals.push(value.fpper.trim());
+      if ($.inArray(value.fpper.trim(), uniqueVals) === -1) {
+      	uniqueVals.push(value.fpper.trim());
+    		payroll_dates[i] = {
+    			value: $filter('date')(value.fpper.trim(), 'dd/MM/yyyy'),
+    			origin:value.fpper.trim()
+    		}
+      }
     });
-    $scope.payroll_dates = uniqueVals;
+    $scope.payroll_dates = payroll_dates;
 
 		var uniqueVals = [];
 		$.each($scope.embargoes, function(i, value){

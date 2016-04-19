@@ -1,7 +1,7 @@
 (function(){
 	'use strict';
   
-	angular.module('payments_deductions_records', ['payments_deductions.service'])
+	angular.module('payments_deductions_records', ['payments_deductions.service', 'sort_tables.service'])
 	.config(function($stateProvider){
 		$stateProvider
 		.state('main.views.payments_deductions_records', {
@@ -15,11 +15,15 @@
 			}
 		})
 	})
-	.controller('PaymentsDeductionsRecords.ListController', ['$rootScope', '$scope', '$filter', 'paymentsDeductions', '$state', function($rootScope, $scope, $filter, paymentsDeductions, $state){
+	.controller('PaymentsDeductionsRecords.ListController', ['$rootScope', '$scope', '$filter', 'paymentsDeductions', '$state', 'sortTables', function($rootScope, $scope, $filter, paymentsDeductions, $state, sortTables){
 		$scope.payments_deductions = paymentsDeductions.payments_and_deductions_records;
 		$scope.warningMessage      = 'app/management_services/warning.tpl.html';
 		$scope.permission_alert    = '';
 		$scope.data								 = {};
+
+		$scope.sortTables 	 = sortTables;
+		sortTables.setRegisters($scope.payments_deductions);
+		sortTables.setFilters(['year_report', 'text']);
 
 		if(angular.isObject(paymentsDeductions.message)){
 			$scope.permission_alert = paymentsDeductions.message.permission_alert;

@@ -51,6 +51,7 @@
     'vacation_balance_record.service',
     'compensatory_vacation_record.service',
     'angular-clipboard',
+    'sort_tables.service',
 
     // Directives
     'ngS3upload',

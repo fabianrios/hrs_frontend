@@ -7,49 +7,39 @@
 
 	<div ng-show="existsLoanRecords()">
 		<div class="row">
-			<fieldset>
-				<legend>Filtros</legend>
-				<div class="large-2 medium-2 columns">
-					<label for="date_filter" class="inline">Periodo Nomina:</label>
-				</div>
-				<div class="large-2 medium-2 columns">
-					<select id="date_filter" ng-model="date_filter.$">
-						<option value="">Todos</option>
-						<option ng-repeat="date in payroll_dates" value="{{ date }}">{{ date | date:'dd/MM/yyyy' }}</option>
-					</select>
-				</div>
-				
-				<div class="large-2 medium-2 columns">
-					<label for="payroll_filter" class="inline">Descripción:</label>
-				</div>
-				<div class="large-4 medium-4 columns left">
-					<select id="payroll_filter" ng-model="payroll_concept_filter">
-						<option value="">Todos</option>
-						<option ng-repeat="concept in payroll_concepts">{{ concept }}</option>
-					</select>
-				</div>
-			</fieldset>
-		</div>
-		
-		<div class="row">
 			<div class="large-12 medium-12 columns">
 				<table>
-				  <caption>Prestamos</caption>
 				  <thead>
 					  <tr>
-					  	<th scope="column" class="text-center">Periodo de nomina</th>
-					  	<th scope="column" class="text-center">Descripción</th>
-					  	<th scope="column" class="text-center">Cuota total</th>
+					  	<th id="th_pern" scope="column" class="text-center">
+				      	<div class="header" id="origin" ng-click="sortTables.sortingTable('origin')">Periodo</div>
+					  	</th>
+					  	<th scope="column" class="text-center" >
+				      	<div class="header" id="stext" ng-click="sortTables.sortingTable('stext')">Descripción</div>
+				  		</th>
+				  		<th scope="column" class="text-center">Cuota total</th>
 					    <th scope="column" class="text-center">Interes</th>
 					    <th scope="column" class="text-center">Interes debe</th>
 					    <th scope="column" class="text-center">Saldo total</th>
-					  </tr>	
+					  </tr>
+					  <tr>
+					  	<th scope="column">
+					  		<input type="text" class="input-filter" ng-model="period_filter" placeholder="Filtro">
+					  	</th>
+					  	<th scope="column">
+					  		<input type="text" class="input-filter" ng-model="concept_txt_filter" placeholder="Filtro">
+				  		</th>
+				  		<th scope="column"></th>
+					    <th scope="column"></th>
+					    <th scope="column"></th>
+					    <th scope="column"></th>
+					  </tr>
 				  </thead>
-			  	<tbody ng-repeat="date in payroll_dates | filter : date_filter">
+				  <tbody ng-repeat="date in payroll_dates | filter : period_filter | orderBy:sortTables.getPredicate():sortTables.getReverses()">
 			  		<tr id="tr_payroll_period">
-			  			<td id="td_payroll_period" rowspan="{{ dateFilter(date) }}">{{ date | date:'dd/MM/yyyy' }}</td>
+			  			<td id="td_payroll_period" rowspan="{{ dateFilter(date.origin) }}">{{ date.value }}</td>
 			  		</tr>
-		  			<tr ng-repeat="(key, loan) in loanRecords | filter : {fpend: date, stext: payroll_concept_filter}"> 
+		  			<tr ng-repeat="(key, loan) in loanRecords | filter : {fpend: date.origin, stext: concept_txt_filter} | orderBy:sortTables.getPredicate():sortTables.getReverses()"> 
 		  				<td scope="row" ng-bind="loan.stext"></td>
 		  				<td scope="row" class="text-right" ng-bind="getMoneyValue(loan.totcu)"></td>
 		  				<td scope="row" class="text-right" ng-bind="getPorcentage(loan.lolim)"></td>
