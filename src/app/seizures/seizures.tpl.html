@@ -52,7 +52,7 @@
 			  		<tr id="tr_payroll_period">
 			  			<td id="td_payroll_period" rowspan="{{ dateFilter(date.value) }}">{{ date.value }}</td>
 			  		</tr>
-		  			<tr ng-repeat="(key, embargo) in embargoes | filter : {fpper: sortTables.getDateFilter(date.value), desga: payroll_concept_filter} | orderBy:sortTables.getPredicate():sortTables.getReverse()">
+		  			<tr ng-repeat="(key, embargo) in embargoes | filter : {edate: sortTables.getDateFilter(date.value), desga: payroll_concept_filter} | orderBy:sortTables.getPredicate():sortTables.getReverse()">
 		  				<td scope="row">{{ embargo.desga }}</td>
 		  				<td scope="row">{{ embargo.orcod }}</td>
 		  				<td scope="row">{{ embargo.gorna }} {{ embargo.pnach }}</td>
