@@ -1,7 +1,7 @@
 <div class="padding-container">
 	<message-permission ng-show="showMessagePermission()" titulo="permission_alert"></message-permission>
 	<div ng-if="!showMessagePermission()">
-		<h3 class="expand-title text-center first-one">Reporte de Vacantes</h3>
+		<h3 class="expand-title text-center first-one">Reporte de Cargos</h3>
 		<div ng-hide="existsManagerOrganigram()" ng-include="warningMessage"></div>
 		<div ng-show="existsManagerOrganigram()">
 			<div class="row">
