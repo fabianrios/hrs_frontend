@@ -15,7 +15,6 @@
 		})
 	}])
 	.controller('Seizures.ListController', ['$scope', '$filter', 'embargo', 'sortTables', function($scope, $filter, embargo, sortTables){
-		console.log(embargo.embargoes);
 		$scope.embargoes 						= embargo.embargoes;
 		$scope.payroll_date_filter 	= ''
 		$scope.titleReport  				= 'no existen consultas';
@@ -30,18 +29,18 @@
 		}
 
 		$scope.dateFilter = function(value){
-			var filterValue = $filter('filter')($scope.embargoes, {fpper: value});
+			var filterValue = $filter('filter')($scope.embargoes, {edate: value});
 			return filterValue.length >= 1 ? filterValue.length + 1 : 0;
   	}
 
   	var uniqueVals 		= [];
   	var payroll_dates = [];
     $.each($scope.embargoes, function(i, value){
-      if ($.inArray(value.fpper.trim(), uniqueVals) === -1) {
-      	uniqueVals.push(value.fpper.trim());
+      if ($.inArray(value.edate.trim(), uniqueVals) === -1) {
+      	uniqueVals.push(value.edate.trim());
     		payroll_dates[i] = {
-    			value: $filter('date')(value.fpper.trim(), 'dd/MM/yyyy'),
-    			origin:value.fpper.trim()
+    			value: $filter('date')(value.edate.trim(), 'dd/MM/yyyy'),
+    			origin:value.edate.trim()
     		}
       }
     });
