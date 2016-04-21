@@ -71,11 +71,11 @@
 				url:  'main.views.personal_rotation'
 			},
 			{
-				name: 'Historico de cargos',
+				name: 'Histórico de cargos',
 				url:  'main.views.historical_positions'
 			},
 			{
-				name: 'Historico de sueldos',
+				name: 'Histórico de sueldos',
 				url:  'main.views.historical_salaries'
 			},
 			{
