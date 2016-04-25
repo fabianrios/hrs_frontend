@@ -15,18 +15,24 @@
                 <div class="header" id="atext" ng-click="sortTables.sortingTable('atext')">Descripción</div>
               </th>
               <th scope="column" class="text-center th-permission-date" >
-                <div class="header" id="begda" ng-click="sortTables.sortingTable('begda')">Fecha de inicio</div>
+                <div class="header" id="begda" ng-click="sortTables.sortingTable('begda')">Fecha Inicial</div>
               </th>
-              <th scope="column" class="text-center th-permission-date">Fecha de fin</th>
-              <th scope="column" class="text-center">Dias disfrutados</th> 
-					    <th scope="column" class="text-center">Dias calendario</th>
+              <th scope="column" class="text-center th-permission-date">Fecha Final</th>
+              <th scope="column" class="text-center">Días disfrutados</th> 
+					    <th scope="column" class="text-center">Días calendario</th>
             </tr>
             <tr>
-            	<td><input type="text" class="input-filter" ng-model="concept_text_filter" placeholder="Filtro"></td>
-            	<td><input type="text" class="input-filter" ng-model="date_filter" placeholder="Filtro"></td>
-            	<td></td>
-            	<td></td>
-            	<td></td>
+            	<th scope="column">
+                <div class="fa fa-filter filter-icon"></div>
+                <input type="text" class="input-filter" ng-model="concept_text_filter" placeholder="Ej. Vacaciones RCN">
+              </th>
+            	<th scope="column">
+                <div class="fa fa-filter filter-icon"></div>
+                <input type="text" class="input-filter" ng-model="date_filter" placeholder="Ej. dd/mm/yyyy">
+              </th>
+              <th scope="column"></th>
+              <th scope="column"></th>
+            	<th scope="column"></th>
             </tr>
           </thead>
 				  <tbody>

@@ -18,8 +18,8 @@
 	.controller('VacationBalanceRecords.ListController', ['$rootScope', '$scope', '$filter', 'vacationBalanceRecord', 'sortTables', function($rootScope, $scope, $filter, vacationBalanceRecord, sortTables){
 		$scope.vacationBalanceRecords = vacationBalanceRecord.vacation_balance_records;
 		$scope.date_filter  = ''
-		$scope.titleReport  = 'no existen consultas';
-		$scope.titleReport2 = "asociadas";
+		$scope.titleReport  = 'No se registra información de vacaciones';
+		$scope.titleReport2 = "en el último año.";
 
 		$scope.sortTables 	 = sortTables;
 		sortTables.registers = $scope.embargoes;

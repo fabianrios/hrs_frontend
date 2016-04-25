@@ -15,19 +15,21 @@
 				      	<div class="header" id="text_permission" ng-click="sortTables.sortingTable('text_permission')">Motivo del permiso</div>
 					  	</th>
 					  	<th scope="column" class="text-center th-permission-date" >
-				      	<div class="header" id="begda" ng-click="sortTables.sortingTable('begda')">Fecha de inicio</div>
+				      	<div class="header" id="begda" ng-click="sortTables.sortingTable('begda')">Fecha Inicial</div>
 				  		</th>
-				  		<th scope="column" class="text-center th-permission-date">Fecha de fin</th>
-					    <th scope="column" class="text-center">Dias habiles asignados</th>
-					    <th scope="column" class="text-center">Dias calendario recibidos</th>
+				  		<th scope="column" class="text-center th-permission-date">Fecha Final</th>
+					    <th scope="column" class="text-center">Días habiles asignados</th>
+					    <th scope="column" class="text-center">Días calendario recibidos</th>
 					  </tr>
 
 					  <tr>
 					  	<th scope="column">
-					  		<input type="text" class="input-filter" ng-model="text_permission_filter" placeholder="Filtro">
+					  		<div class="fa fa-filter filter-icon"></div>
+					  		<input type="text" class="input-filter" ng-model="text_permission_filter" placeholder="Ej. Licencia">
 					  	</th>
 					  	<th scope="column">
-					  		<input type="text" class="input-filter" ng-model="begda_filter" placeholder="Filtro">
+					  		<div class="fa fa-filter filter-icon"></div>
+					  		<input type="text" class="input-filter" ng-model="begda_filter" placeholder="Ej. dd/mm/yyyy">
 				  		</th>
 				  		<th scope="column"></th>
 					    <th scope="column"></th>
