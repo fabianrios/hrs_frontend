@@ -11,8 +11,8 @@
 				widgets: function(){
 					return {
 						items: [
-							{ name: "Mis días de vacaciones", config: { param_a: "abc", param_b: "Días que a la liquidación de la ultima nomina tiene disponibles y usados por este concepto." }},
-							{ name: "Mis cesantías", config: { param_a: "def", param_b: "Valor que a la liquidación de la ultima nomina tiene causados en la compañía. Este valor sera consignado al Fondo de Cesantias antes del 14 de Febrero de cada año." }},
+							{ name: "Mis días de vacaciones", config: { param_a: "abc", param_b: "Días que a la liquidación de la ultima nómina tiene disponibles por este concepto." }},
+							{ name: "Mis cesantías", config: { param_a: "def", param_b: "Valor que a la liquidación de la ultima nómina tiene causados en la compañía. Este valor sera consignado al Fondo de Cesantias antes del 14 de Febrero de cada año." }},
 							{ name: "Mis inters. de cesantías", config: { param_a: "ghi", param_b: "Valor de los intereses a las cesantias causados a 31 de Diceimbre de cada año." }},
 						]
 					}

@@ -13,17 +13,19 @@
 					      	<div class="header" id="year_report" ng-click="sortTables.sortingTable('year_report')">Periodo</div>
 						  	</th>
 						  	<th scope="column" class="text-center" >
-					      	<div class="header" id="text" ng-click="sortTables.sortingTable('text')">Concepto de nomina</div>
+					      	<div class="header" id="text" ng-click="sortTables.sortingTable('text')">Concepto de nómina</div>
 					  		</th>
 						    <th scope="column" class="text-center">Valor</th>
 						  </tr>
 
 						  <tr>
 						  	<th scope="column">
-						  		<input type="text" class="input-filter" ng-model="year_report_filter" placeholder="Filtro">
+						  		<div class="fa fa-filter filter-icon"></div>
+						  		<input type="text" class="input-filter" ng-model="year_report_filter" placeholder="Ej. 2016">
 						  	</th>
 						  	<th scope="column">
-						  		<input type="text" class="input-filter" ng-model="payment_concept_filter" placeholder="Filtro">
+						  		<div class="fa fa-filter filter-icon"></div>
+						  		<input type="text" class="input-filter" ng-model="payment_concept_filter" placeholder="Ej. Aportes">
 					  		</th>
 						    <th scope="column"></th>
 						  </tr>

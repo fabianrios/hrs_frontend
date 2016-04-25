@@ -18,8 +18,8 @@
 	.controller('CompensatoryVacationRecords.ListController', ['$rootScope', '$scope', '$filter', 'compensatoryVacationRecord', 'sortTables', function($rootScope, $scope, $filter, compensatoryVacationRecord, sortTables){
 		$scope.compensatoryVacationRecords = compensatoryVacationRecord.compensatory_vacation_records;
 		$scope.date_filter  = ''
-		$scope.titleReport  = 'no existen consultas';
-		$scope.titleReport2 = "asociadas";
+		$scope.titleReport  = 'No se registra información de vacaciones';
+		$scope.titleReport2 = "en el último año.";
 
 		$scope.sortTables 	 = sortTables;
 		sortTables.registers = $scope.embargoes;

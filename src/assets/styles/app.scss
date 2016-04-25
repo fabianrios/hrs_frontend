@@ -169,6 +169,13 @@ input[type="text"] {
 .input-filter {
 	background-color: #FFF !important; /*#f0f0f0;*/
 	border: 1px solid #CAC5C5 !important;
+	width: 85% !important;
+	margin-left:10px !important;
+}
+.filter-icon{
+	float: left;
+	width: 5%;
+	margin: 8px 0px 0 -5px;
 }
 
 td, th {

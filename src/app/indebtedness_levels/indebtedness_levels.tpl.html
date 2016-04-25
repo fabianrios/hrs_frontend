@@ -15,17 +15,19 @@
 				      	<div class="header" id="origin" ng-click="sortTables.sortingTable('origin')">Periodo</div>
 					  	</th>
 					  	<th scope="column" class="text-center" >
-				      	<div class="header" id="payroll_concept_txt" ng-click="sortTables.sortingTable('payroll_concept_txt')">Concepto de nomina</div>
+				      	<div class="header" id="payroll_concept_txt" ng-click="sortTables.sortingTable('payroll_concept_txt')">Concepto de nómina</div>
 				  		</th>
 					    <th scope="column" class="text-center">Devengos</th>
 					    <th scope="column" class="text-center">Deducciones</th>
 					  </tr>
 					  <tr>
 					  	<th scope="column">
-					  		<input type="text" class="input-filter" ng-model="period_filter" placeholder="Filtro">
+					  		<div class="fa fa-filter filter-icon"></div>
+					  		<input type="text" class="input-filter" ng-model="period_filter" placeholder="Ej. dd/mm/yyyy">
 					  	</th>
 					  	<th scope="column">
-					  		<input type="text" class="input-filter" ng-model="payroll_concept_filter" placeholder="Filtro">
+					  		<div class="fa fa-filter filter-icon"></div>
+					  		<input type="text" class="input-filter" ng-model="payroll_concept_filter" placeholder="Ej. Abono Facturacion">
 				  		</th>
 					    <th scope="column"></th>
 					    <th scope="column"></th>

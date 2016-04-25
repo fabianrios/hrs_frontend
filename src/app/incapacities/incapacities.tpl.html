@@ -22,18 +22,20 @@
 				      	<div class="header" id="text_incapacity" ng-click="sortTables.sortingTable('text_incapacity')">Motivo de la incapacidad</div>
 					  	</th>
 					  	<th scope="column" class="text-center th-incapacity-date" >
-				      	<div class="header" id="begda" ng-click="sortTables.sortingTable('begda')">Fecha de inicio</div>
+				      	<div class="header" id="begda" ng-click="sortTables.sortingTable('begda')">Fecha Inicial</div>
 				  		</th>
-					    <th scope="column" class="text-center th-incapacity-date">Fecha de fin</th>
-					    <th scope="column" class="text-center">Dias habiles asignados</th>
-					    <th scope="column" class="text-center">Dias calendario recibidos</th>
+					    <th scope="column" class="text-center th-incapacity-date">Fecha Final</th>
+					    <th scope="column" class="text-center">Días hábiles asignados</th>
+					    <th scope="column" class="text-center">Días calendario recibidos</th>
 					  </tr>
 					  <tr>
 					  	<th scope="column">
-					  		<input type="text" class="input-filter" ng-model="text_incapacity" placeholder="Filtro">
+					  		<div class="fa fa-filter filter-icon"></div>
+					  		<input type="text" class="input-filter" ng-model="text_incapacity" placeholder="Ej. Enfermedad">
 					  	</th>
 					  	<th scope="column">
-					  		<input type="text" class="input-filter" ng-model="begda" placeholder="Filtro">
+					  		<div class="fa fa-filter filter-icon"></div>
+					  		<input type="text" class="input-filter" ng-model="begda" placeholder="Ej. dd/mm/yyyy">
 				  		</th>
 					    <th scope="column"></th>
 					    <th scope="column"></th>
