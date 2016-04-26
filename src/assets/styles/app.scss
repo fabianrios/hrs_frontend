@@ -153,12 +153,12 @@ table thead tr th{
 } 
 .headerSortUp { 
 	background-image: url(../assets/images/asc.gif); 
-	background-color: #D4D4D4; /*#6583AE; #3399FF; */
+	background-color: #D4D4D4; 
 	background-position: center right;
 } 
 .headerSortDown { 
 	background-image: url(../assets/images/desc.gif); 
-	background-color: #6583AE; /*#3399FF; */
+	background-color: #D4D4D4; 
 	background-position: center right;
 }
 /*
@@ -167,10 +167,10 @@ input[type="text"] {
 } 
 */
 .input-filter {
-	background-color: #FFF !important; /*#f0f0f0;*/
+	background-color: #FFF !important;
 	border: 1px solid #CAC5C5 !important;
-	width: 85% !important;
-	margin-left:10px !important;
+	/*width: 85% !important;
+	margin-left:10px !important;*/
 }
 .filter-icon{
 	float: left;
@@ -184,5 +184,5 @@ td, th {
 }	
 
 #th_pern{
-	width: 100px;
+	width: 150px; /*100px;*/
 }

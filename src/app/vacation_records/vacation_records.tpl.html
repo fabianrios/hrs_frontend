@@ -23,12 +23,24 @@
             </tr>
             <tr>
             	<th scope="column">
-                <div class="fa fa-filter filter-icon"></div>
-                <input type="text" class="input-filter" ng-model="concept_text_filter" placeholder="Ej. Vacaciones RCN">
+                <div class="row collapse ">
+                  <div class="small-2 columns">
+                    <span class="prefix" title="Filtro"><i class="fa fa-filter"></i></span>
+                  </div>
+                  <div class="small-10 columns">
+                    <input type="text" class="input-filter" ng-model="concept_text_filter" placeholder="Ej. Vacaciones RCN">
+                  </div>
+                </div>
               </th>
             	<th scope="column">
-                <div class="fa fa-filter filter-icon"></div>
-                <input type="text" class="input-filter" ng-model="date_filter" placeholder="Ej. dd/mm/yyyy">
+                <div class="row collapse ">
+                  <div class="small-3 columns">
+                    <span class="prefix" title="Filtro"><i class="fa fa-filter"></i></span>
+                  </div>
+                  <div class="small-9 columns">
+                    <input type="text" class="input-filter" ng-model="date_filter" placeholder="Ej. dd/mm/yyyy">
+                  </div>
+                </div>
               </th>
               <th scope="column"></th>
               <th scope="column"></th>
@@ -36,9 +48,9 @@
             </tr>
           </thead>
 				  <tbody>
-		  			<tr ng-repeat="(key, vacation) in enjoyedVacation | filter : {begda: date_filter, atext: concept_text_filter} | orderBy:sortTables.getPredicate():sortTables.getReverses()"> 
+		  			<tr ng-repeat="(key, vacation) in enjoyedVacation | filter : {begda_format: date_filter, atext: concept_text_filter} | orderBy:sortTables.getPredicate():sortTables.getReverses()"> 
 		  				<td scope="row" ng-bind="vacation.atext"></td>
-		  				<td scope="row" ng-bind="vacation.begda | date:'dd/MM/yyyy'" class="text-right"></td>
+		  				<td scope="row" ng-bind="vacation.begda_format" class="text-right"></td>
 					    <td scope="row" ng-bind="vacation.endda | date:'dd/MM/yyyy'" class="text-right"></td>
 					    <td scope="row" ng-bind="vacation.abwtg" class="text-right"></td>
 					    <td scope="row" ng-bind="vacation.kaltg" class="text-right"></td>
