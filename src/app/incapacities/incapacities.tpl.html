@@ -46,7 +46,7 @@
 			  		<tr ng-repeat="permission in incapacities | filter : {begda_format: begda, text_incapacity: text_incapacity} | orderBy:sortTables.getPredicate():sortTables.getReverses()"> <!--   -->
 		  				<td scope="row" ng-bind="permission.text_incapacity"></td>
 					    <td scope="row" class="text-right" ng-bind="permission.begda_format"></td>
-					    <td scope="row" class="text-right" ng-bind="permission.endda.value"></td>
+					    <td scope="row" class="text-right" ng-bind="permission.endda_format"></td>
 					    <td scope="row" class="text-right" ng-bind="permission.days_working_incapacity"></td>
 					    <td scope="row" class="text-right" ng-bind="permission.days_taken_incapacity"></td>
 		  			</tr>
