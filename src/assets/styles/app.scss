@@ -146,10 +146,19 @@ table thead tr th{
 	font-weight: bold; 
 	background-repeat: no-repeat; 
 	background-position: center right; 
+	cursor: pointer; 
+	font-weight: bold; 
+	background-repeat: no-repeat; 
+	background-position: center right; 
+
+	@media screen and (max-width: 767px) {
+		padding-left: 0px;
+	}
+	
 	padding-left: 20px; 
 	padding-right: 20px;
 	border-right: 1px solid #dad9c7; 
-	margin-left: -1px; 
+	margin-left: -1px;
 } 
 .headerSortUp { 
 	background-image: url(../assets/images/asc.gif); 
