@@ -77,8 +77,29 @@
 	}
 }
 
+.dashboard-profile-rcn {
+	position: relative;
+	background-color:#9ab3d3;
+	background-image: url("/images/banner_rcntv.png"); 
+	background-position: 0 -200px;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	width: 100%;
+	min-height: 425px;
+	padding: 10px 0 30px 0;
+	z-index: 0; //para que quede debajo del nav
+	@include box-shadow(0px -5px 10px rgba(50,50,50, 0.2) inset);
+	@include transition-property(min-height);
+	@include transition-duration(1s);
+	&.smallish{
+		min-height: 250px;
+	}
+
+	
+}
+
 // 1 .dashboard-profile
-.dashboard-profile{
+.dashboard-profile {
 	position: relative;
 	background-color:#9ab3d3;
 	background-image: url("/images/backtest.jpg"); 
@@ -1308,12 +1329,18 @@ ul.no-bullet li ul.childs{
 	}
 }
 
-.bglogin{
+.image-login-rcn {
+	background: url('/images/banner_rcntv.png') no-repeat 0 0; 	
+	-webkit-background-size: cover;
+	background-size: cover;
+	height: 750px;	
+}
 
+.bglogin{
 	background: url('/images/bgihr.jpg') no-repeat 0 0; 
 	-webkit-background-size: cover;
 	background-size: cover;
-	height: 750px;
+	height: 750px;	
 	label{
 		color: #fff;
 	}
