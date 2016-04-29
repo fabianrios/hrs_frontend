@@ -325,7 +325,7 @@
     $rootScope.$on('auth:logout-error', function(ev, reason) {
         console.log(ev);
         console.log(reason);
-        // $state.transitionTo('login.auth');
+        $state.transitionTo('login.auth');
 
     });
 
