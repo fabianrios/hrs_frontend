@@ -23,14 +23,13 @@
   		$scope.enjoyedVacation[i] = value;
     });
 
-
 		$scope.date_filter  = ''
 		$scope.titleReport  = 'No se registra información de vacaciones';
 		$scope.titleReport2 = "en el último año.";
 
 		$scope.sortTables 	 = sortTables;
 		sortTables.registers = $scope.embargoes;
-		sortTables.setFilters(['', '']);
+		sortTables.setFilters(['atext', 'begda_format']);
 
 		$scope.existsEnjoyedVacations = function(){
 			return $scope.enjoyedVacation.length !== 0;

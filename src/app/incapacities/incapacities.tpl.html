@@ -15,55 +15,59 @@
 				</div>
 			</div>
 			<div class="large-12 medium-12 columns">
-				<table>
-					<thead>
-					  <tr>
-					  	<th scope="column" class="text-center">
-				      	<div class="header" id="text_incapacity" ng-click="sortTables.sortingTable('text_incapacity')">Motivo de la incapacidad</div>
-					  	</th>
-					  	<th scope="column" class="text-center th-incapacity-date" >
-				      	<div class="header" id="begda" ng-click="sortTables.sortingTable('begda')">Fecha Inicial</div>
-				  		</th>
-					    <th scope="column" class="text-center th-incapacity-date">Fecha Final</th>
-					    <th scope="column" class="text-center">Días hábiles asignados</th>
-					    <th scope="column" class="text-center">Días calendario recibidos</th>
-					  </tr>
-					  <tr>
-					  	<th scope="column">
-					  		<div class="row collapse ">
-					        <div class="small-2 columns">
-					          <span class="prefix" title="Filtro"><i class="fa fa-filter"></i></span>
-					        </div>
-					        <div class="small-10 columns">
-					          <input type="text" class="input-filter" ng-model="text_incapacity" placeholder="Ej. Enfermedad">
-					        </div>
-					      </div>
-					  	</th>
-					  	<th scope="column">
-					  		<div class="row collapse ">
-					        <div class="small-3 columns">
-					          <span class="prefix" title="Filtro"><i class="fa fa-filter"></i></span>
-					        </div>
-					        <div class="small-9 columns">
-					          <input type="text" class="input-filter" ng-model="begda" placeholder="Ej. dd/mm/yyyy">
-					        </div>
-					      </div>
-				  		</th>
-					    <th scope="column"></th>
-					    <th scope="column"></th>
-					    <th scope="column"></th>
-					  </tr>	
-				  </thead>
-				  <tbody>
-			  		<tr ng-repeat="permission in incapacities | filter : {begda_format: begda, text_incapacity: text_incapacity} | orderBy:sortTables.getPredicate():sortTables.getReverses()"> <!--   -->
-		  				<td scope="row" ng-bind="permission.text_incapacity"></td>
-					    <td scope="row" class="text-right" ng-bind="permission.begda_format"></td>
-					    <td scope="row" class="text-right" ng-bind="permission.endda_format"></td>
-					    <td scope="row" class="text-right" ng-bind="permission.days_working_incapacity"></td>
-					    <td scope="row" class="text-right" ng-bind="permission.days_taken_incapacity"></td>
-		  			</tr>
-				  </tbody>
-				</table>
+				<div class="table-wrapper">
+				  <div class="scrollable">
+				    <table class="responsive">
+				    	<thead>
+							  <tr>
+							  	<th scope="column" class="text-center">
+						      	<div class="header" id="text_incapacity" ng-click="sortTables.sortingTable('text_incapacity')">Motivo de la incapacidad</div>
+							  	</th>
+							  	<th scope="column" class="text-center th-incapacity-date" >
+						      	<div class="header" id="begda" ng-click="sortTables.sortingTable('begda')">Fecha Inicial</div>
+						  		</th>
+							    <th scope="column" class="text-center th-incapacity-date">Fecha Final</th>
+							    <th scope="column" class="text-center">Días hábiles asignados</th>
+							    <th scope="column" class="text-center">Días calendario recibidos</th>
+							  </tr>
+							  <tr>
+							  	<th scope="column">
+							  		<div class="row collapse ">
+							        <div class="small-2 columns">
+							          <span class="prefix" title="Filtro"><i class="fa fa-filter"></i></span>
+							        </div>
+							        <div class="small-10 columns">
+							          <input type="text" class="input-filter" ng-model="text_incapacity" placeholder="Ej. Enfermedad">
+							        </div>
+							      </div>
+							  	</th>
+							  	<th scope="column">
+							  		<div class="row collapse ">
+							        <div class="small-3 columns">
+							          <span class="prefix" title="Filtro"><i class="fa fa-filter"></i></span>
+							        </div>
+							        <div class="small-9 columns">
+							          <input type="text" class="input-filter" ng-model="begda" placeholder="Ej. dd/mm/yyyy">
+							        </div>
+							      </div>
+						  		</th>
+							    <th scope="column"></th>
+							    <th scope="column"></th>
+							    <th scope="column"></th>
+							  </tr>	
+						  </thead>
+						  <tbody>
+					  		<tr ng-repeat="permission in incapacities | filter : {begda_format: begda, text_incapacity: text_incapacity} | orderBy:sortTables.getPredicate():sortTables.getReverses()"> <!--   -->
+				  				<td scope="row" ng-bind="permission.text_incapacity"></td>
+							    <td scope="row" class="text-right" ng-bind="permission.begda_format"></td>
+							    <td scope="row" class="text-right" ng-bind="permission.endda_format"></td>
+							    <td scope="row" class="text-right" ng-bind="permission.days_working_incapacity"></td>
+							    <td scope="row" class="text-right" ng-bind="permission.days_taken_incapacity"></td>
+				  			</tr>
+						  </tbody>
+				    </table>
+				  </div>
+				</div>
 			</div>
 		</div>
 	</div>

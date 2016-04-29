@@ -8,52 +8,56 @@
 	<div ng-show="existsCompesatoryVacations()">
 		<div class="row">
       <div class="large-12 medium-12 columns">
-        <table>
-          <thead>
-            <tr>
-              <th scope="column" class="text-center">
-                <div class="header" id="qctxt" ng-click="sortTables.sortingTable('qctxt')">Descripción</div>
-              </th>
-              <th scope="column" class="text-center th-permission-date" >
-                <div class="header" id="begda" ng-click="sortTables.sortingTable('begda')">Fecha Inicial</div>
-              </th>
-              <th scope="column" class="text-center th-permission-date">Fecha Final</th>
-              <th scope="column" class="text-center">Días</th>
-            </tr> 
-            <tr>
-            	<th scope="column">
-                <div class="row collapse ">
-                  <div class="small-1 columns">
-                    <span class="prefix" title="Filtro"><i class="fa fa-filter"></i></span>
-                  </div>
-                  <div class="small-11 columns">
-                    <input type="text" class="input-filter" ng-model="concept_text_filter" placeholder="Ej. Convenio">
-                  </div>
-                </div>
-              </th>
-              <th scope="column">
-                <div class="row collapse ">
-                  <div class="small-3 columns">
-                    <span class="prefix" title="Filtro"><i class="fa fa-filter"></i></span>
-                  </div>
-                  <div class="small-9 columns">
-                    <input type="text" class="input-filter" ng-model="date_filter" placeholder="Ej. dd/mm/yyyy">
-                  </div>
-                </div>
-              </th>
-              <th scope="column"></th>
-              <th scope="column"></th>
-            </tr>
-          </thead>
-          <tbody>
-		  			<tr ng-repeat="(key, vacation) in compensatoryVacationRecords | filter : {begda_format: date_filter, qctxt: concept_text_filter} | orderBy:sortTables.getPredicate():sortTables.getReverses()"> 
-		  				<td scope="row" ng-bind="vacation.qctxt"></td>
-		  				<td scope="row" ng-bind="vacation.begda_format" class="text-right"></td>
-					    <td scope="row" ng-bind="vacation.endda | date:'dd/MM/yyyy'" class="text-right"></td>
-					    <td scope="row" ng-bind="vacation.numbr" class="text-right"></td>
-		  			</tr>
-				  </tbody>
-        </table>
+        <div class="table-wrapper">
+          <div class="scrollable">
+            <table class="responsive">
+              <thead>
+                <tr>
+                  <th scope="column" class="text-center">
+                    <div class="header" id="qctxt" ng-click="sortTables.sortingTable('qctxt')">Descripción</div>
+                  </th>
+                  <th scope="column" class="text-center th-permission-date" >
+                    <div class="header" id="begda" ng-click="sortTables.sortingTable('begda')">Fecha Inicial</div>
+                  </th>
+                  <th scope="column" class="text-center th-permission-date">Fecha Final</th>
+                  <th scope="column" class="text-center">Días</th>
+                </tr> 
+                <tr>
+                  <th scope="column">
+                    <div class="row collapse ">
+                      <div class="small-1 columns">
+                        <span class="prefix" title="Filtro"><i class="fa fa-filter"></i></span>
+                      </div>
+                      <div class="small-11 columns">
+                        <input type="text" class="input-filter" ng-model="concept_text_filter" placeholder="Ej. Convenio">
+                      </div>
+                    </div>
+                  </th>
+                  <th scope="column">
+                    <div class="row collapse ">
+                      <div class="small-3 columns">
+                        <span class="prefix" title="Filtro"><i class="fa fa-filter"></i></span>
+                      </div>
+                      <div class="small-9 columns">
+                        <input type="text" class="input-filter" ng-model="date_filter" placeholder="Ej. dd/mm/yyyy">
+                      </div>
+                    </div>
+                  </th>
+                  <th scope="column"></th>
+                  <th scope="column"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="(key, vacation) in compensatoryVacationRecords | filter : {begda_format: date_filter, qctxt: concept_text_filter} | orderBy:sortTables.getPredicate():sortTables.getReverses()"> 
+                  <td scope="row" ng-bind="vacation.qctxt"></td>
+                  <td scope="row" ng-bind="vacation.begda_format" class="text-right"></td>
+                  <td scope="row" ng-bind="vacation.endda | date:'dd/MM/yyyy'" class="text-right"></td>
+                  <td scope="row" ng-bind="vacation.numbr" class="text-right"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
 	</div>
