@@ -70,7 +70,7 @@
 	.controller('sessions.IndexLoginController', ['$scope' , function($scope){
 		$scope.classBackgroundImage = 'bglogin';
 		$scope.subdomain = $scope.getAppSubdomain();
-		if ($scope.subdomain == "rcn" || $scope.subdomain == "rcntv"){
+		if ($scope.subdomain == "rcn" || $scope.subdomain == "rcntv" || $scope.subdomain == "hritest"){
 			$scope.classBackgroundImage = 'image-login-rcn';
 		}
 	}])
