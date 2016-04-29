@@ -15,22 +15,7 @@
 			}
 		})
 	})
-	/*
-	.directive('tableInclude', function(){
-    return {
-      restrict: 'E',
-      scope: {
-        tclass: "="
-      },
-      templateUrl: 'app/vacation_records/table.tpl.html'
-    }
-  })
-  */
 	.controller('VacationRecords.ListController', ['$rootScope', '$scope', '$filter', 'enjoyedVacation', 'sortTables', function($rootScope, $scope, $filter, enjoyedVacation, sortTables){
-		$scope.table_include = "app/vacation_records/table.tpl.html"
-
-		//$scope.table_class1 = "responsive";
-		$scope.table_class2 = "";
 		$scope.enjoyedVacation = [];
 		$.each(enjoyedVacation.enjoyed_vacations, function(i, value){
     	var filterDate = value.begda;
