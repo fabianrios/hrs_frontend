@@ -8,46 +8,62 @@
   <div ng-show="existsBalanceVacations()">
     <div class="row">
       <div class="large-12 medium-12 columns">
-        <table>
-          <thead>
-            <tr>
-              <th scope="column" class="text-center">
-                <div class="header" id="ktext" ng-click="sortTables.sortingTable('ktext')">Descripción</div>
-              </th>
-              <th scope="column" class="text-center th-permission-date" >
-                <div class="header" id="origin" ng-click="sortTables.sortingTable('origin')">Fecha Inicial</div>
-              </th>
-              <th scope="column" class="text-center th-permission-date">Fecha Final</th>
-              <th scope="column" class="text-center">Días totales</th>
-              <th scope="column" class="text-center">Días tomados</th>
-              <th scope="column" class="text-center">Días pendientes</th>
-            </tr>
-            <tr>
-              <th scope="column">
-                <div class="fa fa-filter filter-icon"></div>
-                <input type="text" class="input-filter" ng-model="concept_text_filter" placeholder="Ej. Vacaciones RCN">
-              </th>
-              <th scope="column">
-                <div class="fa fa-filter filter-icon"></div>
-                <input type="text" class="input-filter" ng-model="date_filter" placeholder="Ej. dd/mm/yyyy">
-              </th>
-              <th scope="column"></th>
-              <th scope="column"></th>
-              <th scope="column"></th>
-              <th scope="column"></th>
-            </tr>
-          </thead>
-          <tbody ng-repeat="date in payroll_dates | filter : date_filter | orderBy:sortTables.getPredicate():sortTables.getReverses()">
-            <tr ng-repeat="(key, vacation) in vacationBalanceRecords | filter : {begda: date.origin, ktext: concept_text_filter} | orderBy:sortTables.getPredicate():sortTables.getReverses()"> 
-              <td scope="row" ng-bind="vacation.ktext"></td>
-              <td scope="row" ng-bind="vacation.begda | date:'dd/MM/yyyy'" class="text-right"></td>
-              <td scope="row" id="td_payroll_period" ng-bind="vacation.endda | date:'dd/MM/yyyy'" class="text-right"></td>
-              <td scope="row" ng-bind="vacation.anzhl" class="text-right"></td>
-              <td scope="row" ng-bind="vacation.kverb" class="text-right"></td>
-              <td scope="row" ng-bind="remainingDays(vacation)" class="text-right"></td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="table-wrapper">
+          <div class="scrollable">
+            <table class="responsive">
+              <thead>
+                <tr>
+                  <th scope="column" class="text-center">
+                    <div class="header" id="ktext" ng-click="sortTables.sortingTable('ktext')">Descripción</div>
+                  </th>
+                  <th scope="column" class="text-center th-permission-date" >
+                    <div class="header" id="origin" ng-click="sortTables.sortingTable('origin')">Fecha Inicial</div>
+                  </th>
+                  <th scope="column" class="text-center th-permission-date">Fecha Final</th>
+                  <th scope="column" class="text-center">Días totales</th>
+                  <th scope="column" class="text-center">Días tomados</th>
+                  <th scope="column" class="text-center">Días pendientes</th>
+                </tr>
+                <tr>
+                  <th scope="column">
+                    <div class="row collapse ">
+                      <div class="small-2 columns">
+                        <span class="prefix" title="Filtro"><i class="fa fa-filter"></i></span>
+                      </div>
+                      <div class="small-10 columns">
+                        <input type="text" class="input-filter" ng-model="concept_text_filter" placeholder="Ej. Vacaciones RCN">
+                      </div>
+                    </div>
+                  </th>
+                  <th scope="column">
+                    <div class="row collapse ">
+                      <div class="small-3 columns">
+                        <span class="prefix" title="Filtro"><i class="fa fa-filter"></i></span>
+                      </div>
+                      <div class="small-9 columns">
+                        <input type="text" class="input-filter" ng-model="date_filter" placeholder="Ej. dd/mm/yyyy">
+                      </div>
+                    </div>
+                  </th>
+                  <th scope="column"></th>
+                  <th scope="column"></th>
+                  <th scope="column"></th>
+                  <th scope="column"></th>
+                </tr>
+              </thead>
+              <tbody ng-repeat="date in payroll_dates | filter : date_filter | orderBy:sortTables.getPredicate():sortTables.getReverses()">
+                <tr ng-repeat="(key, vacation) in vacationBalanceRecords | filter : {begda: date.origin, ktext: concept_text_filter} | orderBy:sortTables.getPredicate():sortTables.getReverses()"> 
+                  <td scope="row" ng-bind="vacation.ktext"></td>
+                  <td scope="row" ng-bind="vacation.begda | date:'dd/MM/yyyy'" class="text-right"></td>
+                  <td scope="row" id="td_payroll_period" ng-bind="vacation.endda | date:'dd/MM/yyyy'" class="text-right"></td>
+                  <td scope="row" ng-bind="vacation.anzhl" class="text-right"></td>
+                  <td scope="row" ng-bind="vacation.kverb" class="text-right"></td>
+                  <td scope="row" ng-bind="remainingDays(vacation)" class="text-right"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
   </div>

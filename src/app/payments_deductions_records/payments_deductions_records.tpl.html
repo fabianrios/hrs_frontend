@@ -6,48 +6,62 @@
 		<div ng-show="existsPaymentsAndDeductions()">
 			<div class="row">
 				<div class="large-12 medium-12 columns">
-					<table>
-					  <thead>
-						  <tr>
-						  	<th id="th_pern" scope="column">
-					      	<div class="header" id="year_report" ng-click="sortTables.sortingTable('year_report')">Periodo</div>
-						  	</th>
-						  	<th scope="column" class="text-center" >
-					      	<div class="header" id="text" ng-click="sortTables.sortingTable('text')">Concepto Acumulado</div>
-					  		</th>
-					  		<th scope="column" class="text-center" >
-					      	<div class="header" id="text" ng-click="sortTables.sortingTable('text')">Concepto de nómina</div>
-					  		</th>
-						    <th scope="column" class="text-center">
-						    	Valor
-						    </th>
-						  </tr>
+					<div class="table-wrapper">
+					  <div class="scrollable">
+					    <table class="responsive">
+					    	<thead>
+								  <tr>
+								  	<th id="th_pern" scope="column">
+							      	<div class="header" id="year_report" ng-click="sortTables.sortingTable('year_report')">Periodo</div>
+								  	</th>
+								  	<th scope="column" class="text-center" >
+							      		Concepto acumulado
+							  		</th>
+								  	<th scope="column" class="text-center" >
+							      	<!--<div class="header" id="text" ng-click="sortTables.sortingTable('text')">-->Concepto de nómina<!--</div>-->
+							  		</th>
+								    <th scope="column" class="text-center">Valor</th>
+								  </tr>
 
-						  <tr>
-						  	<th scope="column">
-						  		<div class="fa fa-filter filter-icon"></div>
-						  		<input type="text" class="input-filter" ng-model="year_report_filter" placeholder="Ej. 2016">
-						  	</th>
-						  	<th scope="column">
-						  		<!--<div class="fa fa-filter filter-icon"></div>
-						  		<input type="text" class="input-filter" ng-model="payment_concept_filter" placeholder="Ej. Aportes">-->
-					  		</th>
-						    <th scope="column"></th>
-						    <th scope="column"></th>
-						  </tr>
-					  </thead>
-					  <tbody ng-repeat="(key1, payment) in payments_deductions | filter : {year_report: year_report_filter} | orderBy:sortTables.getPredicate():sortTables.getReverses()">
+								  <tr>
+								  	<th scope="column">
+								  		<div class="row collapse ">
+								        <div class="small-3 columns">
+								          <span class="prefix" title="Filtro"><i class="fa fa-filter"></i></span>
+								        </div>
+								        <div class="small-9 columns">
+								          <input type="text" class="input-filter" ng-model="year_report_filter" placeholder="Ej. 2016">
+								        </div>
+								      </div>
+								  	</th>
+								  	<th scope="column">
+								  		<div class="row collapse ">
+								        <!--<div class="small-1 columns">
+								          <span class="prefix" title="Filtro"><i class="fa fa-filter"></i></span>
+								        </div>
+								        <div class="small-11 columns">
+								          <input type="text" class="input-filter" ng-model="payment_concept_filter" placeholder="Ej. Aportes">-->
+								        </div>
+								      </div>
+							  		</th>
+								    <th scope="column"></th>
+								    <th scope="column"></th>
+								  </tr>
+							  </thead>
+							  <tbody ng-repeat="(key1, payment) in payments_deductions | filter : {year_report: year_report_filter} | orderBy:sortTables.getPredicate():sortTables.getReverses()">
 
-			  			<tr id="tr_payroll_period">
-				  			<td id="td_payroll_period" rowspan="{{ totalRecords(payment) }}" ng-bind="payment.year_report"></td>
-				  		</tr>
-			  			<tr ng-repeat="(key2, accumulated) in details_payments_deductions[payment.year_report]">
-						    <td scope="row" ng-bind="accumulated.text" rowspan="{{ accumulated.length }}" ng-if="accumulated.text"></td>
-						     <td scope="row" ng-bind="accumulated.detail" rowspan="{{ accumulated.length }}" ng-if="accumulated.detail"></td>
-						    <td scope="row" class="text-right" ng-bind="accumulated.value.toLocaleString(undefined,{minimumFractionDigits: 2})" ng-if="accumulated.value"></td>
-			  			</tr>
-					  </tbody>
-					</table>
+					  			<tr id="tr_payroll_period">
+						  			<td id="td_payroll_period" rowspan="{{ totalRecords(payment) }}" ng-bind="payment.year_report"></td>
+						  		</tr>
+					  			<tr ng-repeat="(key2, accumulated) in details_payments_deductions[payment.year_report]">
+								    <td scope="row" ng-bind="accumulated.text" rowspan="{{ accumulated.length }}" ng-if="accumulated.text"></td>
+								     <td scope="row" ng-bind="accumulated.detail" rowspan="{{ accumulated.length }}" ng-if="accumulated.detail"></td>
+								    <td scope="row" class="text-right" ng-bind="accumulated.value.toLocaleString(undefined,{minimumFractionDigits: 2})" ng-if="accumulated.value"></td>
+					  			</tr>
+							  </tbody>
+							</table>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

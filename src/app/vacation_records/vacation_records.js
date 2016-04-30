@@ -16,14 +16,20 @@
 		})
 	})
 	.controller('VacationRecords.ListController', ['$rootScope', '$scope', '$filter', 'enjoyedVacation', 'sortTables', function($rootScope, $scope, $filter, enjoyedVacation, sortTables){
-		$scope.enjoyedVacation = enjoyedVacation.enjoyed_vacations;
+		$scope.enjoyedVacation = [];
+		$.each(enjoyedVacation.enjoyed_vacations, function(i, value){
+    	var filterDate = value.begda;
+  		value.begda_format = $filter('date')(filterDate, 'dd/MM/yyyy');
+  		$scope.enjoyedVacation[i] = value;
+    });
+
 		$scope.date_filter  = ''
 		$scope.titleReport  = 'No se registra información de vacaciones';
 		$scope.titleReport2 = "en el último año.";
 
 		$scope.sortTables 	 = sortTables;
 		sortTables.registers = $scope.embargoes;
-		sortTables.setFilters(['', '']);
+		sortTables.setFilters(['atext', 'begda_format']);
 
 		$scope.existsEnjoyedVacations = function(){
 			return $scope.enjoyedVacation.length !== 0;

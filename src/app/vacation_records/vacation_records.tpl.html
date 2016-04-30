@@ -6,46 +6,62 @@
 	</div>
 
 	<div ng-show="existsEnjoyedVacations()">
-		<div class="row">
-      <div class="large-12 medium-12 columns">
-        <table>
-          <thead>
-            <tr>
-              <th scope="column" class="text-center">
-                <div class="header" id="atext" ng-click="sortTables.sortingTable('atext')">Descripción</div>
-              </th>
-              <th scope="column" class="text-center th-permission-date" >
-                <div class="header" id="begda" ng-click="sortTables.sortingTable('begda')">Fecha Inicial</div>
-              </th>
-              <th scope="column" class="text-center th-permission-date">Fecha Final</th>
-              <th scope="column" class="text-center">Días disfrutados</th> 
-					    <th scope="column" class="text-center">Días calendario</th>
-            </tr>
-            <tr>
-            	<th scope="column">
-                <div class="fa fa-filter filter-icon"></div>
-                <input type="text" class="input-filter" ng-model="concept_text_filter" placeholder="Ej. Vacaciones RCN">
-              </th>
-            	<th scope="column">
-                <div class="fa fa-filter filter-icon"></div>
-                <input type="text" class="input-filter" ng-model="date_filter" placeholder="Ej. dd/mm/yyyy">
-              </th>
-              <th scope="column"></th>
-              <th scope="column"></th>
-            	<th scope="column"></th>
-            </tr>
-          </thead>
-				  <tbody>
-		  			<tr ng-repeat="(key, vacation) in enjoyedVacation | filter : {begda: date_filter, atext: concept_text_filter} | orderBy:sortTables.getPredicate():sortTables.getReverses()"> 
-		  				<td scope="row" ng-bind="vacation.atext"></td>
-		  				<td scope="row" ng-bind="vacation.begda | date:'dd/MM/yyyy'" class="text-right"></td>
-					    <td scope="row" ng-bind="vacation.endda | date:'dd/MM/yyyy'" class="text-right"></td>
-					    <td scope="row" ng-bind="vacation.abwtg" class="text-right"></td>
-					    <td scope="row" ng-bind="vacation.kaltg" class="text-right"></td>
-		  			</tr>
-				  </tbody>
-        </table>
-      </div>
-    </div>
-	</div>
+    <div class="row">
+      <div class="large-12 small-12 medium-12 columns">
+        <div class="table-wrapper">
+          <div class="scrollable">
+            <table class="responsive">
+              <thead>
+                <tr>
+                  <th scope="column" class="text-center">
+                    <div class="header" id="atext" ng-click="sortTables.sortingTable('atext')">Descripción</div>
+                  </th>
+                  <th scope="column" class="text-center th-permission-date column-scrollable" >
+                    <div class="header" id="begda_format" ng-click="sortTables.sortingTable('begda_format')">Fecha Inicial</div>
+                  </th>
+                  <th scope="column" class="text-center th-permission-date column-scrollable">Fecha Final</th>
+                  <th scope="column" class="text-center column-scrollable">Días disfrutados</th> 
+                  <th scope="column" class="text-center column-scrollable">Días calendario</th>
+                </tr>
+                <tr>
+                  <th scope="column">
+                    <div class="row collapse ">
+                      <div class="small-2 columns">
+                        <span class="prefix" title="Filtro"><i class="fa fa-filter"></i></span>
+                      </div>
+                      <div class="small-10 columns">
+                        <input type="text" class="input-filter" ng-model="concept_text_filter" placeholder="Ej. Vacaciones RCN">
+                      </div>
+                    </div>
+                  </th>
+                  <th scope="column" class="column-scrollable">
+                    <div class="row collapse ">
+                      <div class="small-3 columns">
+                        <span class="prefix" title="Filtro"><i class="fa fa-filter"></i></span>
+                      </div>
+                      <div class="small-9 columns">
+                        <input type="text" class="input-filter" ng-model="date_filter" placeholder="Ej. dd/mm/yyyy">
+                      </div>
+                    </div>
+                  </th>
+                  <th scope="column" class="column-scrollable"></th>
+                  <th scope="column" class="column-scrollable"></th>
+                  <th scope="column" class="column-scrollable"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="(key, vacation) in enjoyedVacation | filter : {begda_format: date_filter, atext: concept_text_filter} | orderBy:sortTables.getPredicate():sortTables.getReverses()"> 
+                  <td scope="row" ng-bind="vacation.atext"></td>
+                  <td scope="row" ng-bind="vacation.begda_format" class="text-right column-scrollable"></td>
+                  <td scope="row" ng-bind="vacation.endda | date:'dd/MM/yyyy'" class="text-right column-scrollable"></td>
+                  <td scope="row" ng-bind="vacation.abwtg" class="text-right column-scrollable"></td>
+                  <td scope="row" ng-bind="vacation.kaltg" class="text-right column-scrollable"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div> <!-- div class="scrollable" -->
+        </div> <!-- div class="table-wrapper" -->
+      </div> <!-- div class="large-12 small-12 medium-12 columns" -->
+  	</div> <!-- div class="row" -->  
+  </div> <!-- div ng-show="existsEnjoyedVacations()" -->
 </div>

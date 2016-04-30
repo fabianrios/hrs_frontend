@@ -364,7 +364,7 @@
     //toggle expand vacation box
     $rootScope.xtoggle = function(e){
       $(e.currentTarget).toggleClass("active");
-      $(".dashboard-profile").toggleClass("smallish");
+      $(".dashboard-profile, .dashboard-profile-rcn").toggleClass("smallish");
     };
 	    
     //sort stuff icon-bar

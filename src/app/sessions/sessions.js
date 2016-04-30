@@ -6,7 +6,8 @@
 		$stateProvider
 		.state('login', {
 			abstract: true,
-			templateUrl: 'app/layouts/login.tpl.html'
+			templateUrl: 'app/layouts/login.tpl.html',
+			controller: 'sessions.IndexLoginController'
 		})
 		.state('login.auth', {
 			url: '/login',
@@ -64,6 +65,13 @@
       .catch(function(resp) {
     		$scope.errors = resp.data.errors;
       });
+		}
+	}])
+	.controller('sessions.IndexLoginController', ['$scope' , function($scope){
+		$scope.classBackgroundImage = 'bglogin';
+		$scope.subdomain = $scope.getAppSubdomain();
+		if ($scope.subdomain == "rcn" || $scope.subdomain == "rcntv" || $scope.subdomain == "hritest"){
+			$scope.classBackgroundImage = 'image-login-rcn';
 		}
 	}])
 	.controller('sessions.LoginController', ['$scope', '$auth', '$location', function($scope, $auth, $location){
