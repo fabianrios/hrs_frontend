@@ -80,7 +80,7 @@
 .dashboard-profile-rcn {
 	position: relative;
 	background-color:#9ab3d3;
-	background-image: url("/images/banner_rcntv.png"); 
+	background-image: url("/images/banner_rcntv_opt.png"); 
 	background-position: 0 -200px;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
@@ -1330,17 +1330,40 @@ ul.no-bullet li ul.childs{
 }
 
 .image-login-rcn {
-	background: url('/images/banner_rcntv.png') no-repeat 0 0; 	
+	background: url('/images/banner_rcntv_opt.png') no-repeat 0 0; 	
 	-webkit-background-size: cover;
 	background-size: cover;
-	height: 750px;	
+	height: 720px;	
+
+	@media screen and (min-width: 1280px) {
+	
+		height: 750px;	
+	
+	}
+	@media screen and (min-width: 1920px) {
+	
+		height: 1080px;	
+	
+	}
 }
 
 .bglogin{
 	background: url('/images/bgihr.jpg') no-repeat 0 0; 
 	-webkit-background-size: cover;
 	background-size: cover;
-	height: 750px;	
+	height: 720px;	
+
+	@media screen and (min-width: 1280px) {
+	
+		height: 750px;	
+	
+	}
+	@media screen and (min-width: 1920px) {
+	
+		height: 1080px;	
+	
+	}
+
 	label{
 		color: #fff;
 	}
