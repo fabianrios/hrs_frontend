@@ -15,28 +15,6 @@
 			}
 		})
 	})
-	/*.filter('specialTable', function() {
-        return function(array, val_filter) {
-            var filter = [];
-
-            angular.forEach(array, function(dad) {
-                if (dad.text){
-                	if (dad.text.indexOf(val_filter) >= 0){
-                		filter.push(dad);
-                		//angular.forEach(array, function(son) {
-                		//	if (son.detail){
-                		//		if (dad.id == son.idFather){
-                		//			filter.push(son);
-                		//		}
-                		//	}
-                		//});
-                	}
-                }
-            });
-            //console.log(filter);
-            //return (filter.length > 0) ? filter:array;
-        }
-    })*/
 	.controller('PaymentsDeductionsRecords.ListController', ['$rootScope', '$scope', '$filter', 'paymentsDeductions', '$state', 'sortTables', function($rootScope, $scope, $filter, paymentsDeductions, $state, sortTables){
 		$scope.payments_deductions = paymentsDeductions.payments_and_deductions[0].payments_deductions;
 		$scope.warningMessage      = 'app/management_services/warning.tpl.html';
@@ -53,7 +31,7 @@
 				$state.transitionTo('main.views.dashboard');
 			}, 2000);
 		}else{
-			//console.log($scope.payments_deductions[0]);
+			console.log($scope.payments_deductions);
 			$scope.data.position_filter = parseInt($scope.payments_deductions[0]);
 			$scope.employeeData    = $scope.payments_deductions[0];
 		}
@@ -85,6 +63,7 @@
 			return totalreports;
 		}
 			var arrayPayments = [];
+
 			angular.forEach($scope.payments_deductions,function(array,key1){
 				arrayPayments[array.year_report] = [];
 				var idGroup = 1; //Id para relacionar al padre con su grupo de hijos (tabla multiple)
@@ -97,5 +76,6 @@
 				});
 			});
 			$scope.details_payments_deductions = arrayPayments;		
+
 	}]);
 }());
