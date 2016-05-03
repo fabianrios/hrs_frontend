@@ -1,5 +1,5 @@
 <div class="padding-container">
-	<message-permission ng-show="showMessagePermission()" titulo="permission_alert"></message-permission>
+	<!--<message-permission ng-show="showMessagePermission()" titulo="permission_alert"></message-permission>-->
 	<div ng-if="!showMessagePermission()">
 		<h3 class="expand-title text-center first-one">Ingresos y Retenciones</h3>
 		<div ng-hide="existsPaymentsAndDeductions()" ng-include="warningMessage"></div>
@@ -40,8 +40,8 @@
 								          <span class="prefix" title="Filtro"><i class="fa fa-filter"></i></span>
 								        </div>
 								        <div class="small-11 columns">
-								          <input type="text" class="input-filter" ng-model="payment_concept_filter" placeholder="Ej. Aportes">-->
-								        </div>
+								          <input type="text" class="input-filter" ng-model="payment_concept_filter" placeholder="Ej. Aportes">
+								        </div>-->
 								      </div>
 							  		</th>
 								    <th scope="column"></th>
