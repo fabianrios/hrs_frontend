@@ -206,7 +206,10 @@
 
 		$scope.onProgress = function(progress) {
 			$scope.progress = progress;
-			$scope.progreso = (100 / progress.total) * progress.loaded;
+			$scope.progreso = Math.round((100 / $scope.progress.total) * $scope.progress.loaded);
+			if($scope.progreso === 100){
+				$("#progress_file").hide('highlight');
+			}
 		}
 	}])
 	.controller('Certificates.Nomina.MainController', ['$rootScope', '$scope', '$http', '$state', '$filter', 'HRAPI_CONF', '$stateParams', 'CONSTANT', function($rootScope, $scope, $http,  $state, $filter, HRAPI_CONF, $stateParams, CONSTANT){
@@ -280,7 +283,10 @@
 
 		$scope.onProgress = function(progress) {			
 			$scope.progress = progress;
-			$scope.progreso = (100 / progress.total) * progress.loaded;
+			$scope.progreso = Math.round((100 / $scope.progress.total) * $scope.progress.loaded);
+			if($scope.progreso === 100){
+				$("#progress_file").hide('highlight');
+			}
 		}
 	
 
@@ -348,7 +354,10 @@
 
 		$scope.onProgress = function(progress) {
 			$scope.progress = progress;
-			$scope.progreso = (100 / progress.total) * progress.loaded;
+			$scope.progreso = Math.round((100 / $scope.progress.total) * $scope.progress.loaded);
+			if($scope.progreso === 100){
+				$("#progress_file").hide('highlight');
+			}
 		}	
 	}]);
 }());
