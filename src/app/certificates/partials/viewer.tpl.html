@@ -48,9 +48,19 @@
    </div>
 </nav>
 
-<h5 ng-if="!no_pdf" class="text-center subheader" ng-show="loading"> Cargando <b>{{progreso}}</b> de <span>100%</span></h5>
+<div id="progress_file" ng-if="!no_pdf">
+  <div id="progress_file">
+    <img src="images/282.gif" width="50" alt="Cargando">
+  </div>
+  <!--
+  <span class="meter blue" style="width:{{progreso}}%">
+    <p class="percent">{{progreso}}%</p>
+  </span>
+  -->
+</div>
+
 <canvas ng-hide="no_pdf" id="pdf" class="rotate0"></canvas>
-<div ng-if="!no_pdf" class="finalpdf"></div>  
+<div ng-if="!no_pdf" class="finalpdf"></div>
 <!--
 <div ng-if="no_pdf">
   <div data-alert class="alert-box warning">
