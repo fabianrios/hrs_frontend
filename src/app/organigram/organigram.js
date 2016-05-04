@@ -19,6 +19,7 @@
     })
 	
   .controller('Organigram.MainController', ['$scope', '$http', 'organigram', 'HRAPI_CONF', '$stateParams', function($scope, $http, organigram, HRAPI_CONF, $stateParams){
+  	$scope.reverse = false;
   	$scope.employeeData      = null;
 		$scope.modalDataEmployee = 'app/includes/modal_data_employee.tpl.html';
 
