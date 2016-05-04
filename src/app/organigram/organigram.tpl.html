@@ -11,7 +11,7 @@
 						<h5 class="no-margin maxup">{{organigram.posicion | special_capitalize}}</h5>
 					</div>
 					<ul class="no-bullet">
-						<li ng-repeat="(key, employee) in organigram.children">
+						<li ng-repeat="(key, employee) in organigram.children | orderBy:'short_name':reverse">
 							<div class="pictuare first-line" 
 							ng-mouseover="changedOverIcon($event, key)" 
 							ng-mouseleave="changedDownIcon($event, key)" 
@@ -24,12 +24,12 @@
 								<a><img ng-src="{{image_organigram(employee.image.image.url)}}" alt="" /></a>
 							</div>
 							<div class="org-info hovered">
-								<a ng-show="showMasterData(employee)" ui-sref="#" ng-click="showModal(employee)" class="capitalize" >
+								<a ng-show="showMasterData(employee)" ng-click="showModal(employee)" >
 									<h5 class="no-margin subheader maxup fixdown">
 										{{employee.short_name | special_capitalize:'own'}}
 									</h5>
 									<h6 class="no-margin subheader maxup">
-										{{employee.posicion | lowercase}}
+										{{employee.posicion | special_capitalize}}
 									</h6>
 								</a>
 								<div ng-hide="showMasterData(employee)" class="contact-name" ng-click="showModal(employee)">
@@ -37,23 +37,23 @@
 										{{employee.short_name | special_capitalize:'own'}}
 									</h5>
 									<h6 class="no-margin subheader maxup">
-										{{employee.posicion | lowercase}}
+										{{employee.posicion | special_capitalize}}
 									</h6>
 								</div>
 							</div>
 
 							<ul class="childs no-bullet" ng-if="employee.children || employee._children">
-								<li ng-repeat="razo in employee.children">
+								<li ng-repeat="razo in employee.children | orderBy:'short_name':reverse">
 									<div class="pictuare second-line">
 										<a><img ng-src="{{image_organigram(razo.image.url)}}" alt="" /></a>
 									</div>
 									<div class="org-info">
-										<a ng-show="showMasterData(razo)" ui-sref="#" ng-click="showModal(razo)" class="capitalize" >
+										<a ng-show="showMasterData(razo)" ng-click="showModal(razo)" >
 											<h5 class="no-margin subheader maxup fixdown">
 												{{razo.short_name | special_capitalize:'own'}}
 											</h5>
 											<h6 class="no-margin subheader maxup">
-												{{razo.posicion | lowercase}}
+												{{razo.posicion | special_capitalize}}
 											</h6>
 										</a>
 										<div ng-hide="showMasterData(razo)" class="contact-name" ng-click="showModal(razo)">
@@ -61,22 +61,22 @@
 												{{razo.short_name | special_capitalize:'own'}}
 											</h5>
 											<h6 class="no-margin subheader maxup">
-												{{razo.posicion | lowercase}}
+												{{razo.posicion | special_capitalize}}
 											</h6>
 										</div>
 									</div>
 								</li>
-								<li ng-repeat="razo in employee._children">
+								<li ng-repeat="razo in employee._children | orderBy:'short_name':reverse">
 									<div class="pictuare second-line">
 										<a><img ng-src="{{razo.image.url}}" alt="" /></a>
 									</div>
 									<div class="org-info">
-										<a ng-show="showMasterData(razo)" ui-sref="#" ng-click="showModal(razo)" class="capitalize" >
+										<a ng-show="showMasterData(razo)" ng-click="showModal(razo)" >
 											<h5 class="no-margin subheader maxup fixdown">
 												{{razo.short_name | special_capitalize:'own'}}
 											</h5>
 											<h6 class="no-margin subheader maxup">
-												{{razo.posicion | lowercase}}
+												{{razo.posicion | special_capitalize}}
 											</h6>
 										</a>
 										<div ng-hide="showMasterData(razo)" class="contact-name" ng-click="showModal(razo)">
@@ -84,7 +84,7 @@
 												{{razo.short_name | special_capitalize:'own'}}
 											</h5>
 											<h6 class="no-margin subheader maxup">
-												{{razo.posicion | lowercase}}
+												{{razo.posicion | special_capitalize}}
 											</h6>
 										</div>
 									</div>

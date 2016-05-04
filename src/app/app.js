@@ -225,6 +225,7 @@
     return function (value,type){
       if (!value) return '';
       var words = value.split(" ");
+      console.log(value+' => '+words.length);
       var newValue = "";
       var newWord;
       var exceptionsAcronyms = ['TI','BTL','SAP'];
