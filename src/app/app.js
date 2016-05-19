@@ -148,7 +148,7 @@
     });
 
     // Enruta a la login
-    $urlRouterProvider.otherwise('/home');
+    $urlRouterProvider.otherwise('/login');
   
     // Configura estados de aplicacion ui-router
     $stateProvider
