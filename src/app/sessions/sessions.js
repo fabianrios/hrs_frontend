@@ -94,6 +94,9 @@
 		 }else if ($scope.subdomain == "publicar"){
 				$scope.logo = "images/publicar_logo.png";
 				$scope.viewforgotpassword = true;
+		 }else if ($scope.subdomain == "sodexo"){
+				$scope.logo = "images/sodexo_logo.png";
+				$scope.viewforgotpassword = true;
 		 }else{
 		 	$scope.logo = "images/hrs_logo.png";
 		 	$scope.viewforgotpassword = true;

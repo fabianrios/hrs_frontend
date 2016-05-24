@@ -15,7 +15,7 @@
 							<div class="right actions">
 								<a class="text-right" href="">
 									<span data-tooltip aria-haspopup="true" class="has-tip" title="Días que a la liquidación de la última nómina tiene disponibles por este concepto.">
-										<i class="fa fa-info-circle fa-lg"></i>
+										<i class="fa fa-info-circle fa-lg yellow_icon"></i>
 									</span>
 								</a>
 								<a class="text-right closing" href="">
@@ -51,7 +51,7 @@
 							<div class="right actions">
 								<a class="text-right" href="">
 									<span data-tooltip aria-haspopup="true" class="has-tip" title="Valor que a la liquidación de la última nómina tiene causados en la compañía. Este valor será consignado al Fondo de Cesantías antes del 14 de Febrero de cada año.">
-										<i class="fa fa-info-circle fa-lg"></i>
+										<i class="fa fa-info-circle fa-lg yellow_icon"></i>
 									</span>
 								</a>
 								<a class="text-right closing" href="">
@@ -101,7 +101,7 @@
 							<div class="right actions">
 								<a class="text-right" href="">
 									<span data-tooltip aria-haspopup="true" class="has-tip" title="Valor de los intereses a las cesantías causados a 31 de Diciembre de cada año.">
-										<i class="fa fa-info-circle fa-lg"></i>
+										<i class="fa fa-info-circle fa-lg yellow_icon"></i>
 									</span>
 								</a>
 								<a class="text-right closing" href="">
@@ -152,7 +152,7 @@
 							<div class="right actions">
 								<a class="text-right" href="">
 									<span data-tooltip aria-haspopup="true" class="has-tip" title="Los ingresos hacen referencia a la remuneración económica que recibe el empleado. Las Deducciones son los descuentos que le realiza la empresa al empleado por concepto de aporte a seguridad social, préstamos, entre otros.">
-										<i class="fa fa-info-circle fa-lg"></i>
+										<i class="fa fa-info-circle fa-lg yellow_icon"></i>
 									</span>
 								</a>
 								<a class="text-right closing" href="">
@@ -257,7 +257,7 @@
 							<div class="right actions">
 								<a class="text-right" href="">
 									<span data-tooltip aria-haspopup="true" class="has-tip" title="Empleados que cumplen años en último mes.">
-										<i class="fa fa-info-circle fa-lg"></i>
+										<i class="fa fa-info-circle fa-lg yellow_icon"></i>
 									</span>
 								</a>
 								<a class="text-right closing" href="">
@@ -304,7 +304,7 @@
 							<div class="right actions">
 								<a class="text-right" href="">
 									<span data-tooltip aria-haspopup="true" class="has-tip" title="Fecha en la cual los empleados cumplen año(s) de ingreso a la compañía.">
-										<i class="fa fa-info-circle fa-lg"></i>
+										<i class="fa fa-info-circle fa-lg yellow_icon"></i>
 									</span>
 								</a>
 								<a class="text-right closing" href="">
@@ -322,10 +322,10 @@
 										</a>
 									</div>
 									<h6 class="no-margin">
-										<a ng-show="showMasterData(empleado)" ui-sref="#" ng-click="showModal(empleado)" class="capitalize" >
+										<a ng-hide="showMasterData(empleado)" ui-sref="#" ng-click="showModal(empleado)" class="capitalize" >
 											{{empleado.name | special_capitalize:'own'}} {{empleado.lastname | special_capitalize:'own'}}
 										</a>
-										<div ng-hide="showMasterData(empleado)" class="contact-name" ng-click="showModal(empleado)">
+										<div ng-show="showMasterData(empleado)" class="contact-name" ng-click="showModal(empleado)">
 											{{empleado.name | special_capitalize:'own'}} {{empleado.lastname | special_capitalize:'own'}}
 										</div>
 									</h6>
@@ -353,7 +353,7 @@
 							<div class="right actions">
 								<a class="text-right" href="">
 									<span data-tooltip aria-haspopup="true" class="has-tip" title="Empleados nuevos en el mes actual">
-										<i class="fa fa-info-circle fa-lg"></i>
+										<i class="fa fa-info-circle fa-lg yellow_icon"></i>
 									</span>
 								</a>
 								<a class="text-right closing" href="">
@@ -401,7 +401,7 @@
 							<div class="right actions">
 								<a class="text-right" href="">
 									<span data-tooltip aria-haspopup="true" class="has-tip" title="Artículos de interés publicados por los directivos de la empresa.">
-										<i class="fa fa-info-circle fa-lg"></i>
+										<i class="fa fa-info-circle fa-lg yellow_icon"></i>
 									</span>
 								</a>
 								<a class="text-right closing" href="">

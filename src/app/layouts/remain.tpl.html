@@ -15,9 +15,33 @@
 		</nav>
 		<aside class="left-off-canvas-menu" ui-view="navbar"></aside>
 		<aside class="right-off-canvas-menu" ui-view="sidebar"></aside>
+		<section class="container-slide">
+			<div class="row" id="main-slide">
+				<div class="large-12 columns">
+					<div class="orbit-container">
+						<ul id="featured1" class="example-orbit" data-orbit>
+							<a href="http://sodexobeneficios.co/companias/dotacion-pass" target="_blank">
+								<li class="active">
+							    <img src="images/slide_demo/image_1.jpg" alt="slide 1" />
+							  </li>
+						  </a>
+						  <a href="https://www.youtube.com/watch?v=7afIpcWTGlY" target="_blank">
+							  <li> 
+							    <img src="images/slide_demo/image_2.png" alt="slide 2" />
+							  </li>
+						  </a>
+						  <li>
+						    <img src="images/slide_demo/image_3.png" alt="slide 3" />
+						  </li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
 		<section class="main-section">		
 		<!-- {{where}} -->
-			<div class="{{user.company.banner_dashboard}} {{user.company.profile_view}}" ui-view="profile"></div>
+			<!--<div class="{{user.company.banner_dashboard}} {{user.company.profile_view}}" ui-view="profile"></div>-->
+
 			<!--<div class="expandbanner animate-if" ui-view="expandbanner" ng-if="ubicacion == 'main.views.vacations' || ubicacion == 'main.views.employee_info' || ubicacion == 'main.views.employee_info_lookup' || ubicacion == 'main.views.severance'"></div>
 			<div class="close-banner" ng-if="ubicacion == 'main.views.vacations' || ubicacion == 'main.views.employee_info' || ubicacion == 'main.views.employee_info_lookup' || ubicacion == 'main.views.severance'"><a href="" ng-click="toggle($event)"></a></div>-->
 			

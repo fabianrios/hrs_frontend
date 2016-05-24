@@ -171,14 +171,7 @@
           templateUrl: 'app/navbar/navbar.tpl.html',
           controller: 'Navbar.NavbarController'
         },
-        profile: {
-          templateUrl: 'app/profile/profile.tpl.html',
-          controller: 'Profile.ProfileController'
-        },
-        expandbanner: {
-          templateUrl: 'app/expandbanner/expandbanner.tpl.html',
-          controller: 'Expandbanner.ExpandbannerController'
-        },
+        
         sidebar: {
           templateUrl: 'app/sidebar/sidebar.tpl.html',
           controller: 'Sidebar.SidebarController'
@@ -350,6 +343,16 @@
           // [ move | overlap_single | overlap ]
           open_method: 'move', 
           close_on_click : true
+        }
+      });
+      $(document).foundation({
+        orbit: {
+          animation: 'slide',
+          timer_speed: 1000,
+          pause_on_hover: true,
+          animation_speed: 3000,
+          navigation_arrows: true,
+          bullets: true
         }
       });
     });

@@ -37,6 +37,9 @@
   height: 100%;
 }
 
+#main-slide ul{
+	margin-top:100px;
+}
 .main-container{
 	padding: 0;
 	background:white;
@@ -240,7 +243,7 @@
         text-shadow: 0 -1px 1px rgba(255,255,255,.6);
 	}
 	a{
-		color: #123A73;
+		color: #2F2F2F;
 		text-shadow: 0 1px 1px rgba(255, 255, 255, 0.3);
 	}
 //	@media only screen and (min-width: 40.063em) and (max-width: 64em) {
@@ -409,6 +412,7 @@
 		position: relative;
 		right: 6px;
 	}
+	
 }
 
 .workers-icon{
@@ -442,7 +446,6 @@
     display: inline-block;
     height: 45px;
     width: 45px;
-    background: rgba(0,0,0,.1);
     position: relative;
     top: -10px;
     right: -10px;
@@ -450,6 +453,8 @@
 	    position: relative;
 	    right: 12px;
 	    top: 10px;
+	    //color:#f21 !important;
+	    color:#fff !important;
 	}
 }
 
@@ -462,14 +467,12 @@
 			top: 0px;
 		}
 		top: -15px;
-		color: $header;
 		font-size: 15px;
 		display: inline-block;
 		margin: 0 2px !important;
 		a{
 			position: relative;
 			top: 2px;	
-			color: $header;
 			text-shadow: 0 1px 1px rgba(255, 255, 255, 0.6);
 			&:hover, &:focus {
 			    color: $hover;
@@ -603,6 +606,9 @@
 			a{
 				color: lighten($header-hover,80%);
 			}
+		}
+		i{
+			color:#fff !important;
 		}
 	}
 }
@@ -1047,7 +1053,7 @@ span{
 		border: 2px solid $header;
 	}
   &.boss{
-    border: 2px solid #1C6087;
+    border: 2px solid $header;
   }
 }
 
@@ -1324,7 +1330,7 @@ ul.no-bullet li ul.childs{
 
 .master-data, .datos_empresariales{
 	h4{
-		color: $header;
+		color: $icons;
 		margin: 20px 0;
 	}
 }
