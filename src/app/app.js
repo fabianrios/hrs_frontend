@@ -100,6 +100,7 @@
     'payments_deductions',
     'payments_deductions_records',
     'historical_salaries',
+    'calculator',
   ])
 
   .config(function($stateProvider, $httpProvider, $urlRouterProvider, HRAPI_CONF, AuthProvider, AuthInterceptProvider, $authProvider){ //ngS3Config, 
@@ -240,7 +241,7 @@
     MESSAGE_PERMISSION: "usuario no autorizado"
   })
   .run(function($filter, $http, $rootScope, $state, $window, HRAPI_CONF, $auth , $anchorScroll, $location){       
-      
+   
     /////////////
     //
     //  BROADCAST  
@@ -264,6 +265,13 @@
         return host.split('.')[0];
       }
     }
+     /////////////
+    //
+    //  CALCULATOR  
+    //
+    /////////////
+    $rootScope.ubication = 1;
+    console.log($rootScope.ubication);
 
     $rootScope.$on('$stateChangeStart',
         function(event, toState, toParams, fromState, fromParams){

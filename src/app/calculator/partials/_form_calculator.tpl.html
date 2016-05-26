@@ -1,0 +1,215 @@
+<div class="padding-container">
+	<div>
+		<h3 class="expand-title text-center first-one">Ingreso de información</h3>
+		<form id="calculator" ng-submit="submitCalulator()">
+		  	<div class="box">
+			  	<div class="row">
+				  	<div class="large-6 columns">
+				  		<div class="small-4 columns">
+				  			<label for="right-label" class="left inline">Tipo</label>
+				  		</div>
+				  		<div class="small-8 columns">
+				  			<select class="dropdown-menu-yellow">
+					          <option value="integral" class="option dropdown-menu-yellow">Integral</option>
+					          <option value="convencional" class="option dropdown-menu-yellow">Convencional</option>
+					        </select>
+				  		</div>
+				   	</div>
+
+					<div class="large-6  columns">
+				  		<div class="small-4 columns">
+				  			<label for="right-label" class="right inline">Valor</label>
+				  		</div>
+				  		<div class="small-8 columns">
+				  			<input type="text" id="right-label" placeholder="Valor" class="text-yellow">
+				  		</div>
+				   	</div>
+				</div>
+				<div class="row">
+				  	<div class="small-6 columns left">
+				  		<div class="small-4 columns">
+				  			<label for="right-label" class="left inline">Implementación</label>
+				  		</div>
+				  		<div class="small-8 columns">
+				  			<select class="dropdown-menu-yellow">
+					          <option value="nosalario" class="dropdown-menu-yellow">No Salario</option>
+					          <option value="salario" class="dropdown-menu-yellow">Salario</option>
+					        </select>
+				  		</div>
+				   	</div>
+				</div>		
+				<div class="row">
+				  	<div class="large-6 columns left">
+				  		<div class="small-4 columns">
+				  			<label for="simulation" class="left inline">Tipo de simulación</label>
+				  		</div>
+				  		<div class="small-8 columns">
+				  			<select id="simulation" class="dropdown-menu-yellow">
+					          <option value="recomposicion" class="dropdown-menu-yellow">Recomposición</option>
+					          <option value="incremento" class="dropdown-menu-yellow">Incremento</option>
+					        </select>
+				  		</div>
+				   	</div>
+				</div>		
+				<div class="row">
+					<div class="large-6  columns right">
+				  		<div class="small-4 columns">
+				  			<label for="increment" class="left inline">Valor Incremento</label>
+				  		</div>
+				  		<div class="small-8 columns">
+				  			<input type="text" id="increment" placeholder="Valor" class="text-yellow">
+				  		</div>
+				   	</div>
+				</div>			
+				<div class="row">
+					<div class="large-6  columns right">
+				  		<div class="small-4 columns">
+				  			<label for="right-label" class="left inline">Valor Remposición:</label>
+				  		</div>
+				  		<div class="small-8 columns">
+				  			<input type="text" id="right-label" class="text-yellow" placeholder="Valor" value="3.000.000">
+				  		</div>
+				   	</div>
+				</div>
+			</div>
+			<div class="row">
+		  		<div class="large-12 columns">
+		  			<h3 class="expand-title text-center first-one">Distribución de beneficios</h3>
+		  			<br/>
+		  		</div>
+		  	</div>
+		  	<div class="box" style="padding:0">
+			  	<div class="row">
+			  		<div class="large-12 columns black">
+			  			<div class="small-3 special-box columns gray">
+			  				<h6><b>Salario Base:</b><br>###</h6>
+			  			</div>
+			  			<div class="small-3 special-box columns white">
+			  				<h6><b>Sodexo: </b><br>$ 3.000.000</h6>
+			  			</div>
+			  			<div class="small-3 special-box columns gray">
+			  				<h6><b>Recomposición:</b><br>20%</h6>
+			  			</div>
+			  			<div class="small-3 special-box columns white" style="border-right:none !important;">
+			  				<h6><b>Total: </b><br>$ 15.000.000</h6>
+			  			</div>	
+			  		</div>
+			  	</div>
+			  	<div class="row">
+			  		<br/>
+			  		<div class="small-12 columns">
+			  			<div class="medium-9 columns">
+			  				<label>Alimentación:</label>
+			  			</div>
+			  			<div class="medium-3 columns">
+			  				<input type="text" class="text-yellow" value="$2.000.000">
+			  			</div>
+			  		</div>
+			  	</div>
+			  	<div class="row">
+			  		<div class="large-12 columns">
+			  			<div class="medium-3 columns">
+			  				<label>Movilidad:</label>
+			  			</div>
+			  			<div class="medium-3 columns">
+			  				<label>Es necesario para sus funciones</label>
+			  			</div>
+			  			<div class="medium-3 columns">
+			  				<select class="dropdown-menu-yellow">
+					          <option value="Si">Si</option>
+					          <option value="No">No</option>
+					        </select>
+			  			</div>
+			  			<div class="medium-3 columns">
+			  				<input type="text" class="text-yellow" value="$2.000.000">
+			  			</div>
+			  		</div>
+			  	</div>
+			  	<div class="row">
+			  		<div class="large-12 columns">
+			  			<div class="medium-9 columns" >
+			  				<label>Bienestar:</label>
+			  			</div>
+			  			<div class="medium-3 columns" >
+			  				<input type="text" class="text-yellow" value="$">
+			  			</div>
+			  		</div>
+			  	</div>
+			  	<div class="row">
+			  		<div class="large-12 columns" >
+			  			<div class="medium-3 columns" >
+			  				<label>Educación:</label>
+			  			</div>
+			  			<div class="medium-3 columns " >
+			  				<label>Cumple con el Decreto 3750/86</label>
+			  			</div>
+			  			<div class="medium-3 columns" >
+			  				<select class="dropdown-menu-yellow">
+					          <option value="Si">Si</option>
+					          <option value="No">No</option>
+					        </select>
+			  			</div>
+			  			<div class="medium-3 columns" >
+			  				<input type="text" class="text-yellow" value="$">
+			  			</div>
+			  		</div>
+			  	</div>
+			  	<div class="row">
+			  		<div class="large-12 columns" >
+			  			<div class="medium-3 columns" >
+			  				<label>Dotación:</label>
+			  			</div>
+			  			<div class="medium-3 columns" >
+			  				<label>Menos de 2 SMLV</label>
+			  			</div>
+			  			<div class="medium-3 columns" >
+			  				<select class="dropdown-menu-yellow">
+					          <option value="Si">Si</option>
+					          <option value="No">No</option>
+					        </select>
+			  			</div>
+			  			<div class="medium-3 columns" >
+			  				<input type="text" class="text-yellow" value="$">
+			  			</div>
+			  		</div>
+			  	</div>
+			  	<div class="row">
+			  		<div class="large-12 columns" >
+			  			<div class="medium-9 columns">
+			  				<label>Otros (Efectivo, Premium, etc.)</label>
+			  			</div>
+			  			<div class="medium-3 columns" >
+			  				<input type="text" class="text-yellow" value="$">
+			  			</div>
+			  		</div>
+			  	</div>
+			  	<div class="row">
+			  		<div class="large-12 columns">
+			  			<div class="medium-9 columns total">
+			  				<h5>Total:</h5>
+			  			</div>
+			  			<div class="medium-3 columns total">
+			  				<h5 class="right">3.000.000</h5>
+			  			</div>
+			  		</div>
+			  	</div>
+			  	<div class="row">
+			  		<div class="large-12 columns">
+				  		<div class="large-6 columns right">
+				  			<button type="submit" class="button small right next">Guardar</button>
+				  		</div>
+			  		</div>
+			  	</div>
+			  	<!-- Mensaje Success Form-->
+			  	<div class="row" ng-show="flagSubmitCalculator">
+					<div class="large-12 columns">
+						<div data-alert class="alert-box success radius">
+						  Se ha guardado con éxito.
+						  <a href="#" class="close">&times;</a>
+						</div>
+					</div>
+				</div>
+		  	</div>
+		 </form>
+	</div>
+</div>

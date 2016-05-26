@@ -1,0 +1,302 @@
+<div class="row">
+	<div class="large-8 medium-8 small-8 columns">
+		<div class="tabs">
+			<ul class="tab-links">
+			  <li><a tabindex="0" ng-click="change(1)">Calculadora</a></li>
+			  <li><a tabindex="0" ng-click="change(2)">Empresa</a></li>
+			</ul>
+		</div>
+		
+	  	<div class="tab-content medium-12 columns">
+	  		<div ng-if="ubication == 1" id="tab1" ng-include="'app/calculator/partials/_form_calculator.tpl.html'" >
+	  		
+		  	</div>
+		  	<div id="tab2" ng-if="ubication == 2" ng-include="'app/calculator/partials/_form_company.tpl.html'">
+		  		
+		  	</div>
+	  	</div>
+	</div>
+	<div class="large-4 medium-4 small-4 columns">
+		<div class="smallcontainer">
+			<ul class="accordion" id="resultCompany" data-accordion>
+				<li class="accordion-navigation">
+				    <a id="linkResultCompany" class="linkAccordion">Resultados Empresa</a>
+				    <div id="panel1a" class="content active">
+				    	<div class="row">
+							<div class="small-8 columns">
+								<label>Ahorro mensual</label>
+							</div>
+							<div class="small-4 columns">
+								 <h6>630.462 </h6>
+							</div>
+						</div>
+					 	
+					  	<div class="row">
+							<div class="small-8 columns">
+								<label>Ahorro anual</label>
+							</div>
+							<div class="small-4 columns">
+								 <h6>7.565.544 </h6>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="small-12 columns">
+								<h4 align="right">3.47 %</h4>
+							</div>
+						</div>
+						
+						<div class="row">
+							<div class="small-8 columns">
+								<label>Pensión y prestaciones mensual</label>
+							</div>
+							<div class="small-4 columns">
+								 <h6>270.462 </h6>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="small-8 columns">
+								<label>Pensión y prestaciones anual</label>
+							</div>
+							<div class="small-4 columns">
+								 <h6>3.245.544 </h6>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="small-12 columns">
+								<h4 align="right">1.59 %</h4>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="small-4 columns">&nbsp;</div>
+							<div class="small-4 columns center">
+								<span class="label alert fontmedium">Actual</span>
+								<div class="arounddownred"></div>
+							</div>
+							<div class="small-4 columns center">
+								<span class="label fontmedium">Sodexo</span>
+								<div class="arounddownblue"></div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="small-4 columns">
+								<label>Costo empleado</label>
+							</div>
+							<div class="small-4 columns">
+								 <h6 align="center">3.245.544 </h6>
+							</div>
+							<div class="small-4 columns">
+								 <h6 align="center">3.245.544 </h6>
+							</div>
+						</div>
+				    </div>
+				</li>
+			</ul>
+			<ul class="accordion" id="retFuenteOrd" data-accordion>
+				<li class="accordion-navigation">
+				    <a class="linkAccordion">Retención en la fuente Ordinaria</a>
+				    <div id="panel2a" class="content active">
+				    	<div class="row">
+							<div class="small-8 columns">
+								<label>Mayor Ingreso Mensual</label>
+							</div>
+							<div class="small-4 columns">
+								 <h6>  660.160 </h6>
+							</div>
+						</div>
+					 	
+					  	<div class="row">
+							<div class="small-8 columns">
+								<label>Mayor Ingreso Anual</label>
+							</div>
+							<div class="small-4 columns">
+								 <h6>  7.921.918 </h6>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="small-12 columns">
+								<h4 align="right">5.53 %</h4>
+							</div>
+						</div>
+
+						
+						<div class="row">
+							<div class="small-4 columns">&nbsp;</div>
+							<div class="small-4 columns center">
+								<span class="label alert fontmedium">Actual</span>
+								<div class="arounddownred"></div>
+							</div>
+							<div class="small-4 columns center">
+								<span class="label fontmedium">Sodexo</span>
+								<div class="arounddownblue"></div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="small-4 columns">
+								<label> Ingreso Mensual del Colaborador</label>
+							</div>
+							<div class="small-4 columns">
+								 <h6 align="center"> 11.938.674</h6>
+							</div>
+							<div class="small-4 columns">
+								 <h6 align="center"> 12.598.834 </h6>
+							</div>
+						</div>
+				    </div>
+				</li>
+			</ul>
+			<ul class="accordion" id="retFuenteMin" data-accordion>
+				<li class="accordion-navigation">
+				    <a class="linkAccordion">Retención en la fuente Mínima</a>
+				    <div id="panel3a" class="content active">
+				    	<div class="row">
+							<div class="small-8 columns">
+								<label>Mayor Ingreso Mensual</label>
+							</div>
+							<div class="small-4 columns">
+								 <h6> 472.938 </h6>
+							</div>
+						</div>
+					 	
+					  	<div class="row">
+							<div class="small-8 columns">
+								<label>Mayor Ingreso Anual</label>
+							</div>
+							<div class="small-4 columns">
+								 <h6>  5.675.255 </h6>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="small-12 columns">
+								<h4 align="right">5.53 %</h4>
+							</div>
+						</div>
+
+						
+						<div class="row">
+							<div class="small-4 columns">&nbsp;</div>
+							<div class="small-4 columns center">
+								<span class="label alert fontmedium">Actual</span>
+								<div class="arounddownred"></div>
+							</div>
+							<div class="small-4 columns center">
+								<span class="label fontmedium">Sodexo</span>
+								<div class="arounddownblue"></div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="small-4 columns">
+								<label> Ingreso Mensual del Colaborador</label>
+							</div>
+							<div class="small-4 columns">
+								 <h6 align="center">3.245.544 </h6>
+							</div>
+							<div class="small-4 columns">
+								 <h6 align="center">3.245.544 </h6>
+							</div>
+						</div>
+				    </div>
+				</li>
+			</ul>
+			<ul class="accordion" id="calcIman" data-accordion>
+				<li class="accordion-navigation">
+				    <a class="linkAccordion">Calculo IMAN</a>
+				    <div id="panel4a" class="content active">
+				    	<div class="row">
+							<div class="small-8 columns">
+								<label>Ahorro IMAN</label>
+							</div>
+							<div class="small-4 columns">
+								 <h6>  3.234.435  </h6>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="small-12 columns">
+								<h4 align="right">27 %</h4>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="small-4 columns">&nbsp;</div>
+							<div class="small-4 columns center">
+								<span class="label alert fontmedium">Actual</span>
+								<div class="arounddownred"></div>
+							</div>
+							<div class="small-4 columns center">
+								<span class="label fontmedium">Sodexo</span>
+								<div class="arounddownblue"></div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="small-4 columns">
+								<label> Valor IMAN</label>
+							</div>
+							<div class="small-4 columns">
+								 <h6 align="center"> 11.832.018  </h6>
+							</div>
+							<div class="small-4 columns">
+								 <h6 align="center">  8.597.583  </h6>
+							</div>
+						</div>
+				    </div>
+				</li>
+			</ul>
+			<ul class="accordion" id="declaRenta" data-accordion>
+				<li class="accordion-navigation">
+				    <a class="linkAccordion">Declaración de renta</a>
+				    <div id="panel5a" class="content active">
+				    	<div class="row">
+							<div class="small-8 columns">
+								<label>Ahorro Declaración de Renta</label>
+							</div>
+							<div class="small-4 columns">
+								 <h6>   5.086.475   </h6>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="small-12 columns">
+								<h4 align="right">19 %</h4>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="small-4 columns">&nbsp;</div>
+							<div class="small-4 columns center">
+								<span class="label alert fontmedium">Actual</span>
+								<div class="arounddownred"></div>
+							</div>
+							<div class="small-4 columns center">
+								<span class="label fontmedium">Sodexo</span>
+								<div class="arounddownblue"></div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="small-4 columns">
+								<label> Valor Declaración Renta </label>
+							</div>
+							<div class="small-4 columns">
+								 <h6 align="center">  27.102.090   </h6>
+							</div>
+							<div class="small-4 columns">
+								 <h6 align="center">   22.015.615   </h6>
+							</div>
+						</div>
+
+
+				    </div>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
