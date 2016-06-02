@@ -587,6 +587,10 @@
 //			border-bottom: 1px solid $header;
 			a{
 				color: $header-title;
+				
+			}
+			.title-nolink{
+				pointer-events: none;
 			}
 		}
 	}
