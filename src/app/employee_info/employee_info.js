@@ -110,6 +110,20 @@
 		});
 		$rootScope.familyData = familyData;
 		
+		/*
+		* Dividir la información de cada beneficiario de tal forma que se vea por renglon
+		*/
+		$scope.beneficiarios = [];
+		var flagBen = 0;
+		angular.forEach($rootScope.employee_info.datos_beneficiarios, function(val, i){
+			if (val.dcamp == "PARENTESCO"){
+				if ($scope.beneficiarios.length > 0){
+					flagBen += 1;
+				}
+				$scope.beneficiarios[flagBen] = []; 
+			}
+			$scope.beneficiarios[flagBen].push(val);
+		});
 		
 		$scope.trade_date = function(data){
 			// console.log("recibido:",data);
