@@ -32,11 +32,11 @@
 			<h5 class="subheader no-margin">
 				{{user.employee.subdivision_per | special_capitalize}}
 			</h5>
-			<a href="#" class="has-tip" title="{{user.employee.phone}}" ng-click="contactModal(user.employee.phone, 'phone')" ng-hide="showIconContact(user.employee.phone)">
+			<a class="has-tip" title="{{user.employee.phone}}" ng-click="contactModal(user.employee.phone, 'phone')" ng-hide="showIconContact(user.employee.phone)">
 				<i class="fa fa-phone fa-lg"></i>
 			</a>
 			&nbsp;
-			<a class="lowercase" href="#" data-tooltip aria-haspopup="true" title="{{user.employee.email | lowercase}}" ng-click="contactModal(user.employee.email, 'email')" ng-hide="showIconContact(user.employee.email)">
+			<a class="lowercase" data-tooltip aria-haspopup="true" title="{{user.employee.email | lowercase}}" ng-click="contactModal(user.employee.email, 'email')" ng-hide="showIconContact(user.employee.email)">
 				<i class="fa fa-envelope-o fa-lg"></i>
 			</a>
 		</div>
@@ -69,11 +69,11 @@
 			<h5 class="subheader no-margin capitalize">
 				{{employee.subdivision_per | lowercase}}
 			</h5>
-			<a href="#" data-tooltip aria-haspopup="true" title="{{employee.phone}}" ng-click="contactModal(employee.phone, 'phone')">
+			<a data-tooltip aria-haspopup="true" title="{{employee.phone}}" ng-click="contactModal(employee.phone, 'phone')">
 				<i class="fa fa-phone fa-lg"></i>
 			</a>
 			&nbsp;
-			<a class="lowercase" href="#" data-tooltip aria-haspopup="true" title="{{employee.email | lowercase}}" ng-click="contactModal(employee.email, 'email')">
+			<a class="lowercase" data-tooltip aria-haspopup="true" title="{{employee.email | lowercase}}" ng-click="contactModal(employee.email, 'email')">
 				<i class="fa fa-envelope-o fa-lg"></i>
 			</a>
 		</div>
