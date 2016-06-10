@@ -7,16 +7,17 @@
 		<div class="text-right" ng-init="">
 			<a ui-sref="main.views.notifications()" class="comments" data-tooltip aria-haspopup="true" title="Notificaciones">
 			<!--<a class="comments" data-tooltip aria-haspopup="true" title="Notificaciones">-->
-				<span class="icon-light-bulb"></span>
+				<span class="icon-light-bulb" ng-style="notifications_icon_style" 
+				ng-mouseover="notificationsIconHover(true)" ng-mouseleave="notificationsIconHover(false)"></span>
 				<i class="number comment" ng-if="notifications['count']> 0" ng-bind="notifications['count']"> </i>
 			</a>
-			<h5 class="subheader no-margin capitalize">
-				<a ui-sref="main.views.employee_info" >
+			<h5 class="subheader no-margin capitalize" ng-style="link_topbar_style">
+				<a ui-sref="main.views.employee_info" ng-style="link_topbar_style">
 					<span class="icon-user"></span>
 					{{user.name | lowercase}}
 				</a>
 			</h5>
-			<div class="worker">
+			<div class="worker" ng-style="circle_worker_style">
 				<img ng-src="{{user.pic ? user.pic : user.employee.image.url}}">
 			</div>
 			<!--
@@ -26,8 +27,9 @@
 				</a>
 			</h5>
 			-->
-			<h5 class="subheader no-margin">
-				<a href="" ng-click="logout()" rel="nofollow" data-tooltip aria-haspopup="true" title="Salir">
+			<h5 class="subheader no-margin" ng-style="link_topbar_style">
+				<a href="" ng-click="logout()" rel="nofollow" data-tooltip aria-haspopup="true" title="Salir" 
+				ng-style="link_topbar_style">
 					<span class="icon-logout"></span>
 				</a>
 			</h5>

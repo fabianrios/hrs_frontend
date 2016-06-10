@@ -30,31 +30,31 @@
 			<div class="large-2 small-12 columns">
 				<div class="icon-bar large-vertical {{countUp()}}">
 					<a ng-if="employee_info.datos_personales.length" class="item active" ng-click="sorthings($event, 'datos_personales')">
-						<span class="fa fa-border fa-user fa-2x" ></span>
+						<span class="fa fa-border fa-user fa-2x" ng-style="circle_icon_employee_info_style"></span>
 						<label>Personales</label>
 					</a>
 					<a ng-if="employee_info.datos_familiares.length" class="item" ng-click="sorthings($event, 'datos_familiares')">
-						<span class="fa fa-border fa-users fa-2x"></span>
+						<span class="fa fa-border fa-users fa-2x" ng-style="circle_icon_employee_info_style"></span>
 						<label>Familiares</label>
 					</a>
 					<a ng-if="employee_info.datos_beneficiarios.length" class="item" ng-click="sorthings($event, 'datos_beneficiarios')">
-						<span class="fa fa-border fa-child fa-2x"></span>
+						<span class="fa fa-border fa-child fa-2x" ng-style="circle_icon_employee_info_style"></span>
 						<label>Beneficiarios</label>
 					</a>
 					<a ng-if="employee_info.datos_bancarios.length" class="item" ng-click="sorthings($event, 'datos_bancarios')">
-						<span class="fa fa-border fa-credit-card fa-2x"></span>
+						<span class="fa fa-border fa-credit-card fa-2x" ng-style="circle_icon_employee_info_style"></span>
 						<label>Financieros</label>
 					</a>
 					<a ng-if="employee_info.datos_estudios.length" class="item" ng-click="sorthings($event, 'datos_estudios')">
-						<span class="fa fa-border fa-book fa-2x"></span>
+						<span class="fa fa-border fa-book fa-2x" ng-style="circle_icon_employee_info_style"></span>
 						<label>Estudios</label>
 					</a>
 					<a ng-if="employee_info.datos_impuestos.length" class="item" ng-click="sorthings($event, 'datos_impuestos')">
-						<span class="fa fa-border fa-briefcase fa-2x"></span>
+						<span class="fa fa-border fa-briefcase fa-2x" ng-style="circle_icon_employee_info_style"></span>
 						<label>Impuestos</label>
 					</a>
 					<a ng-if="employee_info.datos_seguridadsocial.length" class="item" ng-click="sorthings($event, 'datos_seguridadsocial')">
-						<span class="fa fa-border fa-briefcase fa-2x"></span>
+						<span class="fa fa-border fa-briefcase fa-2x" ng-style="circle_icon_employee_info_style"></span>
 						<label>Seguridad social</label>
 					</a>
 				</div>
