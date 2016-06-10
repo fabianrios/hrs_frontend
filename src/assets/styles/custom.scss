@@ -1253,9 +1253,11 @@ ul.no-bullet li ul.childs{
 			position: relative;
 			padding: 10px 2px;
 			&.active{
+				/*
 				span.fa.fa-border{
 					border-color: $header;
 				}
+				*/
 				&:after{
 					content:" ";
 					border-top: 10px solid #dedede;
