@@ -286,11 +286,23 @@
 
     $rootScope.companyStyles = Company.show({id: $rootScope.getAppSubdomain()}, function(){
       var company_styles = $rootScope.companyStyles.company_styles;
+      $rootScope.company_styles = company_styles;
 
+      /*******images*******/
+      $rootScope.login_image_style  = {background: "url('"+company_styles.image_1.url+"') no-repeat 0 0", "background-size": "cover"};
+      $rootScope.company_logo       = company_styles.logo;
+      $rootScope.image_banner_style = {
+        "background-image": "url('"+company_styles.image_2.url+"')",
+        "background-position": "0 -200px", 
+        "background-repeat": "no-repeat",
+        "background-attachment": "fixed"
+      }
+      /*******colors*******/
       var header        = company_styles.color_1,
       header_hover      = company_styles.color_2,
       header_title      = company_styles.color_3,
       widget_background = company_styles.widget_color,
+      //Default colors
       comments          = "#ff7e00",
       number            = "#1AB828",
       hover             = "#0A496E",

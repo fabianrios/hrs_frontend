@@ -70,35 +70,8 @@
 	.controller('sessions.IndexLoginController', ['$scope' , function($scope){
 		$scope.classBackgroundImage = 'bglogin';
 		$scope.subdomain = $scope.getAppSubdomain();
-		if ($scope.subdomain == "rcn" || $scope.subdomain == "rcntv" || $scope.subdomain == "hritest"){
-			$scope.classBackgroundImage = 'image-login-rcn';
-		}
 	}])
 	.controller('sessions.LoginController', ['$scope', '$auth', '$location', function($scope, $auth, $location){
-    	var host = $location.host();
-		$scope.subdomain = function(){
-	     if (host.indexOf('.') < 0) {
-	         return null;
-	     }else{
-	         return host.split('.')[0];
-			 }
-		 };
-
-		 $scope.subdomain = $scope.getAppSubdomain();
-		 if ($scope.subdomain == "rcn" || $scope.subdomain == "rcntv"){
-			 $scope.logo = "images/rcn.png";
-			 $scope.viewforgotpassword = false;
-		 }else if ($scope.subdomain == "harinera"){
-		 	 $scope.logo = "images/harinera_logo.png";
-		 	 $scope.viewforgotpassword = true;
-		 }else if ($scope.subdomain == "publicar"){
-				$scope.logo = "images/publicar_logo.png";
-				$scope.viewforgotpassword = true;
-		 }else{
-		 	$scope.logo = "images/hrs_logo.png";
-		 	$scope.viewforgotpassword = true;
-		 }
-		 
 		$scope.login = function() {       
 	      $auth.submitLogin($scope.credentials);
 	    };
