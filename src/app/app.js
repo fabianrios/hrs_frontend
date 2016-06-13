@@ -18,6 +18,7 @@
     'app.config',
 
     // Services
+    'company.service',
     'sap.service',
     'user.service',
     'organigram.service',
@@ -52,7 +53,7 @@
     'compensatory_vacation_record.service',
     'angular-clipboard',
     'sort_tables.service',
-
+    'company.service',
     // Directives
     'ngS3upload',
     'highcharts-ng',
@@ -246,8 +247,117 @@
     SEVERANCE_PREVIOUS_REGIME: "02",
     MESSAGE_PERMISSION: "usuario no autorizado"
   })
-  .run(function($filter, $http, $rootScope, $state, $window, HRAPI_CONF, $auth , $anchorScroll, $location){       
+  .run(function($filter, $http, $rootScope, $state, $window, HRAPI_CONF, $auth , $anchorScroll, $location, Company){
+    $rootScope.getAppSubdomain = function(){
+      var host = $location.host();
+      if (host.indexOf('.') < 0) {
+        return null;
+      }else{
+        return host.split('.')[0];
+      }
+    }
+
+    $rootScope.lightenColor = function (col, amt) {
+        var usePound = false;
       
+        if (col[0] == "#") {
+            col = col.slice(1);
+            usePound = true;
+        }
+     
+        var num = parseInt(col,16);
+        var r = (num >> 16) + amt;
+     
+        if (r > 255) r = 255;
+        else if  (r < 0) r = 0;
+     
+        var b = ((num >> 8) & 0x00FF) + amt;
+     
+        if (b > 255) b = 255;
+        else if  (b < 0) b = 0;
+     
+        var g = (num & 0x0000FF) + amt;
+     
+        if (g > 255) g = 255;
+        else if (g < 0) g = 0;
+     
+        return (usePound?"#":"") + (g | (b << 8) | (r << 16)).toString(16);
+    }
+
+    $rootScope.companyStyles = Company.show({id: $rootScope.getAppSubdomain()}, function(){
+      var company_styles = $rootScope.companyStyles.company_styles;
+      $rootScope.company_styles = company_styles;
+
+      /*******images*******/
+      $rootScope.login_image_style  = {background: "url('"+company_styles.image_1.url+"') no-repeat 0 0", "background-size": "cover"};
+      $rootScope.company_logo       = company_styles.logo;
+      $rootScope.image_banner_style = {
+        "background-image": "url('"+company_styles.image_2.url+"')",
+        "background-position": "0 -200px", 
+        "background-repeat": "no-repeat",
+        "background-attachment": "fixed"
+      }
+      /*******colors*******/
+      var header        = company_styles.color_1,
+      header_hover      = company_styles.color_2,
+      header_title      = company_styles.color_3,
+      widget_background = company_styles.widget_color,
+      //Default colors
+      comments          = "#ff7e00",
+      number            = "#1AB828",
+      hover             = "#0A496E",
+      registers         = "#1DB3FF";
+
+      $rootScope.search_employee_style    = {background: header};
+      $rootScope.circle_worker_style      = {border: "2px solid "+header};
+      $rootScope.notifications_icon_style = {color: header};
+      $rootScope.link_topbar_style        = {color: header};
+      $rootScope.widget_style             = [];
+      $rootScope.widget_header_style      = [];
+      $rootScope.widget_header_link_style = [];
+      $rootScope.picture_employee_style = {border: "3px solid "+header};
+      $rootScope.photo_employee_style = {border: "1px solid "+header};
+
+      $rootScope.picture_employee_organigram_style = {border: "2px solid "+header};
+      $rootScope.circle_icon_employee_info_style = {"border-color": header}
+      $rootScope.title_employee_info_style = {color: header};
+
+      $rootScope.widgetInit = function(key){
+        $rootScope.widget_style[key]             = {background: widget_background, border: "1px solid "+widget_background};
+        $rootScope.widget_header_style[key]      = {background: header, color: header_title};
+        $rootScope.widget_header_link_style[key] = {color: header_title};
+      }
+      $rootScope.widgetHover = function(state, key){
+        if (state) {
+          $rootScope.widget_style[key] = {background: "rgba(255,255,255,.7)", border: "1px solid "+header_title};
+        }else{
+          $rootScope.widget_style[key] = {background: widget_background, border: "1px solid "+widget_background};  
+        }
+      }
+      $rootScope.widgetHeaderHover = function(state, key){
+        if (state) {
+          $rootScope.widget_header_style[key] = {"border-bottom": "1px solid "+header_title, background: header_hover, color: "lighten("+header_hover+",80%)"};
+        } else {
+          $rootScope.widget_header_style[key] = {background: header, color: header_title};
+        }
+      }
+      $rootScope.widgetHeaderLinkHover = function(state, key){
+        if (state) {
+          $rootScope.widget_header_link_style[key] = {color: $rootScope.lighten(header_hover,80)};
+        } else {
+          $rootScope.widget_header_link_style[key] = {color: header_title};
+        }
+      }
+
+      $rootScope.notificationsIconHover = function(state){
+        if(state){
+          $rootScope.notifications_icon_style = {color: $rootScope.lighten(header,20)};
+        }else{
+          $rootScope.notifications_icon_style = {color: header};
+        }
+      }
+    });
+
     /////////////
     //
     //  BROADCAST  
@@ -262,15 +372,6 @@
     // END BROADCAST  
     //
     ////////////
-    
-    $rootScope.getAppSubdomain = function(){
-      var host = $location.host();
-      if (host.indexOf('.') < 0) {
-        return null;
-      }else{
-        return host.split('.')[0];
-      }
-    }
 
     $rootScope.$on('$stateChangeStart',
         function(event, toState, toParams, fromState, fromParams){

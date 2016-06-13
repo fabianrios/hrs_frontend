@@ -50,35 +50,35 @@
 			<div class="large-2 small-12 columns">
 				<div class="icon-bar large-vertical {{countUp()}}">
 					<a class="item active" ng-click="sorthings($event, 'datos_laborales')">
-						<span class="fa fa-border fa-building fa-2x" ></span>
+						<span class="fa fa-border fa-building fa-2x" ng-style="circle_icon_employee_info_style" ></span>
 						<label>Laborales</label>
 					</a>
 					<a ng-if="employee_info.datos_personales.length" class="item" ng-click="sorthings($event, 'datos_personales')">
-						<span class="fa fa-border fa-user fa-2x" ></span>
+						<span class="fa fa-border fa-user fa-2x" ng-style="circle_icon_employee_info_style"></span>
 						<label>Personales</label>
 					</a>
 					<a ng-if="employee_info.datos_familiares.length" class="item" ng-click="sorthings($event, 'datos_familiares')">
-						<span class="fa fa-border fa-users fa-2x"></span>
+						<span class="fa fa-border fa-users fa-2x" ng-style="circle_icon_employee_info_style"></span>
 						<label>Familiares</label>
 					</a>
 					<a ng-if="employee_info.datos_beneficiarios.length" class="item" ng-click="sorthings($event, 'datos_beneficiarios')">
-						<span class="fa fa-border fa-child fa-2x"></span>
+						<span class="fa fa-border fa-child fa-2x" ng-style="circle_icon_employee_info_style"></span>
 						<label>Beneficiarios</label>
 					</a>
 					<a ng-if="employee_info.datos_bancarios.length" class="item" ng-click="sorthings($event, 'datos_bancarios')">
-						<span class="fa fa-border fa-credit-card fa-2x"></span>
+						<span class="fa fa-border fa-credit-card fa-2x" ng-style="circle_icon_employee_info_style"></span>
 						<label>Financieros</label>
 					</a>
 					<a ng-if="employee_info.datos_estudios.length" class="item" ng-click="sorthings($event, 'datos_estudios')">
-						<span class="fa fa-border fa-book fa-2x"></span>
+						<span class="fa fa-border fa-book fa-2x" ng-style="circle_icon_employee_info_style"></span>
 						<label>Estudios</label>
 					</a>
 					<a ng-if="employee_info.datos_impuestos.length" class="item" ng-click="sorthings($event, 'datos_impuestos')">
-						<span class="fa fa-border fa-briefcase fa-2x"></span>
+						<span class="fa fa-border fa-briefcase fa-2x" ng-style="circle_icon_employee_info_style"></span>
 						<label>Impuestos</label>
 					</a>
 					<a ng-if="employee_info.datos_seguridadsocial.length" class="item" ng-click="sorthings($event, 'datos_seguridadsocial')">
-						<span class="fa fa-border fa-stethoscope fa-2x"></span>
+						<span class="fa fa-border fa-stethoscope fa-2x" ng-style="circle_icon_employee_info_style"></span>
 						<label>Seguridad social</label>
 					</a>
 				</div>
@@ -88,7 +88,7 @@
 				<div class="information datos_laborales">
 					<div class="large-12 columns">
 						<div class="datos_empresariales">
-							<h4><span class="fa-building fa"></span> Mis datos laborales</h4>
+							<h4 ng-style="title_employee_info_style"><span class="fa-building fa"></span> Mis datos laborales</h4>
 							<hr class="m0" />
 							<ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-4" ui-sortable="sortableOptions" >
 								<li ng-repeat="data in employee_info.datos_empresariales">
@@ -111,7 +111,7 @@
 				
 				 
 				<div class="information datos_personales">
-					<h4><span class="fa fa-user"></span> Mis datos personales</h4>
+					<h4 ng-style="title_employee_info_style"><span class="fa fa-user"></span> Mis datos personales</h4>
 					<hr class="m0" />
 					<ul class="small-block-grid-2 medium-block-grid-4 large-block-grid-4" ui-sortable="sortableOptions" ng-model="employee_info.datos_personales">
 						<li ng-repeat="data in employee_info.datos_personales">
@@ -154,7 +154,7 @@
 				</div>
 				
 				<div class="information datos_familiares">
-					<h4><span class="fa fa-users"></span> Mis datos familiares </h4>
+					<h4 ng-style="title_employee_info_style"><span class="fa fa-users"></span> Mis datos familiares </h4>
 					<hr class="m0" />
 					<div ng-repeat="family in familyData">
 						<ul class="small-block-grid-2 medium-block-grid-4 large-block-grid-4" ui-sortable="sortableOptions" ng-model="employee_info.datos_familiares">
@@ -207,7 +207,7 @@
 				</div>
 				
 				<div class="information datos_beneficiarios">
-					<h4><span class="fa fa-child"></span> Mis datos beneficiarios</h4>
+					<h4 ng-style="title_employee_info_style"><span class="fa fa-child"></span> Mis datos beneficiarios</h4>
 					<hr class="m0" />
 					<div ng-repeat="benef in beneficiarios">
 						<ul class="small-block-grid-2 medium-block-grid-4 large-block-grid-4" ui-sortable="sortableOptions" ng-model="employee_info.datos_beneficiarios">
@@ -233,7 +233,7 @@
 				</div>
 				
 				<div class="information datos_estudios">
-					<h4><span class="fa fa-bank"></span> Mis datos estudios</h4>
+					<h4 ng-style="title_employee_info_style"><span class="fa fa-bank"></span> Mis datos estudios</h4>
 					<hr class="m0" />
 					<ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-4" ui-sortable="sortableOptions" ng-model="employee_info.datos_estudios">
 						<li ng-repeat="data in employee_info.datos_estudios">
@@ -270,7 +270,7 @@
 				
 				
 				<div class="information datos_bancarios">
-					<h4><span class="fa fa-bank"></span> Mis datos finacieros</h4>
+					<h4 ng-style="title_employee_info_style"><span class="fa fa-bank"></span> Mis datos finacieros</h4>
 					<hr class="m0" />
 					<ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-4" ui-sortable="sortableOptions" ng-model="employee_info.datos_bancarios">
 						<li ng-repeat="data in employee_info.datos_bancarios">
@@ -303,7 +303,7 @@
 				
 				
 				<div class="information datos_impuestos">
-					<h4><span class="fa fa-child"></span> Mis datos de impuestos</h4>
+					<h4 ng-style="title_employee_info_style"><span class="fa fa-child"></span> Mis datos de impuestos</h4>
 					<hr class="m0" />
 					<ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-4" ui-sortable="sortableOptions" ng-model="employee_info.datos_impuestos">
 						<li ng-repeat="data in employee_info.datos_impuestos" ng-init="data.ccamp=stringTo(data.tcamp, data.ccamp)">
@@ -315,7 +315,7 @@
 				</div>
         
 				<div class="information datos_seguridadsocial">
-					<h4><span class="fa fa-child"></span> Mis datos de seguridad social</h4>
+					<h4 ng-style="title_employee_info_style"><span class="fa fa-child"></span> Mis datos de seguridad social</h4>
 					<hr class="m0" />
 					<ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-3" ui-sortable="sortableOptions" ng-model="employee_info.datos_seguridadsocial">
 						<li ng-repeat="data in employee_info.datos_seguridadsocial" ng-init="data.ccamp=stringTo(data.tcamp, data.ccamp)">

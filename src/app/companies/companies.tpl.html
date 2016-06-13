@@ -7,7 +7,7 @@
 	<div class="large-6 columns large-centered">
 		<ul class="no-bullet">
 		  <li ng-repeat="company in companies">
-				<img ng-src="images/{{company.logo}}" alt="" />
+				<img ng-src="images/{{company.logo.url}}" alt="" />
 				<a ng-click="viewCompany(company.id)"><span>{{company.name}}</span></a>
 				<div ng-include="'app/companies/partials/_crudbuttons.tpl.html'"></div>
 		  </li>

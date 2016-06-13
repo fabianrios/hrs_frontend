@@ -1,5 +1,5 @@
 <ul class="finder" ng-class="flavor_class">
-	<li class="search">
+	<li class="search" ng-style="search_employee_style">
 		<div class="row collapse prefix-radius">
 			<div class="small-2 columns">
 				<span class="prefix">
@@ -14,7 +14,7 @@
 	
 	<li class="results" ng-repeat="employee in empFavorites" 
 	ng-init="activado = favorite( employee = employee.employee ? employee.employee: employee );">	
-		<div class="pic" >
+		<div class="pic">
 			<a ui-sref="#" ng-click="showModal(employee)" ng-if="showMasterData(employee)" > 
 				<img ng-src="{{employee.image.url}}">
 			</a>
@@ -50,7 +50,7 @@
 	ng-init="activado = favorite( employee = ( employee.employee ? employee.employee: employee ) ); "
 	ng-hide="activado ? true : false"
 	>	
-		<div class="pic" >
+		<div class="pic">
 			<a ng-show="showMasterData(employee)" ui-sref="#" ng-click="showModal(employee)"> 
 				<img ng-src="{{employee.image.image.url}}">
 			</a>
