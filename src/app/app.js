@@ -287,18 +287,21 @@
     $rootScope.companyStyles = Company.show({id: $rootScope.getAppSubdomain()}, function(){
       var company_styles = $rootScope.companyStyles.company_styles;
       $rootScope.company_styles = company_styles;
-
+      console.log(company_styles);
+      $rootScope.viewforgotpassword = company_styles.login_ldap ? false : true;
+      
       /*******images*******/
       $rootScope.login_image_style  = {background: "url('"+company_styles.image_1.url+"') no-repeat 0 0", "background-size": "cover"};
       $rootScope.company_logo       = company_styles.logo;
       $rootScope.image_banner_style = {
         "background-image": "url('"+company_styles.image_2.url+"')",
-        "background-position": "0 -200px", 
+        "background-position": "0 -200px",
         "background-repeat": "no-repeat",
         "background-attachment": "fixed"
       }
       /*******colors*******/
       var header        = company_styles.color_1,
+      link_topbar       = company_styles.topbar_color,
       header_hover      = company_styles.color_2,
       header_title      = company_styles.color_3,
       widget_background = company_styles.widget_color,
@@ -309,9 +312,9 @@
       registers         = "#1DB3FF";
 
       $rootScope.search_employee_style    = {background: header};
-      $rootScope.circle_worker_style      = {border: "2px solid "+header};
-      $rootScope.notifications_icon_style = {color: header};
-      $rootScope.link_topbar_style        = {color: header};
+      $rootScope.circle_worker_style      = {border: "2px solid "+link_topbar};
+      $rootScope.notifications_icon_style = {color: link_topbar};
+      $rootScope.link_topbar_style        = {color: link_topbar};
       $rootScope.widget_style             = [];
       $rootScope.widget_header_style      = [];
       $rootScope.widget_header_link_style = [];
@@ -351,9 +354,9 @@
 
       $rootScope.notificationsIconHover = function(state){
         if(state){
-          $rootScope.notifications_icon_style = {color: $rootScope.lighten(header,20)};
+          $rootScope.notifications_icon_style = {color: $rootScope.lighten(link_topbar,20)};
         }else{
-          $rootScope.notifications_icon_style = {color: header};
+          $rootScope.notifications_icon_style = {color: link_topbar};
         }
       }
     });

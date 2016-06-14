@@ -52,10 +52,13 @@
 							  </tr>
 						  </thead>
 						  <tbody ng-repeat="date in payroll_dates | filter : period_filter | orderBy:sortTables.getPredicate():sortTables.getReverses()">
+					  		<!--
 					  		<tr id="tr_payroll_period">
 					  			<td id="td_payroll_period" rowspan="{{ dateFilter(date.origin) }}">{{ date.value }}</td>
 					  		</tr>
+					  		-->
 				  			<tr ng-repeat="(key, loan) in loanRecords | filter : {fpend: date.origin, stext: concept_txt_filter} | orderBy:sortTables.getPredicate():sortTables.getReverses()"> 
+				  				<td id="td_payroll_period">{{ date.value }}</td>
 				  				<td scope="row" ng-bind="loan.stext"></td>
 				  				<td scope="row" class="text-right" ng-bind="getMoneyValue(loan.totcu)"></td>
 				  				<td scope="row" class="text-right" ng-bind="getPorcentage(loan.lolim)"></td>
