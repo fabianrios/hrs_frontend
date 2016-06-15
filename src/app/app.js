@@ -295,9 +295,10 @@
       $rootScope.company_logo       = company_styles.logo;
       $rootScope.image_banner_style = {
         "background-image": "url('"+company_styles.image_2.url+"')",
-        "background-position": "0 -200px",
+        "background-position": "top center",
         "background-repeat": "no-repeat",
-        "background-attachment": "fixed"
+        "background-attachment": "fixed",
+        "background-size":"100%"
       }
       /*******colors*******/
       var header        = company_styles.color_1,
