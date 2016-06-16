@@ -287,7 +287,6 @@
     $rootScope.companyStyles = Company.show({id: $rootScope.getAppSubdomain()}, function(){
       var company_styles = $rootScope.companyStyles.company_styles;
       $rootScope.company_styles = company_styles;
-      console.log(company_styles);
       $rootScope.viewforgotpassword = company_styles.login_ldap ? false : true;
       
       /*******images*******/
