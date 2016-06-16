@@ -29,8 +29,12 @@
 		}
 
 		$scope.dateFilter = function(value){
-			var filterValue = $filter('filter')($scope.embargoes, {edate: value});
-			return filterValue.length >= 1 ? filterValue.length + 1 : 0;
+			$rowSpan = 2;
+			if ($scope.embargoes.length > 1) {
+				var filterValue = $filter('filter')($scope.embargoes, {edate: value});
+				$rowSpan = filterValue.length >= 1 ? filterValue.length + 1 : 0;
+			}
+			return $rowSpan;
   	}
 
   	var uniqueVals 		= [];
