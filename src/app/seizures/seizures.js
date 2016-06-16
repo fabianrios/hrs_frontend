@@ -30,7 +30,7 @@
 
 		$scope.dateFilter = function(value){
 			$rowSpan = 2;
-			if ($scope.embargoes.length > 1) {
+			if ($scope.embargoes.length >= 1) {
 				var filterValue = $filter('filter')($scope.embargoes, {edate: value});
 				$rowSpan = filterValue.length >= 1 ? filterValue.length + 1 : 0;
 			}
