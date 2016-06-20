@@ -25,43 +25,43 @@
 </div>
 
 <ul class="off-canvas-list">
-  <li><a href="#/home"><i class="fa fa-home fa-lg"></i> Inicio</a></li>
+  <li><a href="#/home" ng-init = "initStyleSides('Inicio')" ng-mouseover="hoverSides('Inicio',$event)" ng-mouseleave="hoverSides('Inicio',$event)" ng-style="icons_style_hover['Inicio']"><i class="fa fa-home fa-lg"></i> Inicio </a></li>
 
   <li>
-    <a ui-sref="main.views.employee_info">
+    <a ui-sref="main.views.employee_info" ng-init = "initStyleSides('Mis datos maestros')" ng-mouseover="hoverSides('Mis datos maestros',$event)" ng-mouseleave="hoverSides('Mis datos maestros',$event)" ng-style="icons_style_hover['Mis datos maestros']">
       <i class="fa fa-user fa-lg"></i> Mis datos maestros
     </a>
   </li>
 
-  <li ng-if="seeValidation(user.employee.see_organ)" ui-sref="main.views.organigram()"><a><i class="fa fa-sitemap fa-lg"></i> Organigrama</a></li>
+  <li ng-if="seeValidation(user.employee.see_organ)" ui-sref="main.views.organigram()"><a ng-init = "initStyleSides('Organigrama')" ng-mouseover="hoverSides('Organigrama',$event)" ng-mouseleave="hoverSides('Organigrama',$event)" ng-style="icons_style_hover['Organigrama']"><i class="fa fa-sitemap fa-lg"></i> Organigrama</a></li>
   <!-- <li><a ng-href="#/organigram/{{user.employee_id}}" class="disabled"><i class="fa fa-sitemap fa-lg"></i> Organigrama</a></li> -->
   <!-- <li><a ui-sref="main.views.employees"><i class="fa fa-users fa-lg"></i> Empleados</a></li> -->
   <li class="has-submenu" ng-if="user.company.show_certificates_labor || user.company.show_certificates_vacations || user.company.show_certificates_payroll || user.company.show_certificates_income">
-    <a href="">
+    <a href="" ng-init = "initStyleSides('Autoservicios')" ng-mouseover="hoverSides('Autoservicios',$event)" ng-mouseleave="hoverSides('Autoservicios',$event)" ng-style="icons_style_hover['Autoservicios']">
       <i class="fa fa-file fa-lg"></i> Autoservicios
       <i class="fa fa-angle-right fa-right fa-lg"></i>
     </a>
     <ul class="left-submenu">
       <li class="back">
-        <a href="">Volver</a>
+        <a href="" ng-init = "initStyleSides('Volver')" ng-mouseover="hoverSides('Volver',$event)" ng-mouseleave="hoverSides('Volver',$event)" ng-style="icons_style_hover['Volver']">Volver</a>
       </li>
       <li ng-if="user.company.show_certificates_labor" >
-        <a ui-sref="main.views.certificates_labor({id:laborCertificate})">
+        <a ui-sref="main.views.certificates_labor({id:laborCertificate})" ng-init = "initStyleSides('Certificado laboral')" ng-mouseover="hoverSides('Certificado laboral',$event)" ng-mouseleave="hoverSides('Certificado laboral',$event)" ng-style="icons_style_hover['Certificado laboral']">
           <i class="fa fa-file-text-o fa-lg"></i> Certificado laboral
         </a>
       </li>
       <li ng-if="user.company.show_certificates_vacations" >
-        <a ui-sref="main.views.certificates_vacations({id:pdfKeyVacations})">
+        <a ui-sref="main.views.certificates_vacations({id:pdfKeyVacations})" ng-init = "initStyleSides('Carta de vacaciones')" ng-mouseover="hoverSides('Carta de vacaciones',$event)" ng-mouseleave="hoverSides('Carta de vacaciones',$event)" ng-style="icons_style_hover['Carta de vacaciones']">
           <i class="fa fa-plane fa-lg"></i> Carta de vacaciones
         </a>
       </li>
       <li ng-if="user.company.show_certificates_payroll" >
-        <a ui-sref="main.views.certificates_payroll({id:pdfKeyInit})">
+        <a ui-sref="main.views.certificates_payroll({id:pdfKeyInit})" ng-init = "initStyleSides('Recibos de nómina')" ng-mouseover="hoverSides('Recibos de nómina',$event)" ng-mouseleave="hoverSides('Recibos de nómina',$event)" ng-style="icons_style_hover['Recibos de nómina']">
           <i class="fa fa-briefcase fa-lg"></i> Recibos de nómina
         </a>
       </li>
       <li ng-if="user.company.show_certificates_income" >
-        <a ui-sref="main.views.certificates_income({id:pdfKeyIncome})">
+        <a ui-sref="main.views.certificates_income({id:pdfKeyIncome})" ng-init = "initStyleSides('Certificado de ing. y ret.')" ng-mouseover="hoverSides('Certificado de ing. y ret.',$event)" ng-mouseleave="hoverSides('Certificado de ing. y ret.',$event)" ng-style="icons_style_hover['Certificado de ing. y ret.']">
           <i class="fa fa-institution fa-lg"></i> Certificado de ing. y ret.
         </a>
       </li>
@@ -73,57 +73,57 @@
     </ul>
   </li>
   <li class="has-submenu" ng-if="user.company.show_scesa || user.company.show_licenses || user.company.show_loans || user.company.show_vacations || user.company.show_vacations_c">
-    <a href="">
+    <a href="" ng-init = "initStyleSides('Solicitudes')" ng-mouseover="hoverSides('Solicitudes',$event)" ng-mouseleave="hoverSides('Solicitudes',$event)" ng-style="icons_style_hover['Solicitudes']">
       <i class="fa fa-check fa-lg"></i> Solicitudes
       <i class="fa fa-angle-right fa-right fa-lg"></i>
     </a>
     <ul class="left-submenu">
       <li class="back">
-        <a href="">Volver</a>
+        <a href="" ng-init = "initStyleSides('Volver')" ng-mouseover="hoverSides('Volver',$event)" ng-mouseleave="hoverSides('Volver',$event)" ng-style="icons_style_hover['Volver']">Volver</a>
       </li>
       <li ng-if="cesaAprobador() && user.company.show_scesa" >
-        <a ui-sref="main.views.severance">
+        <a ui-sref="main.views.severance" ng-init = "initStyleSides('Anticipo de cesantías')" ng-mouseover="hoverSides('Anticipo de cesantías',$event)" ng-mouseleave="hoverSides('Anticipo de cesantías',$event)" ng-style="icons_style_hover['Anticipo de cesantías']">
           Anticipo de cesantías
         </a>
       </li>
       <li ng-if="permAprobador() && user.company.show_licenses" >
-        <a ui-sref="main.views.licenses">
+        <a ui-sref="main.views.licenses" ng-init = "initStyleSides('Permisos')" ng-mouseover="hoverSides('Permisos',$event)" ng-mouseleave="hoverSides('Permisos',$event)" ng-style="icons_style_hover['Permisos']">
           Permisos
         </a>
       </li>
       <li ng-if="presAprobador() && user.company.show_loans"  >
-        <a ui-sref="main.views.loans">
+        <a ui-sref="main.views.loans" ng-init = "initStyleSides('Préstamos')" ng-mouseover="hoverSides('Préstamos',$event)" ng-mouseleave="hoverSides('Préstamos',$event)" ng-style="icons_style_hover['Préstamos']">
           Préstamos
         </a>
       </li>
       <li ng-if="vacaAprobador() && user.company.show_vacations">
-        <a ui-sref="main.views.vacations">
+        <a ui-sref="main.views.vacations" ng-init = "initStyleSides('Vacaciones')" ng-mouseover="hoverSides('Vacaciones',$event)" ng-mouseleave="hoverSides('Vacaciones',$event)" ng-style="icons_style_hover['Vacaciones']">
           Vacaciones
         </a>
       </li>
-      <li  ng-if="vccpAprobador() && user.company.show_vacations_c">
-        <a ui-sref="main.views.compensatory_vacations">
+      <li ng-if="vccpAprobador() && user.company.show_vacations_c">
+        <a ui-sref="main.views.compensatory_vacations" ng-init = "initStyleSides('Vacaciones compensadas')" ng-mouseover="hoverSides('Vacaciones compensadas',$event)" ng-mouseleave="hoverSides('Vacaciones compensadas',$event)" ng-style="icons_style_hover['Vacaciones compensadas']">
           Vacaciones compensadas
         </a>
       </li>
     </ul>
   </li>
   <li class="has-submenu" ng-if="user.company.show_hoex || user.company.show_inhabilities" >
-    <a href="">
+    <a href="" ng-init = "initStyleSides('Registros')" ng-mouseover="hoverSides('Registros',$event)" ng-mouseleave="hoverSides('Registros',$event)" ng-style="icons_style_hover['Registros']">
       <i class="fa fa-paste fa-lg"></i> Registros
       <i class="fa fa-angle-right fa-right fa-lg"></i>
     </a>
     <ul class="left-submenu">
       <li class="back">
-        <a href="">Volver</a>
+        <a href="" ng-init = "initStyleSides('Volver')" ng-mouseover="hoverSides('Volver',$event)" ng-mouseleave="hoverSides('Volver',$event)" ng-style="icons_style_hover['Volver']">Volver</a>
       </li>
       <li ng-if="hoexAprobador() && user.company.show_hoex">
-        <a ui-sref="main.views.extras">
+        <a ui-sref="main.views.extras" ng-init = "initStyleSides('Horas extras')" ng-mouseover="hoverSides('Horas extras',$event)" ng-mouseleave="hoverSides('Horas extras',$event)" ng-style="icons_style_hover['Horas extras']">
           Horas extras
         </a>
       </li>
       <li ng-if="incaAprobador() && user.company.show_inhabilities">
-        <a ui-sref="main.views.inhabilities">
+        <a ui-sref="main.views.inhabilities"  ng-init = "initStyleSides('Incapacidades')" ng-mouseover="hoverSides('Incapacidades',$event)" ng-mouseleave="hoverSides('Incapacidades',$event)" ng-style="icons_style_hover['Incapacidades']">
           Incapacidades
         </a>
       </li>
@@ -131,16 +131,16 @@
   </li>
 
   <li class="has-submenu">
-    <a href="">
+    <a href="" ng-init = "initStyleSides('Consultas')" ng-mouseover="hoverSides('Consultas',$event)" ng-mouseleave="hoverSides('Consultas',$event)" ng-style="icons_style_hover['Consultas']">
       <i class="fa fa-paste fa-lg"></i> Consultas
       <i class="fa fa-angle-right fa-right fa-lg"></i>
     </a>
     <ul class="left-submenu">
       <li class="back">
-        <a href="">Volver</a>
+        <a href="" ng-init = "initStyleSides('Volver')" ng-mouseover="hoverSides('Volver',$event)" ng-mouseleave="hoverSides('Volver',$event)" ng-style="icons_style_hover['Volver']">Volver</a>
       </li>
       <li ng-repeat="consultation in consultationsMenu | orderBy:'name'">
-        <a ui-sref="{{ consultation.url }}">
+        <a ui-sref="{{ consultation.url }}" ng-init = "initStyleSides(consultation.name)" ng-mouseover="hoverSides(consultation.name,$event)" ng-mouseleave="hoverSides(consultation.name,$event)" ng-style="icons_style_hover[consultation.name]">
          {{ consultation.name }}
         </a>
       </li>
@@ -148,23 +148,23 @@
   </li>
 
   <li class="has-submenu" ng-if="seeValidation(user.employee.see_rpgen)">
-    <a href="" >
+    <a href="" ng-init = "initStyleSides('Servicios gerenciales')" ng-mouseover="hoverSides('Servicios gerenciales',$event)" ng-mouseleave="hoverSides('Servicios gerenciales',$event)" ng-style="icons_style_hover['Servicios gerenciales']">
       <i class="fa fa-line-chart fa-lg"></i> Servicios gerenciales
       <i class="fa fa-angle-right fa-right fa-lg"></i>
     </a>
     <ul class="left-submenu">
       <li class="back">
-        <a href="">Volver</a>
+        <a href="" ng-init = "initStyleSides('Volver')" ng-mouseover="hoverSides('Volver',$event)" ng-mouseleave="hoverSides('Volver',$event)" ng-style="icons_style_hover['Volver']">Volver</a>
       </li>
       <li ng-repeat="managerService in managerServicesMenu | orderBy:'name'">
-        <a ui-sref="{{ managerService.url }}">
+        <a ui-sref="{{ managerService.url }}" ng-init = "initStyleSides(managerService.name)" ng-mouseover="hoverSides(managerService.name,$event)" ng-mouseleave="hoverSides(managerService.name,$event)" ng-style="icons_style_hover[managerService.name]">
           {{ managerService.name }}
         </a>
       </li>
     </ul>
   </li>
   <li ng-if="user.company.show_articles">
-    <a ui-sref="main.views.articles()">
+    <a ui-sref="main.views.articles()" ng-init = "initStyleSides('Gestor de contenidos')" ng-mouseover="hoverSides('Gestor de contenidos',$event)" ng-mouseleave="hoverSides('Gestor de contenidos',$event)" ng-style="icons_style_hover['Gestor de contenidos']">
       <i class="fa fa-bullhorn fa-lg"></i> Gestor de contenidos
     </a>
   </li>
@@ -176,13 +176,13 @@
   </li>
 -->
   <li class="has-submenu" ng-if="existsApprovals()">
-    <a href="" >
+    <a href="" ng-init = "initStyleSides('Aprobaciones')" ng-mouseover="hoverSides('Aprobaciones',$event)" ng-mouseleave="hoverSides('Aprobaciones',$event)" ng-style="icons_style_hover['Aprobaciones']">
       <i class="fa fa-check-circle-o fa-lg"></i> Aprobaciones
       <i class="number main-menu-comment aprobaciones" ng-if="notifications['count'] > 0">{{notifications['count']}}</i>
       <i class="fa fa-angle-right fa-right fa-lg"></i>
     </a>
     <ul class="left-submenu">
-      <li class="back">
+      <li class="back" ng-init = "initStyleSides('Volver')" ng-mouseover="hoverSides('Volver',$event)" ng-mouseleave="hoverSides('Volver',$event)" ng-style="icons_style_hover['Volver']">
         <a href="">Volver </a>
       </li>
       <!-- Esto se debe eliminar más adelante, 
@@ -195,21 +195,21 @@
       </li>
       -->
       <li ng-if="existsRegisters()">
-        <a ui-sref="main.views.approvals_licenses">
+        <a ui-sref="main.views.approvals_licenses" ng-init = "initStyleSides('Registros')" ng-mouseover="hoverSides('Registros',$event)" ng-mouseleave="hoverSides('Registros',$event)" ng-style="icons_style_hover['Registros']">
           <i class="fa fa-paste fa-lg"></i> Registros
           <i class="number main-menu-comment registers">{{notifications.inhability + notifications.extra}}</i>
           <i class="fa fa-angle-right fa-right fa-lg"></i>
         </a>
       </li>
       <li ng-if="existsRequests()">
-        <a ui-sref="main.views.approvals_requirements">
+        <a ui-sref="main.views.approvals_requirements" ng-init = "initStyleSides('Solicitudes')" ng-mouseover="hoverSides('Solicitudes',$event)" ng-mouseleave="hoverSides('Solicitudes',$event)" ng-style="icons_style_hover['Solicitudes']">
           <i class="fa fa-check fa-lg"></i> Solicitudes
           <i class="number main-menu-comment">{{ notifications.vacation + notifications.license + notifications.severances + notifications.compensatory_vacation }}</i>
           <i class="fa fa-angle-right fa-right fa-lg"></i>
         </a>
       </li>
       <li ng-if="existsMasterData()">
-        <a ui-sref="main.views.approvals">
+        <a ui-sref="main.views.approvals" ng-init = "initStyleSides('Datos maestros')" ng-mouseover="hoverSides('Datos maestros',$event)" ng-mouseleave="hoverSides('Datos maestros',$event)" ng-style="icons_style_hover['Datos maestros']">
           <i class="fa fa-users fa-lg"></i> Datos maestros
           <i class="number main-menu-comment datos_maestros">{{notifications.info}}</i>
           <i class="fa fa-angle-right fa-right fa-lg"></i>

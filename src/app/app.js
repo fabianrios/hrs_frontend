@@ -305,24 +305,30 @@
       header_hover      = company_styles.color_2,
       header_title      = company_styles.color_3,
       widget_background = company_styles.widget_color,
+      icons_color = company_styles.icons_color,
       //Default colors
       comments          = "#ff7e00",
       number            = "#1AB828",
       hover             = "#0A496E",
       registers         = "#1DB3FF";
+      var color_default_menu     = "none";
 
       $rootScope.search_employee_style    = {background: header};
       $rootScope.circle_worker_style      = {border: "2px solid "+link_topbar};
       $rootScope.notifications_icon_style = {color: link_topbar};
       $rootScope.link_topbar_style        = {color: link_topbar};
+      $rootScope.icons_style = {color:icons_color};
+      $rootScope.icons_style_hover = [];
+      $rootScope.background_icons = {background:link_topbar};
       $rootScope.widget_style             = [];
       $rootScope.widget_header_style      = [];
       $rootScope.widget_header_link_style = [];
+      $rootScope.new_option = 0;
       $rootScope.picture_employee_style = {border: "3px solid "+header};
       $rootScope.photo_employee_style = {border: "1px solid "+header};
 
       $rootScope.picture_employee_organigram_style = {border: "2px solid "+header};
-      $rootScope.circle_icon_employee_info_style = {"border-color": header}
+      $rootScope.circle_icon_employee_info_style = {"border-color": header,"color":icons_color};
       $rootScope.title_employee_info_style = {color: header};
 
       $rootScope.widgetInit = function(key){
@@ -357,6 +363,19 @@
           $rootScope.notifications_icon_style = {color: $rootScope.lighten(link_topbar,20)};
         }else{
           $rootScope.notifications_icon_style = {color: link_topbar};
+        }
+      }
+      //Hover menu y sidebar (Laterales)
+      $rootScope.initStyleSides = function(key){
+        $rootScope.icons_style_hover[key] = {color:icons_color,background:color_default_menu};
+      }
+      $rootScope.hoverSides = function(key,event){
+        console.log(key);
+        console.log(event.type);
+        if(event.type=='mouseover'){
+           $rootScope.icons_style_hover[key] = {color:icons_color,background:header};
+        }else{
+          $rootScope.icons_style_hover[key] = {color:icons_color,background:color_default_menu};
         }
       }
     });

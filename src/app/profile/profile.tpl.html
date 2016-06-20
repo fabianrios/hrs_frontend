@@ -8,7 +8,7 @@
             <!--dash-text-format-->
 			<div class=" p-20 ">
 				<h4 class="no-margin whitetxt card">
-					<a ui-sref="main.views.employee_info">
+					<a ui-sref="main.views.employee_info" ng-style="link_topbar_style">
 						{{user.employee.short_name | special_capitalize}}
 					</a>
 				</h4>
@@ -32,11 +32,11 @@
 			<h5 class="subheader no-margin">
 				{{user.employee.subdivision_per | special_capitalize}}
 			</h5>
-			<a class="has-tip" title="{{user.employee.phone}}" ng-click="contactModal(user.employee.phone, 'phone')" ng-hide="showIconContact(user.employee.phone)">
+			<a class="has-tip" title="{{user.employee.phone}}" ng-click="contactModal(user.employee.phone, 'phone')" ng-hide="showIconContact(user.employee.phone)" ng-style="link_topbar_style">
 				<i class="fa fa-phone fa-lg"></i>
 			</a>
 			&nbsp;
-			<a class="lowercase" data-tooltip aria-haspopup="true" title="{{user.employee.email | lowercase}}" ng-click="contactModal(user.employee.email, 'email')" ng-hide="showIconContact(user.employee.email)">
+			<a class="lowercase" data-tooltip aria-haspopup="true" title="{{user.employee.email | lowercase}}" ng-click="contactModal(user.employee.email, 'email')" ng-hide="showIconContact(user.employee.email)" ng-style="link_topbar_style">
 				<i class="fa fa-envelope-o fa-lg"></i>
 			</a>
 		</div>
