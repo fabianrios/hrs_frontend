@@ -212,16 +212,12 @@
 					<div ng-repeat="benef in beneficiarios">
 						<ul class="small-block-grid-2 medium-block-grid-4 large-block-grid-4" ui-sortable="sortableOptions" ng-model="employee_info.datos_beneficiarios">
 							<li ng-repeat="data in benef" >
-								<div ng-switch="data.ncamp" ng-init="data.ccamp=stringTo(data.tcamp, data.ccamp)">
-									<div ng-switch-default >
+								<div ng-init="data.ccamp=stringTo(data.tcamp, data.ccamp)">
+									<div ng-if="defaultDataBenef(data.ncamp)">
 										<label for="{{data.ncamp}}" data-value="{{data.ccamp}}">{{data.dcamp}}</label>
 										<input ng-disabled="!edit_field(data.sedit)" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" ng-model="data.ccamp" class="{{ isFieldDisabled(data.sedit) }}"/>
 									</div>
-									<div ng-switch-when="P0831-FAM02">
-										<label for="{{data.ncamp}}">{{data.dcamp}}</label>
-										<input ng-disabled="!edit_field(data.sedit)" type="{{data.tcamp == 'NUM' ? 'number' : 'text'}}" name="{{data.ncamp}}" value="{{find_related(familiares, data.ccamp)}}" class="{{ isFieldDisabled(data.sedit) }}"/>
-									</div>
-									<div ng-switch-when="P0831-FAM01">
+									<div ng-if="verifyBeneficiario(data.ncamp)">
 										<label for="{{data.ncamp}}">{{data.dcamp}}</label>
 										<input ng-disabled="!edit_field(data.sedit)" type="{{data.tcamp == 'NUM' ? 'number' : 'text'}}" name="{{data.ncamp}}" value="{{find_related(familiares, data.ccamp)}}" class="{{ isFieldDisabled(data.sedit) }}"/>
 									</div>

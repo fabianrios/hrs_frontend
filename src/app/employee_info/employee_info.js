@@ -124,6 +124,19 @@
 			}
 			$scope.beneficiarios[flagBen].push(val);
 		});
+		//Beneficiarios ilimitados 
+		$scope.verifyBeneficiario  = function(ncamp){
+			if(ncamp.indexOf("P0831-FAM")>-1){
+				return true;
+			}
+		};
+		$scope.defaultDataBenef = function(ncamp){
+			if(ncamp.indexOf("P0831-FAM")>-1){
+				return false;
+			}else{
+				return true;
+			}
+		};
 		
 		$scope.trade_date = function(data){
 			// console.log("recibido:",data);
