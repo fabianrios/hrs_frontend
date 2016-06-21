@@ -231,8 +231,8 @@
 				<div class="information datos_estudios">
 					<h4 ng-style="title_employee_info_style"><span class="fa fa-bank"></span> Mis datos estudios</h4>
 					<hr class="m0" />
-					<ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-4" ui-sortable="sortableOptions" ng-model="employee_info.datos_estudios">
-						<li ng-repeat="data in employee_info.datos_estudios">
+					<ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-4" ui-sortable="sortableOptions" ng-model="employee_info.datos_estudios" ng-repeat="estudio in estudios">
+						<li ng-repeat="data in estudio">
 							<div ng-switch="data.ncamp" ng-init="data.ccamp=stringTo(data.tcamp, data.ccamp)">
 								<div ng-switch-default>
 									<label for="{{data.ncamp}}">{{data.dcamp}}</label>
@@ -260,6 +260,7 @@
 								</div>
 							</div>
 						</li>
+						<hr class="m0" />
 					</ul>
 					<div ng-include="includeInfoMessage"></div>
 				</div>
