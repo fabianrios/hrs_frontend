@@ -137,7 +137,20 @@
 				return true;
 			}
 		};
-		
+		/*
+		* Dividir la informacion por renglones para institutos
+		*/
+		$scope.estudios = [];
+		var flagEst = 0;
+		angular.forEach($rootScope.employee_info.datos_estudios, function(val, i){
+			if (val.ncamp == "P0022-SLART"){
+				if ($scope.estudios.length > 0){
+					flagEst += 1;
+				}
+				$scope.estudios[flagEst] = []; 
+			}
+			$scope.estudios[flagEst].push(val);
+		});
 		$scope.trade_date = function(data){
 			// console.log("recibido:",data);
 			data = new Date(data);
