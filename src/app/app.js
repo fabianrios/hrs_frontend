@@ -229,10 +229,11 @@
       var newValue = "";
       var newWord;
       var exceptionsAcronyms = ['TI','BTL','SAP'];
+      var namesNoPermited = ['del','de'];
       angular.forEach(words,function(word,iWord){
         if (exceptionsAcronyms.indexOf(word.toUpperCase()) != -1){
           newWord = word.toUpperCase()+" ";;
-        }else if((word.length > 0 && word.length <= 3) && type!="own"){
+        }else if((word.length > 0 && word.length <= 3) && (type!="own" && namesNoPermited.indexOf(word.toLowerCase())> -1)){
           newWord = word.toLowerCase()+" ";
         }else{
           newWord = word.substring(0,1).toUpperCase() + word.substring(1).toLowerCase()+" ";
@@ -370,8 +371,6 @@
         $rootScope.icons_style_hover[key] = {color:icons_color,background:color_default_menu};
       }
       $rootScope.hoverSides = function(key,event){
-        console.log(key);
-        console.log(event.type);
         if(event.type=='mouseover'){
            $rootScope.icons_style_hover[key] = {color:icons_color,background:header};
         }else{
