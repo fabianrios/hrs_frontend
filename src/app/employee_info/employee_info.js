@@ -116,7 +116,7 @@
 		$scope.beneficiarios = [];
 		var flagBen = 0;
 		angular.forEach($rootScope.employee_info.datos_beneficiarios, function(val, i){
-			if (val.dcamp == "PARENTESCO"){
+			if (val.pvisu == "01"){
 				if ($scope.beneficiarios.length > 0){
 					flagBen += 1;
 				}
@@ -124,6 +124,7 @@
 			}
 			$scope.beneficiarios[flagBen].push(val);
 		});
+		console.log($scope.beneficiarios);
 		//Beneficiarios ilimitados 
 		$scope.verifyBeneficiario  = function(ncamp){
 			if(ncamp.indexOf("P0831-FAM")>-1){
