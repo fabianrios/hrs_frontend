@@ -2,13 +2,13 @@
 	<div class="inner-wrap">
 		<nav class="tab-bar">
 			<section class="left-small">
-				<a href="" class="left-off-canvas-toggle menu-icon" ng-style="link_topbar_style">
-					<span></span>
+				<a href="" class="left-off-canvas-toggle menu-icon" ng-init = "initStyleSides('MenuPrincipal')" ng-mouseover="hoverSides('MenuPrincipal',$event,true)" ng-mouseleave="hoverSides('MenuPrincipal',$event)" ng-style="icons_style_hover['MenuPrincipal']">
+					<i class="fa fa-bars workers-icon"></i>
 				</a>
 			</section>
 			<section class="middle tab-bar-section" ui-view="topbar"></section>
 			<section class="right-small">
-				<a class="right-off-canvas-toggle menu-icon" data-tooltip aria-haspopup="true" title="Lista de Favoritos" ng-style="link_topbar_style">
+				<a class="right-off-canvas-toggle menu-icon" data-tooltip aria-haspopup="true" title="Lista de Favoritos" ng-init = "initStyleSides('Favoritos')" ng-mouseover="hoverSides('Favoritos',$event,true)" ng-mouseleave="hoverSides('Favoritos',$event)" ng-style="icons_style_hover['Favoritos']">
 					<i class="fa fa-sort-amount-asc workers-icon"></i>
 				</a>
 			</section>
