@@ -370,12 +370,10 @@
       $rootScope.initStyleSides = function(key){
         $rootScope.icons_style_hover[key] = {color:icons_color,background:color_default_menu};
       }
-      $rootScope.hoverSides = function(key,event,iconWhiteOver=false){
+      $rootScope.hoverSides = function(key,event,iconWhiteOver){
         if(event.type=='mouseover'){
-          console.log(iconWhiteOver);
           if(iconWhiteOver == true){
             $rootScope.icons_style_hover[key] = {color:'#fff',background:header};
-            console.log($rootScope.icons_style_hover[key]);
           }else{
             $rootScope.icons_style_hover[key] = {color:icons_color,background:header};
           }
