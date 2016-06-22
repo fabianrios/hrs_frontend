@@ -124,7 +124,6 @@
 			}
 			$scope.beneficiarios[flagBen].push(val);
 		});
-		console.log($scope.beneficiarios);
 		//Beneficiarios ilimitados 
 		$scope.verifyBeneficiario  = function(ncamp){
 			if(ncamp.indexOf("P0831-FAM")>-1){
