@@ -31,11 +31,12 @@
 		$scope.dateFilter = function(value){
 			var rowSpan = 2;
 			if ($scope.embargoes.length >= 1) {
-				var filterValue = $filter('filter')($scope.embargoes, {edate: value});
+				var filterValue = $filter('date')($scope.embargoes, {edate: value});
+				console.log(filterValue);
 				rowSpan = filterValue.length >= 1 ? filterValue.length + 1 : 0;
 			}
 			return rowSpan;
-  	}
+  		}
 
   	var uniqueVals 		= [];
   	var payroll_dates = [];
