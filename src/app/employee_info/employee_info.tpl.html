@@ -305,7 +305,8 @@
 					<ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-4" ui-sortable="sortableOptions" ng-model="employee_info.datos_impuestos">
 						<li ng-repeat="data in employee_info.datos_impuestos" ng-init="data.ccamp=stringTo(data.tcamp, data.ccamp)">
 							<label for="{{data.ncamp}}">{{data.dcamp}}</label>
-							<input ng-disabled="!edit_field(data.sedit)" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" ng-model="data.ccamp" class="{{ isFieldDisabled(data.sedit) }}"/>
+							<input ng-if="data.ncamp == 'P0831-BTEMP'" ng-disabled="!edit_field(data.sedit)" type="text" name="{{data.ncamp}}" value="{{data.ccamp | currency: '$':0}}" class="{{ isFieldDisabled(data.sedit) }}"/>
+							<input ng-if="data.ncamp != 'P0831-BTEMP'" ng-disabled="!edit_field(data.sedit)" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" ng-model="data.ccamp" class="{{ isFieldDisabled(data.sedit) }}"/>
 						</li>
 					</ul>
 					<div ng-include="includeInfoMessage"></div>
