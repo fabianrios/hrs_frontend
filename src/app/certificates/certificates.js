@@ -63,7 +63,8 @@
 	    "$date_time":  new Date(),
 	    "$first_name": $scope.user.employee.name,
 	    "$last_name":  $scope.user.employee.lastname,
-	    "company_id":  $scope.user.company_id
+	    "company_id":  $scope.user.company_id,
+	    "app_version": 1
     });
 		$scope.permission_alert = '';
 		
@@ -164,7 +165,8 @@
 	    "$date_time":  new Date(),
 	    "$first_name": $scope.user.employee.name,
 	    "$last_name":  $scope.user.employee.lastname,
-	    "company_id":  $scope.user.company_id
+	    "company_id":  $scope.user.company_id,
+	    "app_version": 1
     });
 		$scope.permission_alert = '';
 		
@@ -238,7 +240,8 @@
 	    "$date_time":  new Date(),
 	    "$first_name": $scope.user.employee.name,
 	    "$last_name":  $scope.user.employee.lastname,
-	    "company_id":  $scope.user.company_id
+	    "company_id":  $scope.user.company_id,
+	    "app_version": 1
     });
 		$scope.pdfUrl 	  = '';		
 		$scope.scroll 	  = 0;
@@ -326,7 +329,8 @@
 	    "$date_time":  new Date(),
 	    "$first_name": $scope.user.employee.name,
 	    "$last_name":  $scope.user.employee.lastname,
-	    "company_id":  $scope.user.company_id
+	    "company_id":  $scope.user.company_id,
+	    "app_version": 1
     });
 		$scope.scroll    = 0;
 		$scope.loading   = true;

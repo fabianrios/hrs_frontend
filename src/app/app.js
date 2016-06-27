@@ -241,6 +241,7 @@
     }
   })
   .constant('CONSTANT', {
+    APP_VERSION: "1",
     SEVERANCE_LAW_50: "01",
     SEVERANCE_PREVIOUS_REGIME: "02",
     MESSAGE_PERMISSION: "usuario no autorizado"

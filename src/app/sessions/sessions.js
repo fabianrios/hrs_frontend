@@ -83,7 +83,8 @@
 			    "$last_login": new Date(),
 			    "$first_name": resp.employee.name,
 			    "$last_name":  resp.employee.lastname,
-			    "company_id":  resp.company_id
+			    "company_id":  resp.company_id,
+			    "app_version": 1
 				};
 				
         $mixpanel.identify(resp.id);
