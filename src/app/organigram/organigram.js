@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   
-  angular.module('organigram', ['organigram.service'])
+  angular.module('organigram', ['organigram.service', 'analytics.mixpanel'])
 
      // Add http interceptors that allows us to handle http request before it sends and http response parsing
     .config(function($stateProvider){
@@ -18,7 +18,16 @@
         })
     })
 	
-  .controller('Organigram.MainController', ['$scope', '$http', 'organigram', 'HRAPI_CONF', '$stateParams', function($scope, $http, organigram, HRAPI_CONF, $stateParams){
+  .controller('Organigram.MainController', ['$scope', '$http', 'organigram', 'HRAPI_CONF', '$stateParams', '$mixpanel', function($scope, $http, organigram, HRAPI_CONF, $stateParams, $mixpanel){
+  	$mixpanel.track("Organigram", {
+      "user_id": 		 $scope.user.id,
+    	"$pernr": 		 $scope.user.employee.identification,
+	    "$email": 	   $scope.user.email,
+	    "$date_time":  new Date(),
+	    "$first_name": $scope.user.employee.name,
+	    "$last_name":  $scope.user.employee.lastname,
+	    "company_id":  $scope.user.company_id
+    });
   	$scope.reverse = false;
   	$scope.employeeData      = null;
 		$scope.modalDataEmployee = 'app/includes/modal_data_employee.tpl.html';

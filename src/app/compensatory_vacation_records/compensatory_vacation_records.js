@@ -1,7 +1,7 @@
 (function(){
 	'use strict';
   
-	angular.module('compensatory_vacation_records', ['ui.date', 'compensatory_vacation_record.service', 'sort_tables.service'])
+	angular.module('compensatory_vacation_records', ['ui.date', 'compensatory_vacation_record.service', 'sort_tables.service', 'analytics.mixpanel'])
 	.config(function($stateProvider){
 		$stateProvider
 		.state('main.views.compensatory_vacation_records', {
@@ -15,7 +15,16 @@
 			}
 		})
 	})
-	.controller('CompensatoryVacationRecords.ListController', ['$rootScope', '$scope', '$filter', 'compensatoryVacationRecord', 'sortTables', function($rootScope, $scope, $filter, compensatoryVacationRecord, sortTables){
+	.controller('CompensatoryVacationRecords.ListController', ['$rootScope', '$scope', '$filter', 'compensatoryVacationRecord', 'sortTables', '$mixpanel', function($rootScope, $scope, $filter, compensatoryVacationRecord, sortTables, $mixpanel){
+		$mixpanel.track("Consultations - Compensatory Vacations", {
+      "user_id": 		 $scope.user.id,
+    	"$pernr": 		 $scope.user.employee.identification,
+	    "$email": 	   $scope.user.email,
+	    "$date_time":  new Date(),
+	    "$first_name": $scope.user.employee.name,
+	    "$last_name":  $scope.user.employee.lastname,
+	    "company_id":  $scope.user.company_id
+    });
 		$scope.compensatoryVacationRecords = []
 		$.each(compensatoryVacationRecord.compensatory_vacation_records, function(i, value){
     	var filterDate = value.begda;

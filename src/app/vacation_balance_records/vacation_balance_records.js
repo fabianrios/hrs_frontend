@@ -1,7 +1,7 @@
 (function(){
 	'use strict';
   
-	angular.module('vacation_balance_records', ['ui.date', 'vacation_balance_record.service', 'sort_tables.service'])
+	angular.module('vacation_balance_records', ['ui.date', 'vacation_balance_record.service', 'sort_tables.service', 'analytics.mixpanel'])
 	.config(function($stateProvider){
 		$stateProvider
 		.state('main.views.vacation_balance_records', {
@@ -15,7 +15,16 @@
 			}
 		})
 	})
-	.controller('VacationBalanceRecords.ListController', ['$rootScope', '$scope', '$filter', 'vacationBalanceRecord', 'sortTables', function($rootScope, $scope, $filter, vacationBalanceRecord, sortTables){
+	.controller('VacationBalanceRecords.ListController', ['$rootScope', '$scope', '$filter', 'vacationBalanceRecord', 'sortTables', '$mixpanel', function($rootScope, $scope, $filter, vacationBalanceRecord, sortTables, $mixpanel){
+		$mixpanel.track("Consultations - Balance Vacations", {
+      "user_id": 		 $scope.user.id,
+    	"$pernr": 		 $scope.user.employee.identification,
+	    "$email": 	   $scope.user.email,
+	    "$date_time":  new Date(),
+	    "$first_name": $scope.user.employee.name,
+	    "$last_name":  $scope.user.employee.lastname,
+	    "company_id":  $scope.user.company_id
+    });
 		$scope.vacationBalanceRecords = vacationBalanceRecord.vacation_balance_records;
 		$scope.date_filter  = ''
 		$scope.titleReport  = 'No se registra información de vacaciones';

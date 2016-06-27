@@ -1,7 +1,7 @@
 (function(){
 	'use strict';
   
-	angular.module('permissions', ['ui.date', 'permission.service', 'sort_tables.service'])
+	angular.module('permissions', ['ui.date', 'permission.service', 'sort_tables.service', 'analytics.mixpanel'])
 	.config(function($stateProvider){
 		$stateProvider
 		.state('main.views.permissions', {
@@ -15,7 +15,16 @@
 			}
 		})
 	})
-	.controller('Permissions.ListController', ['$rootScope', '$scope', '$filter', 'permission', 'sortTables', function($rootScope, $scope, $filter, permission, sortTables){
+	.controller('Permissions.ListController', ['$rootScope', '$scope', '$filter', 'permission', 'sortTables', '$mixpanel', function($rootScope, $scope, $filter, permission, sortTables, $mixpanel){
+		$mixpanel.track("Consultations - Permissions", {
+      "user_id": 		 $scope.user.id,
+    	"$pernr": 		 $scope.user.employee.identification,
+	    "$email": 	   $scope.user.email,
+	    "$date_time":  new Date(),
+	    "$first_name": $scope.user.employee.name,
+	    "$last_name":  $scope.user.employee.lastname,
+	    "company_id":  $scope.user.company_id
+    });
 		$scope.permissions = permission.permissions;
 		$scope.begda_filter = '';
 		$scope.titleReport  = 'no existen consultas';

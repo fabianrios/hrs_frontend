@@ -1,8 +1,7 @@
 (function(){
   'use strict';
-
+  
   angular.module('hrsReleaseApp', [
-
     // Plugins
     // 'ngCookies',
     'ngResource',
@@ -103,9 +102,7 @@
     'historical_salaries',
   ])
 
-  .config(function($stateProvider, $httpProvider, $urlRouterProvider, HRAPI_CONF, AuthProvider, AuthInterceptProvider, $authProvider){ //ngS3Config, 
-
-	
+  .config(function($stateProvider, $httpProvider, $urlRouterProvider, HRAPI_CONF, AuthProvider, AuthInterceptProvider, $authProvider){ //ngS3Config,     
     // ngS3Config.theme = 'bootstrap2';
 
     $authProvider.configure({
