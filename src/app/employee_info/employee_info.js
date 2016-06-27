@@ -1,7 +1,7 @@
 (function(){
 	'use strict';
   
-	angular.module('employee_info', ['employee_info.service','data_master.service','info.service', 'ui.date'])
+	angular.module('employee_info', ['employee_info.service','data_master.service','info.service', 'ui.date', 'analytics.mixpanel'])
 
 	// Add http interceptors that allows us to handle http request before it sends and http response parsing
 	.config(function($stateProvider){
@@ -36,7 +36,16 @@
 			}
 		})
 	})	
-	.controller('Employee_info.ListController', ['$scope', '$rootScope', '$state', '$filter', 'Info', 'missolicitudes', '$anchorScroll', 'Employee','datamaster', function($scope, $rootScope,$state, $filter, Info, missolicitudes, $anchorScroll, Employee,datamaster){
+	.controller('Employee_info.ListController', ['$scope', '$rootScope', '$state', '$filter', 'Info', 'missolicitudes', '$anchorScroll', 'Employee','datamaster', '$mixpanel', function($scope, $rootScope,$state, $filter, Info, missolicitudes, $anchorScroll, Employee,datamaster, $mixpanel){
+		$mixpanel.track("My Master Data", {
+      "user_id": 		 $scope.user.id,
+      "$pernr": 		 $scope.user.employee.identification,
+	    "$email": 	   $scope.user.email,
+	    "$date_time":  new Date(),
+	    "$first_name": $scope.user.employee.name,
+	    "$last_name":  $scope.user.employee.lastname,
+	    "company_id":  $scope.user.company_id
+    });
 		$rootScope.employee_info = $scope.user.employee_info;
  		$scope.missolicitudes = missolicitudes;
     

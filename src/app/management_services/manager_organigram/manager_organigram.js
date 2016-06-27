@@ -1,7 +1,7 @@
 (function(){
 	'use strict';
   
-	angular.module('manager_organigram', ['manager_organigram.service'])
+	angular.module('manager_organigram', ['manager_organigram.service', 'analytics.mixpanel'])
 	.config(function($stateProvider){
 		$stateProvider
 		.state('main.views.manager_organigram', {
@@ -15,7 +15,16 @@
 			}
 		})
 	})
-	.controller('ManagerOrganigram.ListController', ['$rootScope', '$scope', '$filter', 'managerOrganigram', '$state', function($rootScope, $scope, $filter, managerOrganigram, $state){
+	.controller('ManagerOrganigram.ListController', ['$rootScope', '$scope', '$filter', 'managerOrganigram', '$state', '$mixpanel', function($rootScope, $scope, $filter, managerOrganigram, $state, $mixpanel){
+		$mixpanel.track("Management Services - Manager Organigram", {
+      "user_id": 		 $scope.user.id,
+    	"$pernr": 		 $scope.user.employee.identification,
+	    "$email": 	   $scope.user.email,
+	    "$date_time":  new Date(),
+	    "$first_name": $scope.user.employee.name,
+	    "$last_name":  $scope.user.employee.lastname,
+	    "company_id":  $scope.user.company_id
+    });
 		$scope.manager_organigram = managerOrganigram.manager_organigram;
 		$scope.warningMessage     = 'app/management_services/warning.tpl.html';
 		$scope.employees 					= [];

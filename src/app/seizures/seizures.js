@@ -1,6 +1,6 @@
 (function(){
 	'use strict';
-	angular.module('seizures', ['embargo.service', 'sort_tables.service'])
+	angular.module('seizures', ['embargo.service', 'sort_tables.service', 'analytics.mixpanel'])
 	.config(['$stateProvider',function($stateProvider) {
 		$stateProvider
 		.state('main.views.seizures', {
@@ -14,7 +14,16 @@
 			}
 		})
 	}])
-	.controller('Seizures.ListController', ['$scope', '$filter', 'embargo', 'sortTables', function($scope, $filter, embargo, sortTables){
+	.controller('Seizures.ListController', ['$scope', '$filter', 'embargo', 'sortTables', '$mixpanel', function($scope, $filter, embargo, sortTables, $mixpanel){
+		$mixpanel.track("Consultations - Seizures", {
+      "user_id": 		 $scope.user.id,
+    	"$pernr": 		 $scope.user.employee.identification,
+	    "$email": 	   $scope.user.email,
+	    "$date_time":  new Date(),
+	    "$first_name": $scope.user.employee.name,
+	    "$last_name":  $scope.user.employee.lastname,
+	    "company_id":  $scope.user.company_id
+    });
 		$scope.embargoes 						= embargo.embargoes;
 		$scope.payroll_date_filter 	= ''
 		$scope.titleReport  				= 'no existen consultas';

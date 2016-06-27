@@ -1,7 +1,7 @@
 (function(){
 	'use strict';
   
-	angular.module('incapacities', ['ui.date', 'incapacity.service', 'sort_tables.service'])
+	angular.module('incapacities', ['ui.date', 'incapacity.service', 'sort_tables.service', 'analytics.mixpanel'])
 	.config(function($stateProvider){
 		$stateProvider
 		.state('main.views.incapacities', {
@@ -15,7 +15,16 @@
 			}
 		})
 	})
-	.controller('Incapacities.ListController', ['$rootScope', '$scope', '$filter', 'incapacity', 'sortTables', function($rootScope, $scope, $filter, incapacity, sortTables){
+	.controller('Incapacities.ListController', ['$rootScope', '$scope', '$filter', 'incapacity', 'sortTables', '$mixpanel', function($rootScope, $scope, $filter, incapacity, sortTables, $mixpanel){
+		$mixpanel.track("Consultations - Incapacities", {
+      "user_id": 		 $scope.user.id,
+    	"$pernr": 		 $scope.user.employee.identification,
+	    "$email": 	   $scope.user.email,
+	    "$date_time":  new Date(),
+	    "$first_name": $scope.user.employee.name,
+	    "$last_name":  $scope.user.employee.lastname,
+	    "company_id":  $scope.user.company_id
+    });
 		$scope.incapacities = incapacity.incapacities;
 		$scope.begda_filter = ''
 		$scope.titleReport  = 'no existen consultas';
