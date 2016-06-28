@@ -1,7 +1,7 @@
 (function(){
 	'use strict';
   
-	angular.module('sessions', [ 'sap.service', 'user.service'])
+	angular.module('sessions', [ 'sap.service', 'user.service', 'analytics.mixpanel'])
 	.config(function($stateProvider){
 		$stateProvider
 		.state('login', {
@@ -67,17 +67,35 @@
       });
 		}
 	}])
-	.controller('sessions.IndexLoginController', ['$scope' , function($scope){
+	.controller('sessions.IndexLoginController', ['$scope' , '$mixpanel', function($scope, $mixpanel){
 		$scope.classBackgroundImage = 'bglogin';
 		$scope.subdomain = $scope.getAppSubdomain();
+		$mixpanel.track("Index Page", {subdomain: $scope.subdomain});
 	}])
-	.controller('sessions.LoginController', ['$scope', '$auth', '$location', function($scope, $auth, $location){
+	.controller('sessions.LoginController', ['$scope', '$auth', '$location', '$mixpanel', function($scope, $auth, $location, $mixpanel){
 		$scope.login = function() {       
-	      $auth.submitLogin($scope.credentials);
-	    };
-	    $scope.convertlowercase = function(){
-	    	$scope.credentials.login = $scope.credentials.login.toLowerCase();
-	    }
+    	$auth.submitLogin($scope.credentials).then(function(resp) {
+    		var data = {
+    			"user_id": 		 resp.id,
+        	"$pernr": 		 resp.employee.identification,
+			    "$email": 	   resp.email,
+			    "$created": 	 resp.employee.created_at,
+			    "$last_login": new Date(),
+			    "$first_name": resp.employee.name,
+			    "$last_name":  resp.employee.lastname,
+			    "company_id":  resp.company_id,
+			    "app_version": 1
+				};
+				
+        $mixpanel.identify(resp.id);
+        $mixpanel.people.set(data);
+				$mixpanel.track("Login", data);
+      });
+    };
+
+    $scope.convertlowercase = function(){
+    	$scope.credentials.login = $scope.credentials.login.toLowerCase();
+    }
 	}]);
 	// .controller('sessions.EditController', function($scope, $state, $stateParams, $http, currentUser){
     

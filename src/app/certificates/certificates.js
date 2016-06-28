@@ -1,7 +1,7 @@
 (function(){
 	'use strict';
   
-	angular.module('certificates', ['employee.service', 'pdf'])
+	angular.module('certificates', ['employee.service', 'pdf', 'analytics.mixpanel'])
 
 	// Add http interceptors that allows us to handle http request before it sends and http response parsing
 	.config(function($stateProvider){
@@ -55,7 +55,17 @@
 			$scope.msgError = "Estimado colaborador, no existen PDFs asociados";
 		}
 	}])
-	.controller('Certificates.MainController', ['$rootScope', '$scope', '$http', '$state', '$filter', 'HRAPI_CONF', '$stateParams', 'CONSTANT', function($rootScope, $scope, $http, $state, $filter, HRAPI_CONF, $stateParams, CONSTANT){
+	.controller('Certificates.MainController', ['$rootScope', '$scope', '$http', '$state', '$filter', 'HRAPI_CONF', '$stateParams', 'CONSTANT', '$mixpanel', function($rootScope, $scope, $http, $state, $filter, HRAPI_CONF, $stateParams, CONSTANT, $mixpanel){
+		$mixpanel.track("Autoservices - Labor Certificates", {
+      "user_id": 		 $scope.user.id,
+    	"$pernr": 		 $scope.user.employee.identification,
+	    "$email": 	   $scope.user.email,
+	    "$date_time":  new Date(),
+	    "$first_name": $scope.user.employee.name,
+	    "$last_name":  $scope.user.employee.lastname,
+	    "company_id":  $scope.user.company_id,
+	    "app_version": 1
+    });
 		$scope.permission_alert = '';
 		
 		function messagePermission() {
@@ -147,7 +157,17 @@
 		target.append(spinner.el);
 		*/
 	}])
-	.controller('Certificates.Vacaciones.MainController', ['$rootScope', '$scope', '$http', '$state', '$filter', 'HRAPI_CONF', '$stateParams', 'CONSTANT', function($rootScope, $scope, $http, $state, $filter, HRAPI_CONF, $stateParams, CONSTANT){
+	.controller('Certificates.Vacaciones.MainController', ['$rootScope', '$scope', '$http', '$state', '$filter', 'HRAPI_CONF', '$stateParams', 'CONSTANT', '$mixpanel', function($rootScope, $scope, $http, $state, $filter, HRAPI_CONF, $stateParams, CONSTANT, $mixpanel){
+		$mixpanel.track("Autoservices - Vacation Certificates", {
+      "user_id": 		 $scope.user.id,
+    	"$pernr": 		 $scope.user.employee.identification,
+	    "$email": 	   $scope.user.email,
+	    "$date_time":  new Date(),
+	    "$first_name": $scope.user.employee.name,
+	    "$last_name":  $scope.user.employee.lastname,
+	    "company_id":  $scope.user.company_id,
+	    "app_version": 1
+    });
 		$scope.permission_alert = '';
 		
 		function messagePermission() {
@@ -212,7 +232,17 @@
 			}
 		}
 	}])
-	.controller('Certificates.Nomina.MainController', ['$rootScope', '$scope', '$http', '$state', '$filter', 'HRAPI_CONF', '$stateParams', 'CONSTANT', function($rootScope, $scope, $http,  $state, $filter, HRAPI_CONF, $stateParams, CONSTANT){
+	.controller('Certificates.Nomina.MainController', ['$rootScope', '$scope', '$http', '$state', '$filter', 'HRAPI_CONF', '$stateParams', 'CONSTANT', '$mixpanel', function($rootScope, $scope, $http,  $state, $filter, HRAPI_CONF, $stateParams, CONSTANT, $mixpanel){
+		$mixpanel.track("Autoservices - Payroll Certificates", {
+      "user_id": 		 $scope.user.id,
+    	"$pernr": 		 $scope.user.employee.identification,
+	    "$email": 	   $scope.user.email,
+	    "$date_time":  new Date(),
+	    "$first_name": $scope.user.employee.name,
+	    "$last_name":  $scope.user.employee.lastname,
+	    "company_id":  $scope.user.company_id,
+	    "app_version": 1
+    });
 		$scope.pdfUrl 	  = '';		
 		$scope.scroll 	  = 0;
 		$scope.loading    = true;
@@ -291,7 +321,17 @@
 	
 
 	}])
-	.controller('Certificates.Income.MainController', ['$rootScope', '$scope', '$http', '$state', '$filter', 'HRAPI_CONF', '$stateParams', 'CONSTANT', function($rootScope, $scope, $http, $state, $filter, HRAPI_CONF, $stateParams, CONSTANT){
+	.controller('Certificates.Income.MainController', ['$rootScope', '$scope', '$http', '$state', '$filter', 'HRAPI_CONF', '$stateParams', 'CONSTANT', '$mixpanel', function($rootScope, $scope, $http, $state, $filter, HRAPI_CONF, $stateParams, CONSTANT, $mixpanel){
+		$mixpanel.track("Autoservices - Income Certificates", {
+      "user_id": 		 $scope.user.id,
+    	"$pernr": 		 $scope.user.employee.identification,
+	    "$email": 	   $scope.user.email,
+	    "$date_time":  new Date(),
+	    "$first_name": $scope.user.employee.name,
+	    "$last_name":  $scope.user.employee.lastname,
+	    "company_id":  $scope.user.company_id,
+	    "app_version": 1
+    });
 		$scope.scroll    = 0;
 		$scope.loading   = true;
 		$scope.progress  = {};

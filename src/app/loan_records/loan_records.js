@@ -1,7 +1,7 @@
 (function(){
 	'use strict';
   
-	angular.module('loan_records', ['ui.date', 'loan_record.service', 'sort_tables.service'])
+	angular.module('loan_records', ['ui.date', 'loan_record.service', 'sort_tables.service', 'analytics.mixpanel'])
 	.config(function($stateProvider){
 		$stateProvider
 		.state('main.views.loan_records', {
@@ -15,7 +15,17 @@
 			}
 		})
 	})
-	.controller('LoanRecords.ListController', ['$rootScope', '$scope', '$filter', 'loanRecord', 'sortTables', function($rootScope, $scope, $filter, loanRecord, sortTables){
+	.controller('LoanRecords.ListController', ['$rootScope', '$scope', '$filter', 'loanRecord', 'sortTables', '$mixpanel', function($rootScope, $scope, $filter, loanRecord, sortTables, $mixpanel){
+		$mixpanel.track("Consultations - Loans", {
+      "user_id": 		 $scope.user.id,
+    	"$pernr": 		 $scope.user.employee.identification,
+	    "$email": 	   $scope.user.email,
+	    "$date_time":  new Date(),
+	    "$first_name": $scope.user.employee.name,
+	    "$last_name":  $scope.user.employee.lastname,
+	    "company_id":  $scope.user.company_id,
+	    "app_version": 1
+    });
 		$scope.loanRecords  = loanRecord.loan_records;
 		$scope.date_filter  = ''
 		$scope.titleReport  = 'no existen consultas';

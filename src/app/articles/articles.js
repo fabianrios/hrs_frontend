@@ -1,7 +1,7 @@
 (function(){
 	'use strict';
   
-	angular.module('articles', ['article.service','textAngular'])
+	angular.module('articles', ['article.service','textAngular', 'analytics.mixpanel'])
 
 	// Add http interceptors that allows us to handle http request before it sends and http response parsing
 	.config(function($stateProvider){
@@ -42,7 +42,16 @@
 	        }
 	    });
 	})
-	.controller('Articles.ListController', ['$rootScope', '$scope', '$http', '$state', 'Article', 'HRAPI_CONF', 'articles', function($rootScope, $scope, $http, $state, Article, HRAPI_CONF, articles){
+	.controller('Articles.ListController', ['$rootScope', '$scope', '$http', '$state', 'Article', 'HRAPI_CONF', 'articles', '$mixpanel', function($rootScope, $scope, $http, $state, Article, HRAPI_CONF, articles, $mixpanel){
+		$mixpanel.track("Content Manager", {
+      "user_id": 		 $scope.user.id,
+      "$pernr": 		 $scope.user.employee.identification,
+	    "$email": 	   $scope.user.email,
+	    "$date_time":  new Date(),
+	    "$first_name": $scope.user.employee.name,
+	    "$last_name":  $scope.user.employee.lastname,
+	    "company_id":  $scope.user.company_id
+    });
 		$scope.permission_alert = '';
 		
 		if(angular.isObject(articles[0])){
@@ -205,20 +214,30 @@
 
 			$scope.addArticulo = function() { //create a new company. Issues a POST to /api/companies
 				$scope.article.sending = true;
-				Upload.upload({ 
-		            	method: 'POST', 
-		                url: HRAPI_CONF.apiBaseUrl('/articles.json'), 
-		                fields: $scope.article, 
-		                file: archivo
-		            }).progress(function (evt) { 
-		                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total); 		                
-		            }).success(function (data, status, headers, config) {		            
-		            	$state.go('main.views.articles');	               
-		            }).error(function (data, status, headers, config) { 
-		            	// $scope.alerts.push({type: 'alert', msg: data.errors.status[0]});		
-		            	$scope.article.sending = false;              
-		            	$scope.showMessageErrorRails(data);	            	
-	            });
+				Upload.upload({
+      		method: 'POST',
+          url: HRAPI_CONF.apiBaseUrl('/articles.json'),
+          fields: $scope.article,
+          file: archivo
+        }).progress(function (evt) {
+          var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+        }).success(function (data, status, headers, config) {
+      		$mixpanel.track("Content Manager - New", {
+					  "user_id": 		 $scope.user.id,
+					  "$pernr": 		 $scope.user.employee.identification,
+					  "$email": 	   $scope.user.email,
+					  "$date_time":  new Date(),
+					  "$first_name": $scope.user.employee.name,
+					  "$last_name":  $scope.user.employee.lastname,
+					  "company_id":  $scope.user.company_id,
+					  "app_version": 1
+					});
+        	$state.go('main.views.articles');
+        }).error(function (data, status, headers, config) {
+        	// $scope.alerts.push({type: 'alert', msg: data.errors.status[0]});		
+        	$scope.article.sending = false;              
+        	$scope.showMessageErrorRails(data);	            	
+        });
 			};
 		}else{
 			//$state.transitionTo('main.views.articles');

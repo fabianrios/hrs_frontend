@@ -43,5 +43,11 @@
     .constant('RUNENV_CONF', runEnv)
     .constant('UI_CONF', ui)
     .constant('HRAPI_CONF', hrapi);
+
+  angular.module('analytics.mixpanel')
+  .config(['$mixpanelProvider', function($mixpanelProvider) {
+      $mixpanelProvider.apiKey('f929f52c03b5d4d6032c28be34eabd91'); // your API key
+  }]);
+
 }());
 
