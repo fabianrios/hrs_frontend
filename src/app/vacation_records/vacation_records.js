@@ -15,17 +15,19 @@
 			}
 		})
 	})
-	.controller('VacationRecords.ListController', ['$rootScope', '$scope', '$filter', 'enjoyedVacation', 'sortTables', '$mixpanel', function($rootScope, $scope, $filter, enjoyedVacation, sortTables, $mixpanel){
-		$mixpanel.track("Consultations - Enjoyed Vacations", {
-      "user_id": 		 $scope.user.id,
-    	"$pernr": 		 $scope.user.employee.identification,
-	    "$email": 	   $scope.user.email,
-	    "$date_time":  new Date(),
-	    "$first_name": $scope.user.employee.name,
-	    "$last_name":  $scope.user.employee.lastname,
-	    "company_id":  $scope.user.company_id,
-	    "app_version": 1
-    });
+	.controller('VacationRecords.ListController', ['$rootScope', '$scope', '$filter', 'enjoyedVacation', 'sortTables', '$mixpanel', 'HRAPI_CONF', function($rootScope, $scope, $filter, enjoyedVacation, sortTables, $mixpanel, HRAPI_CONF){
+		if (!HRAPI_CONF.isDevelopment){
+			$mixpanel.track("Consultations - Enjoyed Vacations", {
+	      "user_id": 		 $scope.user.id,
+	    	"$pernr": 		 $scope.user.employee.identification,
+		    "$email": 	   $scope.user.email,
+		    "$date_time":  new Date(),
+		    "$first_name": $scope.user.employee.name,
+		    "$last_name":  $scope.user.employee.lastname,
+		    "company_id":  $scope.user.company_id,
+		    "app_version": 1
+	    });
+		}
 		$scope.enjoyedVacation = [];
 		$.each(enjoyedVacation.enjoyed_vacations, function(i, value){
     	var filterDate = value.begda;

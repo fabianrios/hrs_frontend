@@ -15,17 +15,19 @@
 			}
 		})
 	})
-	.controller('Permissions.ListController', ['$rootScope', '$scope', '$filter', 'permission', 'sortTables', '$mixpanel', function($rootScope, $scope, $filter, permission, sortTables, $mixpanel){
-		$mixpanel.track("Consultations - Permissions", {
-      "user_id": 		 $scope.user.id,
-    	"$pernr": 		 $scope.user.employee.identification,
-	    "$email": 	   $scope.user.email,
-	    "$date_time":  new Date(),
-	    "$first_name": $scope.user.employee.name,
-	    "$last_name":  $scope.user.employee.lastname,
-	    "company_id":  $scope.user.company_id,
-	    "app_version": 1
-    });
+	.controller('Permissions.ListController', ['$rootScope', '$scope', '$filter', 'permission', 'sortTables', '$mixpanel', 'HRAPI_CONF', function($rootScope, $scope, $filter, permission, sortTables, $mixpanel, HRAPI_CONF){
+		if (!HRAPI_CONF.isDevelopment){
+			$mixpanel.track("Consultations - Permissions", {
+	      "user_id": 		 $scope.user.id,
+	    	"$pernr": 		 $scope.user.employee.identification,
+		    "$email": 	   $scope.user.email,
+		    "$date_time":  new Date(),
+		    "$first_name": $scope.user.employee.name,
+		    "$last_name":  $scope.user.employee.lastname,
+		    "company_id":  $scope.user.company_id,
+		    "app_version": 1
+	    });
+		}
 		$scope.permissions = permission.permissions;
 		$scope.begda_filter = '';
 		$scope.titleReport  = 'no existen consultas';

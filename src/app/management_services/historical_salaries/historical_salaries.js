@@ -15,17 +15,19 @@
 			}
 		})
 	})
-	.controller('HistoricalSalaries.ListController', ['$rootScope', '$scope', '$filter', 'historicalSalaries', '$state', '$mixpanel', function($rootScope, $scope, $filter, historicalSalaries, $state, $mixpanel){
-		$mixpanel.track("Management Services - Historical Salaries", {
-      "user_id": 		 $scope.user.id,
-    	"$pernr": 		 $scope.user.employee.identification,
-	    "$email": 	   $scope.user.email,
-	    "$date_time":  new Date(),
-	    "$first_name": $scope.user.employee.name,
-	    "$last_name":  $scope.user.employee.lastname,
-	    "company_id":  $scope.user.company_id,
-	    "app_version": 1
-    });
+	.controller('HistoricalSalaries.ListController', ['$rootScope', '$scope', '$filter', 'historicalSalaries', '$state', '$mixpanel', 'HRAPI_CONF', function($rootScope, $scope, $filter, historicalSalaries, $state, $mixpanel, HRAPI_CONF){
+		if (!HRAPI_CONF.isDevelopment){
+			$mixpanel.track("Management Services - Historical Salaries", {
+	      "user_id": 		 $scope.user.id,
+	    	"$pernr": 		 $scope.user.employee.identification,
+		    "$email": 	   $scope.user.email,
+		    "$date_time":  new Date(),
+		    "$first_name": $scope.user.employee.name,
+		    "$last_name":  $scope.user.employee.lastname,
+		    "company_id":  $scope.user.company_id,
+		    "app_version": 1
+	    });
+		}
 		$scope.historical_salaries = historicalSalaries.historical_salaries;
 		$scope.warningMessage      = 'app/management_services/warning.tpl.html';
 		$scope.permission_alert 	 = '';

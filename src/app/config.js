@@ -46,8 +46,7 @@
 
   angular.module('analytics.mixpanel')
   .config(['$mixpanelProvider', function($mixpanelProvider) {
-      $mixpanelProvider.apiKey('f929f52c03b5d4d6032c28be34eabd91'); // your API key
+    $mixpanelProvider.apiKey("f929f52c03b5d4d6032c28be34eabd91"); // your API key
   }]);
-
 }());
 

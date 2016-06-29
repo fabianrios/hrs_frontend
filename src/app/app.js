@@ -299,36 +299,36 @@
         "background-size":"100%"
       }
       /*******colors*******/
-      var header        = company_styles.color_1,
-      link_topbar       = company_styles.topbar_color,
-      header_hover      = company_styles.color_2,
-      header_title      = company_styles.color_3,
-      widget_background = company_styles.widget_color,
+      var header         = company_styles.color_1,
+      link_topbar        = company_styles.topbar_color,
+      header_hover       = company_styles.color_2,
+      header_title       = company_styles.color_3,
+      widget_background  = company_styles.widget_color,
       icons_color = company_styles.icons_color,
       //Default colors
-      comments          = "#ff7e00",
-      number            = "#1AB828",
-      hover             = "#0A496E",
-      registers         = "#1DB3FF";
-      var color_default_menu     = "none";
+      comments           = "#ff7e00",
+      number             = "#1AB828",
+      hover              = "#0A496E",
+      registers          = "#1DB3FF",
+      color_default_menu = "none";
 
       $rootScope.search_employee_style    = {background: header};
       $rootScope.circle_worker_style      = {border: "2px solid "+link_topbar};
       $rootScope.notifications_icon_style = {color: link_topbar};
       $rootScope.link_topbar_style        = {color: link_topbar};
-      $rootScope.icons_style = {color:icons_color};
-      $rootScope.icons_style_hover = [];
-      $rootScope.background_icons = {background:link_topbar};
+      $rootScope.icons_style              = {color:icons_color};
+      $rootScope.background_icons         = {background:link_topbar};
+      $rootScope.icons_style_hover        = [];
       $rootScope.widget_style             = [];
       $rootScope.widget_header_style      = [];
       $rootScope.widget_header_link_style = [];
-      $rootScope.new_option = 0;
-      $rootScope.picture_employee_style = {border: "3px solid "+header};
-      $rootScope.photo_employee_style = {border: "1px solid "+header};
+      $rootScope.new_option               = 0;
+      $rootScope.picture_employee_style   = {border: "3px solid "+header};
+      $rootScope.photo_employee_style     = {border: "1px solid "+header};
 
       $rootScope.picture_employee_organigram_style = {border: "2px solid "+header};
-      $rootScope.circle_icon_employee_info_style = {"border-color": header,"color":icons_color};
-      $rootScope.title_employee_info_style = {color: header};
+      $rootScope.circle_icon_employee_info_style   = {"border-color": header,"color":icons_color};
+      $rootScope.title_employee_info_style         = {color: header};
 
       $rootScope.widgetInit = function(key){
         $rootScope.widget_style[key]             = {background: widget_background, border: "1px solid "+widget_background};
@@ -659,3 +659,4 @@
   });
   
 }());
+

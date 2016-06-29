@@ -43,15 +43,17 @@
 	    });
 	})
 	.controller('Articles.ListController', ['$rootScope', '$scope', '$http', '$state', 'Article', 'HRAPI_CONF', 'articles', '$mixpanel', function($rootScope, $scope, $http, $state, Article, HRAPI_CONF, articles, $mixpanel){
-		$mixpanel.track("Content Manager", {
-      "user_id": 		 $scope.user.id,
-      "$pernr": 		 $scope.user.employee.identification,
-	    "$email": 	   $scope.user.email,
-	    "$date_time":  new Date(),
-	    "$first_name": $scope.user.employee.name,
-	    "$last_name":  $scope.user.employee.lastname,
-	    "company_id":  $scope.user.company_id
-    });
+		if (!HRAPI_CONF.isDevelopment){
+			$mixpanel.track("Content Manager", {
+		    "user_id": 		 $scope.user.id,
+		    "$pernr": 		 $scope.user.employee.identification,
+		    "$email": 	   $scope.user.email,
+		    "$date_time":  new Date(),
+		    "$first_name": $scope.user.employee.name,
+		    "$last_name":  $scope.user.employee.lastname,
+		    "company_id":  $scope.user.company_id
+		  });
+		}
 		$scope.permission_alert = '';
 		
 		if(angular.isObject(articles[0])){

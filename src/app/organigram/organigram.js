@@ -19,7 +19,8 @@
     })
 	
   .controller('Organigram.MainController', ['$scope', '$http', 'organigram', 'HRAPI_CONF', '$stateParams', '$mixpanel', function($scope, $http, organigram, HRAPI_CONF, $stateParams, $mixpanel){
-  	$mixpanel.track("Organigram", {
+  	if (!HRAPI_CONF.isDevelopment){
+  		$mixpanel.track("Organigram", {
       "user_id": 		 $scope.user.id,
     	"$pernr": 		 $scope.user.employee.identification,
 	    "$email": 	   $scope.user.email,
@@ -29,6 +30,7 @@
 	    "company_id":  $scope.user.company_id,
 	    "app_version": 1
     });
+  	}
   	$scope.reverse = false;
   	$scope.employeeData      = null;
 		$scope.modalDataEmployee = 'app/includes/modal_data_employee.tpl.html';
