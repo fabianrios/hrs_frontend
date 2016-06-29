@@ -36,17 +36,19 @@
 			}
 		})
 	})	
-	.controller('Employee_info.ListController', ['$scope', '$rootScope', '$state', '$filter', 'Info', 'missolicitudes', '$anchorScroll', 'Employee','datamaster', '$mixpanel', function($scope, $rootScope,$state, $filter, Info, missolicitudes, $anchorScroll, Employee,datamaster, $mixpanel){
-		$mixpanel.track("My Master Data", {
-      "user_id": 		 $scope.user.id,
-      "$pernr": 		 $scope.user.employee.identification,
-	    "$email": 	   $scope.user.email,
-	    "$date_time":  new Date(),
-	    "$first_name": $scope.user.employee.name,
-	    "$last_name":  $scope.user.employee.lastname,
-	    "company_id":  $scope.user.company_id,
-	    "app_version": 1
-    });
+	.controller('Employee_info.ListController', ['$scope', '$rootScope', '$state', '$filter', 'Info', 'missolicitudes', '$anchorScroll', 'Employee','datamaster', '$mixpanel', 'HRAPI_CONF', function($scope, $rootScope,$state, $filter, Info, missolicitudes, $anchorScroll, Employee,datamaster, $mixpanel, HRAPI_CONF){
+		if (!HRAPI_CONF.isDevelopment){
+			$mixpanel.track("My Master Data", {
+	      "user_id": 		 $scope.user.id,
+	      "$pernr": 		 $scope.user.employee.identification,
+		    "$email": 	   $scope.user.email,
+		    "$date_time":  new Date(),
+		    "$first_name": $scope.user.employee.name,
+		    "$last_name":  $scope.user.employee.lastname,
+		    "company_id":  $scope.user.company_id,
+		    "app_version": 1
+	    });
+		}
 		$rootScope.employee_info = $scope.user.employee_info;
  		$scope.missolicitudes = missolicitudes;
     
