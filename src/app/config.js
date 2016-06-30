@@ -28,7 +28,7 @@
   hrapi.apiVersion = 'v1';
   hrapi.apiBaseUrl = function(path){
     //return hrapi.hostname + '/api/' + hrapi.apiName + '/' + hrapi.apiVersion + '/' + path;
-    return hrapi.hostname + '/api' + path;
+    return hrapi.hostname + '/api/v1' + path;
   };
 
   hrapi.baseUrl = function(path){
