@@ -33,7 +33,7 @@
 								<label for="{{data.ncamp}}">{{data.dcamp}}</label>
 								<div class="row collapse">
 									<div class="small-2 columns">
-										<a href="#" class="button postfix" ng-style="background_icons"><span class="{{icons[$index]}}"></span></a>
+										<a class="button postfix" ng-style="background_icons"><span class="{{icons[$index]}}"></span></a>
 									</div>
 									<div class="small-10 columns">
 										<input ng-disabled="!edit_field(data.sedit)" type="{{data.tcamp == 'NUM' ? 'number' : data.tcamp}}" name="{{data.ncamp}}" value="{{data.ccamp}}"/>
