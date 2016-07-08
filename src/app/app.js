@@ -289,7 +289,7 @@
       $rootScope.viewforgotpassword = company_styles.login_ldap ? false : true;
       
       /*******images*******/
-      $rootScope.login_image_style  = {background: "url('"+company_styles.image_1.url+"') no-repeat 0 0", "background-size": "cover"};
+      $rootScope.login_image_style  = {background: "url('"+company_styles.image_1.url+"') no-repeat 0 0", "background-size": "100% 100%"};
       $rootScope.company_logo       = company_styles.logo;
       $rootScope.image_banner_style = {
         "background-image": "url('"+company_styles.image_2.url+"')",
