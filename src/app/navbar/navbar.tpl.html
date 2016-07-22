@@ -140,7 +140,7 @@
         <a href="" ng-init = "initStyleSides('Volver')" ng-mouseover="hoverSides('Volver',$event)" ng-mouseleave="hoverSides('Volver',$event)" ng-style="icons_style_hover['Volver']">Volver</a>
       </li>
       <li ng-repeat="consultation in consultationsMenu | orderBy:'name'">
-        <a ui-sref="{{ consultation.url }}" ng-init = "initStyleSides(consultation.name)" ng-mouseover="hoverSides(consultation.name,$event)" ng-mouseleave="hoverSides(consultation.name,$event)" ng-style="icons_style_hover[consultation.name]">
+        <a ui-sref="{{ consultation.url }}" ng-init="initStyleSides(consultation.name)" ng-mouseover="hoverSides(consultation.name,$event)" ng-mouseleave="hoverSides(consultation.name,$event)" ng-style="icons_style_hover[consultation.name]">
          {{ consultation.name }}
         </a>
       </li>

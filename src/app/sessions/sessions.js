@@ -73,6 +73,7 @@
 		$mixpanel.track("Index Page", {subdomain: $scope.subdomain});
 	}])
 	.controller('sessions.LoginController', ['$scope', '$auth', '$location', '$mixpanel', function($scope, $auth, $location, $mixpanel){
+		$scope.credentials = {};
 		$scope.login = function() {       
     	$auth.submitLogin($scope.credentials).then(function(resp) {
     		var data = {
@@ -94,7 +95,9 @@
     };
 
     $scope.convertlowercase = function(){
-    	$scope.credentials.login = $scope.credentials.login.toLowerCase();
+    	if ($scope.credentials.login !== undefined) {
+    		$scope.credentials.login = $scope.credentials.login.toLowerCase();	
+    	}
     }
 	}]);
 	// .controller('sessions.EditController', function($scope, $state, $stateParams, $http, currentUser){
