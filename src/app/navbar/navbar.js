@@ -20,11 +20,8 @@
 		$scope.pdfKeyInit 			 = 0;
 		$scope.pdfKeyVacations 	 = $scope.vacations.length !== 0 ? $scope.vacations.length - 1 : $scope.vacations.length;
 		$scope.pdfKeyIncome      = $scope.incomes.length !== 0 ? $scope.incomes.length - 1 : $scope.incomes.length;
+
 		$scope.consultationsMenu = [
-			{
-				name: 'Ingresos y retenciones',
-				url:  'main.views.payments_deductions_records'
-			},
 			{
 				name: 'Pagos y deducciones',
 				url:  'main.views.indebtedness_levels'
@@ -64,6 +61,12 @@
 			}
 			*/
 		];
+		if (!$scope.getAppSubdomain().indexOf("publicar") === 0) {
+			$scope.consultationsMenu[$scope.consultationsMenu.length] = {
+				name: 'Ingresos y retenciones',
+				url:  'main.views.payments_deductions_records'
+			};
+		}
 		
 		$scope.managerServicesMenu = [
 			{
