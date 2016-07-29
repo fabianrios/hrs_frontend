@@ -55,7 +55,7 @@
       var _return;
       _return = false;
       $scope.empFavorites.some( function( favorite ){        
-        if(favorite.employee_identification === employee.identification){
+        if(favorite.employee_identification === employee.id){
             _return = true;
         }
       });
